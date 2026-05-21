@@ -69,26 +69,7 @@ export function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden" style={{ background: "#03020a" }}>
 
-      {/* ─── BG FX ─── */}
-      <div className="fixed inset-0 z-0 pointer-events-none grid-bg opacity-70" />
 
-      {/* Neon orb top-left — sharp core */}
-      <motion.div className="fixed pointer-events-none z-0 rounded-full"
-        style={{ width: 500, height: 500, top: "-10%", left: "-10%", background: "radial-gradient(circle, rgba(139,58,255,0.55) 0%, rgba(109,40,217,0.25) 30%, transparent 65%)", filter: "blur(18px)" }}
-        animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
-
-      {/* Neon orb right */}
-      <motion.div className="fixed pointer-events-none z-0 rounded-full"
-        style={{ width: 400, height: 400, top: "20%", right: "-8%", background: "radial-gradient(circle, rgba(168,85,247,0.45) 0%, rgba(139,92,246,0.2) 35%, transparent 65%)", filter: "blur(14px)" }}
-        animate={{ scale: [1, 1.12, 1], opacity: [0.6, 0.95, 0.6] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
-
-      {/* Neon orb bottom */}
-      <motion.div className="fixed pointer-events-none z-0 rounded-full"
-        style={{ width: 350, height: 350, bottom: "10%", left: "30%", background: "radial-gradient(circle, rgba(109,40,255,0.4) 0%, rgba(88,28,235,0.18) 35%, transparent 65%)", filter: "blur(12px)" }}
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }} />
 
       {/* ─── HEADER ─── */}
       <header className="fixed top-0 left-0 right-0 z-50">
