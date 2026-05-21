@@ -420,7 +420,7 @@ export function HomePage() {
                   {/* ── Floating glass holographic dashboard ── */}
                   <motion.div
                     className="relative mx-auto"
-                    style={{ width: "112%", marginLeft: "-6%", transformStyle: "preserve-3d", zIndex: 30 }}
+                    style={{ width: "88%", marginLeft: "6%", transformStyle: "preserve-3d", zIndex: 30 }}
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   >
@@ -468,36 +468,36 @@ export function HomePage() {
                       </div>
 
                     {/* Dashboard content */}
-                    <div className="p-6">
+                    <div className="p-3">
                       {/* Top metrics */}
-                      <div className="grid grid-cols-4 gap-3 mb-5">
+                      <div className="grid grid-cols-4 gap-2 mb-3">
                         {[
                           { label: "Выручка", value: "8 742 000 ₽", change: "+31%", up: true },
                           { label: "Конверсия", value: "32.7%", change: "+8.1%", up: true },
                           { label: "Средний чек", value: "6 430 ₽", change: "+12.2%", up: true },
                           { label: "Потерянная", value: "1 242 000 ₽", change: "Найдено WI", warn: true, up: false },
                         ].map((m) => (
-                          <div key={m.label} className="rounded-xl p-4"
+                          <div key={m.label} className="rounded-lg p-2.5"
                             style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
-                            <div className="text-[10px] font-medium text-gray-300 mb-1.5 truncate">{m.label}</div>
-                            <div className="text-[14px] font-black text-white mb-1 truncate">{m.value}</div>
-                            <div className={`text-[11px] font-bold ${m.warn ? "text-orange-300" : m.up ? "text-emerald-300" : "text-red-400"}`}>{m.change}</div>
+                            <div className="text-[8px] font-medium text-gray-300 mb-1 truncate">{m.label}</div>
+                            <div className="text-[11px] font-black text-white mb-0.5 truncate">{m.value}</div>
+                            <div className={`text-[9px] font-bold ${m.warn ? "text-orange-300" : m.up ? "text-emerald-300" : "text-red-400"}`}>{m.change}</div>
                           </div>
                         ))}
                       </div>
 
                       {/* Charts row */}
-                      <div className="grid grid-cols-2 gap-4 mb-5">
-                        <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="text-[11px] font-semibold text-gray-200">Динамика выручки</div>
-                            <div className="text-[10px] text-violet-300 font-bold">По дням</div>
+                      <div className="grid grid-cols-2 gap-2 mb-3">
+                        <div className="rounded-lg p-2.5" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="text-[9px] font-semibold text-gray-200">Динамика выручки</div>
+                            <div className="text-[8px] text-violet-300 font-bold">По дням</div>
                           </div>
                           <LineChart />
                         </div>
-                        <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
-                          <div className="text-[11px] font-semibold text-gray-200 mb-3">Причины потерь</div>
-                          <div className="flex items-center gap-3">
+                        <div className="rounded-lg p-2.5" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
+                          <div className="text-[9px] font-semibold text-gray-200 mb-2">Причины потерь</div>
+                          <div className="flex items-center gap-2">
                             <div className="relative shrink-0">
                               <MultiDonutChart segments={[
                                 { pct: 30, color: "#ef4444" },
@@ -507,11 +507,11 @@ export function HomePage() {
                                 { pct: 13, color: "#a855f7" },
                               ]} />
                               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <div className="text-[11px] font-black text-white">3 245</div>
-                                <div className="text-[7px] text-gray-300">упущено</div>
+                                <div className="text-[9px] font-black text-white">3 245</div>
+                                <div className="text-[6px] text-gray-300">упущено</div>
                               </div>
                             </div>
-                            <div className="space-y-1.5 flex-1">
+                            <div className="space-y-1 flex-1">
                               {[
                                 ["Цена", 30, "#ef4444"],
                                 ["Конкуренты", 25, "#f97316"],
@@ -519,10 +519,10 @@ export function HomePage() {
                                 ["Возражения", 12, "#22c55e"],
                                 ["Другое", 13, "#a855f7"],
                               ].map(([l, p, c]) => (
-                                <div key={l as string} className="flex items-center gap-2">
-                                  <div className="w-2 h-2 rounded-full shrink-0" style={{ background: c as string, boxShadow: `0 0 5px ${c}` }} />
-                                  <div className="text-[10px] text-gray-200 flex-1 truncate">{l}</div>
-                                  <div className="text-[10px] font-bold text-white">{p}%</div>
+                                <div key={l as string} className="flex items-center gap-1.5">
+                                  <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: c as string, boxShadow: `0 0 4px ${c}` }} />
+                                  <div className="text-[8px] text-gray-200 flex-1 truncate">{l}</div>
+                                  <div className="text-[8px] font-bold text-white">{p}%</div>
                                 </div>
                               ))}
                             </div>
@@ -531,45 +531,45 @@ export function HomePage() {
                       </div>
 
                       {/* Bottom row */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
-                          <div className="flex items-center mb-2">
-                            <div className="text-[11px] font-semibold text-gray-200 flex-1">Топ менеджеров</div>
-                            <div className="flex gap-3">
-                              <div className="text-[8px] text-gray-500 w-10 text-right">Конв.</div>
-                              <div className="text-[8px] text-gray-500 w-14 text-right">Выручка</div>
-                              <div className="text-[8px] text-gray-500 w-8 text-right">Кач.</div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="rounded-lg p-2.5" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
+                          <div className="flex items-center mb-1.5">
+                            <div className="text-[9px] font-semibold text-gray-200 flex-1">Топ менеджеров</div>
+                            <div className="flex gap-2">
+                              <div className="text-[7px] text-gray-500 w-8 text-right">Конв.</div>
+                              <div className="text-[7px] text-gray-500 w-12 text-right">Выручка</div>
+                              <div className="text-[7px] text-gray-500 w-7 text-right">Кач.</div>
                             </div>
                           </div>
-                          <div className="space-y-2.5">
+                          <div className="space-y-1.5">
                             {[
                               { name: "Анна С.", conv: 45, revenue: "2.1М", qual: 92 },
                               { name: "Иван П.", conv: 38, revenue: "1.8М", qual: 88 },
                               { name: "Мария К.", conv: 35, revenue: "1.6М", qual: 85 },
                             ].map((m, i) => (
-                              <div key={i} className="flex items-center gap-2">
-                                <div className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-[9px] font-black text-white"
+                              <div key={i} className="flex items-center gap-1.5">
+                                <div className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-[8px] font-black text-white"
                                   style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }}>{m.name[0]}</div>
-                                <div className="text-[10px] font-medium text-white flex-1 truncate">{m.name}</div>
-                                <div className="text-[10px] text-gray-300 w-10 text-right">{m.conv}%</div>
-                                <div className="text-[10px] text-violet-300 font-semibold w-14 text-right">{m.revenue}</div>
-                                <div className="text-[10px] font-bold w-8 text-right" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
+                                <div className="text-[9px] font-medium text-white flex-1 truncate">{m.name}</div>
+                                <div className="text-[8px] text-gray-300 w-8 text-right">{m.conv}%</div>
+                                <div className="text-[8px] text-violet-300 font-semibold w-12 text-right">{m.revenue}</div>
+                                <div className="text-[8px] font-bold w-7 text-right" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
                               </div>
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-xl p-4 flex flex-col items-center justify-center" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
-                          <div className="text-[11px] font-semibold text-gray-200 mb-2">Качество разговоров</div>
-                          <div className="relative" style={{ transform: "scale(1.35)", transformOrigin: "center" }}>
+                        <div className="rounded-lg p-2.5 flex flex-col items-center justify-center" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
+                          <div className="text-[9px] font-semibold text-gray-200 mb-1.5">Качество разговоров</div>
+                          <div className="relative">
                             <DonutChart pct={82} color="#a855f7" />
                             <div className="absolute inset-0 flex items-center justify-center">
-                              <span className="text-[14px] font-black text-white">82%</span>
+                              <span className="text-[12px] font-black text-white">82%</span>
                             </div>
                           </div>
-                          <div className="flex items-center gap-1 mt-4">
-                            <Icon name="TrendingUp" size={11} className="text-emerald-400" />
-                            <span className="text-[10px] text-emerald-300 font-semibold">+16%</span>
-                            <span className="text-[10px] text-gray-300">к прошлому</span>
+                          <div className="flex items-center gap-1 mt-2">
+                            <Icon name="TrendingUp" size={9} className="text-emerald-400" />
+                            <span className="text-[8px] text-emerald-300 font-semibold">+16%</span>
+                            <span className="text-[8px] text-gray-300">к прошлому</span>
                           </div>
                         </div>
                       </div>
