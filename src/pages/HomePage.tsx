@@ -362,7 +362,7 @@ export function HomePage() {
                         <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(196,181,253,0.35)" }} />
                         <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(196,181,253,0.22)" }} />
                         <div className="flex-1" />
-                        <div className="text-[8px] text-violet-200/70 font-mono tracking-[0.18em]">SALESFLOW · LIVE ANALYTICS</div>
+                        <div className="text-[8px] text-violet-200 font-mono tracking-[0.18em]">SALESFLOW · LIVE ANALYTICS</div>
                         <span className="w-1 h-1 rounded-full bg-emerald-400 ml-1" style={{ boxShadow: "0 0 8px rgba(52,211,153,0.9)" }} />
                       </div>
 
@@ -378,9 +378,9 @@ export function HomePage() {
                         ].map((m) => (
                           <div key={m.label} className="rounded-xl p-4"
                             style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
-                            <div className="text-[10px] font-medium text-gray-500 mb-1.5 truncate">{m.label}</div>
-                            <div className="text-[14px] font-black text-white mb-1 truncate">{m.value}</div>
-                            <div className={`text-[11px] font-bold ${m.warn ? "text-orange-400" : m.up ? "text-emerald-400" : "text-red-400"}`}>{m.change}</div>
+                            <div className="text-[10px] font-medium text-gray-300 mb-1.5 truncate">{m.label}</div>
+                            <div className="text-[14px] font-black text-white mb-1 truncate" style={{ textShadow: "0 0 12px rgba(255,255,255,0.3)" }}>{m.value}</div>
+                            <div className={`text-[11px] font-bold ${m.warn ? "text-orange-300" : m.up ? "text-emerald-300" : "text-red-400"}`}>{m.change}</div>
                           </div>
                         ))}
                       </div>
@@ -389,29 +389,29 @@ export function HomePage() {
                       <div className="grid grid-cols-2 gap-4 mb-5">
                         <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
                           <div className="flex items-center justify-between mb-3">
-                            <div className="text-[11px] font-semibold text-gray-400">Динамика выручки</div>
-                            <div className="text-[10px] text-violet-400 font-bold">По дням</div>
+                            <div className="text-[11px] font-semibold text-gray-200">Динамика выручки</div>
+                            <div className="text-[10px] text-violet-300 font-bold">По дням</div>
                           </div>
                           <div style={{ transform: "scaleY(1.5)", transformOrigin: "bottom" }}>
                             <LineChart />
                           </div>
                         </div>
                         <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
-                          <div className="text-[11px] font-semibold text-gray-400 mb-3">Причины потерь</div>
+                          <div className="text-[11px] font-semibold text-gray-200 mb-3">Причины потерь</div>
                           <div className="flex items-center gap-3">
                             <div className="relative shrink-0" style={{ transform: "scale(1.25)", transformOrigin: "left center" }}>
                               <DonutChart pct={65} color="#a855f7" />
                               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <div className="text-[11px] font-black text-white">3 245</div>
-                                <div className="text-[7px] text-gray-500">упущено</div>
+                                <div className="text-[11px] font-black text-white" style={{ textShadow: "0 0 10px rgba(255,255,255,0.4)" }}>3 245</div>
+                                <div className="text-[7px] text-gray-300">упущено</div>
                               </div>
                             </div>
                             <div className="space-y-2 flex-1 ml-4">
                               {[["Цена", 30, "#a855f7"], ["Конкуренты", 25, "#7c3aed"], ["Нет потребности", 20, "#6d28d9"], ["Возражения", 12, "#5b21b6"]].map(([l, p, c]) => (
                                 <div key={l as string} className="flex items-center gap-2">
                                   <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: c as string }} />
-                                  <div className="text-[10px] text-gray-400 flex-1 truncate">{l}</div>
-                                  <div className="text-[10px] font-bold text-gray-300">{p}%</div>
+                                  <div className="text-[10px] text-gray-200 flex-1 truncate">{l}</div>
+                                  <div className="text-[10px] font-bold text-white">{p}%</div>
                                 </div>
                               ))}
                             </div>
@@ -422,7 +422,7 @@ export function HomePage() {
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
                         <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
-                          <div className="text-[11px] font-semibold text-gray-400 mb-3">Топ менеджеров</div>
+                          <div className="text-[11px] font-semibold text-gray-200 mb-3">Топ менеджеров</div>
                           <div className="space-y-3">
                             {[
                               { name: "Анна С.", conv: 45, qual: 92 },
@@ -432,25 +432,25 @@ export function HomePage() {
                               <div key={i} className="flex items-center gap-2.5">
                                 <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center text-[10px] font-black text-white"
                                   style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }}>{m.name[0]}</div>
-                                <div className="text-[11px] font-medium text-gray-300 flex-1 truncate">{m.name}</div>
-                                <div className="text-[10px] text-gray-500">{m.conv}%</div>
+                                <div className="text-[11px] font-medium text-white flex-1 truncate">{m.name}</div>
+                                <div className="text-[10px] text-gray-300">{m.conv}%</div>
                                 <div className="text-[10px] font-bold" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
                               </div>
                             ))}
                           </div>
                         </div>
                         <div className="rounded-xl p-4 flex flex-col items-center justify-center" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
-                          <div className="text-[11px] font-semibold text-gray-400 mb-2">Качество разговоров</div>
+                          <div className="text-[11px] font-semibold text-gray-200 mb-2">Качество разговоров</div>
                           <div className="relative" style={{ transform: "scale(1.35)", transformOrigin: "center" }}>
                             <DonutChart pct={82} color="#a855f7" />
                             <div className="absolute inset-0 flex items-center justify-center">
-                              <span className="text-[14px] font-black text-white">82%</span>
+                              <span className="text-[14px] font-black text-white" style={{ textShadow: "0 0 12px rgba(255,255,255,0.5)" }}>82%</span>
                             </div>
                           </div>
                           <div className="flex items-center gap-1 mt-4">
                             <Icon name="TrendingUp" size={11} className="text-emerald-400" />
-                            <span className="text-[10px] text-emerald-400 font-semibold">+16%</span>
-                            <span className="text-[10px] text-gray-600">к прошлому</span>
+                            <span className="text-[10px] text-emerald-300 font-semibold">+16%</span>
+                            <span className="text-[10px] text-gray-300">к прошлому</span>
                           </div>
                         </div>
                       </div>
