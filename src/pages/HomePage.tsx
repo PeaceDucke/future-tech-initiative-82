@@ -197,84 +197,105 @@ export function HomePage() {
                 </motion.div>
               </motion.div>
 
-              {/* Right — Premium holographic projection */}
+              {/* Right — Cinematic 3D holographic projection */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.25 }}
-                className="relative hidden lg:flex flex-col items-center justify-end"
-                style={{ minHeight: "560px" }}
+                className="relative hidden lg:block"
+                style={{ minHeight: "640px" }}
               >
-                {/* Ambient atmospheric glow behind whole scene */}
-                <div className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "radial-gradient(ellipse 70% 60% at 50% 75%, rgba(99,102,241,0.10) 0%, rgba(139,92,246,0.05) 40%, transparent 75%)",
-                    filter: "blur(20px)",
-                  }} />
+                {/* ─── Cinematic 3D rendered backplate (projector + volumetric beams + dust) ─── */}
+                <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                  <img
+                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/1174d9fa-32c5-4258-84b8-1c490ad03661.jpg"
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ filter: "saturate(0.95) contrast(1.05)" }}
+                  />
+                  {/* Color/atmosphere unify with site background */}
+                  <div className="absolute inset-0 pointer-events-none"
+                    style={{ background: "radial-gradient(ellipse 80% 60% at 50% 80%, rgba(99,102,241,0.18) 0%, transparent 60%), linear-gradient(180deg, rgba(6,4,18,0.4) 0%, transparent 30%, transparent 70%, rgba(6,4,18,0.7) 100%)" }} />
+                  {/* Edge vignette */}
+                  <div className="absolute inset-0 pointer-events-none"
+                    style={{ boxShadow: "inset 0 0 120px rgba(6,4,18,0.85)" }} />
+                </div>
 
-                {/* ── Floating holographic dashboard ── */}
-                <div className="relative w-full flex-1 flex items-start justify-center" style={{ perspective: "1400px" }}>
-
-                  {/* Volumetric light cone (rear) */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-20px] pointer-events-none"
+                {/* Subtle drifting dust particles for integration */}
+                {[
+                  { l: "42%", t: "55%", d: 0, s: 1.2 },
+                  { l: "58%", t: "60%", d: 1.5, s: 0.8 },
+                  { l: "48%", t: "40%", d: 3, s: 1 },
+                  { l: "52%", t: "70%", d: 2.2, s: 0.6 },
+                  { l: "45%", t: "30%", d: 4, s: 0.9 },
+                  { l: "55%", t: "50%", d: 0.7, s: 1.1 },
+                ].map((p, i) => (
+                  <motion.span
+                    key={i}
+                    className="absolute rounded-full pointer-events-none"
                     style={{
-                      width: "78%", height: "110%",
-                      background: "linear-gradient(to top, rgba(139,92,246,0.22) 0%, rgba(139,92,246,0.08) 30%, transparent 65%)",
-                      clipPath: "polygon(38% 100%, 62% 100%, 95% 0%, 5% 0%)",
-                      filter: "blur(24px)",
-                      opacity: 0.9,
-                    }} />
+                      left: p.l, top: p.t,
+                      width: `${p.s * 2}px`, height: `${p.s * 2}px`,
+                      background: "rgba(221,214,254,0.85)",
+                      boxShadow: "0 0 6px rgba(167,139,250,0.7)",
+                    }}
+                    animate={{ y: [-12, -28, -12], opacity: [0, 0.9, 0] }}
+                    transition={{ duration: 8 + p.s * 3, repeat: Infinity, ease: "easeInOut", delay: p.d }}
+                  />
+                ))}
 
-                  {/* Volumetric light cone (inner, brighter) */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] pointer-events-none"
-                    style={{
-                      width: "56%", height: "100%",
-                      background: "linear-gradient(to top, rgba(167,139,250,0.32) 0%, rgba(139,92,246,0.10) 40%, transparent 75%)",
-                      clipPath: "polygon(42% 100%, 58% 100%, 88% 0%, 12% 0%)",
-                      filter: "blur(14px)",
-                    }} />
+                <div className="relative w-full h-full flex flex-col items-center justify-start pt-10" style={{ perspective: "1600px" }}>
 
-                  {/* Holographic dashboard frame — floats with subtle hover */}
+                  {/* ── Floating glass holographic dashboard ── */}
                   <motion.div
                     className="relative mx-auto"
-                    style={{ width: "94%", transformStyle: "preserve-3d" }}
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ width: "92%", transformStyle: "preserve-3d" }}
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   >
+                    {/* Soft refraction glow behind glass */}
+                    <div className="absolute -inset-6 pointer-events-none rounded-3xl"
+                      style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.22) 0%, rgba(99,102,241,0.08) 40%, transparent 70%)", filter: "blur(28px)" }} />
+
                     <motion.div
-                      className="relative rounded-2xl overflow-hidden backdrop-blur-xl"
+                      className="relative rounded-2xl overflow-hidden"
                       style={{
-                        transform: "rotateX(6deg) rotateY(-1.5deg)",
+                        transform: "rotateX(8deg) rotateY(-2deg)",
                         transformOrigin: "bottom center",
-                        background: "linear-gradient(140deg, rgba(18,14,38,0.78) 0%, rgba(12,9,28,0.72) 50%, rgba(20,16,44,0.78) 100%)",
-                        border: "1px solid rgba(167,139,250,0.22)",
+                        background: "linear-gradient(140deg, rgba(22,18,46,0.55) 0%, rgba(14,10,32,0.45) 50%, rgba(24,20,52,0.55) 100%)",
+                        backdropFilter: "blur(16px) saturate(1.2)",
+                        WebkitBackdropFilter: "blur(16px) saturate(1.2)",
+                        border: "1px solid rgba(196,181,253,0.18)",
                         boxShadow: [
-                          "inset 0 1px 0 rgba(255,255,255,0.06)",
-                          "inset 0 0 60px rgba(99,102,241,0.04)",
-                          "0 0 0 1px rgba(124,58,237,0.08)",
-                          "0 -10px 60px rgba(139,92,246,0.18)",
-                          "0 30px 80px rgba(0,0,0,0.65)",
+                          "inset 0 1px 0 rgba(255,255,255,0.08)",
+                          "inset 0 -1px 0 rgba(139,92,246,0.15)",
+                          "inset 0 0 80px rgba(99,102,241,0.06)",
+                          "0 0 0 1px rgba(124,58,237,0.06)",
+                          "0 -8px 50px rgba(139,92,246,0.22)",
+                          "0 40px 90px rgba(0,0,0,0.75)",
                         ].join(", "),
                       }}
-                      animate={{ opacity: [0.97, 1, 0.985, 1, 0.97] }}
-                      transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                      animate={{ opacity: [0.96, 1, 0.985, 1, 0.96] }}
+                      transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
                     >
-                      {/* Edge highlight (top) */}
+                      {/* Chromatic aberration edge — top */}
                       <div className="absolute inset-x-0 top-0 h-px pointer-events-none"
-                        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(196,181,253,0.6) 50%, transparent 100%)" }} />
+                        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(196,181,253,0.7) 50%, transparent 100%)" }} />
+                      <div className="absolute inset-x-0 top-px h-px pointer-events-none opacity-60"
+                        style={{ background: "linear-gradient(90deg, transparent 30%, rgba(103,232,249,0.4) 50%, transparent 70%)" }} />
 
                       {/* Chrome bar */}
                       <div className="flex items-center gap-2 px-4 py-2 border-b"
                         style={{
-                          background: "linear-gradient(180deg, rgba(255,255,255,0.025) 0%, transparent 100%)",
-                          borderColor: "rgba(167,139,250,0.10)",
+                          background: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%)",
+                          borderColor: "rgba(196,181,253,0.08)",
                         }}>
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(167,139,250,0.5)" }} />
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(167,139,250,0.3)" }} />
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(167,139,250,0.2)" }} />
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(196,181,253,0.55)" }} />
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(196,181,253,0.35)" }} />
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(196,181,253,0.22)" }} />
                         <div className="flex-1" />
-                        <div className="text-[8px] text-violet-300/60 font-mono tracking-[0.18em]">SALESFLOW · LIVE ANALYTICS</div>
-                        <span className="w-1 h-1 rounded-full bg-emerald-400 ml-1" style={{ boxShadow: "0 0 6px rgba(52,211,153,0.8)" }} />
+                        <div className="text-[8px] text-violet-200/70 font-mono tracking-[0.18em]">SALESFLOW · LIVE ANALYTICS</div>
+                        <span className="w-1 h-1 rounded-full bg-emerald-400 ml-1" style={{ boxShadow: "0 0 8px rgba(52,211,153,0.9)" }} />
                       </div>
 
                     {/* Dashboard content */}
@@ -392,105 +413,10 @@ export function HomePage() {
                     />
                   </motion.div>
 
-                  {/* Projection edge vignette (fades dashboard into beam) */}
-                  <div className="absolute inset-x-0 bottom-0 h-12 pointer-events-none"
-                    style={{ background: "linear-gradient(to top, rgba(6,4,18,0.6), transparent)" }} />
                 </div>
 
-                {/* ── Premium pedestal / emitter ── */}
-                <div className="relative flex flex-col items-center z-10 mt-4">
-
-                  {/* Beam emerging from emitter (thin volumetric ray) */}
-                  <div className="relative w-full flex justify-center" style={{ height: "28px", marginBottom: "-2px" }}>
-                    {/* Outer soft beam */}
-                    <div style={{
-                      position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
-                      width: "180px", height: "28px",
-                      background: "linear-gradient(to top, rgba(139,92,246,0.55), rgba(167,139,250,0.15) 60%, transparent)",
-                      clipPath: "polygon(35% 100%, 65% 100%, 100% 0%, 0% 0%)",
-                      filter: "blur(10px)",
-                    }} />
-                    {/* Inner bright core */}
-                    <div style={{
-                      position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
-                      width: "60px", height: "28px",
-                      background: "linear-gradient(to top, rgba(221,214,254,0.75), rgba(167,139,250,0.3) 60%, transparent)",
-                      clipPath: "polygon(35% 100%, 65% 100%, 100% 0%, 0% 0%)",
-                      filter: "blur(4px)",
-                    }} />
-                  </div>
-
-                  {/* Emitter (recessed lens disc) */}
-                  <motion.div
-                    className="relative flex items-center justify-center"
-                    style={{
-                      width: "78px", height: "20px",
-                      borderRadius: "50%",
-                      background: "radial-gradient(ellipse at 50% 30%, rgba(167,139,250,0.9) 0%, rgba(109,40,217,0.5) 35%, rgba(20,12,40,0.95) 70%)",
-                      border: "1px solid rgba(167,139,250,0.45)",
-                      boxShadow: "0 0 18px rgba(139,92,246,0.55), inset 0 1px 2px rgba(221,214,254,0.4), inset 0 -2px 4px rgba(0,0,0,0.6)",
-                    }}
-                    animate={{ boxShadow: [
-                      "0 0 18px rgba(139,92,246,0.5), inset 0 1px 2px rgba(221,214,254,0.4), inset 0 -2px 4px rgba(0,0,0,0.6)",
-                      "0 0 26px rgba(139,92,246,0.7), inset 0 1px 3px rgba(221,214,254,0.55), inset 0 -2px 4px rgba(0,0,0,0.6)",
-                      "0 0 18px rgba(139,92,246,0.5), inset 0 1px 2px rgba(221,214,254,0.4), inset 0 -2px 4px rgba(0,0,0,0.6)",
-                    ]}}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  />
-
-                  {/* Pedestal top — brushed metal disc */}
-                  <div style={{
-                    width: "240px", height: "8px",
-                    marginTop: "-1px",
-                    borderRadius: "50%",
-                    background: "linear-gradient(180deg, rgba(45,38,72,0.95) 0%, rgba(28,22,52,1) 50%, rgba(18,14,38,1) 100%)",
-                    border: "1px solid rgba(167,139,250,0.18)",
-                    borderBottom: "1px solid rgba(0,0,0,0.6)",
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(0,0,0,0.5)",
-                  }} />
-
-                  {/* Pedestal body — dark matte cylinder w/ subtle reflections */}
-                  <div className="relative" style={{
-                    width: "220px", height: "44px",
-                    background: "linear-gradient(180deg, rgba(24,18,46,1) 0%, rgba(14,10,30,1) 60%, rgba(8,6,20,1) 100%)",
-                    borderLeft: "1px solid rgba(167,139,250,0.10)",
-                    borderRight: "1px solid rgba(167,139,250,0.10)",
-                    boxShadow: "inset 0 6px 12px rgba(0,0,0,0.4), inset 0 -8px 16px rgba(0,0,0,0.5)",
-                    clipPath: "polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%)",
-                  }}>
-                    {/* Inner glow strip (light leaks from emitter) */}
-                    <div className="absolute inset-x-0 top-0 h-6 pointer-events-none"
-                      style={{ background: "linear-gradient(to bottom, rgba(139,92,246,0.18), transparent)" }} />
-                    {/* Subtle accent line */}
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-3 h-px w-16"
-                      style={{ background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.4), transparent)" }} />
-                  </div>
-
-                  {/* Pedestal base — wider footing */}
-                  <div style={{
-                    width: "280px", height: "10px",
-                    background: "linear-gradient(180deg, rgba(20,14,40,1) 0%, rgba(8,6,18,1) 100%)",
-                    borderRadius: "4px 4px 50% 50% / 4px 4px 100% 100%",
-                    borderTop: "1px solid rgba(167,139,250,0.12)",
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.03) inset",
-                  }} />
-
-                  {/* Floor reflection / contact glow */}
-                  <div style={{
-                    width: "360px", height: "30px",
-                    marginTop: "4px",
-                    borderRadius: "50%",
-                    background: "radial-gradient(ellipse, rgba(139,92,246,0.28) 0%, rgba(99,102,241,0.10) 35%, transparent 70%)",
-                    filter: "blur(14px)",
-                  }} />
-
-                  {/* Subtle reflective floor line */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 pointer-events-none"
-                    style={{
-                      width: "320px", height: "1px",
-                      background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.35), transparent)",
-                    }} />
-                </div>
+                {/* Spacer to let backplate projector show through */}
+                <div style={{ height: "180px" }} />
 
                 {/* Floating glass pills */}
                 <motion.div className="absolute top-4 -left-2 px-3 py-2 rounded-xl backdrop-blur-md"
