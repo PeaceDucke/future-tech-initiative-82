@@ -474,13 +474,7 @@ export function HomePage() {
                         style={{ background: "linear-gradient(90deg, transparent 0%, rgba(168,85,247,0.9) 50%, transparent 100%)", boxShadow: "0 0 6px rgba(168,85,247,0.8)" }} />
                     </motion.div>
 
-                    {/* Imperceptible glitch flicker overlay */}
-                    <motion.div
-                      className="absolute inset-0 rounded-2xl pointer-events-none"
-                      style={{ background: "rgba(167,139,250,0.04)", mixBlendMode: "screen" }}
-                      animate={{ opacity: [0, 0, 0.4, 0, 0, 0.2, 0] }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "linear", times: [0, 0.45, 0.46, 0.47, 0.78, 0.79, 0.8] }}
-                    />
+
                   </motion.div>
 
                 </div>
