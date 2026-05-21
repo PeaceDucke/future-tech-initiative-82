@@ -356,8 +356,8 @@ export function HomePage() {
                         transform: "perspective(900px) rotateY(-18deg) rotateX(4deg)",
                         transformOrigin: "left center",
                         background: "linear-gradient(140deg, rgba(10,6,26,0.18) 0%, rgba(6,3,16,0.12) 50%, rgba(12,7,28,0.18) 100%)",
-                        backdropFilter: "blur(4px) saturate(1.1)",
-                        WebkitBackdropFilter: "blur(4px) saturate(1.1)",
+                        backdropFilter: "none",
+                        WebkitBackdropFilter: "none",
                         border: "1px solid rgba(168,85,247,0.35)",
                         boxShadow: [
                           "inset 0 1px 0 rgba(255,255,255,0.05)",
@@ -404,7 +404,7 @@ export function HomePage() {
                           <div key={m.label} className="rounded-xl p-4"
                             style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
                             <div className="text-[10px] font-medium text-gray-300 mb-1.5 truncate">{m.label}</div>
-                            <div className="text-[14px] font-black text-white mb-1 truncate" style={{ textShadow: "0 0 12px rgba(255,255,255,0.3)" }}>{m.value}</div>
+                            <div className="text-[14px] font-black text-white mb-1 truncate">{m.value}</div>
                             <div className={`text-[11px] font-bold ${m.warn ? "text-orange-300" : m.up ? "text-emerald-300" : "text-red-400"}`}>{m.change}</div>
                           </div>
                         ))}
@@ -433,7 +433,7 @@ export function HomePage() {
                                 { pct: 13, color: "#a855f7" },
                               ]} />
                               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <div className="text-[11px] font-black text-white" style={{ textShadow: "0 0 10px rgba(255,255,255,0.4)" }}>3 245</div>
+                                <div className="text-[11px] font-black text-white">3 245</div>
                                 <div className="text-[7px] text-gray-300">упущено</div>
                               </div>
                             </div>
@@ -489,7 +489,7 @@ export function HomePage() {
                           <div className="relative" style={{ transform: "scale(1.35)", transformOrigin: "center" }}>
                             <DonutChart pct={82} color="#a855f7" />
                             <div className="absolute inset-0 flex items-center justify-center">
-                              <span className="text-[14px] font-black text-white" style={{ textShadow: "0 0 12px rgba(255,255,255,0.5)" }}>82%</span>
+                              <span className="text-[14px] font-black text-white">82%</span>
                             </div>
                           </div>
                           <div className="flex items-center gap-1 mt-4">
