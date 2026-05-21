@@ -247,8 +247,8 @@ export function HomePage() {
                     <motion.div
                       className="relative rounded-2xl overflow-hidden"
                       style={{
-                        transform: "rotateX(6deg) rotateY(14deg)",
-                        transformOrigin: "center center",
+                        transform: "perspective(900px) rotateY(18deg) rotateX(4deg)",
+                        transformOrigin: "right center",
                         background: "linear-gradient(140deg, rgba(22,18,46,0.55) 0%, rgba(14,10,32,0.45) 50%, rgba(24,20,52,0.55) 100%)",
                         backdropFilter: "blur(16px) saturate(1.2)",
                         WebkitBackdropFilter: "blur(16px) saturate(1.2)",
