@@ -678,9 +678,8 @@ export function HomePage() {
                   }}
                 />
 
-                {/* ─── V-projection: лучи от проектора до НАКЛОННОЙ нижней границы экрана ─── */}
-                {/* Экран развёрнут на -18deg по Y вокруг левого края, поэтому правый низ опускается, левый низ остаётся высоко */}
-                {/* Нижняя граница экрана идёт от ~3% слева вверху до ~100% справа внизу — наклон */}
+                {/* ─── V-projection: лучи от проектора до наклонной нижней границы экрана ─── */}
+                {/* По скриншоту: левый низ экрана ниже, правый низ выше (rotateY(-18deg) + transformOrigin: left center) */}
                 {/* Внешний широкий мягкий конус */}
                 <div
                   className="absolute pointer-events-none"
@@ -693,7 +692,7 @@ export function HomePage() {
                     height: "20%",
                     background:
                       "linear-gradient(to bottom, rgba(168,85,247,0.05) 0%, rgba(168,85,247,0.22) 80%, rgba(216,180,254,0.45) 100%)",
-                    clipPath: "polygon(0% 32%, 100% 0%, 53% 100%, 47% 100%)",
+                    clipPath: "polygon(0% 0%, 100% 32%, 53% 100%, 47% 100%)",
                     filter: "blur(10px)",
                   }}
                 />
@@ -709,7 +708,7 @@ export function HomePage() {
                     height: "20%",
                     background:
                       "linear-gradient(to bottom, rgba(192,132,252,0.08) 0%, rgba(192,132,252,0.3) 70%, rgba(232,200,255,0.55) 100%)",
-                    clipPath: "polygon(15% 25%, 85% 5%, 53% 100%, 47% 100%)",
+                    clipPath: "polygon(15% 5%, 85% 25%, 53% 100%, 47% 100%)",
                     filter: "blur(5px)",
                   }}
                 />
@@ -725,11 +724,11 @@ export function HomePage() {
                     height: "20%",
                     background:
                       "linear-gradient(to bottom, rgba(232,200,255,0.15) 0%, rgba(216,180,254,0.4) 60%, rgba(255,255,255,0.7) 100%)",
-                    clipPath: "polygon(35% 18%, 65% 8%, 52% 100%, 48% 100%)",
+                    clipPath: "polygon(35% 8%, 65% 18%, 52% 100%, 48% 100%)",
                     filter: "blur(2.5px)",
                   }}
                 />
-                {/* Наклонная яркая полоса по нижнему краю экрана */}
+                {/* Наклонная яркая полоса по нижнему краю экрана: слева ниже, справа выше */}
                 <svg
                   className="absolute pointer-events-none"
                   style={{
@@ -753,9 +752,9 @@ export function HomePage() {
                       <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
                     </linearGradient>
                   </defs>
-                  {/* Линия идёт под углом: слева вверху, справа внизу — повторяет наклон экрана */}
+                  {/* Линия: слева внизу (y=6), справа вверху (y=0) — слева ниже, справа выше */}
                   <line
-                    x1="0" y1="6" x2="100" y2="0"
+                    x1="0" y1="0" x2="100" y2="6"
                     stroke="url(#bottomEdge)" strokeWidth="0.8"
                     style={{ filter: "drop-shadow(0 0 3px rgba(216,180,254,0.9))" }}
                   />
