@@ -62,6 +62,31 @@ function DonutChart({ pct, color }: { pct: number; color: string }) {
   )
 }
 
+function MultiDonutChart({ segments }: { segments: { pct: number; color: string }[] }) {
+  const r = 30, circ = 2 * Math.PI * r
+  let offset = 0
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="9" />
+      {segments.map((seg, i) => {
+        const dash = (seg.pct / 100) * circ
+        const gap = circ - dash
+        const rotate = -90 + (offset / 100) * 360
+        offset += seg.pct
+        return (
+          <circle key={i} cx="40" cy="40" r={r} fill="none"
+            stroke={seg.color} strokeWidth="9"
+            strokeDasharray={`${dash} ${gap}`}
+            strokeLinecap="butt"
+            transform={`rotate(${rotate} 40 40)`}
+            style={{ filter: `drop-shadow(0 0 6px ${seg.color})` }}
+          />
+        )
+      })}
+    </svg>
+  )
+}
+
 export function HomePage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -399,17 +424,29 @@ export function HomePage() {
                         <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
                           <div className="text-[11px] font-semibold text-gray-200 mb-3">Причины потерь</div>
                           <div className="flex items-center gap-3">
-                            <div className="relative shrink-0" style={{ transform: "scale(1.25)", transformOrigin: "left center" }}>
-                              <DonutChart pct={65} color="#a855f7" />
+                            <div className="relative shrink-0">
+                              <MultiDonutChart segments={[
+                                { pct: 30, color: "#ef4444" },
+                                { pct: 25, color: "#f97316" },
+                                { pct: 20, color: "#3b82f6" },
+                                { pct: 12, color: "#22c55e" },
+                                { pct: 13, color: "#a855f7" },
+                              ]} />
                               <div className="absolute inset-0 flex flex-col items-center justify-center">
                                 <div className="text-[11px] font-black text-white" style={{ textShadow: "0 0 10px rgba(255,255,255,0.4)" }}>3 245</div>
                                 <div className="text-[7px] text-gray-300">упущено</div>
                               </div>
                             </div>
-                            <div className="space-y-2 flex-1 ml-4">
-                              {[["Цена", 30, "#a855f7"], ["Конкуренты", 25, "#7c3aed"], ["Нет потребности", 20, "#6d28d9"], ["Возражения", 12, "#5b21b6"]].map(([l, p, c]) => (
+                            <div className="space-y-1.5 flex-1">
+                              {[
+                                ["Цена", 30, "#ef4444"],
+                                ["Конкуренты", 25, "#f97316"],
+                                ["Нет потребности", 20, "#3b82f6"],
+                                ["Возражения", 12, "#22c55e"],
+                                ["Другое", 13, "#a855f7"],
+                              ].map(([l, p, c]) => (
                                 <div key={l as string} className="flex items-center gap-2">
-                                  <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: c as string }} />
+                                  <div className="w-2 h-2 rounded-full shrink-0" style={{ background: c as string, boxShadow: `0 0 5px ${c}` }} />
                                   <div className="text-[10px] text-gray-200 flex-1 truncate">{l}</div>
                                   <div className="text-[10px] font-bold text-white">{p}%</div>
                                 </div>
