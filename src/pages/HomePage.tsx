@@ -1144,13 +1144,58 @@ export function HomePage() {
         </section>
 
         {/* ═══ METRICS STRIPE ═══ */}
-        <section
-          className="py-12 px-5 border-y border-violet-900/20"
-          style={{ background: "rgba(124,58,237,0.04)" }}
-        >
-          <div className="max-w-7xl mx-auto">
+        <section className="relative py-16 px-5 overflow-hidden">
+          {/* Технологичный фон: радиальное свечение + тонкая сетка */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(124,58,237,0.12) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(168,85,247,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.4) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+              maskImage:
+                "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%)",
+            }}
+          />
+          {/* Тонкие неоновые линии сверху/снизу */}
+          <div
+            className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(168,85,247,0.6) 50%, transparent)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(168,85,247,0.6) 50%, transparent)",
+            }}
+          />
+
+          <div className="relative max-w-7xl mx-auto">
+            {/* Метка-заголовок */}
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-violet-500/50" />
+              <div className="flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold text-violet-300 uppercase tracking-[0.2em]"
+                style={{
+                  background: "rgba(124,58,237,0.1)",
+                  border: "1px solid rgba(124,58,237,0.3)",
+                }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+                Результаты клиентов
+              </div>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-violet-500/50" />
+            </div>
+
             <Section>
-              <div className="grid grid-cols-2 lg:grid-cols-5 gap-5">
+              <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
                 {[
                   {
                     icon: "TrendingUp",
@@ -1181,28 +1226,72 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className="flex items-start gap-4"
+                    whileHover={{ y: -3 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="group relative rounded-2xl p-5 overflow-hidden"
+                    style={{
+                      background:
+                        "linear-gradient(160deg, rgba(30,20,60,0.6) 0%, rgba(15,10,35,0.4) 100%)",
+                      border: "1px solid rgba(124,58,237,0.2)",
+                      backdropFilter: "blur(8px)",
+                    }}
                   >
+                    {/* Угловой акцент */}
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                      className="absolute top-0 right-0 w-16 h-16 pointer-events-none opacity-60"
                       style={{
-                        background: "rgba(124,58,237,0.15)",
-                        border: "1px solid rgba(124,58,237,0.25)",
+                        background:
+                          "radial-gradient(circle at top right, rgba(168,85,247,0.35), transparent 70%)",
                       }}
-                    >
-                      <Icon
-                        name={item.icon}
-                        size={18}
-                        className="text-violet-400"
-                      />
+                    />
+                    {/* Тонкая верхняя линия */}
+                    <div
+                      className="absolute top-0 left-4 right-4 h-px pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent)",
+                      }}
+                    />
+
+                    <div className="relative flex items-start gap-3">
+                      <div
+                        className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 relative"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(124,58,237,0.3), rgba(168,85,247,0.15))",
+                          border: "1px solid rgba(168,85,247,0.4)",
+                          boxShadow:
+                            "0 0 12px rgba(168,85,247,0.25), inset 0 1px 0 rgba(255,255,255,0.08)",
+                        }}
+                      >
+                        <Icon
+                          name={item.icon}
+                          size={19}
+                          className="text-violet-200"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div
+                          className="text-[26px] font-black text-white leading-none mb-1.5 tracking-tight"
+                          style={{
+                            background:
+                              "linear-gradient(180deg, #ffffff 0%, #d8b4fe 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                          }}
+                        >
+                          {item.num}
+                        </div>
+                        <div className="text-[12px] text-gray-400 leading-snug">
+                          {item.label}
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-[22px] font-black text-white">
-                        {item.num}
-                      </div>
-                      <div className="text-[12px] text-gray-500 leading-tight">
-                        {item.label}
-                      </div>
+
+                    {/* Мини-номер карточки */}
+                    <div className="absolute bottom-2 right-3 text-[9px] font-mono text-violet-300/40 tracking-wider">
+                      0{i + 1}
                     </div>
                   </motion.div>
                 ))}
