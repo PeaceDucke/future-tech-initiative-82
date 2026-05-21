@@ -488,32 +488,7 @@ export function HomePage() {
                 {/* Spacer to let projector + beam render below dashboard */}
                 <div style={{ height: "230px" }} />
 
-                {/* Floating glass pills */}
-                <motion.div className="absolute top-4 -left-2 px-3 py-2 rounded-xl backdrop-blur-md"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(18,14,38,0.7), rgba(12,9,28,0.55))",
-                    border: "1px solid rgba(52,211,153,0.22)",
-                    boxShadow: "0 0 24px rgba(52,211,153,0.10), 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
-                  }}
-                  animate={{ y: [0, -4, 0], opacity: [0.95, 1, 0.95] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ boxShadow: "0 0 8px rgba(52,211,153,0.9)" }} />
-                    +31% к прошлому периоду
-                  </div>
-                </motion.div>
 
-                <motion.div className="absolute top-4 -right-2 px-3 py-2 rounded-xl backdrop-blur-md"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(18,14,38,0.7), rgba(12,9,28,0.55))",
-                    border: "1px solid rgba(167,139,250,0.28)",
-                    boxShadow: "0 0 24px rgba(139,92,246,0.12), 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
-                  }}
-                  animate={{ y: [0, 4, 0], opacity: [0.95, 1, 0.95] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}>
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-violet-200">
-                    <Icon name="Zap" size={11} className="text-violet-300" />
-                    3 245 сделок под контролем
-                  </div>
-                </motion.div>
               </motion.div>
             </div>
 
