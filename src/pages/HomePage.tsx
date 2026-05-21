@@ -395,31 +395,45 @@ export function HomePage() {
 
 
 
-                {/* ─── Projection glow: конус света от проектора вверх до нижней границы экрана ─── */}
+                {/* ─── V-projection: трапециевидный конус от проектора до нижнего края экрана ─── */}
+                {/* Внешний широкий мягкий конус */}
                 <div className="absolute pointer-events-none" style={{
                   zIndex: 20,
-                  left: "58%",
-                  bottom: "17%",
-                  transform: "translateX(-50%)",
-                  width: "90%",
-                  height: "30%",
-                  background: "conic-gradient(from 270deg at 50% 100%, transparent 60deg, rgba(168,85,247,0.18) 90deg, rgba(192,132,252,0.22) 100deg, rgba(168,85,247,0.18) 110deg, transparent 150deg)",
-                  filter: "blur(18px)",
-                  maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)",
-                  WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)",
+                  left: "50%", transform: "translateX(-46%)",
+                  bottom: "18%",
+                  width: "100%", height: "26%",
+                  background: "linear-gradient(to top, rgba(168,85,247,0.28) 0%, rgba(168,85,247,0.06) 70%, transparent 100%)",
+                  clipPath: "polygon(46% 100%, 54% 100%, 100% 0%, 0% 0%)",
+                  filter: "blur(12px)",
                 }} />
-                {/* Яркое ядро конуса */}
+                {/* Средний конус — чуть ярче */}
                 <div className="absolute pointer-events-none" style={{
                   zIndex: 20,
-                  left: "58%",
-                  bottom: "17%",
-                  transform: "translateX(-50%)",
-                  width: "40%",
-                  height: "28%",
-                  background: "conic-gradient(from 270deg at 50% 100%, transparent 70deg, rgba(216,180,254,0.25) 88deg, rgba(216,180,254,0.32) 100deg, rgba(216,180,254,0.25) 112deg, transparent 130deg)",
-                  filter: "blur(8px)",
-                  maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
-                  WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
+                  left: "50%", transform: "translateX(-46%)",
+                  bottom: "18%",
+                  width: "100%", height: "26%",
+                  background: "linear-gradient(to top, rgba(192,132,252,0.35) 0%, rgba(192,132,252,0.08) 60%, transparent 100%)",
+                  clipPath: "polygon(47% 100%, 53% 100%, 85% 0%, 15% 0%)",
+                  filter: "blur(6px)",
+                }} />
+                {/* Яркое ядро — узкий центральный луч */}
+                <div className="absolute pointer-events-none" style={{
+                  zIndex: 20,
+                  left: "50%", transform: "translateX(-46%)",
+                  bottom: "18%",
+                  width: "100%", height: "26%",
+                  background: "linear-gradient(to top, rgba(232,200,255,0.5) 0%, rgba(216,180,254,0.15) 40%, transparent 100%)",
+                  clipPath: "polygon(48.5% 100%, 51.5% 100%, 65% 0%, 35% 0%)",
+                  filter: "blur(3px)",
+                }} />
+                {/* Тонкая яркая полоска у основания проектора */}
+                <div className="absolute pointer-events-none" style={{
+                  zIndex: 21,
+                  left: "50%", transform: "translateX(-46%)",
+                  bottom: "18%",
+                  width: "100%", height: "4px",
+                  background: "linear-gradient(to right, transparent 0%, rgba(216,180,254,0.0) 25%, rgba(216,180,254,0.5) 46%, rgba(255,255,255,0.7) 50%, rgba(216,180,254,0.5) 54%, rgba(216,180,254,0.0) 75%, transparent 100%)",
+                  filter: "blur(2px)",
                 }} />
 
                 {/* ─── Static projector device (image) ─── */}
