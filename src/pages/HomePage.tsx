@@ -658,6 +658,30 @@ export function HomePage() {
                     <span className="text-gray-500 text-[11px]">2 минуты</span>
                   </a>
                 </motion.div>
+
+                {/* Trusted by */}
+                <motion.div variants={fadeUp} className="mt-8 pt-6 border-t border-white/5">
+                  <p className="text-[10px] font-semibold text-gray-700 uppercase tracking-widest mb-4">
+                    Нам доверяют лидеры рынка
+                  </p>
+                  <div className="flex flex-wrap items-center gap-6 opacity-50">
+                    {[
+                      "amoCRM",
+                      "Битрикс24",
+                      "retell",
+                      "Ringostat",
+                      "Aircall",
+                      "MANGO OFFICE",
+                    ].map((logo) => (
+                      <span
+                        key={logo}
+                        className="text-[12px] font-bold text-gray-400 whitespace-nowrap"
+                      >
+                        {logo}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
               </motion.div>
 
               {/* Right — Cinematic 3D holographic projection */}
@@ -1113,34 +1137,6 @@ export function HomePage() {
               </motion.div>
             </div>
 
-            {/* Trusted by */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="mt-16 pt-8 border-t border-white/5"
-            >
-              <p className="text-[10px] font-semibold text-gray-700 uppercase tracking-widest mb-5 text-center">
-                Нам доверяют лидеры рынка
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-8 opacity-40">
-                {[
-                  "amoCRM",
-                  "Битрикс24",
-                  "retell",
-                  "Ringostat",
-                  "Aircall",
-                  "MANGO OFFICE",
-                ].map((logo) => (
-                  <span
-                    key={logo}
-                    className="text-[13px] font-bold text-gray-400 whitespace-nowrap"
-                  >
-                    {logo}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </section>
 
