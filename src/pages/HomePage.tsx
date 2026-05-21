@@ -395,39 +395,54 @@ export function HomePage() {
 
 
 
-                {/* ─── V-shape projection beam ─── */}
+                {/* ─── V-shape projection beams ─── */}
+                {/* Проектор: ~58% по X, ~83% по Y. Нижний левый угол экрана: ~4%, ~70%. Нижний правый: ~100%, ~70% */}
                 <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 20 }}>
                   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: 0 }}>
                     <defs>
-                      {/* Градиент: яркий у проектора (низ), прозрачный у экрана (верх) */}
-                      <linearGradient id="vBeam" x1="0" y1="1" x2="0" y2="0">
-                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.28" />
-                        <stop offset="60%" stopColor="#a855f7" stopOpacity="0.08" />
+                      <radialGradient id="rLeft" cx="58%" cy="83%" r="60%" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.22" />
                         <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
-                      </linearGradient>
+                      </radialGradient>
+                      <radialGradient id="rRight" cx="58%" cy="83%" r="60%" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#c084fc" stopOpacity="0.18" />
+                        <stop offset="100%" stopColor="#c084fc" stopOpacity="0" />
+                      </radialGradient>
                     </defs>
 
-                    {/* V-образный конус: вершина у проектора (58%, 83%), основание у нижней границы экрана (3%..100%, 72%) */}
-                    <polygon
-                      points="57%,83%  59%,83%  100%,72%  3%,72%"
-                      fill="url(#vBeam)"
-                      style={{ filter: "blur(6px)" }}
-                    />
-                    {/* Чуть ярче — внутренний узкий конус */}
-                    <polygon
-                      points="57.5%,83%  58.5%,83%  88%,72%  16%,72%"
-                      fill="url(#vBeam)"
-                      style={{ filter: "blur(3px)" }}
-                    />
+                    {/* Левое крыло V — широкий мягкий конус к нижнему левому углу */}
+                    <polygon points="58%,83% 58%,83% 4%,70% 18%,70%"
+                      fill="url(#rLeft)" style={{ filter: "blur(8px)" }} />
+                    <polygon points="58%,83% 58%,83% 4%,70% 22%,70%"
+                      fill="url(#rLeft)" style={{ filter: "blur(14px)", opacity: 0.6 }} />
 
-                    {/* Левая кромка луча */}
-                    <line x1="57%" y1="83%" x2="3%" y2="72%"
-                      stroke="#c084fc" strokeWidth="0.6" strokeOpacity="0.25"
-                      style={{ filter: "drop-shadow(0 0 2px rgba(168,85,247,0.6))" }} />
-                    {/* Правая кромка луча */}
-                    <line x1="59%" y1="83%" x2="100%" y2="72%"
-                      stroke="#c084fc" strokeWidth="0.6" strokeOpacity="0.25"
-                      style={{ filter: "drop-shadow(0 0 2px rgba(168,85,247,0.6))" }} />
+                    {/* Правое крыло V — широкий мягкий конус к нижнему правому углу */}
+                    <polygon points="58%,83% 58%,83% 100%,70% 82%,70%"
+                      fill="url(#rRight)" style={{ filter: "blur(8px)" }} />
+                    <polygon points="58%,83% 58%,83% 100%,70% 78%,70%"
+                      fill="url(#rRight)" style={{ filter: "blur(14px)", opacity: 0.6 }} />
+
+                    {/* Левая кромка-луч — тонкая светящаяся линия */}
+                    <line x1="58%" y1="83%" x2="4%" y2="70%"
+                      stroke="#d8b4fe" strokeWidth="0.7" strokeOpacity="0.3"
+                      style={{ filter: "drop-shadow(0 0 3px rgba(168,85,247,0.8))" }} />
+                    {/* Промежуточный левый луч */}
+                    <line x1="58%" y1="83%" x2="14%" y2="70%"
+                      stroke="#d8b4fe" strokeWidth="0.5" strokeOpacity="0.15"
+                      style={{ filter: "drop-shadow(0 0 2px rgba(168,85,247,0.5))" }} />
+
+                    {/* Правая кромка-луч */}
+                    <line x1="58%" y1="83%" x2="100%" y2="70%"
+                      stroke="#e9d5ff" strokeWidth="0.7" strokeOpacity="0.28"
+                      style={{ filter: "drop-shadow(0 0 3px rgba(196,181,253,0.8))" }} />
+                    {/* Промежуточный правый луч */}
+                    <line x1="58%" y1="83%" x2="88%" y2="70%"
+                      stroke="#e9d5ff" strokeWidth="0.5" strokeOpacity="0.13"
+                      style={{ filter: "drop-shadow(0 0 2px rgba(196,181,253,0.5))" }} />
+
+                    {/* Центральный луч вверх — самый слабый */}
+                    <line x1="58%" y1="83%" x2="52%" y2="70%"
+                      stroke="#d8b4fe" strokeWidth="0.4" strokeOpacity="0.1" />
                   </svg>
                 </div>
 
