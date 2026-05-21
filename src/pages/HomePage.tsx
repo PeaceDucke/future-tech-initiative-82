@@ -678,56 +678,7 @@ export function HomePage() {
                   }}
                 />
 
-                {/* ─── V-projection: узкие лучи от проектора, упирающиеся в нижний край экрана ─── */}
-                {/* Лучи стартуют от проектора (bottom: 7%) и заканчиваются строго перед экраном (bottom: ~21%) */}
-                {/* Внешний мягкий конус */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    zIndex: 20,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bottom: "7%",
-                    width: "70%",
-                    height: "14%",
-                    background:
-                      "linear-gradient(to bottom, rgba(168,85,247,0.04) 0%, rgba(168,85,247,0.16) 80%, rgba(216,180,254,0.35) 100%)",
-                    clipPath: "polygon(0% 0%, 100% 0%, 55% 100%, 45% 100%)",
-                    filter: "blur(8px)",
-                  }}
-                />
-                {/* Средний конус */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    zIndex: 20,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bottom: "7%",
-                    width: "70%",
-                    height: "14%",
-                    background:
-                      "linear-gradient(to bottom, rgba(192,132,252,0.07) 0%, rgba(192,132,252,0.24) 70%, rgba(232,200,255,0.45) 100%)",
-                    clipPath: "polygon(20% 0%, 80% 0%, 54% 100%, 46% 100%)",
-                    filter: "blur(4px)",
-                  }}
-                />
-                {/* Яркое ядро */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    zIndex: 20,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bottom: "7%",
-                    width: "70%",
-                    height: "14%",
-                    background:
-                      "linear-gradient(to bottom, rgba(232,200,255,0.12) 0%, rgba(216,180,254,0.32) 60%, rgba(255,255,255,0.55) 100%)",
-                    clipPath: "polygon(40% 0%, 60% 0%, 52% 100%, 48% 100%)",
-                    filter: "blur(2px)",
-                  }}
-                />
+
 
                 {/* ─── Static projector device (image) ─── */}
                 <div
