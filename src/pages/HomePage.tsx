@@ -896,7 +896,14 @@ export function HomePage() {
                               Причины потерь
                             </div>
                             <div className="flex items-center gap-2">
-                              <div className="relative shrink-0">
+                              <div
+                                className="relative shrink-0"
+                                style={{
+                                  transform: "scale(1.5)",
+                                  transformOrigin: "left center",
+                                  marginRight: "20px",
+                                }}
+                              >
                                 <MultiDonutChart
                                   segments={[
                                     { pct: 30, color: "#ef4444" },
@@ -907,15 +914,15 @@ export function HomePage() {
                                   ]}
                                 />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                  <div className="text-[10px] font-black text-white">
+                                  <div className="text-[8px] font-black text-white">
                                     3 245
                                   </div>
-                                  <div className="text-[7px] text-gray-300">
+                                  <div className="text-[5px] text-gray-300">
                                     упущено
                                   </div>
                                 </div>
                               </div>
-                              <div className="space-y-1.5 flex-1">
+                              <div className="space-y-1.5 flex-1 pl-6">
                                 {[
                                   ["Цена", 30, "#ef4444"],
                                   ["Конкуренты", 25, "#f97316"],
