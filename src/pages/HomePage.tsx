@@ -678,22 +678,22 @@ export function HomePage() {
                   }}
                 />
 
-                {/* ─── V-projection: лучи от проектора до наклонной нижней границы экрана ─── */}
-                {/* По скриншоту: левый низ экрана ниже, правый низ выше (rotateY(-18deg) + transformOrigin: left center) */}
-                {/* Внешний широкий мягкий конус */}
+                {/* ─── V-projection: узкие лучи от проектора, упирающиеся в нижний край экрана ─── */}
+                {/* Лучи стартуют от проектора (bottom: 7%) и заканчиваются строго перед экраном (bottom: ~21%) */}
+                {/* Внешний мягкий конус */}
                 <div
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 20,
-                    left: "58%",
+                    left: "50%",
                     transform: "translateX(-50%)",
-                    bottom: "8%",
-                    width: "95%",
-                    height: "20%",
+                    bottom: "7%",
+                    width: "70%",
+                    height: "14%",
                     background:
-                      "linear-gradient(to bottom, rgba(168,85,247,0.05) 0%, rgba(168,85,247,0.22) 80%, rgba(216,180,254,0.45) 100%)",
-                    clipPath: "polygon(0% 0%, 100% 32%, 53% 100%, 47% 100%)",
-                    filter: "blur(10px)",
+                      "linear-gradient(to bottom, rgba(168,85,247,0.04) 0%, rgba(168,85,247,0.16) 80%, rgba(216,180,254,0.35) 100%)",
+                    clipPath: "polygon(0% 0%, 100% 0%, 55% 100%, 45% 100%)",
+                    filter: "blur(8px)",
                   }}
                 />
                 {/* Средний конус */}
@@ -701,64 +701,33 @@ export function HomePage() {
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 20,
-                    left: "58%",
+                    left: "50%",
                     transform: "translateX(-50%)",
-                    bottom: "8%",
-                    width: "95%",
-                    height: "20%",
+                    bottom: "7%",
+                    width: "70%",
+                    height: "14%",
                     background:
-                      "linear-gradient(to bottom, rgba(192,132,252,0.08) 0%, rgba(192,132,252,0.3) 70%, rgba(232,200,255,0.55) 100%)",
-                    clipPath: "polygon(15% 5%, 85% 25%, 53% 100%, 47% 100%)",
-                    filter: "blur(5px)",
+                      "linear-gradient(to bottom, rgba(192,132,252,0.07) 0%, rgba(192,132,252,0.24) 70%, rgba(232,200,255,0.45) 100%)",
+                    clipPath: "polygon(20% 0%, 80% 0%, 54% 100%, 46% 100%)",
+                    filter: "blur(4px)",
                   }}
                 />
-                {/* Яркое ядро — узкий центральный луч */}
+                {/* Яркое ядро */}
                 <div
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 20,
-                    left: "58%",
+                    left: "50%",
                     transform: "translateX(-50%)",
-                    bottom: "8%",
-                    width: "95%",
-                    height: "20%",
+                    bottom: "7%",
+                    width: "70%",
+                    height: "14%",
                     background:
-                      "linear-gradient(to bottom, rgba(232,200,255,0.15) 0%, rgba(216,180,254,0.4) 60%, rgba(255,255,255,0.7) 100%)",
-                    clipPath: "polygon(35% 8%, 65% 18%, 52% 100%, 48% 100%)",
-                    filter: "blur(2.5px)",
+                      "linear-gradient(to bottom, rgba(232,200,255,0.12) 0%, rgba(216,180,254,0.32) 60%, rgba(255,255,255,0.55) 100%)",
+                    clipPath: "polygon(40% 0%, 60% 0%, 52% 100%, 48% 100%)",
+                    filter: "blur(2px)",
                   }}
                 />
-                {/* Наклонная яркая полоса по нижнему краю экрана: слева ниже, справа выше */}
-                <svg
-                  className="absolute pointer-events-none"
-                  style={{
-                    zIndex: 21,
-                    left: "58%",
-                    transform: "translateX(-50%)",
-                    bottom: "28%",
-                    width: "95%",
-                    height: "30px",
-                    overflow: "visible",
-                  }}
-                  viewBox="0 0 100 6"
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <linearGradient id="bottomEdge" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#a855f7" stopOpacity="0" />
-                      <stop offset="15%" stopColor="#a855f7" stopOpacity="0.4" />
-                      <stop offset="50%" stopColor="#d8b4fe" stopOpacity="0.9" />
-                      <stop offset="85%" stopColor="#a855f7" stopOpacity="0.4" />
-                      <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  {/* Линия: слева внизу (y=6), справа вверху (y=0) — слева ниже, справа выше */}
-                  <line
-                    x1="0" y1="0" x2="100" y2="6"
-                    stroke="url(#bottomEdge)" strokeWidth="0.8"
-                    style={{ filter: "drop-shadow(0 0 3px rgba(216,180,254,0.9))" }}
-                  />
-                </svg>
 
                 {/* ─── Static projector device (image) ─── */}
                 <div
