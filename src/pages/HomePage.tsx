@@ -395,56 +395,32 @@ export function HomePage() {
 
 
 
-                {/* ─── V-shape projection beams ─── */}
-                {/* Проектор: ~58% по X, ~83% по Y. Нижний левый угол экрана: ~4%, ~70%. Нижний правый: ~100%, ~70% */}
-                <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 20 }}>
-                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: 0 }}>
-                    <defs>
-                      <radialGradient id="rLeft" cx="58%" cy="83%" r="60%" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.22" />
-                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
-                      </radialGradient>
-                      <radialGradient id="rRight" cx="58%" cy="83%" r="60%" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#c084fc" stopOpacity="0.18" />
-                        <stop offset="100%" stopColor="#c084fc" stopOpacity="0" />
-                      </radialGradient>
-                    </defs>
-
-                    {/* Левое крыло V — широкий мягкий конус к нижнему левому углу */}
-                    <polygon points="58%,83% 58%,83% 4%,70% 18%,70%"
-                      fill="url(#rLeft)" style={{ filter: "blur(8px)" }} />
-                    <polygon points="58%,83% 58%,83% 4%,70% 22%,70%"
-                      fill="url(#rLeft)" style={{ filter: "blur(14px)", opacity: 0.6 }} />
-
-                    {/* Правое крыло V — широкий мягкий конус к нижнему правому углу */}
-                    <polygon points="58%,83% 58%,83% 100%,70% 82%,70%"
-                      fill="url(#rRight)" style={{ filter: "blur(8px)" }} />
-                    <polygon points="58%,83% 58%,83% 100%,70% 78%,70%"
-                      fill="url(#rRight)" style={{ filter: "blur(14px)", opacity: 0.6 }} />
-
-                    {/* Левая кромка-луч — тонкая светящаяся линия */}
-                    <line x1="58%" y1="83%" x2="4%" y2="70%"
-                      stroke="#d8b4fe" strokeWidth="0.7" strokeOpacity="0.3"
-                      style={{ filter: "drop-shadow(0 0 3px rgba(168,85,247,0.8))" }} />
-                    {/* Промежуточный левый луч */}
-                    <line x1="58%" y1="83%" x2="14%" y2="70%"
-                      stroke="#d8b4fe" strokeWidth="0.5" strokeOpacity="0.15"
-                      style={{ filter: "drop-shadow(0 0 2px rgba(168,85,247,0.5))" }} />
-
-                    {/* Правая кромка-луч */}
-                    <line x1="58%" y1="83%" x2="100%" y2="70%"
-                      stroke="#e9d5ff" strokeWidth="0.7" strokeOpacity="0.28"
-                      style={{ filter: "drop-shadow(0 0 3px rgba(196,181,253,0.8))" }} />
-                    {/* Промежуточный правый луч */}
-                    <line x1="58%" y1="83%" x2="88%" y2="70%"
-                      stroke="#e9d5ff" strokeWidth="0.5" strokeOpacity="0.13"
-                      style={{ filter: "drop-shadow(0 0 2px rgba(196,181,253,0.5))" }} />
-
-                    {/* Центральный луч вверх — самый слабый */}
-                    <line x1="58%" y1="83%" x2="52%" y2="70%"
-                      stroke="#d8b4fe" strokeWidth="0.4" strokeOpacity="0.1" />
-                  </svg>
-                </div>
+                {/* ─── Projection glow: конус света от проектора вверх до нижней границы экрана ─── */}
+                <div className="absolute pointer-events-none" style={{
+                  zIndex: 20,
+                  left: "58%",
+                  bottom: "17%",
+                  transform: "translateX(-50%)",
+                  width: "90%",
+                  height: "30%",
+                  background: "conic-gradient(from 270deg at 50% 100%, transparent 60deg, rgba(168,85,247,0.18) 90deg, rgba(192,132,252,0.22) 100deg, rgba(168,85,247,0.18) 110deg, transparent 150deg)",
+                  filter: "blur(18px)",
+                  maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)",
+                  WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%)",
+                }} />
+                {/* Яркое ядро конуса */}
+                <div className="absolute pointer-events-none" style={{
+                  zIndex: 20,
+                  left: "58%",
+                  bottom: "17%",
+                  transform: "translateX(-50%)",
+                  width: "40%",
+                  height: "28%",
+                  background: "conic-gradient(from 270deg at 50% 100%, transparent 70deg, rgba(216,180,254,0.25) 88deg, rgba(216,180,254,0.32) 100deg, rgba(216,180,254,0.25) 112deg, transparent 130deg)",
+                  filter: "blur(8px)",
+                  maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
+                  WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
+                }} />
 
                 {/* ─── Static projector device (image) ─── */}
                 <div className="absolute pointer-events-none"
