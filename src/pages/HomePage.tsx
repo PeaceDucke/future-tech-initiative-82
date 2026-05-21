@@ -209,63 +209,7 @@ export function HomePage() {
                 <div className="absolute inset-0 pointer-events-none"
                   style={{ background: "radial-gradient(ellipse 70% 50% at 50% 78%, rgba(99,102,241,0.22) 0%, rgba(139,92,246,0.10) 40%, transparent 75%)", filter: "blur(8px)" }} />
 
-                {/* ─── Volumetric projection beams emerging from projector ─── */}
-                {/* Outer wide cone (soft haze) */}
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                  style={{
-                    bottom: "120px",
-                    width: "88%", height: "440px",
-                    background: "linear-gradient(to top, rgba(139,92,246,0.32) 0%, rgba(139,92,246,0.10) 35%, transparent 75%)",
-                    clipPath: "polygon(38% 100%, 62% 100%, 96% 0%, 4% 0%)",
-                    filter: "blur(28px)",
-                    mixBlendMode: "screen",
-                  }}
-                  animate={{ opacity: [0.7, 0.95, 0.7] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                />
-                {/* Mid cone */}
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                  style={{
-                    bottom: "130px",
-                    width: "60%", height: "420px",
-                    background: "linear-gradient(to top, rgba(167,139,250,0.45) 0%, rgba(139,92,246,0.14) 45%, transparent 80%)",
-                    clipPath: "polygon(42% 100%, 58% 100%, 90% 0%, 10% 0%)",
-                    filter: "blur(16px)",
-                    mixBlendMode: "screen",
-                  }}
-                  animate={{ opacity: [0.8, 1, 0.8] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                />
-                {/* Inner bright core ray */}
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                  style={{
-                    bottom: "135px",
-                    width: "34%", height: "400px",
-                    background: "linear-gradient(to top, rgba(221,214,254,0.7) 0%, rgba(167,139,250,0.25) 40%, transparent 80%)",
-                    clipPath: "polygon(45% 100%, 55% 100%, 82% 0%, 18% 0%)",
-                    filter: "blur(8px)",
-                    mixBlendMode: "screen",
-                  }}
-                  animate={{ opacity: [0.85, 1, 0.85] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
-                {/* Thin laser core */}
-                <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                  style={{
-                    bottom: "138px",
-                    width: "10%", height: "380px",
-                    background: "linear-gradient(to top, rgba(255,255,255,0.85) 0%, rgba(196,181,253,0.4) 40%, transparent 80%)",
-                    clipPath: "polygon(40% 100%, 60% 100%, 70% 0%, 30% 0%)",
-                    filter: "blur(3px)",
-                    mixBlendMode: "screen",
-                  }}
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                />
+
 
                 {/* ─── Static projector device (image) ─── */}
                 <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
@@ -287,32 +231,7 @@ export function HomePage() {
                     filter: "blur(18px)",
                   }} />
 
-                {/* ─── Floating dust particles in beam ─── */}
-                {[
-                  { l: "44%", t: "58%", d: 0, s: 1.2, dur: 9 },
-                  { l: "56%", t: "62%", d: 1.5, s: 0.8, dur: 11 },
-                  { l: "48%", t: "42%", d: 3, s: 1, dur: 10 },
-                  { l: "52%", t: "72%", d: 2.2, s: 0.7, dur: 8 },
-                  { l: "46%", t: "32%", d: 4, s: 0.9, dur: 12 },
-                  { l: "54%", t: "52%", d: 0.7, s: 1.1, dur: 9.5 },
-                  { l: "50%", t: "48%", d: 2.8, s: 0.6, dur: 10.5 },
-                  { l: "49%", t: "65%", d: 5, s: 0.9, dur: 11.5 },
-                ].map((p, i) => (
-                  <motion.span
-                    key={i}
-                    className="absolute rounded-full pointer-events-none"
-                    style={{
-                      left: p.l, top: p.t,
-                      width: `${p.s * 2.2}px`, height: `${p.s * 2.2}px`,
-                      background: "rgba(221,214,254,0.95)",
-                      boxShadow: "0 0 8px rgba(167,139,250,0.85)",
-                    }}
-                    animate={{ y: [-10, -40, -10], opacity: [0, 1, 0] }}
-                    transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut", delay: p.d }}
-                  />
-                ))}
-
-                <div className="relative w-full h-full flex flex-col items-center justify-start pt-6" style={{ perspective: "1600px", zIndex: 30 }}>
+                <div className="relative w-full h-full flex flex-col items-center justify-start pt-2" style={{ perspective: "1600px", zIndex: 30 }}>
 
                   {/* ── Floating glass holographic dashboard ── */}
                   <motion.div
@@ -367,49 +286,51 @@ export function HomePage() {
                       </div>
 
                     {/* Dashboard content */}
-                    <div className="p-4">
+                    <div className="p-6">
                       {/* Top metrics */}
-                      <div className="grid grid-cols-4 gap-2 mb-3">
+                      <div className="grid grid-cols-4 gap-3 mb-5">
                         {[
                           { label: "Выручка", value: "8 742 000 ₽", change: "+31%", up: true },
                           { label: "Конверсия", value: "32.7%", change: "+8.1%", up: true },
                           { label: "Средний чек", value: "6 430 ₽", change: "+12.2%", up: true },
                           { label: "Потерянная", value: "1 242 000 ₽", change: "Найдено WI", warn: true, up: false },
                         ].map((m) => (
-                          <div key={m.label} className="rounded-xl p-2.5"
+                          <div key={m.label} className="rounded-xl p-4"
                             style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
-                            <div className="text-[8px] font-medium text-gray-600 mb-1 truncate">{m.label}</div>
-                            <div className="text-[11px] font-black text-white mb-0.5 truncate">{m.value}</div>
-                            <div className={`text-[9px] font-bold ${m.warn ? "text-orange-400" : m.up ? "text-emerald-400" : "text-red-400"}`}>{m.change}</div>
+                            <div className="text-[10px] font-medium text-gray-500 mb-1.5 truncate">{m.label}</div>
+                            <div className="text-[14px] font-black text-white mb-1 truncate">{m.value}</div>
+                            <div className={`text-[11px] font-bold ${m.warn ? "text-orange-400" : m.up ? "text-emerald-400" : "text-red-400"}`}>{m.change}</div>
                           </div>
                         ))}
                       </div>
 
                       {/* Charts row */}
-                      <div className="grid grid-cols-2 gap-3 mb-3">
-                        <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="text-[9px] font-semibold text-gray-500">Динамика выручки</div>
-                            <div className="text-[8px] text-violet-400 font-bold">По дням</div>
+                      <div className="grid grid-cols-2 gap-4 mb-5">
+                        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "180px" }}>
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="text-[11px] font-semibold text-gray-400">Динамика выручки</div>
+                            <div className="text-[10px] text-violet-400 font-bold">По дням</div>
                           </div>
-                          <LineChart />
+                          <div style={{ transform: "scaleY(1.5)", transformOrigin: "bottom" }}>
+                            <LineChart />
+                          </div>
                         </div>
-                        <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
-                          <div className="text-[9px] font-semibold text-gray-500 mb-2">Причины потерь</div>
-                          <div className="flex items-center gap-2">
-                            <div className="relative shrink-0">
+                        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "180px" }}>
+                          <div className="text-[11px] font-semibold text-gray-400 mb-3">Причины потерь</div>
+                          <div className="flex items-center gap-3">
+                            <div className="relative shrink-0" style={{ transform: "scale(1.25)", transformOrigin: "left center" }}>
                               <DonutChart pct={65} color="#a855f7" />
                               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <div className="text-[10px] font-black text-white">3 245</div>
-                                <div className="text-[6px] text-gray-500">упущено</div>
+                                <div className="text-[11px] font-black text-white">3 245</div>
+                                <div className="text-[7px] text-gray-500">упущено</div>
                               </div>
                             </div>
-                            <div className="space-y-1 flex-1">
+                            <div className="space-y-2 flex-1 ml-4">
                               {[["Цена", 30, "#a855f7"], ["Конкуренты", 25, "#7c3aed"], ["Нет потребности", 20, "#6d28d9"], ["Возражения", 12, "#5b21b6"]].map(([l, p, c]) => (
-                                <div key={l as string} className="flex items-center gap-1">
+                                <div key={l as string} className="flex items-center gap-2">
                                   <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: c as string }} />
-                                  <div className="text-[8px] text-gray-400 flex-1 truncate">{l}</div>
-                                  <div className="text-[8px] font-bold text-gray-300">{p}%</div>
+                                  <div className="text-[10px] text-gray-400 flex-1 truncate">{l}</div>
+                                  <div className="text-[10px] font-bold text-gray-300">{p}%</div>
                                 </div>
                               ))}
                             </div>
@@ -418,37 +339,37 @@ export function HomePage() {
                       </div>
 
                       {/* Bottom row */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
-                          <div className="text-[9px] font-semibold text-gray-500 mb-2">Топ менеджеров</div>
-                          <div className="space-y-1.5">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "160px" }}>
+                          <div className="text-[11px] font-semibold text-gray-400 mb-3">Топ менеджеров</div>
+                          <div className="space-y-3">
                             {[
                               { name: "Анна С.", conv: 45, qual: 92 },
                               { name: "Иван П.", conv: 38, qual: 88 },
                               { name: "Мария К.", conv: 35, qual: 85 },
                             ].map((m, i) => (
-                              <div key={i} className="flex items-center gap-2">
-                                <div className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-[8px] font-black text-white"
+                              <div key={i} className="flex items-center gap-2.5">
+                                <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center text-[10px] font-black text-white"
                                   style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }}>{m.name[0]}</div>
-                                <div className="text-[9px] font-medium text-gray-300 flex-1 truncate">{m.name}</div>
-                                <div className="text-[8px] text-gray-500">{m.conv}%</div>
-                                <div className="text-[8px] font-bold" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
+                                <div className="text-[11px] font-medium text-gray-300 flex-1 truncate">{m.name}</div>
+                                <div className="text-[10px] text-gray-500">{m.conv}%</div>
+                                <div className="text-[10px] font-bold" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
                               </div>
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-xl p-3 flex flex-col items-center justify-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
-                          <div className="text-[9px] font-semibold text-gray-500 mb-2">Качество разговоров</div>
-                          <div className="relative">
+                        <div className="rounded-xl p-4 flex flex-col items-center justify-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "160px" }}>
+                          <div className="text-[11px] font-semibold text-gray-400 mb-2">Качество разговоров</div>
+                          <div className="relative" style={{ transform: "scale(1.35)", transformOrigin: "center" }}>
                             <DonutChart pct={82} color="#a855f7" />
                             <div className="absolute inset-0 flex items-center justify-center">
-                              <span className="text-[13px] font-black text-white">82%</span>
+                              <span className="text-[14px] font-black text-white">82%</span>
                             </div>
                           </div>
-                          <div className="flex items-center gap-1 mt-1">
-                            <Icon name="TrendingUp" size={9} className="text-emerald-400" />
-                            <span className="text-[8px] text-emerald-400 font-semibold">+16%</span>
-                            <span className="text-[8px] text-gray-600">к прошлому</span>
+                          <div className="flex items-center gap-1 mt-4">
+                            <Icon name="TrendingUp" size={11} className="text-emerald-400" />
+                            <span className="text-[10px] text-emerald-400 font-semibold">+16%</span>
+                            <span className="text-[10px] text-gray-600">к прошлому</span>
                           </div>
                         </div>
                       </div>
