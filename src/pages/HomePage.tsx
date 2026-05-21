@@ -422,19 +422,27 @@ export function HomePage() {
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
                         <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
-                          <div className="text-[11px] font-semibold text-gray-200 mb-3">Топ менеджеров</div>
-                          <div className="space-y-3">
+                          <div className="flex items-center mb-2">
+                            <div className="text-[11px] font-semibold text-gray-200 flex-1">Топ менеджеров</div>
+                            <div className="flex gap-3">
+                              <div className="text-[8px] text-gray-500 w-10 text-right">Конв.</div>
+                              <div className="text-[8px] text-gray-500 w-14 text-right">Выручка</div>
+                              <div className="text-[8px] text-gray-500 w-8 text-right">Кач.</div>
+                            </div>
+                          </div>
+                          <div className="space-y-2.5">
                             {[
-                              { name: "Анна С.", conv: 45, qual: 92 },
-                              { name: "Иван П.", conv: 38, qual: 88 },
-                              { name: "Мария К.", conv: 35, qual: 85 },
+                              { name: "Анна С.", conv: 45, revenue: "2.1М", qual: 92 },
+                              { name: "Иван П.", conv: 38, revenue: "1.8М", qual: 88 },
+                              { name: "Мария К.", conv: 35, revenue: "1.6М", qual: 85 },
                             ].map((m, i) => (
-                              <div key={i} className="flex items-center gap-2.5">
-                                <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center text-[10px] font-black text-white"
+                              <div key={i} className="flex items-center gap-2">
+                                <div className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-[9px] font-black text-white"
                                   style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)" }}>{m.name[0]}</div>
-                                <div className="text-[11px] font-medium text-white flex-1 truncate">{m.name}</div>
-                                <div className="text-[10px] text-gray-300">{m.conv}%</div>
-                                <div className="text-[10px] font-bold" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
+                                <div className="text-[10px] font-medium text-white flex-1 truncate">{m.name}</div>
+                                <div className="text-[10px] text-gray-300 w-10 text-right">{m.conv}%</div>
+                                <div className="text-[10px] text-violet-300 font-semibold w-14 text-right">{m.revenue}</div>
+                                <div className="text-[10px] font-bold w-8 text-right" style={{ color: m.qual >= 90 ? "#34d399" : "#fbbf24" }}>{m.qual}%</div>
                               </div>
                             ))}
                           </div>
