@@ -395,41 +395,39 @@ export function HomePage() {
 
 
 
-                {/* ─── Projection rays from projector to screen edges ─── */}
+                {/* ─── V-shape projection beam ─── */}
                 <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 20 }}>
                   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: 0 }}>
                     <defs>
-                      <linearGradient id="rayLeft" x1="0" y1="1" x2="0" y2="0">
-                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.65" />
-                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0.05" />
-                      </linearGradient>
-                      <linearGradient id="rayRight" x1="0" y1="1" x2="0" y2="0">
-                        <stop offset="0%" stopColor="#c084fc" stopOpacity="0.55" />
-                        <stop offset="100%" stopColor="#c084fc" stopOpacity="0.04" />
+                      {/* Градиент: яркий у проектора (низ), прозрачный у экрана (верх) */}
+                      <linearGradient id="vBeam" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.28" />
+                        <stop offset="60%" stopColor="#a855f7" stopOpacity="0.08" />
+                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
                       </linearGradient>
                     </defs>
 
-                    {/* Левый луч: от проектора (58%, ~85%) к левому краю экрана (~5%, ~8%) */}
+                    {/* V-образный конус: вершина у проектора (58%, 83%), основание у нижней границы экрана (3%..100%, 72%) */}
                     <polygon
-                      points="55%,84%  61%,84%  8%,10%  4%,10%"
-                      fill="url(#rayLeft)"
+                      points="57%,83%  59%,83%  100%,72%  3%,72%"
+                      fill="url(#vBeam)"
+                      style={{ filter: "blur(6px)" }}
+                    />
+                    {/* Чуть ярче — внутренний узкий конус */}
+                    <polygon
+                      points="57.5%,83%  58.5%,83%  88%,72%  16%,72%"
+                      fill="url(#vBeam)"
                       style={{ filter: "blur(3px)" }}
                     />
-                    {/* Тонкая яркая кромка левого луча */}
-                    <line x1="55%" y1="84%" x2="4%" y2="10%"
-                      stroke="#d8b4fe" strokeWidth="0.8" strokeOpacity="0.5"
-                      style={{ filter: "drop-shadow(0 0 3px rgba(168,85,247,0.9))" }} />
 
-                    {/* Правый луч: от проектора (58%, ~85%) к правому краю экрана (~100%, ~8%) */}
-                    <polygon
-                      points="55%,84%  61%,84%  102%,10%  98%,10%"
-                      fill="url(#rayRight)"
-                      style={{ filter: "blur(3px)" }}
-                    />
-                    {/* Тонкая яркая кромка правого луча */}
-                    <line x1="61%" y1="84%" x2="102%" y2="10%"
-                      stroke="#e9d5ff" strokeWidth="0.8" strokeOpacity="0.45"
-                      style={{ filter: "drop-shadow(0 0 3px rgba(196,181,253,0.9))" }} />
+                    {/* Левая кромка луча */}
+                    <line x1="57%" y1="83%" x2="3%" y2="72%"
+                      stroke="#c084fc" strokeWidth="0.6" strokeOpacity="0.25"
+                      style={{ filter: "drop-shadow(0 0 2px rgba(168,85,247,0.6))" }} />
+                    {/* Правая кромка луча */}
+                    <line x1="59%" y1="83%" x2="100%" y2="72%"
+                      stroke="#c084fc" strokeWidth="0.6" strokeOpacity="0.25"
+                      style={{ filter: "drop-shadow(0 0 2px rgba(168,85,247,0.6))" }} />
                   </svg>
                 </div>
 
