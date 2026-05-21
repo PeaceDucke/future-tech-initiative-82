@@ -67,24 +67,27 @@ export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden" style={{ background: "#080810" }}>
+    <div className="relative min-h-screen overflow-x-hidden" style={{ background: "#03020a" }}>
 
       {/* ─── BG FX ─── */}
-      <div className="fixed inset-0 z-0 pointer-events-none grid-bg opacity-60" />
+      <div className="fixed inset-0 z-0 pointer-events-none grid-bg opacity-70" />
 
+      {/* Neon orb top-left — sharp core */}
       <motion.div className="fixed pointer-events-none z-0 rounded-full"
-        style={{ width: 800, height: 800, top: "-20%", left: "-15%", background: "radial-gradient(circle, rgba(109,40,217,0.25) 0%, transparent 65%)", filter: "blur(40px)" }}
-        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
+        style={{ width: 500, height: 500, top: "-10%", left: "-10%", background: "radial-gradient(circle, rgba(139,58,255,0.55) 0%, rgba(109,40,217,0.25) 30%, transparent 65%)", filter: "blur(18px)" }}
+        animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
 
+      {/* Neon orb right */}
       <motion.div className="fixed pointer-events-none z-0 rounded-full"
-        style={{ width: 600, height: 600, top: "20%", right: "-10%", background: "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 65%)", filter: "blur(60px)" }}
-        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.9, 0.5] }}
+        style={{ width: 400, height: 400, top: "20%", right: "-8%", background: "radial-gradient(circle, rgba(168,85,247,0.45) 0%, rgba(139,92,246,0.2) 35%, transparent 65%)", filter: "blur(14px)" }}
+        animate={{ scale: [1, 1.12, 1], opacity: [0.6, 0.95, 0.6] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
 
+      {/* Neon orb bottom */}
       <motion.div className="fixed pointer-events-none z-0 rounded-full"
-        style={{ width: 500, height: 500, bottom: "10%", left: "30%", background: "radial-gradient(circle, rgba(88,28,235,0.15) 0%, transparent 65%)", filter: "blur(50px)" }}
-        animate={{ scale: [1, 1.08, 1] }}
+        style={{ width: 350, height: 350, bottom: "10%", left: "30%", background: "radial-gradient(circle, rgba(109,40,255,0.4) 0%, rgba(88,28,235,0.18) 35%, transparent 65%)", filter: "blur(12px)" }}
+        animate={{ scale: [1, 1.06, 1] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }} />
 
       {/* ─── HEADER ─── */}
@@ -93,7 +96,7 @@ export function HomePage() {
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
             <a href="#" className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", boxShadow: "0 0 12px rgba(124,58,237,0.5)" }}>
+                style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", boxShadow: "0 0 8px rgba(168,85,247,1), 0 0 20px rgba(124,58,237,0.6)" }}>
                 <Icon name="Waves" size={16} className="text-white" />
               </div>
               <span className="text-[16px] font-black text-white tracking-tight">SALES<span className="text-violet-400">FLOW</span></span>
@@ -111,7 +114,7 @@ export function HomePage() {
             <div className="flex items-center gap-3">
               <a href="#cta"
                 className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-lg text-[13px] font-bold text-white"
-                style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", boxShadow: "0 0 16px rgba(124,58,237,0.4)" }}>
+                style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", boxShadow: "0 0 8px rgba(168,85,247,1), 0 0 22px rgba(124,58,237,0.65), 0 0 40px rgba(124,58,237,0.25)" }}>
                 Запросить демо
                 <Icon name="ArrowRight" size={14} />
               </a>
@@ -158,7 +161,7 @@ export function HomePage() {
                   className="text-4xl lg:text-[58px] font-black text-white leading-[1.05] tracking-tight mb-6">
                   Превращаем ваши<br />
                   разговоры в{" "}
-                  <span style={{ color: "#a855f7", textShadow: "0 0 30px rgba(168,85,247,0.6)" }}>деньги</span>
+                  <span style={{ color: "#d8b4fe", textShadow: "0 0 6px rgba(216,180,254,1), 0 0 18px rgba(168,85,247,0.9), 0 0 40px rgba(124,58,237,0.55)" }}>деньги</span>
                 </motion.h1>
 
                 <motion.p variants={fadeUp} className="text-[16px] text-gray-400 leading-relaxed mb-6 max-w-lg">
@@ -181,7 +184,7 @@ export function HomePage() {
                 <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
                   <a href="#cta"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-[14px] font-bold text-white"
-                    style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", boxShadow: "0 0 24px rgba(124,58,237,0.45)" }}>
+                    style={{ background: "linear-gradient(135deg, #7c3aed, #a855f7)", boxShadow: "0 0 8px rgba(168,85,247,1), 0 0 24px rgba(124,58,237,0.7), 0 0 48px rgba(124,58,237,0.3)" }}>
                     Запросить демо
                     <Icon name="ArrowRight" size={15} />
                   </a>
@@ -218,7 +221,7 @@ export function HomePage() {
                     src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/95921a01-2d42-4d22-b6a6-96a0605359ae.png"
                     alt=""
                     className="w-full h-auto block"
-                    style={{ filter: "drop-shadow(0 30px 60px rgba(139,92,246,0.45)) drop-shadow(0 0 40px rgba(99,102,241,0.35))" }}
+                    style={{ filter: "drop-shadow(0 0 18px rgba(168,85,247,1)) drop-shadow(0 0 40px rgba(124,58,237,0.7)) drop-shadow(0 20px 50px rgba(99,102,241,0.4))" }}
                   />
                 </div>
 
@@ -242,7 +245,7 @@ export function HomePage() {
                   >
                     {/* Soft refraction glow behind glass */}
                     <div className="absolute -inset-6 pointer-events-none rounded-3xl"
-                      style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.22) 0%, rgba(99,102,241,0.08) 40%, transparent 70%)", filter: "blur(28px)" }} />
+                      style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.45) 0%, rgba(124,58,237,0.2) 40%, transparent 70%)", filter: "blur(16px)" }} />
 
                     <motion.div
                       className="relative rounded-2xl overflow-hidden"
@@ -252,24 +255,24 @@ export function HomePage() {
                         background: "linear-gradient(140deg, rgba(22,18,46,0.55) 0%, rgba(14,10,32,0.45) 50%, rgba(24,20,52,0.55) 100%)",
                         backdropFilter: "blur(16px) saturate(1.2)",
                         WebkitBackdropFilter: "blur(16px) saturate(1.2)",
-                        border: "1px solid rgba(196,181,253,0.18)",
+                        border: "1px solid rgba(196,181,253,0.55)",
                         boxShadow: [
-                          "inset 0 1px 0 rgba(255,255,255,0.08)",
-                          "inset 0 -1px 0 rgba(139,92,246,0.15)",
-                          "inset 0 0 80px rgba(99,102,241,0.06)",
-                          "0 0 0 1px rgba(124,58,237,0.06)",
-                          "0 -8px 50px rgba(139,92,246,0.22)",
-                          "0 40px 90px rgba(0,0,0,0.75)",
+                          "inset 0 1px 0 rgba(255,255,255,0.1)",
+                          "inset 0 -1px 0 rgba(168,85,247,0.4)",
+                          "0 0 0 1px rgba(168,85,247,0.25)",
+                          "0 0 20px rgba(168,85,247,0.5)",
+                          "0 0 60px rgba(124,58,237,0.3)",
+                          "0 40px 80px rgba(0,0,0,0.85)",
                         ].join(", "),
                       }}
                       animate={{ opacity: [0.96, 1, 0.985, 1, 0.96] }}
                       transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
                     >
-                      {/* Chromatic aberration edge — top */}
+                      {/* Neon edge top */}
                       <div className="absolute inset-x-0 top-0 h-px pointer-events-none"
-                        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(196,181,253,0.7) 50%, transparent 100%)" }} />
-                      <div className="absolute inset-x-0 top-px h-px pointer-events-none opacity-60"
-                        style={{ background: "linear-gradient(90deg, transparent 30%, rgba(103,232,249,0.4) 50%, transparent 70%)" }} />
+                        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(216,180,254,1) 50%, transparent 100%)", boxShadow: "0 0 8px rgba(168,85,247,1), 0 0 16px rgba(168,85,247,0.6)" }} />
+                      <div className="absolute inset-x-0 top-px h-px pointer-events-none"
+                        style={{ background: "linear-gradient(90deg, transparent 20%, rgba(103,232,249,0.7) 50%, transparent 80%)" }} />
 
                       {/* Chrome bar */}
                       <div className="flex items-center gap-2 px-4 py-2 border-b"
@@ -388,9 +391,9 @@ export function HomePage() {
                           background: "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 30%, transparent 70%, rgba(167,139,250,0.05) 100%)",
                         }} />
 
-                      {/* Edge highlight (bottom) */}
+                      {/* Neon edge bottom */}
                       <div className="absolute inset-x-0 bottom-0 h-px pointer-events-none"
-                        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.4) 50%, transparent 100%)" }} />
+                        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(168,85,247,0.9) 50%, transparent 100%)", boxShadow: "0 0 6px rgba(168,85,247,0.8)" }} />
                     </motion.div>
 
                     {/* Imperceptible glitch flicker overlay */}
