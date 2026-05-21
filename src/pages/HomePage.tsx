@@ -396,8 +396,8 @@ export function HomePage() {
 
 
                 {/* ─── Static projector device (image) ─── */}
-                <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                  style={{ bottom: "-20px", width: "78%" }}>
+                <div className="absolute pointer-events-none"
+                  style={{ bottom: "-50px", left: "58%", transform: "translateX(-50%)", width: "78%" }}>
                   <img
                     src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/95921a01-2d42-4d22-b6a6-96a0605359ae.png"
                     alt=""
@@ -407,9 +407,9 @@ export function HomePage() {
                 </div>
 
                 {/* Floor / contact glow under projector */}
-                <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                <div className="absolute pointer-events-none"
                   style={{
-                    bottom: "60px",
+                    bottom: "30px", left: "58%", transform: "translateX(-50%)",
                     width: "80%", height: "60px",
                     background: "radial-gradient(ellipse, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.12) 40%, transparent 75%)",
                     filter: "blur(18px)",
