@@ -678,37 +678,38 @@ export function HomePage() {
                   }}
                 />
 
-                {/* ─── V-projection: трапециевидный конус от проектора до нижнего края экрана ─── */}
+                {/* ─── V-projection: лучи от проектора (узкая часть, низ) до нижней границы экрана (широкая часть, верх) ─── */}
+                {/* Зона лучей: между проектором (низ зоны) и нижним краем экрана (верх зоны) */}
                 {/* Внешний широкий мягкий конус */}
                 <div
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 20,
-                    left: "50%",
-                    transform: "translateX(-46%)",
-                    bottom: "18%",
-                    width: "100%",
-                    height: "11%",
+                    left: "58%",
+                    transform: "translateX(-50%)",
+                    bottom: "8%",
+                    width: "95%",
+                    height: "13%",
                     background:
-                      "linear-gradient(to top, rgba(168,85,247,0.28) 0%, rgba(168,85,247,0.06) 70%, transparent 100%)",
-                    clipPath: "polygon(46% 100%, 54% 100%, 100% 0%, 0% 0%)",
-                    filter: "blur(12px)",
+                      "linear-gradient(to bottom, rgba(168,85,247,0.05) 0%, rgba(168,85,247,0.22) 80%, rgba(216,180,254,0.45) 100%)",
+                    clipPath: "polygon(0% 0%, 100% 0%, 53% 100%, 47% 100%)",
+                    filter: "blur(10px)",
                   }}
                 />
-                {/* Средний конус — чуть ярче */}
+                {/* Средний конус */}
                 <div
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 20,
-                    left: "50%",
-                    transform: "translateX(-46%)",
-                    bottom: "18%",
-                    width: "100%",
-                    height: "26%",
+                    left: "58%",
+                    transform: "translateX(-50%)",
+                    bottom: "8%",
+                    width: "95%",
+                    height: "13%",
                     background:
-                      "linear-gradient(to top, rgba(192,132,252,0.35) 0%, rgba(192,132,252,0.08) 60%, transparent 100%)",
-                    clipPath: "polygon(47% 100%, 53% 100%, 85% 0%, 15% 0%)",
-                    filter: "blur(6px)",
+                      "linear-gradient(to bottom, rgba(192,132,252,0.08) 0%, rgba(192,132,252,0.3) 70%, rgba(232,200,255,0.55) 100%)",
+                    clipPath: "polygon(15% 0%, 85% 0%, 53% 100%, 47% 100%)",
+                    filter: "blur(5px)",
                   }}
                 />
                 {/* Яркое ядро — узкий центральный луч */}
@@ -716,30 +717,30 @@ export function HomePage() {
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 20,
-                    left: "50%",
-                    transform: "translateX(-46%)",
-                    bottom: "18%",
-                    width: "100%",
-                    height: "26%",
+                    left: "58%",
+                    transform: "translateX(-50%)",
+                    bottom: "8%",
+                    width: "95%",
+                    height: "13%",
                     background:
-                      "linear-gradient(to top, rgba(232,200,255,0.5) 0%, rgba(216,180,254,0.15) 40%, transparent 100%)",
-                    clipPath: "polygon(48.5% 100%, 51.5% 100%, 65% 0%, 35% 0%)",
-                    filter: "blur(3px)",
+                      "linear-gradient(to bottom, rgba(232,200,255,0.15) 0%, rgba(216,180,254,0.4) 60%, rgba(255,255,255,0.7) 100%)",
+                    clipPath: "polygon(35% 0%, 65% 0%, 52% 100%, 48% 100%)",
+                    filter: "blur(2.5px)",
                   }}
                 />
-                {/* Тонкая яркая полоска у основания проектора */}
+                {/* Яркая светящаяся полоса по нижнему краю экрана — место, куда упираются лучи */}
                 <div
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 21,
-                    left: "50%",
-                    transform: "translateX(-46%)",
-                    bottom: "18%",
-                    width: "100%",
-                    height: "4px",
+                    left: "58%",
+                    transform: "translateX(-50%)",
+                    bottom: "21%",
+                    width: "95%",
+                    height: "2px",
                     background:
-                      "linear-gradient(to right, transparent 0%, rgba(216,180,254,0.0) 25%, rgba(216,180,254,0.5) 46%, rgba(255,255,255,0.7) 50%, rgba(216,180,254,0.5) 54%, rgba(216,180,254,0.0) 75%, transparent 100%)",
-                    filter: "blur(2px)",
+                      "linear-gradient(to right, transparent 0%, rgba(168,85,247,0.4) 15%, rgba(216,180,254,0.85) 50%, rgba(168,85,247,0.4) 85%, transparent 100%)",
+                    filter: "blur(1.5px)",
                   }}
                 />
 
