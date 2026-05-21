@@ -30,22 +30,98 @@ const darkCard = {
 const darkCardHover = "hover:border-violet-500/40 hover:bg-white/[0.05] transition-all duration-300 cursor-default"
 
 function LineChart() {
-  const points = "0,80 40,65 80,72 120,45 160,55 200,30 240,40 280,15 320,25"
+  const W = 320, H = 110, padL = 34, padB = 22, padR = 8, padT = 8
+  const chartW = W - padL - padR
+  const chartH = H - padT - padB
+
+  const data = [
+    { day: "14 апр", val: 1200000 },
+    { day: "15 апр", val: 1850000 },
+    { day: "16 апр", val: 1600000 },
+    { day: "17 апр", val: 2400000 },
+    { day: "18 апр", val: 2100000 },
+    { day: "19 апр", val: 3100000 },
+    { day: "20 апр", val: 2800000 },
+    { day: "21 апр", val: 3800000 },
+    { day: "22 апр", val: 4200000 },
+    { day: "23 апр", val: 3900000 },
+    { day: "24 апр", val: 5100000 },
+    { day: "25 апр", val: 5600000 },
+    { day: "26 апр", val: 6200000 },
+    { day: "27 апр", val: 5800000 },
+    { day: "28 апр", val: 7100000 },
+    { day: "29 апр", val: 7600000 },
+    { day: "30 апр", val: 8742000 },
+  ]
+
+  const maxVal = 10000000
+  const yTicks = [0, 2500000, 5000000, 7500000, 10000000]
+
+  const toX = (i: number) => padL + (i / (data.length - 1)) * chartW
+  const toY = (v: number) => padT + chartH - (v / maxVal) * chartH
+
+  const pts = data.map((d, i) => `${toX(i)},${toY(d.val)}`).join(" ")
+  const areaPts = `${padL},${padT + chartH} ${pts} ${toX(data.length - 1)},${padT + chartH}`
+
+  const xLabelIdxs = [0, 4, 8, 12, 16]
+
   return (
-    <svg viewBox="0 0 320 90" className="w-full" preserveAspectRatio="none" style={{ height: 80 }}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 130 }}>
       <defs>
-        <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.02" />
         </linearGradient>
-        <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#7c3aed" />
-          <stop offset="100%" stopColor="#a855f7" />
+        <linearGradient id="lineGrad2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#6d28d9" />
+          <stop offset="100%" stopColor="#c084fc" />
         </linearGradient>
       </defs>
-      <polyline fill="none" stroke="url(#strokeGrad)" strokeWidth="2" points={points}
-        style={{ filter: "drop-shadow(0 0 6px rgba(168,85,247,0.8))" }} />
-      <polygon fill="url(#lineGrad)" points={`0,90 ${points} 320,90`} />
+
+      {/* Y grid lines + labels */}
+      {yTicks.map((t) => {
+        const y = toY(t)
+        const label = t === 0 ? "0" : `${t / 1000000}М`
+        return (
+          <g key={t}>
+            <line x1={padL} y1={y} x2={W - padR} y2={y}
+              stroke="rgba(168,85,247,0.1)" strokeWidth="0.5" strokeDasharray="3,3" />
+            <text x={padL - 3} y={y + 3} textAnchor="end"
+              fill="rgba(200,180,255,0.55)" fontSize="7" fontFamily="Inter,sans-serif">{label}</text>
+          </g>
+        )
+      })}
+
+      {/* Area fill */}
+      <polygon points={areaPts} fill="url(#areaGrad)" />
+
+      {/* Line */}
+      <polyline fill="none" stroke="url(#lineGrad2)" strokeWidth="1.8" points={pts}
+        strokeLinejoin="round" strokeLinecap="round"
+        style={{ filter: "drop-shadow(0 0 5px rgba(168,85,247,0.9))" }} />
+
+      {/* Dots on key points */}
+      {data.map((d, i) => (
+        <circle key={i} cx={toX(i)} cy={toY(d.val)} r="1.5"
+          fill="#c084fc" style={{ filter: "drop-shadow(0 0 3px rgba(192,132,252,1))" }} />
+      ))}
+
+      {/* Last point highlight */}
+      <circle cx={toX(data.length - 1)} cy={toY(data[data.length - 1].val)} r="3"
+        fill="#a855f7" stroke="#e9d5ff" strokeWidth="1"
+        style={{ filter: "drop-shadow(0 0 6px rgba(168,85,247,1))" }} />
+
+      {/* X axis labels */}
+      {xLabelIdxs.map((i) => (
+        <text key={i} x={toX(i)} y={H - 5} textAnchor="middle"
+          fill="rgba(200,180,255,0.5)" fontSize="6.5" fontFamily="Inter,sans-serif">
+          {data[i].day}
+        </text>
+      ))}
+
+      {/* X axis line */}
+      <line x1={padL} y1={padT + chartH} x2={W - padR} y2={padT + chartH}
+        stroke="rgba(168,85,247,0.2)" strokeWidth="0.5" />
     </svg>
   )
 }
@@ -417,9 +493,7 @@ export function HomePage() {
                             <div className="text-[11px] font-semibold text-gray-200">Динамика выручки</div>
                             <div className="text-[10px] text-violet-300 font-bold">По дням</div>
                           </div>
-                          <div style={{ transform: "scaleY(1.5)", transformOrigin: "bottom" }}>
-                            <LineChart />
-                          </div>
+                          <LineChart />
                         </div>
                         <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
                           <div className="text-[11px] font-semibold text-gray-200 mb-3">Причины потерь</div>
