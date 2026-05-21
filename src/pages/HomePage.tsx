@@ -312,12 +312,12 @@ export function HomePage() {
                   />
                 ))}
 
-                <div className="relative w-full h-full flex flex-col items-center justify-start pt-6" style={{ perspective: "1600px" }}>
+                <div className="relative w-full h-full flex flex-col items-center justify-start pt-6" style={{ perspective: "1600px", zIndex: 30 }}>
 
                   {/* ── Floating glass holographic dashboard ── */}
                   <motion.div
                     className="relative mx-auto"
-                    style={{ width: "92%", transformStyle: "preserve-3d" }}
+                    style={{ width: "112%", marginLeft: "-6%", transformStyle: "preserve-3d", zIndex: 30 }}
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   >
