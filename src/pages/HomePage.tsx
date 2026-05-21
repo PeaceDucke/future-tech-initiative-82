@@ -395,6 +395,44 @@ export function HomePage() {
 
 
 
+                {/* ─── Projection rays from projector to screen edges ─── */}
+                <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 20 }}>
+                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: 0 }}>
+                    <defs>
+                      <linearGradient id="rayLeft" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stopColor="#a855f7" stopOpacity="0.65" />
+                        <stop offset="100%" stopColor="#a855f7" stopOpacity="0.05" />
+                      </linearGradient>
+                      <linearGradient id="rayRight" x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stopColor="#c084fc" stopOpacity="0.55" />
+                        <stop offset="100%" stopColor="#c084fc" stopOpacity="0.04" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Левый луч: от проектора (58%, ~85%) к левому краю экрана (~5%, ~8%) */}
+                    <polygon
+                      points="55%,84%  61%,84%  8%,10%  4%,10%"
+                      fill="url(#rayLeft)"
+                      style={{ filter: "blur(3px)" }}
+                    />
+                    {/* Тонкая яркая кромка левого луча */}
+                    <line x1="55%" y1="84%" x2="4%" y2="10%"
+                      stroke="#d8b4fe" strokeWidth="0.8" strokeOpacity="0.5"
+                      style={{ filter: "drop-shadow(0 0 3px rgba(168,85,247,0.9))" }} />
+
+                    {/* Правый луч: от проектора (58%, ~85%) к правому краю экрана (~100%, ~8%) */}
+                    <polygon
+                      points="55%,84%  61%,84%  102%,10%  98%,10%"
+                      fill="url(#rayRight)"
+                      style={{ filter: "blur(3px)" }}
+                    />
+                    {/* Тонкая яркая кромка правого луча */}
+                    <line x1="61%" y1="84%" x2="102%" y2="10%"
+                      stroke="#e9d5ff" strokeWidth="0.8" strokeOpacity="0.45"
+                      style={{ filter: "drop-shadow(0 0 3px rgba(196,181,253,0.9))" }} />
+                  </svg>
+                </div>
+
                 {/* ─── Static projector device (image) ─── */}
                 <div className="absolute pointer-events-none"
                   style={{ bottom: "-50px", left: "58%", transform: "translateX(-50%)", width: "78%" }}>
