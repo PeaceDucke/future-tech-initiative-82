@@ -90,6 +90,47 @@
   background-size: 60px 60px;
 }
 
+/* Star twinkle animations */
+@keyframes twinkle1 {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.12;
+  }
+}
+@keyframes twinkle2 {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  40% {
+    opacity: 0.15;
+  }
+  70% {
+    opacity: 0.45;
+  }
+}
+@keyframes twinkle3 {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  60% {
+    opacity: 0.1;
+  }
+}
+.star-twinkle-1 {
+  animation: twinkle1 4.2s ease-in-out infinite;
+}
+.star-twinkle-2 {
+  animation: twinkle2 6.1s ease-in-out infinite;
+}
+.star-twinkle-3 {
+  animation: twinkle3 5.3s ease-in-out infinite;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

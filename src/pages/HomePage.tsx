@@ -69,7 +69,106 @@ export function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden" style={{ background: "#03020a" }}>
 
+      {/* ─── STARFIELD + CONSTELLATIONS ─── */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", inset: 0 }}>
+          <defs>
+            <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#7df9ff" stopOpacity="1" />
+              <stop offset="100%" stopColor="#7df9ff" stopOpacity="0" />
+            </radialGradient>
+          </defs>
 
+          {/* Constellation lines — очень тонкие, еле заметные */}
+          <g stroke="#38bdf8" strokeOpacity="0.12" strokeWidth="0.7" fill="none">
+            {/* Созвездие 1 — левый верх */}
+            <line x1="8%" y1="12%" x2="14%" y2="8%" />
+            <line x1="14%" y1="8%" x2="19%" y2="14%" />
+            <line x1="19%" y1="14%" x2="24%" y2="10%" />
+            <line x1="14%" y1="8%" x2="17%" y2="4%" />
+            {/* Созвездие 2 — правый верх */}
+            <line x1="72%" y1="6%" x2="78%" y2="11%" />
+            <line x1="78%" y1="11%" x2="84%" y2="7%" />
+            <line x1="84%" y1="7%" x2="90%" y2="13%" />
+            <line x1="78%" y1="11%" x2="76%" y2="17%" />
+            <line x1="76%" y1="17%" x2="82%" y2="21%" />
+            {/* Созвездие 3 — левый низ */}
+            <line x1="5%" y1="55%" x2="11%" y2="60%" />
+            <line x1="11%" y1="60%" x2="9%" y2="67%" />
+            <line x1="9%" y1="67%" x2="15%" y2="72%" />
+            <line x1="11%" y1="60%" x2="17%" y2="58%" />
+            {/* Созвездие 4 — правый низ */}
+            <line x1="75%" y1="65%" x2="81%" y2="70%" />
+            <line x1="81%" y1="70%" x2="88%" y2="66%" />
+            <line x1="88%" y1="66%" x2="92%" y2="72%" />
+            <line x1="81%" y1="70%" x2="80%" y2="78%" />
+            {/* Созвездие 5 — центр верх */}
+            <line x1="42%" y1="3%" x2="47%" y2="8%" />
+            <line x1="47%" y1="8%" x2="53%" y2="5%" />
+            <line x1="53%" y1="5%" x2="58%" y2="10%" />
+            <line x1="47%" y1="8%" x2="45%" y2="14%" />
+          </g>
+
+          {/* Звёзды-узлы созвездий */}
+          <g fill="#7df9ff">
+            {/* Созвездие 1 */}
+            <circle cx="8%" cy="12%" r="1.2" opacity="0.55" />
+            <circle cx="14%" cy="8%" r="1.6" opacity="0.65" />
+            <circle cx="19%" cy="14%" r="1.1" opacity="0.5" />
+            <circle cx="24%" cy="10%" r="1.3" opacity="0.55" />
+            <circle cx="17%" cy="4%" r="0.9" opacity="0.45" />
+            {/* Созвездие 2 */}
+            <circle cx="72%" cy="6%" r="1.1" opacity="0.5" />
+            <circle cx="78%" cy="11%" r="1.7" opacity="0.65" />
+            <circle cx="84%" cy="7%" r="1.2" opacity="0.55" />
+            <circle cx="90%" cy="13%" r="1.0" opacity="0.45" />
+            <circle cx="76%" cy="17%" r="1.1" opacity="0.5" />
+            <circle cx="82%" cy="21%" r="1.3" opacity="0.55" />
+            {/* Созвездие 3 */}
+            <circle cx="5%" cy="55%" r="1.0" opacity="0.45" />
+            <circle cx="11%" cy="60%" r="1.5" opacity="0.6" />
+            <circle cx="9%" cy="67%" r="1.0" opacity="0.45" />
+            <circle cx="15%" cy="72%" r="1.2" opacity="0.5" />
+            <circle cx="17%" cy="58%" r="1.1" opacity="0.5" />
+            {/* Созвездие 4 */}
+            <circle cx="75%" cy="65%" r="1.1" opacity="0.5" />
+            <circle cx="81%" cy="70%" r="1.6" opacity="0.62" />
+            <circle cx="88%" cy="66%" r="1.2" opacity="0.52" />
+            <circle cx="92%" cy="72%" r="1.0" opacity="0.45" />
+            <circle cx="80%" cy="78%" r="1.1" opacity="0.48" />
+            {/* Созвездие 5 */}
+            <circle cx="42%" cy="3%" r="1.0" opacity="0.48" />
+            <circle cx="47%" cy="8%" r="1.5" opacity="0.62" />
+            <circle cx="53%" cy="5%" r="1.1" opacity="0.5" />
+            <circle cx="58%" cy="10%" r="1.2" opacity="0.52" />
+            <circle cx="45%" cy="14%" r="0.9" opacity="0.42" />
+          </g>
+
+          {/* Одиночные рассеянные звёзды — крошечные, еле видны */}
+          <g fill="#bae6fd">
+            {[
+              [30,5,0.5],[55,18,0.4],[63,3,0.45],[35,22,0.35],[20,30,0.4],
+              [48,28,0.38],[67,25,0.42],[85,35,0.38],[92,28,0.35],[3,38,0.4],
+              [28,48,0.35],[38,55,0.38],[60,50,0.4],[70,45,0.35],[15,82,0.38],
+              [32,78,0.4],[55,85,0.35],[68,80,0.42],[88,85,0.38],[96,55,0.4],
+              [50,38,0.32],[22,65,0.35],[43,70,0.38],[58,62,0.33],[74,55,0.36],
+            ].map(([x, y, op], i) => (
+              <circle key={i} cx={`${x}%`} cy={`${y}%`} r="0.7" opacity={op} />
+            ))}
+          </g>
+
+          {/* Мерцающие звёзды — чуть крупнее, анимированные через CSS */}
+          <g fill="#e0f2fe">
+            <circle cx="31%" cy="9%" r="1.0" opacity="0.5" className="star-twinkle-1" />
+            <circle cx="66%" cy="14%" r="1.1" opacity="0.55" className="star-twinkle-2" />
+            <circle cx="12%" cy="45%" r="0.9" opacity="0.45" className="star-twinkle-3" />
+            <circle cx="88%" cy="50%" r="1.0" opacity="0.5" className="star-twinkle-1" />
+            <circle cx="50%" cy="22%" r="0.9" opacity="0.45" className="star-twinkle-2" />
+            <circle cx="25%" cy="88%" r="1.0" opacity="0.48" className="star-twinkle-3" />
+            <circle cx="78%" cy="90%" r="0.9" opacity="0.45" className="star-twinkle-1" />
+          </g>
+        </svg>
+      </div>
 
       {/* ─── HEADER ─── */}
       <header className="fixed top-0 left-0 right-0 z-50">
