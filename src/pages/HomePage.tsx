@@ -203,48 +203,116 @@ export function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.25 }}
                 className="relative hidden lg:block"
-                style={{ minHeight: "640px" }}
+                style={{ minHeight: "680px" }}
               >
-                {/* ─── Cinematic 3D rendered backplate (projector + volumetric beams + dust) ─── */}
-                <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                {/* ─── Atmospheric ambient ─── */}
+                <div className="absolute inset-0 pointer-events-none"
+                  style={{ background: "radial-gradient(ellipse 70% 50% at 50% 78%, rgba(99,102,241,0.22) 0%, rgba(139,92,246,0.10) 40%, transparent 75%)", filter: "blur(8px)" }} />
+
+                {/* ─── Volumetric projection beams emerging from projector ─── */}
+                {/* Outer wide cone (soft haze) */}
+                <motion.div
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    bottom: "120px",
+                    width: "88%", height: "440px",
+                    background: "linear-gradient(to top, rgba(139,92,246,0.32) 0%, rgba(139,92,246,0.10) 35%, transparent 75%)",
+                    clipPath: "polygon(38% 100%, 62% 100%, 96% 0%, 4% 0%)",
+                    filter: "blur(28px)",
+                    mixBlendMode: "screen",
+                  }}
+                  animate={{ opacity: [0.7, 0.95, 0.7] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                />
+                {/* Mid cone */}
+                <motion.div
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    bottom: "130px",
+                    width: "60%", height: "420px",
+                    background: "linear-gradient(to top, rgba(167,139,250,0.45) 0%, rgba(139,92,246,0.14) 45%, transparent 80%)",
+                    clipPath: "polygon(42% 100%, 58% 100%, 90% 0%, 10% 0%)",
+                    filter: "blur(16px)",
+                    mixBlendMode: "screen",
+                  }}
+                  animate={{ opacity: [0.8, 1, 0.8] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                />
+                {/* Inner bright core ray */}
+                <motion.div
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    bottom: "135px",
+                    width: "34%", height: "400px",
+                    background: "linear-gradient(to top, rgba(221,214,254,0.7) 0%, rgba(167,139,250,0.25) 40%, transparent 80%)",
+                    clipPath: "polygon(45% 100%, 55% 100%, 82% 0%, 18% 0%)",
+                    filter: "blur(8px)",
+                    mixBlendMode: "screen",
+                  }}
+                  animate={{ opacity: [0.85, 1, 0.85] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                {/* Thin laser core */}
+                <motion.div
+                  className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    bottom: "138px",
+                    width: "10%", height: "380px",
+                    background: "linear-gradient(to top, rgba(255,255,255,0.85) 0%, rgba(196,181,253,0.4) 40%, transparent 80%)",
+                    clipPath: "polygon(40% 100%, 60% 100%, 70% 0%, 30% 0%)",
+                    filter: "blur(3px)",
+                    mixBlendMode: "screen",
+                  }}
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* ─── Static projector device (image) ─── */}
+                <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{ bottom: "-20px", width: "78%" }}>
                   <img
-                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/1174d9fa-32c5-4258-84b8-1c490ad03661.jpg"
+                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/95921a01-2d42-4d22-b6a6-96a0605359ae.png"
                     alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
-                    style={{ filter: "saturate(0.95) contrast(1.05)" }}
+                    className="w-full h-auto block"
+                    style={{ filter: "drop-shadow(0 30px 60px rgba(139,92,246,0.45)) drop-shadow(0 0 40px rgba(99,102,241,0.35))" }}
                   />
-                  {/* Color/atmosphere unify with site background */}
-                  <div className="absolute inset-0 pointer-events-none"
-                    style={{ background: "radial-gradient(ellipse 80% 60% at 50% 80%, rgba(99,102,241,0.18) 0%, transparent 60%), linear-gradient(180deg, rgba(6,4,18,0.4) 0%, transparent 30%, transparent 70%, rgba(6,4,18,0.7) 100%)" }} />
-                  {/* Edge vignette */}
-                  <div className="absolute inset-0 pointer-events-none"
-                    style={{ boxShadow: "inset 0 0 120px rgba(6,4,18,0.85)" }} />
                 </div>
 
-                {/* Subtle drifting dust particles for integration */}
+                {/* Floor / contact glow under projector */}
+                <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
+                  style={{
+                    bottom: "60px",
+                    width: "80%", height: "60px",
+                    background: "radial-gradient(ellipse, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.12) 40%, transparent 75%)",
+                    filter: "blur(18px)",
+                  }} />
+
+                {/* ─── Floating dust particles in beam ─── */}
                 {[
-                  { l: "42%", t: "55%", d: 0, s: 1.2 },
-                  { l: "58%", t: "60%", d: 1.5, s: 0.8 },
-                  { l: "48%", t: "40%", d: 3, s: 1 },
-                  { l: "52%", t: "70%", d: 2.2, s: 0.6 },
-                  { l: "45%", t: "30%", d: 4, s: 0.9 },
-                  { l: "55%", t: "50%", d: 0.7, s: 1.1 },
+                  { l: "44%", t: "58%", d: 0, s: 1.2, dur: 9 },
+                  { l: "56%", t: "62%", d: 1.5, s: 0.8, dur: 11 },
+                  { l: "48%", t: "42%", d: 3, s: 1, dur: 10 },
+                  { l: "52%", t: "72%", d: 2.2, s: 0.7, dur: 8 },
+                  { l: "46%", t: "32%", d: 4, s: 0.9, dur: 12 },
+                  { l: "54%", t: "52%", d: 0.7, s: 1.1, dur: 9.5 },
+                  { l: "50%", t: "48%", d: 2.8, s: 0.6, dur: 10.5 },
+                  { l: "49%", t: "65%", d: 5, s: 0.9, dur: 11.5 },
                 ].map((p, i) => (
                   <motion.span
                     key={i}
                     className="absolute rounded-full pointer-events-none"
                     style={{
                       left: p.l, top: p.t,
-                      width: `${p.s * 2}px`, height: `${p.s * 2}px`,
-                      background: "rgba(221,214,254,0.85)",
-                      boxShadow: "0 0 6px rgba(167,139,250,0.7)",
+                      width: `${p.s * 2.2}px`, height: `${p.s * 2.2}px`,
+                      background: "rgba(221,214,254,0.95)",
+                      boxShadow: "0 0 8px rgba(167,139,250,0.85)",
                     }}
-                    animate={{ y: [-12, -28, -12], opacity: [0, 0.9, 0] }}
-                    transition={{ duration: 8 + p.s * 3, repeat: Infinity, ease: "easeInOut", delay: p.d }}
+                    animate={{ y: [-10, -40, -10], opacity: [0, 1, 0] }}
+                    transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut", delay: p.d }}
                   />
                 ))}
 
-                <div className="relative w-full h-full flex flex-col items-center justify-start pt-10" style={{ perspective: "1600px" }}>
+                <div className="relative w-full h-full flex flex-col items-center justify-start pt-6" style={{ perspective: "1600px" }}>
 
                   {/* ── Floating glass holographic dashboard ── */}
                   <motion.div
@@ -415,8 +483,8 @@ export function HomePage() {
 
                 </div>
 
-                {/* Spacer to let backplate projector show through */}
-                <div style={{ height: "180px" }} />
+                {/* Spacer to let projector + beam render below dashboard */}
+                <div style={{ height: "230px" }} />
 
                 {/* Floating glass pills */}
                 <motion.div className="absolute top-4 -left-2 px-3 py-2 rounded-xl backdrop-blur-md"
