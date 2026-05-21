@@ -678,8 +678,9 @@ export function HomePage() {
                   }}
                 />
 
-                {/* ─── V-projection: лучи от проектора (узкая часть, низ) до нижней границы экрана (широкая часть, верх) ─── */}
-                {/* Зона лучей: между проектором (низ зоны) и нижним краем экрана (верх зоны) */}
+                {/* ─── V-projection: лучи от проектора до НАКЛОННОЙ нижней границы экрана ─── */}
+                {/* Экран развёрнут на -18deg по Y вокруг левого края, поэтому правый низ опускается, левый низ остаётся высоко */}
+                {/* Нижняя граница экрана идёт от ~3% слева вверху до ~100% справа внизу — наклон */}
                 {/* Внешний широкий мягкий конус */}
                 <div
                   className="absolute pointer-events-none"
@@ -689,10 +690,10 @@ export function HomePage() {
                     transform: "translateX(-50%)",
                     bottom: "8%",
                     width: "95%",
-                    height: "13%",
+                    height: "20%",
                     background:
                       "linear-gradient(to bottom, rgba(168,85,247,0.05) 0%, rgba(168,85,247,0.22) 80%, rgba(216,180,254,0.45) 100%)",
-                    clipPath: "polygon(0% 0%, 100% 0%, 53% 100%, 47% 100%)",
+                    clipPath: "polygon(0% 32%, 100% 0%, 53% 100%, 47% 100%)",
                     filter: "blur(10px)",
                   }}
                 />
@@ -705,10 +706,10 @@ export function HomePage() {
                     transform: "translateX(-50%)",
                     bottom: "8%",
                     width: "95%",
-                    height: "13%",
+                    height: "20%",
                     background:
                       "linear-gradient(to bottom, rgba(192,132,252,0.08) 0%, rgba(192,132,252,0.3) 70%, rgba(232,200,255,0.55) 100%)",
-                    clipPath: "polygon(15% 0%, 85% 0%, 53% 100%, 47% 100%)",
+                    clipPath: "polygon(15% 25%, 85% 5%, 53% 100%, 47% 100%)",
                     filter: "blur(5px)",
                   }}
                 />
@@ -721,28 +722,44 @@ export function HomePage() {
                     transform: "translateX(-50%)",
                     bottom: "8%",
                     width: "95%",
-                    height: "13%",
+                    height: "20%",
                     background:
                       "linear-gradient(to bottom, rgba(232,200,255,0.15) 0%, rgba(216,180,254,0.4) 60%, rgba(255,255,255,0.7) 100%)",
-                    clipPath: "polygon(35% 0%, 65% 0%, 52% 100%, 48% 100%)",
+                    clipPath: "polygon(35% 18%, 65% 8%, 52% 100%, 48% 100%)",
                     filter: "blur(2.5px)",
                   }}
                 />
-                {/* Яркая светящаяся полоса по нижнему краю экрана — место, куда упираются лучи */}
-                <div
+                {/* Наклонная яркая полоса по нижнему краю экрана */}
+                <svg
                   className="absolute pointer-events-none"
                   style={{
                     zIndex: 21,
                     left: "58%",
                     transform: "translateX(-50%)",
-                    bottom: "21%",
+                    bottom: "28%",
                     width: "95%",
-                    height: "2px",
-                    background:
-                      "linear-gradient(to right, transparent 0%, rgba(168,85,247,0.4) 15%, rgba(216,180,254,0.85) 50%, rgba(168,85,247,0.4) 85%, transparent 100%)",
-                    filter: "blur(1.5px)",
+                    height: "30px",
+                    overflow: "visible",
                   }}
-                />
+                  viewBox="0 0 100 6"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <linearGradient id="bottomEdge" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#a855f7" stopOpacity="0" />
+                      <stop offset="15%" stopColor="#a855f7" stopOpacity="0.4" />
+                      <stop offset="50%" stopColor="#d8b4fe" stopOpacity="0.9" />
+                      <stop offset="85%" stopColor="#a855f7" stopOpacity="0.4" />
+                      <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  {/* Линия идёт под углом: слева вверху, справа внизу — повторяет наклон экрана */}
+                  <line
+                    x1="0" y1="6" x2="100" y2="0"
+                    stroke="url(#bottomEdge)" strokeWidth="0.8"
+                    style={{ filter: "drop-shadow(0 0 3px rgba(216,180,254,0.9))" }}
+                  />
+                </svg>
 
                 {/* ─── Static projector device (image) ─── */}
                 <div
