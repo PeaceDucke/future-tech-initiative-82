@@ -323,9 +323,7 @@ export function HomePage() {
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    {/* Soft refraction glow behind glass */}
-                    <div className="absolute -inset-6 pointer-events-none rounded-3xl"
-                      style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.45) 0%, rgba(124,58,237,0.2) 40%, transparent 70%)", filter: "blur(16px)" }} />
+
 
                     <motion.div
                       className="relative rounded-2xl overflow-hidden"
