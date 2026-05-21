@@ -660,11 +660,14 @@ export function HomePage() {
                 </motion.div>
 
                 {/* Trusted by */}
-                <motion.div variants={fadeUp} className="mt-8 pt-6 border-t border-white/5">
-                  <p className="text-[10px] font-semibold text-gray-700 uppercase tracking-widest mb-4">
-                    Нам доверяют лидеры рынка
-                  </p>
-                  <div className="flex flex-wrap items-center gap-6 opacity-50">
+                <motion.div variants={fadeUp} className="mt-10 pt-7 border-t border-white/10">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="h-px flex-none w-6 bg-gray-600" />
+                    <p className="text-[12px] font-semibold text-gray-400 uppercase tracking-[0.2em]">
+                      Нам доверяют лидеры рынка
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
                     {[
                       "amoCRM",
                       "Битрикс24",
@@ -675,7 +678,7 @@ export function HomePage() {
                     ].map((logo) => (
                       <span
                         key={logo}
-                        className="text-[12px] font-bold text-gray-400 whitespace-nowrap"
+                        className="text-[15px] font-bold text-gray-300 whitespace-nowrap opacity-70 hover:opacity-100 transition-opacity"
                       >
                         {logo}
                       </span>
