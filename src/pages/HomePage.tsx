@@ -332,17 +332,17 @@ export function HomePage() {
                       style={{
                         transform: "perspective(900px) rotateY(-18deg) rotateX(4deg)",
                         transformOrigin: "left center",
-                        background: "linear-gradient(140deg, rgba(22,18,46,0.55) 0%, rgba(14,10,32,0.45) 50%, rgba(24,20,52,0.55) 100%)",
-                        backdropFilter: "blur(16px) saturate(1.2)",
-                        WebkitBackdropFilter: "blur(16px) saturate(1.2)",
-                        border: "1px solid rgba(196,181,253,0.55)",
+                        background: "linear-gradient(140deg, rgba(10,6,26,0.18) 0%, rgba(6,3,16,0.12) 50%, rgba(12,7,28,0.18) 100%)",
+                        backdropFilter: "blur(4px) saturate(1.1)",
+                        WebkitBackdropFilter: "blur(4px) saturate(1.1)",
+                        border: "1px solid rgba(168,85,247,0.35)",
                         boxShadow: [
-                          "inset 0 1px 0 rgba(255,255,255,0.1)",
-                          "inset 0 -1px 0 rgba(168,85,247,0.4)",
-                          "0 0 0 1px rgba(168,85,247,0.25)",
-                          "0 0 20px rgba(168,85,247,0.5)",
-                          "0 0 60px rgba(124,58,237,0.3)",
-                          "0 40px 80px rgba(0,0,0,0.85)",
+                          "inset 0 1px 0 rgba(255,255,255,0.05)",
+                          "inset 0 -1px 0 rgba(168,85,247,0.25)",
+                          "0 0 0 1px rgba(168,85,247,0.12)",
+                          "0 0 18px rgba(168,85,247,0.35)",
+                          "0 0 50px rgba(124,58,237,0.18)",
+                          "0 40px 80px rgba(0,0,0,0.5)",
                         ].join(", "),
                       }}
                       animate={{ opacity: [0.96, 1, 0.985, 1, 0.96] }}
@@ -379,7 +379,7 @@ export function HomePage() {
                           { label: "Потерянная", value: "1 242 000 ₽", change: "Найдено WI", warn: true, up: false },
                         ].map((m) => (
                           <div key={m.label} className="rounded-xl p-4"
-                            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)" }}>
+                            style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
                             <div className="text-[10px] font-medium text-gray-500 mb-1.5 truncate">{m.label}</div>
                             <div className="text-[14px] font-black text-white mb-1 truncate">{m.value}</div>
                             <div className={`text-[11px] font-bold ${m.warn ? "text-orange-400" : m.up ? "text-emerald-400" : "text-red-400"}`}>{m.change}</div>
@@ -389,7 +389,7 @@ export function HomePage() {
 
                       {/* Charts row */}
                       <div className="grid grid-cols-2 gap-4 mb-5">
-                        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "180px" }}>
+                        <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
                           <div className="flex items-center justify-between mb-3">
                             <div className="text-[11px] font-semibold text-gray-400">Динамика выручки</div>
                             <div className="text-[10px] text-violet-400 font-bold">По дням</div>
@@ -398,7 +398,7 @@ export function HomePage() {
                             <LineChart />
                           </div>
                         </div>
-                        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "180px" }}>
+                        <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "180px" }}>
                           <div className="text-[11px] font-semibold text-gray-400 mb-3">Причины потерь</div>
                           <div className="flex items-center gap-3">
                             <div className="relative shrink-0" style={{ transform: "scale(1.25)", transformOrigin: "left center" }}>
@@ -423,7 +423,7 @@ export function HomePage() {
 
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "160px" }}>
+                        <div className="rounded-xl p-4" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
                           <div className="text-[11px] font-semibold text-gray-400 mb-3">Топ менеджеров</div>
                           <div className="space-y-3">
                             {[
@@ -441,7 +441,7 @@ export function HomePage() {
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-xl p-4 flex flex-col items-center justify-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(124,58,237,0.12)", minHeight: "160px" }}>
+                        <div className="rounded-xl p-4 flex flex-col items-center justify-center" style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(168,85,247,0.18)", minHeight: "160px" }}>
                           <div className="text-[11px] font-semibold text-gray-400 mb-2">Качество разговоров</div>
                           <div className="relative" style={{ transform: "scale(1.35)", transformOrigin: "center" }}>
                             <DonutChart pct={82} color="#a855f7" />
