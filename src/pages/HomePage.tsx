@@ -1144,7 +1144,7 @@ export function HomePage() {
         </section>
 
         {/* ═══ METRICS STRIPE ═══ */}
-        <section className="relative py-16 px-5 overflow-hidden">
+        <section className="relative -mt-10 pt-2 pb-16 px-5 overflow-hidden">
           {/* Технологичный фон: радиальное свечение + тонкая сетка */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -1163,14 +1163,7 @@ export function HomePage() {
                 "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%)",
             }}
           />
-          {/* Тонкие неоновые линии сверху/снизу */}
-          <div
-            className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, rgba(168,85,247,0.6) 50%, transparent)",
-            }}
-          />
+          {/* Тонкая неоновая линия снизу */}
           <div
             className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
             style={{
