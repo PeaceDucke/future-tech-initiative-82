@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=Inter:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,35 +6,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 2%;
-    --foreground: 45 30% 88%;
+    --background: 40 6% 9%;
+    --foreground: 34 22% 87%;
 
-    --card: 0 0% 2%;
-    --card-foreground: 45 30% 88%;
+    --card: 25 14% 15%;
+    --card-foreground: 34 22% 87%;
 
-    --popover: 0 0% 2%;
-    --popover-foreground: 45 30% 88%;
+    --popover: 25 14% 15%;
+    --popover-foreground: 34 22% 87%;
 
-    --primary: 36 33% 86%;
-    --primary-foreground: 0 0% 2%;
+    --primary: 34 40% 63%;
+    --primary-foreground: 40 6% 9%;
 
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 45 20% 75%;
+    --secondary: 22 16% 18%;
+    --secondary-foreground: 30 18% 80%;
 
-    --muted: 0 0% 7%;
-    --muted-foreground: 0 0% 50%;
+    --muted: 22 16% 18%;
+    --muted-foreground: 30 10% 55%;
 
-    --accent: 36 33% 86%;
-    --accent-foreground: 0 0% 2%;
+    --accent: 34 40% 63%;
+    --accent-foreground: 40 6% 9%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 10%;
-    --input: 0 0% 10%;
-    --ring: 36 33% 86%;
+    --border: 30 8% 18%;
+    --input: 30 8% 18%;
+    --ring: 34 40% 63%;
 
-    --radius: 0.5rem;
+    --radius: 2px;
   }
 }
 
@@ -45,81 +45,70 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family:
-      "Inter",
-      system-ui,
-      -apple-system,
-      sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #050f07;
+    background-color: #151513;
+    color: #e7ded4;
   }
 
   h1,
   h2,
   h3,
-  h4 {
-    font-family: "Cormorant Garamond", Georgia, serif;
+  h4,
+  h5 {
+    font-family: "Bodoni Moda", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
   }
-}
-
-/* Subtle grid */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Subtle twinkle */
-@keyframes twinkle1 {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.1;
-  }
-}
-@keyframes twinkle2 {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  40% {
-    opacity: 0.12;
-  }
-  70% {
-    opacity: 0.35;
-  }
-}
-@keyframes twinkle3 {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  60% {
-    opacity: 0.08;
-  }
-}
-.star-twinkle-1 {
-  animation: twinkle1 4.2s ease-in-out infinite;
-}
-.star-twinkle-2 {
-  animation: twinkle2 6.1s ease-in-out infinite;
-}
-.star-twinkle-3 {
-  animation: twinkle3 5.3s ease-in-out infinite;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #050f07;
+  background: #151513;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(232, 224, 208, 0.2);
-  border-radius: 3px;
+  background: rgba(194, 165, 122, 0.2);
+  border-radius: 2px;
+}
+
+/* Utilities */
+.font-display {
+  font-family: "Bodoni Moda", Georgia, serif;
+}
+.text-gold {
+  color: #c2a57a;
+}
+.text-gold-dim {
+  color: rgba(194, 165, 122, 0.55);
+}
+.text-ivory {
+  color: #e7ded4;
+}
+.text-cream {
+  color: #ddd2c4;
+}
+.border-gold-subtle {
+  border-color: rgba(194, 165, 122, 0.2);
+}
+.bg-mocha {
+  background-color: #2a211c;
+}
+.bg-walnut {
+  background-color: #332822;
+}
+
+/* Subtle grain overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

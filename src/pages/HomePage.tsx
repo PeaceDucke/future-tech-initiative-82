@@ -37,13 +37,71 @@ function Section({
   );
 }
 
-const darkCard = {
-  background: "#050f07",
-  border: "1px solid rgba(255,255,255,0.12)",
+const card = {
+  background: "#151513",
+  border: "1px solid rgba(194,165,122,0.18)",
 };
 
-const darkCardHover =
-  "hover:border-white/25 transition-all duration-300 cursor-default";
+const cardHover = "hover:border-[rgba(194,165,122,0.35)] transition-colors duration-300 cursor-default";
+
+const iconBox = {
+  background: "rgba(194,165,122,0.08)",
+  border: "1px solid rgba(194,165,122,0.18)",
+};
+
+const h2Style = {
+  fontFamily: '"Bodoni Moda", Georgia, serif',
+  fontWeight: 400,
+  color: "#E7DED4",
+  letterSpacing: "0.01em",
+};
+
+const h3Style = {
+  fontFamily: '"Bodoni Moda", Georgia, serif',
+  fontWeight: 400,
+  color: "#E7DED4",
+  letterSpacing: "0.01em",
+};
+
+const bodyText = {
+  color: "rgba(231,222,212,0.6)",
+  fontWeight: 300,
+  lineHeight: 1.7,
+  fontFamily: "Inter, sans-serif",
+};
+
+const labelStyle = {
+  color: "#C2A57A",
+  fontSize: "10px" as const,
+  fontWeight: 500,
+  letterSpacing: "0.2em",
+  textTransform: "uppercase" as const,
+  fontFamily: "Inter, sans-serif",
+};
+
+const badgeStyle = {
+  background: "transparent",
+  border: "1px solid rgba(194,165,122,0.3)",
+  color: "#C2A57A",
+  fontSize: "10px",
+  fontWeight: 500,
+  letterSpacing: "0.2em",
+  textTransform: "uppercase" as const,
+  fontFamily: "Inter, sans-serif",
+  padding: "4px 12px",
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "6px",
+};
+
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+      <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+      <span style={labelStyle}>{label}</span>
+    </div>
+  );
+}
 
 export function HomePage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -52,15 +110,15 @@ export function HomePage() {
   return (
     <div
       className="relative min-h-screen overflow-x-hidden"
-      style={{ background: "#050f07" }}
+      style={{ background: "#151513" }}
     >
       {/* ─── HEADER ─── */}
       <header className="fixed top-0 left-0 right-0 z-50">
         <div
           className="border-b"
           style={{
-            background: "rgba(5,15,7,0.92)",
-            borderColor: "rgba(255,255,255,0.1)",
+            background: "rgba(21,21,19,0.95)",
+            borderColor: "rgba(194,165,122,0.12)",
           }}
         >
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
@@ -68,16 +126,22 @@ export function HomePage() {
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{
-                  background: "#e8e0d0",
+                  background: "rgba(194,165,122,0.1)",
+                  border: "1px solid rgba(194,165,122,0.25)",
                 }}
               >
-                <Icon name="Waves" size={16} className="text-white" />
+                <Icon name="Waves" size={16} style={{ color: "#C2A57A" }} />
               </div>
               <span
-                className="text-[16px] font-black tracking-tight"
-                style={{ color: "#f5edd6" }}
+                className="text-[15px] tracking-wide"
+                style={{
+                  fontFamily: '"Bodoni Moda", Georgia, serif',
+                  fontWeight: 400,
+                  color: "#E7DED4",
+                  letterSpacing: "0.08em",
+                }}
               >
-                SALES<span style={{ color: "#e8e0d0" }}>FLOW</span>
+                SALES<span style={{ color: "#C2A57A" }}>FLOW</span>
               </span>
             </a>
 
@@ -87,7 +151,8 @@ export function HomePage() {
                   <a
                     key={item}
                     href="#"
-                    className="px-4 py-2 text-[13px] font-medium text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
+                    className="px-4 py-2 text-[13px] rounded-lg transition-all duration-200"
+                    style={{ color: "rgba(231,222,212,0.55)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                   >
                     {item}
                   </a>
@@ -98,18 +163,25 @@ export function HomePage() {
             <div className="flex items-center gap-3">
               <a
                 href="#cta"
-                className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-lg text-[13px] font-bold"
+                className="hidden sm:inline-flex items-center gap-2"
                 style={{
-                  background: "#e8e0d0",
-                  color: "#050f07",
+                  background: "#C2A57A",
+                  color: "#151513",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 500,
+                  letterSpacing: "0.08em",
+                  fontSize: "13px",
+                  padding: "9px 20px",
+                  borderRadius: "2px",
                 }}
               >
                 Запросить демо
-                <Icon name="ArrowRight" size={14} />
+                <Icon name="ArrowRight" size={13} />
               </a>
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors"
+                className="lg:hidden p-2 transition-colors"
+                style={{ color: "rgba(231,222,212,0.55)" }}
               >
                 <Icon name={menuOpen ? "X" : "Menu"} size={20} />
               </button>
@@ -122,8 +194,8 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             className="border-b px-5 py-4"
             style={{
-              background: "rgba(5,15,7,0.97)",
-              borderColor: "rgba(255,255,255,0.1)",
+              background: "rgba(21,21,19,0.98)",
+              borderColor: "rgba(194,165,122,0.12)",
             }}
           >
             {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
@@ -132,7 +204,8 @@ export function HomePage() {
                   key={item}
                   href="#"
                   onClick={() => setMenuOpen(false)}
-                  className="block px-3 py-2.5 text-[14px] text-gray-300 hover:text-white transition-colors"
+                  className="block px-3 py-2.5 text-[14px] transition-colors"
+                  style={{ color: "rgba(231,222,212,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                 >
                   {item}
                 </a>
@@ -141,10 +214,14 @@ export function HomePage() {
             <a
               href="#cta"
               onClick={() => setMenuOpen(false)}
-              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-[14px] font-bold"
+              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px]"
               style={{
-                background: "#e8e0d0",
-                color: "#050f07",
+                background: "#C2A57A",
+                color: "#151513",
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 500,
+                letterSpacing: "0.08em",
+                borderRadius: "2px",
               }}
             >
               Запросить демо
@@ -156,54 +233,45 @@ export function HomePage() {
       <main className="relative z-10 pt-16">
         {/* ═══ HERO ═══ */}
         <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden">
-          {/* Фото команды на весь экран */}
           <div className="absolute inset-0">
             <img
               src="https://cdn.poehali.dev/files/c81f350b-bf64-401f-9a16-2fe9c24c0074.png"
               alt="Команда SalesFlow"
               className="w-full h-full object-cover object-center"
             />
-            {/* Градиентный оверлей снизу — текст читается */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(5,15,7,0.15) 0%, rgba(5,15,7,0.1) 40%, rgba(5,15,7,0.75) 75%, rgba(5,15,7,0.97) 100%)",
+                  "linear-gradient(to bottom, rgba(21,21,19,0.1) 0%, rgba(21,21,19,0.05) 35%, rgba(21,21,19,0.72) 72%, rgba(21,21,19,0.97) 100%)",
               }}
             />
-            {/* Тонкий оверлей по всему фото для тонирования */}
             <div
               className="absolute inset-0"
-              style={{ background: "rgba(5,15,7,0.18)" }}
+              style={{ background: "rgba(21,21,19,0.15)" }}
             />
           </div>
 
-          {/* Контент поверх фото — снизу */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-16 pt-32">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-20 pt-32">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={stagger}
               className="max-w-2xl"
             >
-              {/* Золотая линия-акцент */}
-              <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, #e8e0d0)" }} />
-                <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.25em]"
-                  style={{ color: "#e8e0d0", fontFamily: "Inter, sans-serif" }}
-                >
-                  AI-платформа для роста продаж
-                </span>
+              <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
+                <div style={{ width: "40px", height: "1px", background: "#C2A57A", opacity: 0.6 }} />
+                <span style={labelStyle}>AI-платформа для роста продаж</span>
               </motion.div>
 
               <motion.h1
                 variants={fadeUp}
-                className="text-5xl lg:text-[68px] leading-[1.0] tracking-tight mb-6"
+                className="text-5xl lg:text-[66px] leading-[1.05] mb-7"
                 style={{
-                  fontFamily: "Cormorant Garamond, Georgia, serif",
-                  fontWeight: 700,
-                  color: "#f5edd6",
+                  fontFamily: '"Bodoni Moda", Georgia, serif',
+                  fontWeight: 400,
+                  color: "#E7DED4",
+                  letterSpacing: "0.01em",
                 }}
               >
                 Превращаем
@@ -211,7 +279,7 @@ export function HomePage() {
                 разговоры{" "}
                 <span
                   style={{
-                    color: "#e8e0d0",
+                    color: "#C2A57A",
                     fontStyle: "italic",
                   }}
                 >
@@ -221,8 +289,8 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="text-[16px] leading-relaxed mb-8 max-w-lg"
-                style={{ color: "rgba(220,205,175,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+                className="text-[16px] mb-9 max-w-lg"
+                style={{ color: "rgba(231,222,212,0.6)", fontFamily: "Inter, sans-serif", fontWeight: 300, lineHeight: 1.75 }}
               >
                 SalesFlow анализирует каждый звонок, находит точки роста и
                 помогает вашей команде продавать больше каждый день.
@@ -231,37 +299,44 @@ export function HomePage() {
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
                 <a
                   href="#cta"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold"
+                  className="inline-flex items-center gap-2"
                   style={{
-                    background: "#e8e0d0",
-                    color: "#050f07",
+                    background: "#C2A57A",
+                    color: "#151513",
                     borderRadius: "2px",
-                    letterSpacing: "0.05em",
+                    letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "13px",
+                    padding: "12px 28px",
                   }}
                 >
                   Запросить демо
-                  <Icon name="ArrowRight" size={15} />
+                  <Icon name="ArrowRight" size={14} />
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 text-[14px] font-medium transition-colors"
+                  className="inline-flex items-center gap-2.5"
                   style={{
                     background: "transparent",
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    color: "#f5edd6",
+                    border: "1px solid rgba(194,165,122,0.35)",
+                    color: "#E7DED4",
                     borderRadius: "2px",
                     fontFamily: "Inter, sans-serif",
+                    fontWeight: 400,
+                    letterSpacing: "0.05em",
+                    fontSize: "13px",
+                    padding: "12px 24px",
                   }}
                 >
                   <div
                     className="w-7 h-7 rounded-full flex items-center justify-center"
-                    style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
+                    style={iconBox}
                   >
-                    <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#e8e0d0" }} />
+                    <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#C2A57A" }} />
                   </div>
                   Смотреть видео
-                  <span className="text-[11px] opacity-60">2 мин</span>
+                  <span style={{ fontSize: "11px", opacity: 0.5 }}>2 мин</span>
                 </a>
               </motion.div>
             </motion.div>
@@ -269,16 +344,15 @@ export function HomePage() {
         </section>
 
         {/* ═══ METRICS STRIPE ═══ */}
-        <section className="relative py-16 px-5 overflow-hidden"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+        <section
+          className="relative py-16 px-5 overflow-hidden"
+          style={{ borderTop: "1px solid rgba(194,165,122,0.1)", borderBottom: "1px solid rgba(194,165,122,0.1)", background: "#1A1916" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-10">
-              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, rgba(232,224,208,0.5))" }} />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em]" style={{ color: "#e8e0d0", fontFamily: "Inter, sans-serif" }}>
-                Результаты клиентов
-              </span>
-              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, rgba(232,224,208,0.5), transparent)" }} />
+              <div style={{ width: "40px", height: "1px", background: "#C2A57A", opacity: 0.4 }} />
+              <span style={labelStyle}>Результаты клиентов</span>
+              <div style={{ width: "40px", height: "1px", background: "#C2A57A", opacity: 0.4 }} />
             </div>
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
@@ -292,33 +366,29 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className="flex items-start gap-3 p-5 rounded-sm"
-                    style={{
-                      background: "#050f07",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                    }}
+                    className="flex items-start gap-3 p-5"
+                    style={card}
                   >
                     <div
                       className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
-                      style={{
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                      }}
+                      style={iconBox}
                     >
-                      <Icon name={item.icon} size={18} style={{ color: "#e8e0d0" }} />
+                      <Icon name={item.icon} size={18} style={{ color: "#C2A57A" }} />
                     </div>
                     <div>
                       <div
-                        className="text-[28px] leading-none mb-1 tracking-tight"
+                        className="leading-none mb-1"
                         style={{
-                          fontFamily: "Cormorant Garamond, Georgia, serif",
-                          fontWeight: 700,
-                          color: "#f5edd6",
+                          fontFamily: '"Bodoni Moda", Georgia, serif',
+                          fontWeight: 400,
+                          fontSize: "28px",
+                          color: "#E7DED4",
+                          letterSpacing: "-0.01em",
                         }}
                       >
                         {item.num}
                       </div>
-                      <div className="text-[12px] leading-snug" style={{ color: "rgba(232,224,208,0.55)", fontFamily: "Inter, sans-serif" }}>
+                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(194,165,122,0.6)", textTransform: "none" }}>
                         {item.label}
                       </div>
                     </div>
@@ -330,29 +400,24 @@ export function HomePage() {
         </section>
 
         {/* ═══ PROBLEMS ═══ */}
-        <section className="py-24 px-5">
+        <section className="py-24 px-5" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-12">
-                <div
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    color: "#e8e0d0",
-                  }}
-                >
-                  Знакомые ситуации?
+              <motion.div variants={fadeUp} className="text-center mb-14">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+                  <span style={labelStyle}>Знакомые ситуации?</span>
+                  <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
                 </div>
                 <h2
-                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
-                  style={{ color: "#f5edd6" }}
+                  className="text-3xl lg:text-5xl mb-4"
+                  style={h2Style}
                 >
                   Эти проблемы
                   <br />
                   мешают продажам расти
                 </h2>
-                <p className="text-gray-500 max-w-xl mx-auto text-[14px]">
+                <p style={{ ...bodyText, fontSize: "14px", maxWidth: "480px", margin: "0 auto" }}>
                   Мы видели их у сотен компаний — и знаем, как решить
                 </p>
               </motion.div>
@@ -374,7 +439,7 @@ export function HomePage() {
                     icon: "Smartphone",
                     title: "Личные номера",
                     desc: "Когда менеджер уходит — уходит и база. Переписок нет, звонков нет",
-                    color: "#e8e0d0",
+                    color: "#C2A57A",
                   },
                   {
                     icon: "EyeOff",
@@ -398,8 +463,8 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className={`rounded-2xl p-5 ${darkCardHover}`}
-                    style={darkCard}
+                    className={`rounded-2xl p-5 ${cardHover}`}
+                    style={card}
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
@@ -415,12 +480,12 @@ export function HomePage() {
                       />
                     </div>
                     <h3
-                      className="text-[15px] font-bold mb-1.5"
-                      style={{ color: "#f5edd6" }}
+                      className="text-[15px] mb-2"
+                      style={{ ...h3Style, fontSize: "15px" }}
                     >
                       {p.title}
                     </h3>
-                    <p className="text-[13px] text-gray-500 leading-relaxed">
+                    <p style={{ ...bodyText, fontSize: "13px" }}>
                       {p.desc}
                     </p>
                   </motion.div>
@@ -431,32 +496,23 @@ export function HomePage() {
         </section>
 
         {/* ═══ SOLUTIONS ═══ */}
-        <section id="services" className="py-24 px-5">
+        <section id="services" className="py-24 px-5" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div
                 variants={fadeUp}
-                className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12"
+                className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14"
               >
                 <div>
-                  <div
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
-                    style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#e8e0d0",
-                    }}
-                  >
-                    Наши решения
-                  </div>
+                  <SectionLabel label="Наши решения" />
                   <h2
-                    className="text-3xl lg:text-5xl font-black tracking-tight"
-                    style={{ color: "#f5edd6" }}
+                    className="text-3xl lg:text-5xl"
+                    style={h2Style}
                   >
                     Всё для системных продаж
                   </h2>
                 </div>
-                <p className="text-gray-500 max-w-sm text-[14px] leading-relaxed mt-4 lg:mt-0">
+                <p style={{ ...bodyText, fontSize: "14px", maxWidth: "320px", marginTop: "16px" }}>
                   Внедряем комплексно или по шагам — в зависимости от задач
                   вашего бизнеса
                 </p>
@@ -507,29 +563,26 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className={`group rounded-2xl p-5 ${darkCardHover}`}
-                    style={darkCard}
+                    className={`group rounded-2xl p-5 ${cardHover}`}
+                    style={card}
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                      style={{
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                      }}
+                      style={iconBox}
                     >
                       <Icon
                         name={s.icon}
                         size={20}
-                        style={{ color: "#e8e0d0" }}
+                        style={{ color: "#C2A57A" }}
                       />
                     </div>
                     <h3
-                      className="text-[14px] font-bold mb-1.5 transition-colors"
-                      style={{ color: "#f5edd6" }}
+                      className="mb-2"
+                      style={{ ...h3Style, fontSize: "14px" }}
                     >
                       {s.title}
                     </h3>
-                    <p className="text-[12px] text-gray-500 leading-relaxed">
+                    <p style={{ ...bodyText, fontSize: "12px" }}>
                       {s.desc}
                     </p>
                   </motion.div>
@@ -541,21 +594,24 @@ export function HomePage() {
 
         {/* ═══ HOW WE WORK ═══ */}
         <section
-          className="py-24 px-5 border-y"
+          className="py-24 px-5"
           style={{
-            borderColor: "rgba(255,255,255,0.08)",
+            borderTop: "1px solid rgba(231,222,212,0.08)",
+            borderBottom: "1px solid rgba(231,222,212,0.08)",
+            background: "#1A1916",
           }}
         >
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-12">
+              <motion.div variants={fadeUp} className="text-center mb-14">
+                <SectionLabel label="Процесс работы" />
                 <h2
-                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
-                  style={{ color: "#f5edd6" }}
+                  className="text-3xl lg:text-5xl mb-4"
+                  style={h2Style}
                 >
                   6 шагов от хаоса к системе
                 </h2>
-                <p className="text-gray-500 text-[14px]">
+                <p style={{ ...bodyText, fontSize: "14px" }}>
                   Отработанный процесс внедрения — от аудита до результата
                 </p>
               </motion.div>
@@ -601,35 +657,38 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className={`rounded-2xl p-4 text-center ${darkCardHover}`}
-                    style={darkCard}
+                    className={`rounded-2xl p-4 text-center ${cardHover}`}
+                    style={card}
                   >
                     <div
-                      className="text-[10px] font-black mb-2 tracking-widest"
-                      style={{ color: "#e8e0d0" }}
+                      className="mb-3"
+                      style={{
+                        color: "#C2A57A",
+                        fontFamily: '"Bodoni Moda", Georgia, serif',
+                        fontSize: "13px",
+                        letterSpacing: "0.15em",
+                        fontWeight: 400,
+                      }}
                     >
                       {step.num}
                     </div>
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-3"
-                      style={{
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                      }}
+                      style={iconBox}
                     >
                       <Icon
                         name={step.icon}
                         size={16}
-                        style={{ color: "#e8e0d0" }}
+                        style={{ color: "#C2A57A" }}
                       />
                     </div>
                     <div
-                      className="text-[12px] font-bold mb-1"
-                      style={{ color: "#f5edd6" }}
+                      className="text-[12px] mb-1.5"
+                      style={{ ...h3Style, fontSize: "12px" }}
                     >
                       {step.title}
                     </div>
-                    <div className="text-[10px] text-gray-500 leading-relaxed">
+                    <div style={{ ...bodyText, fontSize: "10px" }}>
                       {step.desc}
                     </div>
                   </motion.div>
@@ -640,23 +699,14 @@ export function HomePage() {
         </section>
 
         {/* ═══ CASES ═══ */}
-        <section id="cases" className="py-24 px-5">
+        <section id="cases" className="py-24 px-5" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-12">
-                <div
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    color: "#e8e0d0",
-                  }}
-                >
-                  Кейсы клиентов
-                </div>
+              <motion.div variants={fadeUp} className="text-center mb-14">
+                <SectionLabel label="Кейсы клиентов" />
                 <h2
-                  className="text-3xl lg:text-5xl font-black tracking-tight"
-                  style={{ color: "#f5edd6" }}
+                  className="text-3xl lg:text-5xl"
+                  style={h2Style}
                 >
                   Реальные цифры
                 </h2>
@@ -665,7 +715,7 @@ export function HomePage() {
                 {[
                   {
                     industry: "Недвижимость",
-                    color: "#e8e0d0",
+                    color: "#C2A57A",
                     before:
                       "Заявки терялись в 4 мессенджерах. Менеджеры с личных номеров. Нет понимания по каждому клиенту.",
                     action:
@@ -697,51 +747,56 @@ export function HomePage() {
                     key={i}
                     variants={fadeUp}
                     className="rounded-2xl overflow-hidden"
-                    style={darkCard}
+                    style={card}
                   >
                     <div
-                      className="h-0.5 w-full"
+                      className="h-px w-full"
                       style={{
                         background: `linear-gradient(90deg, ${c.color}, transparent)`,
                       }}
                     />
                     <div className="p-6">
                       <div
-                        className="text-[10px] font-black uppercase tracking-widest mb-4"
-                        style={{ color: c.color }}
+                        className="mb-5"
+                        style={{ ...labelStyle, color: c.color }}
                       >
                         {c.industry}
                       </div>
                       <div className="space-y-4">
                         <div>
-                          <div className="text-[9px] font-bold text-red-400 uppercase tracking-wider mb-1.5">
+                          <div style={{ ...labelStyle, color: "rgba(248,113,113,0.8)", marginBottom: "6px" }}>
                             Было
                           </div>
-                          <p className="text-[12px] text-gray-500 leading-relaxed">
+                          <p style={{ ...bodyText, fontSize: "12px" }}>
                             {c.before}
                           </p>
                         </div>
                         <div>
-                          <div className="text-[9px] font-bold text-blue-400 uppercase tracking-wider mb-1.5">
+                          <div style={{ ...labelStyle, color: "rgba(96,165,250,0.8)", marginBottom: "6px" }}>
                             Что сделали
                           </div>
-                          <p className="text-[12px] text-gray-500 leading-relaxed">
+                          <p style={{ ...bodyText, fontSize: "12px" }}>
                             {c.action}
                           </p>
                         </div>
                         <div
                           className="rounded-xl p-3"
                           style={{
-                            background: "#050f07",
-                            border: "1px solid rgba(255,255,255,0.12)",
+                            background: "#1E1916",
+                            border: "1px solid rgba(194,165,122,0.18)",
                           }}
                         >
-                          <div className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider mb-1">
+                          <div style={{ ...labelStyle, color: "rgba(52,211,153,0.8)", marginBottom: "6px" }}>
                             Результат
                           </div>
                           <p
-                            className="text-[12px] font-bold leading-relaxed"
-                            style={{ color: "#f5edd6" }}
+                            style={{
+                              fontFamily: '"Bodoni Moda", Georgia, serif',
+                              fontWeight: 400,
+                              fontSize: "13px",
+                              color: "#E7DED4",
+                              lineHeight: 1.6,
+                            }}
                           >
                             {c.result}
                           </p>
@@ -757,19 +812,20 @@ export function HomePage() {
 
         {/* ═══ FOR WHOM ═══ */}
         <section
-          className="py-24 px-5 border-t"
-          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          className="py-24 px-5"
+          style={{ borderTop: "1px solid rgba(231,222,212,0.08)", background: "#1A1916" }}
         >
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-10">
+              <motion.div variants={fadeUp} className="text-center mb-14">
+                <SectionLabel label="Целевая аудитория" />
                 <h2
-                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
-                  style={{ color: "#f5edd6" }}
+                  className="text-3xl lg:text-5xl mb-4"
+                  style={h2Style}
                 >
                   Для кого
                 </h2>
-                <p className="text-gray-500 text-[14px]">
+                <p style={{ ...bodyText, fontSize: "14px" }}>
                   Работаем с компаниями, у которых есть отдел продаж и задача
                   расти
                 </p>
@@ -810,29 +866,26 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className={`rounded-2xl p-5 ${darkCardHover}`}
-                    style={darkCard}
+                    className={`rounded-2xl p-5 ${cardHover}`}
+                    style={card}
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                      style={{
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                      }}
+                      style={iconBox}
                     >
                       <Icon
                         name={w.icon}
                         size={20}
-                        style={{ color: "#e8e0d0" }}
+                        style={{ color: "#C2A57A" }}
                       />
                     </div>
                     <h3
-                      className="text-[14px] font-bold mb-1.5"
-                      style={{ color: "#f5edd6" }}
+                      className="mb-2"
+                      style={{ ...h3Style, fontSize: "14px" }}
                     >
                       {w.title}
                     </h3>
-                    <p className="text-[12px] text-gray-500 leading-relaxed">
+                    <p style={{ ...bodyText, fontSize: "12px" }}>
                       {w.desc}
                     </p>
                   </motion.div>
@@ -843,17 +896,18 @@ export function HomePage() {
         </section>
 
         {/* ═══ PRICING ═══ */}
-        <section id="pricing" className="py-24 px-5">
+        <section id="pricing" className="py-24 px-5" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-12">
+              <motion.div variants={fadeUp} className="text-center mb-14">
+                <SectionLabel label="Продукты" />
                 <h2
-                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
-                  style={{ color: "#f5edd6" }}
+                  className="text-3xl lg:text-5xl mb-4"
+                  style={h2Style}
                 >
                   Продукты
                 </h2>
-                <p className="text-gray-500 text-[14px]">
+                <p style={{ ...bodyText, fontSize: "14px" }}>
                   Инструменты для роста продаж и контроля команды
                 </p>
               </motion.div>
@@ -861,7 +915,7 @@ export function HomePage() {
                 {[
                   {
                     tag: "AI-анализ",
-                    color: "#e8e0d0",
+                    color: "#C2A57A",
                     icon: "Mic",
                     title: "Речевая аналитика звонков",
                     subtitle: "Анализируем 100% разговоров автоматически",
@@ -908,14 +962,11 @@ export function HomePage() {
                     key={i}
                     variants={fadeUp}
                     className="rounded-2xl overflow-hidden flex flex-col"
-                    style={{
-                      background: "#050f07",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                    }}
+                    style={card}
                   >
                     {/* Top accent bar */}
                     <div
-                      className="h-0.5"
+                      className="h-px"
                       style={{
                         background: `linear-gradient(90deg, ${product.color}, transparent)`,
                       }}
@@ -925,11 +976,10 @@ export function HomePage() {
                       {/* Tag + icon */}
                       <div className="flex items-center justify-between mb-5">
                         <div
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider"
                           style={{
-                            background: `${product.color}14`,
-                            border: `1px solid ${product.color}30`,
+                            ...badgeStyle,
                             color: product.color,
+                            border: `1px solid ${product.color}40`,
                           }}
                         >
                           <Icon name={product.icon} size={11} />
@@ -939,7 +989,7 @@ export function HomePage() {
                           className="w-9 h-9 rounded-xl flex items-center justify-center"
                           style={{
                             background: `${product.color}12`,
-                            border: `1px solid ${product.color}25`,
+                            border: `1px solid ${product.color}30`,
                           }}
                         >
                           <Icon
@@ -952,15 +1002,15 @@ export function HomePage() {
 
                       {/* Title */}
                       <h3
-                        className="text-[16px] font-bold leading-snug mb-2"
-                        style={{ color: "#f5edd6" }}
+                        className="leading-snug mb-2"
+                        style={{ ...h3Style, fontSize: "15px" }}
                       >
                         {product.title}
                       </h3>
                       {product.subtitle && (
                         <p
                           className="text-[12px] mb-3"
-                          style={{ color: product.color }}
+                          style={{ color: product.color, fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                         >
                           {product.subtitle}
                         </p>
@@ -971,7 +1021,8 @@ export function HomePage() {
                         {product.features.map((f, fi) => (
                           <li
                             key={fi}
-                            className="flex items-start gap-2 text-[12px] text-gray-400 leading-relaxed"
+                            className="flex items-start gap-2"
+                            style={{ ...bodyText, fontSize: "12px" }}
                           >
                             <div
                               className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5"
@@ -991,15 +1042,20 @@ export function HomePage() {
                       {/* Price row */}
                       <div className="flex items-center gap-3 mb-4">
                         <span
-                          className="text-[18px] font-black"
-                          style={{ color: "#f5edd6" }}
+                          style={{
+                            fontFamily: '"Bodoni Moda", Georgia, serif',
+                            fontWeight: 400,
+                            fontSize: "20px",
+                            color: "#E7DED4",
+                            letterSpacing: "0.01em",
+                          }}
                         >
                           {product.price}
                         </span>
                         {product.promo && (
                           <span
-                            className="px-3 py-1 rounded-lg text-[11px] font-bold text-white"
-                            style={{ background: product.promoColor! }}
+                            className="px-3 py-1 rounded-lg text-[11px] font-bold"
+                            style={{ background: product.promoColor!, color: "#151513" }}
                           >
                             {product.promo}
                           </span>
@@ -1008,11 +1064,15 @@ export function HomePage() {
 
                       {/* CTA */}
                       <button
-                        className="w-full py-3 rounded-xl text-[13px] font-bold transition-all duration-200 hover:opacity-90"
+                        className="w-full py-3 text-[13px] transition-all duration-200 hover:opacity-80"
                         style={{
                           background: "transparent",
-                          border: "1px solid rgba(255,255,255,0.2)",
-                          color: "#f5edd6",
+                          border: "1px solid rgba(194,165,122,0.35)",
+                          color: "#E7DED4",
+                          borderRadius: "2px",
+                          fontFamily: "Inter, sans-serif",
+                          fontWeight: 400,
+                          letterSpacing: "0.05em",
                         }}
                       >
                         Подробнее
@@ -1026,13 +1086,14 @@ export function HomePage() {
         </section>
 
         {/* ═══ FAQ ═══ */}
-        <section className="py-24 px-5">
+        <section className="py-24 px-5" style={{ background: "#1A1916" }}>
           <div className="max-w-3xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-10">
+              <motion.div variants={fadeUp} className="text-center mb-12">
+                <SectionLabel label="Вопросы и ответы" />
                 <h2
-                  className="text-3xl lg:text-5xl font-black tracking-tight"
-                  style={{ color: "#f5edd6" }}
+                  className="text-3xl lg:text-5xl"
+                  style={h2Style}
                 >
                   Частые вопросы
                 </h2>
@@ -1067,21 +1128,21 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className="rounded-xl overflow-hidden cursor-pointer group"
-                    style={darkCard}
+                    className="rounded-xl overflow-hidden cursor-pointer"
+                    style={card}
                     onClick={() => setFaqOpen(faqOpen === i ? null : i)}
                   >
                     <div className="flex items-center justify-between px-5 py-4">
                       <span
-                        className="text-[14px] font-semibold pr-4 transition-colors"
-                        style={{ color: "#f5edd6" }}
+                        className="text-[14px] pr-4"
+                        style={{ color: "#E7DED4", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                       >
                         {faq.q}
                       </span>
                       <Icon
                         name={faqOpen === i ? "ChevronUp" : "ChevronDown"}
-                        size={16}
-                        style={{ color: "#e8e0d0" }}
+                        size={15}
+                        style={{ color: "#C2A57A" }}
                         className="shrink-0"
                       />
                     </div>
@@ -1091,7 +1152,8 @@ export function HomePage() {
                         animate={{ opacity: 1 }}
                         className="px-5 pb-4"
                       >
-                        <p className="text-[13px] text-gray-400 leading-relaxed">
+                        <div style={{ width: "100%", height: "1px", background: "rgba(194,165,122,0.12)", marginBottom: "12px" }} />
+                        <p style={{ ...bodyText, fontSize: "13px" }}>
                           {faq.a}
                         </p>
                       </motion.div>
@@ -1104,42 +1166,37 @@ export function HomePage() {
         </section>
 
         {/* ═══ CTA ═══ */}
-        <section id="cta" className="py-24 px-5">
+        <section id="cta" className="py-24 px-5" style={{ background: "#151513" }}>
           <div className="max-w-4xl mx-auto">
             <Section>
               <motion.div
                 variants={fadeUp}
-                className="relative rounded-3xl p-8 lg:p-12 text-center overflow-hidden"
+                className="relative rounded-3xl p-8 lg:p-14 text-center overflow-hidden"
                 style={{
-                  background: "#050f07",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  background: "#1E1916",
+                  border: "1px solid rgba(194,165,122,0.18)",
                 }}
               >
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      "radial-gradient(ellipse at 50% 0%, rgba(232,224,208,0.1) 0%, transparent 60%)",
+                      "radial-gradient(ellipse at 50% 0%, rgba(194,165,122,0.06) 0%, transparent 65%)",
                   }}
                 />
                 <div className="relative">
-                  <div
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5"
-                    style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#e8e0d0",
-                    }}
-                  >
-                    Бесплатно
+                  <div className="flex items-center justify-center gap-3 mb-5">
+                    <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+                    <span style={labelStyle}>Бесплатно</span>
+                    <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
                   </div>
                   <h2
-                    className="text-3xl lg:text-4xl font-black tracking-tight mb-3"
-                    style={{ color: "#f5edd6" }}
+                    className="text-3xl lg:text-4xl mb-4"
+                    style={h2Style}
                   >
                     Получите бесплатный разбор CRM и продаж
                   </h2>
-                  <p className="text-gray-400 mb-8 max-w-xl mx-auto text-[14px]">
+                  <p style={{ ...bodyText, fontSize: "14px", maxWidth: "480px", margin: "0 auto 32px" }}>
                     Расскажем, что мешает вашим продажам расти, и покажем как
                     исправить. Без продаж в лоб.
                   </p>
@@ -1153,29 +1210,35 @@ export function HomePage() {
                         type="text"
                         placeholder="Ваше имя"
                         required
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] placeholder-gray-600 outline-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.12)",
+                          background: "rgba(194,165,122,0.04)",
+                          border: "1px solid rgba(194,165,122,0.18)",
+                          color: "#E7DED4",
+                          fontFamily: "Inter, sans-serif",
                         }}
                       />
                       <input
                         type="tel"
                         placeholder="Телефон"
                         required
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none transition-all"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] placeholder-gray-600 outline-none transition-all"
                         style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.12)",
+                          background: "rgba(194,165,122,0.04)",
+                          border: "1px solid rgba(194,165,122,0.18)",
+                          color: "#E7DED4",
+                          fontFamily: "Inter, sans-serif",
                         }}
                       />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       <select
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none transition-all appearance-none"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] outline-none transition-all appearance-none"
                         style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.12)",
+                          background: "rgba(194,165,122,0.04)",
+                          border: "1px solid rgba(194,165,122,0.18)",
+                          color: "rgba(231,222,212,0.5)",
+                          fontFamily: "Inter, sans-serif",
                         }}
                       >
                         <option value="">Мессенджер</option>
@@ -1184,10 +1247,12 @@ export function HomePage() {
                         <option>Позвоните мне</option>
                       </select>
                       <select
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none transition-all appearance-none"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] outline-none transition-all appearance-none"
                         style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.12)",
+                          background: "rgba(194,165,122,0.04)",
+                          border: "1px solid rgba(194,165,122,0.18)",
+                          color: "rgba(231,222,212,0.5)",
+                          fontFamily: "Inter, sans-serif",
                         }}
                       >
                         <option value="">Ваша CRM</option>
@@ -1199,15 +1264,22 @@ export function HomePage() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl text-[15px] font-bold transition-all duration-200 hover:opacity-90"
+                      className="w-full transition-all duration-200 hover:opacity-85"
                       style={{
-                        background: "#e8e0d0",
-                        color: "#050f07",
+                        background: "#C2A57A",
+                        color: "#151513",
+                        fontFamily: "Inter, sans-serif",
+                        fontWeight: 500,
+                        letterSpacing: "0.08em",
+                        fontSize: "13px",
+                        padding: "14px 28px",
+                        border: "none",
+                        borderRadius: "2px",
                       }}
                     >
                       Получить бесплатный разбор
                     </button>
-                    <p className="text-[11px] text-gray-700">
+                    <p style={{ ...bodyText, fontSize: "11px", opacity: 0.5 }}>
                       Нажимая кнопку, вы соглашаетесь с политикой
                       конфиденциальности
                     </p>
@@ -1220,25 +1292,31 @@ export function HomePage() {
 
         {/* ═══ FOOTER ═══ */}
         <footer
-          className="py-10 px-5 border-t"
-          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          className="py-10 px-5"
+          style={{ borderTop: "1px solid rgba(194,165,122,0.1)", background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center"
                   style={{
-                    background: "#e8e0d0",
+                    background: "rgba(194,165,122,0.1)",
+                    border: "1px solid rgba(194,165,122,0.25)",
                   }}
                 >
-                  <Icon name="Waves" size={14} className="text-white" />
+                  <Icon name="Waves" size={14} style={{ color: "#C2A57A" }} />
                 </div>
                 <span
-                  className="text-[14px] font-black"
-                  style={{ color: "#f5edd6" }}
+                  style={{
+                    fontFamily: '"Bodoni Moda", Georgia, serif',
+                    fontWeight: 400,
+                    fontSize: "14px",
+                    letterSpacing: "0.08em",
+                    color: "#DDD2C4",
+                  }}
                 >
-                  SALES<span style={{ color: "#e8e0d0" }}>FLOW</span>
+                  SALES<span style={{ color: "#C2A57A" }}>FLOW</span>
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
@@ -1246,13 +1324,14 @@ export function HomePage() {
                   <a
                     key={link}
                     href="#"
-                    className="text-[12px] text-gray-600 hover:text-gray-300 transition-colors"
+                    className="text-[12px] transition-colors"
+                    style={{ color: "rgba(231,222,212,0.4)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                   >
                     {link}
                   </a>
                 ))}
               </div>
-              <p className="text-[11px] text-gray-700">
+              <p style={{ fontSize: "11px", color: "rgba(231,222,212,0.3)", fontFamily: "Inter, sans-serif" }}>
                 © 2025 SalesFlow. Все права защищены.
               </p>
             </div>
@@ -1263,16 +1342,22 @@ export function HomePage() {
       {/* ═══ FLOATING CTA ═══ */}
       <motion.a
         href="#cta"
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold"
+        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
         style={{
-          background: "#e8e0d0",
-          color: "#050f07",
+          background: "#C2A57A",
+          color: "#151513",
+          fontFamily: "Inter, sans-serif",
+          fontWeight: 500,
+          letterSpacing: "0.08em",
+          fontSize: "13px",
+          padding: "11px 22px",
+          borderRadius: "2px",
         }}
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         whileTap={{ scale: 0.95 }}
       >
-        <Icon name="MessageCircle" size={16} />
+        <Icon name="MessageCircle" size={15} />
         Запросить демо
       </motion.a>
     </div>
