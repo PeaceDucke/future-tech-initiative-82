@@ -346,7 +346,7 @@ export function HomePage() {
         {/* ═══ METRICS STRIPE ═══ */}
         <section
           className="relative py-16 px-5 overflow-hidden"
-          style={{ borderTop: "1px solid rgba(194,165,122,0.1)", borderBottom: "1px solid rgba(194,165,122,0.1)", background: "#1A1916" }}
+          style={{ borderTop: "1px solid rgba(194,165,122,0.1)", borderBottom: "1px solid rgba(194,165,122,0.1)", background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-10">
@@ -598,7 +598,7 @@ export function HomePage() {
           style={{
             borderTop: "1px solid rgba(231,222,212,0.08)",
             borderBottom: "1px solid rgba(231,222,212,0.08)",
-            background: "#1A1916",
+            background: "#151513",
           }}
         >
           <div className="max-w-7xl mx-auto">
@@ -782,7 +782,7 @@ export function HomePage() {
                         <div
                           className="rounded-xl p-3"
                           style={{
-                            background: "#1E1916",
+                            background: "#151513",
                             border: "1px solid rgba(194,165,122,0.18)",
                           }}
                         >
@@ -813,7 +813,7 @@ export function HomePage() {
         {/* ═══ FOR WHOM ═══ */}
         <section
           className="py-24 px-5"
-          style={{ borderTop: "1px solid rgba(231,222,212,0.08)", background: "#1A1916" }}
+          style={{ borderTop: "1px solid rgba(231,222,212,0.08)", background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
             <Section>
@@ -1086,7 +1086,7 @@ export function HomePage() {
         </section>
 
         {/* ═══ FAQ ═══ */}
-        <section className="py-24 px-5" style={{ background: "#1A1916" }}>
+        <section className="py-24 px-5" style={{ background: "#151513" }}>
           <div className="max-w-3xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-12">
@@ -1173,7 +1173,7 @@ export function HomePage() {
                 variants={fadeUp}
                 className="relative rounded-3xl p-8 lg:p-14 text-center overflow-hidden"
                 style={{
-                  background: "#1E1916",
+                  background: "#151513",
                   border: "1px solid rgba(194,165,122,0.18)",
                 }}
               >
