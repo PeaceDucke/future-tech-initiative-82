@@ -52,7 +52,7 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #0a0f0c;
+    background-color: #050f07;
   }
 
   h1,
@@ -156,7 +156,7 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0f0c;
+  background: #050f07;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(197, 158, 74, 0.3);

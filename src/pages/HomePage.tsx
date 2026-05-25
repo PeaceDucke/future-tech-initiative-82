@@ -53,7 +53,7 @@ export function HomePage() {
   return (
     <div
       className="relative min-h-screen overflow-x-hidden"
-      style={{ background: "#0a0f0c" }}
+      style={{ background: "#050f07" }}
     >
       {/* ─── HEADER ─── */}
       <header className="fixed top-0 left-0 right-0 z-50">
@@ -105,7 +105,7 @@ export function HomePage() {
                 className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-lg text-[13px] font-bold"
                 style={{
                   background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
-                  color: "#0a0f0c",
+                  color: "#050f07",
                   boxShadow:
                     "0 0 8px rgba(197,158,74,0.6), 0 0 20px rgba(197,158,74,0.3)",
                 }}
@@ -151,7 +151,7 @@ export function HomePage() {
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-[14px] font-bold"
               style={{
                 background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
-                color: "#0a0f0c",
+                color: "#050f07",
               }}
             >
               Запросить демо
@@ -241,7 +241,7 @@ export function HomePage() {
                   className="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold"
                   style={{
                     background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
-                    color: "#0a0f0c",
+                    color: "#050f07",
                     borderRadius: "2px",
                     letterSpacing: "0.05em",
                     fontFamily: "Inter, sans-serif",
@@ -1211,7 +1211,7 @@ export function HomePage() {
                       className="w-full py-3.5 rounded-xl text-[15px] font-bold transition-all duration-200 hover:opacity-90"
                       style={{
                         background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
-                        color: "#0a0f0c",
+                        color: "#050f07",
                         boxShadow: "0 0 24px rgba(197,158,74,0.3)",
                       }}
                     >
@@ -1276,7 +1276,7 @@ export function HomePage() {
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold"
         style={{
           background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
-          color: "#0a0f0c",
+          color: "#050f07",
           boxShadow: "0 0 28px rgba(197,158,74,0.45)",
         }}
         animate={{ y: [0, -4, 0] }}
