@@ -6,32 +6,32 @@
 
 @layer base {
   :root {
-    --background: 150 12% 6%;
+    --background: 0 0% 2%;
     --foreground: 45 30% 88%;
 
-    --card: 150 10% 9%;
+    --card: 0 0% 2%;
     --card-foreground: 45 30% 88%;
 
-    --popover: 150 10% 9%;
+    --popover: 0 0% 2%;
     --popover-foreground: 45 30% 88%;
 
     --primary: 43 74% 52%;
-    --primary-foreground: 150 12% 6%;
+    --primary-foreground: 0 0% 2%;
 
-    --secondary: 150 8% 14%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 45 20% 75%;
 
-    --muted: 150 8% 12%;
-    --muted-foreground: 150 5% 50%;
+    --muted: 0 0% 7%;
+    --muted-foreground: 0 0% 50%;
 
     --accent: 43 74% 52%;
-    --accent-foreground: 150 12% 6%;
+    --accent-foreground: 0 0% 2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 150 8% 16%;
-    --input: 150 8% 16%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
     --ring: 43 74% 52%;
 
     --radius: 0.5rem;
@@ -105,8 +105,8 @@
 /* Subtle grid */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(197, 158, 74, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(197, 158, 74, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 

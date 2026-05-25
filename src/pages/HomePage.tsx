@@ -38,13 +38,12 @@ function Section({
 }
 
 const darkCard = {
-  background: "rgba(255,255,255,0.02)",
-  border: "1px solid rgba(197,158,74,0.15)",
-  backdropFilter: "blur(12px)",
+  background: "#050f07",
+  border: "1px solid rgba(255,255,255,0.12)",
 };
 
 const darkCardHover =
-  "hover:border-yellow-600/30 hover:bg-white/[0.03] transition-all duration-300 cursor-default";
+  "hover:border-white/25 transition-all duration-300 cursor-default";
 
 export function HomePage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -60,9 +59,9 @@ export function HomePage() {
         <div
           className="border-b"
           style={{
-            background: "rgba(10,15,12,0.9)",
+            background: "rgba(5,15,7,0.92)",
             backdropFilter: "blur(20px)",
-            borderColor: "rgba(197,158,74,0.2)",
+            borderColor: "rgba(255,255,255,0.1)",
           }}
         >
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
@@ -128,9 +127,9 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             className="border-b px-5 py-4"
             style={{
-              background: "rgba(10,15,12,0.97)",
+              background: "rgba(5,15,7,0.97)",
               backdropFilter: "blur(20px)",
-              borderColor: "rgba(197,158,74,0.2)",
+              borderColor: "rgba(255,255,255,0.1)",
             }}
           >
             {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
@@ -175,13 +174,13 @@ export function HomePage() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(10,15,12,0.15) 0%, rgba(10,15,12,0.1) 40%, rgba(10,15,12,0.75) 75%, rgba(10,15,12,0.97) 100%)",
+                  "linear-gradient(to bottom, rgba(5,15,7,0.15) 0%, rgba(5,15,7,0.1) 40%, rgba(5,15,7,0.75) 75%, rgba(5,15,7,0.97) 100%)",
               }}
             />
             {/* Тонкий оверлей по всему фото для тонирования */}
             <div
               className="absolute inset-0"
-              style={{ background: "rgba(10,15,12,0.18)" }}
+              style={{ background: "rgba(5,15,7,0.18)" }}
             />
           </div>
 
@@ -254,16 +253,16 @@ export function HomePage() {
                   href="#"
                   className="inline-flex items-center gap-2.5 px-6 py-3.5 text-[14px] font-medium transition-colors"
                   style={{
-                    background: "rgba(197,158,74,0.08)",
-                    border: "1px solid rgba(197,158,74,0.35)",
-                    color: "#dcc89a",
+                    background: "transparent",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    color: "#f5edd6",
                     borderRadius: "2px",
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
                   <div
                     className="w-7 h-7 rounded-full flex items-center justify-center"
-                    style={{ background: "rgba(197,158,74,0.2)", border: "1px solid rgba(197,158,74,0.4)" }}
+                    style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
                   >
                     <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#c59e4a" }} />
                   </div>
@@ -277,7 +276,7 @@ export function HomePage() {
 
         {/* ═══ METRICS STRIPE ═══ */}
         <section className="relative py-16 px-5 overflow-hidden"
-          style={{ background: "rgba(197,158,74,0.03)", borderTop: "1px solid rgba(197,158,74,0.12)", borderBottom: "1px solid rgba(197,158,74,0.12)" }}
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-10">
@@ -301,15 +300,15 @@ export function HomePage() {
                     variants={fadeUp}
                     className="flex items-start gap-3 p-5 rounded-sm"
                     style={{
-                      background: "rgba(255,255,255,0.02)",
-                      border: "1px solid rgba(197,158,74,0.12)",
+                      background: "#050f07",
+                      border: "1px solid rgba(255,255,255,0.12)",
                     }}
                   >
                     <div
                       className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
                       style={{
-                        background: "rgba(197,158,74,0.1)",
-                        border: "1px solid rgba(197,158,74,0.25)",
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.12)",
                       }}
                     >
                       <Icon name={item.icon} size={18} style={{ color: "#c59e4a" }} />
@@ -344,8 +343,8 @@ export function HomePage() {
                 <div
                   className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
                   style={{
-                    background: "rgba(197,158,74,0.1)",
-                    border: "1px solid rgba(197,158,74,0.25)",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.15)",
                     color: "#c59e4a",
                   }}
                 >
@@ -449,8 +448,8 @@ export function HomePage() {
                   <div
                     className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
                     style={{
-                      background: "rgba(197,158,74,0.1)",
-                      border: "1px solid rgba(197,158,74,0.25)",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.15)",
                       color: "#c59e4a",
                     }}
                   >
@@ -520,8 +519,8 @@ export function HomePage() {
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
                       style={{
-                        background: "rgba(197,158,74,0.12)",
-                        border: "1px solid rgba(197,158,74,0.2)",
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.12)",
                       }}
                     >
                       <Icon
@@ -550,8 +549,7 @@ export function HomePage() {
         <section
           className="py-24 px-5 border-y"
           style={{
-            background: "rgba(197,158,74,0.03)",
-            borderColor: "rgba(197,158,74,0.12)",
+            borderColor: "rgba(255,255,255,0.08)",
           }}
         >
           <div className="max-w-7xl mx-auto">
@@ -621,8 +619,8 @@ export function HomePage() {
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-3"
                       style={{
-                        background: "rgba(197,158,74,0.15)",
-                        border: "1px solid rgba(197,158,74,0.2)",
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.12)",
                       }}
                     >
                       <Icon
@@ -653,10 +651,11 @@ export function HomePage() {
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-12">
                 <div
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold text-emerald-400 uppercase tracking-widest mb-4"
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
                   style={{
-                    background: "rgba(52,211,153,0.08)",
-                    border: "1px solid rgba(52,211,153,0.2)",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    color: "#c59e4a",
                   }}
                 >
                   Кейсы клиентов
@@ -739,8 +738,8 @@ export function HomePage() {
                         <div
                           className="rounded-xl p-3"
                           style={{
-                            background: "rgba(52,211,153,0.06)",
-                            border: "1px solid rgba(52,211,153,0.15)",
+                            background: "#050f07",
+                            border: "1px solid rgba(255,255,255,0.12)",
                           }}
                         >
                           <div className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider mb-1">
@@ -765,7 +764,7 @@ export function HomePage() {
         {/* ═══ FOR WHOM ═══ */}
         <section
           className="py-24 px-5 border-t"
-          style={{ borderColor: "rgba(197,158,74,0.12)" }}
+          style={{ borderColor: "rgba(255,255,255,0.08)" }}
         >
           <div className="max-w-7xl mx-auto">
             <Section>
@@ -823,8 +822,8 @@ export function HomePage() {
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
                       style={{
-                        background: "rgba(197,158,74,0.1)",
-                        border: "1px solid rgba(197,158,74,0.2)",
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.12)",
                       }}
                     >
                       <Icon
@@ -916,9 +915,8 @@ export function HomePage() {
                     variants={fadeUp}
                     className="rounded-2xl overflow-hidden flex flex-col"
                     style={{
-                      background: "rgba(255,255,255,0.025)",
-                      border: "1px solid rgba(197,158,74,0.18)",
-                      backdropFilter: "blur(12px)",
+                      background: "#050f07",
+                      border: "1px solid rgba(255,255,255,0.12)",
                     }}
                   >
                     {/* Top accent bar */}
@@ -1018,9 +1016,9 @@ export function HomePage() {
                       <button
                         className="w-full py-3 rounded-xl text-[13px] font-bold transition-all duration-200 hover:opacity-90"
                         style={{
-                          background: "rgba(197,158,74,0.15)",
-                          border: "1px solid rgba(197,158,74,0.35)",
-                          color: "#dcc89a",
+                          background: "transparent",
+                          border: "1px solid rgba(255,255,255,0.2)",
+                          color: "#f5edd6",
                         }}
                       >
                         Подробнее
@@ -1119,8 +1117,8 @@ export function HomePage() {
                 variants={fadeUp}
                 className="relative rounded-3xl p-8 lg:p-12 text-center overflow-hidden"
                 style={{
-                  background: "rgba(10,15,12,0.95)",
-                  border: "1px solid rgba(197,158,74,0.25)",
+                  background: "#050f07",
+                  border: "1px solid rgba(255,255,255,0.12)",
                   boxShadow: "0 0 60px rgba(197,158,74,0.08)",
                 }}
               >
@@ -1135,8 +1133,8 @@ export function HomePage() {
                   <div
                     className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5"
                     style={{
-                      background: "rgba(197,158,74,0.1)",
-                      border: "1px solid rgba(197,158,74,0.25)",
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.15)",
                       color: "#c59e4a",
                     }}
                   >
@@ -1165,7 +1163,7 @@ export function HomePage() {
                         className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none transition-all"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(197,158,74,0.25)",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}
                       />
                       <input
@@ -1175,7 +1173,7 @@ export function HomePage() {
                         className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none transition-all"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(197,158,74,0.25)",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}
                       />
                     </div>
@@ -1184,7 +1182,7 @@ export function HomePage() {
                         className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none transition-all appearance-none"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(197,158,74,0.25)",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}
                       >
                         <option value="">Мессенджер</option>
@@ -1196,7 +1194,7 @@ export function HomePage() {
                         className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none transition-all appearance-none"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(197,158,74,0.25)",
+                          border: "1px solid rgba(255,255,255,0.12)",
                         }}
                       >
                         <option value="">Ваша CRM</option>
@@ -1231,7 +1229,7 @@ export function HomePage() {
         {/* ═══ FOOTER ═══ */}
         <footer
           className="py-10 px-5 border-t"
-          style={{ borderColor: "rgba(197,158,74,0.15)" }}
+          style={{ borderColor: "rgba(255,255,255,0.08)" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
