@@ -38,234 +38,13 @@ function Section({
 }
 
 const darkCard = {
-  background: "rgba(255,255,255,0.03)",
-  border: "1px solid rgba(124,58,237,0.18)",
+  background: "rgba(255,255,255,0.02)",
+  border: "1px solid rgba(197,158,74,0.15)",
   backdropFilter: "blur(12px)",
 };
 
 const darkCardHover =
-  "hover:border-violet-500/40 hover:bg-white/[0.05] transition-all duration-300 cursor-default";
-
-function LineChart() {
-  const W = 320,
-    H = 110,
-    padL = 34,
-    padB = 22,
-    padR = 8,
-    padT = 8;
-  const chartW = W - padL - padR;
-  const chartH = H - padT - padB;
-
-  const data = [
-    { day: "14 апр", val: 1200000 },
-    { day: "15 апр", val: 1850000 },
-    { day: "16 апр", val: 1600000 },
-    { day: "17 апр", val: 2400000 },
-    { day: "18 апр", val: 2100000 },
-    { day: "19 апр", val: 3100000 },
-    { day: "20 апр", val: 2800000 },
-    { day: "21 апр", val: 3800000 },
-    { day: "22 апр", val: 4200000 },
-    { day: "23 апр", val: 3900000 },
-    { day: "24 апр", val: 5100000 },
-    { day: "25 апр", val: 5600000 },
-    { day: "26 апр", val: 6200000 },
-    { day: "27 апр", val: 5800000 },
-    { day: "28 апр", val: 7100000 },
-    { day: "29 апр", val: 7600000 },
-    { day: "30 апр", val: 8742000 },
-  ];
-
-  const maxVal = 10000000;
-  const yTicks = [0, 2500000, 5000000, 7500000, 10000000];
-
-  const toX = (i: number) => padL + (i / (data.length - 1)) * chartW;
-  const toY = (v: number) => padT + chartH - (v / maxVal) * chartH;
-
-  const pts = data.map((d, i) => `${toX(i)},${toY(d.val)}`).join(" ");
-  const areaPts = `${padL},${padT + chartH} ${pts} ${toX(data.length - 1)},${padT + chartH}`;
-
-  const xLabelIdxs = [0, 4, 8, 12, 16];
-
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 130 }}>
-      <defs>
-        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#a855f7" stopOpacity="0.02" />
-        </linearGradient>
-        <linearGradient id="lineGrad2" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#6d28d9" />
-          <stop offset="100%" stopColor="#c084fc" />
-        </linearGradient>
-      </defs>
-
-      {/* Y grid lines + labels */}
-      {yTicks.map((t) => {
-        const y = toY(t);
-        const label = t === 0 ? "0" : `${t / 1000000}М`;
-        return (
-          <g key={t}>
-            <line
-              x1={padL}
-              y1={y}
-              x2={W - padR}
-              y2={y}
-              stroke="rgba(168,85,247,0.1)"
-              strokeWidth="0.5"
-              strokeDasharray="3,3"
-            />
-            <text
-              x={padL - 3}
-              y={y + 3}
-              textAnchor="end"
-              fill="rgba(200,180,255,0.55)"
-              fontSize="7"
-              fontFamily="Inter,sans-serif"
-            >
-              {label}
-            </text>
-          </g>
-        );
-      })}
-
-      {/* Area fill */}
-      <polygon points={areaPts} fill="url(#areaGrad)" />
-
-      {/* Line */}
-      <polyline
-        fill="none"
-        stroke="url(#lineGrad2)"
-        strokeWidth="1.8"
-        points={pts}
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        style={{ filter: "drop-shadow(0 0 5px rgba(168,85,247,0.9))" }}
-      />
-
-      {/* Dots on key points */}
-      {data.map((d, i) => (
-        <circle
-          key={i}
-          cx={toX(i)}
-          cy={toY(d.val)}
-          r="1.5"
-          fill="#c084fc"
-          style={{ filter: "drop-shadow(0 0 3px rgba(192,132,252,1))" }}
-        />
-      ))}
-
-      {/* Last point highlight */}
-      <circle
-        cx={toX(data.length - 1)}
-        cy={toY(data[data.length - 1].val)}
-        r="3"
-        fill="#a855f7"
-        stroke="#e9d5ff"
-        strokeWidth="1"
-        style={{ filter: "drop-shadow(0 0 6px rgba(168,85,247,1))" }}
-      />
-
-      {/* X axis labels */}
-      {xLabelIdxs.map((i) => (
-        <text
-          key={i}
-          x={toX(i)}
-          y={H - 5}
-          textAnchor="middle"
-          fill="rgba(200,180,255,0.5)"
-          fontSize="6.5"
-          fontFamily="Inter,sans-serif"
-        >
-          {data[i].day}
-        </text>
-      ))}
-
-      {/* X axis line */}
-      <line
-        x1={padL}
-        y1={padT + chartH}
-        x2={W - padR}
-        y2={padT + chartH}
-        stroke="rgba(168,85,247,0.2)"
-        strokeWidth="0.5"
-      />
-    </svg>
-  );
-}
-
-function DonutChart({ pct, color }: { pct: number; color: string }) {
-  const r = 28,
-    circ = 2 * Math.PI * r,
-    dash = (pct / 100) * circ;
-  return (
-    <svg width="72" height="72" viewBox="0 0 72 72">
-      <circle
-        cx="36"
-        cy="36"
-        r={r}
-        fill="none"
-        stroke="rgba(255,255,255,0.06)"
-        strokeWidth="8"
-      />
-      <circle
-        cx="36"
-        cy="36"
-        r={r}
-        fill="none"
-        stroke={color}
-        strokeWidth="8"
-        strokeDasharray={`${dash} ${circ}`}
-        strokeLinecap="round"
-        transform="rotate(-90 36 36)"
-        style={{ filter: `drop-shadow(0 0 8px ${color})` }}
-      />
-    </svg>
-  );
-}
-
-function MultiDonutChart({
-  segments,
-}: {
-  segments: { pct: number; color: string }[];
-}) {
-  const r = 30,
-    circ = 2 * Math.PI * r;
-  let offset = 0;
-  return (
-    <svg width="80" height="80" viewBox="0 0 80 80">
-      <circle
-        cx="40"
-        cy="40"
-        r={r}
-        fill="none"
-        stroke="rgba(255,255,255,0.05)"
-        strokeWidth="9"
-      />
-      {segments.map((seg, i) => {
-        const dash = (seg.pct / 100) * circ;
-        const gap = circ - dash;
-        const rotate = -90 + (offset / 100) * 360;
-        offset += seg.pct;
-        return (
-          <circle
-            key={i}
-            cx="40"
-            cy="40"
-            r={r}
-            fill="none"
-            stroke={seg.color}
-            strokeWidth="9"
-            strokeDasharray={`${dash} ${gap}`}
-            strokeLinecap="butt"
-            transform={`rotate(${rotate} 40 40)`}
-            style={{ filter: `drop-shadow(0 0 6px ${seg.color})` }}
-          />
-        );
-      })}
-    </svg>
-  );
-}
+  "hover:border-yellow-600/30 hover:bg-white/[0.03] transition-all duration-300 cursor-default";
 
 export function HomePage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
@@ -274,188 +53,16 @@ export function HomePage() {
   return (
     <div
       className="relative min-h-screen overflow-x-hidden"
-      style={{ background: "#03020a" }}
+      style={{ background: "#0a0f0c" }}
     >
-      {/* ─── STARFIELD + CONSTELLATIONS ─── */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <svg
-          width="100%"
-          height="100%"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ position: "absolute", inset: 0 }}
-        >
-          <defs>
-            <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#7df9ff" stopOpacity="1" />
-              <stop offset="100%" stopColor="#7df9ff" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          {/* Constellation lines — очень тонкие, еле заметные */}
-          <g
-            stroke="#38bdf8"
-            strokeOpacity="0.12"
-            strokeWidth="0.7"
-            fill="none"
-          >
-            {/* Созвездие 1 — левый верх */}
-            <line x1="8%" y1="12%" x2="14%" y2="8%" />
-            <line x1="14%" y1="8%" x2="19%" y2="14%" />
-            <line x1="19%" y1="14%" x2="24%" y2="10%" />
-            <line x1="14%" y1="8%" x2="17%" y2="4%" />
-            {/* Созвездие 2 — правый верх */}
-            <line x1="72%" y1="6%" x2="78%" y2="11%" />
-            <line x1="78%" y1="11%" x2="84%" y2="7%" />
-            <line x1="84%" y1="7%" x2="90%" y2="13%" />
-            <line x1="78%" y1="11%" x2="76%" y2="17%" />
-            <line x1="76%" y1="17%" x2="82%" y2="21%" />
-            {/* Созвездие 3 — левый низ */}
-            <line x1="5%" y1="55%" x2="11%" y2="60%" />
-            <line x1="11%" y1="60%" x2="9%" y2="67%" />
-            <line x1="9%" y1="67%" x2="15%" y2="72%" />
-            <line x1="11%" y1="60%" x2="17%" y2="58%" />
-            {/* Созвездие 4 — правый низ */}
-            <line x1="75%" y1="65%" x2="81%" y2="70%" />
-            <line x1="81%" y1="70%" x2="88%" y2="66%" />
-            <line x1="88%" y1="66%" x2="92%" y2="72%" />
-            <line x1="81%" y1="70%" x2="80%" y2="78%" />
-            {/* Созвездие 5 — центр верх */}
-            <line x1="42%" y1="3%" x2="47%" y2="8%" />
-            <line x1="47%" y1="8%" x2="53%" y2="5%" />
-            <line x1="53%" y1="5%" x2="58%" y2="10%" />
-            <line x1="47%" y1="8%" x2="45%" y2="14%" />
-          </g>
-
-          {/* Звёзды-узлы созвездий */}
-          <g fill="#7df9ff">
-            {/* Созвездие 1 */}
-            <circle cx="8%" cy="12%" r="1.2" opacity="0.55" />
-            <circle cx="14%" cy="8%" r="1.6" opacity="0.65" />
-            <circle cx="19%" cy="14%" r="1.1" opacity="0.5" />
-            <circle cx="24%" cy="10%" r="1.3" opacity="0.55" />
-            <circle cx="17%" cy="4%" r="0.9" opacity="0.45" />
-            {/* Созвездие 2 */}
-            <circle cx="72%" cy="6%" r="1.1" opacity="0.5" />
-            <circle cx="78%" cy="11%" r="1.7" opacity="0.65" />
-            <circle cx="84%" cy="7%" r="1.2" opacity="0.55" />
-            <circle cx="90%" cy="13%" r="1.0" opacity="0.45" />
-            <circle cx="76%" cy="17%" r="1.1" opacity="0.5" />
-            <circle cx="82%" cy="21%" r="1.3" opacity="0.55" />
-            {/* Созвездие 3 */}
-            <circle cx="5%" cy="55%" r="1.0" opacity="0.45" />
-            <circle cx="11%" cy="60%" r="1.5" opacity="0.6" />
-            <circle cx="9%" cy="67%" r="1.0" opacity="0.45" />
-            <circle cx="15%" cy="72%" r="1.2" opacity="0.5" />
-            <circle cx="17%" cy="58%" r="1.1" opacity="0.5" />
-            {/* Созвездие 4 */}
-            <circle cx="75%" cy="65%" r="1.1" opacity="0.5" />
-            <circle cx="81%" cy="70%" r="1.6" opacity="0.62" />
-            <circle cx="88%" cy="66%" r="1.2" opacity="0.52" />
-            <circle cx="92%" cy="72%" r="1.0" opacity="0.45" />
-            <circle cx="80%" cy="78%" r="1.1" opacity="0.48" />
-            {/* Созвездие 5 */}
-            <circle cx="42%" cy="3%" r="1.0" opacity="0.48" />
-            <circle cx="47%" cy="8%" r="1.5" opacity="0.62" />
-            <circle cx="53%" cy="5%" r="1.1" opacity="0.5" />
-            <circle cx="58%" cy="10%" r="1.2" opacity="0.52" />
-            <circle cx="45%" cy="14%" r="0.9" opacity="0.42" />
-          </g>
-
-          {/* Одиночные рассеянные звёзды — крошечные, еле видны */}
-          <g fill="#bae6fd">
-            {[
-              [30, 5, 0.5],
-              [55, 18, 0.4],
-              [63, 3, 0.45],
-              [35, 22, 0.35],
-              [20, 30, 0.4],
-              [48, 28, 0.38],
-              [67, 25, 0.42],
-              [85, 35, 0.38],
-              [92, 28, 0.35],
-              [3, 38, 0.4],
-              [28, 48, 0.35],
-              [38, 55, 0.38],
-              [60, 50, 0.4],
-              [70, 45, 0.35],
-              [15, 82, 0.38],
-              [32, 78, 0.4],
-              [55, 85, 0.35],
-              [68, 80, 0.42],
-              [88, 85, 0.38],
-              [96, 55, 0.4],
-              [50, 38, 0.32],
-              [22, 65, 0.35],
-              [43, 70, 0.38],
-              [58, 62, 0.33],
-              [74, 55, 0.36],
-            ].map(([x, y, op], i) => (
-              <circle key={i} cx={`${x}%`} cy={`${y}%`} r="0.7" opacity={op} />
-            ))}
-          </g>
-
-          {/* Мерцающие звёзды — чуть крупнее, анимированные через CSS */}
-          <g fill="#e0f2fe">
-            <circle
-              cx="31%"
-              cy="9%"
-              r="1.0"
-              opacity="0.5"
-              className="star-twinkle-1"
-            />
-            <circle
-              cx="66%"
-              cy="14%"
-              r="1.1"
-              opacity="0.55"
-              className="star-twinkle-2"
-            />
-            <circle
-              cx="12%"
-              cy="45%"
-              r="0.9"
-              opacity="0.45"
-              className="star-twinkle-3"
-            />
-            <circle
-              cx="88%"
-              cy="50%"
-              r="1.0"
-              opacity="0.5"
-              className="star-twinkle-1"
-            />
-            <circle
-              cx="50%"
-              cy="22%"
-              r="0.9"
-              opacity="0.45"
-              className="star-twinkle-2"
-            />
-            <circle
-              cx="25%"
-              cy="88%"
-              r="1.0"
-              opacity="0.48"
-              className="star-twinkle-3"
-            />
-            <circle
-              cx="78%"
-              cy="90%"
-              r="0.9"
-              opacity="0.45"
-              className="star-twinkle-1"
-            />
-          </g>
-        </svg>
-      </div>
-
       {/* ─── HEADER ─── */}
       <header className="fixed top-0 left-0 right-0 z-50">
         <div
-          className="border-b border-violet-900/30"
+          className="border-b"
           style={{
-            background: "rgba(8,8,16,0.85)",
+            background: "rgba(10,15,12,0.9)",
             backdropFilter: "blur(20px)",
+            borderColor: "rgba(197,158,74,0.2)",
           }}
         >
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
@@ -463,15 +70,18 @@ export function HomePage() {
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{
-                  background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+                  background: "linear-gradient(135deg, #8b6914, #c59e4a)",
                   boxShadow:
-                    "0 0 8px rgba(168,85,247,1), 0 0 20px rgba(124,58,237,0.6)",
+                    "0 0 8px rgba(197,158,74,0.6), 0 0 20px rgba(197,158,74,0.3)",
                 }}
               >
                 <Icon name="Waves" size={16} className="text-white" />
               </div>
-              <span className="text-[16px] font-black text-white tracking-tight">
-                SALES<span className="text-violet-400">FLOW</span>
+              <span
+                className="text-[16px] font-black tracking-tight"
+                style={{ color: "#f5edd6" }}
+              >
+                SALES<span style={{ color: "#c59e4a" }}>FLOW</span>
               </span>
             </a>
 
@@ -492,11 +102,12 @@ export function HomePage() {
             <div className="flex items-center gap-3">
               <a
                 href="#cta"
-                className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-lg text-[13px] font-bold text-white"
+                className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-lg text-[13px] font-bold"
                 style={{
-                  background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+                  background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                  color: "#0a0f0c",
                   boxShadow:
-                    "0 0 8px rgba(168,85,247,1), 0 0 22px rgba(124,58,237,0.65), 0 0 40px rgba(124,58,237,0.25)",
+                    "0 0 8px rgba(197,158,74,0.6), 0 0 20px rgba(197,158,74,0.3)",
                 }}
               >
                 Запросить демо
@@ -515,10 +126,11 @@ export function HomePage() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="border-b border-violet-900/30 px-5 py-4"
+            className="border-b px-5 py-4"
             style={{
-              background: "rgba(8,8,16,0.97)",
+              background: "rgba(10,15,12,0.97)",
               backdropFilter: "blur(20px)",
+              borderColor: "rgba(197,158,74,0.2)",
             }}
           >
             {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
@@ -536,9 +148,10 @@ export function HomePage() {
             <a
               href="#cta"
               onClick={() => setMenuOpen(false)}
-              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-[14px] font-bold text-white"
+              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-[14px] font-bold"
               style={{
-                background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+                background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                color: "#0a0f0c",
               }}
             >
               Запросить демо
@@ -549,742 +162,172 @@ export function HomePage() {
 
       <main className="relative z-10 pt-16">
         {/* ═══ HERO ═══ */}
-        <section className="min-h-[95vh] flex items-center px-5 py-16 lg:py-24">
-          <div className="max-w-7xl mx-auto w-full">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              {/* Left text */}
-              <motion.div initial="hidden" animate="visible" variants={stagger}>
-                <motion.div
-                  variants={fadeUp}
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold text-violet-300 uppercase tracking-widest mb-7"
-                  style={{
-                    background: "rgba(124,58,237,0.12)",
-                    border: "1px solid rgba(124,58,237,0.3)",
-                  }}
+        <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden">
+          {/* Фото команды на весь экран */}
+          <div className="absolute inset-0">
+            <img
+              src="https://cdn.poehali.dev/files/c81f350b-bf64-401f-9a16-2fe9c24c0074.png"
+              alt="Команда SalesFlow"
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Градиентный оверлей снизу — текст читается */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(10,15,12,0.15) 0%, rgba(10,15,12,0.1) 40%, rgba(10,15,12,0.75) 75%, rgba(10,15,12,0.97) 100%)",
+              }}
+            />
+            {/* Тонкий оверлей по всему фото для тонирования */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "rgba(10,15,12,0.18)" }}
+            />
+          </div>
+
+          {/* Контент поверх фото — снизу */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-16 pt-32">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+              className="max-w-2xl"
+            >
+              {/* Золотая линия-акцент */}
+              <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
+                <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, #c59e4a)" }} />
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.25em]"
+                  style={{ color: "#c59e4a", fontFamily: "Inter, sans-serif" }}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
                   AI-платформа для роста продаж
-                </motion.div>
-
-                <motion.h1
-                  variants={fadeUp}
-                  className="text-4xl lg:text-[58px] font-black text-white leading-[1.05] tracking-tight mb-6"
-                >
-                  Превращаем ваши
-                  <br />
-                  разговоры в{" "}
-                  <span
-                    style={{
-                      color: "#d8b4fe",
-                      textShadow:
-                        "0 0 6px rgba(216,180,254,1), 0 0 18px rgba(168,85,247,0.9), 0 0 40px rgba(124,58,237,0.55)",
-                    }}
-                  >
-                    деньги
-                  </span>
-                </motion.h1>
-
-                <motion.p
-                  variants={fadeUp}
-                  className="text-[16px] text-gray-400 leading-relaxed mb-6 max-w-lg"
-                >
-                  SalesFlow анализирует каждый звонок, находит точки роста и
-                  помогает вашей команде продавать больше каждый день.
-                </motion.p>
-
-                <motion.div
-                  variants={fadeUp}
-                  className="flex flex-col sm:flex-row gap-3 mb-8"
-                >
-                  {[
-                    {
-                      icon: "TrendingUp",
-                      text: "Находит точки роста в каждом звонке",
-                    },
-                    { icon: "BarChart2", text: "Повышает конверсию и выручку" },
-                    {
-                      icon: "ShieldCheck",
-                      text: "Контролирует качество и дисциплину",
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.text}
-                      className="flex items-start gap-2 text-[12px] text-gray-400"
-                    >
-                      <Icon
-                        name={item.icon}
-                        size={14}
-                        className="text-violet-400 shrink-0 mt-0.5"
-                      />
-                      <span>{item.text}</span>
-                    </div>
-                  ))}
-                </motion.div>
-
-                <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-                  <a
-                    href="#cta"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-[14px] font-bold text-white"
-                    style={{
-                      background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-                      boxShadow:
-                        "0 0 8px rgba(168,85,247,1), 0 0 24px rgba(124,58,237,0.7), 0 0 48px rgba(124,58,237,0.3)",
-                    }}
-                  >
-                    Запросить демо
-                    <Icon name="ArrowRight" size={15} />
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2.5 px-5 py-3 rounded-lg text-[14px] font-semibold text-gray-300 hover:text-white transition-colors"
-                    style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                    }}
-                  >
-                    <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center"
-                      style={{
-                        background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-                      }}
-                    >
-                      <Icon
-                        name="Play"
-                        size={12}
-                        className="text-white ml-0.5"
-                      />
-                    </div>
-                    Смотреть видео{" "}
-                    <span className="text-gray-500 text-[11px]">2 минуты</span>
-                  </a>
-                </motion.div>
-
-                {/* Trusted by */}
-                <motion.div variants={fadeUp} className="mt-10 pt-7 border-t border-white/10">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="h-px flex-none w-6 bg-gray-600" />
-                    <p className="text-[12px] font-semibold text-gray-400 uppercase tracking-[0.2em]">
-                      Нам доверяют лидеры рынка
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
-                    {[
-                      "amoCRM",
-                      "Битрикс24",
-                      "retell",
-                      "Ringostat",
-                      "Aircall",
-                      "MANGO OFFICE",
-                    ].map((logo) => (
-                      <span
-                        key={logo}
-                        className="text-[15px] font-bold text-gray-300 whitespace-nowrap opacity-70 hover:opacity-100 transition-opacity"
-                      >
-                        {logo}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
+                </span>
               </motion.div>
 
-              {/* Right — Cinematic 3D holographic projection */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.25 }}
-                className="relative hidden lg:block"
-                style={{ minHeight: "680px" }}
+              <motion.h1
+                variants={fadeUp}
+                className="text-5xl lg:text-[68px] leading-[1.0] tracking-tight mb-6"
+                style={{
+                  fontFamily: "Cormorant Garamond, Georgia, serif",
+                  fontWeight: 700,
+                  color: "#f5edd6",
+                }}
               >
-                {/* ─── Atmospheric ambient ─── */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
+                Превращаем
+                <br />
+                разговоры{" "}
+                <span
                   style={{
-                    background:
-                      "radial-gradient(ellipse 70% 50% at 50% 78%, rgba(99,102,241,0.22) 0%, rgba(139,92,246,0.10) 40%, transparent 75%)",
-                    filter: "blur(8px)",
-                  }}
-                />
-
-
-
-                {/* ─── Static projector device (image) ─── */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    bottom: "-50px",
-                    left: "58%",
-                    transform: "translateX(-50%)",
-                    width: "78%",
+                    color: "#c59e4a",
+                    fontStyle: "italic",
                   }}
                 >
-                  <img
-                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/95921a01-2d42-4d22-b6a6-96a0605359ae.png"
-                    alt=""
-                    className="w-full h-auto block"
-                    style={{
-                      filter:
-                        "drop-shadow(0 0 18px rgba(168,85,247,1)) drop-shadow(0 0 40px rgba(124,58,237,0.7)) drop-shadow(0 20px 50px rgba(99,102,241,0.4))",
-                    }}
-                  />
-                </div>
+                  в деньги
+                </span>
+              </motion.h1>
 
-                {/* Floor / contact glow under projector */}
-                <div
-                  className="absolute pointer-events-none"
+              <motion.p
+                variants={fadeUp}
+                className="text-[16px] leading-relaxed mb-8 max-w-lg"
+                style={{ color: "rgba(220,205,175,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+              >
+                SalesFlow анализирует каждый звонок, находит точки роста и
+                помогает вашей команде продавать больше каждый день.
+              </motion.p>
+
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+                <a
+                  href="#cta"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold"
                   style={{
-                    bottom: "30px",
-                    left: "58%",
-                    transform: "translateX(-50%)",
-                    width: "80%",
-                    height: "60px",
-                    background:
-                      "radial-gradient(ellipse, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.12) 40%, transparent 75%)",
-                    filter: "blur(18px)",
+                    background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                    color: "#0a0f0c",
+                    borderRadius: "2px",
+                    letterSpacing: "0.05em",
+                    fontFamily: "Inter, sans-serif",
                   }}
-                />
-
-                <div
-                  className="relative w-full h-full flex flex-col items-center justify-start pt-2"
-                  style={{ perspective: "1600px", zIndex: 30 }}
                 >
-                  {/* ── Floating glass holographic dashboard ── */}
-                  <motion.div
-                    className="relative mx-auto"
-                    style={{
-                      width: "105%",
-                      marginLeft: "-2.5%",
-                      transformStyle: "preserve-3d",
-                      zIndex: 30,
-                    }}
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{
-                      duration: 9,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                  Запросить демо
+                  <Icon name="ArrowRight" size={15} />
+                </a>
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 text-[14px] font-medium transition-colors"
+                  style={{
+                    background: "rgba(197,158,74,0.08)",
+                    border: "1px solid rgba(197,158,74,0.35)",
+                    color: "#dcc89a",
+                    borderRadius: "2px",
+                    fontFamily: "Inter, sans-serif",
+                  }}
+                >
+                  <div
+                    className="w-7 h-7 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(197,158,74,0.2)", border: "1px solid rgba(197,158,74,0.4)" }}
                   >
-                    <motion.div
-                      className="relative rounded-2xl overflow-hidden"
-                      style={{
-                        transform:
-                          "perspective(900px) rotateY(-18deg) rotateX(4deg)",
-                        transformOrigin: "left center",
-                        background:
-                          "linear-gradient(140deg, rgba(10,6,26,0.18) 0%, rgba(6,3,16,0.12) 50%, rgba(12,7,28,0.18) 100%)",
-                        backdropFilter: "none",
-                        WebkitBackdropFilter: "none",
-                        border: "1px solid rgba(168,85,247,0.35)",
-                        boxShadow: [
-                          "inset 0 1px 0 rgba(255,255,255,0.05)",
-                          "inset 0 -1px 0 rgba(168,85,247,0.25)",
-                          "0 0 0 1px rgba(168,85,247,0.12)",
-                          "0 0 18px rgba(168,85,247,0.35)",
-                          "0 0 50px rgba(124,58,237,0.18)",
-                          "0 40px 80px rgba(0,0,0,0.5)",
-                        ].join(", "),
-                      }}
-                      animate={{ opacity: [0.96, 1, 0.985, 1, 0.96] }}
-                      transition={{
-                        duration: 11,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      {/* Neon edge top */}
-                      <div
-                        className="absolute inset-x-0 top-0 h-px pointer-events-none"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, transparent 0%, rgba(216,180,254,1) 50%, transparent 100%)",
-                          boxShadow:
-                            "0 0 8px rgba(168,85,247,1), 0 0 16px rgba(168,85,247,0.6)",
-                        }}
-                      />
-                      <div
-                        className="absolute inset-x-0 top-px h-px pointer-events-none"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, transparent 20%, rgba(103,232,249,0.7) 50%, transparent 80%)",
-                        }}
-                      />
-
-                      {/* Chrome bar */}
-                      <div
-                        className="flex items-center gap-2 px-4 py-2 border-b"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%)",
-                          borderColor: "rgba(196,181,253,0.08)",
-                        }}
-                      >
-                        <div
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{ background: "rgba(196,181,253,0.55)" }}
-                        />
-                        <div
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{ background: "rgba(196,181,253,0.35)" }}
-                        />
-                        <div
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{ background: "rgba(196,181,253,0.22)" }}
-                        />
-                        <div className="flex-1" />
-                        <div className="text-[8px] text-violet-200 font-mono tracking-[0.18em]">
-                          SALESFLOW · LIVE ANALYTICS
-                        </div>
-                        <span
-                          className="w-1 h-1 rounded-full bg-emerald-400 ml-1"
-                          style={{ boxShadow: "0 0 8px rgba(52,211,153,0.9)" }}
-                        />
-                      </div>
-
-                      {/* Dashboard content */}
-                      <div className="p-4">
-                        {/* Top metrics */}
-                        <div className="grid grid-cols-4 gap-2.5 mb-4">
-                          {[
-                            {
-                              label: "Выручка",
-                              value: "8 742 000 ₽",
-                              change: "+31%",
-                              up: true,
-                            },
-                            {
-                              label: "Конверсия",
-                              value: "32.7%",
-                              change: "+8.1%",
-                              up: true,
-                            },
-                            {
-                              label: "Средний чек",
-                              value: "6 430 ₽",
-                              change: "+12.2%",
-                              up: true,
-                            },
-                            {
-                              label: "Потерянная",
-                              value: "1 242 000 ₽",
-                              change: "Найдено WI",
-                              warn: true,
-                              up: false,
-                            },
-                          ].map((m) => (
-                            <div
-                              key={m.label}
-                              className="rounded-lg p-3"
-                              style={{
-                                background: "rgba(0,0,0,0.08)",
-                                border: "1px solid rgba(168,85,247,0.18)",
-                              }}
-                            >
-                              <div className="text-[10px] font-medium text-gray-300 mb-1 truncate">
-                                {m.label}
-                              </div>
-                              <div className="text-[13px] font-black text-white mb-0.5 truncate">
-                                {m.value}
-                              </div>
-                              <div
-                                className={`text-[10px] font-bold ${m.warn ? "text-orange-300" : m.up ? "text-emerald-300" : "text-red-400"}`}
-                              >
-                                {m.change}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Charts row */}
-                        <div className="grid grid-cols-2 gap-2.5 mb-4">
-                          <div
-                            className="rounded-lg p-3"
-                            style={{
-                              background: "rgba(0,0,0,0.08)",
-                              border: "1px solid rgba(168,85,247,0.18)",
-                            }}
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="text-[11px] font-semibold text-gray-200">
-                                Динамика выручки
-                              </div>
-                              <div className="text-[9px] text-violet-300 font-bold">
-                                По дням
-                              </div>
-                            </div>
-                            <LineChart />
-                          </div>
-                          <div
-                            className="rounded-lg p-3"
-                            style={{
-                              background: "rgba(0,0,0,0.08)",
-                              border: "1px solid rgba(168,85,247,0.18)",
-                            }}
-                          >
-                            <div className="text-[11px] font-semibold text-gray-200 mb-2">
-                              Причины потерь
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <div
-                                className="relative shrink-0"
-                                style={{
-                                  transform: "scale(1.5)",
-                                  transformOrigin: "left center",
-                                  marginRight: "20px",
-                                }}
-                              >
-                                <MultiDonutChart
-                                  segments={[
-                                    { pct: 30, color: "#ef4444" },
-                                    { pct: 25, color: "#f97316" },
-                                    { pct: 20, color: "#3b82f6" },
-                                    { pct: 12, color: "#22c55e" },
-                                    { pct: 13, color: "#a855f7" },
-                                  ]}
-                                />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                  <div className="text-[8px] font-black text-white">
-                                    3 245
-                                  </div>
-                                  <div className="text-[5px] text-gray-300">
-                                    упущено
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="space-y-1.5 flex-1 pl-6">
-                                {[
-                                  ["Цена", 30, "#ef4444"],
-                                  ["Конкуренты", 25, "#f97316"],
-                                  ["Нет потребности", 20, "#3b82f6"],
-                                  ["Возражения", 12, "#22c55e"],
-                                  ["Другое", 13, "#a855f7"],
-                                ].map(([l, p, c]) => (
-                                  <div
-                                    key={l as string}
-                                    className="flex items-center gap-1.5"
-                                  >
-                                    <div
-                                      className="w-1.5 h-1.5 rounded-full shrink-0"
-                                      style={{
-                                        background: c as string,
-                                        boxShadow: `0 0 4px ${c}`,
-                                      }}
-                                    />
-                                    <div className="text-[9px] text-gray-200 flex-1 truncate">
-                                      {l}
-                                    </div>
-                                    <div className="text-[9px] font-bold text-white">
-                                      {p}%
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Bottom row */}
-                        <div className="grid grid-cols-2 gap-2.5">
-                          <div
-                            className="rounded-lg p-3"
-                            style={{
-                              background: "rgba(0,0,0,0.08)",
-                              border: "1px solid rgba(168,85,247,0.18)",
-                            }}
-                          >
-                            <div className="flex items-center mb-2">
-                              <div className="text-[11px] font-semibold text-gray-200 flex-1">
-                                Топ менеджеров
-                              </div>
-                              <div className="flex gap-2">
-                                <div className="text-[8px] text-gray-500 w-9 text-right">
-                                  Конв.
-                                </div>
-                                <div className="text-[8px] text-gray-500 w-13 text-right">
-                                  Выручка
-                                </div>
-                                <div className="text-[8px] text-gray-500 w-8 text-right">
-                                  Кач.
-                                </div>
-                              </div>
-                            </div>
-                            <div className="space-y-2">
-                              {[
-                                {
-                                  name: "Анна С.",
-                                  conv: 45,
-                                  revenue: "2.1М",
-                                  qual: 92,
-                                },
-                                {
-                                  name: "Иван П.",
-                                  conv: 38,
-                                  revenue: "1.8М",
-                                  qual: 88,
-                                },
-                                {
-                                  name: "Мария К.",
-                                  conv: 35,
-                                  revenue: "1.6М",
-                                  qual: 85,
-                                },
-                              ].map((m, i) => (
-                                <div
-                                  key={i}
-                                  className="flex items-center gap-2"
-                                >
-                                  <div
-                                    className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-[9px] font-black text-white"
-                                    style={{
-                                      background:
-                                        "linear-gradient(135deg,#7c3aed,#a855f7)",
-                                    }}
-                                  >
-                                    {m.name[0]}
-                                  </div>
-                                  <div className="text-[10px] font-medium text-white flex-1 truncate">
-                                    {m.name}
-                                  </div>
-                                  <div className="text-[9px] text-gray-300 w-9 text-right">
-                                    {m.conv}%
-                                  </div>
-                                  <div className="text-[9px] text-violet-300 font-semibold w-13 text-right">
-                                    {m.revenue}
-                                  </div>
-                                  <div
-                                    className="text-[9px] font-bold w-8 text-right"
-                                    style={{
-                                      color:
-                                        m.qual >= 90 ? "#34d399" : "#fbbf24",
-                                    }}
-                                  >
-                                    {m.qual}%
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                          <div
-                            className="rounded-lg p-3 flex flex-col items-center justify-center"
-                            style={{
-                              background: "rgba(0,0,0,0.08)",
-                              border: "1px solid rgba(168,85,247,0.18)",
-                            }}
-                          >
-                            <div className="text-[11px] font-semibold text-gray-200 mb-2">
-                              Качество разговоров
-                            </div>
-                            <div
-                              className="relative"
-                              style={{
-                                transform: "scale(1.15)",
-                                transformOrigin: "center",
-                              }}
-                            >
-                              <DonutChart pct={82} color="#a855f7" />
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-[13px] font-black text-white">
-                                  82%
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1 mt-3">
-                              <Icon
-                                name="TrendingUp"
-                                size={10}
-                                className="text-emerald-400"
-                              />
-                              <span className="text-[9px] text-emerald-300 font-semibold">
-                                +16%
-                              </span>
-                              <span className="text-[9px] text-gray-300">
-                                к прошлому
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Holographic scan-line overlay (very subtle) */}
-                      <div
-                        className="absolute inset-0 pointer-events-none"
-                        style={{
-                          background:
-                            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(196,181,253,0.018) 2px, rgba(196,181,253,0.018) 3px)",
-                          mixBlendMode: "screen",
-                        }}
-                      />
-
-                      {/* Glass sheen highlight */}
-                      <div
-                        className="absolute inset-0 pointer-events-none rounded-2xl"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 30%, transparent 70%, rgba(167,139,250,0.05) 100%)",
-                        }}
-                      />
-
-                      {/* Neon edge bottom */}
-                      <div
-                        className="absolute inset-x-0 bottom-0 h-px pointer-events-none"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, transparent 0%, rgba(168,85,247,0.9) 50%, transparent 100%)",
-                          boxShadow: "0 0 6px rgba(168,85,247,0.8)",
-                        }}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </div>
-
-                {/* Spacer to let projector + beam render below dashboard */}
-                <div style={{ height: "230px" }} />
+                    <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#c59e4a" }} />
+                  </div>
+                  Смотреть видео
+                  <span className="text-[11px] opacity-60">2 мин</span>
+                </a>
               </motion.div>
-            </div>
-
+            </motion.div>
           </div>
         </section>
 
         {/* ═══ METRICS STRIPE ═══ */}
-        <section className="relative -mt-10 pt-2 pb-16 px-5 overflow-hidden">
-          {/* Технологичный фон: радиальное свечение + тонкая сетка */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(124,58,237,0.12) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(168,85,247,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.4) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-              maskImage:
-                "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%)",
-            }}
-          />
-          {/* Тонкая неоновая линия снизу */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, rgba(168,85,247,0.6) 50%, transparent)",
-            }}
-          />
-
-          <div className="relative max-w-7xl mx-auto">
-            {/* Метка-заголовок */}
+        <section className="relative py-16 px-5 overflow-hidden"
+          style={{ background: "rgba(197,158,74,0.03)", borderTop: "1px solid rgba(197,158,74,0.12)", borderBottom: "1px solid rgba(197,158,74,0.12)" }}
+        >
+          <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-10">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-violet-500/50" />
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold text-violet-300 uppercase tracking-[0.2em]"
-                style={{
-                  background: "rgba(124,58,237,0.1)",
-                  border: "1px solid rgba(124,58,237,0.3)",
-                }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, rgba(197,158,74,0.5))" }} />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.25em]" style={{ color: "#c59e4a", fontFamily: "Inter, sans-serif" }}>
                 Результаты клиентов
-              </div>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-violet-500/50" />
+              </span>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, rgba(197,158,74,0.5), transparent)" }} />
             </div>
-
             <Section>
-              <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
                 {[
-                  {
-                    icon: "TrendingUp",
-                    num: "+30%",
-                    label: "Рост конверсии в среднем",
-                  },
-                  {
-                    icon: "DollarSign",
-                    num: "+25%",
-                    label: "Увеличение выручки у клиентов",
-                  },
-                  {
-                    icon: "TrendingDown",
-                    num: "-40%",
-                    label: "Сокращение потерь сделок",
-                  },
-                  {
-                    icon: "Phone",
-                    num: "100%",
-                    label: "Звонков под контролем 24/7",
-                  },
-                  {
-                    icon: "Zap",
-                    num: "3–5x",
-                    label: "Быстрая окупаемость в среднем",
-                  },
+                  { icon: "TrendingUp", num: "+30%", label: "Рост конверсии в среднем" },
+                  { icon: "DollarSign", num: "+25%", label: "Увеличение выручки у клиентов" },
+                  { icon: "TrendingDown", num: "-40%", label: "Сокращение потерь сделок" },
+                  { icon: "Phone", num: "100%", label: "Звонков под контролем 24/7" },
+                  { icon: "Zap", num: "3–5x", label: "Быстрая окупаемость в среднем" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    whileHover={{ y: -3 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="group relative rounded-2xl p-5 overflow-hidden"
+                    className="flex items-start gap-3 p-5 rounded-sm"
                     style={{
-                      background:
-                        "linear-gradient(160deg, rgba(30,20,60,0.6) 0%, rgba(15,10,35,0.4) 100%)",
-                      border: "1px solid rgba(124,58,237,0.2)",
-                      backdropFilter: "blur(8px)",
+                      background: "rgba(255,255,255,0.02)",
+                      border: "1px solid rgba(197,158,74,0.12)",
                     }}
                   >
-                    {/* Угловой акцент */}
                     <div
-                      className="absolute top-0 right-0 w-16 h-16 pointer-events-none opacity-60"
+                      className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
                       style={{
-                        background:
-                          "radial-gradient(circle at top right, rgba(168,85,247,0.35), transparent 70%)",
+                        background: "rgba(197,158,74,0.1)",
+                        border: "1px solid rgba(197,158,74,0.25)",
                       }}
-                    />
-                    {/* Тонкая верхняя линия */}
-                    <div
-                      className="absolute top-0 left-4 right-4 h-px pointer-events-none"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, transparent, rgba(168,85,247,0.6), transparent)",
-                      }}
-                    />
-
-                    <div className="relative flex items-start gap-3">
+                    >
+                      <Icon name={item.icon} size={18} style={{ color: "#c59e4a" }} />
+                    </div>
+                    <div>
                       <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 relative"
+                        className="text-[28px] leading-none mb-1 tracking-tight"
                         style={{
-                          background:
-                            "linear-gradient(135deg, rgba(124,58,237,0.3), rgba(168,85,247,0.15))",
-                          border: "1px solid rgba(168,85,247,0.4)",
-                          boxShadow:
-                            "0 0 12px rgba(168,85,247,0.25), inset 0 1px 0 rgba(255,255,255,0.08)",
+                          fontFamily: "Cormorant Garamond, Georgia, serif",
+                          fontWeight: 700,
+                          color: "#f5edd6",
                         }}
                       >
-                        <Icon
-                          name={item.icon}
-                          size={19}
-                          className="text-violet-200"
-                        />
+                        {item.num}
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <div
-                          className="text-[26px] font-black text-white leading-none mb-1.5 tracking-tight"
-                          style={{
-                            background:
-                              "linear-gradient(180deg, #ffffff 0%, #d8b4fe 100%)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            backgroundClip: "text",
-                          }}
-                        >
-                          {item.num}
-                        </div>
-                        <div className="text-[12px] text-gray-400 leading-snug">
-                          {item.label}
-                        </div>
+                      <div className="text-[12px] leading-snug" style={{ color: "rgba(197,158,74,0.6)", fontFamily: "Inter, sans-serif" }}>
+                        {item.label}
                       </div>
-                    </div>
-
-                    {/* Мини-номер карточки */}
-                    <div className="absolute bottom-2 right-3 text-[9px] font-mono text-violet-300/40 tracking-wider">
-                      0{i + 1}
                     </div>
                   </motion.div>
                 ))}
@@ -1299,15 +342,19 @@ export function HomePage() {
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-12">
                 <div
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold text-violet-300 uppercase tracking-widest mb-4"
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
                   style={{
-                    background: "rgba(124,58,237,0.1)",
-                    border: "1px solid rgba(124,58,237,0.25)",
+                    background: "rgba(197,158,74,0.1)",
+                    border: "1px solid rgba(197,158,74,0.25)",
+                    color: "#c59e4a",
                   }}
                 >
                   Знакомые ситуации?
                 </div>
-                <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight mb-3">
+                <h2
+                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
+                  style={{ color: "#f5edd6" }}
+                >
                   Эти проблемы
                   <br />
                   мешают продажам расти
@@ -1334,7 +381,7 @@ export function HomePage() {
                     icon: "Smartphone",
                     title: "Личные номера",
                     desc: "Когда менеджер уходит — уходит и база. Переписок нет, звонков нет",
-                    color: "#a855f7",
+                    color: "#c59e4a",
                   },
                   {
                     icon: "EyeOff",
@@ -1374,7 +421,10 @@ export function HomePage() {
                         style={{ color: p.color }}
                       />
                     </div>
-                    <h3 className="text-[15px] font-bold text-white mb-1.5">
+                    <h3
+                      className="text-[15px] font-bold mb-1.5"
+                      style={{ color: "#f5edd6" }}
+                    >
                       {p.title}
                     </h3>
                     <p className="text-[13px] text-gray-500 leading-relaxed">
@@ -1397,15 +447,19 @@ export function HomePage() {
               >
                 <div>
                   <div
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold text-violet-300 uppercase tracking-widest mb-4"
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4"
                     style={{
-                      background: "rgba(124,58,237,0.1)",
-                      border: "1px solid rgba(124,58,237,0.25)",
+                      background: "rgba(197,158,74,0.1)",
+                      border: "1px solid rgba(197,158,74,0.25)",
+                      color: "#c59e4a",
                     }}
                   >
                     Наши решения
                   </div>
-                  <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight">
+                  <h2
+                    className="text-3xl lg:text-5xl font-black tracking-tight"
+                    style={{ color: "#f5edd6" }}
+                  >
                     Всё для системных продаж
                   </h2>
                 </div>
@@ -1466,17 +520,20 @@ export function HomePage() {
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
                       style={{
-                        background: "rgba(124,58,237,0.12)",
-                        border: "1px solid rgba(124,58,237,0.2)",
+                        background: "rgba(197,158,74,0.12)",
+                        border: "1px solid rgba(197,158,74,0.2)",
                       }}
                     >
                       <Icon
                         name={s.icon}
                         size={20}
-                        className="text-violet-400"
+                        style={{ color: "#c59e4a" }}
                       />
                     </div>
-                    <h3 className="text-[14px] font-bold text-white mb-1.5 group-hover:text-violet-300 transition-colors">
+                    <h3
+                      className="text-[14px] font-bold mb-1.5 transition-colors"
+                      style={{ color: "#f5edd6" }}
+                    >
                       {s.title}
                     </h3>
                     <p className="text-[12px] text-gray-500 leading-relaxed">
@@ -1491,13 +548,19 @@ export function HomePage() {
 
         {/* ═══ HOW WE WORK ═══ */}
         <section
-          className="py-24 px-5 border-y border-violet-900/20"
-          style={{ background: "rgba(124,58,237,0.03)" }}
+          className="py-24 px-5 border-y"
+          style={{
+            background: "rgba(197,158,74,0.03)",
+            borderColor: "rgba(197,158,74,0.12)",
+          }}
         >
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-12">
-                <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight mb-3">
+                <h2
+                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
+                  style={{ color: "#f5edd6" }}
+                >
                   6 шагов от хаоса к системе
                 </h2>
                 <p className="text-gray-500 text-[14px]">
@@ -1549,23 +612,29 @@ export function HomePage() {
                     className={`rounded-2xl p-4 text-center ${darkCardHover}`}
                     style={darkCard}
                   >
-                    <div className="text-[10px] font-black text-violet-600 mb-2 tracking-widest">
+                    <div
+                      className="text-[10px] font-black mb-2 tracking-widest"
+                      style={{ color: "#8b6914" }}
+                    >
                       {step.num}
                     </div>
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-3"
                       style={{
-                        background: "rgba(124,58,237,0.15)",
-                        border: "1px solid rgba(124,58,237,0.2)",
+                        background: "rgba(197,158,74,0.15)",
+                        border: "1px solid rgba(197,158,74,0.2)",
                       }}
                     >
                       <Icon
                         name={step.icon}
                         size={16}
-                        className="text-violet-400"
+                        style={{ color: "#c59e4a" }}
                       />
                     </div>
-                    <div className="text-[12px] font-bold text-white mb-1">
+                    <div
+                      className="text-[12px] font-bold mb-1"
+                      style={{ color: "#f5edd6" }}
+                    >
                       {step.title}
                     </div>
                     <div className="text-[10px] text-gray-500 leading-relaxed">
@@ -1592,7 +661,10 @@ export function HomePage() {
                 >
                   Кейсы клиентов
                 </div>
-                <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight">
+                <h2
+                  className="text-3xl lg:text-5xl font-black tracking-tight"
+                  style={{ color: "#f5edd6" }}
+                >
                   Реальные цифры
                 </h2>
               </motion.div>
@@ -1600,7 +672,7 @@ export function HomePage() {
                 {[
                   {
                     industry: "Недвижимость",
-                    color: "#a855f7",
+                    color: "#c59e4a",
                     before:
                       "Заявки терялись в 4 мессенджерах. Менеджеры с личных номеров. Нет понимания по каждому клиенту.",
                     action:
@@ -1674,7 +746,10 @@ export function HomePage() {
                           <div className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider mb-1">
                             Результат
                           </div>
-                          <p className="text-[12px] font-bold text-white leading-relaxed">
+                          <p
+                            className="text-[12px] font-bold leading-relaxed"
+                            style={{ color: "#f5edd6" }}
+                          >
                             {c.result}
                           </p>
                         </div>
@@ -1688,11 +763,17 @@ export function HomePage() {
         </section>
 
         {/* ═══ FOR WHOM ═══ */}
-        <section className="py-24 px-5 border-t border-violet-900/20">
+        <section
+          className="py-24 px-5 border-t"
+          style={{ borderColor: "rgba(197,158,74,0.12)" }}
+        >
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-10">
-                <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight mb-3">
+                <h2
+                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
+                  style={{ color: "#f5edd6" }}
+                >
                   Для кого
                 </h2>
                 <p className="text-gray-500 text-[14px]">
@@ -1700,38 +781,67 @@ export function HomePage() {
                   расти
                 </p>
               </motion.div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { icon: "ShoppingCart", label: "Интернет-магазины" },
-                  { icon: "Briefcase", label: "Услуги" },
-                  { icon: "Building2", label: "Недвижимость" },
-                  { icon: "Heart", label: "Медицина" },
-                  { icon: "BookOpen", label: "Образование" },
-                  { icon: "TrendingUp", label: "B2B продажи" },
-                  { icon: "Wrench", label: "Сервис" },
-                ].map((item, i) => (
+                  {
+                    icon: "Building2",
+                    title: "Малый бизнес",
+                    desc: "2–10 менеджеров. Хаос растёт быстрее бизнеса. Нужна структура.",
+                  },
+                  {
+                    icon: "TrendingUp",
+                    title: "Растущий бизнес",
+                    desc: "Масштабирование буксует без системы. CRM нужна уже вчера.",
+                  },
+                  {
+                    icon: "Users",
+                    title: "Отдел продаж 10+",
+                    desc: "Нужны аналитика, контроль и прозрачность по каждому менеджеру.",
+                  },
+                  {
+                    icon: "Home",
+                    title: "Недвижимость",
+                    desc: "Длинные сделки, много касаний, важна история общения.",
+                  },
+                  {
+                    icon: "Heart",
+                    title: "Медицина и здоровье",
+                    desc: "Напоминания, запись, лояльность — всё в одном окне.",
+                  },
+                  {
+                    icon: "Briefcase",
+                    title: "B2B услуги",
+                    desc: "Долгий цикл сделки требует системного ведения.",
+                  },
+                ].map((w, i) => (
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className={`rounded-2xl p-4 text-center ${darkCardHover}`}
+                    className={`rounded-2xl p-5 ${darkCardHover}`}
                     style={darkCard}
                   >
                     <div
-                      className="w-9 h-9 rounded-xl flex items-center justify-center mx-auto mb-2.5"
+                      className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
                       style={{
-                        background: "rgba(124,58,237,0.12)",
-                        border: "1px solid rgba(124,58,237,0.2)",
+                        background: "rgba(197,158,74,0.1)",
+                        border: "1px solid rgba(197,158,74,0.2)",
                       }}
                     >
                       <Icon
-                        name={item.icon}
-                        size={16}
-                        className="text-violet-400"
+                        name={w.icon}
+                        size={20}
+                        style={{ color: "#c59e4a" }}
                       />
                     </div>
-                    <div className="text-[11px] font-semibold text-gray-400 leading-tight">
-                      {item.label}
-                    </div>
+                    <h3
+                      className="text-[14px] font-bold mb-1.5"
+                      style={{ color: "#f5edd6" }}
+                    >
+                      {w.title}
+                    </h3>
+                    <p className="text-[12px] text-gray-500 leading-relaxed">
+                      {w.desc}
+                    </p>
                   </motion.div>
                 ))}
               </div>
@@ -1739,64 +849,36 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* ═══ PRODUCTS ═══ */}
-        <section
-          id="products"
-          className="py-24 px-5 border-t border-violet-900/20"
-        >
+        {/* ═══ PRICING ═══ */}
+        <section id="pricing" className="py-24 px-5">
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-12">
-                <div
-                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold text-violet-300 uppercase tracking-widest mb-4"
-                  style={{
-                    background: "rgba(124,58,237,0.1)",
-                    border: "1px solid rgba(124,58,237,0.25)",
-                  }}
+                <h2
+                  className="text-3xl lg:text-5xl font-black tracking-tight mb-3"
+                  style={{ color: "#f5edd6" }}
                 >
-                  Наши продукты
-                </div>
-                <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight mb-3">
-                  Инструменты для роста
+                  Продукты
                 </h2>
-                <p className="text-gray-500 text-[14px] max-w-xl mx-auto">
-                  Подключайте отдельно или в связке — каждый продукт решает
-                  конкретную задачу
+                <p className="text-gray-500 text-[14px]">
+                  Инструменты для роста продаж и контроля команды
                 </p>
               </motion.div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 {[
                   {
-                    tag: "Аналитика",
-                    color: "#a855f7",
-                    icon: "BarChart2",
-                    title:
-                      "Онлайн-платформа для оценки эффективности отдела продаж и отдела сервиса",
-                    subtitle:
-                      "С помощью неё вы автоматизируете отдел качества вашей компании",
+                    tag: "AI-анализ",
+                    color: "#c59e4a",
+                    icon: "Mic",
+                    title: "Речевая аналитика звонков",
+                    subtitle: "Анализируем 100% разговоров автоматически",
                     features: [
-                      "Показывает эффективность менеджеров в цифрах и обучает их",
-                      "Находит зоны роста для каждого менеджера и всего отдела в целом",
-                      "Упрощает и ускоряет работу руководителя отдела продаж до 10 раз",
+                      "Транскрипция и оценка каждого звонка",
+                      "Выявление возражений и точек роста",
+                      "Рейтинг менеджеров по качеству разговоров",
                     ],
-                    price: "от 2 500 ₽ / мес",
-                    promo: "Неделя бесплатно",
-                    promoColor: "#22c55e",
-                  },
-                  {
-                    tag: "Колл-центр",
-                    color: "#60a5fa",
-                    icon: "PhoneCall",
-                    title: "Удаленный колл-центр с живыми операторами",
-                    subtitle: null,
-                    features: [
-                      "Наши операторы приветствуют клиентов вашей компании точно так же, как ваши собственные сотрудники",
-                      "Даем первичную консультацию, помогаем, чтобы клиенты не ушли к конкурентам",
-                      "Оплата за фактическую работу",
-                    ],
-                    price: "от 6 900 ₽ / мес",
-                    promo: "1-ый месяц за 1490 ₽",
+                    price: "от 4 990 ₽ / мес",
+                    promo: "7 дней бесплатно",
                     promoColor: "#22c55e",
                   },
                   {
@@ -1835,7 +917,7 @@ export function HomePage() {
                     className="rounded-2xl overflow-hidden flex flex-col"
                     style={{
                       background: "rgba(255,255,255,0.025)",
-                      border: "1px solid rgba(124,58,237,0.18)",
+                      border: "1px solid rgba(197,158,74,0.18)",
                       backdropFilter: "blur(12px)",
                     }}
                   >
@@ -1877,7 +959,10 @@ export function HomePage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-[16px] font-bold text-white leading-snug mb-2">
+                      <h3
+                        className="text-[16px] font-bold leading-snug mb-2"
+                        style={{ color: "#f5edd6" }}
+                      >
                         {product.title}
                       </h3>
                       {product.subtitle && (
@@ -1913,7 +998,10 @@ export function HomePage() {
 
                       {/* Price row */}
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="text-[18px] font-black text-white">
+                        <span
+                          className="text-[18px] font-black"
+                          style={{ color: "#f5edd6" }}
+                        >
                           {product.price}
                         </span>
                         {product.promo && (
@@ -1930,9 +1018,9 @@ export function HomePage() {
                       <button
                         className="w-full py-3 rounded-xl text-[13px] font-bold transition-all duration-200 hover:opacity-90"
                         style={{
-                          background: "rgba(124,58,237,0.15)",
-                          border: "1px solid rgba(124,58,237,0.35)",
-                          color: "#c4b5fd",
+                          background: "rgba(197,158,74,0.15)",
+                          border: "1px solid rgba(197,158,74,0.35)",
+                          color: "#dcc89a",
                         }}
                       >
                         Подробнее
@@ -1950,7 +1038,10 @@ export function HomePage() {
           <div className="max-w-3xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-10">
-                <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tight">
+                <h2
+                  className="text-3xl lg:text-5xl font-black tracking-tight"
+                  style={{ color: "#f5edd6" }}
+                >
                   Частые вопросы
                 </h2>
               </motion.div>
@@ -1989,13 +1080,17 @@ export function HomePage() {
                     onClick={() => setFaqOpen(faqOpen === i ? null : i)}
                   >
                     <div className="flex items-center justify-between px-5 py-4">
-                      <span className="text-[14px] font-semibold text-white pr-4 group-hover:text-violet-300 transition-colors">
+                      <span
+                        className="text-[14px] font-semibold pr-4 transition-colors"
+                        style={{ color: "#f5edd6" }}
+                      >
                         {faq.q}
                       </span>
                       <Icon
                         name={faqOpen === i ? "ChevronUp" : "ChevronDown"}
                         size={16}
-                        className="text-violet-500 shrink-0"
+                        style={{ color: "#c59e4a" }}
+                        className="shrink-0"
                       />
                     </div>
                     {faqOpen === i && (
@@ -2024,29 +1119,33 @@ export function HomePage() {
                 variants={fadeUp}
                 className="relative rounded-3xl p-8 lg:p-12 text-center overflow-hidden"
                 style={{
-                  background: "rgba(12,10,28,0.95)",
-                  border: "1px solid rgba(124,58,237,0.3)",
-                  boxShadow: "0 0 60px rgba(124,58,237,0.15)",
+                  background: "rgba(10,15,12,0.95)",
+                  border: "1px solid rgba(197,158,74,0.25)",
+                  boxShadow: "0 0 60px rgba(197,158,74,0.08)",
                 }}
               >
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      "radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.18) 0%, transparent 60%)",
+                      "radial-gradient(ellipse at 50% 0%, rgba(197,158,74,0.1) 0%, transparent 60%)",
                   }}
                 />
                 <div className="relative">
                   <div
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold text-violet-300 uppercase tracking-widest mb-5"
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5"
                     style={{
-                      background: "rgba(124,58,237,0.12)",
-                      border: "1px solid rgba(124,58,237,0.3)",
+                      background: "rgba(197,158,74,0.1)",
+                      border: "1px solid rgba(197,158,74,0.25)",
+                      color: "#c59e4a",
                     }}
                   >
                     Бесплатно
                   </div>
-                  <h2 className="text-3xl lg:text-4xl font-black text-white tracking-tight mb-3">
+                  <h2
+                    className="text-3xl lg:text-4xl font-black tracking-tight mb-3"
+                    style={{ color: "#f5edd6" }}
+                  >
                     Получите бесплатный разбор CRM и продаж
                   </h2>
                   <p className="text-gray-400 mb-8 max-w-xl mx-auto text-[14px]">
@@ -2063,29 +1162,29 @@ export function HomePage() {
                         type="text"
                         placeholder="Ваше имя"
                         required
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none focus:ring-2 focus:ring-violet-600 transition-all"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none transition-all"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(124,58,237,0.25)",
+                          border: "1px solid rgba(197,158,74,0.25)",
                         }}
                       />
                       <input
                         type="tel"
                         placeholder="Телефон"
                         required
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none focus:ring-2 focus:ring-violet-600 transition-all"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] text-white placeholder-gray-600 outline-none transition-all"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(124,58,237,0.25)",
+                          border: "1px solid rgba(197,158,74,0.25)",
                         }}
                       />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       <select
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none focus:ring-2 focus:ring-violet-600 transition-all appearance-none"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none transition-all appearance-none"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(124,58,237,0.25)",
+                          border: "1px solid rgba(197,158,74,0.25)",
                         }}
                       >
                         <option value="">Мессенджер</option>
@@ -2094,10 +1193,10 @@ export function HomePage() {
                         <option>Позвоните мне</option>
                       </select>
                       <select
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none focus:ring-2 focus:ring-violet-600 transition-all appearance-none"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] text-gray-400 outline-none transition-all appearance-none"
                         style={{
                           background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(124,58,237,0.25)",
+                          border: "1px solid rgba(197,158,74,0.25)",
                         }}
                       >
                         <option value="">Ваша CRM</option>
@@ -2109,10 +1208,11 @@ export function HomePage() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl text-[15px] font-bold text-white transition-all duration-200 hover:opacity-90"
+                      className="w-full py-3.5 rounded-xl text-[15px] font-bold transition-all duration-200 hover:opacity-90"
                       style={{
-                        background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-                        boxShadow: "0 0 24px rgba(124,58,237,0.4)",
+                        background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                        color: "#0a0f0c",
+                        boxShadow: "0 0 24px rgba(197,158,74,0.3)",
                       }}
                     >
                       Получить бесплатный разбор
@@ -2129,20 +1229,26 @@ export function HomePage() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer className="py-10 px-5 border-t border-violet-900/20">
+        <footer
+          className="py-10 px-5 border-t"
+          style={{ borderColor: "rgba(197,158,74,0.15)" }}
+        >
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center"
                   style={{
-                    background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+                    background: "linear-gradient(135deg, #8b6914, #c59e4a)",
                   }}
                 >
                   <Icon name="Waves" size={14} className="text-white" />
                 </div>
-                <span className="text-[14px] font-black text-white">
-                  SALES<span className="text-violet-400">FLOW</span>
+                <span
+                  className="text-[14px] font-black"
+                  style={{ color: "#f5edd6" }}
+                >
+                  SALES<span style={{ color: "#c59e4a" }}>FLOW</span>
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
@@ -2167,10 +1273,11 @@ export function HomePage() {
       {/* ═══ FLOATING CTA ═══ */}
       <motion.a
         href="#cta"
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold text-white"
+        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold"
         style={{
-          background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-          boxShadow: "0 0 28px rgba(124,58,237,0.55)",
+          background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+          color: "#0a0f0c",
+          boxShadow: "0 0 28px rgba(197,158,74,0.45)",
         }}
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
