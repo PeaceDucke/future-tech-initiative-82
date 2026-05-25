@@ -60,7 +60,6 @@ export function HomePage() {
           className="border-b"
           style={{
             background: "rgba(5,15,7,0.92)",
-            backdropFilter: "blur(20px)",
             borderColor: "rgba(255,255,255,0.1)",
           }}
         >
@@ -69,9 +68,7 @@ export function HomePage() {
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{
-                  background: "linear-gradient(135deg, #8b6914, #c59e4a)",
-                  boxShadow:
-                    "0 0 8px rgba(197,158,74,0.6), 0 0 20px rgba(197,158,74,0.3)",
+                  background: "#e8e0d0",
                 }}
               >
                 <Icon name="Waves" size={16} className="text-white" />
@@ -80,7 +77,7 @@ export function HomePage() {
                 className="text-[16px] font-black tracking-tight"
                 style={{ color: "#f5edd6" }}
               >
-                SALES<span style={{ color: "#c59e4a" }}>FLOW</span>
+                SALES<span style={{ color: "#e8e0d0" }}>FLOW</span>
               </span>
             </a>
 
@@ -103,10 +100,8 @@ export function HomePage() {
                 href="#cta"
                 className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-lg text-[13px] font-bold"
                 style={{
-                  background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                  background: "#e8e0d0",
                   color: "#050f07",
-                  boxShadow:
-                    "0 0 8px rgba(197,158,74,0.6), 0 0 20px rgba(197,158,74,0.3)",
                 }}
               >
                 Запросить демо
@@ -128,7 +123,6 @@ export function HomePage() {
             className="border-b px-5 py-4"
             style={{
               background: "rgba(5,15,7,0.97)",
-              backdropFilter: "blur(20px)",
               borderColor: "rgba(255,255,255,0.1)",
             }}
           >
@@ -149,7 +143,7 @@ export function HomePage() {
               onClick={() => setMenuOpen(false)}
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-[14px] font-bold"
               style={{
-                background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                background: "#e8e0d0",
                 color: "#050f07",
               }}
             >
@@ -194,10 +188,10 @@ export function HomePage() {
             >
               {/* Золотая линия-акцент */}
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
-                <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, #c59e4a)" }} />
+                <div className="h-px w-12" style={{ background: "linear-gradient(90deg, transparent, #e8e0d0)" }} />
                 <span
                   className="text-[11px] font-semibold uppercase tracking-[0.25em]"
-                  style={{ color: "#c59e4a", fontFamily: "Inter, sans-serif" }}
+                  style={{ color: "#e8e0d0", fontFamily: "Inter, sans-serif" }}
                 >
                   AI-платформа для роста продаж
                 </span>
@@ -217,7 +211,7 @@ export function HomePage() {
                 разговоры{" "}
                 <span
                   style={{
-                    color: "#c59e4a",
+                    color: "#e8e0d0",
                     fontStyle: "italic",
                   }}
                 >
@@ -239,7 +233,7 @@ export function HomePage() {
                   href="#cta"
                   className="inline-flex items-center gap-2 px-7 py-3.5 text-[14px] font-semibold"
                   style={{
-                    background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                    background: "#e8e0d0",
                     color: "#050f07",
                     borderRadius: "2px",
                     letterSpacing: "0.05em",
@@ -264,7 +258,7 @@ export function HomePage() {
                     className="w-7 h-7 rounded-full flex items-center justify-center"
                     style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
                   >
-                    <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#c59e4a" }} />
+                    <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#e8e0d0" }} />
                   </div>
                   Смотреть видео
                   <span className="text-[11px] opacity-60">2 мин</span>
@@ -280,11 +274,11 @@ export function HomePage() {
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-10">
-              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, rgba(197,158,74,0.5))" }} />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em]" style={{ color: "#c59e4a", fontFamily: "Inter, sans-serif" }}>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, rgba(232,224,208,0.5))" }} />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.25em]" style={{ color: "#e8e0d0", fontFamily: "Inter, sans-serif" }}>
                 Результаты клиентов
               </span>
-              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, rgba(197,158,74,0.5), transparent)" }} />
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, rgba(232,224,208,0.5), transparent)" }} />
             </div>
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
@@ -311,7 +305,7 @@ export function HomePage() {
                         border: "1px solid rgba(255,255,255,0.12)",
                       }}
                     >
-                      <Icon name={item.icon} size={18} style={{ color: "#c59e4a" }} />
+                      <Icon name={item.icon} size={18} style={{ color: "#e8e0d0" }} />
                     </div>
                     <div>
                       <div
@@ -324,7 +318,7 @@ export function HomePage() {
                       >
                         {item.num}
                       </div>
-                      <div className="text-[12px] leading-snug" style={{ color: "rgba(197,158,74,0.6)", fontFamily: "Inter, sans-serif" }}>
+                      <div className="text-[12px] leading-snug" style={{ color: "rgba(232,224,208,0.55)", fontFamily: "Inter, sans-serif" }}>
                         {item.label}
                       </div>
                     </div>
@@ -345,7 +339,7 @@ export function HomePage() {
                   style={{
                     background: "rgba(255,255,255,0.05)",
                     border: "1px solid rgba(255,255,255,0.15)",
-                    color: "#c59e4a",
+                    color: "#e8e0d0",
                   }}
                 >
                   Знакомые ситуации?
@@ -380,7 +374,7 @@ export function HomePage() {
                     icon: "Smartphone",
                     title: "Личные номера",
                     desc: "Когда менеджер уходит — уходит и база. Переписок нет, звонков нет",
-                    color: "#c59e4a",
+                    color: "#e8e0d0",
                   },
                   {
                     icon: "EyeOff",
@@ -450,7 +444,7 @@ export function HomePage() {
                     style={{
                       background: "rgba(255,255,255,0.05)",
                       border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#c59e4a",
+                      color: "#e8e0d0",
                     }}
                   >
                     Наши решения
@@ -526,7 +520,7 @@ export function HomePage() {
                       <Icon
                         name={s.icon}
                         size={20}
-                        style={{ color: "#c59e4a" }}
+                        style={{ color: "#e8e0d0" }}
                       />
                     </div>
                     <h3
@@ -612,7 +606,7 @@ export function HomePage() {
                   >
                     <div
                       className="text-[10px] font-black mb-2 tracking-widest"
-                      style={{ color: "#8b6914" }}
+                      style={{ color: "#e8e0d0" }}
                     >
                       {step.num}
                     </div>
@@ -626,7 +620,7 @@ export function HomePage() {
                       <Icon
                         name={step.icon}
                         size={16}
-                        style={{ color: "#c59e4a" }}
+                        style={{ color: "#e8e0d0" }}
                       />
                     </div>
                     <div
@@ -655,7 +649,7 @@ export function HomePage() {
                   style={{
                     background: "rgba(255,255,255,0.05)",
                     border: "1px solid rgba(255,255,255,0.15)",
-                    color: "#c59e4a",
+                    color: "#e8e0d0",
                   }}
                 >
                   Кейсы клиентов
@@ -671,7 +665,7 @@ export function HomePage() {
                 {[
                   {
                     industry: "Недвижимость",
-                    color: "#c59e4a",
+                    color: "#e8e0d0",
                     before:
                       "Заявки терялись в 4 мессенджерах. Менеджеры с личных номеров. Нет понимания по каждому клиенту.",
                     action:
@@ -829,7 +823,7 @@ export function HomePage() {
                       <Icon
                         name={w.icon}
                         size={20}
-                        style={{ color: "#c59e4a" }}
+                        style={{ color: "#e8e0d0" }}
                       />
                     </div>
                     <h3
@@ -867,7 +861,7 @@ export function HomePage() {
                 {[
                   {
                     tag: "AI-анализ",
-                    color: "#c59e4a",
+                    color: "#e8e0d0",
                     icon: "Mic",
                     title: "Речевая аналитика звонков",
                     subtitle: "Анализируем 100% разговоров автоматически",
@@ -1087,7 +1081,7 @@ export function HomePage() {
                       <Icon
                         name={faqOpen === i ? "ChevronUp" : "ChevronDown"}
                         size={16}
-                        style={{ color: "#c59e4a" }}
+                        style={{ color: "#e8e0d0" }}
                         className="shrink-0"
                       />
                     </div>
@@ -1119,14 +1113,13 @@ export function HomePage() {
                 style={{
                   background: "#050f07",
                   border: "1px solid rgba(255,255,255,0.12)",
-                  boxShadow: "0 0 60px rgba(197,158,74,0.08)",
                 }}
               >
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      "radial-gradient(ellipse at 50% 0%, rgba(197,158,74,0.1) 0%, transparent 60%)",
+                      "radial-gradient(ellipse at 50% 0%, rgba(232,224,208,0.1) 0%, transparent 60%)",
                   }}
                 />
                 <div className="relative">
@@ -1135,7 +1128,7 @@ export function HomePage() {
                     style={{
                       background: "rgba(255,255,255,0.05)",
                       border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#c59e4a",
+                      color: "#e8e0d0",
                     }}
                   >
                     Бесплатно
@@ -1208,9 +1201,8 @@ export function HomePage() {
                       type="submit"
                       className="w-full py-3.5 rounded-xl text-[15px] font-bold transition-all duration-200 hover:opacity-90"
                       style={{
-                        background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+                        background: "#e8e0d0",
                         color: "#050f07",
-                        boxShadow: "0 0 24px rgba(197,158,74,0.3)",
                       }}
                     >
                       Получить бесплатный разбор
@@ -1237,7 +1229,7 @@ export function HomePage() {
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center"
                   style={{
-                    background: "linear-gradient(135deg, #8b6914, #c59e4a)",
+                    background: "#e8e0d0",
                   }}
                 >
                   <Icon name="Waves" size={14} className="text-white" />
@@ -1246,7 +1238,7 @@ export function HomePage() {
                   className="text-[14px] font-black"
                   style={{ color: "#f5edd6" }}
                 >
-                  SALES<span style={{ color: "#c59e4a" }}>FLOW</span>
+                  SALES<span style={{ color: "#e8e0d0" }}>FLOW</span>
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
@@ -1273,9 +1265,8 @@ export function HomePage() {
         href="#cta"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-bold"
         style={{
-          background: "linear-gradient(135deg, #c59e4a, #e8c96d)",
+          background: "#e8e0d0",
           color: "#050f07",
-          boxShadow: "0 0 28px rgba(197,158,74,0.45)",
         }}
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
