@@ -446,24 +446,28 @@ export function HomePage() {
                               <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
                               <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
                               <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
-                              {/* Заливка под ломаной линией */}
-                              <polygon points="0,85 30,72 60,82 95,55 130,68 165,40 200,58 235,30 270,48 305,22 340,35 370,18 400,8 400,100 0,100" fill="url(#g1)"/>
-                              {/* Ломаная линия с острыми углами */}
-                              <polyline points="0,85 30,72 60,82 95,55 130,68 165,40 200,58 235,30 270,48 305,22 340,35 370,18 400,8" fill="none" stroke="#6B5232" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter"/>
-                              {/* Точки на изломах */}
-                              <circle cx="0" cy="85" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="30" cy="72" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="60" cy="82" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="95" cy="55" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="130" cy="68" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="165" cy="40" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="200" cy="58" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="235" cy="30" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="270" cy="48" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="305" cy="22" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="340" cy="35" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="370" cy="18" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
-                              <circle cx="400" cy="8" r="4.5" fill="#6B5232" stroke="#F1E9DE" strokeWidth="2.5"/>
+                              {(() => {
+                                const pts = [
+                                  [0,90],[10.8,84],[21.6,88],[32.4,80],[43.2,86],[54.1,78],[64.9,82],[75.7,72],
+                                  [86.5,78],[97.3,68],[108.1,74],[118.9,64],[129.7,70],[140.5,60],[151.4,66],[162.2,56],
+                                  [173,62],[183.8,50],[194.6,58],[205.4,46],[216.2,52],[227,40],[237.8,48],[248.6,38],
+                                  [259.5,44],[270.3,32],[281.1,40],[291.9,28],[302.7,34],[313.5,24],[324.3,30],[335.1,20],
+                                  [345.9,26],[356.8,16],[367.6,22],[378.4,12],[389.2,18],[400,8]
+                                ];
+                                const pointsStr = pts.map(p => `${p[0]},${p[1]}`).join(" ");
+                                const polyStr = pointsStr + " 400,100 0,100";
+                                return (
+                                  <>
+                                    <polygon points={polyStr} fill="url(#g1)"/>
+                                    <polyline points={pointsStr} fill="none" stroke="#6B5232" strokeWidth="1.4" strokeLinecap="square" strokeLinejoin="miter"/>
+                                    {pts.map((p, i) => (
+                                      i === pts.length - 1
+                                        ? <circle key={i} cx={p[0]} cy={p[1]} r="2.8" fill="#6B5232" stroke="#F1E9DE" strokeWidth="1.5"/>
+                                        : <circle key={i} cx={p[0]} cy={p[1]} r="1.6" fill="#F1E9DE" stroke="#6B5232" strokeWidth="1.1"/>
+                                    ))}
+                                  </>
+                                );
+                              })()}
                             </svg>
                             <div className="flex justify-between mt-2">
                               {["1 Апр","7 Апр","14 Апр","21 Апр","30 Апр"].map(d => <span key={d} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(15,13,10,0.55)", fontWeight: 500 }}>{d}</span>)}
