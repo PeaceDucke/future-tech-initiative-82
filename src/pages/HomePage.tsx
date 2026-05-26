@@ -460,11 +460,6 @@ export function HomePage() {
                                   <>
                                     <polygon points={polyStr} fill="url(#g1)"/>
                                     <polyline points={pointsStr} fill="none" stroke="#6B5232" strokeWidth="1.4" strokeLinecap="square" strokeLinejoin="miter"/>
-                                    {pts.map((p, i) => (
-                                      i === pts.length - 1
-                                        ? <circle key={i} cx={p[0]} cy={p[1]} r="2.8" fill="#6B5232" stroke="#F1E9DE" strokeWidth="1.5"/>
-                                        : <circle key={i} cx={p[0]} cy={p[1]} r="1.6" fill="#F1E9DE" stroke="#6B5232" strokeWidth="1.1"/>
-                                    ))}
                                   </>
                                 );
                               })()}
