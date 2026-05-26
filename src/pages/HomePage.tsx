@@ -903,7 +903,7 @@ export function HomePage() {
                   <div className="flex items-center mb-2">
                     <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "var(--db-acc-4)", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-acc-rgb-1),0.85)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
                   <div className="flex items-center gap-5">
                     <div className="flex-1">
                       <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "var(--db-acc-4)", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
@@ -1075,7 +1075,7 @@ export function HomePage() {
                   <div className="space-y-2.5">
                     {[
                       { c: "ООО ТехноПласт", d: "32:14", r: "Успешно", k: "85%", color: "#22a868" },
-                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "var(--db-acc-2)" },
+                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#b8860b" },
                       { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
                       { c: "Сергей Иванов", d: "22:11", r: "Не удалось", k: "20%", color: "#ef4444" },
                       { c: "ООО СтройИнвест", d: "31:05", r: "Успешно", k: "70%", color: "#22a868" },
