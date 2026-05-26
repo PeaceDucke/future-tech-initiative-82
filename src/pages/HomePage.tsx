@@ -104,8 +104,8 @@ type PickerVal = { hue: number; light: number };
 
 // Точные стартовые цвета (используются пока пользователь не двигал соответствующий пикер)
 const DEFAULTS = {
-  bg:   { hue: 40, light: 94, exact: { h: 40, s: 50, l: 94 } }, // #F7F2E9 — светлый фон
-  acc:  { hue: 33, light: 25, exact: { h: 33, s: 40, l: 25 } }, // тёмно-коричневый акцент
+  bg:   { hue: 40, light: 94, exact: { h: 40, s: 50, l: 94 } }, // #F7F2E9
+  acc:  { hue: 34, light: 90, exact: { h: 34, s: 30, l: 90 } }, // #F0E8DE
   text: { hue: 40, light: 9,  exact: { h: 40, s: 11, l: 9  } }, // ≈ #1A1814
 };
 
@@ -149,40 +149,40 @@ export function HomePage() {
     return { hsl: `hsl(${h}, ${s.toFixed(1)}%, ${ll}%)`, rgb: hslToRgbCsv(h, s, ll) };
   };
 
-  // Слайдер 1 — основной светлый фон + светлые производные (карточки, сайдбар)
+  // Слайдер 1 — основной светлый фон
   const bgVars = (() => {
-    const lighter = derive(bgR.h, Math.min(100, bgR.l + 3));
-    // Светлые акцент-фоны (карточки) — на 4-6% темнее основного фона
-    const card1 = derive(bgR.h, Math.max(0, bgR.l - 4));
-    const card2 = derive(bgR.h, Math.max(0, bgR.l - 2));
+    const lighter = derive(bgR.h, bgR.l + 3);
     return {
       "--db-bg-1": bgR.hsl,
-      "--db-bg-2": card1.hsl,
       "--db-bg-3": lighter.hsl,
-      "--db-bg-4": card2.hsl,
       "--db-bg-rgb-1": bgR.rgb,
     } as React.CSSProperties;
   })();
 
-  // Слайдер 2 — ТЁМНЫЕ акценты (кнопки, иконки, графики, активные элементы)
+  // Слайдер 2 — акценты + светлые акцент-фоны (производные от того же hue)
   const accVars = (() => {
-    const lighter = derive(accR.h, Math.min(100, accR.l + 10));
-    const muted = derive(accR.h, Math.min(100, accR.l + 24));
+    const bg2 = derive(accR.h, Math.min(96, accR.l + 59));
+    const bg4 = derive(accR.h, Math.min(97, accR.l + 61));
+    const acc2 = derive(accR.h, Math.min(90, accR.l + 10));
+    const acc5 = derive(accR.h, Math.min(90, accR.l + 34));
     return {
+      "--db-bg-2": bg2.hsl,
+      "--db-bg-4": bg4.hsl,
       "--db-acc-1": accR.hsl,
-      "--db-acc-2": lighter.hsl,
-      "--db-acc-3": accR.hsl,
-      "--db-acc-4": accR.hsl,
-      "--db-acc-5": muted.hsl,
+      "--db-acc-2": acc2.hsl,
+      "--db-acc-5": acc5.hsl,
       "--db-acc-rgb-1": accR.rgb,
-      "--db-acc-rgb-2": lighter.rgb,
-      "--db-acc-rgb-3": muted.rgb,
+      "--db-acc-rgb-2": acc2.rgb,
+      "--db-acc-rgb-3": acc5.rgb,
     } as React.CSSProperties;
   })();
 
   // Слайдер 3 — цвет текста
   const textVars = (() => {
+    const dark = derive(textR.h, Math.max(0, textR.l - 2));
     return {
+      "--db-acc-3": textR.hsl,
+      "--db-acc-4": dark.hsl,
       "--db-text-main": textR.hsl,
       "--db-text-rgb": textR.rgb,
     } as React.CSSProperties;
