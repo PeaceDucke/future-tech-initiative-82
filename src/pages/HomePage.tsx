@@ -150,8 +150,8 @@ export function HomePage() {
         i++;
         setAnalysisTyped(analysisFullText.slice(0, i));
         if (i >= analysisFullText.length && intervalId) clearInterval(intervalId);
-      }, 22);
-    }, 500);
+      }, 28);
+    }, 1000);
     return () => {
       clearTimeout(startDelay);
       if (intervalId) clearInterval(intervalId);
@@ -1019,8 +1019,8 @@ export function HomePage() {
                     boxShadow: analysisHover
                       ? "0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,176,116,0.35), 0 0 40px rgba(212,176,116,0.45)"
                       : "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    transition: "background 0.5s ease 0.4s, border-color 0.5s ease 0.4s, box-shadow 0.5s ease 0.4s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
-                    zIndex: 20,
+                    transition: "background 0.5s ease 0.9s, border-color 0.5s ease 0.9s, box-shadow 0.5s ease 0.9s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    zIndex: analysisHover ? 200 : 20,
                   }}
                 >
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "3px" }}>Анализ разговора</div>
@@ -1053,39 +1053,6 @@ export function HomePage() {
                     ))}
                   </div>
 
-                  {/* Печатающаяся подсказка справа от карточки */}
-                  <div
-                    className="absolute pointer-events-none"
-                    style={{
-                      top: "0",
-                      left: "calc(100% + 24px)",
-                      width: "320px",
-                      opacity: analysisHover ? 1 : 0,
-                      transform: analysisHover ? "translateX(0)" : "translateX(-8px)",
-                      transition: "opacity 0.4s ease 0.4s, transform 0.5s ease 0.4s",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "13px",
-                        lineHeight: 1.6,
-                        color: "#FBF6EC",
-                        whiteSpace: "pre-wrap",
-                        background: "rgba(20,15,8,0.78)",
-                        border: "1px solid rgba(212,176,116,0.35)",
-                        borderRadius: "14px",
-                        padding: "16px 18px",
-                        backdropFilter: "blur(6px)",
-                        boxShadow: "0 20px 50px rgba(0,0,0,0.55)",
-                      }}
-                    >
-                      {analysisTyped}
-                      {analysisHover && analysisTyped.length < analysisFullText.length && (
-                        <span style={{ opacity: 0.85, animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
-                      )}
-                    </div>
-                  </div>
                 </div>
 
                 {/* ── CARD: Источники сделок (центр) ── */}
@@ -1226,6 +1193,58 @@ export function HomePage() {
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#22a868", minWidth: "44px", textAlign: "right" }}>↑ {m.ch}</span>
                       </div>
                     ))}
+                  </div>
+                </div>
+
+                {/* ── Overlay затемнения + печатающаяся подсказка для "Анализ разговора" ── */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "rgba(8,6,3,0.62)",
+                    opacity: analysisHover ? 1 : 0,
+                    transition: "opacity 0.6s ease 0.8s",
+                    zIndex: 150,
+                    borderRadius: "16px",
+                  }}
+                />
+                <div
+                  className="absolute pointer-events-none flex items-center justify-end"
+                  style={{
+                    top: 0,
+                    right: "2%",
+                    height: "820px",
+                    width: "55%",
+                    opacity: analysisHover ? 1 : 0,
+                    transform: analysisHover ? "translateY(0)" : "translateY(8px)",
+                    transition: "opacity 0.5s ease 1s, transform 0.6s ease 1s",
+                    zIndex: 180,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: '"Bodoni Moda", Georgia, serif',
+                      fontSize: "30px",
+                      lineHeight: 1.45,
+                      color: "#FBF6EC",
+                      whiteSpace: "pre-wrap",
+                      letterSpacing: "0.01em",
+                      maxWidth: "560px",
+                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
+                    }}
+                  >
+                    {analysisTyped}
+                    {analysisHover && analysisTyped.length < analysisFullText.length && (
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: "0.5ch",
+                          color: "#D4B074",
+                          animation: "tw-caret 0.9s steps(1) infinite",
+                        }}
+                      >
+                        ▍
+                      </span>
+                    )}
                   </div>
                 </div>
 
