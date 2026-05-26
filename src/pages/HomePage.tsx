@@ -108,6 +108,7 @@ export function HomePage() {
   const [text, setText] = useState<PickerVal>({ hue: 40, light: 9 });
 
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
+  const [customizerOpen, setCustomizerOpen] = useState(false);
 
   // Слайдер 1 — основной светлый фон
   const bgVars = (() => {
@@ -429,42 +430,98 @@ export function HomePage() {
                 </p>
               </motion.div>
 
-              {/* ── Color Customizer ── */}
-              <motion.div
-                variants={fadeUp}
-                className="mx-auto mb-10 rounded-2xl px-6 py-5"
-                style={{
-                  maxWidth: "820px",
-                  background: "rgba(251,246,236,0.04)",
-                  backdropFilter: "blur(14px) saturate(140%)",
-                  WebkitBackdropFilter: "blur(14px) saturate(140%)",
-                  border: "1px solid rgba(212,176,116,0.2)",
-                  boxShadow: "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.06)",
-                }}
-              >
-                <div className="flex items-center justify-between mb-5">
-                  <span style={{ ...labelStyle, fontSize: "10px" }}>Кастомизация</span>
-                  <button
-                    onClick={() => {
-                      setBg({ hue: 40, light: 95 });
-                      setAcc({ hue: 33, light: 31 });
-                      setText({ hue: 40, light: 9 });
-                    }}
+              {/* ── Color Customizer (collapsible) ── */}
+              <motion.div variants={fadeUp} className="mx-auto mb-10" style={{ maxWidth: "820px" }}>
+                {/* Trigger button */}
+                <button
+                  onClick={() => setCustomizerOpen((v) => !v)}
+                  className="w-full flex items-center justify-between rounded-2xl px-5 py-3.5 transition-all"
+                  style={{
+                    background: "rgba(251,246,236,0.04)",
+                    backdropFilter: "blur(14px) saturate(140%)",
+                    WebkitBackdropFilter: "blur(14px) saturate(140%)",
+                    border: "1px solid rgba(212,176,116,0.2)",
+                    boxShadow: customizerOpen
+                      ? "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.06)"
+                      : "0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,250,240,0.06)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon name="Palette" size={16} style={{ color: "rgba(212,176,116,0.85)" }} />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.9)", fontWeight: 500, letterSpacing: "0.02em" }}>
+                      Кастомизация дашборда
+                    </span>
+                    {/* Color preview dots */}
+                    <div className="flex items-center gap-1 ml-2">
+                      <span className="rounded-full" style={{ width: 10, height: 10, background: pickerCSS(bg.hue, bg.light).hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
+                      <span className="rounded-full" style={{ width: 10, height: 10, background: pickerCSS(acc.hue, acc.light).hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
+                      <span className="rounded-full" style={{ width: 10, height: 10, background: pickerCSS(text.hue, text.light).hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                      {customizerOpen ? "Скрыть" : "Открыть"}
+                    </span>
+                    <Icon
+                      name="ChevronDown"
+                      size={16}
+                      style={{
+                        color: "rgba(212,176,116,0.75)",
+                        transition: "transform 0.3s ease",
+                        transform: customizerOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    />
+                  </div>
+                </button>
+
+                {/* Collapsible panel */}
+                <div
+                  style={{
+                    maxHeight: customizerOpen ? "500px" : "0px",
+                    opacity: customizerOpen ? 1 : 0,
+                    overflow: "hidden",
+                    transition: "max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease",
+                    marginTop: customizerOpen ? "12px" : "0px",
+                  }}
+                >
+                  <div
+                    className="rounded-2xl px-6 py-5"
                     style={{
-                      fontFamily: "Inter, sans-serif",
-                      fontSize: "11px",
-                      color: "rgba(212,176,116,0.7)",
-                      background: "transparent",
-                      border: "none",
-                      cursor: "pointer",
-                      letterSpacing: "0.05em",
+                      background: "rgba(251,246,236,0.04)",
+                      backdropFilter: "blur(14px) saturate(140%)",
+                      WebkitBackdropFilter: "blur(14px) saturate(140%)",
+                      border: "1px solid rgba(212,176,116,0.2)",
+                      boxShadow: "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.06)",
                     }}
                   >
-                    Сбросить
-                  </button>
-                </div>
+                    <div className="flex items-center justify-between mb-5">
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.55)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                        Выберите цвета
+                      </span>
+                      <button
+                        onClick={() => {
+                          setBg({ hue: 40, light: 95 });
+                          setAcc({ hue: 33, light: 31 });
+                          setText({ hue: 40, light: 9 });
+                        }}
+                        className="flex items-center gap-1.5"
+                        style={{
+                          fontFamily: "Inter, sans-serif",
+                          fontSize: "11px",
+                          color: "rgba(212,176,116,0.75)",
+                          background: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          letterSpacing: "0.05em",
+                        }}
+                      >
+                        <Icon name="RotateCcw" size={12} />
+                        Сбросить
+                      </button>
+                    </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {([
                     { id: "bg" as const, label: "Основной фон", val: bg, set: setBg },
                     { id: "acc" as const, label: "Акценты и детали", val: acc, set: setAcc },
@@ -541,6 +598,8 @@ export function HomePage() {
                       </div>
                     );
                   })}
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
