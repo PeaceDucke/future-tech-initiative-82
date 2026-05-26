@@ -63,6 +63,17 @@ const bodyText = {
   fontFamily: "Inter, sans-serif",
 };
 
+function hslToRgbCsv(h: number, s: number, l: number): string {
+  s /= 100; l /= 100;
+  const k = (n: number) => (n + h / 30) % 12;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  const r = Math.round(255 * f(0));
+  const g = Math.round(255 * f(8));
+  const b = Math.round(255 * f(4));
+  return `${r},${g},${b}`;
+}
+
 const labelStyle = {
   color: "#D4B074",
   fontSize: "10px" as const,
@@ -74,14 +85,38 @@ const labelStyle = {
 
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hue, setHue] = useState(0);
-  const [accent, setAccent] = useState(0);
-  const [activeSlider, setActiveSlider] = useState<null | "hue" | "accent">(null);
+  const [bgHue, setBgHue] = useState(0);
+  const [accHue, setAccHue] = useState(0);
+  const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc">(null);
 
-  const dashFilter =
-    hue === 0 && accent === 0
-      ? "none"
-      : `hue-rotate(${hue}deg) saturate(${1 + accent / 100})`;
+  // Базовые HSL для бежевых фонов (#FBF6EC ≈ hsl(40,71%,95%))
+  const bgVars = (() => {
+    const h = (40 + bgHue + 360) % 360;
+    return {
+      "--db-bg-1": `hsl(${h}, 71%, 95%)`,
+      "--db-bg-2": `hsl(${h}, 38%, 90%)`,
+      "--db-bg-3": `hsl(${h}, 100%, 98%)`,
+      "--db-bg-4": `hsl(${h}, 65%, 92%)`,
+      "--db-bg-rgb-1": hslToRgbCsv(h, 71, 95),
+    } as React.CSSProperties;
+  })();
+
+  // Базовые HSL для коричневых акцентов (var(--db-acc-1) ≈ hsl(33,36%,31%))
+  const accVars = (() => {
+    const h = (33 + accHue + 360) % 360;
+    return {
+      "--db-acc-1": `hsl(${h}, 36%, 31%)`, // var(--db-acc-1)
+      "--db-acc-2": `hsl(${h}, 32%, 41%)`, // var(--db-acc-2)
+      "--db-acc-3": `hsl(${h}, 17%, 11%)`, // var(--db-acc-3) (тёмный текст)
+      "--db-acc-4": `hsl(${h}, 22%, 9%)`,  // var(--db-acc-4)
+      "--db-acc-5": `hsl(${h}, 56%, 65%)`, // #D4B074 (золотой)
+      "--db-acc-rgb-1": `${hslToRgbCsv(h, 36, 31)}`, // 107,82,50
+      "--db-acc-rgb-2": `${hslToRgbCsv(h, 32, 41)}`, // 139,111,71
+      "--db-acc-rgb-3": `${hslToRgbCsv(h, 56, 65)}`, // 212,176,116
+    } as React.CSSProperties;
+  })();
+
+  const dashVars = { ...bgVars, ...accVars } as React.CSSProperties;
 
   return (
     <div
@@ -375,7 +410,7 @@ export function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <span style={{ ...labelStyle, fontSize: "10px" }}>Кастомизация</span>
                   <button
-                    onClick={() => { setHue(0); setAccent(0); }}
+                    onClick={() => { setBgHue(0); setAccHue(0); }}
                     style={{
                       fontFamily: "Inter, sans-serif",
                       fontSize: "11px",
@@ -384,185 +419,113 @@ export function HomePage() {
                       border: "none",
                       cursor: "pointer",
                       letterSpacing: "0.05em",
-                      opacity: hue === 0 && accent === 0 ? 0.35 : 1,
+                      opacity: bgHue === 0 && accHue === 0 ? 0.35 : 1,
                       transition: "opacity 0.2s",
                     }}
-                    disabled={hue === 0 && accent === 0}
+                    disabled={bgHue === 0 && accHue === 0}
                   >
                     Сбросить
                   </button>
                 </div>
 
-                {/* Slider 1 — Основной цвет */}
-                <div className="mb-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
-                      Основной цвет
-                    </span>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
-                      {hue === 0 ? "по умолчанию" : `${hue > 0 ? "+" : ""}${hue}°`}
-                    </span>
+                {[
+                  { id: "bg" as const, label: "Фон дашборда", value: bgHue, set: setBgHue, baseH: 40, baseS: 71, baseL: 90 },
+                  { id: "acc" as const, label: "Цвет акцентов", value: accHue, set: setAccHue, baseH: 33, baseS: 36, baseL: 45 },
+                ].map((s, idx) => (
+                  <div key={s.id} className={idx === 0 ? "mb-5" : ""}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
+                        {s.label}
+                      </span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
+                        {s.value === 0 ? "по умолчанию" : `${s.value > 0 ? "+" : ""}${s.value}°`}
+                      </span>
+                    </div>
+                    <div
+                      className="relative"
+                      style={{
+                        height: activeSlider === s.id ? "26px" : "6px",
+                        transition: "height 0.25s ease",
+                      }}
+                    >
+                      {/* Palette (shown only when active) */}
+                      <div
+                        className="absolute left-0 right-0 rounded-full pointer-events-none"
+                        style={{
+                          top: 0,
+                          height: "8px",
+                          background: (() => {
+                            const stops: string[] = [];
+                            for (let i = 0; i <= 8; i++) {
+                              const h = (s.baseH + (-180 + (360 * i) / 8) + 360) % 360;
+                              stops.push(`hsl(${h}, ${s.baseS}%, ${s.baseL}%) ${(i / 8) * 100}%`);
+                            }
+                            return `linear-gradient(90deg, ${stops.join(", ")})`;
+                          })(),
+                          opacity: activeSlider === s.id ? 1 : 0,
+                          transition: "opacity 0.25s ease",
+                        }}
+                      />
+                      {/* Default track */}
+                      <div
+                        className="absolute left-0 right-0 rounded-full pointer-events-none"
+                        style={{
+                          top: "50%",
+                          transform: "translateY(-50%)",
+                          height: "4px",
+                          background: "rgba(212,176,116,0.18)",
+                          opacity: activeSlider === s.id ? 0 : 1,
+                          transition: "opacity 0.25s ease",
+                        }}
+                      />
+                      {/* Center mark */}
+                      <div
+                        className="absolute pointer-events-none rounded-full"
+                        style={{
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%,-50%)",
+                          width: "2px",
+                          height: "10px",
+                          background: "rgba(212,176,116,0.45)",
+                        }}
+                      />
+                      <input
+                        type="range"
+                        min={-180}
+                        max={180}
+                        step={1}
+                        value={s.value}
+                        onChange={(e) => s.set(Number(e.target.value))}
+                        onPointerDown={() => setActiveSlider(s.id)}
+                        onPointerUp={() => setActiveSlider(null)}
+                        onPointerLeave={() => setActiveSlider(null)}
+                        onBlur={() => setActiveSlider(null)}
+                        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }}
+                      />
+                      <div
+                        className="absolute pointer-events-none rounded-full"
+                        style={{
+                          top: "50%",
+                          left: `${((s.value + 180) / 360) * 100}%`,
+                          transform: "translate(-50%,-50%)",
+                          width: "16px",
+                          height: "16px",
+                          background: "linear-gradient(135deg, #FBF6EC 0%, #E8D5A8 100%)",
+                          border: "1px solid rgba(107, 82, 50, 0.4)",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.6)",
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="relative"
-                    style={{
-                      height: activeSlider === "hue" ? "26px" : "6px",
-                      transition: "height 0.25s ease",
-                    }}
-                  >
-                    {/* Hue palette (shown only when active) */}
-                    <div
-                      className="absolute left-0 right-0 rounded-full pointer-events-none"
-                      style={{
-                        top: 0,
-                        height: "8px",
-                        background:
-                          "linear-gradient(90deg, hsl(180,70%,55%) 0%, hsl(220,70%,55%) 20%, hsl(280,60%,60%) 40%, hsl(340,65%,60%) 55%, #D4B074 60%, hsl(40,60%,55%) 80%, hsl(120,40%,50%) 100%)",
-                        opacity: activeSlider === "hue" ? 1 : 0,
-                        transition: "opacity 0.25s ease",
-                      }}
-                    />
-                    {/* Track (default neutral) */}
-                    <div
-                      className="absolute left-0 right-0 rounded-full pointer-events-none"
-                      style={{
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        height: "4px",
-                        background: "rgba(212,176,116,0.18)",
-                        opacity: activeSlider === "hue" ? 0 : 1,
-                        transition: "opacity 0.25s ease",
-                      }}
-                    />
-                    {/* Center mark */}
-                    <div
-                      className="absolute pointer-events-none rounded-full"
-                      style={{
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%,-50%)",
-                        width: "2px",
-                        height: "10px",
-                        background: "rgba(212,176,116,0.45)",
-                      }}
-                    />
-                    <input
-                      type="range"
-                      min={-180}
-                      max={180}
-                      step={1}
-                      value={hue}
-                      onChange={(e) => setHue(Number(e.target.value))}
-                      onPointerDown={() => setActiveSlider("hue")}
-                      onPointerUp={() => setActiveSlider(null)}
-                      onPointerLeave={() => setActiveSlider(null)}
-                      onBlur={() => setActiveSlider(null)}
-                      className="dash-slider"
-                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }}
-                    />
-                    {/* Thumb */}
-                    <div
-                      className="absolute pointer-events-none rounded-full"
-                      style={{
-                        top: "50%",
-                        left: `${((hue + 180) / 360) * 100}%`,
-                        transform: "translate(-50%,-50%)",
-                        width: "16px",
-                        height: "16px",
-                        background: "linear-gradient(135deg, #FBF6EC 0%, #E8D5A8 100%)",
-                        border: "1px solid rgba(107,82,50,0.4)",
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.6)",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Slider 2 — Насыщенность */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
-                      Дополнительный цвет
-                    </span>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
-                      {accent === 0 ? "по умолчанию" : `${accent > 0 ? "+" : ""}${accent}%`}
-                    </span>
-                  </div>
-                  <div
-                    className="relative"
-                    style={{
-                      height: activeSlider === "accent" ? "26px" : "6px",
-                      transition: "height 0.25s ease",
-                    }}
-                  >
-                    {/* Saturation palette */}
-                    <div
-                      className="absolute left-0 right-0 rounded-full pointer-events-none"
-                      style={{
-                        top: 0,
-                        height: "8px",
-                        background: `linear-gradient(90deg, hsl(${30 + hue},5%,55%) 0%, hsl(${30 + hue},25%,55%) 50%, hsl(${30 + hue},80%,55%) 100%)`,
-                        opacity: activeSlider === "accent" ? 1 : 0,
-                        transition: "opacity 0.25s ease",
-                      }}
-                    />
-                    <div
-                      className="absolute left-0 right-0 rounded-full pointer-events-none"
-                      style={{
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        height: "4px",
-                        background: "rgba(212,176,116,0.18)",
-                        opacity: activeSlider === "accent" ? 0 : 1,
-                        transition: "opacity 0.25s ease",
-                      }}
-                    />
-                    <div
-                      className="absolute pointer-events-none rounded-full"
-                      style={{
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%,-50%)",
-                        width: "2px",
-                        height: "10px",
-                        background: "rgba(212,176,116,0.45)",
-                      }}
-                    />
-                    <input
-                      type="range"
-                      min={-100}
-                      max={100}
-                      step={1}
-                      value={accent}
-                      onChange={(e) => setAccent(Number(e.target.value))}
-                      onPointerDown={() => setActiveSlider("accent")}
-                      onPointerUp={() => setActiveSlider(null)}
-                      onPointerLeave={() => setActiveSlider(null)}
-                      onBlur={() => setActiveSlider(null)}
-                      className="dash-slider"
-                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }}
-                    />
-                    <div
-                      className="absolute pointer-events-none rounded-full"
-                      style={{
-                        top: "50%",
-                        left: `${((accent + 100) / 200) * 100}%`,
-                        transform: "translate(-50%,-50%)",
-                        width: "16px",
-                        height: "16px",
-                        background: "linear-gradient(135deg, #FBF6EC 0%, #E8D5A8 100%)",
-                        border: "1px solid rgba(107,82,50,0.4)",
-                        boxShadow: "0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.6)",
-                      }}
-                    />
-                  </div>
-                </div>
+                ))}
               </motion.div>
 
               {/* Dashboard Scene */}
               <motion.div
                 variants={fadeUp}
                 className="relative mx-auto"
-                style={{ maxWidth: "1320px", height: "920px", filter: dashFilter, transition: "filter 0.15s linear" }}
+                style={{ maxWidth: "1320px", height: "920px", ...dashVars }}
               >
                 {/* ── LUXURY GLASS FRAME ── */}
                 <div
@@ -657,32 +620,32 @@ export function HomePage() {
                     height: "820px",
                     top: "0px",
                     left: "0px",
-                    background: "#FBF6EC",
+                    background: "var(--db-bg-1)",
                     border: "1px solid rgba(212,176,116,0.25)",
-                    boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(251,246,236,0.08)",
+                    boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.08)",
                     zIndex: 1,
                   }}
                 >
                   {/* Topbar */}
-                  <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "#F1E9DE", borderColor: "rgba(139,111,71,0.25)" }}>
+                  <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-acc-rgb-2),0.25)" }}>
                     <div className="flex items-center gap-3">
-                      <Icon name="Waves" size={18} style={{ color: "#6B5232" }} />
-                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#0F0D0A", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "#6B5232" }}>FLOW</span></span>
+                      <Icon name="Waves" size={18} style={{ color: "var(--db-acc-1)" }} />
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#0F0D0A", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "var(--db-acc-1)" }}>FLOW</span></span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(107,82,50,0.12)", border: "1px solid rgba(107,82,50,0.25)" }}>
+                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(var(--db-acc-rgb-1),0.12)", border: "1px solid rgba(var(--db-acc-rgb-1),0.25)" }}>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 500 }}>1–30 Апреля, 2024</span>
-                        <Icon name="ChevronDown" size={12} style={{ color: "#6B5232" }} />
+                        <Icon name="ChevronDown" size={12} style={{ color: "var(--db-acc-1)" }} />
                       </div>
-                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(107,82,50,0.12)", border: "1px solid rgba(107,82,50,0.25)" }}>
-                        <Icon name="Download" size={12} style={{ color: "#6B5232" }} />
+                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(var(--db-acc-rgb-1),0.12)", border: "1px solid rgba(var(--db-acc-rgb-1),0.25)" }}>
+                        <Icon name="Download" size={12} style={{ color: "var(--db-acc-1)" }} />
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 500 }}>Экспорт</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex" style={{ height: "calc(100% - 61px)" }}>
                     {/* Sidebar */}
-                    <div className="shrink-0 border-r py-6 px-4" style={{ width: "200px", background: "#F1E9DE", borderColor: "rgba(107,82,50,0.18)" }}>
+                    <div className="shrink-0 border-r py-6 px-4" style={{ width: "200px", background: "var(--db-bg-2)", borderColor: "rgba(var(--db-acc-rgb-1),0.18)" }}>
                       {[
                         { icon: "LayoutDashboard", label: "Обзор", active: true },
                         { icon: "Phone", label: "Звонки" },
@@ -692,8 +655,8 @@ export function HomePage() {
                         { icon: "FileText", label: "Отчёты" },
                         { icon: "Settings", label: "Настройки" },
                       ].map((item) => (
-                        <div key={item.label} className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg mb-1.5" style={{ background: item.active ? "rgba(107,82,50,0.18)" : "transparent" }}>
-                          <Icon name={item.icon} size={16} style={{ color: item.active ? "#6B5232" : "rgba(15,13,10,0.55)" }} />
+                        <div key={item.label} className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg mb-1.5" style={{ background: item.active ? "rgba(var(--db-acc-rgb-1),0.18)" : "transparent" }}>
+                          <Icon name={item.icon} size={16} style={{ color: item.active ? "var(--db-acc-1)" : "rgba(15,13,10,0.55)" }} />
                           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: item.active ? "#0F0D0A" : "rgba(15,13,10,0.6)", fontWeight: item.active ? 600 : 500 }}>{item.label}</span>
                         </div>
                       ))}
@@ -709,18 +672,18 @@ export function HomePage() {
                           { label: "Средний чек", value: "₽18,540", change: "+6.2%" },
                           { label: "Новые лиды", value: "1,243", change: "+14.3%" },
                         ].map((k) => (
-                          <div key={k.label} className="rounded-xl p-4" style={{ background: "#F1E9DE", border: "1px solid rgba(107,82,50,0.18)" }}>
+                          <div key={k.label} className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
                             <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(15,13,10,0.65)", marginBottom: "8px", fontWeight: 500 }}>{k.label}</div>
                             <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: "#0F0D0A", marginBottom: "6px", fontWeight: 600 }}>{k.value}</div>
                             <div className="flex items-center justify-between">
                               <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1a8a52", fontWeight: 600 }}>↑ {k.change} за период</span>
-                              <svg width="48" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="#6B5232" strokeWidth="1.8" opacity="0.8" strokeLinecap="round" /></svg>
+                              <svg width="48" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="var(--db-acc-1)" strokeWidth="1.8" opacity="0.8" strokeLinecap="round" /></svg>
                             </div>
                           </div>
                         ))}
                       </div>
                       {/* Revenue chart */}
-                      <div className="rounded-xl p-5 mb-5" style={{ background: "#F1E9DE", border: "1px solid rgba(107,82,50,0.18)" }}>
+                      <div className="rounded-xl p-5 mb-5" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
                         <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#0F0D0A", marginBottom: "14px", fontWeight: 600 }}>Динамика выручки</div>
                         <div className="flex items-start gap-4">
                           <div className="flex flex-col justify-between" style={{ height: "140px" }}>
@@ -730,14 +693,14 @@ export function HomePage() {
                             <svg width="100%" height="140" viewBox="0 0 400 100" preserveAspectRatio="none">
                               <defs>
                                 <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="0%" stopColor="#6B5232" stopOpacity="0.35"/>
-                                  <stop offset="100%" stopColor="#6B5232" stopOpacity="0"/>
+                                  <stop offset="0%" stopColor="var(--db-acc-1)" stopOpacity="0.35"/>
+                                  <stop offset="100%" stopColor="var(--db-acc-1)" stopOpacity="0"/>
                                 </linearGradient>
                               </defs>
                               {/* Сетка */}
-                              <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
-                              <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
-                              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(var(--db-acc-rgb-1),0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(var(--db-acc-rgb-1),0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(var(--db-acc-rgb-1),0.08)" strokeWidth="1" strokeDasharray="3 3"/>
                               {(() => {
                                 const pts = [
                                   [0,88],[10.8,72],[21.6,90],[32.4,60],[43.2,82],[54.1,45],[64.9,78],[75.7,55],
@@ -751,7 +714,7 @@ export function HomePage() {
                                 return (
                                   <>
                                     <polygon points={polyStr} fill="url(#g1)"/>
-                                    <polyline points={pointsStr} fill="none" stroke="#6B5232" strokeWidth="0.8" strokeLinecap="square" strokeLinejoin="miter"/>
+                                    <polyline points={pointsStr} fill="none" stroke="var(--db-acc-1)" strokeWidth="0.8" strokeLinecap="square" strokeLinejoin="miter"/>
                                   </>
                                 );
                               })()}
@@ -764,7 +727,7 @@ export function HomePage() {
                       </div>
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="rounded-xl p-4" style={{ background: "#F1E9DE", border: "1px solid rgba(107,82,50,0.18)" }}>
+                        <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
                           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#0F0D0A", marginBottom: "14px", fontWeight: 600 }}>Последние звонки</div>
                           <div className="space-y-2.5">
                             {[
@@ -776,12 +739,12 @@ export function HomePage() {
                               <div key={c.c} className="flex items-center gap-2">
                                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontWeight: 500 }}>{c.c}</span>
                                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(15,13,10,0.6)", fontWeight: 500 }}>{c.d}</span>
-                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: c.r === "Успешно" ? "#1a8a52" : c.r === "Не удалось" ? "#c92a2a" : "#6B5232", fontWeight: 600 }}>{c.r}</span>
+                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: c.r === "Успешно" ? "#1a8a52" : c.r === "Не удалось" ? "#c92a2a" : "var(--db-acc-1)", fontWeight: 600 }}>{c.r}</span>
                               </div>
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-xl p-4" style={{ background: "#F1E9DE", border: "1px solid rgba(107,82,50,0.18)" }}>
+                        <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
                           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#0F0D0A", marginBottom: "14px", fontWeight: 600 }}>Конверсия по этапам</div>
                           <div className="space-y-3">
                             {[["Лид","100%",1],["Квалификация","78%",0.78],["Презентация","52%",0.52],["Сделка","24%",0.24]].map(([l,v,p]) => (
@@ -790,8 +753,8 @@ export function HomePage() {
                                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 500 }}>{l}</span>
                                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 700 }}>{v}</span>
                                 </div>
-                                <div className="rounded-full overflow-hidden" style={{ height: "6px", background: "rgba(107,82,50,0.15)" }}>
-                                  <div style={{ height: "100%", width: `${Number(p)*100}%`, background: "#6B5232" }} />
+                                <div className="rounded-full overflow-hidden" style={{ height: "6px", background: "rgba(var(--db-acc-rgb-1),0.15)" }}>
+                                  <div style={{ height: "100%", width: `${Number(p)*100}%`, background: "var(--db-acc-1)" }} />
                                 </div>
                               </div>
                             ))}
@@ -809,7 +772,7 @@ export function HomePage() {
                     width: "38%",
                     top: "320px",
                     right: "-3%",
-                    background: "linear-gradient(135deg, #FFFCF5 0%, #F7EFE0 100%)",
+                    background: "linear-gradient(135deg, var(--db-bg-3) 0%, var(--db-bg-4) 100%)",
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
@@ -817,12 +780,12 @@ export function HomePage() {
                   }}
                 >
                   <div className="flex items-center mb-2">
-                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#1F1A12", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
+                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "var(--db-acc-4)", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(107,82,50,0.85)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-acc-rgb-1),0.85)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
                   <div className="flex items-center gap-5">
                     <div className="flex-1">
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1F1A12", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "var(--db-acc-4)", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
                         Клиенты чаще всего возражают на этапе обсуждения цены.
                       </p>
                       <button
@@ -861,7 +824,7 @@ export function HomePage() {
                               </feMerge>
                             </filter>
                           </defs>
-                          <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(107,82,50,0.14)" strokeWidth="11"/>
+                          <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.14)" strokeWidth="11"/>
                           <circle
                             cx="60" cy="60" r="48"
                             fill="none"
@@ -875,7 +838,7 @@ export function HomePage() {
                           />
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                          <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "30px", color: "#1F1A12", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}>81%</span>
+                          <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "30px", color: "var(--db-acc-4)", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}>81%</span>
                         </div>
                       </div>
                       <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6B4A1F", textAlign: "center", marginTop: "8px", maxWidth: "120px", lineHeight: 1.3, fontWeight: 600, letterSpacing: "0.02em" }}>Вероятность успешной сделки</span>
@@ -890,22 +853,22 @@ export function HomePage() {
                     width: "34%",
                     bottom: "100px",
                     left: "-3%",
-                    background: "#FBF6EC",
-                    border: "1px solid rgba(251,246,236,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
+                    background: "var(--db-bg-1)",
+                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     zIndex: 20,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#1A1814", fontWeight: 500, marginBottom: "3px" }}>Анализ разговора</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "3px" }}>Анализ разговора</div>
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.5)", marginBottom: "18px" }}>Этап: Работа с возражениями</div>
                   {/* Waveform */}
                   <div className="flex items-center gap-0.5 mb-4" style={{ height: "48px" }}>
                     {[5,9,15,11,21,14,8,18,12,22,9,17,6,19,10,15,8,12,18,9,13,21,10,16,6,12,19,9,15,7,18,10,13,16,8].map((h, i) => (
-                      <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < 14 ? "#8B6F47" : "rgba(139,111,71,0.3)" }} />
+                      <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < 14 ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.3)" }} />
                     ))}
                   </div>
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "#8B6F47" }}>
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "var(--db-acc-2)" }}>
                       <Icon name="Play" size={12} style={{ color: "#FBF6EC" }} />
                     </div>
                     <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(26,24,20,0.55)" }}>02:37 / 05:21</span>
@@ -913,7 +876,7 @@ export function HomePage() {
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.45)", marginBottom: "10px" }}>Ключевые темы</div>
                   <div className="flex flex-wrap gap-2">
                     {["Цена", "Сроки", "Интеграция", "Демо"].map(tag => (
-                      <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(139,111,71,0.12)", color: "#8B6F47", border: "1px solid rgba(139,111,71,0.2)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
+                      <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(var(--db-acc-rgb-2),0.12)", color: "var(--db-acc-2)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
                     ))}
                   </div>
                 </div>
@@ -925,17 +888,17 @@ export function HomePage() {
                     width: "32%",
                     top: "465px",
                     left: "33%",
-                    background: "#FBF6EC",
-                    border: "1px solid rgba(251,246,236,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
+                    background: "var(--db-bg-1)",
+                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     zIndex: 22,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#1A1814", fontWeight: 500, marginBottom: "18px" }}>Источники сделок</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "18px" }}>Источники сделок</div>
                   <div className="flex items-center gap-5">
                     <div className="relative shrink-0">
                       <svg width="110" height="110" viewBox="0 0 110 110">
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(107,82,50,0.12)" strokeWidth="16"/>
+                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.12)" strokeWidth="16"/>
                         {/* 40% - тёплый коричневый (Old Money) */}
                         <circle cx="55" cy="55" r="45" fill="none" stroke="#A88B5C" strokeWidth="16" strokeDasharray="113 283" strokeDashoffset="0" transform="rotate(-90 55 55)"/>
                         {/* 30% - пастельный голубой */}
@@ -947,7 +910,7 @@ export function HomePage() {
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)" }}>Всего</span>
-                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#1A1814" }}>128</span>
+                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "var(--db-acc-3)" }}>128</span>
                       </div>
                     </div>
                     <div className="space-y-2.5 flex-1">
@@ -960,7 +923,7 @@ export function HomePage() {
                         <div key={String(l)} className="flex items-center gap-2">
                           <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: String(c) }}/>
                           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.7)", flex: 1, fontWeight: 500 }}>{l}</span>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1814", fontWeight: 600 }}>{v}</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{v}</span>
                         </div>
                       ))}
                     </div>
@@ -974,15 +937,15 @@ export function HomePage() {
                     width: "42%",
                     bottom: "20px",
                     left: "29%",
-                    background: "#FBF6EC",
-                    border: "1px solid rgba(251,246,236,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(251,246,236,0.1)",
+                    background: "var(--db-bg-1)",
+                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     zIndex: 23,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#1A1814", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
                   {/* Table header */}
-                  <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(139,111,71,0.18)" }}>
+                  <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(var(--db-acc-rgb-2),0.18)" }}>
                     {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
                       <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
                     ))}
@@ -991,7 +954,7 @@ export function HomePage() {
                   <div className="space-y-2.5">
                     {[
                       { c: "ООО ТехноПласт", d: "32:14", r: "Успешно", k: "85%", color: "#22a868" },
-                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#8B6F47" },
+                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "var(--db-acc-2)" },
                       { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
                       { c: "Сергей Иванов", d: "22:11", r: "Не удалось", k: "20%", color: "#ef4444" },
                       { c: "ООО СтройИнвест", d: "31:05", r: "Успешно", k: "70%", color: "#22a868" },
@@ -1000,20 +963,20 @@ export function HomePage() {
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)" }}>{row.d}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: row.color }}>{row.r}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#1A1814", fontWeight: 500 }}>{row.k}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 500 }}>{row.k}</span>
                         {/* Audio control */}
                         <div className="flex items-center gap-1.5">
-                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#8B6F47" }}>
+                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--db-acc-2)" }}>
                             <Icon name="Play" size={8} style={{ color: "#FBF6EC" }} />
                           </button>
                           {/* Mini waveform */}
                           <div className="flex items-center gap-[1px] flex-1" style={{ height: "14px" }}>
                             {[4,7,10,5,12,6,9,11,5,8,7,10,4,9,6,8,5,11,7,4].map((h, i) => (
-                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "#8B6F47" : "rgba(139,111,71,0.25)" }} />
+                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.25)" }} />
                             ))}
                           </div>
                           <button className="shrink-0" title="Скачать">
-                            <Icon name="Download" size={11} style={{ color: "rgba(139,111,71,0.7)" }} />
+                            <Icon name="Download" size={11} style={{ color: "rgba(var(--db-acc-rgb-2),0.7)" }} />
                           </button>
                         </div>
                       </div>
@@ -1028,17 +991,17 @@ export function HomePage() {
                     width: "36%",
                     bottom: "80px",
                     right: "1%",
-                    background: "#FBF6EC",
-                    border: "1px solid rgba(251,246,236,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(251,246,236,0.1)",
+                    background: "var(--db-bg-1)",
+                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     zIndex: 25,
                   }}
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#1A1814", fontWeight: 500 }}>Топ менеджеров</span>
-                    <div className="flex items-center gap-1 px-2.5 py-1 rounded" style={{ background: "rgba(139,111,71,0.1)", border: "1px solid rgba(139,111,71,0.2)" }}>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#1A1814" }}>По выручке</span>
-                      <Icon name="ChevronDown" size={10} style={{ color: "#8B6F47" }} />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500 }}>Топ менеджеров</span>
+                    <div className="flex items-center gap-1 px-2.5 py-1 rounded" style={{ background: "rgba(var(--db-acc-rgb-2),0.1)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)" }}>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)" }}>По выручке</span>
+                      <Icon name="ChevronDown" size={10} style={{ color: "var(--db-acc-2)" }} />
                     </div>
                   </div>
                   <div className="space-y-3">
@@ -1050,9 +1013,9 @@ export function HomePage() {
                       { name: "Дмитрий Новиков", rev: "₽1.2M", ch: "+8.6%", a: "Д" },
                     ].map((m) => (
                       <div key={m.name} className="flex items-center gap-3">
-                        <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(139,111,71,0.2)", color: "#8B6F47", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
+                        <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(26,24,20,0.7)", flex: 1 }}>{m.name}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#1A1814", fontWeight: 500 }}>{m.rev}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)", fontWeight: 500 }}>{m.rev}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#22a868", minWidth: "44px", textAlign: "right" }}>↑ {m.ch}</span>
                       </div>
                     ))}
