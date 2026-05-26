@@ -39,32 +39,32 @@ function Section({
 
 const card = {
   background: "#151513",
-  border: "1px solid rgba(194,165,122,0.18)",
+  border: "1px solid rgba(245,197,107,0.18)",
 };
 
-const cardHover = "hover:border-[rgba(194,165,122,0.35)] transition-colors duration-300 cursor-default";
+const cardHover = "hover:border-[rgba(245,197,107,0.35)] transition-colors duration-300 cursor-default";
 
 const iconBox = {
-  background: "rgba(194,165,122,0.08)",
-  border: "1px solid rgba(194,165,122,0.18)",
+  background: "rgba(245,197,107,0.08)",
+  border: "1px solid rgba(245,197,107,0.18)",
 };
 
 const h2Style = {
   fontFamily: '"Bodoni Moda", Georgia, serif',
   fontWeight: 400,
-  color: "#E7DED4",
+  color: "#FBF6EC",
   letterSpacing: "0.01em",
 };
 
 const bodyText = {
-  color: "rgba(231,222,212,0.6)",
+  color: "rgba(251,246,236,0.82)",
   fontWeight: 300,
   lineHeight: 1.7,
   fontFamily: "Inter, sans-serif",
 };
 
 const labelStyle = {
-  color: "#C2A57A",
+  color: "#F5C56B",
   fontSize: "10px" as const,
   fontWeight: 500,
   letterSpacing: "0.2em",
@@ -86,7 +86,7 @@ export function HomePage() {
           className="border-b"
           style={{
             background: "rgba(21,21,19,0.95)",
-            borderColor: "rgba(194,165,122,0.12)",
+            borderColor: "rgba(245,197,107,0.12)",
           }}
         >
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
@@ -94,22 +94,22 @@ export function HomePage() {
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{
-                  background: "rgba(194,165,122,0.1)",
-                  border: "1px solid rgba(194,165,122,0.25)",
+                  background: "rgba(245,197,107,0.1)",
+                  border: "1px solid rgba(245,197,107,0.25)",
                 }}
               >
-                <Icon name="Waves" size={16} style={{ color: "#C2A57A" }} />
+                <Icon name="Waves" size={16} style={{ color: "#F5C56B" }} />
               </div>
               <span
                 className="text-[15px] tracking-wide"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
-                  color: "#E7DED4",
+                  color: "#FBF6EC",
                   letterSpacing: "0.08em",
                 }}
               >
-                SALES<span style={{ color: "#C2A57A" }}>FLOW</span>
+                SALES<span style={{ color: "#F5C56B" }}>FLOW</span>
               </span>
             </a>
 
@@ -120,7 +120,7 @@ export function HomePage() {
                     key={item}
                     href="#"
                     className="px-4 py-2 text-[13px] rounded-lg transition-all duration-200"
-                    style={{ color: "rgba(231,222,212,0.55)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+                    style={{ color: "rgba(251,246,236,0.78)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                   >
                     {item}
                   </a>
@@ -133,7 +133,7 @@ export function HomePage() {
                 href="#cta"
                 className="hidden sm:inline-flex items-center gap-2"
                 style={{
-                  background: "#C2A57A",
+                  background: "#F5C56B",
                   color: "#151513",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: 500,
@@ -149,7 +149,7 @@ export function HomePage() {
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="lg:hidden p-2 transition-colors"
-                style={{ color: "rgba(231,222,212,0.55)" }}
+                style={{ color: "rgba(251,246,236,0.78)" }}
               >
                 <Icon name={menuOpen ? "X" : "Menu"} size={20} />
               </button>
@@ -163,7 +163,7 @@ export function HomePage() {
             className="border-b px-5 py-4"
             style={{
               background: "rgba(21,21,19,0.98)",
-              borderColor: "rgba(194,165,122,0.12)",
+              borderColor: "rgba(245,197,107,0.12)",
             }}
           >
             {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
@@ -173,7 +173,7 @@ export function HomePage() {
                   href="#"
                   onClick={() => setMenuOpen(false)}
                   className="block px-3 py-2.5 text-[14px] transition-colors"
-                  style={{ color: "rgba(231,222,212,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+                  style={{ color: "rgba(251,246,236,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                 >
                   {item}
                 </a>
@@ -184,7 +184,7 @@ export function HomePage() {
               onClick={() => setMenuOpen(false)}
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px]"
               style={{
-                background: "#C2A57A",
+                background: "#F5C56B",
                 color: "#151513",
                 fontFamily: "Inter, sans-serif",
                 fontWeight: 500,
@@ -228,7 +228,7 @@ export function HomePage() {
               className="max-w-2xl"
             >
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
-                <div style={{ width: "40px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+                <div style={{ width: "40px", height: "1px", background: "#F5C56B", opacity: 0.5 }} />
                 <span style={labelStyle}>Речевая аналитика и CRM-интеграции</span>
               </motion.div>
 
@@ -238,19 +238,19 @@ export function HomePage() {
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
-                  color: "#E7DED4",
+                  color: "#FBF6EC",
                   letterSpacing: "-0.01em",
                 }}
               >
                 Ваши продажи
                 <br />
-                <span style={{ color: "#C2A57A" }}>под контролем</span>
+                <span style={{ color: "#F5C56B" }}>под контролем</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
                 className="text-[16px] mb-9 max-w-lg"
-                style={{ color: "rgba(231,222,212,0.6)", fontFamily: "Inter, sans-serif", fontWeight: 300, lineHeight: 1.75 }}
+                style={{ color: "rgba(251,246,236,0.6)", fontFamily: "Inter, sans-serif", fontWeight: 300, lineHeight: 1.75 }}
               >
                 SalesFlow анализирует каждый звонок, находит точки роста и
                 помогает вашей команде продавать больше каждый день.
@@ -261,7 +261,7 @@ export function HomePage() {
                   href="#cta"
                   className="inline-flex items-center gap-2"
                   style={{
-                    background: "#C2A57A",
+                    background: "#F5C56B",
                     color: "#151513",
                     borderRadius: "2px",
                     letterSpacing: "0.08em",
@@ -275,7 +275,7 @@ export function HomePage() {
                   <Icon name="ArrowRight" size={14} />
                 </a>
               </motion.div>
-              <motion.p variants={fadeUp} className="mt-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", letterSpacing: "0.06em", color: "rgba(231,222,212,0.3)", fontWeight: 400 }}>
+              <motion.p variants={fadeUp} className="mt-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.3)", fontWeight: 400 }}>
                 нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
@@ -307,7 +307,7 @@ export function HomePage() {
                       className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
                       style={iconBox}
                     >
-                      <Icon name={item.icon} size={18} style={{ color: "#C2A57A" }} />
+                      <Icon name={item.icon} size={18} style={{ color: "#F5C56B" }} />
                     </div>
                     <div>
                       <div
@@ -316,13 +316,13 @@ export function HomePage() {
                           fontFamily: '"Bodoni Moda", Georgia, serif',
                           fontWeight: 400,
                           fontSize: "28px",
-                          color: "#E7DED4",
+                          color: "#FBF6EC",
                           letterSpacing: "-0.01em",
                         }}
                       >
                         {item.num}
                       </div>
-                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(194,165,122,0.6)", textTransform: "none" as const }}>
+                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(245,197,107,0.6)", textTransform: "none" as const }}>
                         {item.label}
                       </div>
                     </div>
@@ -339,9 +339,9 @@ export function HomePage() {
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+                  <div style={{ width: "32px", height: "1px", background: "#F5C56B", opacity: 0.5 }} />
                   <span style={labelStyle}>Платформа</span>
-                  <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+                  <div style={{ width: "32px", height: "1px", background: "#F5C56B", opacity: 0.5 }} />
                 </div>
                 <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
                   Всё в одном окне
@@ -365,9 +365,9 @@ export function HomePage() {
                     height: "820px",
                     top: "0px",
                     left: "0px",
-                    background: "#E7DED4",
-                    border: "1px solid rgba(231,222,212,0.2)",
-                    boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(231,222,212,0.08)",
+                    background: "#FBF6EC",
+                    border: "1px solid rgba(251,246,236,0.2)",
+                    boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(251,246,236,0.08)",
                     zIndex: 1,
                   }}
                 >
@@ -517,9 +517,9 @@ export function HomePage() {
                     width: "38%",
                     top: "320px",
                     right: "-3%",
-                    background: "#E7DED4",
-                    border: "1px solid rgba(231,222,212,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(231,222,212,0.1)",
+                    background: "#FBF6EC",
+                    border: "1px solid rgba(251,246,236,0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
                     zIndex: 21,
                   }}
                 >
@@ -557,9 +557,9 @@ export function HomePage() {
                     width: "34%",
                     bottom: "100px",
                     left: "-3%",
-                    background: "#E7DED4",
-                    border: "1px solid rgba(231,222,212,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(231,222,212,0.1)",
+                    background: "#FBF6EC",
+                    border: "1px solid rgba(251,246,236,0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
                     zIndex: 20,
                   }}
                 >
@@ -573,7 +573,7 @@ export function HomePage() {
                   </div>
                   <div className="flex items-center gap-3 mb-5">
                     <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "#8B6F47" }}>
-                      <Icon name="Play" size={12} style={{ color: "#E7DED4" }} />
+                      <Icon name="Play" size={12} style={{ color: "#FBF6EC" }} />
                     </div>
                     <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(26,24,20,0.55)" }}>02:37 / 05:21</span>
                   </div>
@@ -592,9 +592,9 @@ export function HomePage() {
                     width: "32%",
                     top: "500px",
                     left: "34%",
-                    background: "#E7DED4",
-                    border: "1px solid rgba(231,222,212,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(231,222,212,0.1)",
+                    background: "#FBF6EC",
+                    border: "1px solid rgba(251,246,236,0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
                     zIndex: 22,
                   }}
                 >
@@ -641,9 +641,9 @@ export function HomePage() {
                     width: "42%",
                     bottom: "20px",
                     left: "29%",
-                    background: "#E7DED4",
-                    border: "1px solid rgba(231,222,212,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(231,222,212,0.1)",
+                    background: "#FBF6EC",
+                    border: "1px solid rgba(251,246,236,0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(251,246,236,0.1)",
                     zIndex: 23,
                   }}
                 >
@@ -671,7 +671,7 @@ export function HomePage() {
                         {/* Audio control */}
                         <div className="flex items-center gap-1.5">
                           <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#8B6F47" }}>
-                            <Icon name="Play" size={8} style={{ color: "#E7DED4" }} />
+                            <Icon name="Play" size={8} style={{ color: "#FBF6EC" }} />
                           </button>
                           {/* Mini waveform */}
                           <div className="flex items-center gap-[1px] flex-1" style={{ height: "14px" }}>
@@ -695,9 +695,9 @@ export function HomePage() {
                     width: "36%",
                     bottom: "80px",
                     right: "1%",
-                    background: "#E7DED4",
-                    border: "1px solid rgba(231,222,212,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(231,222,212,0.1)",
+                    background: "#FBF6EC",
+                    border: "1px solid rgba(251,246,236,0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(251,246,236,0.1)",
                     zIndex: 25,
                   }}
                 >
@@ -734,7 +734,7 @@ export function HomePage() {
         {/* ═══ FOOTER ═══ */}
         <footer
           className="py-10 px-5"
-          style={{ borderTop: "1px solid rgba(194,165,122,0.1)", background: "#151513" }}
+          style={{ borderTop: "1px solid rgba(245,197,107,0.1)", background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -742,11 +742,11 @@ export function HomePage() {
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center"
                   style={{
-                    background: "rgba(194,165,122,0.1)",
-                    border: "1px solid rgba(194,165,122,0.25)",
+                    background: "rgba(245,197,107,0.1)",
+                    border: "1px solid rgba(245,197,107,0.25)",
                   }}
                 >
-                  <Icon name="Waves" size={14} style={{ color: "#C2A57A" }} />
+                  <Icon name="Waves" size={14} style={{ color: "#F5C56B" }} />
                 </div>
                 <span
                   style={{
@@ -754,10 +754,10 @@ export function HomePage() {
                     fontWeight: 400,
                     fontSize: "14px",
                     letterSpacing: "0.08em",
-                    color: "#E7DED4",
+                    color: "#FBF6EC",
                   }}
                 >
-                  SALES<span style={{ color: "#C2A57A" }}>FLOW</span>
+                  SALES<span style={{ color: "#F5C56B" }}>FLOW</span>
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
@@ -766,13 +766,13 @@ export function HomePage() {
                     key={link}
                     href="#"
                     className="text-[12px] transition-colors"
-                    style={{ color: "rgba(231,222,212,0.4)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+                    style={{ color: "rgba(251,246,236,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                   >
                     {link}
                   </a>
                 ))}
               </div>
-              <p style={{ fontSize: "11px", color: "rgba(231,222,212,0.3)", fontFamily: "Inter, sans-serif" }}>
+              <p style={{ fontSize: "11px", color: "rgba(251,246,236,0.3)", fontFamily: "Inter, sans-serif" }}>
                 © 2025 SalesFlow. Все права защищены.
               </p>
             </div>
@@ -785,7 +785,7 @@ export function HomePage() {
         href="#cta"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
         style={{
-          background: "#C2A57A",
+          background: "#F5C56B",
           color: "#151513",
           fontFamily: "Inter, sans-serif",
           fontWeight: 500,
