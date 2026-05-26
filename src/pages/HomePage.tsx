@@ -597,40 +597,104 @@ export function HomePage() {
 
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
-                  className="absolute rounded-2xl p-5"
+                  className="absolute rounded-2xl p-6"
                   style={{
                     width: "38%",
                     top: "320px",
                     right: "-3%",
-                    background: "#FBF6EC",
-                    border: "1px solid rgba(251,246,236,0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
+                    background: "linear-gradient(135deg, #FFFCF5 0%, #FBF6EC 100%)",
+                    border: "1px solid rgba(212,176,116,0.45)",
+                    boxShadow:
+                      "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.25), 0 0 32px rgba(122,168,224,0.18)",
                     zIndex: 21,
                   }}
                 >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <Icon name="Sparkles" size={16} style={{ color: "#8B6F47" }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#1A1814", fontWeight: 500 }}>AI-Инсайты</span>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="flex items-center justify-center rounded-lg"
+                        style={{
+                          width: "28px",
+                          height: "28px",
+                          background: "linear-gradient(135deg, #7AA8E0 0%, #4A7BC4 100%)",
+                          boxShadow: "0 4px 10px rgba(74,123,196,0.4)",
+                        }}
+                      >
+                        <Icon name="Sparkles" size={15} style={{ color: "#FFFFFF" }} />
+                      </div>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "#0F0D0A", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
+                    </div>
+                    <span
+                      className="px-2 py-0.5 rounded-md"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "10px",
+                        color: "#4A7BC4",
+                        fontWeight: 700,
+                        background: "rgba(122,168,224,0.15)",
+                        border: "1px solid rgba(122,168,224,0.35)",
+                        letterSpacing: "0.05em",
+                      }}
+                    >
+                      LIVE
+                    </span>
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.5)", marginBottom: "18px" }}>Рекомендации для менеджера</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(15,13,10,0.6)", marginBottom: "18px", fontWeight: 500 }}>Рекомендации для менеджера</div>
                   <div className="flex items-center gap-5">
                     <div className="flex-1">
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(26,24,20,0.7)", lineHeight: 1.55, marginBottom: "14px" }}>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#0F0D0A", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
                         Клиенты чаще всего возражают на этапе обсуждения цены.
                       </p>
-                      <button style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#8B6F47", padding: "7px 14px", border: "1px solid rgba(139,111,71,0.3)", borderRadius: "8px", background: "transparent" }}>
+                      <button
+                        style={{
+                          fontFamily: "Inter, sans-serif",
+                          fontSize: "12px",
+                          color: "#FFFFFF",
+                          padding: "9px 16px",
+                          border: "none",
+                          borderRadius: "9px",
+                          background: "linear-gradient(135deg, #5A8AD0 0%, #3A6BB8 100%)",
+                          fontWeight: 600,
+                          boxShadow: "0 6px 14px rgba(74,123,196,0.35)",
+                          cursor: "pointer",
+                        }}
+                      >
                         Подробнее →
                       </button>
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="relative">
-                        <svg width="100" height="100" viewBox="0 0 100 100">
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(139,111,71,0.15)" strokeWidth="8"/>
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#8B6F47" strokeWidth="8" strokeDasharray="203 251" strokeDashoffset="63" strokeLinecap="round" transform="rotate(-90 50 50)"/>
+                        <svg width="118" height="118" viewBox="0 0 118 118">
+                          <defs>
+                            <linearGradient id="aiGauge" x1="0" y1="0" x2="1" y2="1">
+                              <stop offset="0%" stopColor="#7AA8E0"/>
+                              <stop offset="55%" stopColor="#4A7BC4"/>
+                              <stop offset="100%" stopColor="#2E5BA8"/>
+                            </linearGradient>
+                            <filter id="aiGlow" x="-30%" y="-30%" width="160%" height="160%">
+                              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                              <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                              </feMerge>
+                            </filter>
+                          </defs>
+                          <circle cx="59" cy="59" r="48" fill="none" stroke="rgba(74,123,196,0.12)" strokeWidth="11"/>
+                          <circle
+                            cx="59" cy="59" r="48"
+                            fill="none"
+                            stroke="url(#aiGauge)"
+                            strokeWidth="11"
+                            strokeDasharray="244 301"
+                            strokeDashoffset="0"
+                            strokeLinecap="round"
+                            transform="rotate(-90 59 59)"
+                            filter="url(#aiGlow)"
+                          />
                         </svg>
-                        <div className="absolute inset-0 flex items-center justify-center" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: "#1A1814" }}>81%</div>
+                        <div className="absolute inset-0 flex items-center justify-center" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "30px", color: "#0F0D0A", fontWeight: 700, letterSpacing: "-0.02em" }}>81%</div>
                       </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", textAlign: "center", marginTop: "6px", maxWidth: "100px", lineHeight: 1.3 }}>Вероятность успешной сделки</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#4A7BC4", textAlign: "center", marginTop: "8px", maxWidth: "110px", lineHeight: 1.3, fontWeight: 600 }}>Вероятность успешной сделки</span>
                     </div>
                   </div>
                 </div>
