@@ -602,10 +602,10 @@ export function HomePage() {
                     width: "38%",
                     top: "320px",
                     right: "-3%",
-                    background: "linear-gradient(135deg, #FFFCF5 0%, #FBF6EC 100%)",
-                    border: "1px solid rgba(212,176,116,0.45)",
+                    background: "linear-gradient(135deg, #FFFCF5 0%, #F7EFE0 100%)",
+                    border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
-                      "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.25), 0 0 32px rgba(122,168,224,0.18)",
+                      "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
                     zIndex: 21,
                   }}
                 >
@@ -614,48 +614,49 @@ export function HomePage() {
                       <div
                         className="flex items-center justify-center rounded-lg"
                         style={{
-                          width: "28px",
-                          height: "28px",
-                          background: "linear-gradient(135deg, #7AA8E0 0%, #4A7BC4 100%)",
-                          boxShadow: "0 4px 10px rgba(74,123,196,0.4)",
+                          width: "30px",
+                          height: "30px",
+                          background: "linear-gradient(135deg, #E8C988 0%, #B8893F 60%, #6B4A1F 100%)",
+                          boxShadow: "0 4px 12px rgba(107,74,31,0.4), inset 0 1px 0 rgba(255,240,200,0.6)",
                         }}
                       >
-                        <Icon name="Sparkles" size={15} style={{ color: "#FFFFFF" }} />
+                        <Icon name="Sparkles" size={16} style={{ color: "#FFFCF0" }} />
                       </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "#0F0D0A", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#1F1A12", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
                     </div>
                     <span
-                      className="px-2 py-0.5 rounded-md"
+                      className="px-2.5 py-1 rounded-md"
                       style={{
                         fontFamily: "Inter, sans-serif",
                         fontSize: "10px",
-                        color: "#4A7BC4",
+                        color: "#2F4F3A",
                         fontWeight: 700,
-                        background: "rgba(122,168,224,0.15)",
-                        border: "1px solid rgba(122,168,224,0.35)",
-                        letterSpacing: "0.05em",
+                        background: "linear-gradient(135deg, rgba(143,170,140,0.25) 0%, rgba(99,128,98,0.18) 100%)",
+                        border: "1px solid rgba(99,128,98,0.45)",
+                        letterSpacing: "0.08em",
                       }}
                     >
                       LIVE
                     </span>
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(15,13,10,0.6)", marginBottom: "18px", fontWeight: 500 }}>Рекомендации для менеджера</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(107,82,50,0.85)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
                   <div className="flex items-center gap-5">
                     <div className="flex-1">
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#0F0D0A", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#1F1A12", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
                         Клиенты чаще всего возражают на этапе обсуждения цены.
                       </p>
                       <button
                         style={{
                           fontFamily: "Inter, sans-serif",
                           fontSize: "12px",
-                          color: "#FFFFFF",
-                          padding: "9px 16px",
-                          border: "none",
+                          color: "#FFFCF0",
+                          padding: "9px 18px",
+                          border: "1px solid rgba(255,240,200,0.3)",
                           borderRadius: "9px",
-                          background: "linear-gradient(135deg, #5A8AD0 0%, #3A6BB8 100%)",
+                          background: "linear-gradient(135deg, #4A3520 0%, #2A1F12 100%)",
                           fontWeight: 600,
-                          boxShadow: "0 6px 14px rgba(74,123,196,0.35)",
+                          boxShadow: "0 6px 14px rgba(42,31,18,0.45), inset 0 1px 0 rgba(255,240,200,0.15)",
+                          letterSpacing: "0.02em",
                           cursor: "pointer",
                         }}
                       >
@@ -664,37 +665,40 @@ export function HomePage() {
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="relative">
-                        <svg width="118" height="118" viewBox="0 0 118 118">
+                        <svg width="120" height="120" viewBox="0 0 120 120">
                           <defs>
                             <linearGradient id="aiGauge" x1="0" y1="0" x2="1" y2="1">
-                              <stop offset="0%" stopColor="#7AA8E0"/>
-                              <stop offset="55%" stopColor="#4A7BC4"/>
-                              <stop offset="100%" stopColor="#2E5BA8"/>
+                              <stop offset="0%" stopColor="#F3D89A"/>
+                              <stop offset="35%" stopColor="#C99A4E"/>
+                              <stop offset="70%" stopColor="#7A4A2A"/>
+                              <stop offset="100%" stopColor="#5C2F1E"/>
                             </linearGradient>
                             <filter id="aiGlow" x="-30%" y="-30%" width="160%" height="160%">
-                              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                              <feGaussianBlur stdDeviation="2" result="blur"/>
                               <feMerge>
                                 <feMergeNode in="blur"/>
                                 <feMergeNode in="SourceGraphic"/>
                               </feMerge>
                             </filter>
                           </defs>
-                          <circle cx="59" cy="59" r="48" fill="none" stroke="rgba(74,123,196,0.12)" strokeWidth="11"/>
+                          <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(107,82,50,0.14)" strokeWidth="11"/>
                           <circle
-                            cx="59" cy="59" r="48"
+                            cx="60" cy="60" r="48"
                             fill="none"
                             stroke="url(#aiGauge)"
                             strokeWidth="11"
                             strokeDasharray="244 301"
                             strokeDashoffset="0"
                             strokeLinecap="round"
-                            transform="rotate(-90 59 59)"
+                            transform="rotate(-90 60 60)"
                             filter="url(#aiGlow)"
                           />
                         </svg>
-                        <div className="absolute inset-0 flex items-center justify-center" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "30px", color: "#0F0D0A", fontWeight: 700, letterSpacing: "-0.02em" }}>81%</div>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                          <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "30px", color: "#1F1A12", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1 }}>81%</span>
+                        </div>
                       </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#4A7BC4", textAlign: "center", marginTop: "8px", maxWidth: "110px", lineHeight: 1.3, fontWeight: 600 }}>Вероятность успешной сделки</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#6B4A1F", textAlign: "center", marginTop: "8px", maxWidth: "120px", lineHeight: 1.3, fontWeight: 600, letterSpacing: "0.02em" }}>Вероятность успешной сделки</span>
                     </div>
                   </div>
                 </div>
