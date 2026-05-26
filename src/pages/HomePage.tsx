@@ -436,10 +436,29 @@ export function HomePage() {
                           </div>
                           <div className="flex-1">
                             <svg width="100%" height="140" viewBox="0 0 400 100" preserveAspectRatio="none">
-                              <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6B5232" stopOpacity="0.3"/><stop offset="100%" stopColor="#6B5232" stopOpacity="0"/></linearGradient></defs>
-                              <path d="M0,80 C40,75 70,60 110,55 C150,50 175,70 220,50 C265,30 305,38 360,18 L400,12 L400,100 L0,100 Z" fill="url(#g1)"/>
-                              <path d="M0,80 C40,75 70,60 110,55 C150,50 175,70 220,50 C265,30 305,38 360,18 L400,12" fill="none" stroke="#6B5232" strokeWidth="2.4" strokeLinecap="round"/>
-                              <circle cx="220" cy="50" r="4" fill="#6B5232"/>
+                              <defs>
+                                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0%" stopColor="#6B5232" stopOpacity="0.32"/>
+                                  <stop offset="100%" stopColor="#6B5232" stopOpacity="0"/>
+                                </linearGradient>
+                              </defs>
+                              {/* Сетка */}
+                              <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              {/* Заливка под графиком — волнообразный рост */}
+                              <path d="M0,82 C15,78 25,65 40,68 C55,72 65,55 80,48 C95,42 105,60 120,62 C135,64 150,38 170,42 C190,46 205,68 225,55 C245,42 260,28 280,32 C300,36 315,52 335,38 C355,24 370,18 400,15 L400,100 L0,100 Z" fill="url(#g1)"/>
+                              {/* Сама линия */}
+                              <path d="M0,82 C15,78 25,65 40,68 C55,72 65,55 80,48 C95,42 105,60 120,62 C135,64 150,38 170,42 C190,46 205,68 225,55 C245,42 260,28 280,32 C300,36 315,52 335,38 C355,24 370,18 400,15" fill="none" stroke="#6B5232" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+                              {/* Точки данных */}
+                              <circle cx="40" cy="68" r="2.5" fill="#6B5232"/>
+                              <circle cx="80" cy="48" r="2.5" fill="#6B5232"/>
+                              <circle cx="120" cy="62" r="2.5" fill="#6B5232"/>
+                              <circle cx="170" cy="42" r="2.5" fill="#6B5232"/>
+                              <circle cx="225" cy="55" r="2.5" fill="#6B5232"/>
+                              <circle cx="280" cy="32" r="2.5" fill="#6B5232"/>
+                              <circle cx="335" cy="38" r="2.5" fill="#6B5232"/>
+                              <circle cx="400" cy="15" r="4" fill="#6B5232" stroke="#F1E9DE" strokeWidth="2"/>
                             </svg>
                             <div className="flex justify-between mt-2">
                               {["1 Апр","7 Апр","14 Апр","21 Апр","30 Апр"].map(d => <span key={d} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(15,13,10,0.55)", fontWeight: 500 }}>{d}</span>)}
@@ -532,7 +551,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "34%",
-                    bottom: "240px",
+                    bottom: "100px",
                     left: "-3%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
@@ -567,7 +586,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "32%",
-                    top: "400px",
+                    top: "500px",
                     left: "34%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
@@ -579,10 +598,15 @@ export function HomePage() {
                   <div className="flex items-center gap-5">
                     <div className="relative shrink-0">
                       <svg width="110" height="110" viewBox="0 0 110 110">
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(139,111,71,0.12)" strokeWidth="16"/>
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="#8B6F47" strokeWidth="16" strokeDasharray="113 283" strokeDashoffset="71" transform="rotate(-90 55 55)"/>
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(139,111,71,0.5)" strokeWidth="16" strokeDasharray="85 283" strokeDashoffset="-42" transform="rotate(-90 55 55)"/>
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(139,111,71,0.25)" strokeWidth="16" strokeDasharray="56 283" strokeDashoffset="-127" transform="rotate(-90 55 55)"/>
+                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(107,82,50,0.12)" strokeWidth="16"/>
+                        {/* 40% - тёплый коричневый (Old Money) */}
+                        <circle cx="55" cy="55" r="45" fill="none" stroke="#A88B5C" strokeWidth="16" strokeDasharray="113 283" strokeDashoffset="0" transform="rotate(-90 55 55)"/>
+                        {/* 30% - пастельный голубой */}
+                        <circle cx="55" cy="55" r="45" fill="none" stroke="#A8C5D6" strokeWidth="16" strokeDasharray="85 283" strokeDashoffset="-113" transform="rotate(-90 55 55)"/>
+                        {/* 20% - пастельный синий */}
+                        <circle cx="55" cy="55" r="45" fill="none" stroke="#8FA8C9" strokeWidth="16" strokeDasharray="57 283" strokeDashoffset="-198" transform="rotate(-90 55 55)"/>
+                        {/* 10% - пастельный жёлтый */}
+                        <circle cx="55" cy="55" r="45" fill="none" stroke="#E8D5A3" strokeWidth="16" strokeDasharray="28 283" strokeDashoffset="-255" transform="rotate(-90 55 55)"/>
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)" }}>Всего</span>
@@ -590,11 +614,16 @@ export function HomePage() {
                       </div>
                     </div>
                     <div className="space-y-2.5 flex-1">
-                      {[["Холодные звонки","40%",1],["Рекомендации","30%",0.5],["Партнёры","20%",0.28],["Другое","10%",0.15]].map(([l,v,o]) => (
+                      {[
+                        ["Холодные звонки","40%","#A88B5C"],
+                        ["Рекомендации","30%","#A8C5D6"],
+                        ["Партнёры","20%","#8FA8C9"],
+                        ["Другое","10%","#E8D5A3"],
+                      ].map(([l,v,c]) => (
                         <div key={String(l)} className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full shrink-0" style={{ background: "#8B6F47", opacity: Number(o) }}/>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.6)", flex: 1 }}>{l}</span>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1814", fontWeight: 500 }}>{v}</span>
+                          <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: String(c) }}/>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.7)", flex: 1, fontWeight: 500 }}>{l}</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1814", fontWeight: 600 }}>{v}</span>
                         </div>
                       ))}
                     </div>
@@ -661,7 +690,7 @@ export function HomePage() {
                   style={{
                     width: "36%",
                     bottom: "80px",
-                    right: "-3%",
+                    right: "1%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(231,222,212,0.1)",
