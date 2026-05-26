@@ -291,32 +291,40 @@ export function HomePage() {
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
                 {[
-                  { num: "+30%", label: "Рост конверсии в среднем" },
-                  { num: "+25%", label: "Увеличение выручки у клиентов" },
-                  { num: "-40%", label: "Сокращение потерь сделок" },
-                  { num: "100%", label: "Звонков под контролем 24/7" },
-                  { num: "3–5x", label: "Быстрая окупаемость в среднем" },
+                  { icon: "TrendingUp", num: "+30%", label: "Рост конверсии в среднем" },
+                  { icon: "DollarSign", num: "+25%", label: "Увеличение выручки у клиентов" },
+                  { icon: "TrendingDown", num: "-40%", label: "Сокращение потерь сделок" },
+                  { icon: "Phone", num: "100%", label: "Звонков под контролем 24/7" },
+                  { icon: "Zap", num: "3–5x", label: "Быстрая окупаемость в среднем" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className="flex flex-col items-start p-5"
-                    style={card}
+                    className="flex items-start gap-4 p-5"
+                    style={{ background: "#151513", border: "none" }}
                   >
                     <div
-                      className="leading-none mb-2"
-                      style={{
-                        fontFamily: '"Bodoni Moda", Georgia, serif',
-                        fontWeight: 400,
-                        fontSize: "44px",
-                        color: "#FBF6EC",
-                        letterSpacing: "-0.02em",
-                      }}
+                      className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
+                      style={iconBox}
                     >
-                      {item.num}
+                      <Icon name={item.icon} size={18} style={{ color: "#D4B074" }} />
                     </div>
-                    <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(212,176,116,0.6)", textTransform: "none" as const }}>
-                      {item.label}
+                    <div>
+                      <div
+                        className="leading-none mb-2"
+                        style={{
+                          fontFamily: '"Bodoni Moda", Georgia, serif',
+                          fontWeight: 400,
+                          fontSize: "36px",
+                          color: "#FBF6EC",
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {item.num}
+                      </div>
+                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(212,176,116,0.6)", textTransform: "none" as const }}>
+                        {item.label}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
