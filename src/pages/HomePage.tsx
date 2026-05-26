@@ -1019,7 +1019,9 @@ export function HomePage() {
                     boxShadow: analysisHover
                       ? "0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,176,116,0.35), 0 0 40px rgba(212,176,116,0.45)"
                       : "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    transition: "background 0.5s ease 0.9s, border-color 0.5s ease 0.9s, box-shadow 0.5s ease 0.9s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    transition: analysisHover
+                      ? "background 0.5s ease 0.9s, border-color 0.5s ease 0.9s, box-shadow 0.5s ease 0.9s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)"
+                      : "background 0s, border-color 0s, box-shadow 0s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: analysisHover ? 200 : 20,
                   }}
                 >
@@ -1202,7 +1204,9 @@ export function HomePage() {
                   style={{
                     background: "rgba(8,6,3,0.62)",
                     opacity: analysisHover ? 1 : 0,
-                    transition: "opacity 0.6s ease 0.8s",
+                    transition: analysisHover
+                      ? "opacity 0.6s ease 0.8s"
+                      : "opacity 0s",
                     zIndex: 150,
                     borderRadius: "16px",
                   }}
@@ -1216,7 +1220,9 @@ export function HomePage() {
                     width: "55%",
                     opacity: analysisHover ? 1 : 0,
                     transform: analysisHover ? "translateY(0)" : "translateY(8px)",
-                    transition: "opacity 0.5s ease 1s, transform 0.6s ease 1s",
+                    transition: analysisHover
+                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
+                      : "opacity 0s, transform 0s",
                     zIndex: 180,
                   }}
                 >
