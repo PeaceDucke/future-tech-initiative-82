@@ -735,7 +735,7 @@ export function HomePage() {
 
                 {/* ── BIG MAIN DASHBOARD ── */}
                 <div
-                  className="absolute rounded-2xl overflow-hidden"
+                  className="absolute rounded-2xl overflow-hidden db-main"
                   style={{
                     width: "100%",
                     height: "820px",
@@ -888,7 +888,7 @@ export function HomePage() {
 
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
-                  className="absolute rounded-2xl p-6"
+                  className="absolute rounded-2xl p-6 db-card"
                   style={{
                     width: "38%",
                     top: "320px",
@@ -969,7 +969,7 @@ export function HomePage() {
 
                 {/* ── CARD: Анализ разговора (слева) ── */}
                 <div
-                  className="absolute rounded-2xl p-5"
+                  className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "34%",
                     bottom: "100px",
@@ -1004,7 +1004,7 @@ export function HomePage() {
 
                 {/* ── CARD: Источники сделок (центр) ── */}
                 <div
-                  className="absolute rounded-2xl p-5"
+                  className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "32%",
                     top: "465px",
@@ -1053,7 +1053,7 @@ export function HomePage() {
 
                 {/* ── CARD: Последние звонки (центр-низ) ── */}
                 <div
-                  className="absolute rounded-2xl p-5"
+                  className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "42%",
                     bottom: "20px",
@@ -1107,7 +1107,7 @@ export function HomePage() {
 
                 {/* ── CARD: Топ менеджеров (справа) ── */}
                 <div
-                  className="absolute rounded-2xl p-5"
+                  className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "36%",
                     bottom: "80px",
