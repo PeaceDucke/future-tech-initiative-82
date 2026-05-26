@@ -143,19 +143,18 @@ export function HomePage() {
       setAnalysisTyped("");
       return;
     }
+    let intervalId: ReturnType<typeof setInterval> | null = null;
     const startDelay = setTimeout(() => {
       let i = 0;
-      const id = setInterval(() => {
+      intervalId = setInterval(() => {
         i++;
         setAnalysisTyped(analysisFullText.slice(0, i));
-        if (i >= analysisFullText.length) clearInterval(id);
+        if (i >= analysisFullText.length && intervalId) clearInterval(intervalId);
       }, 22);
-      (startDelay as unknown as { _id?: ReturnType<typeof setInterval> })._id = id;
     }, 500);
     return () => {
       clearTimeout(startDelay);
-      const id = (startDelay as unknown as { _id?: ReturnType<typeof setInterval> })._id;
-      if (id) clearInterval(id);
+      if (intervalId) clearInterval(intervalId);
     };
   }, [analysisHover]);
 
