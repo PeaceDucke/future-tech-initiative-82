@@ -89,30 +89,30 @@ export function HomePage() {
   const [accHue, setAccHue] = useState(0);
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc">(null);
 
-  // Базовые HSL для бежевых фонов (#FBF6EC ≈ hsl(40,71%,95%))
+  // Слайдер 1 — основной белый/кремовый фон (#FBF6EC, #FFFCF5)
   const bgVars = (() => {
     const h = (40 + bgHue + 360) % 360;
     return {
       "--db-bg-1": `hsl(${h}, 71%, 95%)`,
-      "--db-bg-2": `hsl(${h}, 38%, 90%)`,
       "--db-bg-3": `hsl(${h}, 100%, 98%)`,
-      "--db-bg-4": `hsl(${h}, 65%, 92%)`,
       "--db-bg-rgb-1": hslToRgbCsv(h, 71, 95),
     } as React.CSSProperties;
   })();
 
-  // Базовые HSL для коричневых акцентов (var(--db-acc-1) ≈ hsl(33,36%,31%))
+  // Слайдер 2 — светло-коричневые акцент-фоны + все коричневые акценты
   const accVars = (() => {
     const h = (33 + accHue + 360) % 360;
     return {
-      "--db-acc-1": `hsl(${h}, 36%, 31%)`, // var(--db-acc-1)
-      "--db-acc-2": `hsl(${h}, 32%, 41%)`, // var(--db-acc-2)
-      "--db-acc-3": `hsl(${h}, 17%, 11%)`, // var(--db-acc-3) (тёмный текст)
-      "--db-acc-4": `hsl(${h}, 22%, 9%)`,  // var(--db-acc-4)
-      "--db-acc-5": `hsl(${h}, 56%, 65%)`, // #D4B074 (золотой)
-      "--db-acc-rgb-1": `${hslToRgbCsv(h, 36, 31)}`, // 107,82,50
-      "--db-acc-rgb-2": `${hslToRgbCsv(h, 32, 41)}`, // 139,111,71
-      "--db-acc-rgb-3": `${hslToRgbCsv(h, 56, 65)}`, // 212,176,116
+      "--db-bg-2": `hsl(${h}, 38%, 90%)`,
+      "--db-bg-4": `hsl(${h}, 65%, 92%)`,
+      "--db-acc-1": `hsl(${h}, 36%, 31%)`,
+      "--db-acc-2": `hsl(${h}, 32%, 41%)`,
+      "--db-acc-3": `hsl(${h}, 17%, 11%)`,
+      "--db-acc-4": `hsl(${h}, 22%, 9%)`,
+      "--db-acc-5": `hsl(${h}, 56%, 65%)`,
+      "--db-acc-rgb-1": hslToRgbCsv(h, 36, 31),
+      "--db-acc-rgb-2": hslToRgbCsv(h, 32, 41),
+      "--db-acc-rgb-3": hslToRgbCsv(h, 56, 65),
     } as React.CSSProperties;
   })();
 
@@ -429,8 +429,8 @@ export function HomePage() {
                 </div>
 
                 {[
-                  { id: "bg" as const, label: "Фон дашборда", value: bgHue, set: setBgHue, baseH: 40, baseS: 71, baseL: 90 },
-                  { id: "acc" as const, label: "Цвет акцентов", value: accHue, set: setAccHue, baseH: 33, baseS: 36, baseL: 45 },
+                  { id: "bg" as const, label: "Основной фон", value: bgHue, set: setBgHue, baseH: 40, baseS: 60, baseL: 88 },
+                  { id: "acc" as const, label: "Акценты и детали", value: accHue, set: setAccHue, baseH: 33, baseS: 40, baseL: 50 },
                 ].map((s, idx) => (
                   <div key={s.id} className={idx === 0 ? "mb-5" : ""}>
                     <div className="flex items-center justify-between mb-2">
