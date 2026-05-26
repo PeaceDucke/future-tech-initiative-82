@@ -158,6 +158,41 @@ export function HomePage() {
     };
   }, [analysisHover]);
 
+  // Hover на карточке "AI-Инсайты" — печатающаяся подсказка
+  const [insightsHover, setInsightsHover] = useState(false);
+  const [insightsTyped, setInsightsTyped] = useState("");
+  const insightsFullText = `AI автоматически находит
+скрытые точки потери прибыли.
+
+Например:
+— клиенты уходят после обсуждения цены
+— менеджеры перебивают клиента
+— лиды из Instagram закрываются хуже
+— сделки теряются после второго звонка
+
+Система превращает хаотичные данные
+в конкретные рекомендации для роста.`;
+
+  useEffect(() => {
+    if (!insightsHover) {
+      setInsightsTyped("");
+      return;
+    }
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    const startDelay = setTimeout(() => {
+      let i = 0;
+      intervalId = setInterval(() => {
+        i++;
+        setInsightsTyped(insightsFullText.slice(0, i));
+        if (i >= insightsFullText.length && intervalId) clearInterval(intervalId);
+      }, 28);
+    }, 1000);
+    return () => {
+      clearTimeout(startDelay);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [insightsHover]);
+
   // Hover на карточке "Источники сделок" — печатающаяся подсказка
   const [sourcesHover, setSourcesHover] = useState(false);
   const [sourcesTyped, setSourcesTyped] = useState("");
@@ -955,6 +990,8 @@ export function HomePage() {
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
                   className="absolute rounded-2xl p-6 db-card"
+                  onMouseEnter={() => setInsightsHover(true)}
+                  onMouseLeave={() => setInsightsHover(false)}
                   style={{
                     width: "38%",
                     top: "320px",
@@ -963,6 +1000,8 @@ export function HomePage() {
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
+                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    transform: insightsHover ? "translateY(-6px)" : "translateY(0)",
                     zIndex: 21,
                   }}
                 >
@@ -1361,6 +1400,80 @@ export function HomePage() {
                     >
                       {sourcesTyped}
                       {sourcesHover && sourcesTyped.length < sourcesFullText.length && (
+                        <span
+                          style={{
+                            display: "inline-block",
+                            width: "0.5ch",
+                            color: "#D4B074",
+                            animation: "tw-caret 0.9s steps(1) infinite",
+                          }}
+                        >
+                          ▍
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                {/* ── Overlay затемнения + печатающаяся подсказка для "AI-Инсайты" ── */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "rgba(8,6,3,0.62)",
+                    opacity: insightsHover ? 1 : 0,
+                    transition: insightsHover
+                      ? "opacity 0.6s ease 0.8s"
+                      : "opacity 0s",
+                    zIndex: 150,
+                    borderRadius: "16px",
+                  }}
+                />
+                <div
+                  className="absolute pointer-events-none flex items-start justify-start"
+                  style={{
+                    top: "120px",
+                    left: "4%",
+                    width: "55%",
+                    opacity: insightsHover ? 1 : 0,
+                    transform: insightsHover ? "translateY(0)" : "translateY(8px)",
+                    transition: insightsHover
+                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
+                      : "opacity 0s, transform 0s",
+                    zIndex: 180,
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      fontFamily: '"Bodoni Moda", Georgia, serif',
+                      fontSize: "28px",
+                      lineHeight: 1.5,
+                      letterSpacing: "0.01em",
+                      width: "620px",
+                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span
+                      aria-hidden
+                      style={{
+                        visibility: "hidden",
+                        whiteSpace: "pre-wrap",
+                        display: "block",
+                      }}
+                    >
+                      {insightsFullText}
+                    </span>
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        whiteSpace: "pre-wrap",
+                        color: "#FBF6EC",
+                      }}
+                    >
+                      {insightsTyped}
+                      {insightsHover && insightsTyped.length < insightsFullText.length && (
                         <span
                           style={{
                             display: "inline-block",
