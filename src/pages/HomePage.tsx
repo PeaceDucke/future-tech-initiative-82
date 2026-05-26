@@ -83,40 +83,92 @@ const labelStyle = {
   fontFamily: "Inter, sans-serif",
 };
 
+// Расширенная палитра: t=-100..100 → HSL.
+// t=0 — оригинальный бежевый/коричневый/чёрный (нейтральное положение).
+// Влево от 0: уход в тёмные оттенки → к чёрному на -100.
+// Вправо от 0: уход через насыщенные радужные оттенки → к белому на +100.
+function paletteHSL(t: number, base: { h: number; s: number; l: number }) {
+  if (t === 0) return base;
+  const u = t / 100;
+  if (u < 0) {
+    // -100 (чёрный) → 0 (база)
+    const k = 1 + u; // 0..1
+    return { h: base.h, s: base.s * k, l: base.l * k };
+  }
+  // 0..+100: hue гуляет по кругу, светлота к 95, насыщенность к 80, последние 15% — обесцвечиваем к белому.
+  const hueShift = u * 300; // 0..300°
+  const s = u < 0.85 ? 60 + u * 25 : 80 * (1 - (u - 0.85) / 0.15);
+  const l = base.l + (95 - base.l) * Math.min(u * 1.1, 1);
+  return { h: (base.h + hueShift + 360) % 360, s, l };
+}
+
+function paletteCSS(t: number, base: { h: number; s: number; l: number }) {
+  const { h, s, l } = paletteHSL(t, base);
+  return { hsl: `hsl(${h.toFixed(1)}, ${s.toFixed(1)}%, ${l.toFixed(1)}%)`, rgb: hslToRgbCsv(h, s, l) };
+}
+
+// Подвинуть базу на dl светлоты (для производных оттенков, идущих в ту же сторону)
+function paletteDerived(t: number, base: { h: number; s: number; l: number }, dl: number, ds = 0) {
+  const { h, s, l } = paletteHSL(t, base);
+  const nl = Math.max(0, Math.min(100, l + dl));
+  const ns = Math.max(0, Math.min(100, s + ds));
+  return { hsl: `hsl(${h.toFixed(1)}, ${ns.toFixed(1)}%, ${nl.toFixed(1)}%)`, rgb: hslToRgbCsv(h, ns, nl) };
+}
+
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bgHue, setBgHue] = useState(0);
-  const [accHue, setAccHue] = useState(0);
-  const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc">(null);
+  const [bgT, setBgT] = useState(0);
+  const [accT, setAccT] = useState(0);
+  const [textT, setTextT] = useState(0);
+  const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
 
-  // Слайдер 1 — основной белый/кремовый фон (#FBF6EC, #FFFCF5)
+  // Слайдер 1 — основной светлый фон (#FBF6EC ≈ hsl(40,71%,95%))
+  const bgBase = { h: 40, s: 71, l: 95 };
   const bgVars = (() => {
-    const h = (40 + bgHue + 360) % 360;
+    const main = paletteCSS(bgT, bgBase);
+    const lighter = paletteDerived(bgT, bgBase, 3); // #FFFCF5
     return {
-      "--db-bg-1": `hsl(${h}, 71%, 95%)`,
-      "--db-bg-3": `hsl(${h}, 100%, 98%)`,
-      "--db-bg-rgb-1": hslToRgbCsv(h, 71, 95),
+      "--db-bg-1": main.hsl,
+      "--db-bg-3": lighter.hsl,
+      "--db-bg-rgb-1": main.rgb,
     } as React.CSSProperties;
   })();
 
-  // Слайдер 2 — светло-коричневые акцент-фоны + все коричневые акценты
+  // Слайдер 2 — акценты + светло-коричневые акцент-фоны (#6B5232 ≈ hsl(33,36%,31%))
+  const accBase = { h: 33, s: 36, l: 31 };
   const accVars = (() => {
-    const h = (33 + accHue + 360) % 360;
+    const main = paletteCSS(accT, accBase);
+    // Светлые акцент-фоны строим от той же hue, но повышаем светлоту
+    const bg2 = paletteDerived(accT, accBase, 59, 2);  // ≈ hsl(33,38%,90%) когда t=0
+    const bg4 = paletteDerived(accT, accBase, 61, 29); // ≈ hsl(33,65%,92%)
+    const acc2 = paletteDerived(accT, accBase, 10);    // светлее
+    const acc5 = paletteDerived(accT, accBase, 34, 20);// золотой светлый
     return {
-      "--db-bg-2": `hsl(${h}, 38%, 90%)`,
-      "--db-bg-4": `hsl(${h}, 65%, 92%)`,
-      "--db-acc-1": `hsl(${h}, 36%, 31%)`,
-      "--db-acc-2": `hsl(${h}, 32%, 41%)`,
-      "--db-acc-3": `hsl(${h}, 17%, 11%)`,
-      "--db-acc-4": `hsl(${h}, 22%, 9%)`,
-      "--db-acc-5": `hsl(${h}, 56%, 65%)`,
-      "--db-acc-rgb-1": hslToRgbCsv(h, 36, 31),
-      "--db-acc-rgb-2": hslToRgbCsv(h, 32, 41),
-      "--db-acc-rgb-3": hslToRgbCsv(h, 56, 65),
+      "--db-bg-2": bg2.hsl,
+      "--db-bg-4": bg4.hsl,
+      "--db-acc-1": main.hsl,
+      "--db-acc-2": acc2.hsl,
+      "--db-acc-5": acc5.hsl,
+      "--db-acc-rgb-1": main.rgb,
+      "--db-acc-rgb-2": acc2.rgb,
+      "--db-acc-rgb-3": acc5.rgb,
     } as React.CSSProperties;
   })();
 
-  const dashVars = { ...bgVars, ...accVars } as React.CSSProperties;
+  // Слайдер 3 — цвет текста (#1A1814 ≈ hsl(40,11%,9%))
+  const textBase = { h: 40, s: 11, l: 9 };
+  const textVars = (() => {
+    const main = paletteCSS(textT, textBase);
+    const dark = paletteDerived(textT, textBase, -2);
+    return {
+      "--db-acc-3": main.hsl,
+      "--db-acc-4": dark.hsl,
+      "--db-text-main": main.hsl,
+      "--db-text-rgb": main.rgb,
+    } as React.CSSProperties;
+  })();
+
+  const dashVars = { ...bgVars, ...accVars, ...textVars } as React.CSSProperties;
 
   return (
     <div
@@ -410,7 +462,7 @@ export function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <span style={{ ...labelStyle, fontSize: "10px" }}>Кастомизация</span>
                   <button
-                    onClick={() => { setBgHue(0); setAccHue(0); }}
+                    onClick={() => { setBgT(0); setAccT(0); setTextT(0); }}
                     style={{
                       fontFamily: "Inter, sans-serif",
                       fontSize: "11px",
@@ -419,26 +471,27 @@ export function HomePage() {
                       border: "none",
                       cursor: "pointer",
                       letterSpacing: "0.05em",
-                      opacity: bgHue === 0 && accHue === 0 ? 0.35 : 1,
+                      opacity: bgT === 0 && accT === 0 && textT === 0 ? 0.35 : 1,
                       transition: "opacity 0.2s",
                     }}
-                    disabled={bgHue === 0 && accHue === 0}
+                    disabled={bgT === 0 && accT === 0 && textT === 0}
                   >
                     Сбросить
                   </button>
                 </div>
 
                 {[
-                  { id: "bg" as const, label: "Основной фон", value: bgHue, set: setBgHue, baseH: 40, baseS: 60, baseL: 88 },
-                  { id: "acc" as const, label: "Акценты и детали", value: accHue, set: setAccHue, baseH: 33, baseS: 40, baseL: 50 },
+                  { id: "bg" as const, label: "Основной фон", value: bgT, set: setBgT, base: bgBase },
+                  { id: "acc" as const, label: "Акценты и детали", value: accT, set: setAccT, base: accBase },
+                  { id: "text" as const, label: "Цвет текста", value: textT, set: setTextT, base: textBase },
                 ].map((s, idx) => (
-                  <div key={s.id} className={idx === 0 ? "mb-5" : ""}>
+                  <div key={s.id} className={idx < 2 ? "mb-5" : ""}>
                     <div className="flex items-center justify-between mb-2">
                       <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
                         {s.label}
                       </span>
                       <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
-                        {s.value === 0 ? "по умолчанию" : `${s.value > 0 ? "+" : ""}${s.value}°`}
+                        {s.value === 0 ? "по умолчанию" : `${s.value > 0 ? "+" : ""}${s.value}`}
                       </span>
                     </div>
                     <div
@@ -456,9 +509,11 @@ export function HomePage() {
                           height: "8px",
                           background: (() => {
                             const stops: string[] = [];
-                            for (let i = 0; i <= 8; i++) {
-                              const h = (s.baseH + (-180 + (360 * i) / 8) + 360) % 360;
-                              stops.push(`hsl(${h}, ${s.baseS}%, ${s.baseL}%) ${(i / 8) * 100}%`);
+                            const steps = 16;
+                            for (let i = 0; i <= steps; i++) {
+                              const t = -100 + (200 * i) / steps;
+                              const { h, s: ss, l } = paletteHSL(t, s.base);
+                              stops.push(`hsl(${h.toFixed(1)}, ${ss.toFixed(1)}%, ${l.toFixed(1)}%) ${(i / steps) * 100}%`);
                             }
                             return `linear-gradient(90deg, ${stops.join(", ")})`;
                           })(),
@@ -492,8 +547,8 @@ export function HomePage() {
                       />
                       <input
                         type="range"
-                        min={-180}
-                        max={180}
+                        min={-100}
+                        max={100}
                         step={1}
                         value={s.value}
                         onChange={(e) => s.set(Number(e.target.value))}
@@ -507,7 +562,7 @@ export function HomePage() {
                         className="absolute pointer-events-none rounded-full"
                         style={{
                           top: "50%",
-                          left: `${((s.value + 180) / 360) * 100}%`,
+                          left: `${((s.value + 100) / 200) * 100}%`,
                           transform: "translate(-50%,-50%)",
                           width: "16px",
                           height: "16px",
@@ -630,16 +685,16 @@ export function HomePage() {
                   <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-acc-rgb-2),0.25)" }}>
                     <div className="flex items-center gap-3">
                       <Icon name="Waves" size={18} style={{ color: "var(--db-acc-1)" }} />
-                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#0F0D0A", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "var(--db-acc-1)" }}>FLOW</span></span>
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "var(--db-acc-1)" }}>FLOW</span></span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(var(--db-acc-rgb-1),0.12)", border: "1px solid rgba(var(--db-acc-rgb-1),0.25)" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 500 }}>1–30 Апреля, 2024</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>1–30 Апреля, 2024</span>
                         <Icon name="ChevronDown" size={12} style={{ color: "var(--db-acc-1)" }} />
                       </div>
                       <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(var(--db-acc-rgb-1),0.12)", border: "1px solid rgba(var(--db-acc-rgb-1),0.25)" }}>
                         <Icon name="Download" size={12} style={{ color: "var(--db-acc-1)" }} />
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 500 }}>Экспорт</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>Экспорт</span>
                       </div>
                     </div>
                   </div>
@@ -656,14 +711,14 @@ export function HomePage() {
                         { icon: "Settings", label: "Настройки" },
                       ].map((item) => (
                         <div key={item.label} className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg mb-1.5" style={{ background: item.active ? "rgba(var(--db-acc-rgb-1),0.18)" : "transparent" }}>
-                          <Icon name={item.icon} size={16} style={{ color: item.active ? "var(--db-acc-1)" : "rgba(15,13,10,0.55)" }} />
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: item.active ? "#0F0D0A" : "rgba(15,13,10,0.6)", fontWeight: item.active ? 600 : 500 }}>{item.label}</span>
+                          <Icon name={item.icon} size={16} style={{ color: item.active ? "var(--db-acc-1)" : "rgba(var(--db-text-rgb),0.55)" }} />
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: item.active ? "var(--db-text-main)" : "rgba(var(--db-text-rgb),0.6)", fontWeight: item.active ? 600 : 500 }}>{item.label}</span>
                         </div>
                       ))}
                     </div>
                     {/* Content */}
                     <div className="flex-1 p-7 overflow-hidden">
-                      <div className="mb-6" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "32px", color: "#0F0D0A", fontWeight: 600 }}>Обзор</div>
+                      <div className="mb-6" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "32px", color: "var(--db-text-main)", fontWeight: 600 }}>Обзор</div>
                       {/* KPIs */}
                       <div className="grid grid-cols-4 gap-4 mb-5">
                         {[
@@ -673,8 +728,8 @@ export function HomePage() {
                           { label: "Новые лиды", value: "1,243", change: "+14.3%" },
                         ].map((k) => (
                           <div key={k.label} className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
-                            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(15,13,10,0.65)", marginBottom: "8px", fontWeight: 500 }}>{k.label}</div>
-                            <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: "#0F0D0A", marginBottom: "6px", fontWeight: 600 }}>{k.value}</div>
+                            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.65)", marginBottom: "8px", fontWeight: 500 }}>{k.label}</div>
+                            <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: "var(--db-text-main)", marginBottom: "6px", fontWeight: 600 }}>{k.value}</div>
                             <div className="flex items-center justify-between">
                               <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1a8a52", fontWeight: 600 }}>↑ {k.change} за период</span>
                               <svg width="48" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="var(--db-acc-1)" strokeWidth="1.8" opacity="0.8" strokeLinecap="round" /></svg>
@@ -684,10 +739,10 @@ export function HomePage() {
                       </div>
                       {/* Revenue chart */}
                       <div className="rounded-xl p-5 mb-5" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#0F0D0A", marginBottom: "14px", fontWeight: 600 }}>Динамика выручки</div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-text-main)", marginBottom: "14px", fontWeight: 600 }}>Динамика выручки</div>
                         <div className="flex items-start gap-4">
                           <div className="flex flex-col justify-between" style={{ height: "140px" }}>
-                            {["15M", "10M", "5M"].map(l => <span key={l} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(15,13,10,0.5)", fontWeight: 500 }}>{l}</span>)}
+                            {["15M", "10M", "5M"].map(l => <span key={l} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.5)", fontWeight: 500 }}>{l}</span>)}
                           </div>
                           <div className="flex-1">
                             <svg width="100%" height="140" viewBox="0 0 400 100" preserveAspectRatio="none">
@@ -720,7 +775,7 @@ export function HomePage() {
                               })()}
                             </svg>
                             <div className="flex justify-between mt-2">
-                              {["1 Апр","7 Апр","14 Апр","21 Апр","30 Апр"].map(d => <span key={d} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(15,13,10,0.55)", fontWeight: 500 }}>{d}</span>)}
+                              {["1 Апр","7 Апр","14 Апр","21 Апр","30 Апр"].map(d => <span key={d} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.55)", fontWeight: 500 }}>{d}</span>)}
                             </div>
                           </div>
                         </div>
@@ -728,7 +783,7 @@ export function HomePage() {
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
                         <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
-                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#0F0D0A", marginBottom: "14px", fontWeight: 600 }}>Последние звонки</div>
+                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-text-main)", marginBottom: "14px", fontWeight: 600 }}>Последние звонки</div>
                           <div className="space-y-2.5">
                             {[
                               { c: "ООО ТехноПласт", d: "32:14", r: "Успешно" },
@@ -737,21 +792,21 @@ export function HomePage() {
                               { c: "Сергей Иванов", d: "22:11", r: "Не удалось" },
                             ].map((c) => (
                               <div key={c.c} className="flex items-center gap-2">
-                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontWeight: 500 }}>{c.c}</span>
-                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(15,13,10,0.6)", fontWeight: 500 }}>{c.d}</span>
+                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontWeight: 500 }}>{c.c}</span>
+                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.6)", fontWeight: 500 }}>{c.d}</span>
                                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: c.r === "Успешно" ? "#1a8a52" : c.r === "Не удалось" ? "#c92a2a" : "var(--db-acc-1)", fontWeight: 600 }}>{c.r}</span>
                               </div>
                             ))}
                           </div>
                         </div>
                         <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
-                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#0F0D0A", marginBottom: "14px", fontWeight: 600 }}>Конверсия по этапам</div>
+                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-text-main)", marginBottom: "14px", fontWeight: 600 }}>Конверсия по этапам</div>
                           <div className="space-y-3">
                             {[["Лид","100%",1],["Квалификация","78%",0.78],["Презентация","52%",0.52],["Сделка","24%",0.24]].map(([l,v,p]) => (
                               <div key={String(l)}>
                                 <div className="flex justify-between mb-1">
-                                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 500 }}>{l}</span>
-                                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#0F0D0A", fontWeight: 700 }}>{v}</span>
+                                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>{l}</span>
+                                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 700 }}>{v}</span>
                                 </div>
                                 <div className="rounded-full overflow-hidden" style={{ height: "6px", background: "rgba(var(--db-acc-rgb-1),0.15)" }}>
                                   <div style={{ height: "100%", width: `${Number(p)*100}%`, background: "var(--db-acc-1)" }} />
@@ -860,7 +915,7 @@ export function HomePage() {
                   }}
                 >
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "3px" }}>Анализ разговора</div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.5)", marginBottom: "18px" }}>Этап: Работа с возражениями</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.5)", marginBottom: "18px" }}>Этап: Работа с возражениями</div>
                   {/* Waveform */}
                   <div className="flex items-center gap-0.5 mb-4" style={{ height: "48px" }}>
                     {[5,9,15,11,21,14,8,18,12,22,9,17,6,19,10,15,8,12,18,9,13,21,10,16,6,12,19,9,15,7,18,10,13,16,8].map((h, i) => (
@@ -871,9 +926,9 @@ export function HomePage() {
                     <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "var(--db-acc-2)" }}>
                       <Icon name="Play" size={12} style={{ color: "#FBF6EC" }} />
                     </div>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(26,24,20,0.55)" }}>02:37 / 05:21</span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.55)" }}>02:37 / 05:21</span>
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.45)", marginBottom: "10px" }}>Ключевые темы</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.45)", marginBottom: "10px" }}>Ключевые темы</div>
                   <div className="flex flex-wrap gap-2">
                     {["Цена", "Сроки", "Интеграция", "Демо"].map(tag => (
                       <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(var(--db-acc-rgb-2),0.12)", color: "var(--db-acc-2)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
@@ -909,7 +964,7 @@ export function HomePage() {
                         <circle cx="55" cy="55" r="45" fill="none" stroke="#E8D5A3" strokeWidth="16" strokeDasharray="28 283" strokeDashoffset="-255" transform="rotate(-90 55 55)"/>
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)" }}>Всего</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)" }}>Всего</span>
                         <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "var(--db-acc-3)" }}>128</span>
                       </div>
                     </div>
@@ -922,7 +977,7 @@ export function HomePage() {
                       ].map(([l,v,c]) => (
                         <div key={String(l)} className="flex items-center gap-2">
                           <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: String(c) }}/>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(26,24,20,0.7)", flex: 1, fontWeight: 500 }}>{l}</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.7)", flex: 1, fontWeight: 500 }}>{l}</span>
                           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{v}</span>
                         </div>
                       ))}
@@ -947,7 +1002,7 @@ export function HomePage() {
                   {/* Table header */}
                   <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(var(--db-acc-rgb-2),0.18)" }}>
                     {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
-                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
+                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
                     ))}
                   </div>
                   {/* Rows */}
@@ -960,8 +1015,8 @@ export function HomePage() {
                       { c: "ООО СтройИнвест", d: "31:05", r: "Успешно", k: "70%", color: "#22a868" },
                     ].map((row, idx) => (
                       <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)" }}>{row.d}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.55)" }}>{row.d}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: row.color }}>{row.r}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 500 }}>{row.k}</span>
                         {/* Audio control */}
@@ -1014,7 +1069,7 @@ export function HomePage() {
                     ].map((m) => (
                       <div key={m.name} className="flex items-center gap-3">
                         <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(26,24,20,0.7)", flex: 1 }}>{m.name}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.7)", flex: 1 }}>{m.name}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)", fontWeight: 500 }}>{m.rev}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#22a868", minWidth: "44px", textAlign: "right" }}>↑ {m.ch}</span>
                       </div>
