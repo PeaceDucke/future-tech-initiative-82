@@ -314,30 +314,7 @@ export function HomePage() {
                   Запросить демо
                   <Icon name="ArrowRight" size={14} />
                 </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2.5"
-                  style={{
-                    background: "transparent",
-                    border: "1px solid rgba(194,165,122,0.35)",
-                    color: "#E7DED4",
-                    borderRadius: "2px",
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 400,
-                    letterSpacing: "0.05em",
-                    fontSize: "13px",
-                    padding: "12px 24px",
-                  }}
-                >
-                  <div
-                    className="w-7 h-7 rounded-full flex items-center justify-center"
-                    style={iconBox}
-                  >
-                    <Icon name="Play" size={11} className="ml-0.5" style={{ color: "#C2A57A" }} />
-                  </div>
-                  Смотреть видео
-                  <span style={{ fontSize: "11px", opacity: 0.5 }}>2 мин</span>
-                </a>
+
               </motion.div>
             </motion.div>
           </div>
@@ -345,14 +322,12 @@ export function HomePage() {
 
         {/* ═══ METRICS STRIPE ═══ */}
         <section
-          className="relative py-16 px-5 overflow-hidden"
-          style={{ borderTop: "1px solid rgba(194,165,122,0.1)", borderBottom: "1px solid rgba(194,165,122,0.1)", background: "#151513" }}
+          className="relative pb-16 px-5 overflow-hidden"
+          style={{ background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-10">
-              <div style={{ width: "40px", height: "1px", background: "#C2A57A", opacity: 0.4 }} />
               <span style={labelStyle}>Результаты клиентов</span>
-              <div style={{ width: "40px", height: "1px", background: "#C2A57A", opacity: 0.4 }} />
             </div>
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
