@@ -83,38 +83,36 @@ const labelStyle = {
   fontFamily: "Inter, sans-serif",
 };
 
-// Полная радужная палитра: t=0..360 (hue в градусах).
-// Светлота фиксируется параметром каждого ползунка, чтобы дашборд оставался читаемым.
-function rainbowHSL(hue: number, s: number, l: number) {
+// 2D color picker: x=hue (0..360), y=lightness (0..100). Насыщенность 70% при l 5..95, спадает к 0 на краях.
+function pickerHSL(hue: number, light: number) {
   const h = ((hue % 360) + 360) % 360;
+  const l = Math.max(0, Math.min(100, light));
+  // Насыщенность падает к краям, чтобы можно было получить чёрный (l=0) и белый (l=100)
+  let s = 70;
+  if (l < 10) s = (l / 10) * 70;
+  else if (l > 90) s = ((100 - l) / 10) * 70;
   return { h, s, l };
 }
-function rainbowCSS(hue: number, s: number, l: number) {
-  const { h } = rainbowHSL(hue, s, l);
-  return { hsl: `hsl(${h.toFixed(1)}, ${s}%, ${l}%)`, rgb: hslToRgbCsv(h, s, l) };
+function pickerCSS(hue: number, light: number) {
+  const { h, s, l } = pickerHSL(hue, light);
+  return { hsl: `hsl(${h.toFixed(1)}, ${s.toFixed(1)}%, ${l.toFixed(1)}%)`, rgb: hslToRgbCsv(h, s, l) };
 }
+
+type PickerVal = { hue: number; light: number };
 
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  // По умолчанию: фон ~ hsl(40,71%,95%), акцент ~ hsl(33,36%,31%), текст ~ hsl(40,11%,9%)
-  const [bgHue, setBgHue] = useState(40);
-  const [bgSat, setBgSat] = useState(71);
-  const [bgLight, setBgLight] = useState(95);
-
-  const [accHue, setAccHue] = useState(33);
-  const [accSat, setAccSat] = useState(36);
-  const [accLight, setAccLight] = useState(31);
-
-  const [textHue, setTextHue] = useState(40);
-  const [textSat, setTextSat] = useState(11);
-  const [textLight, setTextLight] = useState(9);
+  // По умолчанию — оригинальные оттенки дашборда
+  const [bg, setBg] = useState<PickerVal>({ hue: 40, light: 95 });
+  const [acc, setAcc] = useState<PickerVal>({ hue: 33, light: 31 });
+  const [text, setText] = useState<PickerVal>({ hue: 40, light: 9 });
 
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
 
   // Слайдер 1 — основной светлый фон
   const bgVars = (() => {
-    const main = rainbowCSS(bgHue, bgSat, bgLight);
-    const lighter = rainbowCSS(bgHue, Math.min(100, bgSat + 10), Math.min(100, bgLight + 3));
+    const main = pickerCSS(bg.hue, bg.light);
+    const lighter = pickerCSS(bg.hue, Math.min(100, bg.light + 3));
     return {
       "--db-bg-1": main.hsl,
       "--db-bg-3": lighter.hsl,
@@ -122,13 +120,13 @@ export function HomePage() {
     } as React.CSSProperties;
   })();
 
-  // Слайдер 2 — акценты и светлые акцент-фоны (производные от того же hue)
+  // Слайдер 2 — акценты + светлые акцент-фоны (производные от того же hue)
   const accVars = (() => {
-    const main = rainbowCSS(accHue, accSat, accLight);
-    const bg2 = rainbowCSS(accHue, Math.max(8, accSat * 0.6), Math.min(96, accLight + 59));
-    const bg4 = rainbowCSS(accHue, Math.max(15, accSat + 29), Math.min(97, accLight + 61));
-    const acc2 = rainbowCSS(accHue, accSat, Math.min(90, accLight + 10));
-    const acc5 = rainbowCSS(accHue, Math.min(100, accSat + 20), Math.min(90, accLight + 34));
+    const main = pickerCSS(acc.hue, acc.light);
+    const bg2 = pickerCSS(acc.hue, Math.min(96, acc.light + 59));
+    const bg4 = pickerCSS(acc.hue, Math.min(97, acc.light + 61));
+    const acc2 = pickerCSS(acc.hue, Math.min(90, acc.light + 10));
+    const acc5 = pickerCSS(acc.hue, Math.min(90, acc.light + 34));
     return {
       "--db-bg-2": bg2.hsl,
       "--db-bg-4": bg4.hsl,
@@ -143,8 +141,8 @@ export function HomePage() {
 
   // Слайдер 3 — цвет текста
   const textVars = (() => {
-    const main = rainbowCSS(textHue, textSat, textLight);
-    const dark = rainbowCSS(textHue, textSat, Math.max(0, textLight - 2));
+    const main = pickerCSS(text.hue, text.light);
+    const dark = pickerCSS(text.hue, Math.max(0, text.light - 2));
     return {
       "--db-acc-3": main.hsl,
       "--db-acc-4": dark.hsl,
@@ -436,7 +434,7 @@ export function HomePage() {
                 variants={fadeUp}
                 className="mx-auto mb-10 rounded-2xl px-6 py-5"
                 style={{
-                  maxWidth: "640px",
+                  maxWidth: "820px",
                   background: "rgba(251,246,236,0.04)",
                   backdropFilter: "blur(14px) saturate(140%)",
                   WebkitBackdropFilter: "blur(14px) saturate(140%)",
@@ -444,13 +442,13 @@ export function HomePage() {
                   boxShadow: "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.06)",
                 }}
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-5">
                   <span style={{ ...labelStyle, fontSize: "10px" }}>Кастомизация</span>
                   <button
                     onClick={() => {
-                      setBgHue(40); setBgSat(71); setBgLight(95);
-                      setAccHue(33); setAccSat(36); setAccLight(31);
-                      setTextHue(40); setTextSat(11); setTextLight(9);
+                      setBg({ hue: 40, light: 95 });
+                      setAcc({ hue: 33, light: 31 });
+                      setText({ hue: 40, light: 9 });
                     }}
                     style={{
                       fontFamily: "Inter, sans-serif",
@@ -460,94 +458,90 @@ export function HomePage() {
                       border: "none",
                       cursor: "pointer",
                       letterSpacing: "0.05em",
-                      transition: "opacity 0.2s",
                     }}
                   >
                     Сбросить
                   </button>
                 </div>
 
-                {[
-                  { id: "bg" as const, label: "Основной фон", hue: bgHue, setHue: setBgHue, sat: bgSat, light: bgLight },
-                  { id: "acc" as const, label: "Акценты и детали", hue: accHue, setHue: setAccHue, sat: accSat, light: accLight },
-                  { id: "text" as const, label: "Цвет текста", hue: textHue, setHue: setTextHue, sat: textSat, light: textLight },
-                ].map((s, idx) => (
-                  <div key={s.id} className={idx < 2 ? "mb-5" : ""}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
-                        {s.label}
-                      </span>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
-                        {Math.round(s.hue)}°
-                      </span>
-                    </div>
-                    <div
-                      className="relative"
-                      style={{
-                        height: activeSlider === s.id ? "26px" : "6px",
-                        transition: "height 0.25s ease",
-                      }}
-                    >
-                      {/* Радужная палитра при активации */}
-                      <div
-                        className="absolute left-0 right-0 rounded-full pointer-events-none"
-                        style={{
-                          top: 0,
-                          height: "8px",
-                          background: (() => {
-                            const stops: string[] = [];
-                            const steps = 24;
-                            for (let i = 0; i <= steps; i++) {
-                              const h = (360 * i) / steps;
-                              stops.push(`hsl(${h.toFixed(1)}, ${s.sat}%, ${s.light}%) ${(i / steps) * 100}%`);
-                            }
-                            return `linear-gradient(90deg, ${stops.join(", ")})`;
-                          })(),
-                          opacity: activeSlider === s.id ? 1 : 0,
-                          transition: "opacity 0.25s ease",
-                        }}
-                      />
-                      {/* Default track */}
-                      <div
-                        className="absolute left-0 right-0 rounded-full pointer-events-none"
-                        style={{
-                          top: "50%",
-                          transform: "translateY(-50%)",
-                          height: "4px",
-                          background: "rgba(212,176,116,0.18)",
-                          opacity: activeSlider === s.id ? 0 : 1,
-                          transition: "opacity 0.25s ease",
-                        }}
-                      />
-                      <input
-                        type="range"
-                        min={0}
-                        max={360}
-                        step={1}
-                        value={s.hue}
-                        onChange={(e) => s.setHue(Number(e.target.value))}
-                        onPointerDown={() => setActiveSlider(s.id)}
-                        onPointerUp={() => setActiveSlider(null)}
-                        onPointerLeave={() => setActiveSlider(null)}
-                        onBlur={() => setActiveSlider(null)}
-                        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }}
-                      />
-                      <div
-                        className="absolute pointer-events-none rounded-full"
-                        style={{
-                          top: "50%",
-                          left: `${(s.hue / 360) * 100}%`,
-                          transform: "translate(-50%,-50%)",
-                          width: "16px",
-                          height: "16px",
-                          background: `hsl(${s.hue}, ${s.sat}%, ${s.light}%)`,
-                          border: "2px solid rgba(255,250,240,0.9)",
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.5)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {([
+                    { id: "bg" as const, label: "Основной фон", val: bg, set: setBg },
+                    { id: "acc" as const, label: "Акценты и детали", val: acc, set: setAcc },
+                    { id: "text" as const, label: "Цвет текста", val: text, set: setText },
+                  ]).map((s) => {
+                    const current = pickerCSS(s.val.hue, s.val.light);
+                    return (
+                      <div key={s.id}>
+                        <div className="flex items-center justify-between mb-2">
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
+                            {s.label}
+                          </span>
+                          <div className="rounded-full" style={{ width: 14, height: 14, background: current.hsl, border: "1px solid rgba(255,250,240,0.4)" }} />
+                        </div>
+
+                        {/* 2D color picker */}
+                        <div
+                          className="relative rounded-lg overflow-hidden"
+                          style={{
+                            height: "120px",
+                            cursor: "crosshair",
+                            background: `
+                              linear-gradient(to bottom, hsl(0,0%,100%) 0%, hsla(0,0%,100%,0) 18%, hsla(0,0%,0%,0) 82%, hsl(0,0%,0%) 100%),
+                              linear-gradient(to right,
+                                hsl(0,70%,50%) 0%,
+                                hsl(60,70%,50%) 16.6%,
+                                hsl(120,70%,50%) 33.3%,
+                                hsl(180,70%,50%) 50%,
+                                hsl(240,70%,50%) 66.6%,
+                                hsl(300,70%,50%) 83.3%,
+                                hsl(360,70%,50%) 100%
+                              )
+                            `,
+                            border: "1px solid rgba(255,250,240,0.15)",
+                          }}
+                          onPointerDown={(e) => {
+                            const target = e.currentTarget;
+                            target.setPointerCapture(e.pointerId);
+                            setActiveSlider(s.id);
+                            const update = (clientX: number, clientY: number) => {
+                              const rect = target.getBoundingClientRect();
+                              const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+                              const y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+                              s.set({ hue: x * 360, light: (1 - y) * 100 });
+                            };
+                            update(e.clientX, e.clientY);
+                            const move = (ev: PointerEvent) => update(ev.clientX, ev.clientY);
+                            const up = (ev: PointerEvent) => {
+                              target.releasePointerCapture(ev.pointerId);
+                              setActiveSlider(null);
+                              target.removeEventListener("pointermove", move);
+                              target.removeEventListener("pointerup", up);
+                            };
+                            target.addEventListener("pointermove", move);
+                            target.addEventListener("pointerup", up);
+                          }}
+                        >
+                          {/* Crosshair */}
+                          <div
+                            className="absolute rounded-full pointer-events-none"
+                            style={{
+                              left: `${(s.val.hue / 360) * 100}%`,
+                              top: `${(1 - s.val.light / 100) * 100}%`,
+                              transform: "translate(-50%,-50%)",
+                              width: activeSlider === s.id ? "18px" : "14px",
+                              height: activeSlider === s.id ? "18px" : "14px",
+                              background: current.hsl,
+                              border: "2px solid #fff",
+                              boxShadow: "0 0 0 1px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.5)",
+                              transition: "width 0.15s, height 0.15s",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </motion.div>
 
               {/* Dashboard Scene */}
