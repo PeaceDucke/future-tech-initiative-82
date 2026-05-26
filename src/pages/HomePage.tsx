@@ -104,8 +104,8 @@ type PickerVal = { hue: number; light: number };
 
 // Точные стартовые цвета (используются пока пользователь не двигал соответствующий пикер)
 const DEFAULTS = {
-  bg:   { hue: 40, light: 94, exact: { h: 40, s: 50, l: 94 } }, // #F7F2E9
-  acc:  { hue: 34, light: 90, exact: { h: 34, s: 30, l: 90 } }, // #F0E8DE
+  bg:   { hue: 40, light: 98, exact: { h: 40, s: 40, l: 98 } }, // почти белый #FDFBF7
+  acc:  { hue: 34, light: 88, exact: { h: 34, s: 30, l: 88 } }, // бежевый для карточек #EBE1D3
   text: { hue: 30, light: 13, exact: { h: 30, s: 40, l: 13 } }, // ≈ #2E2113 тёмно-коричневый
 };
 
@@ -161,10 +161,10 @@ export function HomePage() {
 
   // Слайдер 2 — акценты + светлые акцент-фоны (производные от того же hue)
   const accVars = (() => {
-    const bg2 = derive(accR.h, Math.min(96, accR.l + 59));
-    const bg4 = derive(accR.h, Math.min(97, accR.l + 61));
-    const acc2 = derive(accR.h, Math.min(90, accR.l + 10));
-    const acc5 = derive(accR.h, Math.min(90, accR.l + 34));
+    const bg2 = derive(accR.h, accR.l);
+    const bg4 = derive(accR.h, Math.min(99, accR.l + 2));
+    const acc2 = derive(accR.h, Math.min(95, accR.l + 5));
+    const acc5 = derive(accR.h, Math.min(95, accR.l + 8));
     return {
       "--db-bg-2": bg2.hsl,
       "--db-bg-4": bg4.hsl,
