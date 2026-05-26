@@ -748,25 +748,25 @@ export function HomePage() {
                   }}
                 >
                   {/* Topbar */}
-                  <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-acc-rgb-2),0.25)" }}>
+                  <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-text-rgb),0.18)" }}>
                     <div className="flex items-center gap-3">
-                      <Icon name="Waves" size={18} style={{ color: "var(--db-acc-1)" }} />
-                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "var(--db-acc-1)" }}>FLOW</span></span>
+                      <Icon name="Waves" size={18} style={{ color: "var(--db-text-main)" }} />
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "var(--db-text-main)", opacity: 0.6 }}>FLOW</span></span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(var(--db-acc-rgb-1),0.12)", border: "1px solid rgba(var(--db-acc-rgb-1),0.25)" }}>
+                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "var(--db-bg-1)", border: "1px solid rgba(var(--db-text-rgb),0.25)" }}>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>1–30 Апреля, 2024</span>
-                        <Icon name="ChevronDown" size={12} style={{ color: "var(--db-acc-1)" }} />
+                        <Icon name="ChevronDown" size={12} style={{ color: "var(--db-text-main)" }} />
                       </div>
-                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "rgba(var(--db-acc-rgb-1),0.12)", border: "1px solid rgba(var(--db-acc-rgb-1),0.25)" }}>
-                        <Icon name="Download" size={12} style={{ color: "var(--db-acc-1)" }} />
+                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "var(--db-bg-1)", border: "1px solid rgba(var(--db-text-rgb),0.25)" }}>
+                        <Icon name="Download" size={12} style={{ color: "var(--db-text-main)" }} />
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>Экспорт</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex" style={{ height: "calc(100% - 61px)" }}>
                     {/* Sidebar */}
-                    <div className="shrink-0 border-r py-6 px-4" style={{ width: "200px", background: "var(--db-bg-2)", borderColor: "rgba(var(--db-acc-rgb-1),0.18)" }}>
+                    <div className="shrink-0 border-r py-6 px-4" style={{ width: "200px", background: "var(--db-bg-2)", borderColor: "rgba(var(--db-text-rgb),0.18)" }}>
                       {[
                         { icon: "LayoutDashboard", label: "Обзор", active: true },
                         { icon: "Phone", label: "Звонки" },
@@ -776,8 +776,8 @@ export function HomePage() {
                         { icon: "FileText", label: "Отчёты" },
                         { icon: "Settings", label: "Настройки" },
                       ].map((item) => (
-                        <div key={item.label} className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg mb-1.5" style={{ background: item.active ? "rgba(var(--db-acc-rgb-1),0.18)" : "transparent" }}>
-                          <Icon name={item.icon} size={16} style={{ color: item.active ? "var(--db-acc-1)" : "rgba(var(--db-text-rgb),0.55)" }} />
+                        <div key={item.label} className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg mb-1.5" style={{ background: item.active ? "rgba(var(--db-text-rgb),0.10)" : "transparent" }}>
+                          <Icon name={item.icon} size={16} style={{ color: item.active ? "var(--db-text-main)" : "rgba(var(--db-text-rgb),0.55)" }} />
                           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: item.active ? "var(--db-text-main)" : "rgba(var(--db-text-rgb),0.6)", fontWeight: item.active ? 600 : 500 }}>{item.label}</span>
                         </div>
                       ))}
@@ -793,18 +793,18 @@ export function HomePage() {
                           { label: "Средний чек", value: "₽18,540", change: "+6.2%" },
                           { label: "Новые лиды", value: "1,243", change: "+14.3%" },
                         ].map((k) => (
-                          <div key={k.label} className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
+                          <div key={k.label} className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.12)" }}>
                             <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.65)", marginBottom: "8px", fontWeight: 500 }}>{k.label}</div>
                             <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: "var(--db-text-main)", marginBottom: "6px", fontWeight: 600 }}>{k.value}</div>
                             <div className="flex items-center justify-between">
                               <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1a8a52", fontWeight: 600 }}>↑ {k.change} за период</span>
-                              <svg width="48" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="var(--db-acc-1)" strokeWidth="1.8" opacity="0.8" strokeLinecap="round" /></svg>
+                              <svg width="48" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="var(--db-text-main)" strokeWidth="1.8" opacity="0.7" strokeLinecap="round" /></svg>
                             </div>
                           </div>
                         ))}
                       </div>
                       {/* Revenue chart */}
-                      <div className="rounded-xl p-5 mb-5" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
+                      <div className="rounded-xl p-5 mb-5" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.12)" }}>
                         <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-text-main)", marginBottom: "14px", fontWeight: 600 }}>Динамика выручки</div>
                         <div className="flex items-start gap-4">
                           <div className="flex flex-col justify-between" style={{ height: "140px" }}>
@@ -814,14 +814,14 @@ export function HomePage() {
                             <svg width="100%" height="140" viewBox="0 0 400 100" preserveAspectRatio="none">
                               <defs>
                                 <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="0%" stopColor="var(--db-acc-1)" stopOpacity="0.35"/>
-                                  <stop offset="100%" stopColor="var(--db-acc-1)" stopOpacity="0"/>
+                                  <stop offset="0%" stopColor="var(--db-text-main)" stopOpacity="0.25"/>
+                                  <stop offset="100%" stopColor="var(--db-text-main)" stopOpacity="0"/>
                                 </linearGradient>
                               </defs>
                               {/* Сетка */}
-                              <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(var(--db-acc-rgb-1),0.08)" strokeWidth="1" strokeDasharray="3 3"/>
-                              <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(var(--db-acc-rgb-1),0.08)" strokeWidth="1" strokeDasharray="3 3"/>
-                              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(var(--db-acc-rgb-1),0.08)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(var(--db-text-rgb),0.12)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(var(--db-text-rgb),0.12)" strokeWidth="1" strokeDasharray="3 3"/>
+                              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(var(--db-text-rgb),0.12)" strokeWidth="1" strokeDasharray="3 3"/>
                               {(() => {
                                 const pts = [
                                   [0,88],[10.8,72],[21.6,90],[32.4,60],[43.2,82],[54.1,45],[64.9,78],[75.7,55],
@@ -835,7 +835,7 @@ export function HomePage() {
                                 return (
                                   <>
                                     <polygon points={polyStr} fill="url(#g1)"/>
-                                    <polyline points={pointsStr} fill="none" stroke="var(--db-acc-1)" strokeWidth="0.8" strokeLinecap="square" strokeLinejoin="miter"/>
+                                    <polyline points={pointsStr} fill="none" stroke="var(--db-text-main)" strokeWidth="1.2" strokeLinecap="square" strokeLinejoin="miter"/>
                                   </>
                                 );
                               })()}
