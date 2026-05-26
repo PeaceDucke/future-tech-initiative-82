@@ -459,7 +459,7 @@ export function HomePage() {
                                 return (
                                   <>
                                     <polygon points={polyStr} fill="url(#g1)"/>
-                                    <polyline points={pointsStr} fill="none" stroke="#6B5232" strokeWidth="1.4" strokeLinecap="square" strokeLinejoin="miter"/>
+                                    <polyline points={pointsStr} fill="none" stroke="#6B5232" strokeWidth="0.8" strokeLinecap="square" strokeLinejoin="miter"/>
                                   </>
                                 );
                               })()}

@@ -7,24 +7,24 @@
 @layer base {
   :root {
     --background: 40 6% 9%;
-    --foreground: 34 22% 87%;
+    --foreground: 36 40% 93%;
 
     --card: 25 14% 15%;
-    --card-foreground: 34 22% 87%;
+    --card-foreground: 36 40% 93%;
 
     --popover: 25 14% 15%;
-    --popover-foreground: 34 22% 87%;
+    --popover-foreground: 36 40% 93%;
 
-    --primary: 34 40% 63%;
+    --primary: 36 65% 66%;
     --primary-foreground: 40 6% 9%;
 
     --secondary: 22 16% 18%;
-    --secondary-foreground: 30 18% 80%;
+    --secondary-foreground: 34 30% 88%;
 
     --muted: 22 16% 18%;
-    --muted-foreground: 30 10% 55%;
+    --muted-foreground: 32 18% 70%;
 
-    --accent: 34 40% 63%;
+    --accent: 36 65% 66%;
     --accent-foreground: 40 6% 9%;
 
     --destructive: 0 60% 50%;
@@ -32,7 +32,7 @@
 
     --border: 30 8% 18%;
     --input: 30 8% 18%;
-    --ring: 34 40% 63%;
+    --ring: 36 65% 66%;
 
     --radius: 2px;
   }
@@ -50,7 +50,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #151513;
-    color: #e7ded4;
+    color: #f5ece0;
   }
 
   h1,
@@ -72,7 +72,7 @@
   background: #151513;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(194, 165, 122, 0.2);
+  background: rgba(226, 183, 112, 0.35);
   border-radius: 2px;
 }
 
@@ -81,19 +81,19 @@
   font-family: "Bodoni Moda", Georgia, serif;
 }
 .text-gold {
-  color: #c2a57a;
+  color: #e2b770;
 }
 .text-gold-dim {
-  color: rgba(194, 165, 122, 0.55);
+  color: rgba(226, 183, 112, 0.78);
 }
 .text-ivory {
-  color: #e7ded4;
+  color: #f7efe3;
 }
 .text-cream {
-  color: #ddd2c4;
+  color: #ece0cd;
 }
 .border-gold-subtle {
-  border-color: rgba(194, 165, 122, 0.2);
+  border-color: rgba(226, 183, 112, 0.3);
 }
 .bg-mocha {
   background-color: #2a211c;
