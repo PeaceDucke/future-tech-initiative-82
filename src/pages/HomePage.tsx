@@ -372,7 +372,7 @@ export function HomePage() {
                   }}
                 >
                   {/* Topbar */}
-                  <div className="flex items-center justify-between px-6 py-3 border-b" style={{ background: "#DDD2C4", borderColor: "rgba(139,111,71,0.2)" }}>
+                  <div className="flex items-center justify-between px-6 py-3 border-b" style={{ background: "#F1E9DE", borderColor: "rgba(139,111,71,0.2)" }}>
                     <div className="flex items-center gap-2.5">
                       <Icon name="Waves" size={14} style={{ color: "#8B6F47" }} />
                       <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "14px", color: "#1A1814", letterSpacing: "0.08em" }}>SALES<span style={{ color: "#8B6F47" }}>FLOW</span></span>
@@ -390,7 +390,7 @@ export function HomePage() {
                   </div>
                   <div className="flex" style={{ height: "calc(100% - 49px)" }}>
                     {/* Sidebar */}
-                    <div className="shrink-0 border-r py-5 px-3" style={{ width: "170px", background: "#DDD2C4", borderColor: "rgba(139,111,71,0.15)" }}>
+                    <div className="shrink-0 border-r py-5 px-3" style={{ width: "170px", background: "#F1E9DE", borderColor: "rgba(139,111,71,0.15)" }}>
                       {[
                         { icon: "LayoutDashboard", label: "Обзор", active: true },
                         { icon: "Phone", label: "Звонки" },
@@ -417,7 +417,7 @@ export function HomePage() {
                           { label: "Средний чек", value: "₽18,540", change: "+6.2%" },
                           { label: "Новые лиды", value: "1,243", change: "+14.3%" },
                         ].map((k) => (
-                          <div key={k.label} className="rounded-xl p-3" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                          <div key={k.label} className="rounded-xl p-3" style={{ background: "#F1E9DE", border: "1px solid rgba(139,111,71,0.12)" }}>
                             <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", marginBottom: "6px" }}>{k.label}</div>
                             <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#1A1814", marginBottom: "3px" }}>{k.value}</div>
                             <div className="flex items-center justify-between">
@@ -428,7 +428,7 @@ export function HomePage() {
                         ))}
                       </div>
                       {/* Revenue chart */}
-                      <div className="rounded-xl p-4 mb-4" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                      <div className="rounded-xl p-4 mb-4" style={{ background: "#F1E9DE", border: "1px solid rgba(139,111,71,0.12)" }}>
                         <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "10px", fontWeight: 500 }}>Динамика выручки</div>
                         <div className="flex items-start gap-3">
                           <div className="flex flex-col justify-between" style={{ height: "100px" }}>
@@ -449,7 +449,7 @@ export function HomePage() {
                       </div>
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="rounded-xl p-3" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                        <div className="rounded-xl p-3" style={{ background: "#F1E9DE", border: "1px solid rgba(139,111,71,0.12)" }}>
                           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "10px", fontWeight: 500 }}>Последние звонки</div>
                           <div className="space-y-1.5">
                             {[
@@ -466,7 +466,7 @@ export function HomePage() {
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-xl p-3" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                        <div className="rounded-xl p-3" style={{ background: "#F1E9DE", border: "1px solid rgba(139,111,71,0.12)" }}>
                           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "10px", fontWeight: 500 }}>Конверсия по этапам</div>
                           <div className="space-y-2">
                             {[["Лид","100%",1],["Квалификация","78%",0.78],["Презентация","52%",0.52],["Сделка","24%",0.24]].map(([l,v,p]) => (
@@ -721,7 +721,7 @@ export function HomePage() {
                     fontWeight: 400,
                     fontSize: "14px",
                     letterSpacing: "0.08em",
-                    color: "#DDD2C4",
+                    color: "#E7DED4",
                   }}
                 >
                   SALES<span style={{ color: "#C2A57A" }}>FLOW</span>
