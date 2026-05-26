@@ -158,6 +158,38 @@ export function HomePage() {
     };
   }, [analysisHover]);
 
+  // Hover на карточке "Источники сделок" — печатающаяся подсказка
+  const [sourcesHover, setSourcesHover] = useState(false);
+  const [sourcesTyped, setSourcesTyped] = useState("");
+  const sourcesFullText = `AI показывает,
+какие каналы действительно приносят прибыль,
+а какие только создают видимость активности.
+
+Это помогает сократить
+неэффективные рекламные расходы
+и перераспределить бюджет туда,
+где бизнес реально зарабатывает.`;
+
+  useEffect(() => {
+    if (!sourcesHover) {
+      setSourcesTyped("");
+      return;
+    }
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    const startDelay = setTimeout(() => {
+      let i = 0;
+      intervalId = setInterval(() => {
+        i++;
+        setSourcesTyped(sourcesFullText.slice(0, i));
+        if (i >= sourcesFullText.length && intervalId) clearInterval(intervalId);
+      }, 28);
+    }, 1000);
+    return () => {
+      clearTimeout(startDelay);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [sourcesHover]);
+
   // Хелпер: вернуть точные CSS-значения, если пикер не трогали; иначе — pickerCSS
   const resolve = (val: PickerVal, touched: boolean, def: typeof DEFAULTS.bg) => {
     if (!touched) {
@@ -1052,6 +1084,8 @@ export function HomePage() {
                 {/* ── CARD: Источники сделок (центр) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
+                  onMouseEnter={() => setSourcesHover(true)}
+                  onMouseLeave={() => setSourcesHover(false)}
                   style={{
                     width: "32%",
                     top: "465px",
@@ -1059,7 +1093,9 @@ export function HomePage() {
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    zIndex: 22,
+                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    transform: sourcesHover ? "translateY(-6px)" : "translateY(0)",
+                    zIndex: sourcesHover ? 200 : 22,
                   }}
                 >
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "18px" }}>Источники сделок</div>
@@ -1251,6 +1287,80 @@ export function HomePage() {
                     >
                       {analysisTyped}
                       {analysisHover && analysisTyped.length < analysisFullText.length && (
+                        <span
+                          style={{
+                            display: "inline-block",
+                            width: "0.5ch",
+                            color: "#D4B074",
+                            animation: "tw-caret 0.9s steps(1) infinite",
+                          }}
+                        >
+                          ▍
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                {/* ── Overlay затемнения + печатающаяся подсказка для "Источники сделок" ── */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "rgba(8,6,3,0.62)",
+                    opacity: sourcesHover ? 1 : 0,
+                    transition: sourcesHover
+                      ? "opacity 0.6s ease 0.8s"
+                      : "opacity 0s",
+                    zIndex: 150,
+                    borderRadius: "16px",
+                  }}
+                />
+                <div
+                  className="absolute pointer-events-none flex items-start justify-start"
+                  style={{
+                    top: "120px",
+                    left: "4%",
+                    width: "55%",
+                    opacity: sourcesHover ? 1 : 0,
+                    transform: sourcesHover ? "translateY(0)" : "translateY(8px)",
+                    transition: sourcesHover
+                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
+                      : "opacity 0s, transform 0s",
+                    zIndex: 180,
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      fontFamily: '"Bodoni Moda", Georgia, serif',
+                      fontSize: "28px",
+                      lineHeight: 1.5,
+                      letterSpacing: "0.01em",
+                      width: "580px",
+                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span
+                      aria-hidden
+                      style={{
+                        visibility: "hidden",
+                        whiteSpace: "pre-wrap",
+                        display: "block",
+                      }}
+                    >
+                      {sourcesFullText}
+                    </span>
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        whiteSpace: "pre-wrap",
+                        color: "#FBF6EC",
+                      }}
+                    >
+                      {sourcesTyped}
+                      {sourcesHover && sourcesTyped.length < sourcesFullText.length && (
                         <span
                           style={{
                             display: "inline-block",
