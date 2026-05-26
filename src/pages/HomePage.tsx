@@ -985,19 +985,19 @@ export function HomePage() {
                   {/* Waveform */}
                   <div className="flex items-center gap-0.5 mb-4" style={{ height: "48px" }}>
                     {[5,9,15,11,21,14,8,18,12,22,9,17,6,19,10,15,8,12,18,9,13,21,10,16,6,12,19,9,15,7,18,10,13,16,8].map((h, i) => (
-                      <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < 14 ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.3)" }} />
+                      <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < 14 ? "#453321" : "rgba(69,51,33,0.3)" }} />
                     ))}
                   </div>
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "var(--db-acc-2)" }}>
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "#453321" }}>
                       <Icon name="Play" size={12} style={{ color: "#FBF6EC" }} />
                     </div>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.55)" }}>02:37 / 05:21</span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#453321" }}>02:37 / 05:21</span>
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.45)", marginBottom: "10px" }}>Ключевые темы</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#453321", marginBottom: "10px" }}>Ключевые темы</div>
                   <div className="flex flex-wrap gap-2">
                     {["Цена", "Сроки", "Интеграция", "Демо"].map(tag => (
-                      <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(var(--db-acc-rgb-2),0.12)", color: "var(--db-acc-2)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
+                      <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(69,51,33,0.08)", color: "#453321", border: "1px solid rgba(69,51,33,0.25)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
                     ))}
                   </div>
                 </div>
