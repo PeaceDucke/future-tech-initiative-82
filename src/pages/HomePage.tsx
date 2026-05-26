@@ -83,14 +83,16 @@ const labelStyle = {
   fontFamily: "Inter, sans-serif",
 };
 
-// 2D color picker: x=hue (0..360), y=lightness (0..100). Насыщенность 70% при l 5..95, спадает к 0 на краях.
+// 2D color picker: x=hue (0..360), y=lightness (0..100).
+// Насыщенность плавно спадает к краям, чтобы можно было получить чёрный и белый,
+// а светлые тона выглядели пастельными, а не кислотными.
 function pickerHSL(hue: number, light: number) {
   const h = ((hue % 360) + 360) % 360;
   const l = Math.max(0, Math.min(100, light));
-  // Насыщенность падает к краям, чтобы можно было получить чёрный (l=0) и белый (l=100)
   let s = 70;
-  if (l < 10) s = (l / 10) * 70;
-  else if (l > 90) s = ((100 - l) / 10) * 70;
+  if (l <= 10) s = (l / 10) * 70;
+  else if (l >= 95) s = ((100 - l) / 5) * 30;
+  else if (l >= 80) s = 70 - ((l - 80) / 15) * 40; // 70 → 30 на отрезке 80..95
   return { h, s, l };
 }
 function pickerCSS(hue: number, light: number) {
@@ -100,41 +102,76 @@ function pickerCSS(hue: number, light: number) {
 
 type PickerVal = { hue: number; light: number };
 
+// Точные стартовые цвета (используются пока пользователь не двигал соответствующий пикер)
+const DEFAULTS = {
+  bg:   { hue: 40, light: 95, exact: { h: 40, s: 60, l: 95 } }, // #FAF5EB
+  acc:  { hue: 33, light: 90, exact: { h: 33, s: 30, l: 90 } }, // #EFE7DC
+  text: { hue: 40, light: 9,  exact: { h: 40, s: 11, l: 9  } }, // ≈ #1A1814
+};
+
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   // По умолчанию — оригинальные оттенки дашборда
-  const [bg, setBg] = useState<PickerVal>({ hue: 40, light: 95 });
-  const [acc, setAcc] = useState<PickerVal>({ hue: 33, light: 31 });
-  const [text, setText] = useState<PickerVal>({ hue: 40, light: 9 });
+  const [bg, setBg] = useState<PickerVal>({ hue: DEFAULTS.bg.hue, light: DEFAULTS.bg.light });
+  const [acc, setAcc] = useState<PickerVal>({ hue: DEFAULTS.acc.hue, light: DEFAULTS.acc.light });
+  const [text, setText] = useState<PickerVal>({ hue: DEFAULTS.text.hue, light: DEFAULTS.text.light });
+
+  // Флаги «пользователь трогал пикер» — пока false, используем exact-цвета из DEFAULTS
+  const [bgTouched, setBgTouched] = useState(false);
+  const [accTouched, setAccTouched] = useState(false);
+  const [textTouched, setTextTouched] = useState(false);
 
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
   const [customizerOpen, setCustomizerOpen] = useState(false);
 
+  // Хелпер: вернуть точные CSS-значения, если пикер не трогали; иначе — pickerCSS
+  const resolve = (val: PickerVal, touched: boolean, def: typeof DEFAULTS.bg) => {
+    if (!touched) {
+      const { h, s, l } = def.exact;
+      return { hsl: `hsl(${h}, ${s}%, ${l}%)`, rgb: hslToRgbCsv(h, s, l), h, s, l };
+    }
+    const css = pickerCSS(val.hue, val.light);
+    const hsl = pickerHSL(val.hue, val.light);
+    return { ...css, h: hsl.h, s: hsl.s, l: hsl.l };
+  };
+
+  const bgR = resolve(bg, bgTouched, DEFAULTS.bg);
+  const accR = resolve(acc, accTouched, DEFAULTS.acc);
+  const textR = resolve(text, textTouched, DEFAULTS.text);
+
+  // Утилита: получить CSS от того же hue с другой светлотой (для производных оттенков)
+  const derive = (h: number, l: number) => {
+    const ll = Math.max(0, Math.min(100, l));
+    let s = 70;
+    if (ll <= 10) s = (ll / 10) * 70;
+    else if (ll >= 95) s = ((100 - ll) / 5) * 30;
+    else if (ll >= 80) s = 70 - ((ll - 80) / 15) * 40;
+    return { hsl: `hsl(${h}, ${s.toFixed(1)}%, ${ll}%)`, rgb: hslToRgbCsv(h, s, ll) };
+  };
+
   // Слайдер 1 — основной светлый фон
   const bgVars = (() => {
-    const main = pickerCSS(bg.hue, bg.light);
-    const lighter = pickerCSS(bg.hue, Math.min(100, bg.light + 3));
+    const lighter = derive(bgR.h, bgR.l + 3);
     return {
-      "--db-bg-1": main.hsl,
+      "--db-bg-1": bgR.hsl,
       "--db-bg-3": lighter.hsl,
-      "--db-bg-rgb-1": main.rgb,
+      "--db-bg-rgb-1": bgR.rgb,
     } as React.CSSProperties;
   })();
 
   // Слайдер 2 — акценты + светлые акцент-фоны (производные от того же hue)
   const accVars = (() => {
-    const main = pickerCSS(acc.hue, acc.light);
-    const bg2 = pickerCSS(acc.hue, Math.min(96, acc.light + 59));
-    const bg4 = pickerCSS(acc.hue, Math.min(97, acc.light + 61));
-    const acc2 = pickerCSS(acc.hue, Math.min(90, acc.light + 10));
-    const acc5 = pickerCSS(acc.hue, Math.min(90, acc.light + 34));
+    const bg2 = derive(accR.h, Math.min(96, accR.l + 59));
+    const bg4 = derive(accR.h, Math.min(97, accR.l + 61));
+    const acc2 = derive(accR.h, Math.min(90, accR.l + 10));
+    const acc5 = derive(accR.h, Math.min(90, accR.l + 34));
     return {
       "--db-bg-2": bg2.hsl,
       "--db-bg-4": bg4.hsl,
-      "--db-acc-1": main.hsl,
+      "--db-acc-1": accR.hsl,
       "--db-acc-2": acc2.hsl,
       "--db-acc-5": acc5.hsl,
-      "--db-acc-rgb-1": main.rgb,
+      "--db-acc-rgb-1": accR.rgb,
       "--db-acc-rgb-2": acc2.rgb,
       "--db-acc-rgb-3": acc5.rgb,
     } as React.CSSProperties;
@@ -142,13 +179,12 @@ export function HomePage() {
 
   // Слайдер 3 — цвет текста
   const textVars = (() => {
-    const main = pickerCSS(text.hue, text.light);
-    const dark = pickerCSS(text.hue, Math.max(0, text.light - 2));
+    const dark = derive(textR.h, Math.max(0, textR.l - 2));
     return {
-      "--db-acc-3": main.hsl,
+      "--db-acc-3": textR.hsl,
       "--db-acc-4": dark.hsl,
-      "--db-text-main": main.hsl,
-      "--db-text-rgb": main.rgb,
+      "--db-text-main": textR.hsl,
+      "--db-text-rgb": textR.rgb,
     } as React.CSSProperties;
   })();
 
@@ -454,9 +490,9 @@ export function HomePage() {
                     </span>
                     {/* Color preview dots */}
                     <div className="flex items-center gap-1 ml-2">
-                      <span className="rounded-full" style={{ width: 10, height: 10, background: pickerCSS(bg.hue, bg.light).hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
-                      <span className="rounded-full" style={{ width: 10, height: 10, background: pickerCSS(acc.hue, acc.light).hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
-                      <span className="rounded-full" style={{ width: 10, height: 10, background: pickerCSS(text.hue, text.light).hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
+                      <span className="rounded-full" style={{ width: 10, height: 10, background: bgR.hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
+                      <span className="rounded-full" style={{ width: 10, height: 10, background: accR.hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
+                      <span className="rounded-full" style={{ width: 10, height: 10, background: textR.hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -501,9 +537,12 @@ export function HomePage() {
                       </span>
                       <button
                         onClick={() => {
-                          setBg({ hue: 40, light: 95 });
-                          setAcc({ hue: 33, light: 31 });
-                          setText({ hue: 40, light: 9 });
+                          setBg({ hue: DEFAULTS.bg.hue, light: DEFAULTS.bg.light });
+                          setAcc({ hue: DEFAULTS.acc.hue, light: DEFAULTS.acc.light });
+                          setText({ hue: DEFAULTS.text.hue, light: DEFAULTS.text.light });
+                          setBgTouched(false);
+                          setAccTouched(false);
+                          setTextTouched(false);
                         }}
                         className="flex items-center gap-1.5"
                         style={{
@@ -523,18 +562,17 @@ export function HomePage() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {([
-                    { id: "bg" as const, label: "Основной фон", val: bg, set: setBg },
-                    { id: "acc" as const, label: "Акценты и детали", val: acc, set: setAcc },
-                    { id: "text" as const, label: "Цвет текста", val: text, set: setText },
+                    { id: "bg" as const, label: "Основной фон", val: bg, set: setBg, setTouched: setBgTouched, resolved: bgR },
+                    { id: "acc" as const, label: "Акценты и детали", val: acc, set: setAcc, setTouched: setAccTouched, resolved: accR },
+                    { id: "text" as const, label: "Цвет текста", val: text, set: setText, setTouched: setTextTouched, resolved: textR },
                   ]).map((s) => {
-                    const current = pickerCSS(s.val.hue, s.val.light);
                     return (
                       <div key={s.id}>
                         <div className="flex items-center justify-between mb-2">
                           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
                             {s.label}
                           </span>
-                          <div className="rounded-full" style={{ width: 14, height: 14, background: current.hsl, border: "1px solid rgba(255,250,240,0.4)" }} />
+                          <div className="rounded-full" style={{ width: 14, height: 14, background: s.resolved.hsl, border: "1px solid rgba(255,250,240,0.4)" }} />
                         </div>
 
                         {/* 2D color picker */}
@@ -561,6 +599,7 @@ export function HomePage() {
                             const target = e.currentTarget;
                             target.setPointerCapture(e.pointerId);
                             setActiveSlider(s.id);
+                            s.setTouched(true);
                             const update = (clientX: number, clientY: number) => {
                               const rect = target.getBoundingClientRect();
                               const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
@@ -588,7 +627,7 @@ export function HomePage() {
                               transform: "translate(-50%,-50%)",
                               width: activeSlider === s.id ? "18px" : "14px",
                               height: activeSlider === s.id ? "18px" : "14px",
-                              background: current.hsl,
+                              background: s.resolved.hsl,
                               border: "2px solid #fff",
                               boxShadow: "0 0 0 1px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.5)",
                               transition: "width 0.15s, height 0.15s",
