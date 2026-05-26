@@ -106,7 +106,7 @@ type PickerVal = { hue: number; light: number };
 const DEFAULTS = {
   bg:   { hue: 40, light: 94, exact: { h: 40, s: 50, l: 94 } }, // #F7F2E9
   acc:  { hue: 34, light: 90, exact: { h: 34, s: 30, l: 90 } }, // #F0E8DE
-  text: { hue: 40, light: 9,  exact: { h: 40, s: 11, l: 9  } }, // ≈ #1A1814
+  text: { hue: 30, light: 13, exact: { h: 30, s: 40, l: 13 } }, // ≈ #2E2113 тёмно-коричневый
 };
 
 export function HomePage() {
