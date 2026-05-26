@@ -74,6 +74,14 @@ const labelStyle = {
 
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hue, setHue] = useState(0);
+  const [accent, setAccent] = useState(0);
+  const [activeSlider, setActiveSlider] = useState<null | "hue" | "accent">(null);
+
+  const dashFilter =
+    hue === 0 && accent === 0
+      ? "none"
+      : `hue-rotate(${hue}deg) saturate(${1 + accent / 100})`;
 
   return (
     <div
@@ -337,7 +345,7 @@ export function HomePage() {
         <section className="pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-16">
+              <motion.div variants={fadeUp} className="text-center mb-10">
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
                   <span style={labelStyle}>Платформа</span>
@@ -351,11 +359,210 @@ export function HomePage() {
                 </p>
               </motion.div>
 
+              {/* ── Color Customizer ── */}
+              <motion.div
+                variants={fadeUp}
+                className="mx-auto mb-10 rounded-2xl px-6 py-5"
+                style={{
+                  maxWidth: "640px",
+                  background: "rgba(251,246,236,0.04)",
+                  backdropFilter: "blur(14px) saturate(140%)",
+                  WebkitBackdropFilter: "blur(14px) saturate(140%)",
+                  border: "1px solid rgba(212,176,116,0.2)",
+                  boxShadow: "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.06)",
+                }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span style={{ ...labelStyle, fontSize: "10px" }}>Кастомизация</span>
+                  <button
+                    onClick={() => { setHue(0); setAccent(0); }}
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "11px",
+                      color: "rgba(212,176,116,0.7)",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      letterSpacing: "0.05em",
+                      opacity: hue === 0 && accent === 0 ? 0.35 : 1,
+                      transition: "opacity 0.2s",
+                    }}
+                    disabled={hue === 0 && accent === 0}
+                  >
+                    Сбросить
+                  </button>
+                </div>
+
+                {/* Slider 1 — Основной цвет */}
+                <div className="mb-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
+                      Основной цвет
+                    </span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
+                      {hue === 0 ? "по умолчанию" : `${hue > 0 ? "+" : ""}${hue}°`}
+                    </span>
+                  </div>
+                  <div
+                    className="relative"
+                    style={{
+                      height: activeSlider === "hue" ? "26px" : "6px",
+                      transition: "height 0.25s ease",
+                    }}
+                  >
+                    {/* Hue palette (shown only when active) */}
+                    <div
+                      className="absolute left-0 right-0 rounded-full pointer-events-none"
+                      style={{
+                        top: 0,
+                        height: "8px",
+                        background:
+                          "linear-gradient(90deg, hsl(180,70%,55%) 0%, hsl(220,70%,55%) 20%, hsl(280,60%,60%) 40%, hsl(340,65%,60%) 55%, #D4B074 60%, hsl(40,60%,55%) 80%, hsl(120,40%,50%) 100%)",
+                        opacity: activeSlider === "hue" ? 1 : 0,
+                        transition: "opacity 0.25s ease",
+                      }}
+                    />
+                    {/* Track (default neutral) */}
+                    <div
+                      className="absolute left-0 right-0 rounded-full pointer-events-none"
+                      style={{
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        height: "4px",
+                        background: "rgba(212,176,116,0.18)",
+                        opacity: activeSlider === "hue" ? 0 : 1,
+                        transition: "opacity 0.25s ease",
+                      }}
+                    />
+                    {/* Center mark */}
+                    <div
+                      className="absolute pointer-events-none rounded-full"
+                      style={{
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%,-50%)",
+                        width: "2px",
+                        height: "10px",
+                        background: "rgba(212,176,116,0.45)",
+                      }}
+                    />
+                    <input
+                      type="range"
+                      min={-180}
+                      max={180}
+                      step={1}
+                      value={hue}
+                      onChange={(e) => setHue(Number(e.target.value))}
+                      onPointerDown={() => setActiveSlider("hue")}
+                      onPointerUp={() => setActiveSlider(null)}
+                      onPointerLeave={() => setActiveSlider(null)}
+                      onBlur={() => setActiveSlider(null)}
+                      className="dash-slider"
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }}
+                    />
+                    {/* Thumb */}
+                    <div
+                      className="absolute pointer-events-none rounded-full"
+                      style={{
+                        top: "50%",
+                        left: `${((hue + 180) / 360) * 100}%`,
+                        transform: "translate(-50%,-50%)",
+                        width: "16px",
+                        height: "16px",
+                        background: "linear-gradient(135deg, #FBF6EC 0%, #E8D5A8 100%)",
+                        border: "1px solid rgba(107,82,50,0.4)",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.6)",
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Slider 2 — Насыщенность */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>
+                      Дополнительный цвет
+                    </span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
+                      {accent === 0 ? "по умолчанию" : `${accent > 0 ? "+" : ""}${accent}%`}
+                    </span>
+                  </div>
+                  <div
+                    className="relative"
+                    style={{
+                      height: activeSlider === "accent" ? "26px" : "6px",
+                      transition: "height 0.25s ease",
+                    }}
+                  >
+                    {/* Saturation palette */}
+                    <div
+                      className="absolute left-0 right-0 rounded-full pointer-events-none"
+                      style={{
+                        top: 0,
+                        height: "8px",
+                        background: `linear-gradient(90deg, hsl(${30 + hue},5%,55%) 0%, hsl(${30 + hue},25%,55%) 50%, hsl(${30 + hue},80%,55%) 100%)`,
+                        opacity: activeSlider === "accent" ? 1 : 0,
+                        transition: "opacity 0.25s ease",
+                      }}
+                    />
+                    <div
+                      className="absolute left-0 right-0 rounded-full pointer-events-none"
+                      style={{
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        height: "4px",
+                        background: "rgba(212,176,116,0.18)",
+                        opacity: activeSlider === "accent" ? 0 : 1,
+                        transition: "opacity 0.25s ease",
+                      }}
+                    />
+                    <div
+                      className="absolute pointer-events-none rounded-full"
+                      style={{
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%,-50%)",
+                        width: "2px",
+                        height: "10px",
+                        background: "rgba(212,176,116,0.45)",
+                      }}
+                    />
+                    <input
+                      type="range"
+                      min={-100}
+                      max={100}
+                      step={1}
+                      value={accent}
+                      onChange={(e) => setAccent(Number(e.target.value))}
+                      onPointerDown={() => setActiveSlider("accent")}
+                      onPointerUp={() => setActiveSlider(null)}
+                      onPointerLeave={() => setActiveSlider(null)}
+                      onBlur={() => setActiveSlider(null)}
+                      className="dash-slider"
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, cursor: "pointer", margin: 0 }}
+                    />
+                    <div
+                      className="absolute pointer-events-none rounded-full"
+                      style={{
+                        top: "50%",
+                        left: `${((accent + 100) / 200) * 100}%`,
+                        transform: "translate(-50%,-50%)",
+                        width: "16px",
+                        height: "16px",
+                        background: "linear-gradient(135deg, #FBF6EC 0%, #E8D5A8 100%)",
+                        border: "1px solid rgba(107,82,50,0.4)",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.6)",
+                      }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Dashboard Scene */}
               <motion.div
                 variants={fadeUp}
                 className="relative mx-auto"
-                style={{ maxWidth: "1320px", height: "920px" }}
+                style={{ maxWidth: "1320px", height: "920px", filter: dashFilter, transition: "filter 0.15s linear" }}
               >
                 {/* ── LUXURY GLASS FRAME ── */}
                 <div
