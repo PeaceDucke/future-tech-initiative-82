@@ -39,14 +39,14 @@ function Section({
 
 const card = {
   background: "#151513",
-  border: "1px solid rgba(245,197,107,0.18)",
+  border: "1px solid rgba(212,176,116,0.18)",
 };
 
-const cardHover = "hover:border-[rgba(245,197,107,0.35)] transition-colors duration-300 cursor-default";
+const cardHover = "hover:border-[rgba(212,176,116,0.35)] transition-colors duration-300 cursor-default";
 
 const iconBox = {
-  background: "rgba(245,197,107,0.08)",
-  border: "1px solid rgba(245,197,107,0.18)",
+  background: "rgba(212,176,116,0.08)",
+  border: "1px solid rgba(212,176,116,0.18)",
 };
 
 const h2Style = {
@@ -64,7 +64,7 @@ const bodyText = {
 };
 
 const labelStyle = {
-  color: "#F5C56B",
+  color: "#D4B074",
   fontSize: "10px" as const,
   fontWeight: 500,
   letterSpacing: "0.2em",
@@ -86,7 +86,7 @@ export function HomePage() {
           className="border-b"
           style={{
             background: "rgba(21,21,19,0.95)",
-            borderColor: "rgba(245,197,107,0.12)",
+            borderColor: "rgba(212,176,116,0.12)",
           }}
         >
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
@@ -94,11 +94,11 @@ export function HomePage() {
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{
-                  background: "rgba(245,197,107,0.1)",
-                  border: "1px solid rgba(245,197,107,0.25)",
+                  background: "rgba(212,176,116,0.1)",
+                  border: "1px solid rgba(212,176,116,0.25)",
                 }}
               >
-                <Icon name="Waves" size={16} style={{ color: "#F5C56B" }} />
+                <Icon name="Waves" size={16} style={{ color: "#D4B074" }} />
               </div>
               <span
                 className="text-[15px] tracking-wide"
@@ -109,7 +109,7 @@ export function HomePage() {
                   letterSpacing: "0.08em",
                 }}
               >
-                SALES<span style={{ color: "#F5C56B" }}>FLOW</span>
+                SALES<span style={{ color: "#D4B074" }}>FLOW</span>
               </span>
             </a>
 
@@ -133,7 +133,7 @@ export function HomePage() {
                 href="#cta"
                 className="hidden sm:inline-flex items-center gap-2"
                 style={{
-                  background: "#F5C56B",
+                  background: "#D4B074",
                   color: "#151513",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: 500,
@@ -163,7 +163,7 @@ export function HomePage() {
             className="border-b px-5 py-4"
             style={{
               background: "rgba(21,21,19,0.98)",
-              borderColor: "rgba(245,197,107,0.12)",
+              borderColor: "rgba(212,176,116,0.12)",
             }}
           >
             {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
@@ -184,7 +184,7 @@ export function HomePage() {
               onClick={() => setMenuOpen(false)}
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px]"
               style={{
-                background: "#F5C56B",
+                background: "#D4B074",
                 color: "#151513",
                 fontFamily: "Inter, sans-serif",
                 fontWeight: 500,
@@ -228,7 +228,7 @@ export function HomePage() {
               className="max-w-2xl"
             >
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
-                <div style={{ width: "40px", height: "1px", background: "#F5C56B", opacity: 0.5 }} />
+                <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
                 <span style={labelStyle}>Речевая аналитика и CRM-интеграции</span>
               </motion.div>
 
@@ -244,7 +244,7 @@ export function HomePage() {
               >
                 Ваши продажи
                 <br />
-                <span style={{ color: "#F5C56B" }}>под контролем</span>
+                <span style={{ color: "#D4B074" }}>под контролем</span>
               </motion.h1>
 
               <motion.p
@@ -261,7 +261,7 @@ export function HomePage() {
                   href="#cta"
                   className="inline-flex items-center gap-2"
                   style={{
-                    background: "#F5C56B",
+                    background: "#D4B074",
                     color: "#151513",
                     borderRadius: "2px",
                     letterSpacing: "0.08em",
@@ -307,7 +307,7 @@ export function HomePage() {
                       className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
                       style={iconBox}
                     >
-                      <Icon name={item.icon} size={18} style={{ color: "#F5C56B" }} />
+                      <Icon name={item.icon} size={18} style={{ color: "#D4B074" }} />
                     </div>
                     <div>
                       <div
@@ -322,7 +322,7 @@ export function HomePage() {
                       >
                         {item.num}
                       </div>
-                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(245,197,107,0.6)", textTransform: "none" as const }}>
+                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(212,176,116,0.6)", textTransform: "none" as const }}>
                         {item.label}
                       </div>
                     </div>
@@ -339,9 +339,9 @@ export function HomePage() {
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div style={{ width: "32px", height: "1px", background: "#F5C56B", opacity: 0.5 }} />
+                  <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
                   <span style={labelStyle}>Платформа</span>
-                  <div style={{ width: "32px", height: "1px", background: "#F5C56B", opacity: 0.5 }} />
+                  <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
                 </div>
                 <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
                   Всё в одном окне
@@ -734,7 +734,7 @@ export function HomePage() {
         {/* ═══ FOOTER ═══ */}
         <footer
           className="py-10 px-5"
-          style={{ borderTop: "1px solid rgba(245,197,107,0.1)", background: "#151513" }}
+          style={{ borderTop: "1px solid rgba(212,176,116,0.1)", background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -742,11 +742,11 @@ export function HomePage() {
                 <div
                   className="w-7 h-7 rounded-lg flex items-center justify-center"
                   style={{
-                    background: "rgba(245,197,107,0.1)",
-                    border: "1px solid rgba(245,197,107,0.25)",
+                    background: "rgba(212,176,116,0.1)",
+                    border: "1px solid rgba(212,176,116,0.25)",
                   }}
                 >
-                  <Icon name="Waves" size={14} style={{ color: "#F5C56B" }} />
+                  <Icon name="Waves" size={14} style={{ color: "#D4B074" }} />
                 </div>
                 <span
                   style={{
@@ -757,7 +757,7 @@ export function HomePage() {
                     color: "#FBF6EC",
                   }}
                 >
-                  SALES<span style={{ color: "#F5C56B" }}>FLOW</span>
+                  SALES<span style={{ color: "#D4B074" }}>FLOW</span>
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
@@ -785,7 +785,7 @@ export function HomePage() {
         href="#cta"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
         style={{
-          background: "#F5C56B",
+          background: "#D4B074",
           color: "#151513",
           fontFamily: "Inter, sans-serif",
           fontWeight: 500,

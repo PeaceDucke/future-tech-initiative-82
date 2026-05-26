@@ -15,24 +15,24 @@
     --popover: 25 14% 15%;
     --popover-foreground: 40 60% 97%;
 
-    --primary: 40 85% 62%;
+    --primary: 36 45% 64%;
     --primary-foreground: 40 6% 9%;
 
     --secondary: 22 16% 18%;
-    --secondary-foreground: 38 50% 94%;
+    --secondary-foreground: 38 30% 92%;
 
     --muted: 22 16% 18%;
-    --muted-foreground: 36 35% 82%;
+    --muted-foreground: 34 20% 76%;
 
-    --accent: 40 85% 62%;
+    --accent: 36 45% 64%;
     --accent-foreground: 40 6% 9%;
 
     --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 36 25% 28%;
-    --input: 36 25% 28%;
-    --ring: 40 85% 62%;
+    --border: 34 18% 24%;
+    --input: 34 18% 24%;
+    --ring: 36 45% 64%;
 
     --radius: 2px;
   }
@@ -72,7 +72,7 @@
   background: #151513;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(243, 198, 107, 0.5);
+  background: rgba(212, 176, 116, 0.35);
   border-radius: 2px;
 }
 
@@ -81,10 +81,10 @@
   font-family: "Bodoni Moda", Georgia, serif;
 }
 .text-gold {
-  color: #f3c66b;
+  color: #d4b074;
 }
 .text-gold-dim {
-  color: rgba(243, 198, 107, 0.88);
+  color: rgba(212, 176, 116, 0.75);
 }
 .text-ivory {
   color: #fdf8ee;
@@ -93,7 +93,7 @@
   color: #f5ead2;
 }
 .border-gold-subtle {
-  border-color: rgba(243, 198, 107, 0.45);
+  border-color: rgba(212, 176, 116, 0.32);
 }
 .bg-mocha {
   background-color: #2a211c;
