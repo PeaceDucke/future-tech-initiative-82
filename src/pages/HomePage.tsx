@@ -357,6 +357,66 @@ export function HomePage() {
                 className="relative mx-auto"
                 style={{ maxWidth: "1320px", height: "920px" }}
               >
+                {/* ── LUXURY GLASS FRAME ── */}
+                <div
+                  className="absolute rounded-[28px] pointer-events-none"
+                  style={{
+                    top: "-18px",
+                    left: "-18px",
+                    right: "-18px",
+                    height: "856px",
+                    padding: "18px",
+                    background:
+                      "linear-gradient(135deg, rgba(212,176,116,0.45) 0%, rgba(212,176,116,0.08) 35%, rgba(212,176,116,0.04) 65%, rgba(212,176,116,0.4) 100%)",
+                    boxShadow:
+                      "0 80px 160px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,176,116,0.18), inset 0 1px 0 rgba(251,246,236,0.08)",
+                    zIndex: 0,
+                  }}
+                >
+                  <div
+                    className="w-full h-full rounded-[20px]"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(21,21,19,0.55) 0%, rgba(21,21,19,0.25) 50%, rgba(21,21,19,0.5) 100%)",
+                      backdropFilter: "blur(14px) saturate(140%)",
+                      WebkitBackdropFilter: "blur(14px) saturate(140%)",
+                      border: "1px solid rgba(251,246,236,0.06)",
+                      boxShadow: "inset 0 1px 0 rgba(251,246,236,0.06)",
+                    }}
+                  />
+                  {/* Top highlight sheen */}
+                  <div
+                    className="absolute rounded-t-[20px] pointer-events-none"
+                    style={{
+                      top: "18px",
+                      left: "18px",
+                      right: "18px",
+                      height: "120px",
+                      background:
+                        "linear-gradient(180deg, rgba(251,246,236,0.06) 0%, rgba(251,246,236,0) 100%)",
+                    }}
+                  />
+                  {/* Corner gold dots */}
+                  {[
+                    { top: "6px", left: "6px" },
+                    { top: "6px", right: "6px" },
+                    { bottom: "6px", left: "6px" },
+                    { bottom: "6px", right: "6px" },
+                  ].map((pos, i) => (
+                    <div
+                      key={i}
+                      className="absolute rounded-full"
+                      style={{
+                        ...pos,
+                        width: "4px",
+                        height: "4px",
+                        background: "#D4B074",
+                        boxShadow: "0 0 6px rgba(212,176,116,0.5)",
+                      }}
+                    />
+                  ))}
+                </div>
+
                 {/* ── BIG MAIN DASHBOARD ── */}
                 <div
                   className="absolute rounded-2xl overflow-hidden"
@@ -366,7 +426,7 @@ export function HomePage() {
                     top: "0px",
                     left: "0px",
                     background: "#FBF6EC",
-                    border: "1px solid rgba(251,246,236,0.2)",
+                    border: "1px solid rgba(212,176,116,0.25)",
                     boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(251,246,236,0.08)",
                     zIndex: 1,
                   }}
