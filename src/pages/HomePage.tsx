@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 
 const fadeUp = {
@@ -123,6 +123,41 @@ export function HomePage() {
 
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
   const [customizerOpen, setCustomizerOpen] = useState(false);
+
+  // Hover на карточке "Анализ разговора" — печатающаяся подсказка
+  const [analysisHover, setAnalysisHover] = useState(false);
+  const [analysisTyped, setAnalysisTyped] = useState("");
+  const analysisFullText = `AI находит моменты,
+в которых менеджер теряет клиента.
+
+Например:
+— слишком раннее обсуждение цены
+— отсутствие фиксации потребности
+— слабая обработка возражений
+
+Это помогает повысить конверсию
+без увеличения рекламного бюджета.`;
+
+  useEffect(() => {
+    if (!analysisHover) {
+      setAnalysisTyped("");
+      return;
+    }
+    const startDelay = setTimeout(() => {
+      let i = 0;
+      const id = setInterval(() => {
+        i++;
+        setAnalysisTyped(analysisFullText.slice(0, i));
+        if (i >= analysisFullText.length) clearInterval(id);
+      }, 22);
+      (startDelay as unknown as { _id?: ReturnType<typeof setInterval> })._id = id;
+    }, 500);
+    return () => {
+      clearTimeout(startDelay);
+      const id = (startDelay as unknown as { _id?: ReturnType<typeof setInterval> })._id;
+      if (id) clearInterval(id);
+    };
+  }, [analysisHover]);
 
   // Хелпер: вернуть точные CSS-значения, если пикер не трогали; иначе — pickerCSS
   const resolve = (val: PickerVal, touched: boolean, def: typeof DEFAULTS.bg) => {
@@ -970,13 +1005,22 @@ export function HomePage() {
                 {/* ── CARD: Анализ разговора (слева) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
+                  onMouseEnter={() => setAnalysisHover(true)}
+                  onMouseLeave={() => setAnalysisHover(false)}
                   style={{
                     width: "34%",
                     bottom: "100px",
                     left: "-3%",
-                    background: "var(--db-bg-1)",
-                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    background: analysisHover
+                      ? "linear-gradient(135deg, rgba(255,233,196,0.95) 0%, var(--db-bg-1) 100%)"
+                      : "var(--db-bg-1)",
+                    border: analysisHover
+                      ? "1px solid rgba(212,176,116,0.7)"
+                      : "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: analysisHover
+                      ? "0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,176,116,0.35), 0 0 40px rgba(212,176,116,0.45)"
+                      : "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    transition: "background 0.5s ease 0.4s, border-color 0.5s ease 0.4s, box-shadow 0.5s ease 0.4s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: 20,
                   }}
                 >
@@ -985,7 +1029,16 @@ export function HomePage() {
                   {/* Waveform */}
                   <div className="flex items-center gap-0.5 mb-4" style={{ height: "48px" }}>
                     {[5,9,15,11,21,14,8,18,12,22,9,17,6,19,10,15,8,12,18,9,13,21,10,16,6,12,19,9,15,7,18,10,13,16,8].map((h, i) => (
-                      <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < 14 ? "#453321" : "rgba(69,51,33,0.3)" }} />
+                      <div
+                        key={i}
+                        className="flex-1 rounded-full"
+                        style={{
+                          height: `${h}px`,
+                          background: i < 14 ? "#453321" : "rgba(69,51,33,0.3)",
+                          transformOrigin: "center",
+                          animation: analysisHover ? `wf-pulse 1.1s ease-in-out ${i * 40}ms infinite` : "none",
+                        }}
+                      />
                     ))}
                   </div>
                   <div className="flex items-center gap-3 mb-5">
@@ -999,6 +1052,40 @@ export function HomePage() {
                     {["Цена", "Сроки", "Интеграция", "Демо"].map(tag => (
                       <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(var(--db-text-rgb),0.08)", color: "var(--db-text-main)", border: "1px solid rgba(var(--db-text-rgb),0.25)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
                     ))}
+                  </div>
+
+                  {/* Печатающаяся подсказка справа от карточки */}
+                  <div
+                    className="absolute pointer-events-none"
+                    style={{
+                      top: "0",
+                      left: "calc(100% + 24px)",
+                      width: "320px",
+                      opacity: analysisHover ? 1 : 0,
+                      transform: analysisHover ? "translateX(0)" : "translateX(-8px)",
+                      transition: "opacity 0.4s ease 0.4s, transform 0.5s ease 0.4s",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "13px",
+                        lineHeight: 1.6,
+                        color: "#FBF6EC",
+                        whiteSpace: "pre-wrap",
+                        background: "rgba(20,15,8,0.78)",
+                        border: "1px solid rgba(212,176,116,0.35)",
+                        borderRadius: "14px",
+                        padding: "16px 18px",
+                        backdropFilter: "blur(6px)",
+                        boxShadow: "0 20px 50px rgba(0,0,0,0.55)",
+                      }}
+                    >
+                      {analysisTyped}
+                      {analysisHover && analysisTyped.length < analysisFullText.length && (
+                        <span style={{ opacity: 0.85, animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
