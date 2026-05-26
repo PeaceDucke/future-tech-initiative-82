@@ -337,212 +337,232 @@ export function HomePage() {
         <section className="py-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-12">
+              <motion.div variants={fadeUp} className="text-center mb-16">
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div style={{ width: "32px", height: "1px", background: "#8B6F47", opacity: 0.5 }} />
-                  <span style={{ ...labelStyle, color: "#8B6F47" }}>Платформа</span>
-                  <div style={{ width: "32px", height: "1px", background: "#8B6F47", opacity: 0.5 }} />
+                  <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
+                  <span style={labelStyle}>Платформа</span>
+                  <div style={{ width: "32px", height: "1px", background: "#C2A57A", opacity: 0.5 }} />
                 </div>
-                <h2 className="text-3xl lg:text-5xl mb-4" style={{ ...h2Style, color: "#1A1814" }}>
+                <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
                   Всё в одном окне
                 </h2>
-                <p style={{ ...bodyText, color: "rgba(26,24,20,0.55)", fontSize: "14px", maxWidth: "480px", margin: "0 auto" }}>
+                <p style={{ ...bodyText, fontSize: "14px", maxWidth: "480px", margin: "0 auto" }}>
                   Аналитика звонков, воронка, менеджеры и AI-инсайты — единый дашборд без лишних вкладок
                 </p>
               </motion.div>
 
-              {/* Dashboard mock */}
+              {/* 3D Dashboard Scene */}
               <motion.div
                 variants={fadeUp}
-                className="rounded-2xl overflow-hidden shadow-2xl"
-                style={{ background: "#E7DED4", border: "1px solid rgba(139,111,71,0.15)" }}
+                className="relative"
+                style={{ perspective: "1200px", minHeight: "680px" }}
               >
-                {/* Top bar */}
-                <div className="flex items-center justify-between px-5 py-3 border-b" style={{ background: "#DDD2C4", borderColor: "rgba(139,111,71,0.2)" }}>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-5 h-5 rounded flex items-center justify-center" style={{ background: "rgba(139,111,71,0.15)" }}>
-                      <Icon name="Waves" size={11} style={{ color: "#8B6F47" }} />
+                {/* ── MAIN DASHBOARD (центр, слегка наклонён) ── */}
+                <div
+                  className="absolute rounded-2xl overflow-hidden shadow-2xl"
+                  style={{
+                    width: "62%",
+                    top: "0px",
+                    left: "19%",
+                    background: "#E7DED4",
+                    border: "1px solid rgba(231,222,212,0.25)",
+                    transform: "rotateX(4deg) rotateY(-3deg)",
+                    transformOrigin: "center top",
+                    boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(231,222,212,0.1)",
+                    zIndex: 10,
+                  }}
+                >
+                  {/* Topbar */}
+                  <div className="flex items-center justify-between px-4 py-2.5 border-b" style={{ background: "#DDD2C4", borderColor: "rgba(139,111,71,0.2)" }}>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Waves" size={12} style={{ color: "#8B6F47" }} />
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "11px", color: "#1A1814", letterSpacing: "0.08em" }}>SALES<span style={{ color: "#8B6F47" }}>FLOW</span></span>
                     </div>
-                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "12px", color: "#1A1814", letterSpacing: "0.08em" }}>
-                      SALES<span style={{ color: "#8B6F47" }}>FLOW</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.45)" }}>1–30 Апреля, 2024</span>
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded" style={{ background: "rgba(139,111,71,0.1)", border: "1px solid rgba(139,111,71,0.2)" }}>
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ background: "#8B6F47", color: "#E7DED4" }}>И</div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#1A1814" }}>Эксперт</span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.4)" }}>1–30 Апреля, 2024</span>
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded" style={{ background: "rgba(139,111,71,0.1)", border: "1px solid rgba(139,111,71,0.2)" }}>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#1A1814" }}>Эксперт</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="flex" style={{ minHeight: "540px" }}>
-                  {/* Sidebar */}
-                  <div className="w-40 shrink-0 border-r py-4 px-3" style={{ background: "#DDD2C4", borderColor: "rgba(139,111,71,0.15)" }}>
-                    {[
-                      { icon: "LayoutDashboard", label: "Обзор", active: true },
-                      { icon: "Phone", label: "Звонки", active: false },
-                      { icon: "Users", label: "Клиенты", active: false },
-                      { icon: "BarChart2", label: "Аналитика", active: false },
-                      { icon: "Sparkles", label: "AI-Инсайты", active: false },
-                      { icon: "FileText", label: "Отчёты", active: false },
-                      { icon: "Settings", label: "Настройки", active: false },
-                    ].map((item) => (
-                      <div
-                        key={item.label}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg mb-0.5"
-                        style={{
-                          background: item.active ? "rgba(139,111,71,0.15)" : "transparent",
-                          cursor: "default",
-                        }}
-                      >
-                        <Icon name={item.icon} size={14} style={{ color: item.active ? "#8B6F47" : "rgba(26,24,20,0.4)" }} />
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: item.active ? "#1A1814" : "rgba(26,24,20,0.45)", fontWeight: item.active ? 500 : 300 }}>
-                          {item.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Main content */}
-                  <div className="flex-1 p-5 overflow-hidden">
-                    <div className="mb-4">
-                      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#1A1814", fontWeight: 400 }}>Обзор</h3>
-                    </div>
-
-                    {/* KPI cards */}
-                    <div className="grid grid-cols-4 gap-3 mb-4">
+                  <div className="flex">
+                    {/* Sidebar */}
+                    <div className="shrink-0 border-r py-3 px-2.5" style={{ width: "120px", background: "#DDD2C4", borderColor: "rgba(139,111,71,0.15)" }}>
                       {[
-                        { label: "Выручка", value: "₽12.4M", change: "+18.7%", color: "#22a868" },
-                        { label: "Конверсия в сделки", value: "24.6%", change: "+12.4%", color: "#22a868" },
-                        { label: "Средний чек", value: "₽18,540", change: "+6.2%", color: "#22a868" },
-                        { label: "Новые лиды", value: "1,243", change: "+14.3%", color: "#22a868" },
-                      ].map((kpi) => (
-                        <div key={kpi.label} className="rounded-xl p-3" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
-                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", marginBottom: "6px" }}>{kpi.label}</div>
-                          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#1A1814", fontWeight: 400, marginBottom: "4px" }}>{kpi.value}</div>
-                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: kpi.color }}>↑ {kpi.change} за период</div>
-                          {/* Mini sparkline */}
-                          <svg width="100%" height="24" viewBox="0 0 80 24" style={{ marginTop: "6px" }}>
-                            <polyline points="0,20 15,16 30,18 45,10 60,12 80,4" fill="none" stroke="#8B6F47" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-                          </svg>
+                        { icon: "LayoutDashboard", label: "Обзор", active: true },
+                        { icon: "Phone", label: "Звонки" },
+                        { icon: "Users", label: "Клиенты" },
+                        { icon: "BarChart2", label: "Аналитика" },
+                        { icon: "Sparkles", label: "AI-Инсайты" },
+                        { icon: "FileText", label: "Отчёты" },
+                        { icon: "Settings", label: "Настройки" },
+                      ].map((item) => (
+                        <div key={item.label} className="flex items-center gap-2 px-2 py-1.5 rounded-md mb-0.5" style={{ background: item.active ? "rgba(139,111,71,0.15)" : "transparent" }}>
+                          <Icon name={item.icon} size={12} style={{ color: item.active ? "#8B6F47" : "rgba(26,24,20,0.35)" }} />
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: item.active ? "#1A1814" : "rgba(26,24,20,0.4)", fontWeight: item.active ? 500 : 300 }}>{item.label}</span>
                         </div>
                       ))}
                     </div>
-
-                    {/* Second row */}
-                    <div className="grid grid-cols-3 gap-3 mb-3">
-                      {/* Revenue chart */}
-                      <div className="col-span-2 rounded-xl p-4" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "12px", fontWeight: 500 }}>Динамика выручки</div>
-                        <svg width="100%" height="80" viewBox="0 0 300 80" preserveAspectRatio="none">
-                          <defs>
-                            <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#8B6F47" stopOpacity="0.25" />
-                              <stop offset="100%" stopColor="#8B6F47" stopOpacity="0" />
-                            </linearGradient>
-                          </defs>
-                          <path d="M0,60 C30,55 50,45 80,40 C110,35 130,50 160,35 C190,20 220,25 260,15 L300,10 L300,80 L0,80 Z" fill="url(#revenueGrad)" />
-                          <path d="M0,60 C30,55 50,45 80,40 C110,35 130,50 160,35 C190,20 220,25 260,15 L300,10" fill="none" stroke="#8B6F47" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                        <div className="flex justify-between mt-2">
-                          {["1 Апр", "7 Апр", "14 Апр", "21 Апр", "30 Апр"].map(d => (
-                            <span key={d} style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.35)" }}>{d}</span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* AI Insights */}
-                      <div className="rounded-xl p-4 flex flex-col" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
-                        <div className="flex items-center gap-1.5 mb-3">
-                          <Icon name="Sparkles" size={12} style={{ color: "#8B6F47" }} />
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#8B6F47", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" }}>AI-Инсайты</span>
-                        </div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.6)", lineHeight: 1.6, marginBottom: "12px" }}>
-                          Клиенты чаще всего возражают на этапе обсуждения цены.
-                        </p>
-                        {/* Donut */}
-                        <div className="flex items-center justify-center flex-1">
-                          <div className="relative">
-                            <svg width="64" height="64" viewBox="0 0 64 64">
-                              <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(139,111,71,0.15)" strokeWidth="8" />
-                              <circle cx="32" cy="32" r="26" fill="none" stroke="#8B6F47" strokeWidth="8" strokeDasharray="130 163" strokeDashoffset="41" strokeLinecap="round" />
-                            </svg>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "14px", color: "#1A1814", fontWeight: 400 }}>81%</span>
-                            </div>
+                    {/* Content */}
+                    <div className="flex-1 p-4">
+                      <div className="mb-3" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "16px", color: "#1A1814" }}>Обзор</div>
+                      {/* KPIs */}
+                      <div className="grid grid-cols-4 gap-2 mb-3">
+                        {[
+                          { label: "Выручка", value: "₽12.4M", change: "+18.7%" },
+                          { label: "Конверсия", value: "24.6%", change: "+12.4%" },
+                          { label: "Средний чек", value: "₽18,540", change: "+6.2%" },
+                          { label: "Новые лиды", value: "1,243", change: "+14.3%" },
+                        ].map((k) => (
+                          <div key={k.label} className="rounded-lg p-2.5" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.4)", marginBottom: "4px" }}>{k.label}</div>
+                            <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "#1A1814", marginBottom: "2px" }}>{k.value}</div>
+                            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#22a868" }}>↑ {k.change}</div>
+                            <svg width="100%" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="#8B6F47" strokeWidth="1.2" opacity="0.5" strokeLinecap="round" /></svg>
                           </div>
-                        </div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.4)", textAlign: "center", marginTop: "6px" }}>Вероятность успешной сделки</p>
+                        ))}
                       </div>
-                    </div>
-
-                    {/* Third row */}
-                    <div className="grid grid-cols-3 gap-3">
-                      {/* Sources donut */}
-                      <div className="rounded-xl p-4" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "10px", fontWeight: 500 }}>Источники сделок</div>
-                        <div className="flex items-center gap-3">
-                          <svg width="52" height="52" viewBox="0 0 52 52">
-                            <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(139,111,71,0.12)" strokeWidth="10" />
-                            <circle cx="26" cy="26" r="20" fill="none" stroke="#8B6F47" strokeWidth="10" strokeDasharray="50 125" strokeDashoffset="31" />
-                            <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(139,111,71,0.4)" strokeWidth="10" strokeDasharray="37 125" strokeDashoffset="-19" />
-                            <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(139,111,71,0.25)" strokeWidth="10" strokeDasharray="25 125" strokeDashoffset="-56" />
-                            <text x="26" y="30" textAnchor="middle" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "10px", fill: "#1A1814" }}>128</text>
+                      {/* Chart row */}
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="col-span-2 rounded-lg p-3" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.5)", marginBottom: "8px" }}>Динамика выручки</div>
+                          <svg width="100%" height="60" viewBox="0 0 260 60" preserveAspectRatio="none">
+                            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#8B6F47" stopOpacity="0.2"/><stop offset="100%" stopColor="#8B6F47" stopOpacity="0"/></linearGradient></defs>
+                            <path d="M0,48 C25,44 40,36 65,32 C90,28 105,40 130,28 C155,16 180,20 210,12 L260,8 L260,60 L0,60 Z" fill="url(#g1)"/>
+                            <path d="M0,48 C25,44 40,36 65,32 C90,28 105,40 130,28 C155,16 180,20 210,12 L260,8" fill="none" stroke="#8B6F47" strokeWidth="1.5" strokeLinecap="round"/>
                           </svg>
-                          <div className="space-y-1.5">
-                            {[["Холодные звонки", "40%"], ["Рекомендации", "30%"], ["Партнёры", "20%"], ["Другое", "10%"]].map(([l, v]) => (
-                              <div key={l} className="flex items-center gap-1.5">
-                                <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#8B6F47", opacity: l === "Рекомендации" ? 0.6 : l === "Партнёры" ? 0.35 : l === "Другое" ? 0.2 : 1 }} />
-                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.5)" }}>{l}</span>
-                                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#1A1814", fontWeight: 500 }}>{v}</span>
-                              </div>
-                            ))}
+                          <div className="flex justify-between"><span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(26,24,20,0.3)" }}>1 Апр</span><span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(26,24,20,0.3)" }}>14 Апр</span><span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(26,24,20,0.3)" }}>30 Апр</span></div>
+                        </div>
+                        <div className="rounded-lg p-3 flex flex-col items-center justify-center" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
+                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#8B6F47", marginBottom: "8px" }}>AI-Инсайты</div>
+                          <div className="relative">
+                            <svg width="56" height="56" viewBox="0 0 56 56">
+                              <circle cx="28" cy="28" r="22" fill="none" stroke="rgba(139,111,71,0.15)" strokeWidth="7"/>
+                              <circle cx="28" cy="28" r="22" fill="none" stroke="#8B6F47" strokeWidth="7" strokeDasharray="113 138" strokeDashoffset="35" strokeLinecap="round"/>
+                            </svg>
+                            <div className="absolute inset-0 flex items-center justify-center" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "13px", color: "#1A1814" }}>81%</div>
                           </div>
-                        </div>
-                      </div>
-
-                      {/* Top managers */}
-                      <div className="rounded-xl p-4" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "10px", fontWeight: 500 }}>Топ менеджеров</div>
-                        <div className="space-y-2">
-                          {[
-                            { name: "Иван Петров", rev: "₽2.8M", change: "+24.5%", avatar: "И" },
-                            { name: "Мария Смирнова", rev: "₽2.3M", change: "+18.7%", avatar: "М" },
-                            { name: "Алексей Кузнецов", rev: "₽1.9M", change: "+15.2%", avatar: "А" },
-                            { name: "Анна Васильева", rev: "₽1.6M", change: "+11.3%", avatar: "А" },
-                          ].map((m) => (
-                            <div key={m.name} className="flex items-center gap-2">
-                              <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold shrink-0" style={{ background: "rgba(139,111,71,0.2)", color: "#8B6F47" }}>{m.avatar}</div>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.7)", flex: 1 }}>{m.name}</span>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#1A1814", fontWeight: 500 }}>{m.rev}</span>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#22a868" }}>{m.change}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Last calls */}
-                      <div className="rounded-xl p-4" style={{ background: "#DDD2C4", border: "1px solid rgba(139,111,71,0.12)" }}>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)", marginBottom: "10px", fontWeight: 500 }}>Последние звонки</div>
-                        <div className="space-y-2">
-                          {[
-                            { client: "ООО ТехноПласт", dur: "32:14", res: "Успешно", conv: "85%" },
-                            { client: "Иван Петров", dur: "18:42", res: "Перезвонить", conv: "40%" },
-                            { client: "АО МаркетПлейс", dur: "45:30", res: "Успешно", conv: "90%" },
-                            { client: "Сергей Иванов", dur: "22:11", res: "Не удалось", conv: "20%" },
-                          ].map((c) => (
-                            <div key={c.client} className="flex items-center gap-2">
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.6)", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.client}</span>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.4)" }}>{c.dur}</span>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: c.res === "Успешно" ? "#22a868" : c.res === "Не удалось" ? "#ef4444" : "#8B6F47" }}>{c.res}</span>
-                            </div>
-                          ))}
+                          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(26,24,20,0.4)", textAlign: "center", marginTop: "4px" }}>Успешная сделка</div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {/* ── CARD: Анализ разговора (слева, выдвинута вперёд) ── */}
+                <div
+                  className="absolute rounded-2xl p-4 shadow-2xl"
+                  style={{
+                    width: "28%",
+                    bottom: "0px",
+                    left: "0px",
+                    background: "#E7DED4",
+                    border: "1px solid rgba(231,222,212,0.2)",
+                    transform: "rotateX(-2deg) rotateY(6deg) translateZ(40px)",
+                    transformOrigin: "right bottom",
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(231,222,212,0.1)",
+                    zIndex: 20,
+                  }}
+                >
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1A1814", fontWeight: 500, marginBottom: "2px" }}>Анализ разговора</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", marginBottom: "12px" }}>Этап: Работа с возражениями</div>
+                  {/* Waveform */}
+                  <div className="flex items-center gap-0.5 mb-3" style={{ height: "32px" }}>
+                    {[3,6,10,7,14,9,5,12,8,15,6,11,4,13,7,10,5,8,12,6,9,14,7,11,4,8,13,6,10,5,12,7,9,11,6].map((h, i) => (
+                      <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < 12 ? "#8B6F47" : "rgba(139,111,71,0.3)" }} />
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "#8B6F47" }}>
+                        <Icon name="Play" size={8} style={{ color: "#E7DED4" }} />
+                      </div>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.5)" }}>02:37 / 05:21</span>
+                    </div>
+                  </div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.4)", marginBottom: "6px" }}>Ключевые темы</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Цена", "Сроки", "Интеграция", "Демо"].map(tag => (
+                      <span key={tag} className="px-2 py-0.5 rounded-md text-[9px]" style={{ background: "rgba(139,111,71,0.12)", color: "#8B6F47", border: "1px solid rgba(139,111,71,0.2)" }}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── CARD: Источники сделок (центр-низ, выдвинута вперёд) ── */}
+                <div
+                  className="absolute rounded-2xl p-4 shadow-2xl"
+                  style={{
+                    width: "30%",
+                    bottom: "0px",
+                    left: "30%",
+                    background: "#E7DED4",
+                    border: "1px solid rgba(231,222,212,0.2)",
+                    transform: "rotateX(-1deg) rotateY(-1deg) translateZ(50px)",
+                    transformOrigin: "center bottom",
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(231,222,212,0.1)",
+                    zIndex: 20,
+                  }}
+                >
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#1A1814", fontWeight: 500, marginBottom: "10px" }}>Источники сделок</div>
+                  <div className="flex items-center gap-4">
+                    <div className="relative shrink-0">
+                      <svg width="64" height="64" viewBox="0 0 64 64">
+                        <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(139,111,71,0.12)" strokeWidth="10"/>
+                        <circle cx="32" cy="32" r="26" fill="none" stroke="#8B6F47" strokeWidth="10" strokeDasharray="65 163" strokeDashoffset="41"/>
+                        <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(139,111,71,0.5)" strokeWidth="10" strokeDasharray="49 163" strokeDashoffset="-24"/>
+                        <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(139,111,71,0.25)" strokeWidth="10" strokeDasharray="33 163" strokeDashoffset="-73"/>
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(26,24,20,0.4)" }}>Всего</span>
+                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "13px", color: "#1A1814" }}>128</span>
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      {[["Холодные звонки","40%",1],["Рекомендации","30%",0.5],["Партнёры","20%",0.28],["Другое","10%",0.15]].map(([l,v,o]) => (
+                        <div key={String(l)} className="flex items-center gap-1.5">
+                          <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#8B6F47", opacity: Number(o) }}/>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(26,24,20,0.5)", flex: 1 }}>{l}</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#1A1814", fontWeight: 500 }}>{v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── CARD: Топ менеджеров (справа, выдвинута вперёд) ── */}
+                <div
+                  className="absolute rounded-2xl p-4 shadow-2xl"
+                  style={{
+                    width: "28%",
+                    bottom: "0px",
+                    right: "0px",
+                    background: "#E7DED4",
+                    border: "1px solid rgba(231,222,212,0.2)",
+                    transform: "rotateX(-2deg) rotateY(-6deg) translateZ(40px)",
+                    transformOrigin: "left bottom",
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(231,222,212,0.1)",
+                    zIndex: 20,
+                  }}
+                >
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#1A1814", fontWeight: 500, marginBottom: "10px" }}>Топ менеджеров</div>
+                  <div className="space-y-2.5">
+                    {[
+                      { name: "Иван Петров", rev: "₽2.8M", ch: "+24.5%", a: "И" },
+                      { name: "Мария Смирнова", rev: "₽2.3M", ch: "+18.7%", a: "М" },
+                      { name: "Алексей Кузнецов", rev: "₽1.9M", ch: "+15.2%", a: "А" },
+                      { name: "Анна Васильева", rev: "₽1.6M", ch: "+11.3%", a: "А" },
+                      { name: "Дмитрий Новиков", rev: "₽1.2M", ch: "+8.6%", a: "Д" },
+                    ].map((m) => (
+                      <div key={m.name} className="flex items-center gap-2">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] shrink-0" style={{ background: "rgba(139,111,71,0.2)", color: "#8B6F47", fontWeight: 600 }}>{m.a}</div>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.65)", flex: 1 }}>{m.name}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#1A1814", fontWeight: 500 }}>{m.rev}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#22a868" }}>{m.ch}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom spacer */}
+                <div style={{ paddingBottom: "320px" }} />
               </motion.div>
             </Section>
           </div>
