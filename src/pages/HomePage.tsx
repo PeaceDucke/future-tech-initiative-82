@@ -83,50 +83,38 @@ const labelStyle = {
   fontFamily: "Inter, sans-serif",
 };
 
-// Расширенная палитра: t=-100..100 → HSL.
-// t=0 — оригинальный бежевый/коричневый/чёрный (нейтральное положение).
-// Влево от 0: уход в тёмные оттенки → к чёрному на -100.
-// Вправо от 0: уход через насыщенные радужные оттенки → к белому на +100.
-function paletteHSL(t: number, base: { h: number; s: number; l: number }) {
-  if (t === 0) return base;
-  const u = t / 100;
-  if (u < 0) {
-    // -100 (чёрный) → 0 (база)
-    const k = 1 + u; // 0..1
-    return { h: base.h, s: base.s * k, l: base.l * k };
-  }
-  // 0..+100: hue гуляет по кругу, светлота к 95, насыщенность к 80, последние 15% — обесцвечиваем к белому.
-  const hueShift = u * 300; // 0..300°
-  const s = u < 0.85 ? 60 + u * 25 : 80 * (1 - (u - 0.85) / 0.15);
-  const l = base.l + (95 - base.l) * Math.min(u * 1.1, 1);
-  return { h: (base.h + hueShift + 360) % 360, s, l };
+// Полная радужная палитра: t=0..360 (hue в градусах).
+// Светлота фиксируется параметром каждого ползунка, чтобы дашборд оставался читаемым.
+function rainbowHSL(hue: number, s: number, l: number) {
+  const h = ((hue % 360) + 360) % 360;
+  return { h, s, l };
 }
-
-function paletteCSS(t: number, base: { h: number; s: number; l: number }) {
-  const { h, s, l } = paletteHSL(t, base);
-  return { hsl: `hsl(${h.toFixed(1)}, ${s.toFixed(1)}%, ${l.toFixed(1)}%)`, rgb: hslToRgbCsv(h, s, l) };
-}
-
-// Подвинуть базу на dl светлоты (для производных оттенков, идущих в ту же сторону)
-function paletteDerived(t: number, base: { h: number; s: number; l: number }, dl: number, ds = 0) {
-  const { h, s, l } = paletteHSL(t, base);
-  const nl = Math.max(0, Math.min(100, l + dl));
-  const ns = Math.max(0, Math.min(100, s + ds));
-  return { hsl: `hsl(${h.toFixed(1)}, ${ns.toFixed(1)}%, ${nl.toFixed(1)}%)`, rgb: hslToRgbCsv(h, ns, nl) };
+function rainbowCSS(hue: number, s: number, l: number) {
+  const { h } = rainbowHSL(hue, s, l);
+  return { hsl: `hsl(${h.toFixed(1)}, ${s}%, ${l}%)`, rgb: hslToRgbCsv(h, s, l) };
 }
 
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bgT, setBgT] = useState(0);
-  const [accT, setAccT] = useState(0);
-  const [textT, setTextT] = useState(0);
+  // По умолчанию: фон ~ hsl(40,71%,95%), акцент ~ hsl(33,36%,31%), текст ~ hsl(40,11%,9%)
+  const [bgHue, setBgHue] = useState(40);
+  const [bgSat, setBgSat] = useState(71);
+  const [bgLight, setBgLight] = useState(95);
+
+  const [accHue, setAccHue] = useState(33);
+  const [accSat, setAccSat] = useState(36);
+  const [accLight, setAccLight] = useState(31);
+
+  const [textHue, setTextHue] = useState(40);
+  const [textSat, setTextSat] = useState(11);
+  const [textLight, setTextLight] = useState(9);
+
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
 
-  // Слайдер 1 — основной светлый фон (#FBF6EC ≈ hsl(40,71%,95%))
-  const bgBase = { h: 40, s: 71, l: 95 };
+  // Слайдер 1 — основной светлый фон
   const bgVars = (() => {
-    const main = paletteCSS(bgT, bgBase);
-    const lighter = paletteDerived(bgT, bgBase, 3); // #FFFCF5
+    const main = rainbowCSS(bgHue, bgSat, bgLight);
+    const lighter = rainbowCSS(bgHue, Math.min(100, bgSat + 10), Math.min(100, bgLight + 3));
     return {
       "--db-bg-1": main.hsl,
       "--db-bg-3": lighter.hsl,
@@ -134,15 +122,13 @@ export function HomePage() {
     } as React.CSSProperties;
   })();
 
-  // Слайдер 2 — акценты + светло-коричневые акцент-фоны (#6B5232 ≈ hsl(33,36%,31%))
-  const accBase = { h: 33, s: 36, l: 31 };
+  // Слайдер 2 — акценты и светлые акцент-фоны (производные от того же hue)
   const accVars = (() => {
-    const main = paletteCSS(accT, accBase);
-    // Светлые акцент-фоны строим от той же hue, но повышаем светлоту
-    const bg2 = paletteDerived(accT, accBase, 59, 2);  // ≈ hsl(33,38%,90%) когда t=0
-    const bg4 = paletteDerived(accT, accBase, 61, 29); // ≈ hsl(33,65%,92%)
-    const acc2 = paletteDerived(accT, accBase, 10);    // светлее
-    const acc5 = paletteDerived(accT, accBase, 34, 20);// золотой светлый
+    const main = rainbowCSS(accHue, accSat, accLight);
+    const bg2 = rainbowCSS(accHue, Math.max(8, accSat * 0.6), Math.min(96, accLight + 59));
+    const bg4 = rainbowCSS(accHue, Math.max(15, accSat + 29), Math.min(97, accLight + 61));
+    const acc2 = rainbowCSS(accHue, accSat, Math.min(90, accLight + 10));
+    const acc5 = rainbowCSS(accHue, Math.min(100, accSat + 20), Math.min(90, accLight + 34));
     return {
       "--db-bg-2": bg2.hsl,
       "--db-bg-4": bg4.hsl,
@@ -155,11 +141,10 @@ export function HomePage() {
     } as React.CSSProperties;
   })();
 
-  // Слайдер 3 — цвет текста (#1A1814 ≈ hsl(40,11%,9%))
-  const textBase = { h: 40, s: 11, l: 9 };
+  // Слайдер 3 — цвет текста
   const textVars = (() => {
-    const main = paletteCSS(textT, textBase);
-    const dark = paletteDerived(textT, textBase, -2);
+    const main = rainbowCSS(textHue, textSat, textLight);
+    const dark = rainbowCSS(textHue, textSat, Math.max(0, textLight - 2));
     return {
       "--db-acc-3": main.hsl,
       "--db-acc-4": dark.hsl,
@@ -462,7 +447,11 @@ export function HomePage() {
                 <div className="flex items-center justify-between mb-4">
                   <span style={{ ...labelStyle, fontSize: "10px" }}>Кастомизация</span>
                   <button
-                    onClick={() => { setBgT(0); setAccT(0); setTextT(0); }}
+                    onClick={() => {
+                      setBgHue(40); setBgSat(71); setBgLight(95);
+                      setAccHue(33); setAccSat(36); setAccLight(31);
+                      setTextHue(40); setTextSat(11); setTextLight(9);
+                    }}
                     style={{
                       fontFamily: "Inter, sans-serif",
                       fontSize: "11px",
@@ -471,19 +460,17 @@ export function HomePage() {
                       border: "none",
                       cursor: "pointer",
                       letterSpacing: "0.05em",
-                      opacity: bgT === 0 && accT === 0 && textT === 0 ? 0.35 : 1,
                       transition: "opacity 0.2s",
                     }}
-                    disabled={bgT === 0 && accT === 0 && textT === 0}
                   >
                     Сбросить
                   </button>
                 </div>
 
                 {[
-                  { id: "bg" as const, label: "Основной фон", value: bgT, set: setBgT, base: bgBase },
-                  { id: "acc" as const, label: "Акценты и детали", value: accT, set: setAccT, base: accBase },
-                  { id: "text" as const, label: "Цвет текста", value: textT, set: setTextT, base: textBase },
+                  { id: "bg" as const, label: "Основной фон", hue: bgHue, setHue: setBgHue, sat: bgSat, light: bgLight },
+                  { id: "acc" as const, label: "Акценты и детали", hue: accHue, setHue: setAccHue, sat: accSat, light: accLight },
+                  { id: "text" as const, label: "Цвет текста", hue: textHue, setHue: setTextHue, sat: textSat, light: textLight },
                 ].map((s, idx) => (
                   <div key={s.id} className={idx < 2 ? "mb-5" : ""}>
                     <div className="flex items-center justify-between mb-2">
@@ -491,7 +478,7 @@ export function HomePage() {
                         {s.label}
                       </span>
                       <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", fontVariantNumeric: "tabular-nums" }}>
-                        {s.value === 0 ? "по умолчанию" : `${s.value > 0 ? "+" : ""}${s.value}`}
+                        {Math.round(s.hue)}°
                       </span>
                     </div>
                     <div
@@ -501,7 +488,7 @@ export function HomePage() {
                         transition: "height 0.25s ease",
                       }}
                     >
-                      {/* Palette (shown only when active) */}
+                      {/* Радужная палитра при активации */}
                       <div
                         className="absolute left-0 right-0 rounded-full pointer-events-none"
                         style={{
@@ -509,11 +496,10 @@ export function HomePage() {
                           height: "8px",
                           background: (() => {
                             const stops: string[] = [];
-                            const steps = 16;
+                            const steps = 24;
                             for (let i = 0; i <= steps; i++) {
-                              const t = -100 + (200 * i) / steps;
-                              const { h, s: ss, l } = paletteHSL(t, s.base);
-                              stops.push(`hsl(${h.toFixed(1)}, ${ss.toFixed(1)}%, ${l.toFixed(1)}%) ${(i / steps) * 100}%`);
+                              const h = (360 * i) / steps;
+                              stops.push(`hsl(${h.toFixed(1)}, ${s.sat}%, ${s.light}%) ${(i / steps) * 100}%`);
                             }
                             return `linear-gradient(90deg, ${stops.join(", ")})`;
                           })(),
@@ -533,25 +519,13 @@ export function HomePage() {
                           transition: "opacity 0.25s ease",
                         }}
                       />
-                      {/* Center mark */}
-                      <div
-                        className="absolute pointer-events-none rounded-full"
-                        style={{
-                          top: "50%",
-                          left: "50%",
-                          transform: "translate(-50%,-50%)",
-                          width: "2px",
-                          height: "10px",
-                          background: "rgba(212,176,116,0.45)",
-                        }}
-                      />
                       <input
                         type="range"
-                        min={-100}
-                        max={100}
+                        min={0}
+                        max={360}
                         step={1}
-                        value={s.value}
-                        onChange={(e) => s.set(Number(e.target.value))}
+                        value={s.hue}
+                        onChange={(e) => s.setHue(Number(e.target.value))}
                         onPointerDown={() => setActiveSlider(s.id)}
                         onPointerUp={() => setActiveSlider(null)}
                         onPointerLeave={() => setActiveSlider(null)}
@@ -562,13 +536,13 @@ export function HomePage() {
                         className="absolute pointer-events-none rounded-full"
                         style={{
                           top: "50%",
-                          left: `${((s.value + 100) / 200) * 100}%`,
+                          left: `${(s.hue / 360) * 100}%`,
                           transform: "translate(-50%,-50%)",
                           width: "16px",
                           height: "16px",
-                          background: "linear-gradient(135deg, #FBF6EC 0%, #E8D5A8 100%)",
-                          border: "1px solid rgba(107, 82, 50, 0.4)",
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.6)",
+                          background: `hsl(${s.hue}, ${s.sat}%, ${s.light}%)`,
+                          border: "2px solid rgba(255,250,240,0.9)",
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.5)",
                         }}
                       />
                     </div>
