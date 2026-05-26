@@ -438,7 +438,7 @@ export function HomePage() {
                             <svg width="100%" height="140" viewBox="0 0 400 100" preserveAspectRatio="none">
                               <defs>
                                 <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="0%" stopColor="#6B5232" stopOpacity="0.32"/>
+                                  <stop offset="0%" stopColor="#6B5232" stopOpacity="0.35"/>
                                   <stop offset="100%" stopColor="#6B5232" stopOpacity="0"/>
                                 </linearGradient>
                               </defs>
@@ -446,19 +446,24 @@ export function HomePage() {
                               <line x1="0" y1="25" x2="400" y2="25" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
                               <line x1="0" y1="50" x2="400" y2="50" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
                               <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(107,82,50,0.08)" strokeWidth="1" strokeDasharray="3 3"/>
-                              {/* Заливка под графиком — волнообразный рост */}
-                              <path d="M0,82 C15,78 25,65 40,68 C55,72 65,55 80,48 C95,42 105,60 120,62 C135,64 150,38 170,42 C190,46 205,68 225,55 C245,42 260,28 280,32 C300,36 315,52 335,38 C355,24 370,18 400,15 L400,100 L0,100 Z" fill="url(#g1)"/>
-                              {/* Сама линия */}
-                              <path d="M0,82 C15,78 25,65 40,68 C55,72 65,55 80,48 C95,42 105,60 120,62 C135,64 150,38 170,42 C190,46 205,68 225,55 C245,42 260,28 280,32 C300,36 315,52 335,38 C355,24 370,18 400,15" fill="none" stroke="#6B5232" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-                              {/* Точки данных */}
-                              <circle cx="40" cy="68" r="2.5" fill="#6B5232"/>
-                              <circle cx="80" cy="48" r="2.5" fill="#6B5232"/>
-                              <circle cx="120" cy="62" r="2.5" fill="#6B5232"/>
-                              <circle cx="170" cy="42" r="2.5" fill="#6B5232"/>
-                              <circle cx="225" cy="55" r="2.5" fill="#6B5232"/>
-                              <circle cx="280" cy="32" r="2.5" fill="#6B5232"/>
-                              <circle cx="335" cy="38" r="2.5" fill="#6B5232"/>
-                              <circle cx="400" cy="15" r="4" fill="#6B5232" stroke="#F1E9DE" strokeWidth="2"/>
+                              {/* Заливка под ломаной линией */}
+                              <polygon points="0,85 30,72 60,82 95,55 130,68 165,40 200,58 235,30 270,48 305,22 340,35 370,18 400,8 400,100 0,100" fill="url(#g1)"/>
+                              {/* Ломаная линия с острыми углами */}
+                              <polyline points="0,85 30,72 60,82 95,55 130,68 165,40 200,58 235,30 270,48 305,22 340,35 370,18 400,8" fill="none" stroke="#6B5232" strokeWidth="2.8" strokeLinecap="square" strokeLinejoin="miter"/>
+                              {/* Точки на изломах */}
+                              <circle cx="0" cy="85" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="30" cy="72" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="60" cy="82" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="95" cy="55" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="130" cy="68" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="165" cy="40" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="200" cy="58" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="235" cy="30" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="270" cy="48" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="305" cy="22" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="340" cy="35" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="370" cy="18" r="3" fill="#F1E9DE" stroke="#6B5232" strokeWidth="2"/>
+                              <circle cx="400" cy="8" r="4.5" fill="#6B5232" stroke="#F1E9DE" strokeWidth="2.5"/>
                             </svg>
                             <div className="flex justify-between mt-2">
                               {["1 Апр","7 Апр","14 Апр","21 Апр","30 Апр"].map(d => <span key={d} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(15,13,10,0.55)", fontWeight: 500 }}>{d}</span>)}
