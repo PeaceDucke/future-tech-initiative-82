@@ -105,7 +105,7 @@ type PickerVal = { hue: number; light: number };
 // Точные стартовые цвета (используются пока пользователь не двигал соответствующий пикер)
 const DEFAULTS = {
   bg:   { hue: 40, light: 98, exact: { h: 40, s: 40, l: 98 } }, // почти белый #FDFBF7
-  acc:  { hue: 34, light: 88, exact: { h: 34, s: 30, l: 88 } }, // бежевый для карточек #EBE1D3
+  acc:  { hue: 38, light: 90, exact: { h: 38, s: 30, l: 90 } }, // бежевый для карточек #EFE8DD
   text: { hue: 30, light: 13, exact: { h: 30, s: 40, l: 13 } }, // ≈ #2E2113 тёмно-коричневый
 };
 
