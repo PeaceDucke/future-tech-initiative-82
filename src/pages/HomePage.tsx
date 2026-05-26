@@ -1010,18 +1010,10 @@ export function HomePage() {
                     width: "34%",
                     bottom: "100px",
                     left: "-3%",
-                    background: analysisHover
-                      ? "linear-gradient(135deg, rgba(255,233,196,0.95) 0%, var(--db-bg-1) 100%)"
-                      : "var(--db-bg-1)",
-                    border: analysisHover
-                      ? "1px solid rgba(212,176,116,0.7)"
-                      : "1px solid rgba(var(--db-bg-rgb-1),0.2)",
-                    boxShadow: analysisHover
-                      ? "0 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,176,116,0.35), 0 0 40px rgba(212,176,116,0.45)"
-                      : "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    transition: analysisHover
-                      ? "background 0.5s ease 0.9s, border-color 0.5s ease 0.9s, box-shadow 0.5s ease 0.9s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)"
-                      : "background 0s, border-color 0s, box-shadow 0s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    background: "var(--db-bg-1)",
+                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: analysisHover ? 200 : 20,
                   }}
                 >
@@ -1212,11 +1204,10 @@ export function HomePage() {
                   }}
                 />
                 <div
-                  className="absolute pointer-events-none flex items-center justify-end"
+                  className="absolute pointer-events-none flex items-start justify-end"
                   style={{
-                    top: 0,
-                    right: "2%",
-                    height: "820px",
+                    top: "140px",
+                    right: "4%",
                     width: "55%",
                     opacity: analysisHover ? 1 : 0,
                     transform: analysisHover ? "translateY(0)" : "translateY(8px)",
@@ -1228,29 +1219,50 @@ export function HomePage() {
                 >
                   <div
                     style={{
+                      position: "relative",
                       fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "30px",
-                      lineHeight: 1.45,
-                      color: "#FBF6EC",
-                      whiteSpace: "pre-wrap",
+                      fontSize: "28px",
+                      lineHeight: 1.5,
                       letterSpacing: "0.01em",
-                      maxWidth: "560px",
+                      width: "560px",
                       textShadow: "0 4px 24px rgba(0,0,0,0.6)",
+                      textAlign: "left",
                     }}
                   >
-                    {analysisTyped}
-                    {analysisHover && analysisTyped.length < analysisFullText.length && (
-                      <span
-                        style={{
-                          display: "inline-block",
-                          width: "0.5ch",
-                          color: "#D4B074",
-                          animation: "tw-caret 0.9s steps(1) infinite",
-                        }}
-                      >
-                        ▍
-                      </span>
-                    )}
+                    {/* Невидимый placeholder фиксирует размеры блока */}
+                    <span
+                      aria-hidden
+                      style={{
+                        visibility: "hidden",
+                        whiteSpace: "pre-wrap",
+                        display: "block",
+                      }}
+                    >
+                      {analysisFullText}
+                    </span>
+                    {/* Видимый печатающийся текст поверх */}
+                    <span
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        whiteSpace: "pre-wrap",
+                        color: "#FBF6EC",
+                      }}
+                    >
+                      {analysisTyped}
+                      {analysisHover && analysisTyped.length < analysisFullText.length && (
+                        <span
+                          style={{
+                            display: "inline-block",
+                            width: "0.5ch",
+                            color: "#D4B074",
+                            animation: "tw-caret 0.9s steps(1) infinite",
+                          }}
+                        >
+                          ▍
+                        </span>
+                      )}
+                    </span>
                   </div>
                 </div>
 
