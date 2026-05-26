@@ -7,32 +7,32 @@
 @layer base {
   :root {
     --background: 40 6% 9%;
-    --foreground: 36 40% 93%;
+    --foreground: 40 60% 97%;
 
     --card: 25 14% 15%;
-    --card-foreground: 36 40% 93%;
+    --card-foreground: 40 60% 97%;
 
     --popover: 25 14% 15%;
-    --popover-foreground: 36 40% 93%;
+    --popover-foreground: 40 60% 97%;
 
-    --primary: 36 65% 66%;
+    --primary: 40 85% 62%;
     --primary-foreground: 40 6% 9%;
 
     --secondary: 22 16% 18%;
-    --secondary-foreground: 34 30% 88%;
+    --secondary-foreground: 38 50% 94%;
 
     --muted: 22 16% 18%;
-    --muted-foreground: 32 18% 70%;
+    --muted-foreground: 36 35% 82%;
 
-    --accent: 36 65% 66%;
+    --accent: 40 85% 62%;
     --accent-foreground: 40 6% 9%;
 
     --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 8% 18%;
-    --input: 30 8% 18%;
-    --ring: 36 65% 66%;
+    --border: 36 25% 28%;
+    --input: 36 25% 28%;
+    --ring: 40 85% 62%;
 
     --radius: 2px;
   }
@@ -50,7 +50,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #151513;
-    color: #f5ece0;
+    color: #fbf6ec;
   }
 
   h1,
@@ -72,7 +72,7 @@
   background: #151513;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(226, 183, 112, 0.35);
+  background: rgba(243, 198, 107, 0.5);
   border-radius: 2px;
 }
 
@@ -81,19 +81,19 @@
   font-family: "Bodoni Moda", Georgia, serif;
 }
 .text-gold {
-  color: #e2b770;
+  color: #f3c66b;
 }
 .text-gold-dim {
-  color: rgba(226, 183, 112, 0.78);
+  color: rgba(243, 198, 107, 0.88);
 }
 .text-ivory {
-  color: #f7efe3;
+  color: #fdf8ee;
 }
 .text-cream {
-  color: #ece0cd;
+  color: #f5ead2;
 }
 .border-gold-subtle {
-  border-color: rgba(226, 183, 112, 0.3);
+  border-color: rgba(243, 198, 107, 0.45);
 }
 .bg-mocha {
   background-color: #2a211c;
