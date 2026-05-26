@@ -609,35 +609,8 @@ export function HomePage() {
                     zIndex: 21,
                   }}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="flex items-center justify-center rounded-lg"
-                        style={{
-                          width: "30px",
-                          height: "30px",
-                          background: "linear-gradient(135deg, #E8C988 0%, #B8893F 60%, #6B4A1F 100%)",
-                          boxShadow: "0 4px 12px rgba(107,74,31,0.4), inset 0 1px 0 rgba(255,240,200,0.6)",
-                        }}
-                      >
-                        <Icon name="Sparkles" size={16} style={{ color: "#FFFCF0" }} />
-                      </div>
-                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#1F1A12", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
-                    </div>
-                    <span
-                      className="px-2.5 py-1 rounded-md"
-                      style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontSize: "10px",
-                        color: "#2F4F3A",
-                        fontWeight: 700,
-                        background: "linear-gradient(135deg, rgba(143,170,140,0.25) 0%, rgba(99,128,98,0.18) 100%)",
-                        border: "1px solid rgba(99,128,98,0.45)",
-                        letterSpacing: "0.08em",
-                      }}
-                    >
-                      LIVE
-                    </span>
+                  <div className="flex items-center mb-2">
+                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#1F1A12", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
                   </div>
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(107,82,50,0.85)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
                   <div className="flex items-center gap-5">
