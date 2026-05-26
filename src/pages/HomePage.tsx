@@ -359,62 +359,87 @@ export function HomePage() {
               >
                 {/* ── LUXURY GLASS FRAME ── */}
                 <div
-                  className="absolute rounded-[28px] pointer-events-none"
+                  className="absolute rounded-[22px] pointer-events-none overflow-hidden"
                   style={{
-                    top: "-18px",
-                    left: "-18px",
-                    right: "-18px",
-                    height: "856px",
-                    padding: "18px",
+                    top: "-7px",
+                    left: "-7px",
+                    right: "-7px",
+                    height: "834px",
+                    padding: "7px",
                     background:
-                      "linear-gradient(135deg, rgba(212,176,116,0.45) 0%, rgba(212,176,116,0.08) 35%, rgba(212,176,116,0.04) 65%, rgba(212,176,116,0.4) 100%)",
+                      "linear-gradient(135deg, rgba(243,224,184,0.85) 0%, rgba(212,176,116,0.35) 18%, rgba(120,95,55,0.2) 45%, rgba(212,176,116,0.3) 72%, rgba(247,232,196,0.9) 100%)",
                     boxShadow:
-                      "0 80px 160px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,176,116,0.18), inset 0 1px 0 rgba(251,246,236,0.08)",
+                      "0 80px 160px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(212,176,116,0.45), 0 0 24px rgba(212,176,116,0.08), inset 0 1px 0 rgba(255,240,210,0.55), inset 0 -1px 0 rgba(60,40,15,0.4)",
                     zIndex: 0,
                   }}
                 >
+                  {/* Inner glass layer */}
                   <div
-                    className="w-full h-full rounded-[20px]"
+                    className="w-full h-full rounded-[16px] relative overflow-hidden"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(21,21,19,0.55) 0%, rgba(21,21,19,0.25) 50%, rgba(21,21,19,0.5) 100%)",
-                      backdropFilter: "blur(14px) saturate(140%)",
-                      WebkitBackdropFilter: "blur(14px) saturate(140%)",
-                      border: "1px solid rgba(251,246,236,0.06)",
-                      boxShadow: "inset 0 1px 0 rgba(251,246,236,0.06)",
+                        "linear-gradient(135deg, rgba(255,250,240,0.12) 0%, rgba(255,250,240,0.02) 40%, rgba(255,250,240,0.01) 60%, rgba(255,250,240,0.08) 100%)",
+                      backdropFilter: "blur(8px) saturate(160%)",
+                      WebkitBackdropFilter: "blur(8px) saturate(160%)",
+                      border: "0.5px solid rgba(255,250,240,0.18)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,250,240,0.25), inset 0 -1px 0 rgba(0,0,0,0.25), inset 1px 0 0 rgba(255,250,240,0.08), inset -1px 0 0 rgba(0,0,0,0.15)",
                     }}
-                  />
-                  {/* Top highlight sheen */}
-                  <div
-                    className="absolute rounded-t-[20px] pointer-events-none"
-                    style={{
-                      top: "18px",
-                      left: "18px",
-                      right: "18px",
-                      height: "120px",
-                      background:
-                        "linear-gradient(180deg, rgba(251,246,236,0.06) 0%, rgba(251,246,236,0) 100%)",
-                    }}
-                  />
-                  {/* Corner gold dots */}
-                  {[
-                    { top: "6px", left: "6px" },
-                    { top: "6px", right: "6px" },
-                    { bottom: "6px", left: "6px" },
-                    { bottom: "6px", right: "6px" },
-                  ].map((pos, i) => (
+                  >
+                    {/* Diagonal sheen — main reflection */}
                     <div
-                      key={i}
-                      className="absolute rounded-full"
+                      className="absolute pointer-events-none"
                       style={{
-                        ...pos,
-                        width: "4px",
-                        height: "4px",
-                        background: "#D4B074",
-                        boxShadow: "0 0 6px rgba(212,176,116,0.5)",
+                        top: "-10%",
+                        left: "-20%",
+                        width: "60%",
+                        height: "140%",
+                        background:
+                          "linear-gradient(105deg, transparent 0%, rgba(255,250,240,0.18) 45%, rgba(255,250,240,0.32) 50%, rgba(255,250,240,0.12) 55%, transparent 100%)",
+                        transform: "skewX(-18deg)",
+                        filter: "blur(2px)",
                       }}
                     />
-                  ))}
+                    {/* Secondary thin sheen */}
+                    <div
+                      className="absolute pointer-events-none"
+                      style={{
+                        top: "-10%",
+                        left: "55%",
+                        width: "8%",
+                        height: "140%",
+                        background:
+                          "linear-gradient(105deg, transparent 0%, rgba(255,250,240,0.25) 50%, transparent 100%)",
+                        transform: "skewX(-18deg)",
+                        filter: "blur(1px)",
+                      }}
+                    />
+                  </div>
+
+                  {/* Outer top highlight (light hitting the bezel) */}
+                  <div
+                    className="absolute pointer-events-none rounded-t-[22px]"
+                    style={{
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: "2px",
+                      background:
+                        "linear-gradient(90deg, transparent 0%, rgba(255,250,235,0.9) 20%, rgba(255,250,235,0.95) 50%, rgba(255,250,235,0.9) 80%, transparent 100%)",
+                    }}
+                  />
+                  {/* Outer bottom shadow line */}
+                  <div
+                    className="absolute pointer-events-none rounded-b-[22px]"
+                    style={{
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "1px",
+                      background:
+                        "linear-gradient(90deg, transparent 0%, rgba(40,25,5,0.7) 50%, transparent 100%)",
+                    }}
+                  />
                 </div>
 
                 {/* ── BIG MAIN DASHBOARD ── */}
