@@ -675,8 +675,8 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "32%",
-                    top: "480px",
-                    left: "30%",
+                    top: "465px",
+                    left: "33%",
                     background: "#FBF6EC",
                     border: "1px solid rgba(251,246,236,0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(251,246,236,0.1)",
