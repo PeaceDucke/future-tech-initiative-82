@@ -326,9 +326,7 @@ export function HomePage() {
           style={{ background: "#151513" }}
         >
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-center gap-3 mb-10">
-              <span style={labelStyle}>Результаты клиентов</span>
-            </div>
+
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
                 {[
