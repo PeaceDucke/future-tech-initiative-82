@@ -104,8 +104,8 @@ type PickerVal = { hue: number; light: number };
 
 // Точные стартовые цвета (используются пока пользователь не двигал соответствующий пикер)
 const DEFAULTS = {
-  bg:   { hue: 40, light: 95, exact: { h: 40, s: 60, l: 95 } }, // #FAF5EB
-  acc:  { hue: 33, light: 90, exact: { h: 33, s: 30, l: 90 } }, // #EFE7DC
+  bg:   { hue: 40, light: 94, exact: { h: 40, s: 50, l: 94 } }, // #F7F2E9
+  acc:  { hue: 34, light: 90, exact: { h: 34, s: 30, l: 90 } }, // #F0E8DE
   text: { hue: 40, light: 9,  exact: { h: 40, s: 11, l: 9  } }, // ≈ #1A1814
 };
 
