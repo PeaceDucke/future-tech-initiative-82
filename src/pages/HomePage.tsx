@@ -562,12 +562,12 @@ export function HomePage() {
                   </div>
                 </div>
 
-                {/* ── CARD: Источники сделок (центр-низ) ── */}
+                {/* ── CARD: Источники сделок (центр) ── */}
                 <div
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "32%",
-                    bottom: "20px",
+                    top: "300px",
                     left: "34%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
@@ -598,6 +598,60 @@ export function HomePage() {
                         </div>
                       ))}
                     </div>
+                  </div>
+                </div>
+
+                {/* ── CARD: Последние звонки (центр-низ) ── */}
+                <div
+                  className="absolute rounded-2xl p-5"
+                  style={{
+                    width: "42%",
+                    bottom: "20px",
+                    left: "29%",
+                    background: "#E7DED4",
+                    border: "1px solid rgba(231,222,212,0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(231,222,212,0.1)",
+                    zIndex: 23,
+                  }}
+                >
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#1A1814", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
+                  {/* Table header */}
+                  <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(139,111,71,0.18)" }}>
+                    {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
+                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(26,24,20,0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
+                    ))}
+                  </div>
+                  {/* Rows */}
+                  <div className="space-y-2.5">
+                    {[
+                      { c: "ООО ТехноПласт", d: "32:14", r: "Успешно", k: "85%", color: "#22a868" },
+                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#8B6F47" },
+                      { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
+                      { c: "Сергей Иванов", d: "22:11", r: "Не удалось", k: "20%", color: "#ef4444" },
+                      { c: "ООО СтройИнвест", d: "31:05", r: "Успешно", k: "70%", color: "#22a868" },
+                    ].map((row, idx) => (
+                      <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(26,24,20,0.55)" }}>{row.d}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: row.color }}>{row.r}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#1A1814", fontWeight: 500 }}>{row.k}</span>
+                        {/* Audio control */}
+                        <div className="flex items-center gap-1.5">
+                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#8B6F47" }}>
+                            <Icon name="Play" size={8} style={{ color: "#E7DED4" }} />
+                          </button>
+                          {/* Mini waveform */}
+                          <div className="flex items-center gap-[1px] flex-1" style={{ height: "14px" }}>
+                            {[4,7,10,5,12,6,9,11,5,8,7,10,4,9,6,8,5,11,7,4].map((h, i) => (
+                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "#8B6F47" : "rgba(139,111,71,0.25)" }} />
+                            ))}
+                          </div>
+                          <button className="shrink-0" title="Скачать">
+                            <Icon name="Download" size={11} style={{ color: "rgba(139,111,71,0.7)" }} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
