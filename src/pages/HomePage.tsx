@@ -334,7 +334,7 @@ export function HomePage() {
         </section>
 
         {/* ═══ DASHBOARD PREVIEW ═══ */}
-        <section className="py-20 px-5 overflow-hidden" style={{ background: "#F0EBE3" }}>
+        <section className="py-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-12">
