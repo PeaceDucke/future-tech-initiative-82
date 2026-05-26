@@ -492,7 +492,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "38%",
-                    top: "180px",
+                    top: "320px",
                     right: "-3%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
@@ -527,12 +527,12 @@ export function HomePage() {
                   </div>
                 </div>
 
-                {/* ── CARD: Анализ разговора (слева внизу) ── */}
+                {/* ── CARD: Анализ разговора (слева) ── */}
                 <div
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "34%",
-                    bottom: "40px",
+                    bottom: "240px",
                     left: "-3%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
@@ -567,7 +567,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5"
                   style={{
                     width: "32%",
-                    top: "300px",
+                    top: "400px",
                     left: "34%",
                     background: "#E7DED4",
                     border: "1px solid rgba(231,222,212,0.2)",
