@@ -1046,7 +1046,7 @@ export function HomePage() {
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
-                    zIndex: analysisHover ? 200 : 20,
+                    zIndex: 20,
                   }}
                 >
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "3px" }}>Анализ разговора</div>
@@ -1095,7 +1095,7 @@ export function HomePage() {
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     transform: sourcesHover ? "translateY(-6px)" : "translateY(0)",
-                    zIndex: sourcesHover ? 200 : 22,
+                    zIndex: 22,
                   }}
                 >
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "18px" }}>Источники сделок</div>
