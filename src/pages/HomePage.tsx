@@ -1077,100 +1077,6 @@ AI определяет:
                   }}
                 />
 
-                {/* ── Overlay затемнения + текст для "Последние звонки" ── */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "rgba(8,6,3,0.62)",
-                    opacity: callsHover ? 1 : 0,
-                    transition: callsHover ? "opacity 0.6s ease 0.8s" : "opacity 0s",
-                    zIndex: 150,
-                    borderRadius: "16px",
-                  }}
-                />
-                <div
-                  className="absolute pointer-events-none flex items-start justify-start"
-                  style={{
-                    top: "80px",
-                    left: "8%",
-                    width: "60%",
-                    opacity: callsHover ? 1 : 0,
-                    transform: callsHover ? "translateY(0)" : "translateY(8px)",
-                    transition: callsHover
-                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
-                      : "opacity 0s, transform 0s",
-                    zIndex: 180,
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "30px",
-                      lineHeight: 1.5,
-                      letterSpacing: "0.01em",
-                      width: "640px",
-                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
-                      textAlign: "left",
-                    }}
-                  >
-                    <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>{callsFullText}</span>
-                    <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
-                      {callsTyped}
-                      {callsHover && callsTyped.length < callsFullText.length && (
-                        <span style={{ display: "inline-block", width: "0.5ch", color: "#D4B074", animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
-                      )}
-                    </span>
-                  </div>
-                </div>
-
-                {/* ── Overlay затемнения + текст для "Топ менеджеров" ── */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "rgba(8,6,3,0.62)",
-                    opacity: topMgrHover ? 1 : 0,
-                    transition: topMgrHover ? "opacity 0.6s ease 0.8s" : "opacity 0s",
-                    zIndex: 150,
-                    borderRadius: "16px",
-                  }}
-                />
-                <div
-                  className="absolute pointer-events-none flex items-start justify-start"
-                  style={{
-                    top: "80px",
-                    left: "6%",
-                    width: "60%",
-                    opacity: topMgrHover ? 1 : 0,
-                    transform: topMgrHover ? "translateY(0)" : "translateY(8px)",
-                    transition: topMgrHover
-                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
-                      : "opacity 0s, transform 0s",
-                    zIndex: 180,
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "30px",
-                      lineHeight: 1.5,
-                      letterSpacing: "0.01em",
-                      width: "660px",
-                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
-                      textAlign: "left",
-                    }}
-                  >
-                    <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>{topMgrFullText}</span>
-                    <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
-                      {topMgrTyped}
-                      {topMgrHover && topMgrTyped.length < topMgrFullText.length && (
-                        <span style={{ display: "inline-block", width: "0.5ch", color: "#D4B074", animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
-                      )}
-                    </span>
-                  </div>
-                </div>
-
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
                   className="absolute rounded-2xl p-6 db-card"
@@ -1453,230 +1359,6 @@ AI определяет:
                   </div>
                 </div>
 
-                {/* ── Overlay затемнения + печатающаяся подсказка для "Анализ разговора" ── */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "rgba(8,6,3,0.62)",
-                    opacity: analysisHover ? 1 : 0,
-                    transition: analysisHover
-                      ? "opacity 0.6s ease 0.8s"
-                      : "opacity 0s",
-                    zIndex: 150,
-                    borderRadius: "16px",
-                  }}
-                />
-                <div
-                  className="absolute pointer-events-none flex items-start justify-end"
-                  style={{
-                    top: "140px",
-                    right: "4%",
-                    width: "55%",
-                    opacity: analysisHover ? 1 : 0,
-                    transform: analysisHover ? "translateY(0)" : "translateY(8px)",
-                    transition: analysisHover
-                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
-                      : "opacity 0s, transform 0s",
-                    zIndex: 180,
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "28px",
-                      lineHeight: 1.5,
-                      letterSpacing: "0.01em",
-                      width: "560px",
-                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
-                      textAlign: "left",
-                    }}
-                  >
-                    {/* Невидимый placeholder фиксирует размеры блока */}
-                    <span
-                      aria-hidden
-                      style={{
-                        visibility: "hidden",
-                        whiteSpace: "pre-wrap",
-                        display: "block",
-                      }}
-                    >
-                      {analysisFullText}
-                    </span>
-                    {/* Видимый печатающийся текст поверх */}
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        whiteSpace: "pre-wrap",
-                        color: "#FBF6EC",
-                      }}
-                    >
-                      {analysisTyped}
-                      {analysisHover && analysisTyped.length < analysisFullText.length && (
-                        <span
-                          style={{
-                            display: "inline-block",
-                            width: "0.5ch",
-                            color: "#D4B074",
-                            animation: "tw-caret 0.9s steps(1) infinite",
-                          }}
-                        >
-                          ▍
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                </div>
-
-                {/* ── Overlay затемнения + печатающаяся подсказка для "Источники сделок" ── */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "rgba(8,6,3,0.62)",
-                    opacity: sourcesHover ? 1 : 0,
-                    transition: sourcesHover
-                      ? "opacity 0.6s ease 0.8s"
-                      : "opacity 0s",
-                    zIndex: 150,
-                    borderRadius: "16px",
-                  }}
-                />
-                <div
-                  className="absolute pointer-events-none flex items-start justify-start"
-                  style={{
-                    top: "120px",
-                    left: "4%",
-                    width: "55%",
-                    opacity: sourcesHover ? 1 : 0,
-                    transform: sourcesHover ? "translateY(0)" : "translateY(8px)",
-                    transition: sourcesHover
-                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
-                      : "opacity 0s, transform 0s",
-                    zIndex: 180,
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "28px",
-                      lineHeight: 1.5,
-                      letterSpacing: "0.01em",
-                      width: "580px",
-                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
-                      textAlign: "left",
-                    }}
-                  >
-                    <span
-                      aria-hidden
-                      style={{
-                        visibility: "hidden",
-                        whiteSpace: "pre-wrap",
-                        display: "block",
-                      }}
-                    >
-                      {sourcesFullText}
-                    </span>
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        whiteSpace: "pre-wrap",
-                        color: "#FBF6EC",
-                      }}
-                    >
-                      {sourcesTyped}
-                      {sourcesHover && sourcesTyped.length < sourcesFullText.length && (
-                        <span
-                          style={{
-                            display: "inline-block",
-                            width: "0.5ch",
-                            color: "#D4B074",
-                            animation: "tw-caret 0.9s steps(1) infinite",
-                          }}
-                        >
-                          ▍
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                </div>
-
-                {/* ── Overlay затемнения + печатающаяся подсказка для "AI-Инсайты" ── */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: "rgba(8,6,3,0.62)",
-                    opacity: insightsHover ? 1 : 0,
-                    transition: insightsHover
-                      ? "opacity 0.6s ease 0.8s"
-                      : "opacity 0s",
-                    zIndex: 150,
-                    borderRadius: "16px",
-                  }}
-                />
-                <div
-                  className="absolute pointer-events-none flex items-start justify-start"
-                  style={{
-                    top: "120px",
-                    left: "4%",
-                    width: "55%",
-                    opacity: insightsHover ? 1 : 0,
-                    transform: insightsHover ? "translateY(0)" : "translateY(8px)",
-                    transition: insightsHover
-                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
-                      : "opacity 0s, transform 0s",
-                    zIndex: 180,
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "28px",
-                      lineHeight: 1.5,
-                      letterSpacing: "0.01em",
-                      width: "620px",
-                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
-                      textAlign: "left",
-                    }}
-                  >
-                    <span
-                      aria-hidden
-                      style={{
-                        visibility: "hidden",
-                        whiteSpace: "pre-wrap",
-                        display: "block",
-                      }}
-                    >
-                      {insightsFullText}
-                    </span>
-                    <span
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        whiteSpace: "pre-wrap",
-                        color: "#FBF6EC",
-                      }}
-                    >
-                      {insightsTyped}
-                      {insightsHover && insightsTyped.length < insightsFullText.length && (
-                        <span
-                          style={{
-                            display: "inline-block",
-                            width: "0.5ch",
-                            color: "#D4B074",
-                            animation: "tw-caret 0.9s steps(1) infinite",
-                          }}
-                        >
-                          ▍
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                </div>
-
               </motion.div>
             </Section>
           </div>
@@ -1752,6 +1434,91 @@ AI определяет:
         <Icon name="MessageCircle" size={15} />
         Запросить демо
       </motion.a>
+
+      {/* ═══ FULLSCREEN HOVER OVERLAY (для всех 5 dashboard карточек) ═══ */}
+      {(() => {
+        const anyHover = analysisHover || sourcesHover || insightsHover || callsHover || topMgrHover;
+        const activeText = analysisHover
+          ? analysisFullText
+          : sourcesHover
+          ? sourcesFullText
+          : insightsHover
+          ? insightsFullText
+          : callsHover
+          ? callsFullText
+          : topMgrHover
+          ? topMgrFullText
+          : "";
+        const activeTyped = analysisHover
+          ? analysisTyped
+          : sourcesHover
+          ? sourcesTyped
+          : insightsHover
+          ? insightsTyped
+          : callsHover
+          ? callsTyped
+          : topMgrHover
+          ? topMgrTyped
+          : "";
+        return (
+          <>
+            <div
+              className="fixed inset-0 pointer-events-none"
+              style={{
+                background: "rgba(8,6,3,0.78)",
+                opacity: anyHover ? 1 : 0,
+                transition: anyHover ? "opacity 0.6s ease 0.8s" : "opacity 0.3s ease",
+                zIndex: 9000,
+              }}
+            />
+            <div
+              className="fixed inset-0 pointer-events-none flex items-center justify-center px-6"
+              style={{
+                opacity: anyHover ? 1 : 0,
+                transform: anyHover ? "translateY(0)" : "translateY(8px)",
+                transition: anyHover
+                  ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
+                  : "opacity 0.2s ease, transform 0.2s ease",
+                zIndex: 9100,
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  fontFamily: '"Bodoni Moda", Georgia, serif',
+                  fontSize: "clamp(20px, 3vw, 34px)",
+                  lineHeight: 1.5,
+                  letterSpacing: "0.01em",
+                  maxWidth: "820px",
+                  width: "100%",
+                  textShadow: "0 4px 24px rgba(0,0,0,0.7)",
+                  textAlign: "left",
+                  color: "#FBF6EC",
+                }}
+              >
+                <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>
+                  {activeText}
+                </span>
+                <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
+                  {activeTyped}
+                  {anyHover && activeTyped.length < activeText.length && (
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "0.5ch",
+                        color: "#D4B074",
+                        animation: "tw-caret 0.9s steps(1) infinite",
+                      }}
+                    >
+                      ▍
+                    </span>
+                  )}
+                </span>
+              </div>
+            </div>
+          </>
+        );
+      })()}
     </div>
   );
 }
