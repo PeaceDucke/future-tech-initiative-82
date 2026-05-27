@@ -386,7 +386,8 @@ function PipelineSection() {
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const wh = window.innerHeight;
-      const raw = (wh * 0.9 - rect.top) / (wh * 1.1);
+      // Старт когда секция входит снизу, конец когда прошли всю высоту секции
+      const raw = (wh * 0.85 - rect.top) / (rect.height * 0.85);
       setProgress(Math.min(1, Math.max(0, raw)));
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -522,92 +523,48 @@ function PipelineSection() {
           </p>
         </div>
 
-        {/* Pipeline */}
-        <div ref={ref} className="relative">
-          {/* Соединительная линия между шагами */}
-          <div className="hidden lg:block absolute top-[52px] left-[12.5%] right-[12.5%]" style={{ height: "2px", background: "rgba(212,176,116,0.1)", zIndex: 0 }}>
-            <div style={{ height: "100%", width: `${progress * 100}%`, background: "linear-gradient(90deg, #D4B074, rgba(212,176,116,0.4))", transition: "width 0.1s linear", borderRadius: "2px", boxShadow: "0 0 8px rgba(212,176,116,0.5)" }} />
+        {/* Pipeline — вертикально */}
+        <div ref={ref} className="relative max-w-3xl mx-auto">
+          {/* Вертикальная линия слева */}
+          <div className="absolute" style={{ left: 21, top: 44, bottom: 44, width: 2, background: "rgba(212,176,116,0.08)", zIndex: 0 }}>
+            <div style={{ width: "100%", height: `${progress * 100}%`, background: "linear-gradient(180deg, #D4B074, rgba(212,176,116,0.3))", borderRadius: 2, boxShadow: "0 0 8px rgba(212,176,116,0.4)", transition: "height 0.1s linear" }} />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
+          <div className="space-y-5">
             {steps.map((step, idx) => {
-              const cardP = Math.min(1, Math.max(0, (progress - idx * 0.18) / 0.4));
+              // Каждая карточка появляется по очереди, stagger 0.2
+              const cardP = Math.min(1, Math.max(0, (progress - idx * 0.2) / 0.35));
               return (
-                <div
-                  key={step.num}
-                  style={{
-                    opacity: cardP,
-                    transform: `translateY(${(1 - cardP) * 28}px)`,
-                    transition: "none",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                >
-                  {/* Step number circle */}
-                  <div className="flex justify-center mb-5">
-                    <div style={{
-                      width: 44, height: 44, borderRadius: "50%",
-                      background: "#0a0908",
-                      border: `2px solid ${cardP > 0.8 ? step.color : "rgba(212,176,116,0.25)"}`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      boxShadow: cardP > 0.8 ? `0 0 16px ${step.color}55` : "none",
-                      transition: "none",
-                    }}>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: cardP > 0.8 ? step.color : "rgba(212,176,116,0.5)", fontWeight: 700, letterSpacing: "0.05em" }}>{step.num}</span>
+                <div key={step.num} style={{ opacity: 0.15 + cardP * 0.85, transform: `translateX(${(1 - cardP) * 24}px)`, transition: "none", position: "relative", zIndex: 1, display: "flex", gap: "20px", alignItems: "flex-start" }}>
+
+                  {/* Левая колонка: номер-кружок */}
+                  <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 0 }}>
+                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#0a0908", border: `2px solid ${cardP > 0.7 ? step.color : "rgba(212,176,116,0.2)"}`, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: cardP > 0.7 ? `0 0 18px ${step.color}55` : "none", zIndex: 2, position: "relative" }}>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: cardP > 0.7 ? step.color : "rgba(212,176,116,0.5)", fontWeight: 700 }}>{step.num}</span>
                     </div>
                   </div>
 
-                  {/* Card */}
-                  <div style={{
-                    background: "#0f0f0f",
-                    border: `1px solid ${cardP > 0.8 ? `${step.color}55` : "rgba(255,255,255,0.07)"}`,
-                    borderRadius: "16px",
-                    padding: "22px 20px",
-                    boxShadow: cardP > 0.8 ? `0 0 24px ${step.color}22, 0 0 0 1px ${step.color}18` : "none",
-                    transition: "none",
-                  }}>
-                    {/* Icon + title */}
+                  {/* Карточка */}
+                  <div style={{ flex: 1, background: "#0f0f0f", border: `1px solid ${cardP > 0.7 ? `${step.color}50` : "rgba(255,255,255,0.07)"}`, borderRadius: "16px", padding: "22px 24px", boxShadow: cardP > 0.7 ? `0 0 28px ${step.color}1a, 0 0 0 1px ${step.color}15` : "none" }}>
                     <div className="flex items-center gap-3 mb-4">
-                      <div style={{ width: 40, height: 40, borderRadius: "10px", background: `${step.color}15`, border: `1px solid ${step.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon name={step.icon} size={20} style={{ color: step.color }} />
+                      <div style={{ width: 44, height: 44, borderRadius: "10px", background: `${step.color}15`, border: `1px solid ${step.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Icon name={step.icon} size={22} style={{ color: step.color }} />
                       </div>
-                      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3 }}>{step.title}</h3>
+                      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3 }}>{step.title}</h3>
                     </div>
-
-                    {/* Tag pills */}
-                    <div className="flex flex-wrap gap-1.5 mb-1">
+                    <div className="flex flex-wrap gap-2 mb-3">
                       {step.items.map((item) => (
-                        <div key={item.label} className="flex items-center gap-1 px-2 py-1 rounded-full" style={{ background: `${step.color}10`, border: `1px solid ${step.color}25` }}>
-                          <Icon name={item.icon} size={10} style={{ color: step.color, opacity: 0.8 }} />
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: `${step.color}cc`, fontWeight: 500 }}>{item.label}</span>
+                        <div key={item.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: `${step.color}0f`, border: `1px solid ${step.color}28` }}>
+                          <Icon name={item.icon} size={11} style={{ color: step.color, opacity: 0.85 }} />
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: `${step.color}cc`, fontWeight: 500 }}>{item.label}</span>
                         </div>
                       ))}
                     </div>
-
-                    {/* Visual */}
                     {step.visual}
                   </div>
-
-                  {/* Arrow connector (mobile) */}
-                  {idx < 3 && (
-                    <div className="flex justify-center mt-4 lg:hidden">
-                      <Icon name="ChevronDown" size={20} style={{ color: "rgba(212,176,116,0.3)" }} />
-                    </div>
-                  )}
                 </div>
               );
             })}
-          </div>
-
-          {/* Bottom connector dots (desktop) */}
-          <div className="hidden lg:flex justify-between mt-4 px-[12.5%]">
-            {[0,1,2].map(i => (
-              <div key={i} style={{ display: "flex", gap: 4 }}>
-                {[0,1,2].map(j => (
-                  <div key={j} style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4B074", opacity: progress > (i * 0.3 + 0.2) ? 0.7 : 0.15, animation: progress > (i * 0.3 + 0.2) ? `flowDot ${0.6 + j * 0.2}s ease-in-out infinite` : "none", animationDelay: `${j * 0.15}s` }} />
-                ))}
-              </div>
-            ))}
           </div>
         </div>
       </div>
