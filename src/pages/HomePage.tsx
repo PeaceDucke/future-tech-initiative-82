@@ -158,6 +158,41 @@ export function HomePage() {
     };
   }, [analysisHover]);
 
+  // Hover на карточке "Топ менеджеров" — печатающаяся подсказка
+  const [topMgrHover, setTopMgrHover] = useState(false);
+  const [topMgrTyped, setTopMgrTyped] = useState("");
+  const topMgrFullText = `AI выявляет поведенческие паттерны
+менеджеров с максимальной конверсией.
+
+Система анализирует:
+— структуру диалога
+— скорость реакции
+— эмоциональный тон
+— успешные формулировки
+
+Это позволяет масштабировать
+лучшие практики на весь отдел продаж.`;
+
+  useEffect(() => {
+    if (!topMgrHover) {
+      setTopMgrTyped("");
+      return;
+    }
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    const startDelay = setTimeout(() => {
+      let i = 0;
+      intervalId = setInterval(() => {
+        i++;
+        setTopMgrTyped(topMgrFullText.slice(0, i));
+        if (i >= topMgrFullText.length && intervalId) clearInterval(intervalId);
+      }, 28);
+    }, 1000);
+    return () => {
+      clearTimeout(startDelay);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [topMgrHover]);
+
   // Hover на карточке "Последние звонки" — печатающаяся подсказка
   const [callsHover, setCallsHover] = useState(false);
   const [callsTyped, setCallsTyped] = useState("");
@@ -1089,6 +1124,53 @@ AI определяет:
                   </div>
                 </div>
 
+                {/* ── Overlay затемнения + текст для "Топ менеджеров" ── */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "rgba(8,6,3,0.62)",
+                    opacity: topMgrHover ? 1 : 0,
+                    transition: topMgrHover ? "opacity 0.6s ease 0.8s" : "opacity 0s",
+                    zIndex: 150,
+                    borderRadius: "16px",
+                  }}
+                />
+                <div
+                  className="absolute pointer-events-none flex items-start justify-start"
+                  style={{
+                    top: "80px",
+                    left: "6%",
+                    width: "60%",
+                    opacity: topMgrHover ? 1 : 0,
+                    transform: topMgrHover ? "translateY(0)" : "translateY(8px)",
+                    transition: topMgrHover
+                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
+                      : "opacity 0s, transform 0s",
+                    zIndex: 180,
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      fontFamily: '"Bodoni Moda", Georgia, serif',
+                      fontSize: "30px",
+                      lineHeight: 1.5,
+                      letterSpacing: "0.01em",
+                      width: "660px",
+                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>{topMgrFullText}</span>
+                    <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
+                      {topMgrTyped}
+                      {topMgrHover && topMgrTyped.length < topMgrFullText.length && (
+                        <span style={{ display: "inline-block", width: "0.5ch", color: "#D4B074", animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
                   className="absolute rounded-2xl p-6 db-card"
@@ -1332,6 +1414,8 @@ AI определяет:
                 {/* ── CARD: Топ менеджеров (справа) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
+                  onMouseEnter={() => setTopMgrHover(true)}
+                  onMouseLeave={() => setTopMgrHover(false)}
                   style={{
                     width: "36%",
                     bottom: "80px",
@@ -1339,6 +1423,8 @@ AI определяет:
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    transform: topMgrHover ? "translateY(-6px)" : "translateY(0)",
                     zIndex: 25,
                   }}
                 >
