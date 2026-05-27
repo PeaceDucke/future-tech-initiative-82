@@ -638,62 +638,19 @@ AI определяет:
                 </p>
               </motion.div>
 
-              {/* ── Color Customizer (collapsible) ── */}
-              <motion.div variants={fadeUp} className="mx-auto mb-10" style={{ maxWidth: "820px" }}>
-                {/* Trigger button */}
-                <button
-                  onClick={() => setCustomizerOpen((v) => !v)}
-                  className="w-full flex items-center justify-between rounded-2xl px-5 py-3.5 transition-all"
-                  style={{
-                    background: "rgba(251,246,236,0.04)",
-                    backdropFilter: "blur(14px) saturate(140%)",
-                    WebkitBackdropFilter: "blur(14px) saturate(140%)",
-                    border: "1px solid rgba(212,176,116,0.2)",
-                    boxShadow: customizerOpen
-                      ? "0 20px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,250,240,0.06)"
-                      : "0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,250,240,0.06)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <div className="flex items-center gap-3">
-                    <Icon name="Palette" size={16} style={{ color: "rgba(212,176,116,0.85)" }} />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.9)", fontWeight: 500, letterSpacing: "0.02em" }}>
-                      Кастомизация дашборда
-                    </span>
-                    {/* Color preview dots */}
-                    <div className="flex items-center gap-1 ml-2">
-                      <span className="rounded-full" style={{ width: 10, height: 10, background: bgR.hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
-                      <span className="rounded-full" style={{ width: 10, height: 10, background: accR.hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
-                      <span className="rounded-full" style={{ width: 10, height: 10, background: textR.hsl, border: "1px solid rgba(255,250,240,0.3)" }} />
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.55)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                      {customizerOpen ? "Скрыть" : "Открыть"}
-                    </span>
-                    <Icon
-                      name="ChevronDown"
-                      size={16}
-                      style={{
-                        color: "rgba(212,176,116,0.75)",
-                        transition: "transform 0.3s ease",
-                        transform: customizerOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      }}
-                    />
-                  </div>
-                </button>
-
-                {/* Collapsible panel */}
+              {/* ── Color Customizer (collapsible panel, открывается кнопкой в дашборде) ── */}
+              <motion.div variants={fadeUp} className="mx-auto" style={{ maxWidth: "820px" }}>
                 <div
                   style={{
                     maxHeight: customizerOpen ? "500px" : "0px",
                     opacity: customizerOpen ? 1 : 0,
                     overflow: "hidden",
-                    transition: "max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease",
-                    marginTop: customizerOpen ? "12px" : "0px",
+                    transition: "max-height 0.4s ease, opacity 0.3s ease, margin-bottom 0.3s ease",
+                    marginBottom: customizerOpen ? "24px" : "0px",
                   }}
                 >
                   <div
+                    id="dashboard-customizer-panel"
                     className="rounded-2xl px-6 py-5"
                     style={{
                       background: "rgba(251,246,236,0.04)",
@@ -930,6 +887,46 @@ AI определяет:
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>1–30 Апреля, 2024</span>
                         <Icon name="ChevronDown" size={12} style={{ color: "var(--db-text-main)" }} />
                       </div>
+                      {/* Кнопка кастомизации — раскрывает палитру и пикеры */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCustomizerOpen((v) => {
+                            const next = !v;
+                            if (next) {
+                              setTimeout(() => {
+                                document.getElementById("dashboard-customizer-panel")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                              }, 60);
+                            }
+                            return next;
+                          });
+                        }}
+                        className="flex items-center gap-2 px-3.5 py-1.5 rounded"
+                        style={{
+                          background: customizerOpen
+                            ? "linear-gradient(135deg, #D4B074 0%, #B8965A 100%)"
+                            : "var(--db-bg-1)",
+                          border: customizerOpen
+                            ? "1px solid rgba(212,176,116,0.7)"
+                            : "1px solid rgba(var(--db-text-rgb),0.25)",
+                          boxShadow: customizerOpen
+                            ? "0 4px 14px rgba(212,176,116,0.35), inset 0 1px 0 rgba(255,250,240,0.25)"
+                            : "none",
+                          cursor: "pointer",
+                          transition: "all 0.25s ease",
+                        }}
+                        title="Кастомизация дашборда"
+                      >
+                        <Icon name="Palette" size={13} style={{ color: customizerOpen ? "#151513" : "var(--db-text-main)" }} />
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: customizerOpen ? "#151513" : "var(--db-text-main)", fontWeight: 600 }}>
+                          Палитра
+                        </span>
+                        <span className="flex items-center gap-0.5 ml-0.5">
+                          <span className="rounded-full" style={{ width: 8, height: 8, background: bgR.hsl, border: "1px solid rgba(0,0,0,0.2)" }} />
+                          <span className="rounded-full" style={{ width: 8, height: 8, background: accR.hsl, border: "1px solid rgba(0,0,0,0.2)" }} />
+                          <span className="rounded-full" style={{ width: 8, height: 8, background: textR.hsl, border: "1px solid rgba(0,0,0,0.2)" }} />
+                        </span>
+                      </button>
                       <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "var(--db-bg-1)", border: "1px solid rgba(var(--db-text-rgb),0.25)" }}>
                         <Icon name="Download" size={12} style={{ color: "var(--db-text-main)" }} />
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>Экспорт</span>
