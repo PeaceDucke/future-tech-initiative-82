@@ -138,7 +138,7 @@ function PainCard({
 }) {
   // rotateY: от -88deg (ребром) до 0deg (лицом) — clamp 0..1
   const p = Math.min(1, Math.max(0, progress));
-  const rotateY = (1 - p) * -88;
+  const rotateY = (1 - p) * -72;
   const opacity = 0.15 + p * 0.85;
 
   const cardBase: React.CSSProperties = {
@@ -200,10 +200,10 @@ function PainSection() {
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // Старт: нижний край секции входит в viewport (rect.bottom = windowH)
-      // Конец: верхний край секции достигает 20% от верха
-      const start = windowH * 0.9;
-      const end = windowH * -0.3;
+      // Старт: секция только появляется снизу (rect.top = windowH)
+      // Конец: верх секции достигает середины экрана — весь разворот укладывается в первую половину скролла
+      const start = windowH * 1.0;
+      const end = windowH * 0.35;
       const raw = (start - rect.top) / (start - end);
       setScrollProgress(Math.min(1, Math.max(0, raw)));
     };
@@ -212,15 +212,13 @@ function PainSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Каждая карточка начинает разворачиваться со своим stagger (0..0.2)
-  // progress=0 → карточка ребром, progress=1 → лицом
-  const cardProgress = (idx: number, stagger: number) => {
-    const s = stagger;
-    const raw = (scrollProgress - s) / (1 - s);
+  // stagger минимальный — карточки разворачиваются почти одновременно
+  const cardProgress = (_idx: number, stagger: number) => {
+    const raw = (scrollProgress - stagger) / (1 - stagger);
     return Math.min(1, Math.max(0, raw));
   };
 
-  const overlayOpacity = Math.max(0, 1 - scrollProgress * 2.2);
+  const overlayOpacity = Math.max(0, 1 - scrollProgress * 3);
 
   const cards = [
     {
@@ -298,17 +296,17 @@ function PainSection() {
             }}
           />
 
-          {/* Row 1: 2 big cards — stagger 0 и 0.12 */}
+          {/* Row 1: 2 big cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {cards.slice(0, 2).map((c, i) => (
-              <PainCard key={c.num} c={c} progress={cardProgress(i, i * 0.12)} large />
+              <PainCard key={c.num} c={c} progress={cardProgress(i, i * 0.06)} large />
             ))}
           </div>
 
-          {/* Row 2: 3 cards — stagger 0.28, 0.40, 0.52 */}
+          {/* Row 2: 3 cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             {cards.slice(2).map((c, i) => (
-              <PainCard key={c.num} c={c} progress={cardProgress(i, 0.28 + i * 0.12)} />
+              <PainCard key={c.num} c={c} progress={cardProgress(i, 0.12 + i * 0.06)} />
             ))}
           </div>
 
