@@ -142,8 +142,8 @@ function PainCard({
   const opacity = 0.15 + p * 0.85;
 
   const cardBase: React.CSSProperties = {
-    background: "linear-gradient(160deg, #1c1a15 0%, #161410 100%)",
-    border: "1px solid rgba(212,176,116,0.18)",
+    background: "#0f0f0f",
+    border: "1px solid rgba(196,158,84,0.55)",
     borderRadius: "16px",
     padding: large ? "28px 24px 24px" : "24px 20px 20px",
     display: "flex",
@@ -157,11 +157,12 @@ function PainCard({
     transition: "none",
     willChange: "transform, opacity",
     backfaceVisibility: "hidden",
+    boxShadow: "0 0 0 1px rgba(196,158,84,0.12), 0 0 18px rgba(196,158,84,0.18), 0 0 40px rgba(196,158,84,0.08), inset 0 1px 0 rgba(255,235,160,0.06)",
   };
 
   return (
     <div style={cardBase}>
-      <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(212,176,116,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(196,158,84,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
       <div className="flex items-center gap-3 mb-5">
         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, letterSpacing: "0.12em" }}>{c.num}</span>
         <div style={{ width: "1px", height: "14px", background: "rgba(212,176,116,0.25)" }} />
