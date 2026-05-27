@@ -172,8 +172,8 @@ function PainCard({
         {/* Левая колонка */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", flexShrink: 0 }}>
           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 700, letterSpacing: "0.14em" }}>{c.num}</span>
-          <div style={{ width: iconSize, height: iconSize, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.2)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <Icon name={c.icon} size={large ? 22 : 19} style={{ color: "rgba(212,176,116,0.75)" }} />
+          <div style={{ width: iconSize, height: iconSize, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <Icon name={c.icon} size={large ? 28 : 24} style={{ color: "rgba(200,200,210,0.7)" }} />
           </div>
         </div>
 
