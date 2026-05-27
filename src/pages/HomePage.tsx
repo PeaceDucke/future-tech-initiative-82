@@ -276,7 +276,7 @@ function PainSection() {
   ];
 
   return (
-    <section style={{ background: "#0e0d0b", padding: "100px 20px 80px" }}>
+    <section style={{ background: "#151513", padding: "100px 20px 80px" }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
@@ -497,7 +497,7 @@ function PipelineSection() {
   ];
 
   return (
-    <section style={{ background: "#0a0908", padding: "110px 20px 100px" }}>
+    <section style={{ background: "#151513", padding: "110px 20px 100px" }}>
       <style>{`
         @keyframes waveAnim { from { transform: scaleY(0.5); } to { transform: scaleY(1); } }
         @keyframes flowDot { 0%,100% { opacity:0.2; transform: translateX(0); } 50% { opacity:1; transform: translateX(6px); } }
