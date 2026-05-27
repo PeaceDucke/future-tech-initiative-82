@@ -987,7 +987,7 @@ AI определяет:
                       <div className="grid grid-cols-2 gap-4">
                         <div
                           className="rounded-xl p-4"
-                          style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)", cursor: "default", transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)", transform: callsHover ? "translateY(-4px)" : "translateY(0)" }}
+                          style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)", cursor: "default", transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)", transform: callsHover ? "translateY(-4px)" : "translateY(0)", position: "relative", zIndex: 30 }}
                           onMouseEnter={() => setCallsHover(true)}
                           onMouseLeave={() => setCallsHover(false)}
                         >
@@ -1042,9 +1042,9 @@ AI определяет:
                 <div
                   className="absolute pointer-events-none flex items-start justify-start"
                   style={{
-                    top: "120px",
-                    left: "4%",
-                    width: "55%",
+                    top: "80px",
+                    left: "8%",
+                    width: "60%",
                     opacity: callsHover ? 1 : 0,
                     transform: callsHover ? "translateY(0)" : "translateY(8px)",
                     transition: callsHover
@@ -1057,10 +1057,10 @@ AI определяет:
                     style={{
                       position: "relative",
                       fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "28px",
+                      fontSize: "30px",
                       lineHeight: 1.5,
                       letterSpacing: "0.01em",
-                      width: "600px",
+                      width: "640px",
                       textShadow: "0 4px 24px rgba(0,0,0,0.6)",
                       textAlign: "left",
                     }}
