@@ -158,6 +158,42 @@ export function HomePage() {
     };
   }, [analysisHover]);
 
+  // Hover на карточке "Последние звонки" — печатающаяся подсказка
+  const [callsHover, setCallsHover] = useState(false);
+  const [callsTyped, setCallsTyped] = useState("");
+  const callsFullText = `Система автоматически выявляет
+проблемные разговоры,
+требующие внимания руководителя.
+
+AI определяет:
+— потерянные сделки
+— конфликтные диалоги
+— нарушения скрипта
+— слабую обработку возражений
+
+Без необходимости вручную
+прослушивать звонки.`;
+
+  useEffect(() => {
+    if (!callsHover) {
+      setCallsTyped("");
+      return;
+    }
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    const startDelay = setTimeout(() => {
+      let i = 0;
+      intervalId = setInterval(() => {
+        i++;
+        setCallsTyped(callsFullText.slice(0, i));
+        if (i >= callsFullText.length && intervalId) clearInterval(intervalId);
+      }, 28);
+    }, 1000);
+    return () => {
+      clearTimeout(startDelay);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [callsHover]);
+
   // Hover на карточке "AI-Инсайты" — печатающаяся подсказка
   const [insightsHover, setInsightsHover] = useState(false);
   const [insightsTyped, setInsightsTyped] = useState("");
@@ -949,7 +985,12 @@ export function HomePage() {
                       </div>
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
+                        <div
+                          className="rounded-xl p-4 relative overflow-hidden"
+                          style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)", cursor: "default", transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)", transform: callsHover ? "translateY(-4px)" : "translateY(0)" }}
+                          onMouseEnter={() => setCallsHover(true)}
+                          onMouseLeave={() => setCallsHover(false)}
+                        >
                           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-text-main)", marginBottom: "14px", fontWeight: 600 }}>Последние звонки</div>
                           <div className="space-y-2.5">
                             {[
@@ -964,6 +1005,38 @@ export function HomePage() {
                                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: c.r === "Успешно" ? "#1a8a52" : c.r === "Не удалось" ? "#c92a2a" : "var(--db-acc-1)", fontWeight: 600 }}>{c.r}</span>
                               </div>
                             ))}
+                          </div>
+                          {/* Overlay затемнения */}
+                          <div
+                            className="absolute inset-0 pointer-events-none"
+                            style={{
+                              background: "rgba(8,6,3,0.75)",
+                              opacity: callsHover ? 1 : 0,
+                              transition: callsHover ? "opacity 0.6s ease 0.8s" : "opacity 0s",
+                              borderRadius: "12px",
+                              zIndex: 10,
+                            }}
+                          />
+                          {/* Печатающийся текст */}
+                          <div
+                            className="absolute inset-0 pointer-events-none flex items-start"
+                            style={{
+                              padding: "16px",
+                              opacity: callsHover ? 1 : 0,
+                              transform: callsHover ? "translateY(0)" : "translateY(6px)",
+                              transition: callsHover ? "opacity 0.5s ease 1s, transform 0.6s ease 1s" : "opacity 0s, transform 0s",
+                              zIndex: 20,
+                            }}
+                          >
+                            <div style={{ position: "relative", fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "13px", lineHeight: 1.55, letterSpacing: "0.01em", width: "100%", textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}>
+                              <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>{callsFullText}</span>
+                              <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
+                                {callsTyped}
+                                {callsHover && callsTyped.length < callsFullText.length && (
+                                  <span style={{ display: "inline-block", width: "0.5ch", color: "#D4B074", animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
+                                )}
+                              </span>
+                            </div>
                           </div>
                         </div>
                         <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
