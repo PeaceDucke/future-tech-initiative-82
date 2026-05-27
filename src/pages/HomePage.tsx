@@ -126,6 +126,69 @@ function Sparkline() {
   );
 }
 
+// ─── Одна карточка боли с rotateY по скроллу ─────────────────────────────────
+function PainCard({
+  c,
+  progress,
+  large,
+}: {
+  c: { num: string; icon: string; title: string; problem: string; solution: string; loss: string };
+  progress: number;
+  large?: boolean;
+}) {
+  // rotateY: от -88deg (ребром) до 0deg (лицом) — clamp 0..1
+  const p = Math.min(1, Math.max(0, progress));
+  const rotateY = (1 - p) * -88;
+  const opacity = 0.15 + p * 0.85;
+
+  const cardBase: React.CSSProperties = {
+    background: "linear-gradient(160deg, #1c1a15 0%, #161410 100%)",
+    border: "1px solid rgba(212,176,116,0.18)",
+    borderRadius: "16px",
+    padding: large ? "28px 24px 24px" : "24px 20px 20px",
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    overflow: "hidden",
+    height: "100%",
+    transformOrigin: "50% 50%",
+    transform: `perspective(900px) rotateY(${rotateY}deg)`,
+    opacity,
+    transition: "none",
+    willChange: "transform, opacity",
+    backfaceVisibility: "hidden",
+  };
+
+  return (
+    <div style={cardBase}>
+      <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(212,176,116,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div className="flex items-center gap-3 mb-5">
+        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, letterSpacing: "0.12em" }}>{c.num}</span>
+        <div style={{ width: "1px", height: "14px", background: "rgba(212,176,116,0.25)" }} />
+        <div style={{ width: large ? 44 : 40, height: large ? 44 : 40, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Icon name={c.icon} size={large ? 20 : 18} style={{ color: "rgba(212,176,116,0.7)" }} />
+        </div>
+      </div>
+      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "22px" : "17px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "18px", whiteSpace: "pre-line" }}>{c.title}</h3>
+      <div className="mb-4">
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "5px" }}>Проблема:</p>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "13px" : "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
+      </div>
+      <div className="mb-5">
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "5px" }}>Что показывает SalesFlow:</p>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "13px" : "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
+      </div>
+      <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "14px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
+        <div>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.4)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "4px" }}>Потенциальная потеря:</p>
+          <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "20px" : "16px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
+        </div>
+        <Sparkline />
+      </div>
+    </div>
+  );
+}
+
 // ─── Pain Cards Section ────────────────────────────────────────────────────────
 function PainSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -137,10 +200,10 @@ function PainSection() {
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // Начинаем анимацию когда секция входит снизу (rect.top = windowH)
-      // Заканчиваем когда центр секции достигает центра экрана
-      const start = windowH;
-      const end = windowH * 0.15;
+      // Старт: нижний край секции входит в viewport (rect.bottom = windowH)
+      // Конец: верхний край секции достигает 20% от верха
+      const start = windowH * 0.9;
+      const end = windowH * -0.3;
       const raw = (start - rect.top) / (start - end);
       setScrollProgress(Math.min(1, Math.max(0, raw)));
     };
@@ -149,9 +212,15 @@ function PainSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // rotateX: от 55deg (вдаль) до 0deg (к нам) — привязано к scrollProgress
-  const rotateX = (1 - scrollProgress) * 55;
-  const overlayOpacity = (1 - scrollProgress) * 0.82;
+  // Каждая карточка начинает разворачиваться со своим stagger (0..0.2)
+  // progress=0 → карточка ребром, progress=1 → лицом
+  const cardProgress = (idx: number, stagger: number) => {
+    const s = stagger;
+    const raw = (scrollProgress - s) / (1 - s);
+    return Math.min(1, Math.max(0, raw));
+  };
+
+  const overlayOpacity = Math.max(0, 1 - scrollProgress * 2.2);
 
   const cards = [
     {
@@ -196,22 +265,8 @@ function PainSection() {
     },
   ];
 
-  const cardBase: React.CSSProperties = {
-    background: "linear-gradient(160deg, #1c1a15 0%, #161410 100%)",
-    border: "1px solid rgba(212,176,116,0.18)",
-    borderRadius: "16px",
-    padding: "28px 24px 24px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "0px",
-    position: "relative",
-    overflow: "hidden",
-  };
-
   return (
-    <section
-      style={{ background: "#0e0d0b", padding: "100px 20px 80px" }}
-    >
+    <section style={{ background: "#0e0d0b", padding: "100px 20px 80px" }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
@@ -220,14 +275,7 @@ function PainSection() {
             <span style={labelStyle}>Проблемы, которые стоят вам денег</span>
             <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
           </div>
-          <h2
-            style={{
-              ...h2Style,
-              fontSize: "clamp(32px, 5vw, 58px)",
-              lineHeight: 1.15,
-              marginBottom: "20px",
-            }}
-          >
+          <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 56px)", lineHeight: 1.15, marginBottom: "20px" }}>
             Вы теряете клиентов внутри звонков —<br />
             и даже не видите этого.
           </h2>
@@ -237,152 +285,78 @@ function PainSection() {
           </p>
         </div>
 
-        {/* Cards grid — scroll-driven 3D flip */}
-        <div
-          ref={sectionRef}
-          style={{
-            perspective: "1200px",
-            perspectiveOrigin: "50% 40%",
-            position: "relative",
-          }}
-        >
-          {/* Dark overlay (уходит по мере скролла) */}
+        {/* Cards — scroll-driven rotateY per card */}
+        <div ref={sectionRef} style={{ position: "relative" }}>
+          {/* Overlay затемнения всей области */}
           <div
-            className="absolute inset-0 pointer-events-none rounded-2xl"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background: "#0e0d0b",
               opacity: overlayOpacity,
               zIndex: 10,
-              transition: "opacity 0.05s linear",
+              borderRadius: "20px",
             }}
           />
 
+          {/* Row 1: 2 big cards — stagger 0 и 0.12 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {cards.slice(0, 2).map((c, i) => (
+              <PainCard key={c.num} c={c} progress={cardProgress(i, i * 0.12)} large />
+            ))}
+          </div>
+
+          {/* Row 2: 3 cards — stagger 0.28, 0.40, 0.52 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            {cards.slice(2).map((c, i) => (
+              <PainCard key={c.num} c={c} progress={cardProgress(i, 0.28 + i * 0.12)} />
+            ))}
+          </div>
+
+          {/* Footer summary row */}
           <div
             style={{
-              transformOrigin: "50% 0%",
-              transform: `rotateX(${rotateX}deg)`,
-              transition: "transform 0.05s linear",
+              background: "linear-gradient(135deg, #1a1812 0%, #141210 100%)",
+              border: "1px solid rgba(212,176,116,0.22)",
+              borderRadius: "16px",
+              padding: "28px 32px",
+              display: "flex",
+              alignItems: "center",
+              gap: "40px",
+              flexWrap: "wrap",
+              opacity: Math.min(1, Math.max(0, (scrollProgress - 0.6) / 0.4)),
+              transform: `translateY(${Math.max(0, (1 - (scrollProgress - 0.6) / 0.4)) * 20}px)`,
             }}
           >
-            {/* Row 1: 2 big cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              {cards.slice(0, 2).map((c) => (
-                <div key={c.num} style={cardBase}>
-                  {/* Subtle gold glow top-left */}
-                  <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(212,176,116,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-                  {/* Num + icon row */}
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="flex items-center gap-3">
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, letterSpacing: "0.12em" }}>{c.num}</span>
-                      <div style={{ width: "1px", height: "14px", background: "rgba(212,176,116,0.25)" }} />
-                      <div style={{ width: 44, height: 44, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <Icon name={c.icon} size={20} style={{ color: "rgba(212,176,116,0.7)" }} />
-                      </div>
-                    </div>
-                  </div>
-                  {/* Title */}
-                  <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "20px", whiteSpace: "pre-line" }}>{c.title}</h3>
-                  {/* Problem */}
-                  <div className="mb-4">
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "6px", letterSpacing: "0.02em" }}>Проблема:</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
-                  </div>
-                  {/* Solution */}
-                  <div className="mb-6">
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "6px", letterSpacing: "0.02em" }}>Что показывает SalesFlow:</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
-                  </div>
-                  {/* Loss */}
-                  <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "16px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-                    <div>
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "4px" }}>Потенциальная потеря:</p>
-                      <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
-                    </div>
-                    <Sparkline />
-                  </div>
-                </div>
-              ))}
+            <div className="flex items-center gap-4" style={{ flex: "1 1 260px" }}>
+              <div style={{ width: 52, height: 52, background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Icon name="Target" size={24} style={{ color: "#D4B074" }} />
+              </div>
+              <div>
+                <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "16px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.4 }}>
+                  AI уже после первых недель показывает,<br />где компания недозарабатывает:
+                </p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.45)", marginTop: "4px" }}>
+                  в звонках, менеджерах, каналах трафика и скриптах.
+                </p>
+              </div>
             </div>
-
-            {/* Row 2: 3 cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              {cards.slice(2).map((c) => (
-                <div key={c.num} style={cardBase}>
-                  <div style={{ position: "absolute", top: 0, left: 0, width: "100px", height: "100px", background: "radial-gradient(circle, rgba(212,176,116,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="flex items-center gap-3">
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, letterSpacing: "0.12em" }}>{c.num}</span>
-                      <div style={{ width: "1px", height: "14px", background: "rgba(212,176,116,0.25)" }} />
-                      <div style={{ width: 40, height: 40, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <Icon name={c.icon} size={18} style={{ color: "rgba(212,176,116,0.7)" }} />
-                      </div>
-                    </div>
-                  </div>
-                  <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.35, marginBottom: "18px", whiteSpace: "pre-line" }}>{c.title}</h3>
-                  <div className="mb-3">
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 600, marginBottom: "5px", letterSpacing: "0.02em" }}>Проблема:</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
-                  </div>
-                  <div className="mb-5">
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 600, marginBottom: "5px", letterSpacing: "0.02em" }}>Что показывает SalesFlow:</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
-                  </div>
-                  <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "14px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-                    <div>
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.4)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "4px" }}>Потенциальная потеря:</p>
-                      <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "17px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
-                    </div>
-                    <Sparkline />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Footer summary row */}
-            <div
-              style={{
-                background: "linear-gradient(135deg, #1a1812 0%, #141210 100%)",
-                border: "1px solid rgba(212,176,116,0.22)",
-                borderRadius: "16px",
-                padding: "28px 32px",
-                display: "flex",
-                alignItems: "center",
-                gap: "40px",
-                flexWrap: "wrap",
-              }}
-            >
-              <div className="flex items-center gap-4" style={{ flex: "1 1 260px" }}>
-                <div style={{ width: 52, height: 52, background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)", borderRadius: "14px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Icon name="Target" size={24} style={{ color: "#D4B074" }} />
+            <div style={{ width: "1px", height: "48px", background: "rgba(212,176,116,0.18)", flexShrink: 0 }} className="hidden md:block" />
+            {[
+              { icon: "Wallet", label: "Скрытые потери", value: "до 5 160 000 ₽", sub: "в месяц" },
+              { icon: "TrendingUp", label: "Рост выручки", value: "+15–30%", sub: "после внедрения" },
+              { icon: "Clock", label: "Время на анализ", value: "−90%", sub: "для руководителя" },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-3" style={{ flexShrink: 0 }}>
+                <div style={{ width: 36, height: 36, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name={stat.icon} size={16} style={{ color: "#D4B074" }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "16px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.4 }}>
-                    AI уже после первых недель показывает,<br />
-                    где компания недозарабатывает:
-                  </p>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.45)", marginTop: "4px" }}>
-                    в звонках, менеджерах, каналах трафика и скриптах.
-                  </p>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.45)", marginBottom: "2px" }}>{stat.label}</p>
+                  <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#D4B074", fontWeight: 400, lineHeight: 1 }}>{stat.value}</p>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.45)" }}>{stat.sub}</p>
                 </div>
               </div>
-              <div style={{ width: "1px", height: "48px", background: "rgba(212,176,116,0.18)", flexShrink: 0 }} className="hidden md:block" />
-              {[
-                { icon: "Wallet", label: "Скрытые потери", value: "до 5 160 000 ₽", sub: "в месяц" },
-                { icon: "TrendingUp", label: "Рост выручки", value: "+15–30%", sub: "после внедрения" },
-                { icon: "Clock", label: "Время на анализ", value: "−90%", sub: "для руководителя" },
-              ].map((stat) => (
-                <div key={stat.label} className="flex items-center gap-3" style={{ flexShrink: 0 }}>
-                  <div style={{ width: 36, height: 36, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Icon name={stat.icon} size={16} style={{ color: "#D4B074" }} />
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.45)", marginBottom: "2px" }}>{stat.label}</p>
-                    <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#D4B074", fontWeight: 400, lineHeight: 1 }}>{stat.value}</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.45)" }}>{stat.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </div>
