@@ -375,6 +375,246 @@ function PainSection() {
   );
 }
 
+// ─── AI Pipeline Section ───────────────────────────────────────────────────────
+function PipelineSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const wh = window.innerHeight;
+      const raw = (wh * 0.9 - rect.top) / (wh * 1.1);
+      setProgress(Math.min(1, Math.max(0, raw)));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const steps = [
+    {
+      num: "01",
+      icon: "Phone",
+      title: "Подключаем звонки",
+      color: "#7B9FD4",
+      items: [
+        { icon: "Waves", label: "Waveform" },
+        { icon: "Mic", label: "Voice input" },
+        { icon: "PhoneIncoming", label: "Incoming calls" },
+        { icon: "Loader", label: "Loading state" },
+      ],
+      visual: (
+        <div className="flex items-end gap-[3px] mt-3" style={{ height: 36 }}>
+          {[4,7,12,18,10,22,15,8,20,14,6,18,10,24,16,9,13,20,7,15].map((h, i) => (
+            <div key={i} style={{ flex: 1, height: `${h}px`, background: `rgba(123,159,212,${0.3 + (i % 4) * 0.18})`, borderRadius: "2px", animation: `waveAnim ${0.6 + (i % 5) * 0.2}s ease-in-out infinite alternate`, animationDelay: `${i * 0.05}s` }} />
+          ))}
+        </div>
+      ),
+    },
+    {
+      num: "02",
+      icon: "Brain",
+      title: "AI анализирует разговоры",
+      color: "#C49FD4",
+      items: [
+        { icon: "ScanLine", label: "AI scan" },
+        { icon: "Cpu", label: "Processing" },
+        { icon: "Tag", label: "Keywords" },
+        { icon: "Heart", label: "Sentiment" },
+      ],
+      visual: (
+        <div className="mt-3 space-y-1.5">
+          {["негатив → возражение по цене", "интерес → запрос деталей", "сомнение → пауза 4с"].map((t, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: i === 0 ? "#ef4444" : i === 1 ? "#22c55e" : "#f59e0b", flexShrink: 0 }} />
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.5)" }}>{t}</span>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      num: "03",
+      icon: "AlertTriangle",
+      title: "Выявляет причины потерь",
+      color: "#D4A07B",
+      items: [
+        { icon: "AlertCircle", label: "Issues" },
+        { icon: "MessageSquareX", label: "Objections" },
+        { icon: "FileX", label: "Script violations" },
+        { icon: "Activity", label: "Hesitation" },
+      ],
+      visual: (
+        <div className="mt-3 space-y-1.5">
+          {[
+            { label: "Скрипт нарушен", pct: 73, color: "#ef4444" },
+            { label: "Возражение не отработано", pct: 58, color: "#f59e0b" },
+            { label: "Пауза > 3 сек", pct: 41, color: "#D4B074" },
+          ].map((r) => (
+            <div key={r.label}>
+              <div className="flex justify-between mb-0.5">
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.45)" }}>{r.label}</span>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: r.color }}>{r.pct}%</span>
+              </div>
+              <div style={{ height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden" }}>
+                <div style={{ height: "100%", width: `${r.pct}%`, background: r.color, borderRadius: 2 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      num: "04",
+      icon: "TrendingUp",
+      title: "Вы получаете точки роста",
+      color: "#7BD4A0",
+      items: [
+        { icon: "DollarSign", label: "Revenue ↑" },
+        { icon: "Target", label: "Conversion" },
+        { icon: "Users", label: "Manager insights" },
+        { icon: "Sparkles", label: "AI recommendations" },
+      ],
+      visual: (
+        <div className="mt-3 space-y-1.5">
+          {[
+            { label: "Рост конверсии", val: "+18%" },
+            { label: "Сокращение потерь", val: "−₽340K" },
+            { label: "Лучший скрипт", val: "Менеджер 3" },
+          ].map((r) => (
+            <div key={r.label} className="flex justify-between items-center">
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.45)" }}>{r.label}</span>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#7BD4A0", fontWeight: 600 }}>{r.val}</span>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <section style={{ background: "#0a0908", padding: "110px 20px 100px" }}>
+      <style>{`
+        @keyframes waveAnim { from { transform: scaleY(0.5); } to { transform: scaleY(1); } }
+        @keyframes flowDot { 0%,100% { opacity:0.2; transform: translateX(0); } 50% { opacity:1; transform: translateX(6px); } }
+        @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(212,176,116,0.4); } 70% { box-shadow: 0 0 0 10px rgba(212,176,116,0); } 100% { box-shadow: 0 0 0 0 rgba(212,176,116,0); } }
+      `}</style>
+
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
+            <span style={labelStyle}>Как работает платформа</span>
+            <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
+          </div>
+          <h2 style={{ ...h2Style, fontSize: "clamp(28px, 4.5vw, 52px)", lineHeight: 1.15, marginBottom: "24px" }}>
+            AI анализирует тысячи разговоров —<br />
+            и находит причины потери продаж
+          </h2>
+          <p style={{ ...bodyText, fontSize: "16px", maxWidth: "560px", margin: "0 auto", lineHeight: 1.7 }}>
+            SalesFlow автоматически превращает звонки,<br />
+            CRM и диалоги менеджеров<br />
+            в понятные рекомендации для роста.
+          </p>
+        </div>
+
+        {/* Pipeline */}
+        <div ref={ref} className="relative">
+          {/* Соединительная линия между шагами */}
+          <div className="hidden lg:block absolute top-[52px] left-[12.5%] right-[12.5%]" style={{ height: "2px", background: "rgba(212,176,116,0.1)", zIndex: 0 }}>
+            <div style={{ height: "100%", width: `${progress * 100}%`, background: "linear-gradient(90deg, #D4B074, rgba(212,176,116,0.4))", transition: "width 0.1s linear", borderRadius: "2px", boxShadow: "0 0 8px rgba(212,176,116,0.5)" }} />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
+            {steps.map((step, idx) => {
+              const cardP = Math.min(1, Math.max(0, (progress - idx * 0.18) / 0.4));
+              return (
+                <div
+                  key={step.num}
+                  style={{
+                    opacity: cardP,
+                    transform: `translateY(${(1 - cardP) * 28}px)`,
+                    transition: "none",
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                >
+                  {/* Step number circle */}
+                  <div className="flex justify-center mb-5">
+                    <div style={{
+                      width: 44, height: 44, borderRadius: "50%",
+                      background: "#0a0908",
+                      border: `2px solid ${cardP > 0.8 ? step.color : "rgba(212,176,116,0.25)"}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      boxShadow: cardP > 0.8 ? `0 0 16px ${step.color}55` : "none",
+                      transition: "none",
+                    }}>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: cardP > 0.8 ? step.color : "rgba(212,176,116,0.5)", fontWeight: 700, letterSpacing: "0.05em" }}>{step.num}</span>
+                    </div>
+                  </div>
+
+                  {/* Card */}
+                  <div style={{
+                    background: "#0f0f0f",
+                    border: `1px solid ${cardP > 0.8 ? `${step.color}55` : "rgba(255,255,255,0.07)"}`,
+                    borderRadius: "16px",
+                    padding: "22px 20px",
+                    boxShadow: cardP > 0.8 ? `0 0 24px ${step.color}22, 0 0 0 1px ${step.color}18` : "none",
+                    transition: "none",
+                  }}>
+                    {/* Icon + title */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div style={{ width: 40, height: 40, borderRadius: "10px", background: `${step.color}15`, border: `1px solid ${step.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Icon name={step.icon} size={20} style={{ color: step.color }} />
+                      </div>
+                      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3 }}>{step.title}</h3>
+                    </div>
+
+                    {/* Tag pills */}
+                    <div className="flex flex-wrap gap-1.5 mb-1">
+                      {step.items.map((item) => (
+                        <div key={item.label} className="flex items-center gap-1 px-2 py-1 rounded-full" style={{ background: `${step.color}10`, border: `1px solid ${step.color}25` }}>
+                          <Icon name={item.icon} size={10} style={{ color: step.color, opacity: 0.8 }} />
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: `${step.color}cc`, fontWeight: 500 }}>{item.label}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Visual */}
+                    {step.visual}
+                  </div>
+
+                  {/* Arrow connector (mobile) */}
+                  {idx < 3 && (
+                    <div className="flex justify-center mt-4 lg:hidden">
+                      <Icon name="ChevronDown" size={20} style={{ color: "rgba(212,176,116,0.3)" }} />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom connector dots (desktop) */}
+          <div className="hidden lg:flex justify-between mt-4 px-[12.5%]">
+            {[0,1,2].map(i => (
+              <div key={i} style={{ display: "flex", gap: 4 }}>
+                {[0,1,2].map(j => (
+                  <div key={j} style={{ width: 4, height: 4, borderRadius: "50%", background: "#D4B074", opacity: progress > (i * 0.3 + 0.2) ? 0.7 : 0.15, animation: progress > (i * 0.3 + 0.2) ? `flowDot ${0.6 + j * 0.2}s ease-in-out infinite` : "none", animationDelay: `${j * 0.15}s` }} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   // По умолчанию — оригинальные оттенки дашборда
@@ -1629,6 +1869,9 @@ AI определяет:
 
         {/* ═══ PAIN CARDS ═══ */}
         <PainSection />
+
+        {/* ═══ AI PIPELINE ═══ */}
+        <PipelineSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
