@@ -986,7 +986,7 @@ AI определяет:
                       {/* Bottom row */}
                       <div className="grid grid-cols-2 gap-4">
                         <div
-                          className="rounded-xl p-4 relative overflow-hidden"
+                          className="rounded-xl p-4"
                           style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)", cursor: "default", transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)", transform: callsHover ? "translateY(-4px)" : "translateY(0)" }}
                           onMouseEnter={() => setCallsHover(true)}
                           onMouseLeave={() => setCallsHover(false)}
@@ -1005,38 +1005,6 @@ AI определяет:
                                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: c.r === "Успешно" ? "#1a8a52" : c.r === "Не удалось" ? "#c92a2a" : "var(--db-acc-1)", fontWeight: 600 }}>{c.r}</span>
                               </div>
                             ))}
-                          </div>
-                          {/* Overlay затемнения */}
-                          <div
-                            className="absolute inset-0 pointer-events-none"
-                            style={{
-                              background: "rgba(8,6,3,0.75)",
-                              opacity: callsHover ? 1 : 0,
-                              transition: callsHover ? "opacity 0.6s ease 0.8s" : "opacity 0s",
-                              borderRadius: "12px",
-                              zIndex: 10,
-                            }}
-                          />
-                          {/* Печатающийся текст */}
-                          <div
-                            className="absolute inset-0 pointer-events-none flex items-start"
-                            style={{
-                              padding: "16px",
-                              opacity: callsHover ? 1 : 0,
-                              transform: callsHover ? "translateY(0)" : "translateY(6px)",
-                              transition: callsHover ? "opacity 0.5s ease 1s, transform 0.6s ease 1s" : "opacity 0s, transform 0s",
-                              zIndex: 20,
-                            }}
-                          >
-                            <div style={{ position: "relative", fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "13px", lineHeight: 1.55, letterSpacing: "0.01em", width: "100%", textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}>
-                              <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>{callsFullText}</span>
-                              <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
-                                {callsTyped}
-                                {callsHover && callsTyped.length < callsFullText.length && (
-                                  <span style={{ display: "inline-block", width: "0.5ch", color: "#D4B074", animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
-                                )}
-                              </span>
-                            </div>
                           </div>
                         </div>
                         <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)" }}>
@@ -1057,6 +1025,53 @@ AI определяет:
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* ── Overlay затемнения + текст для "Последние звонки" ── */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "rgba(8,6,3,0.62)",
+                    opacity: callsHover ? 1 : 0,
+                    transition: callsHover ? "opacity 0.6s ease 0.8s" : "opacity 0s",
+                    zIndex: 150,
+                    borderRadius: "16px",
+                  }}
+                />
+                <div
+                  className="absolute pointer-events-none flex items-start justify-start"
+                  style={{
+                    top: "120px",
+                    left: "4%",
+                    width: "55%",
+                    opacity: callsHover ? 1 : 0,
+                    transform: callsHover ? "translateY(0)" : "translateY(8px)",
+                    transition: callsHover
+                      ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
+                      : "opacity 0s, transform 0s",
+                    zIndex: 180,
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      fontFamily: '"Bodoni Moda", Georgia, serif',
+                      fontSize: "28px",
+                      lineHeight: 1.5,
+                      letterSpacing: "0.01em",
+                      width: "600px",
+                      textShadow: "0 4px 24px rgba(0,0,0,0.6)",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>{callsFullText}</span>
+                    <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
+                      {callsTyped}
+                      {callsHover && callsTyped.length < callsFullText.length && (
+                        <span style={{ display: "inline-block", width: "0.5ch", color: "#D4B074", animation: "tw-caret 0.9s steps(1) infinite" }}>▍</span>
+                      )}
+                    </span>
                   </div>
                 </div>
 
