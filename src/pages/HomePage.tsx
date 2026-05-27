@@ -160,31 +160,42 @@ function PainCard({
     boxShadow: "0 0 0 1px rgba(196,158,84,0.12), 0 0 18px rgba(196,158,84,0.18), 0 0 40px rgba(196,158,84,0.08), inset 0 1px 0 rgba(255,235,160,0.06)",
   };
 
+  const iconSize = large ? 52 : 46;
+
   return (
     <div style={cardBase}>
       <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(196,158,84,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div className="flex items-center gap-3 mb-5">
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, letterSpacing: "0.12em" }}>{c.num}</span>
-        <div style={{ width: "1px", height: "14px", background: "rgba(212,176,116,0.25)" }} />
-        <div style={{ width: large ? 44 : 40, height: large ? 44 : 40, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Icon name={c.icon} size={large ? 20 : 18} style={{ color: "rgba(212,176,116,0.7)" }} />
+
+      {/* Основной layout: левая колонка (номер + иконка) + правая (текст) */}
+      <div style={{ display: "flex", gap: "18px", flex: 1, minHeight: 0 }}>
+
+        {/* Левая колонка */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 700, letterSpacing: "0.14em" }}>{c.num}</span>
+          <div style={{ width: iconSize, height: iconSize, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.2)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <Icon name={c.icon} size={large ? 22 : 19} style={{ color: "rgba(212,176,116,0.75)" }} />
+          </div>
         </div>
-      </div>
-      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "22px" : "17px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "18px", whiteSpace: "pre-line" }}>{c.title}</h3>
-      <div className="mb-4">
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "5px" }}>Проблема:</p>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "13px" : "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
-      </div>
-      <div className="mb-5">
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "5px" }}>Что показывает SalesFlow:</p>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "13px" : "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
-      </div>
-      <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "14px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-        <div>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.4)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "4px" }}>Потенциальная потеря:</p>
-          <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "20px" : "16px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
+
+        {/* Правая колонка */}
+        <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
+          <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "21px" : "16px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "16px", whiteSpace: "pre-line" }}>{c.title}</h3>
+          <div style={{ marginBottom: "12px" }}>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Проблема:</p>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "13px" : "12px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
+          </div>
+          <div style={{ marginBottom: "16px" }}>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Что показывает SalesFlow:</p>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "13px" : "12px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
+          </div>
+          <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "12px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
+            <div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.38)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "3px" }}>Потенциальная потеря:</p>
+              <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "19px" : "15px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
+            </div>
+            <Sparkline />
+          </div>
         </div>
-        <Sparkline />
       </div>
     </div>
   );
