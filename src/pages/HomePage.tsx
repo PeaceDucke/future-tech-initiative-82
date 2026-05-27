@@ -202,8 +202,8 @@ function PainSection() {
       const windowH = window.innerHeight;
       // Старт: секция только появляется снизу (rect.top = windowH)
       // Конец: верх секции достигает середины экрана — весь разворот укладывается в первую половину скролла
-      const start = windowH * 1.45;
-      const end = windowH * 0.35;
+      const start = windowH * 1.5;
+      const end = windowH * 0.4;
       const raw = (start - rect.top) / (start - end);
       setScrollProgress(Math.min(1, Math.max(0, raw)));
     };
