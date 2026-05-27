@@ -314,8 +314,9 @@ function PainSection() {
           {/* Footer summary row */}
           <div
             style={{
-              background: "linear-gradient(135deg, #1a1812 0%, #141210 100%)",
-              border: "1px solid rgba(212,176,116,0.22)",
+              background: "#0f0f0f",
+              border: "1px solid rgba(196,158,84,0.55)",
+              boxShadow: "0 0 0 1px rgba(196,158,84,0.12), 0 0 18px rgba(196,158,84,0.18), 0 0 40px rgba(196,158,84,0.08), inset 0 1px 0 rgba(255,235,160,0.06)",
               borderRadius: "16px",
               padding: "28px 32px",
               display: "flex",
