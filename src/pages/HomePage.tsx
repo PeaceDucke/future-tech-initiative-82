@@ -524,7 +524,7 @@ function PipelineSection() {
         </div>
 
         {/* Pipeline — вертикально */}
-        <div ref={ref} className="relative max-w-3xl mx-auto">
+        <div ref={ref} className="relative max-w-5xl mx-auto">
           {/* Вертикальная линия слева */}
           <div className="absolute" style={{ left: 21, top: 44, bottom: 44, width: 2, background: "rgba(212,176,116,0.08)", zIndex: 0 }}>
             <div style={{ width: "100%", height: `${progress * 100}%`, background: "linear-gradient(180deg, #D4B074, rgba(212,176,116,0.3))", borderRadius: 2, boxShadow: "0 0 8px rgba(212,176,116,0.4)", transition: "height 0.1s linear" }} />
