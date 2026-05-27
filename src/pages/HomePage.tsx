@@ -545,18 +545,18 @@ function PipelineSection() {
                   </div>
 
                   {/* Карточка */}
-                  <div style={{ flex: 1, background: "#0f0f0f", border: `1px solid ${cardP > 0.7 ? `${step.color}50` : "rgba(255,255,255,0.07)"}`, borderRadius: "16px", padding: "22px 24px", boxShadow: cardP > 0.7 ? `0 0 28px ${step.color}1a, 0 0 0 1px ${step.color}15` : "none" }}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div style={{ width: 44, height: 44, borderRadius: "10px", background: `${step.color}15`, border: `1px solid ${step.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon name={step.icon} size={22} style={{ color: step.color }} />
+                  <div style={{ flex: 1, background: "#0f0f0f", border: `1px solid ${cardP > 0.7 ? `${step.color}50` : "rgba(255,255,255,0.07)"}`, borderRadius: "20px", padding: "36px 36px", boxShadow: cardP > 0.7 ? `0 0 28px ${step.color}1a, 0 0 0 1px ${step.color}15` : "none" }}>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div style={{ width: 60, height: 60, borderRadius: "14px", background: `${step.color}15`, border: `1px solid ${step.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Icon name={step.icon} size={30} style={{ color: step.color }} />
                       </div>
-                      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3 }}>{step.title}</h3>
+                      <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3 }}>{step.title}</h3>
                     </div>
-                    <div className="flex flex-wrap gap-2 mb-3">
+                    <div className="flex flex-wrap gap-2 mb-5">
                       {step.items.map((item) => (
-                        <div key={item.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: `${step.color}0f`, border: `1px solid ${step.color}28` }}>
-                          <Icon name={item.icon} size={11} style={{ color: step.color, opacity: 0.85 }} />
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: `${step.color}cc`, fontWeight: 500 }}>{item.label}</span>
+                        <div key={item.label} className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: `${step.color}0f`, border: `1px solid ${step.color}28` }}>
+                          <Icon name={item.icon} size={13} style={{ color: step.color, opacity: 0.85 }} />
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: `${step.color}cc`, fontWeight: 500 }}>{item.label}</span>
                         </div>
                       ))}
                     </div>
