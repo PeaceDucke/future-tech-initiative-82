@@ -608,12 +608,12 @@ function PipelineSection() {
           {/* ─── Блок 1 — фото с подписью сверху и перечислением слева ─── */}
           <div style={{ position: "relative", zIndex: 1, paddingBottom: "100px", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
 
-            {/* Подпись над картинкой */}
-            <div style={{ marginBottom: "16px", paddingLeft: "22%" }}>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#D4B074", marginBottom: "6px" }}>
+            {/* Подпись над перечислением */}
+            <div style={{ marginBottom: "24px", width: "22%", paddingRight: "28px" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#D4B074", marginBottom: "10px" }}>
                 Потоки аудиоданных
               </p>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.45)", lineHeight: 1.6, maxWidth: "420px" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.5)", lineHeight: 1.65 }}>
                 Все звонки из разных источников собираются в единый поток и передаются в систему
               </p>
             </div>
