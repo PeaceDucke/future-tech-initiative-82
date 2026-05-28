@@ -605,19 +605,14 @@ function PipelineSection() {
             </svg>
           )}
 
-          {/* ─── Карточка 1 — слева ─── */}
+          {/* ─── Карточка 1 — слева (фото) ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
-            <div ref={card1Ref} style={{ ...cardStyle(cp(0)), padding: 0, overflow: "hidden", minHeight: 520 }}>
+            <div ref={card1Ref} style={{ width: "52%", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ff8d3e4c-e1e5-4066-afbe-24dd8507de91.png"
                 alt="AI обрабатывает звонки"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "24px" }}
+                style={{ width: "100%", display: "block", borderRadius: "24px" }}
               />
-              {/* Overlay с текстом поверх фото */}
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "40px 36px", background: "linear-gradient(to top, rgba(10,10,8,0.92) 0%, rgba(10,10,8,0.5) 60%, transparent 100%)", borderRadius: "0 0 24px 24px" }}>
-                <div className="flex items-center gap-3 mb-3">{numBadge("1")}<h3 style={h3s}>Подключаем записи звонков</h3></div>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", lineHeight: 1.6 }}>Автоматически собираем звонки из всех источников.</p>
-              </div>
             </div>
           </div>
 
