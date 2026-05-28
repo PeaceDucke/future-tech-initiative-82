@@ -607,42 +607,16 @@ function PipelineSection() {
 
           {/* ─── Карточка 1 — слева ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
-            <div ref={card1Ref} style={cardStyle(cp(0))}>
-              <div className="flex items-center gap-3 mb-4">{numBadge("1")}<h3 style={h3s}>Подключаем записи звонков</h3></div>
-              {sub("Автоматически собираем звонки из всех источников.")}
-              <div style={{ marginTop: 18, ...inner }}>
-                <p style={lbl}>Источники</p>
-                <div className="flex gap-2 mb-4">
-                  {[{ ic: "Phone", lbl: "Телефония" }, { ic: "BarChart2", lbl: "CRM" }, { ic: "Cloud", lbl: "Облако" }, { ic: "Globe", lbl: "Сайт" }].map((s) => (
-                    <div key={s.ic} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.15)", borderRadius: "8px", padding: "6px 10px" }}>
-                      <Icon name={s.ic} size={13} style={{ color: "#D4B074" }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.6)" }}>{s.lbl}</span>
-                    </div>
-                  ))}
-                </div>
-                <p style={lbl}>Последние звонки</p>
-                {[
-                  { name: "Иван Петров", dur: "02:41", bars: [4,7,11,16,9,20,13,7,18,12] },
-                  { name: "ООО «ТехноПлюс»", dur: "05:12", bars: [6,10,8,14,18,11,5,16,9,13] },
-                  { name: "Мария Смирнова", dur: "03:07", bars: [3,8,14,10,7,19,12,6,11,15] },
-                  { name: "Алексей Кузнецов", dur: "04:33", bars: [5,9,13,7,17,10,4,15,8,12] },
-                ].map((c) => (
-                  <div key={c.name} style={{ marginBottom: 10 }}>
-                    <div className="flex items-center gap-2 mb-1">
-                      <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(212,176,116,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon name="Play" size={7} style={{ color: "#D4B074" }} />
-                      </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", flex: 1 }}>{c.name}</span>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.3)" }}>{c.dur}</span>
-                    </div>
-                    <div className="flex items-end gap-[2px]" style={{ height: 18, paddingLeft: 28 }}>
-                      {c.bars.map((h, i) => (
-                        <div key={i} style={{ flex: 1, height: `${h}px`, background: `rgba(212,176,116,${0.2 + (i%4)*0.15})`, borderRadius: "1px", animation: `waveAnim ${0.5+(i%5)*0.18}s ease-in-out infinite alternate`, animationDelay: `${i*0.06}s` }} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.5)", marginTop: 6 }}>+ ещё 152 звонка</p>
+            <div ref={card1Ref} style={{ ...cardStyle(cp(0)), padding: 0, overflow: "hidden", minHeight: 520 }}>
+              <img
+                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ff8d3e4c-e1e5-4066-afbe-24dd8507de91.png"
+                alt="AI обрабатывает звонки"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "24px" }}
+              />
+              {/* Overlay с текстом поверх фото */}
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "40px 36px", background: "linear-gradient(to top, rgba(10,10,8,0.92) 0%, rgba(10,10,8,0.5) 60%, transparent 100%)", borderRadius: "0 0 24px 24px" }}>
+                <div className="flex items-center gap-3 mb-3">{numBadge("1")}<h3 style={h3s}>Подключаем записи звонков</h3></div>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", lineHeight: 1.6 }}>Автоматически собираем звонки из всех источников.</p>
               </div>
             </div>
           </div>
