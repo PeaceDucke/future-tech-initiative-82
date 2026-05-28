@@ -43,6 +43,10 @@
     @apply border-border;
   }
 
+  img {
+    border: none;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: "Inter", system-ui, sans-serif;
