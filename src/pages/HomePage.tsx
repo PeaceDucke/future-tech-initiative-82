@@ -479,7 +479,7 @@ function PipelineSection() {
               {dot()}
               <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
                 <Spline
-                  scene="https://prod.spline.design/z1koeADQdlHRACry/scene.splinecode"
+                  scene="https://prod.spline.design/2OA2CG3WPX91fzwf/scene.splinecode"
                   style={{ width: "163%", height: "47%", position: "absolute", top: "26%", left: "5%" }}
                 />
               </div>
