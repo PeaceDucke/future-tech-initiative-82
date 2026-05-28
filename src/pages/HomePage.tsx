@@ -377,12 +377,67 @@ function PainSection() {
 
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+  const card3Ref = useRef<HTMLDivElement>(null);
+  const card4Ref = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [svgPath, setSvgPath] = useState("");
+  const [dots, setDots] = useState<{ x: number; y: number }[]>([]);
+  const [svgSize, setSvgSize] = useState({ w: 0, h: 0 });
+
+  const recalc = () => {
+    const container = containerRef.current;
+    const cards = [card1Ref.current, card2Ref.current, card3Ref.current, card4Ref.current];
+    if (!container || cards.some((c) => !c)) return;
+    const cr = container.getBoundingClientRect();
+    const toLocal = (el: HTMLElement) => {
+      const r = el.getBoundingClientRect();
+      return {
+        left: r.left - cr.left,
+        right: r.right - cr.left,
+        top: r.top - cr.top,
+        bottom: r.bottom - cr.top,
+        midY: r.top - cr.top + r.height / 2,
+      };
+    };
+    const [c1, c2, c3, c4] = cards.map((c) => toLocal(c as HTMLElement));
+    const W = cr.width;
+    const H = cr.height;
+
+    // Точки касания: правый край К1, левый К2, правый К3, левый К4
+    const p1 = { x: c1.right, y: c1.midY };
+    const p2 = { x: c2.left,  y: c2.midY };
+    const p3 = { x: c3.right, y: c3.midY };
+    const p4 = { x: c4.left,  y: c4.midY };
+
+    // Строим путь с петлями как на макете
+    const mid12x = W * 0.72;
+    const mid23x = W * 0.18;
+    const mid34x = W * 0.72;
+
+    const d = [
+      `M ${p1.x} ${p1.y}`,
+      // К1 → петля вправо → К2
+      `C ${mid12x} ${p1.y}, ${mid12x} ${p1.y + (p2.y - p1.y) * 0.25}, ${mid12x} ${p1.y + (p2.y - p1.y) * 0.5}`,
+      `C ${mid12x} ${p2.y - (p2.y - p1.y) * 0.1}, ${p2.x + 60} ${p2.y - 40}, ${p2.x} ${p2.y}`,
+      // К2 → петля влево → К3
+      `C ${p2.x - 80} ${p2.y + 40}, ${mid23x} ${p2.y + (p3.y - p2.y) * 0.1}, ${mid23x} ${p2.y + (p3.y - p2.y) * 0.5}`,
+      `C ${mid23x} ${p3.y - (p3.y - p2.y) * 0.1}, ${p3.x - 60} ${p3.y - 40}, ${p3.x} ${p3.y}`,
+      // К3 → петля вправо → К4
+      `C ${p3.x + 80} ${p3.y + 40}, ${mid34x} ${p3.y + (p4.y - p3.y) * 0.1}, ${mid34x} ${p3.y + (p4.y - p3.y) * 0.5}`,
+      `C ${mid34x} ${p4.y - (p4.y - p3.y) * 0.1}, ${p4.x + 60} ${p4.y - 40}, ${p4.x} ${p4.y}`,
+    ].join(" ");
+
+    setSvgPath(d);
+    setDots([p1, p2, p3, p4]);
+    setSvgSize({ w: W, h: H });
+  };
 
   useEffect(() => {
     const onScroll = () => {
-      const el = ref.current;
+      const el = containerRef.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const wh = window.innerHeight;
@@ -392,6 +447,18 @@ function PipelineSection() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    // Небольшая задержка чтобы DOM успел отрисоваться
+    const t1 = setTimeout(recalc, 100);
+    const t2 = setTimeout(recalc, 500);
+    window.addEventListener("resize", recalc);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener("resize", recalc);
+    };
   }, []);
 
   const cp = (idx: number) => Math.min(1, Math.max(0, (progress - idx * 0.22) / 0.4));
@@ -409,19 +476,6 @@ function PipelineSection() {
     boxSizing: "border-box",
     position: "relative",
   });
-
-  const threadDot = (side: "left" | "right") => (
-    <div style={{
-      position: "absolute",
-      top: "50%",
-      [side]: -6,
-      transform: "translateY(-50%)",
-      width: 12, height: 12, borderRadius: "50%",
-      background: "radial-gradient(circle, #f5d98a 30%, #D4B074 100%)",
-      boxShadow: "0 0 10px 3px rgba(212,176,116,0.7), 0 0 20px 6px rgba(212,176,116,0.3)",
-      zIndex: 3,
-    }} />
-  );
 
   const numBadge = (n: string) => (
     <div style={{ width: 38, height: 38, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513", flexShrink: 0, boxShadow: "0 0 14px rgba(212,176,116,0.25)" }}>
@@ -459,101 +513,41 @@ function PipelineSection() {
         </div>
 
         {/* Зигзаг */}
-        <div ref={ref} style={{ position: "relative" }}>
+        <div ref={containerRef} style={{ position: "relative" }}>
 
-          {/* SVG золотая нить */}
-          {/* viewBox 0 0 1 1 — координаты в % от контейнера через userSpaceOnUse */}
-          <svg
-            viewBox="0 0 500 1800"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 2, overflow: "visible" }}
-          >
-            <defs>
-              <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3.5" result="blur" />
-                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-              </filter>
-              <filter id="glow2soft" x="-80%" y="-80%" width="260%" height="260%">
-                <feGaussianBlur stdDeviation="8" result="blur" />
-                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-              </filter>
-            </defs>
-
-            {/*
-              Карточки в viewBox (500×1800):
-              – К1 слева:  x=0..310,  вертикальный центр ~160,  правый край x≈310
-              – К2 справа: x=190..500, вертикальный центр ~570,  левый край  x≈190
-              – К3 слева:  x=0..310,  вертикальный центр ~1020, правый край x≈310
-              – К4 справа: x=190..500, вертикальный центр ~1450, левый край  x≈190
-
-              Нить идёт:
-              СТАРТ у правого края К1 → петля вправо-вниз → касание левого края К2
-              → плавно вниз-влево с петлёй → касание правого края К3
-              → петля вправо-вниз → касание левого края К4
-            */}
-            <path
-              d={`
-                M 310 160
-                C 390 160, 460 260, 490 340
-                C 530 440, 480 500, 430 530
-                C 380 555, 300 560, 190 570
-                C 120 578, 60 620, 40 700
-                C 10 820, 30 920, 80 980
-                C 130 1040, 220 1040, 310 1020
-                C 370 1010, 420 1040, 450 1100
-                C 490 1180, 510 1280, 480 1360
-                C 460 1410, 410 1440, 340 1450
-                C 290 1455, 230 1450, 190 1450
-              `}
-              fill="none"
-              stroke="#D4B074"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              filter="url(#glow2soft)"
-              opacity="0.35"
-            />
-            <path
-              d={`
-                M 310 160
-                C 390 160, 460 260, 490 340
-                C 530 440, 480 500, 430 530
-                C 380 555, 300 560, 190 570
-                C 120 578, 60 620, 40 700
-                C 10 820, 30 920, 80 980
-                C 130 1040, 220 1040, 310 1020
-                C 370 1010, 420 1040, 450 1100
-                C 490 1180, 510 1280, 480 1360
-                C 460 1410, 410 1440, 340 1450
-                C 290 1455, 230 1450, 190 1450
-              `}
-              fill="none"
-              stroke="#e8c878"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              filter="url(#glow2)"
-              opacity="0.9"
-            />
-
-            {/* Точки касания с карточками */}
-            {[
-              { cx: 310, cy: 160 },   // правый край К1
-              { cx: 190, cy: 570 },   // левый край К2
-              { cx: 310, cy: 1020 },  // правый край К3
-              { cx: 190, cy: 1450 },  // левый край К4
-            ].map((pt, i) => (
-              <g key={i}>
-                <circle cx={pt.cx} cy={pt.cy} r="10" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.25" filter="url(#glow2soft)" />
-                <circle cx={pt.cx} cy={pt.cy} r="4.5" fill="#D4B074" opacity="0.95" filter="url(#glow2)" />
-                <circle cx={pt.cx} cy={pt.cy} r="2" fill="#fff" opacity="0.8" />
-              </g>
-            ))}
-          </svg>
+          {/* SVG золотая нить — координаты вычислены из реальных позиций карточек */}
+          {svgPath && (
+            <svg
+              style={{ position: "absolute", top: 0, left: 0, width: svgSize.w, height: svgSize.h, pointerEvents: "none", zIndex: 2, overflow: "visible" }}
+            >
+              <defs>
+                <filter id="glow2" x="-80%" y="-80%" width="260%" height="260%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="glow2soft" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+              {/* Мягкое свечение */}
+              <path d={svgPath} fill="none" stroke="#D4B074" strokeWidth="6" strokeLinecap="round" filter="url(#glow2soft)" opacity="0.25" />
+              {/* Основная нить */}
+              <path d={svgPath} fill="none" stroke="#e8c870" strokeWidth="1.2" strokeLinecap="round" filter="url(#glow2)" opacity="0.95" />
+              {/* Точки касания */}
+              {dots.map((pt, i) => (
+                <g key={i}>
+                  <circle cx={pt.x} cy={pt.y} r="14" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.2" filter="url(#glow2soft)" />
+                  <circle cx={pt.x} cy={pt.y} r="5" fill="#D4B074" opacity="1" filter="url(#glow2)" />
+                  <circle cx={pt.x} cy={pt.y} r="2.5" fill="#fff8e7" opacity="0.9" />
+                </g>
+              ))}
+            </svg>
+          )}
 
           {/* ─── Карточка 1 — слева ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
-            <div style={cardStyle(cp(0))}>
-              {threadDot("right")}
+            <div ref={card1Ref} style={cardStyle(cp(0))}>
               <div className="flex items-center gap-3 mb-4">{numBadge("1")}<h3 style={h3s}>Подключаем записи звонков</h3></div>
               {sub("Автоматически собираем звонки из всех источников.")}
               <div style={{ marginTop: 18, ...inner }}>
@@ -595,8 +589,7 @@ function PipelineSection() {
 
           {/* ─── Карточка 2 — справа ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "100px" }}>
-            <div style={cardStyle(cp(1))}>
-              {threadDot("left")}
+            <div ref={card2Ref} style={cardStyle(cp(1))}>
               <div className="flex items-center gap-3 mb-4">
                 <h3 style={h3s}>AI анализирует разговоры</h3>
                 {numBadge("2")}
@@ -639,8 +632,7 @@ function PipelineSection() {
 
           {/* ─── Карточка 3 — слева ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
-            <div style={cardStyle(cp(2))}>
-              {threadDot("right")}
+            <div ref={card3Ref} style={cardStyle(cp(2))}>
               <div className="flex items-center gap-3 mb-4">{numBadge("3")}<h3 style={h3s}>Система выявляет причины потери клиентов</h3></div>
               {sub("Находим ошибки, нарушения скриптов и слабые места менеджеров.")}
               <div style={{ marginTop: 18, ...inner }}>
@@ -666,8 +658,7 @@ function PipelineSection() {
 
           {/* ─── Карточка 4 — справа ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "20px" }}>
-            <div style={cardStyle(cp(3))}>
-              {threadDot("left")}
+            <div ref={card4Ref} style={cardStyle(cp(3))}>
               <div className="flex items-center gap-3 mb-4">
                 <h3 style={h3s}>Вы получаете готовый отчёт и точки роста продаж</h3>
                 {numBadge("4")}
