@@ -245,35 +245,18 @@ function RadarScanner() {
         position: "relative",
         width: "100%",
         height: "100%",
-        minHeight: "640px",
-        borderRadius: "28px",
-        overflow: "hidden",
-        background:
-          "radial-gradient(ellipse at 50% 50%, rgba(60,45,20,0.18) 0%, rgba(24,24,22,0) 60%), radial-gradient(ellipse at 30% 80%, rgba(80,55,20,0.12) 0%, transparent 55%), #181816",
-        border: "1px solid rgba(240,232,218,0.1)",
-        boxShadow:
-          "inset 0 1px 0 rgba(255,255,255,0.04), 0 40px 100px rgba(0,0,0,0.6)",
+        minHeight: "780px",
+        overflow: "visible",
+        background: "transparent",
       }}
     >
-      {/* Vertical noise texture */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          opacity: 0.05,
-          mixBlendMode: "overlay",
-          backgroundImage:
-            "repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 3px)",
-          pointerEvents: "none",
-        }}
-      />
-      {/* Volumetric fog */}
+      {/* Soft volumetric glow on background only (no card) */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(circle at 50% 50%, rgba(212,176,116,0.05) 0%, transparent 45%)",
+            "radial-gradient(circle at 50% 50%, rgba(240,232,218,0.04) 0%, transparent 55%)",
           pointerEvents: "none",
         }}
       />
@@ -314,8 +297,8 @@ function RadarScanner() {
               height: "2px",
               borderRadius: "50%",
               background:
-                "radial-gradient(circle, rgba(255,225,180,0.95) 0%, rgba(220,170,100,0.4) 60%, transparent 100%)",
-              boxShadow: "0 0 8px rgba(255,200,140,0.7)",
+                "radial-gradient(circle, rgba(255,255,250,1) 0%, rgba(240,232,218,0.5) 60%, transparent 100%)",
+              boxShadow: "0 0 10px rgba(255,255,250,0.8)",
               ["--dx" as string]: `${50 - startX}%`,
               ["--dy" as string]: `${50 - startY}%`,
               animation: `rdAttract ${a.duration}s ease-in-out ${a.delay}s infinite`,
@@ -331,7 +314,7 @@ function RadarScanner() {
           position: "absolute",
           left: "50%",
           top: "50%",
-          width: "min(82%, 520px)",
+          width: "min(110%, 760px)",
           aspectRatio: "1 / 1",
           transform: "translate(-50%, -50%)",
         }}
@@ -348,8 +331,8 @@ function RadarScanner() {
               height: `${size}%`,
               transform: "translate(-50%, -50%)",
               borderRadius: "50%",
-              border: `1px solid rgba(240,232,218,${0.06 + i * 0.025})`,
-              boxShadow: `inset 0 0 ${20 + i * 6}px rgba(212,176,116,0.04)`,
+              border: `1px solid rgba(240,232,218,${0.08 + i * 0.03})`,
+              boxShadow: `inset 0 0 ${20 + i * 6}px rgba(240,232,218,0.04)`,
             }}
           />
         ))}
@@ -365,7 +348,7 @@ function RadarScanner() {
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, transparent 55%, rgba(212,176,116,0.05) 70%, transparent 85%)",
+              "radial-gradient(circle, transparent 55%, rgba(240,232,218,0.05) 70%, transparent 85%)",
             pointerEvents: "none",
           }}
         />
@@ -406,7 +389,7 @@ function RadarScanner() {
             height: "60%",
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
-            border: "1px dashed rgba(212,176,116,0.18)",
+            border: "1px dashed rgba(240,232,218,0.22)",
             animation: "rdSpinSlow 28s linear infinite",
           }}
         />
@@ -435,7 +418,7 @@ function RadarScanner() {
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             background:
-              "conic-gradient(from 0deg, transparent 0deg, rgba(212,176,116,0.02) 20deg, rgba(212,176,116,0.18) 55deg, rgba(255,210,150,0.32) 72deg, rgba(255,225,180,0.4) 78deg, transparent 80deg)",
+              "conic-gradient(from 0deg, transparent 0deg, rgba(240,232,218,0.03) 20deg, rgba(240,232,218,0.2) 55deg, rgba(255,250,240,0.35) 72deg, rgba(255,255,250,0.5) 78deg, transparent 80deg)",
             animation: "rdScan 8s linear infinite",
             filter: "blur(2px)",
             pointerEvents: "none",
@@ -453,7 +436,7 @@ function RadarScanner() {
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             background:
-              "conic-gradient(from 0deg, transparent 0deg, transparent 76deg, rgba(255,235,195,0.55) 79deg, rgba(255,240,210,0.7) 80deg, transparent 81deg)",
+              "conic-gradient(from 0deg, transparent 0deg, transparent 76deg, rgba(255,255,250,0.7) 79deg, rgba(255,255,255,0.85) 80deg, transparent 81deg)",
             animation: "rdScan 8s linear infinite",
             pointerEvents: "none",
             mixBlendMode: "screen",
@@ -480,11 +463,11 @@ function RadarScanner() {
                 borderRadius: "50%",
                 transform: "translate(-50%, -50%)",
                 background: isHot
-                  ? "radial-gradient(circle, rgba(255,200,130,1) 0%, rgba(220,150,80,0.6) 50%, transparent 90%)"
-                  : "radial-gradient(circle, rgba(240,232,218,0.9) 0%, rgba(200,180,140,0.4) 60%, transparent 100%)",
+                  ? "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(240,232,218,0.6) 50%, transparent 90%)"
+                  : "radial-gradient(circle, rgba(240,232,218,0.95) 0%, rgba(220,210,190,0.4) 60%, transparent 100%)",
                 boxShadow: isHot
-                  ? "0 0 12px rgba(255,180,100,0.85), 0 0 24px rgba(255,140,60,0.4)"
-                  : "0 0 8px rgba(240,232,218,0.5)",
+                  ? "0 0 14px rgba(255,255,250,0.95), 0 0 28px rgba(255,255,250,0.5)"
+                  : "0 0 8px rgba(240,232,218,0.55)",
                 animation: `rdPointPulse ${4 + (i % 3) * 0.6}s ease-in-out ${delay}s infinite`,
                 pointerEvents: "none",
               }}
@@ -508,7 +491,7 @@ function RadarScanner() {
                 height: "8px",
                 borderRadius: "50%",
                 transform: "translate(-50%, -50%)",
-                border: "1px solid rgba(255,180,100,0.6)",
+                border: "1px solid rgba(255,255,250,0.7)",
                 animation: `rdRipple ${4 + i * 0.4}s ease-out ${(p.angle / 360) * 8}s infinite`,
                 pointerEvents: "none",
               }}
@@ -527,8 +510,8 @@ function RadarScanner() {
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(255,230,180,0.5) 0%, rgba(212,176,116,0.25) 40%, transparent 80%)",
-            boxShadow: "0 0 30px rgba(212,176,116,0.4)",
+              "radial-gradient(circle, rgba(255,255,250,0.55) 0%, rgba(240,232,218,0.25) 40%, transparent 80%)",
+            boxShadow: "0 0 36px rgba(240,232,218,0.45)",
             animation: "rdCorePulse 3.5s ease-in-out infinite",
             pointerEvents: "none",
           }}
@@ -542,72 +525,22 @@ function RadarScanner() {
             height: "4%",
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
-            background: "rgba(255,240,210,0.95)",
+            background: "rgba(255,255,255,0.98)",
             boxShadow:
-              "0 0 14px rgba(255,225,170,0.9), 0 0 28px rgba(255,180,100,0.5)",
+              "0 0 16px rgba(255,255,250,0.95), 0 0 32px rgba(240,232,218,0.6)",
             pointerEvents: "none",
           }}
         />
       </div>
 
-      {/* Header label */}
-      <div
-        style={{
-          position: "absolute",
-          top: "22px",
-          left: "24px",
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          style={{
-            width: "6px",
-            height: "6px",
-            borderRadius: "50%",
-            background: "#D4B074",
-            boxShadow: "0 0 10px rgba(212,176,116,0.8)",
-            animation: "rdCorePulse 2s ease-in-out infinite",
-          }}
-        />
-        <span
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "10px",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "rgba(240,232,218,0.55)",
-          }}
-        >
-          AI Scanning · Active
-        </span>
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          top: "22px",
-          right: "24px",
-          fontFamily: "Inter, sans-serif",
-          fontSize: "10px",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "rgba(240,232,218,0.4)",
-          pointerEvents: "none",
-        }}
-      >
-        12 Signals · 3 Critical
-      </div>
-
-      {/* Bottom legend */}
+      {/* Bottom legend (kept minimal, no background) */}
       <div
         style={{
           position: "absolute",
           bottom: "22px",
           left: "24px",
           right: "24px",
-          display: "flex",
+          display: "none",
           justifyContent: "space-between",
           alignItems: "center",
           fontFamily: "Inter, sans-serif",
@@ -1036,7 +969,7 @@ function PipelineSection() {
                 </div>
               </div>
               {dot()}
-              <div className="hidden lg:block w-[48%]" style={{ height: "700px", position: "relative" }}>
+              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible" }}>
                 <RadarScanner />
               </div>
             </div>
