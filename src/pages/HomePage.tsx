@@ -379,9 +379,9 @@ function PainSection() {
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
   return (
-    <section style={{ background: "#151513", padding: "110px 20px 0px" }}>
+    <section style={{ background: "#151513", padding: "60px 20px 0px" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-3 mb-5">
             <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
             <span style={labelStyle}>Как работает SalesFlow</span>
@@ -395,7 +395,7 @@ function PipelineSection() {
           </p>
         </div>
       </div>
-      <div style={{ width: "120%", height: "140vh", marginLeft: "-10%", overflow: "hidden" }}>
+      <div style={{ width: "150%", height: "210vh", marginLeft: "-25%", marginTop: "-60px", overflow: "hidden" }}>
         <Spline scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode" style={{ width: "100%", height: "100%" }} />
       </div>
     </section>
