@@ -40,10 +40,10 @@ function Section({
 
 const card = {
   background: "#151513",
-  border: "1px solid rgba(212,176,116,0.18)",
+  border: "1px solid rgba(240,230,210,0.22)",
 };
 
-const cardHover = "hover:border-[rgba(212,176,116,0.35)] transition-colors duration-300 cursor-default";
+const cardHover = "hover:border-[rgba(240,230,210,0.45)] transition-colors duration-300 cursor-default";
 
 const iconBox = {
   background: "rgba(212,176,116,0.08)",
