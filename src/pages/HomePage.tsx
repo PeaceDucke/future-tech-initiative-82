@@ -605,9 +605,29 @@ function PipelineSection() {
             </svg>
           )}
 
-          {/* ─── Карточка 1 — слева (фото) ─── */}
-          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
-            <div ref={card1Ref} style={{ width: "68%", marginLeft: "8%", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
+          {/* ─── Карточка 1 — слева (фото + текст) ─── */}
+          <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "flex-end", gap: "0", paddingBottom: "100px" }}>
+
+            {/* Текст слева */}
+            <div style={{ width: "22%", paddingRight: "24px", paddingBottom: "24px", flexShrink: 0, opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#D4B074", marginBottom: "14px", opacity: 0.85 }}>
+                Потоки аудиоданных
+              </p>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.45)", lineHeight: 1.65, marginBottom: "22px" }}>
+                Все звонки из разных источников собираются в единый поток и передаются в систему
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                {["Телефония", "CRM", "Мессенджеры", "Сайт", "Реклама"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#D4B074", flexShrink: 0, boxShadow: "0 0 6px #D4B074" }} />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.65)" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Фото */}
+            <div ref={card1Ref} style={{ flex: 1, marginLeft: "0%", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ff8d3e4c-e1e5-4066-afbe-24dd8507de91.png"
                 alt="AI обрабатывает звонки"
