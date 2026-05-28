@@ -386,38 +386,38 @@ function PipelineSection() {
   const GREEN = "#4ADE80";       // зелёный — рост, успех
 
   const pCard: React.CSSProperties = {
-    background: "linear-gradient(160deg, #181714 0%, #111009 100%)",
-    border: "1px solid rgba(212,176,116,0.2)",
+    background: "linear-gradient(160deg, #1c1c1c 0%, #141414 40%, #0e0e0e 70%, #161618 100%)",
+    border: "1px solid rgba(255,255,255,0.12)",
     borderRadius: "28px",
     padding: "52px 48px",
     position: "relative",
     overflow: "hidden",
-    boxShadow: "0 0 0 1px rgba(251,246,236,0.04), 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(251,246,236,0.03)",
+    boxShadow: "0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.4), 0 40px 100px rgba(0,0,0,0.75)",
   };
 
   const num = (n: string) => (
     <div className="flex items-center gap-4 mb-8">
-      <div style={{ width: 48, height: 48, borderRadius: "50%", border: "1.5px solid rgba(212,176,116,0.45)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.07)", flexShrink: 0 }}>
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: G, fontWeight: 700 }}>{n}</span>
+      <div style={{ width: 48, height: 48, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)", flexShrink: 0 }}>
+        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>{n}</span>
       </div>
-      <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, ${G}40, transparent)` }} />
+      <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(255,255,255,0.15), transparent)" }} />
     </div>
   );
 
   const dot = () => (
     <div className="hidden lg:flex w-[4%] justify-center" style={{ alignSelf: "center" }}>
-      <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
+      <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)", flexShrink: 0 }} />
     </div>
   );
 
   return (
     <section style={{ background: "#151513", padding: "120px 20px 140px" }}>
       <style>{`
-        @keyframes beigePulse {
-          0%,100% { box-shadow: 0 0 0 1px rgba(212,176,116,0.18), 0 40px 100px rgba(0,0,0,0.7), 0 0 60px rgba(251,246,236,0.02); }
-          50%      { box-shadow: 0 0 0 1px rgba(212,176,116,0.32), 0 40px 100px rgba(0,0,0,0.7), 0 0 100px rgba(251,246,236,0.06); }
+        @keyframes metalPulse {
+          0%,100% { box-shadow: 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.07), 0 40px 100px rgba(0,0,0,0.75); }
+          50%      { box-shadow: 0 0 0 1px rgba(255,255,255,0.18), inset 0 1px 0 rgba(255,255,255,0.1), 0 40px 100px rgba(0,0,0,0.75), 0 0 60px rgba(255,255,255,0.04); }
         }
-        .pc { animation: beigePulse 5s ease-in-out infinite; }
+        .pc { animation: metalPulse 5s ease-in-out infinite; }
         .pc:nth-child(2) { animation-delay: 1.25s; }
         .pc:nth-child(3) { animation-delay: 2.5s; }
         .pc:nth-child(4) { animation-delay: 3.75s; }
@@ -440,14 +440,14 @@ function PipelineSection() {
         </div>
 
         <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: `linear-gradient(to bottom, transparent 0%, ${G}22 8%, ${G}22 92%, transparent 100%)`, transform: "translateX(-50%)" }} />
+          <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 8%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
 
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── CARD 1 — LEFT ── */}
             <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${G}08 0%, transparent 65%)`, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("01")}
                 <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
                   Подключаем все каналы коммуникации
@@ -463,8 +463,8 @@ function PipelineSection() {
                     ["Globe", "Сайт и формы"],
                     ["Megaphone", "Рекламные источники"],
                   ].map(([ic, lb]) => (
-                    <div key={lb} className="flex items-center gap-2.5 px-4 py-3 rounded-xl" style={{ background: `${G}0D`, border: `1px solid ${G}30` }}>
-                      <Icon name={ic} size={14} style={{ color: G, flexShrink: 0 }} />
+                    <div key={lb} className="flex items-center gap-2.5 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                      <Icon name={ic} size={14} style={{ color: "rgba(255,255,255,0.55)", flexShrink: 0 }} />
                       <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: W, fontWeight: 500 }}>{lb}</span>
                     </div>
                   ))}
@@ -483,7 +483,7 @@ function PipelineSection() {
             {/* ── CARD 2 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${G}08 0%, transparent 65%)`, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
                 <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
                   AI анализирует каждый разговор
@@ -492,8 +492,8 @@ function PipelineSection() {
                   Система слушает диалог и в режиме реального времени распознаёт структуру разговора, тональность речи, эмоции клиента и критические моменты, которые определяют исход сделки.
                 </p>
 
-                <div style={{ background: `${G}0A`, borderRadius: "18px", padding: "24px 26px", border: `1px solid ${G}28`, marginBottom: "24px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "16px", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
+                <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "16px", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь"].map((t) => (
                       <span key={t} style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, background: `${RED}15`, border: `1px solid ${RED}35`, borderRadius: "20px", padding: "6px 16px", fontWeight: 500 }}>[ {t} ]</span>
@@ -521,7 +521,7 @@ function PipelineSection() {
             {/* ── CARD 3 — LEFT ── */}
             <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}06 0%, transparent 65%)`, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("03")}
                 <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
                   Система находит скрытые причины потери денег
@@ -556,7 +556,7 @@ function PipelineSection() {
             {/* ── CARD 4 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${GREEN}07 0%, transparent 65%)`, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("04")}
                 <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
                   Вы получаете готовые точки роста выручки
@@ -578,22 +578,22 @@ function PipelineSection() {
                   </div>
                 </div>
 
-                <div style={{ background: `${G}0A`, borderRadius: "18px", padding: "24px 26px", border: `1px solid ${G}28`, marginBottom: "24px" }}>
+                <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
                   <div className="flex items-center gap-3 mb-5">
-                    <Icon name="Sparkles" size={16} style={{ color: G }} />
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>Конкретные рекомендации AI</p>
+                    <Icon name="Sparkles" size={16} style={{ color: "rgba(255,255,255,0.6)" }} />
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.55)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>Конкретные рекомендации AI</p>
                   </div>
                   <div className="space-y-4">
                     {[
-                      { text: "Сократить обсуждение цены в первые 3 минуты разговора", icon: "Clock", color: G },
-                      { text: "Усилить фиксацию потребности — задавать вопросы до КП", icon: "Target", color: G },
-                      { text: "Проработать скрипт обработки возражений по 5 точкам", icon: "ShieldCheck", color: G },
+                      { text: "Сократить обсуждение цены в первые 3 минуты разговора", icon: "Clock" },
+                      { text: "Усилить фиксацию потребности — задавать вопросы до КП", icon: "Target" },
+                      { text: "Проработать скрипт обработки возражений по 5 точкам", icon: "ShieldCheck" },
                     ].map((r) => (
                       <div key={r.text} className="flex items-start gap-3">
-                        <div style={{ width: 32, height: 32, borderRadius: "10px", background: `${r.color}12`, border: `1px solid ${r.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
-                          <Icon name={r.icon} size={14} style={{ color: r.color }} />
+                        <div style={{ width: 32, height: 32, borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
+                          <Icon name={r.icon} size={14} style={{ color: "rgba(255,255,255,0.6)" }} />
                         </div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, lineHeight: 1.65, paddingTop: "5px" }}>{r.text}</p>
+                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.65, paddingTop: "5px" }}>{r.text}</p>
                       </div>
                     ))}
                   </div>
