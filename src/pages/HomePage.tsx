@@ -394,15 +394,40 @@ function PipelineSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const cardP = (idx: number) => Math.min(1, Math.max(0, (progress - idx * 0.18) / 0.35));
+  const cp = (idx: number) => Math.min(1, Math.max(0, (progress - idx * 0.22) / 0.4));
+
+  const cardStyle = (p: number): React.CSSProperties => ({
+    background: "#111110",
+    border: "1px solid rgba(212,176,116,0.22)",
+    borderRadius: "20px",
+    padding: "28px 28px 28px",
+    opacity: 0.08 + p * 0.92,
+    transform: `translateY(${(1 - p) * 40}px)`,
+    transition: "none",
+    width: "100%",
+    maxWidth: 460,
+    boxSizing: "border-box",
+  });
+
+  const numBadge = (n: string) => (
+    <div style={{ width: 38, height: 38, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513", flexShrink: 0, boxShadow: "0 0 14px rgba(212,176,116,0.25)" }}>
+      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#D4B074", fontWeight: 700 }}>{n}</span>
+    </div>
+  );
+
+  const sub = (s: string) => <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.48)", lineHeight: 1.6, marginBottom: 0 }}>{s}</p>;
+  const h3s: React.CSSProperties = { fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" };
+  const inner: React.CSSProperties = { background: "#0d0d0c", borderRadius: "12px", padding: "14px 16px", border: "1px solid rgba(255,255,255,0.06)" };
+  const lbl: React.CSSProperties = { fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.38)", marginBottom: "10px" };
 
   return (
     <section style={{ background: "#151513", padding: "110px 20px 100px" }}>
       <style>{`
         @keyframes waveAnim { from { transform: scaleY(0.4); } to { transform: scaleY(1); } }
-        @keyframes aiPulse { 0%,100% { opacity:0.5; transform:scale(1); } 50% { opacity:1; transform:scale(1.06); } }
+        @keyframes aiPulse { 0%,100%{ opacity:0.55; transform:scale(1);} 50%{ opacity:1; transform:scale(1.07);} }
+        @keyframes threadDraw { from { stroke-dashoffset: 2400; } to { stroke-dashoffset: 0; } }
       `}</style>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-16">
@@ -414,193 +439,203 @@ function PipelineSection() {
           <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "20px" }}>
             AI видит то, что невозможно<br />контролировать вручную
           </h2>
-          <p style={{ ...bodyText, fontSize: "16px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7 }}>
-            Платформа анализирует каждый звонок и превращает<br />разговоры в точки роста продаж.
+          <p style={{ ...bodyText, fontSize: "16px", maxWidth: "460px", margin: "0 auto", lineHeight: 1.7 }}>
+            Мы превращаем хаос звонков в понятные причины<br />и точки роста продаж.
           </p>
         </div>
 
-        {/* 4 карточки горизонтально */}
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+        {/* Зигзаг */}
+        <div ref={ref} style={{ position: "relative" }}>
 
-          {/* ── Карточка 1: Подключаем записи ── */}
-          {(() => { const p = cardP(0); return (
-            <div style={{ opacity: 0.1 + p * 0.9, transform: `translateY(${(1-p)*32}px)`, transition: "none", display: "flex", flexDirection: "column", background: "#111110", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "20px", overflow: "hidden" }}>
-              {/* Номер */}
-              <div className="flex justify-center pt-6 pb-2">
-                <div style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513" }}>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#D4B074", fontWeight: 700 }}>1</span>
-                </div>
-              </div>
-              <div style={{ padding: "16px 22px 24px" }}>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" }}>Подключаем записи звонков</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.5)", lineHeight: 1.6, marginBottom: "18px" }}>Система автоматически собирает звонки из всех источников.</p>
-                {/* Источники */}
-                <div style={{ background: "#0d0d0c", borderRadius: "12px", padding: "14px 16px", marginBottom: "14px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", marginBottom: "10px" }}>Источники</p>
-                  <div className="flex gap-3">
-                    {["Phone", "Asterisk", "BarChart2", "Cloud"].map((ic) => (
-                      <div key={ic} style={{ width: 38, height: 38, borderRadius: "10px", background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.15)", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-                        <Icon name={ic} size={16} style={{ color: "rgba(212,176,116,0.7)" }} />
-                        <div style={{ position: "absolute", bottom: 2, right: 2, width: 7, height: 7, borderRadius: "50%", background: "#22c55e", border: "1px solid #111" }} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                {/* Последние звонки */}
-                <div style={{ background: "#0d0d0c", borderRadius: "12px", padding: "14px 16px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", marginBottom: "10px" }}>Последние звонки</p>
-                  {[{ name: "Иван Петров", dur: "02:41" }, { name: "ООО «ТехноПлюс»", dur: "05:12" }, { name: "Мария Смирнова", dur: "03:07" }].map((c) => (
-                    <div key={c.name} className="flex items-center gap-2 mb-2">
-                      <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(212,176,116,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon name="Play" size={8} style={{ color: "#D4B074" }} />
-                      </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.7)", flex: 1 }}>{c.name}</span>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.35)" }}>{c.dur}</span>
-                    </div>
-                  ))}
-                  <div className="flex items-end gap-[2px] mt-3" style={{ height: 24 }}>
-                    {[3,5,8,12,7,15,10,6,13,9,4,11,7,14,8,5,10,13,6,9].map((h, i) => (
-                      <div key={i} style={{ flex: 1, height: `${h}px`, background: `rgba(212,176,116,${0.2 + (i%4)*0.15})`, borderRadius: "1px", animation: `waveAnim ${0.5+(i%5)*0.18}s ease-in-out infinite alternate`, animationDelay: `${i*0.04}s` }} />
-                    ))}
-                  </div>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.5)", marginTop: "8px" }}>+ ещё 152 звонка</p>
-                </div>
-              </div>
-            </div>
-          ); })()}
+          {/* SVG золотая нить — абсолютная, поверх */}
+          <svg
+            viewBox="0 0 800 1600"
+            preserveAspectRatio="none"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0, overflow: "visible" }}
+          >
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+              <linearGradient id="threadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#D4B074" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#f0cc88" stopOpacity="1" />
+                <stop offset="100%" stopColor="#D4B074" stopOpacity="0.7" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 200 80 C 200 200, 700 200, 700 340 C 700 480, 100 500, 100 660 C 100 820, 680 840, 680 1000 C 680 1160, 150 1180, 150 1360"
+              fill="none"
+              stroke="url(#threadGrad)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              filter="url(#glow)"
+              strokeDasharray="2400"
+              strokeDashoffset="0"
+              style={{ opacity: 0.55 + cp(0) * 0.45 }}
+            />
+            {/* Светящиеся точки */}
+            {[
+              { cx: 200, cy: 80 }, { cx: 700, cy: 340 }, { cx: 100, cy: 660 }, { cx: 680, cy: 1000 }, { cx: 150, cy: 1360 }
+            ].map((pt, i) => (
+              <g key={i} style={{ opacity: cp(Math.floor(i / 1.4)) }}>
+                <circle cx={pt.cx} cy={pt.cy} r="6" fill="#D4B074" filter="url(#glow)" opacity="0.9" />
+                <circle cx={pt.cx} cy={pt.cy} r="12" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.35" />
+              </g>
+            ))}
+          </svg>
 
-          {/* ── Карточка 2: AI анализирует ── */}
-          {(() => { const p = cardP(1); return (
-            <div style={{ opacity: 0.1 + p * 0.9, transform: `translateY(${(1-p)*32}px)`, transition: "none", display: "flex", flexDirection: "column", background: "#111110", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "20px", overflow: "hidden" }}>
-              <div className="flex justify-center pt-6 pb-2">
-                <div style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513" }}>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#D4B074", fontWeight: 700 }}>2</span>
-                </div>
-              </div>
-              <div style={{ padding: "16px 22px 24px", flex: 1 }}>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" }}>AI анализирует разговоры</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.5)", lineHeight: 1.6, marginBottom: "22px" }}>Распознаёт речь, интонации, смысл и ключевые паттерны общения.</p>
-                {/* AI визуализация */}
-                <div style={{ background: "#0d0d0c", borderRadius: "12px", padding: "24px 16px", border: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "14px" }}>
-                  <div style={{ width: 90, height: 90, borderRadius: "50%", border: "2px solid rgba(212,176,116,0.35)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px", boxShadow: "0 0 30px rgba(212,176,116,0.15)", animation: "aiPulse 2.5s ease-in-out infinite" }}>
-                    <div style={{ width: 70, height: 70, borderRadius: "50%", border: "1px solid rgba(212,176,116,0.2)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.05)" }}>
-                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "#D4B074" }}>AI</span>
-                    </div>
-                  </div>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(212,176,116,0.6)", letterSpacing: "0.1em" }}>Анализ...</span>
-                </div>
-                {/* Извлечённые темы */}
-                <div style={{ background: "#0d0d0c", borderRadius: "12px", padding: "14px 16px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", marginBottom: "10px" }}>Извлечённые темы</p>
-                  <div className="flex flex-wrap gap-2">
-                    {["Возражения", "Цена", "Сроки", "Потребности", "Конкуренты", "..."].map((t) => (
-                      <span key={t} style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(212,176,116,0.8)", background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "20px", padding: "4px 12px" }}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ); })()}
-
-          {/* ── Карточка 3: Выявляет причины ── */}
-          {(() => { const p = cardP(2); return (
-            <div style={{ opacity: 0.1 + p * 0.9, transform: `translateY(${(1-p)*32}px)`, transition: "none", display: "flex", flexDirection: "column", background: "#111110", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "20px", overflow: "hidden" }}>
-              <div className="flex justify-center pt-6 pb-2">
-                <div style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513" }}>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#D4B074", fontWeight: 700 }}>3</span>
-                </div>
-              </div>
-              <div style={{ padding: "16px 22px 24px", flex: 1 }}>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" }}>Система выявляет причины потери продаж</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.5)", lineHeight: 1.6, marginBottom: "18px" }}>Находит ошибки, слабые места и точки, где клиенты уходят.</p>
-                <div style={{ background: "#0d0d0c", borderRadius: "12px", padding: "14px 16px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", marginBottom: "12px" }}>Выявленные проблемы</p>
-                  {[
-                    { icon: "AlertTriangle", label: "Слабая работа с возражениями по цене", sev: "Высокая", sevColor: "#ef4444" },
-                    { icon: "VolumeX", label: "Менеджер перебивает клиента", sev: "Средняя", sevColor: "#f59e0b" },
-                    { icon: "Target", label: "Отсутствие фиксации потребности", sev: "Высокая", sevColor: "#ef4444" },
-                    { icon: "FileX", label: "Нарушение структуры скрипта", sev: "Низкая", sevColor: "#22c55e" },
-                    { icon: "Clock", label: "Долгие паузы в разговоре", sev: "Средняя", sevColor: "#f59e0b" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-2 mb-3">
-                      <div style={{ width: 28, height: 28, borderRadius: "8px", background: `${item.sevColor}18`, border: `1px solid ${item.sevColor}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon name={item.icon} size={13} style={{ color: item.sevColor }} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.7)" }}>{item.label} </span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: item.sevColor, fontWeight: 600 }}>{item.sev}</span>
-                      </div>
+          {/* ─── Карточка 1 — слева ─── */}
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", marginBottom: "0px", paddingBottom: "80px" }}>
+            <div style={cardStyle(cp(0))}>
+              <div className="flex items-center gap-3 mb-4">{numBadge("1")}<h3 style={h3s}>Подключаем записи звонков</h3></div>
+              {sub("Автоматически собираем звонки из всех источников.")}
+              <div style={{ marginTop: 18, ...inner }}>
+                <p style={lbl}>Источники</p>
+                <div className="flex gap-2 mb-4">
+                  {[{ ic: "Phone", lbl: "Телефония" }, { ic: "BarChart2", lbl: "CRM" }, { ic: "Cloud", lbl: "Облако" }, { ic: "Globe", lbl: "Сайт" }].map((s) => (
+                    <div key={s.ic} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.15)", borderRadius: "8px", padding: "6px 10px" }}>
+                      <Icon name={s.ic} size={13} style={{ color: "#D4B074" }} />
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.6)" }}>{s.lbl}</span>
                     </div>
                   ))}
                 </div>
+                <p style={lbl}>Последние звонки</p>
+                {[
+                  { name: "Иван Петров", dur: "02:41", bars: [4,7,11,16,9,20,13,7,18,12] },
+                  { name: "ООО «ТехноПлюс»", dur: "05:12", bars: [6,10,8,14,18,11,5,16,9,13] },
+                  { name: "Мария Смирнова", dur: "03:07", bars: [3,8,14,10,7,19,12,6,11,15] },
+                  { name: "Алексей Кузнецов", dur: "04:33", bars: [5,9,13,7,17,10,4,15,8,12] },
+                ].map((c) => (
+                  <div key={c.name} style={{ marginBottom: 10 }}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <div style={{ width: 20, height: 20, borderRadius: "50%", background: "rgba(212,176,116,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Icon name="Play" size={7} style={{ color: "#D4B074" }} />
+                      </div>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.75)", flex: 1 }}>{c.name}</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.3)" }}>{c.dur}</span>
+                    </div>
+                    <div className="flex items-end gap-[2px]" style={{ height: 18, paddingLeft: 28 }}>
+                      {c.bars.map((h, i) => (
+                        <div key={i} style={{ flex: 1, height: `${h}px`, background: `rgba(212,176,116,${0.2 + (i%4)*0.15})`, borderRadius: "1px", animation: `waveAnim ${0.5+(i%5)*0.18}s ease-in-out infinite alternate`, animationDelay: `${i*0.06}s` }} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.5)", marginTop: 6 }}>+ ещё 152 звонка</p>
               </div>
             </div>
-          ); })()}
+          </div>
 
-          {/* ── Карточка 4: Точки роста ── */}
-          {(() => { const p = cardP(3); return (
-            <div style={{ opacity: 0.1 + p * 0.9, transform: `translateY(${(1-p)*32}px)`, transition: "none", display: "flex", flexDirection: "column", background: "#111110", border: "1px solid rgba(212,176,116,0.18)", borderRadius: "20px", overflow: "hidden" }}>
-              <div className="flex justify-center pt-6 pb-2">
-                <div style={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513" }}>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#D4B074", fontWeight: 700 }}>4</span>
-                </div>
+          {/* ─── Карточка 2 — справа ─── */}
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "80px" }}>
+            <div style={cardStyle(cp(1))}>
+              <div className="flex items-center gap-3 mb-4">
+                <h3 style={h3s}>AI анализирует разговоры</h3>
+                {numBadge("2")}
               </div>
-              <div style={{ padding: "16px 22px 24px", flex: 1 }}>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" }}>Вы получаете точки роста и отчёт с рекомендациями</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.5)", lineHeight: 1.6, marginBottom: "18px" }}>Готовые инсайты и конкретные действия для роста конверсии и выручки.</p>
-                {/* Потенциал роста */}
-                <div style={{ background: "#0d0d0c", borderRadius: "12px", padding: "16px", border: "1px solid rgba(255,255,255,0.06)", marginBottom: "10px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", marginBottom: "6px" }}>Потенциал роста конверсии</p>
-                  <div className="flex items-end justify-between">
-                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "38px", color: "#D4B074", fontWeight: 400, lineHeight: 1 }}>+18%</span>
-                    <Sparkline />
-                  </div>
-                </div>
-                {/* Стата */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                  {[
-                    { label: "Потенциальная прибыль в месяц", val: "840 000 ₽" },
-                    { label: "Проанализировано звонков", val: "1 152" },
-                  ].map((s) => (
-                    <div key={s.label} style={{ background: "#0d0d0c", borderRadius: "10px", padding: "12px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(251,246,236,0.38)", marginBottom: "4px", lineHeight: 1.4 }}>{s.label}</p>
-                      <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "16px", color: "#D4B074", fontWeight: 400 }}>{s.val}</p>
-                    </div>
-                  ))}
-                </div>
-                {/* Рекомендация */}
-                <div style={{ background: "#0d0d0c", borderRadius: "10px", padding: "14px 16px", border: "1px solid rgba(212,176,116,0.15)", display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                  <Icon name="Sparkles" size={16} style={{ color: "#D4B074", flexShrink: 0, marginTop: 2 }} />
+              {sub("Распознаём речь, выделяем ключевые моменты и эмоции.")}
+              <div style={{ marginTop: 18, ...inner }}>
+                <p style={lbl}>Анализ разговора</p>
+                <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
                   <div style={{ flex: 1 }}>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.4)", marginBottom: "4px" }}>Рекомендации AI</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.7)", lineHeight: 1.5 }}>Сократить обсуждение цены в первые 3 минуты разговора и усилить работу с возражениями.</p>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {["слишком дорого", "нужно подумать", "скиньте КП", "не уверен", "перезвоните позже", "..."].map((t) => (
+                        <span key={t} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.8)", background: "rgba(212,176,116,0.07)", border: "1px solid rgba(212,176,116,0.16)", borderRadius: "20px", padding: "4px 10px" }}>{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{ width: 72, height: 72, borderRadius: "50%", border: "2px solid rgba(212,176,116,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 0 24px rgba(212,176,116,0.2)", animation: "aiPulse 2.8s ease-in-out infinite" }}>
+                    <div style={{ width: 54, height: 54, borderRadius: "50%", background: "rgba(212,176,116,0.06)", border: "1px solid rgba(212,176,116,0.2)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "14px", color: "#D4B074", lineHeight: 1 }}>AI</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(212,176,116,0.55)", letterSpacing: "0.08em", marginTop: 2 }}>Анализ...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style={{ marginTop: 12, ...inner }}>
+                <p style={lbl}>Эмоции клиента</p>
+                <div className="flex items-center gap-3">
+                  {["😟", "😟", "😕", "😐"].map((e, i) => (
+                    <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+                      <span style={{ fontSize: 20, filter: "grayscale(0.3) sepia(0.5)" }}>{e}</span>
+                      {i < 3 && <div style={{ width: 28, height: 1, background: "rgba(212,176,116,0.3)" }} />}
+                    </div>
+                  ))}
+                  <div style={{ flex: 1, height: 1, background: "rgba(212,176,116,0.18)", position: "relative" }}>
+                    <div style={{ position: "absolute", right: 0, top: -3, width: 6, height: 6, borderRadius: "50%", background: "#D4B074", opacity: 0.7 }} />
                   </div>
                 </div>
               </div>
             </div>
-          ); })()}
-        </div>
+          </div>
 
-        {/* Нижняя строка — 4 факта */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { icon: "Shield", title: "100% безопасность данных", desc: "Все записи защищены и не передаются третьим лицам." },
-            { icon: "Brain", title: "AI обучается на ваших данных", desc: "Система становится умнее и точнее с каждым днём." },
-            { icon: "Zap", title: "Результат — быстрее, чем кажется", desc: "Первые инсайты доступны уже в первые дни работы." },
-            { icon: "TrendingUp", title: "Рост, который можно измерить", desc: "Реальные цифры, а не догадки и интуиция." },
-          ].map((f) => (
-            <div key={f.title} className="flex items-start gap-3" style={{ padding: "20px", background: "#111110", borderRadius: "14px", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <div style={{ width: 36, height: 36, borderRadius: "10px", background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Icon name={f.icon} size={17} style={{ color: "#D4B074" }} />
-              </div>
-              <div>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#FBF6EC", fontWeight: 600, marginBottom: "4px", lineHeight: 1.3 }}>{f.title}</p>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.45)", lineHeight: 1.5 }}>{f.desc}</p>
+          {/* ─── Карточка 3 — слева ─── */}
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "80px" }}>
+            <div style={cardStyle(cp(2))}>
+              <div className="flex items-center gap-3 mb-4">{numBadge("3")}<h3 style={h3s}>Система выявляет причины потери клиентов</h3></div>
+              {sub("Находим ошибки, нарушения скриптов и слабые места менеджеров.")}
+              <div style={{ marginTop: 18, ...inner }}>
+                <p style={lbl}>Выявленные проблемы</p>
+                {[
+                  { icon: "AlertTriangle", label: "Обсуждение цены в первые 2 минуты", sev: "Высокий риск", sc: "#ef4444" },
+                  { icon: "VolumeX", label: "Менеджер перебивает клиента", sev: "Средний риск", sc: "#f59e0b" },
+                  { icon: "FileX", label: "Скрипт не соблюдается (3 момента)", sev: "Средний риск", sc: "#f59e0b" },
+                  { icon: "Target", label: "Слабая фиксация потребностей", sev: "Средний риск", sc: "#f59e0b" },
+                  { icon: "Clock", label: "Нет следующего шага в конце звонка", sev: "Низкий риск", sc: "#22c55e" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-3 mb-3">
+                    <div style={{ width: 28, height: 28, borderRadius: "8px", background: `${item.sc}18`, border: `1px solid ${item.sc}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Icon name={item.icon} size={13} style={{ color: item.sc }} />
+                    </div>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.7)", flex: 1 }}>{item.label}</span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: item.sc, fontWeight: 600, whiteSpace: "nowrap" }}>{item.sev}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
+          {/* ─── Карточка 4 — справа ─── */}
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "20px" }}>
+            <div style={cardStyle(cp(3))}>
+              <div className="flex items-center gap-3 mb-4">
+                <h3 style={h3s}>Вы получаете готовый отчёт и точки роста продаж</h3>
+                {numBadge("4")}
+              </div>
+              {sub("Понятные рекомендации, прогноз и зоны роста выручки.")}
+              <div style={{ marginTop: 18, ...inner, marginBottom: 10 }}>
+                <p style={lbl}>Потенциал роста конверсии</p>
+                <div className="flex items-end justify-between">
+                  <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "42px", color: "#D4B074", fontWeight: 400, lineHeight: 1 }}>+18%</span>
+                  <Sparkline />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                {[
+                  { label: "Потенциальная выручка", val: "до 840 000 ₽ / мес" },
+                  { label: "Проанализировано звонков", val: "1 152" },
+                ].map((s) => (
+                  <div key={s.label} style={{ ...inner }}>
+                    <p style={{ ...lbl, marginBottom: 4 }}>{s.label}</p>
+                    <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "#D4B074" }}>{s.val}</p>
+                  </div>
+                ))}
+              </div>
+              <div style={{ ...inner, borderColor: "rgba(212,176,116,0.18)", display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <div style={{ flex: 1 }}>
+                  <p style={{ ...lbl, marginBottom: 4 }}>Рекомендация AI</p>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.65)", lineHeight: 1.55 }}>Сократить обсуждение цены в первые 3 минуты разговора и усилить выявление потребностей.</p>
+                </div>
+                <div style={{ width: 32, height: 32, borderRadius: "8px", background: "rgba(212,176,116,0.1)", border: "1px solid rgba(212,176,116,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, alignSelf: "center" }}>
+                  <Icon name="ArrowRight" size={14} style={{ color: "#D4B074" }} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
