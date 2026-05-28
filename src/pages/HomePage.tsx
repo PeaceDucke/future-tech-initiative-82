@@ -466,13 +466,12 @@ function PipelineSection() {
   const cardStyle = (p: number): React.CSSProperties => ({
     background: "#111110",
     border: "1px solid rgba(212,176,116,0.22)",
-    borderRadius: "20px",
-    padding: "28px 28px 28px",
+    borderRadius: "24px",
+    padding: "40px 40px",
     opacity: 0.08 + p * 0.92,
     transform: `translateY(${(1 - p) * 40}px)`,
     transition: "none",
-    width: "100%",
-    maxWidth: 460,
+    width: "62%",
     boxSizing: "border-box",
     position: "relative",
   });
@@ -483,10 +482,10 @@ function PipelineSection() {
     </div>
   );
 
-  const sub = (s: string) => <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.48)", lineHeight: 1.6, marginBottom: 0 }}>{s}</p>;
-  const h3s: React.CSSProperties = { fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" };
-  const inner: React.CSSProperties = { background: "#0d0d0c", borderRadius: "12px", padding: "14px 16px", border: "1px solid rgba(255,255,255,0.06)" };
-  const lbl: React.CSSProperties = { fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.38)", marginBottom: "10px" };
+  const sub = (s: string) => <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.48)", lineHeight: 1.6, marginBottom: 0 }}>{s}</p>;
+  const h3s: React.CSSProperties = { fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "8px" };
+  const inner: React.CSSProperties = { background: "#0d0d0c", borderRadius: "14px", padding: "18px 20px", border: "1px solid rgba(255,255,255,0.06)" };
+  const lbl: React.CSSProperties = { fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.38)", marginBottom: "12px" };
 
   return (
     <section style={{ background: "#151513", padding: "110px 20px 100px" }}>
@@ -495,7 +494,7 @@ function PipelineSection() {
         @keyframes aiPulse { 0%,100%{ opacity:0.55; transform:scale(1);} 50%{ opacity:1; transform:scale(1.07);} }
         @keyframes threadDraw { from { stroke-dashoffset: 2400; } to { stroke-dashoffset: 0; } }
       `}</style>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-16">
