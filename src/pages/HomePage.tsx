@@ -473,7 +473,7 @@ function PipelineSection() {
             </div>
 
             {/* ── CARD 2 — RIGHT ── */}
-            <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-0">
+            <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-60px", right: "-60px", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(251,246,236,0.025) 0%, transparent 65%)", pointerEvents: "none" }} />
                 <div className="flex items-center gap-4 mb-7">
@@ -506,10 +506,16 @@ function PipelineSection() {
                   </p>
                 </div>
               </div>
-              <div className="hidden lg:flex w-[4%] justify-center">
+              <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }}>
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#D4B074", boxShadow: "0 0 0 5px rgba(212,176,116,0.1), 0 0 24px rgba(212,176,116,0.35)" }} />
               </div>
-              <div className="hidden lg:block w-[48%]" />
+              {/* Spline в левой зоне между карточкой 1 и 3 */}
+              <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "hidden", position: "relative" }}>
+                <Spline
+                  scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode"
+                  style={{ width: "130%", height: "130%", position: "absolute", top: "-15%", left: "-15%" }}
+                />
+              </div>
             </div>
 
             {/* ── CARD 3 — LEFT ── */}
