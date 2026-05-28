@@ -510,10 +510,10 @@ function PipelineSection() {
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#D4B074", boxShadow: "0 0 0 5px rgba(212,176,116,0.1), 0 0 24px rgba(212,176,116,0.35)" }} />
               </div>
               {/* Spline в левой зоне между карточкой 1 и 3 */}
-              <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "hidden", position: "relative" }}>
+              <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
                 <Spline
                   scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode"
-                  style={{ width: "130%", height: "130%", position: "absolute", top: "-15%", left: "-15%" }}
+                  style={{ width: "390%", height: "390%", position: "absolute", top: "-145%", left: "-145%" }}
                 />
               </div>
             </div>
