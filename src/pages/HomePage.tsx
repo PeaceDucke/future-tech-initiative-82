@@ -607,11 +607,11 @@ function PipelineSection() {
 
           {/* ─── Блок 1 — большое фото слева ─── */}
           <div style={{ position: "relative", zIndex: 1, paddingBottom: "100px", display: "flex", justifyContent: "flex-start", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
-            <div ref={card1Ref} style={{ width: "78%" }}>
+            <div ref={card1Ref} style={{ width: "95%" }}>
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/31613b0c-5e8d-4743-a0bd-2fec60c16c1c.png"
                 alt="Подключаем записи звонков"
-                style={{ width: "100%", display: "block", borderRadius: "24px" }}
+                style={{ width: "100%", display: "block", borderRadius: "0" }}
               />
             </div>
           </div>
