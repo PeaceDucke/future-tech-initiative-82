@@ -513,7 +513,7 @@ function PipelineSection() {
               <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
                 <Spline
                   scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode"
-                  style={{ width: "260%", height: "260%", position: "absolute", top: "-80%", left: "-175%" }}
+                  style={{ width: "260%", height: "260%", position: "absolute", top: "-80%", left: "-100%" }}
                 />
               </div>
             </div>
