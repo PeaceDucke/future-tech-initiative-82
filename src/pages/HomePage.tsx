@@ -144,7 +144,7 @@ function PainCard({
 
   const cardBase: React.CSSProperties = {
     background: "#0f0f0f",
-    border: "1px solid rgba(196,158,84,0.55)",
+    border: "1px solid rgba(240,232,218,0.45)",
     borderRadius: "16px",
     padding: large ? "28px 24px 24px" : "24px 20px 20px",
     display: "flex",
@@ -158,7 +158,7 @@ function PainCard({
     transition: "none",
     willChange: "transform, opacity",
     backfaceVisibility: "hidden",
-    boxShadow: "0 0 0 1px rgba(196,158,84,0.12), 0 0 18px rgba(196,158,84,0.18), 0 0 40px rgba(196,158,84,0.08), inset 0 1px 0 rgba(255,235,160,0.06)",
+    boxShadow: "0 0 0 1px rgba(240,232,218,0.08), 0 0 18px rgba(240,232,218,0.06), 0 0 40px rgba(240,232,218,0.04), inset 0 1px 0 rgba(255,255,255,0.05)",
   };
 
   const iconSize = 52;
@@ -327,8 +327,8 @@ function PainSection() {
           <div
             style={{
               background: "#0f0f0f",
-              border: "1px solid rgba(196,158,84,0.55)",
-              boxShadow: "0 0 0 1px rgba(196,158,84,0.12), 0 0 18px rgba(196,158,84,0.18), 0 0 40px rgba(196,158,84,0.08), inset 0 1px 0 rgba(255,235,160,0.06)",
+              border: "1px solid rgba(240,232,218,0.45)",
+              boxShadow: "0 0 0 1px rgba(240,232,218,0.08), 0 0 18px rgba(240,232,218,0.06), 0 0 40px rgba(240,232,218,0.04), inset 0 1px 0 rgba(255,255,255,0.05)",
               borderRadius: "16px",
               padding: "28px 32px",
               display: "flex",
