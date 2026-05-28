@@ -623,7 +623,7 @@ function PipelineSection() {
 
               {/* Список источников */}
               <div style={{ width: "22%", paddingRight: "28px", flexShrink: 0 }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "42px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "45px" }}>
                   {["Телефония", "CRM", "Мессенджеры", "Сайт", "Реклама"].map((item) => (
                     <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                       <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#D4B074", flexShrink: 0, boxShadow: "0 0 8px #D4B074" }} />
