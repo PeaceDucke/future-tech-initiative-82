@@ -605,42 +605,14 @@ function PipelineSection() {
             </svg>
           )}
 
-          {/* ─── Блок 1 — фото с подписью сверху и перечислением слева ─── */}
-          <div style={{ position: "relative", zIndex: 1, paddingBottom: "100px", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
-
-            {/* Подпись над перечислением */}
-            <div style={{ marginBottom: "24px", width: "22%", paddingRight: "28px" }}>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#D4B074", marginBottom: "10px" }}>
-                Потоки аудиоданных
-              </p>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.5)", lineHeight: 1.65 }}>
-                Все звонки из разных источников собираются в единый поток и передаются в систему
-              </p>
-            </div>
-
-            {/* Перечисление слева + фото */}
-            <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
-
-              {/* Список источников */}
-              <div style={{ width: "22%", paddingRight: "28px", flexShrink: 0 }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "54px" }}>
-                  {["Телефония", "CRM", "Мессенджеры", "Сайт", "Реклама"].map((item) => (
-                    <div key={item} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                      <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#D4B074", flexShrink: 0, boxShadow: "0 0 8px #D4B074" }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", color: "rgba(251,246,236,0.6)" }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Фото */}
-              <div ref={card1Ref} style={{ flex: 1 }}>
-                <img
-                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ff8d3e4c-e1e5-4066-afbe-24dd8507de91.png"
-                  alt="AI обрабатывает звонки"
-                  style={{ width: "100%", display: "block", borderRadius: "24px" }}
-                />
-              </div>
+          {/* ─── Блок 1 — большое фото слева ─── */}
+          <div style={{ position: "relative", zIndex: 1, paddingBottom: "100px", display: "flex", justifyContent: "flex-start", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
+            <div ref={card1Ref} style={{ width: "78%" }}>
+              <img
+                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/31613b0c-5e8d-4743-a0bd-2fec60c16c1c.png"
+                alt="Подключаем записи звонков"
+                style={{ width: "100%", display: "block", borderRadius: "24px" }}
+              />
             </div>
           </div>
 
