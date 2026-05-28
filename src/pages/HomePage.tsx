@@ -607,7 +607,7 @@ function PipelineSection() {
 
           {/* ─── Карточка 1 — слева (фото) ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
-            <div ref={card1Ref} style={{ width: "52%", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
+            <div ref={card1Ref} style={{ width: "68%", marginLeft: "8%", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ff8d3e4c-e1e5-4066-afbe-24dd8507de91.png"
                 alt="AI обрабатывает звонки"
