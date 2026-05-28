@@ -202,6 +202,349 @@ function PainCard({
   );
 }
 
+// ─── AI Data Filtration Animation ────────────────────────────────────────────
+function DataFiltrationAnimation() {
+  const layers = [
+    { label: "Звонки", y: 12, color: "rgba(240,232,218,0.55)" },
+    { label: "Сообщения", y: 28, color: "rgba(240,232,218,0.5)" },
+    { label: "CRM", y: 44, color: "rgba(232,210,160,0.55)" },
+    { label: "Поведение клиентов", y: 60, color: "rgba(220,170,110,0.6)" },
+    { label: "Скрытые причины потери денег", y: 78, color: "rgba(230,130,70,0.75)" },
+  ];
+
+  // particles: stable seed-like positions
+  const particles = Array.from({ length: 22 }, (_, i) => {
+    const x = ((i * 37) % 100);
+    const delay = (i % 11) * 0.45;
+    const duration = 7 + (i % 5) * 1.4;
+    const survives = i % 3 !== 0; // some disappear at upper layers
+    const drift = ((i % 7) - 3) * 2.4;
+    return { x, delay, duration, survives, drift, i };
+  });
+
+  // Floating dust
+  const dust = Array.from({ length: 14 }, (_, i) => ({
+    x: (i * 23 + 7) % 100,
+    y: (i * 41 + 11) % 100,
+    s: 0.6 + (i % 4) * 0.25,
+    d: 6 + (i % 5) * 1.3,
+    delay: (i % 6) * 0.7,
+  }));
+
+  // Glow clusters at bottom layer
+  const clusters = [
+    { x: 22, hue: 28, intensity: 1 },
+    { x: 50, hue: 22, intensity: 1.2 },
+    { x: 78, hue: 18, intensity: 0.95 },
+  ];
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        minHeight: "520px",
+        borderRadius: "16px",
+        overflow: "hidden",
+        background:
+          "radial-gradient(ellipse at 50% 18%, rgba(60,42,18,0.25) 0%, rgba(24,24,22,0) 60%), radial-gradient(ellipse at 50% 92%, rgba(120,55,15,0.18) 0%, rgba(24,24,22,0) 55%), #181816",
+        border: "1px solid rgba(240,232,218,0.18)",
+        boxShadow:
+          "0 0 0 1px rgba(240,232,218,0.05), inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 80px rgba(0,0,0,0.55)",
+      }}
+    >
+      {/* Film grain / noise overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.07,
+          mixBlendMode: "overlay",
+          backgroundImage:
+            "repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 3px)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.5,
+          background:
+            "radial-gradient(circle at 30% 0%, rgba(212,176,116,0.06) 0%, transparent 50%), radial-gradient(circle at 70% 100%, rgba(220,90,40,0.08) 0%, transparent 55%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Floating dust */}
+      {dust.map((d, idx) => (
+        <div
+          key={`dust-${idx}`}
+          style={{
+            position: "absolute",
+            left: `${d.x}%`,
+            top: `${d.y}%`,
+            width: `${d.s * 2}px`,
+            height: `${d.s * 2}px`,
+            borderRadius: "50%",
+            background: "rgba(240,232,218,0.55)",
+            boxShadow: "0 0 6px rgba(240,232,218,0.4)",
+            animation: `dustFloat ${d.d}s ease-in-out ${d.delay}s infinite`,
+            opacity: 0.4,
+          }}
+        />
+      ))}
+
+      {/* Descending particle streams */}
+      {particles.map((p) => (
+        <div
+          key={`p-${p.i}`}
+          style={{
+            position: "absolute",
+            left: `${p.x}%`,
+            top: "-4%",
+            width: "3px",
+            height: "3px",
+            borderRadius: "50%",
+            background: p.survives
+              ? "radial-gradient(circle, rgba(255,210,150,0.95) 0%, rgba(220,150,80,0.4) 60%, transparent 100%)"
+              : "radial-gradient(circle, rgba(240,232,218,0.85) 0%, rgba(200,190,170,0.3) 60%, transparent 100%)",
+            boxShadow: p.survives
+              ? "0 0 8px rgba(255,180,110,0.7), 0 0 14px rgba(255,140,60,0.3)"
+              : "0 0 6px rgba(240,232,218,0.55)",
+            animation: `${p.survives ? "particleFlow" : "particleFade"} ${p.duration}s linear ${p.delay}s infinite`,
+            ["--drift" as string]: `${p.drift}px`,
+          } as React.CSSProperties}
+        />
+      ))}
+
+      {/* Vertical data streams between layers */}
+      {[18, 38, 58, 78].map((x, idx) => (
+        <div
+          key={`stream-${idx}`}
+          style={{
+            position: "absolute",
+            left: `${x}%`,
+            top: "8%",
+            width: "1px",
+            height: "78%",
+            background:
+              "linear-gradient(180deg, transparent 0%, rgba(212,176,116,0.18) 30%, rgba(220,140,70,0.35) 80%, transparent 100%)",
+            animation: `streamPulse ${4 + idx * 0.6}s ease-in-out ${idx * 0.4}s infinite`,
+          }}
+        />
+      ))}
+
+      {/* Glass layers */}
+      {layers.map((L, idx) => {
+        const isLast = idx === layers.length - 1;
+        return (
+          <div
+            key={L.label}
+            style={{
+              position: "absolute",
+              left: "8%",
+              right: "8%",
+              top: `${L.y}%`,
+              height: "9%",
+              borderRadius: "10px",
+              background: isLast
+                ? "linear-gradient(180deg, rgba(60,30,15,0.22) 0%, rgba(80,30,10,0.32) 100%)"
+                : "linear-gradient(180deg, rgba(240,232,218,0.04) 0%, rgba(240,232,218,0.08) 100%)",
+              border: `1px solid ${L.color}`,
+              boxShadow: isLast
+                ? "0 0 20px rgba(230,110,50,0.22), inset 0 1px 0 rgba(255,200,150,0.18), inset 0 -1px 0 rgba(255,120,60,0.18)"
+                : "0 0 14px rgba(240,232,218,0.06), inset 0 1px 0 rgba(255,255,255,0.07)",
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
+              transform: `perspective(800px) rotateX(8deg)`,
+              transformOrigin: "50% 50%",
+            }}
+          >
+            {/* Grid mesh */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "10px",
+                opacity: isLast ? 0.35 : 0.22,
+                backgroundImage:
+                  "linear-gradient(90deg, rgba(240,232,218,0.18) 1px, transparent 1px), linear-gradient(0deg, rgba(240,232,218,0.12) 1px, transparent 1px)",
+                backgroundSize: "22px 12px",
+                maskImage: "linear-gradient(180deg, transparent, black 30%, black 70%, transparent)",
+                WebkitMaskImage: "linear-gradient(180deg, transparent, black 30%, black 70%, transparent)",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Last layer: glowing clusters */}
+            {isLast && (
+              <>
+                {clusters.map((c, ci) => (
+                  <div
+                    key={`cl-${ci}`}
+                    style={{
+                      position: "absolute",
+                      left: `${c.x}%`,
+                      top: "50%",
+                      width: "14px",
+                      height: "14px",
+                      borderRadius: "50%",
+                      transform: "translate(-50%, -50%)",
+                      background: `radial-gradient(circle, hsla(${c.hue}, 90%, 65%, 0.95) 0%, hsla(${c.hue}, 85%, 50%, 0.4) 50%, transparent 80%)`,
+                      boxShadow: `0 0 18px hsla(${c.hue}, 90%, 55%, 0.7), 0 0 36px hsla(${c.hue}, 85%, 45%, 0.4)`,
+                      animation: `clusterPulse ${2.4 + ci * 0.4}s ease-in-out ${ci * 0.3}s infinite`,
+                    }}
+                  />
+                ))}
+                {clusters.map((c, ci) => (
+                  <div
+                    key={`ring-${ci}`}
+                    style={{
+                      position: "absolute",
+                      left: `${c.x}%`,
+                      top: "50%",
+                      width: "22px",
+                      height: "22px",
+                      borderRadius: "50%",
+                      transform: "translate(-50%, -50%)",
+                      border: `1px solid hsla(${c.hue}, 80%, 60%, 0.45)`,
+                      animation: `ringPulse ${3 + ci * 0.5}s ease-out ${ci * 0.4}s infinite`,
+                    }}
+                  />
+                ))}
+              </>
+            )}
+
+            {/* Label */}
+            <div
+              style={{
+                position: "absolute",
+                right: "-2px",
+                top: "50%",
+                transform: "translate(100%, -50%)",
+                paddingLeft: "10px",
+                fontFamily: "Inter, sans-serif",
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: isLast ? "rgba(255,180,110,0.85)" : "rgba(240,232,218,0.6)",
+                whiteSpace: "nowrap",
+                textShadow: isLast ? "0 0 10px rgba(255,140,70,0.4)" : "none",
+                pointerEvents: "none",
+              }}
+              className="hidden xl:block"
+            >
+              {L.label}
+            </div>
+            {/* Inline label on smaller widths */}
+            <div
+              className="xl:hidden"
+              style={{
+                position: "absolute",
+                left: "12px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                fontFamily: "Inter, sans-serif",
+                fontSize: "9px",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: isLast ? "rgba(255,180,110,0.85)" : "rgba(240,232,218,0.55)",
+                pointerEvents: "none",
+              }}
+            >
+              {L.label}
+            </div>
+          </div>
+        );
+      })}
+
+      {/* Top header */}
+      <div
+        style={{
+          position: "absolute",
+          top: "16px",
+          left: "16px",
+          right: "16px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          pointerEvents: "none",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "6px",
+              height: "6px",
+              borderRadius: "50%",
+              background: "#D4B074",
+              boxShadow: "0 0 8px rgba(212,176,116,0.8)",
+              animation: "clusterPulse 2s ease-in-out infinite",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "9px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(240,232,218,0.5)",
+            }}
+          >
+            AI Filtration · Live
+          </span>
+        </div>
+        <span
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "9px",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "rgba(240,232,218,0.35)",
+          }}
+        >
+          5 stages
+        </span>
+      </div>
+
+      <style>{`
+        @keyframes particleFlow {
+          0% { transform: translate(0, 0); opacity: 0; }
+          8% { opacity: 0.9; }
+          50% { transform: translate(var(--drift), 280px); opacity: 1; }
+          92% { opacity: 1; }
+          100% { transform: translate(calc(var(--drift) * 1.3), 540px); opacity: 0; }
+        }
+        @keyframes particleFade {
+          0% { transform: translate(0, 0); opacity: 0; }
+          10% { opacity: 0.7; }
+          45% { transform: translate(var(--drift), 220px); opacity: 0.55; }
+          70% { opacity: 0; }
+          100% { transform: translate(var(--drift), 320px); opacity: 0; }
+        }
+        @keyframes streamPulse {
+          0%, 100% { opacity: 0.35; }
+          50% { opacity: 0.75; }
+        }
+        @keyframes clusterPulse {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
+          50% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+        }
+        @keyframes ringPulse {
+          0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.6; }
+          100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+        }
+        @keyframes dustFloat {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          50% { transform: translate(6px, -10px); opacity: 0.6; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ─── Pain Cards Section ────────────────────────────────────────────────────────
 function PainSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -316,11 +659,18 @@ function PainSection() {
             ))}
           </div>
 
-          {/* Row 2: 3 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          {/* Row 2: 3 cards + AI animation (on lg+) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[1fr_1fr_1fr_1.15fr] gap-4 mb-4">
             {cards.slice(2).map((c, i) => (
               <PainCard key={c.num} c={c} progress={cardProgress(i, 0.12 + i * 0.06)} />
             ))}
+            <div className="hidden lg:block">
+              <DataFiltrationAnimation />
+            </div>
+          </div>
+          {/* AI animation on md (fallback below row2) */}
+          <div className="hidden md:block lg:hidden mb-4" style={{ height: "520px" }}>
+            <DataFiltrationAnimation />
           </div>
 
           {/* Footer summary row */}
