@@ -607,7 +607,7 @@ function PipelineSection() {
 
           {/* ─── Блок 1 — большое фото слева ─── */}
           <div style={{ position: "relative", zIndex: 1, paddingBottom: "100px", display: "flex", justifyContent: "flex-start", opacity: 0.08 + cp(0) * 0.92, transform: `translateY(${(1 - cp(0)) * 40}px)` }}>
-            <div ref={card1Ref} style={{ width: "95%" }}>
+            <div ref={card1Ref} style={{ width: "95%", marginLeft: "-60px" }}>
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/0b4f35e6-d587-4318-9fee-9e731d9127cc.png"
                 alt="Подключаем записи звонков"
