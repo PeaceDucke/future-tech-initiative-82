@@ -396,7 +396,7 @@ function PipelineSection() {
         </div>
       </div>
       <div style={{ width: "100%", height: "700px" }}>
-        <Spline scene="https://prod.spline.design/D66e47pWtzZ7eQGd/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode" />
       </div>
     </section>
   );
