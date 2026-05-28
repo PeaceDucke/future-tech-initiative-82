@@ -407,7 +407,21 @@ function PipelineSection() {
     width: "100%",
     maxWidth: 460,
     boxSizing: "border-box",
+    position: "relative",
   });
+
+  const threadDot = (side: "left" | "right") => (
+    <div style={{
+      position: "absolute",
+      top: "50%",
+      [side]: -6,
+      transform: "translateY(-50%)",
+      width: 12, height: 12, borderRadius: "50%",
+      background: "radial-gradient(circle, #f5d98a 30%, #D4B074 100%)",
+      boxShadow: "0 0 10px 3px rgba(212,176,116,0.7), 0 0 20px 6px rgba(212,176,116,0.3)",
+      zIndex: 3,
+    }} />
+  );
 
   const numBadge = (n: string) => (
     <div style={{ width: 38, height: 38, borderRadius: "50%", border: "2px solid #D4B074", display: "flex", alignItems: "center", justifyContent: "center", background: "#151513", flexShrink: 0, boxShadow: "0 0 14px rgba(212,176,116,0.25)" }}>
@@ -447,48 +461,99 @@ function PipelineSection() {
         {/* Зигзаг */}
         <div ref={ref} style={{ position: "relative" }}>
 
-          {/* SVG золотая нить — абсолютная, поверх */}
+          {/* SVG золотая нить */}
+          {/* viewBox 0 0 1 1 — координаты в % от контейнера через userSpaceOnUse */}
           <svg
-            viewBox="0 0 800 1600"
-            preserveAspectRatio="none"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0, overflow: "visible" }}
+            viewBox="0 0 500 1800"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 2, overflow: "visible" }}
           >
             <defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="blur" />
+              <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3.5" result="blur" />
                 <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
               </filter>
-              <linearGradient id="threadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#D4B074" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#f0cc88" stopOpacity="1" />
-                <stop offset="100%" stopColor="#D4B074" stopOpacity="0.7" />
-              </linearGradient>
+              <filter id="glow2soft" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
             </defs>
+
+            {/*
+              Карточки в viewBox (500×1800):
+              – К1 слева:  x=0..310,  вертикальный центр ~160,  правый край x≈310
+              – К2 справа: x=190..500, вертикальный центр ~570,  левый край  x≈190
+              – К3 слева:  x=0..310,  вертикальный центр ~1020, правый край x≈310
+              – К4 справа: x=190..500, вертикальный центр ~1450, левый край  x≈190
+
+              Нить идёт:
+              СТАРТ у правого края К1 → петля вправо-вниз → касание левого края К2
+              → плавно вниз-влево с петлёй → касание правого края К3
+              → петля вправо-вниз → касание левого края К4
+            */}
             <path
-              d="M 200 80 C 200 200, 700 200, 700 340 C 700 480, 100 500, 100 660 C 100 820, 680 840, 680 1000 C 680 1160, 150 1180, 150 1360"
+              d={`
+                M 310 160
+                C 390 160, 460 260, 490 340
+                C 530 440, 480 500, 430 530
+                C 380 555, 300 560, 190 570
+                C 120 578, 60 620, 40 700
+                C 10 820, 30 920, 80 980
+                C 130 1040, 220 1040, 310 1020
+                C 370 1010, 420 1040, 450 1100
+                C 490 1180, 510 1280, 480 1360
+                C 460 1410, 410 1440, 340 1450
+                C 290 1455, 230 1450, 190 1450
+              `}
               fill="none"
-              stroke="url(#threadGrad)"
-              strokeWidth="2"
+              stroke="#D4B074"
+              strokeWidth="1.5"
               strokeLinecap="round"
-              filter="url(#glow)"
-              strokeDasharray="2400"
-              strokeDashoffset="0"
-              style={{ opacity: 0.55 + cp(0) * 0.45 }}
+              strokeLinejoin="round"
+              filter="url(#glow2soft)"
+              opacity="0.35"
             />
-            {/* Светящиеся точки */}
+            <path
+              d={`
+                M 310 160
+                C 390 160, 460 260, 490 340
+                C 530 440, 480 500, 430 530
+                C 380 555, 300 560, 190 570
+                C 120 578, 60 620, 40 700
+                C 10 820, 30 920, 80 980
+                C 130 1040, 220 1040, 310 1020
+                C 370 1010, 420 1040, 450 1100
+                C 490 1180, 510 1280, 480 1360
+                C 460 1410, 410 1440, 340 1450
+                C 290 1455, 230 1450, 190 1450
+              `}
+              fill="none"
+              stroke="#e8c878"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#glow2)"
+              opacity="0.9"
+            />
+
+            {/* Точки касания с карточками */}
             {[
-              { cx: 200, cy: 80 }, { cx: 700, cy: 340 }, { cx: 100, cy: 660 }, { cx: 680, cy: 1000 }, { cx: 150, cy: 1360 }
+              { cx: 310, cy: 160 },   // правый край К1
+              { cx: 190, cy: 570 },   // левый край К2
+              { cx: 310, cy: 1020 },  // правый край К3
+              { cx: 190, cy: 1450 },  // левый край К4
             ].map((pt, i) => (
-              <g key={i} style={{ opacity: cp(Math.floor(i / 1.4)) }}>
-                <circle cx={pt.cx} cy={pt.cy} r="6" fill="#D4B074" filter="url(#glow)" opacity="0.9" />
-                <circle cx={pt.cx} cy={pt.cy} r="12" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.35" />
+              <g key={i}>
+                <circle cx={pt.cx} cy={pt.cy} r="10" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.25" filter="url(#glow2soft)" />
+                <circle cx={pt.cx} cy={pt.cy} r="4.5" fill="#D4B074" opacity="0.95" filter="url(#glow2)" />
+                <circle cx={pt.cx} cy={pt.cy} r="2" fill="#fff" opacity="0.8" />
               </g>
             ))}
           </svg>
 
           {/* ─── Карточка 1 — слева ─── */}
-          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", marginBottom: "0px", paddingBottom: "80px" }}>
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
             <div style={cardStyle(cp(0))}>
+              {threadDot("right")}
               <div className="flex items-center gap-3 mb-4">{numBadge("1")}<h3 style={h3s}>Подключаем записи звонков</h3></div>
               {sub("Автоматически собираем звонки из всех источников.")}
               <div style={{ marginTop: 18, ...inner }}>
@@ -529,8 +594,9 @@ function PipelineSection() {
           </div>
 
           {/* ─── Карточка 2 — справа ─── */}
-          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "80px" }}>
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "100px" }}>
             <div style={cardStyle(cp(1))}>
+              {threadDot("left")}
               <div className="flex items-center gap-3 mb-4">
                 <h3 style={h3s}>AI анализирует разговоры</h3>
                 {numBadge("2")}
@@ -572,8 +638,9 @@ function PipelineSection() {
           </div>
 
           {/* ─── Карточка 3 — слева ─── */}
-          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "80px" }}>
+          <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-start", paddingBottom: "100px" }}>
             <div style={cardStyle(cp(2))}>
+              {threadDot("right")}
               <div className="flex items-center gap-3 mb-4">{numBadge("3")}<h3 style={h3s}>Система выявляет причины потери клиентов</h3></div>
               {sub("Находим ошибки, нарушения скриптов и слабые места менеджеров.")}
               <div style={{ marginTop: 18, ...inner }}>
@@ -600,6 +667,7 @@ function PipelineSection() {
           {/* ─── Карточка 4 — справа ─── */}
           <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "flex-end", paddingBottom: "20px" }}>
             <div style={cardStyle(cp(3))}>
+              {threadDot("left")}
               <div className="flex items-center gap-3 mb-4">
                 <h3 style={h3s}>Вы получаете готовый отчёт и точки роста продаж</h3>
                 {numBadge("4")}
