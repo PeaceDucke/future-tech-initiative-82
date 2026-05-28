@@ -395,60 +395,77 @@ function PipelineSection() {
     const toLocal = (el: HTMLElement) => {
       const r = el.getBoundingClientRect();
       return {
-        left: r.left - cr.left,
-        right: r.right - cr.left,
-        top: r.top - cr.top,
+        left:   r.left   - cr.left,
+        right:  r.right  - cr.left,
+        top:    r.top    - cr.top,
         bottom: r.bottom - cr.top,
-        midY: r.top - cr.top + r.height / 2,
+        midY:   r.top    - cr.top + r.height / 2,
+        h:      r.height,
+        w:      r.width,
       };
     };
     const [c1, c2, c3, c4] = cards.map((c) => toLocal(c as HTMLElement));
     const W = cr.width;
     const H = cr.height;
 
-    // Точки касания — строго на нижней трети карточки, у внешнего края
-    // К1 слева → точка на правом крае, нижняя треть
-    // К2 справа → точка на левом крае, нижняя треть
-    // К3 слева → точка на правом крае, нижняя треть
-    // К4 справа → точка на левом крае, нижняя треть
-    const p1 = { x: c1.right, y: c1.top + c1.bottom * 0.72 - c1.top * 0.72 };
-    const p2 = { x: c2.left,  y: c2.top + (c2.bottom - c2.top) * 0.28 };
-    const p3 = { x: c3.right, y: c3.top + (c3.bottom - c3.top) * 0.72 };
-    const p4 = { x: c4.left,  y: c4.top + (c4.bottom - c4.top) * 0.28 };
+    // Якорные точки — у края карточки, не внутри
+    // К1 (слева): нить стартует у правого края, на 65% высоты
+    const a1 = { x: c1.right,  y: c1.top + c1.h * 0.65 };
+    // К2 (справа): нить приходит к левому краю, на 35% высоты
+    const a2 = { x: c2.left,   y: c2.top + c2.h * 0.35 };
+    // К3 (слева): нить касается правого края, на 65% высоты
+    const a3 = { x: c3.right,  y: c3.top + c3.h * 0.65 };
+    // К4 (справа): нить приходит к левому краю, на 35% высоты
+    const a4 = { x: c4.left,   y: c4.top + c4.h * 0.35 };
 
-    // Зазор — нить идёт через свободное пространство МЕЖДУ карточками
-    // Правая петля уходит за правый край экрана, левая — за левый
-    const gapTop12 = c1.bottom;   // низ К1
-    const gapBot12 = c2.top;      // верх К2
-    const mid12y = (gapTop12 + gapBot12) / 2;
+    // Пространство между карточками
+    const gap12mid = (c1.bottom + c2.top) / 2;
+    const gap23mid = (c2.bottom + c3.top) / 2;
+    const gap34mid = (c3.bottom + c4.top) / 2;
 
-    const gapTop23 = c2.bottom;
-    const gapBot23 = c3.top;
-    const mid23y = (gapTop23 + gapBot23) / 2;
+    // Петли уходят в свободное пространство справа/слева от карточек
+    // Правая петля: между К1 и К2 — уходит вправо за карточку К2
+    const rFar = W * 0.92;   // далеко вправо
+    const lFar = W * 0.08;   // далеко влево
 
-    const gapTop34 = c3.bottom;
-    const gapBot34 = c4.top;
-    const mid34y = (gapTop34 + gapBot34) / 2;
-
-    // Петли уходят далеко в свободное пространство
-    const farRight = W * 0.85;
-    const farLeft  = W * 0.15;
-
+    // Органичный continuous path — единая кривая без разрывов
+    // Используем кубические Безье с ручками далеко от карточек
     const d = [
-      `M ${p1.x} ${p1.y}`,
-      // К1 → gap → петля вправо → gap → К2
-      `C ${farRight} ${p1.y}, ${farRight} ${mid12y}, ${farRight} ${mid12y}`,
-      `C ${farRight} ${mid12y}, ${farRight} ${p2.y}, ${p2.x} ${p2.y}`,
-      // К2 → gap → петля влево → gap → К3
-      `C ${farLeft} ${p2.y}, ${farLeft} ${mid23y}, ${farLeft} ${mid23y}`,
-      `C ${farLeft} ${mid23y}, ${farLeft} ${p3.y}, ${p3.x} ${p3.y}`,
-      // К3 → gap → петля вправо → gap → К4
-      `C ${farRight} ${p3.y}, ${farRight} ${mid34y}, ${farRight} ${mid34y}`,
-      `C ${farRight} ${mid34y}, ${farRight} ${p4.y}, ${p4.x} ${p4.y}`,
+      // Старт у правого края К1
+      `M ${a1.x} ${a1.y}`,
+
+      // К1 → большая петля вправо → К2
+      // Выходим горизонтально вправо, закручиваемся вниз, возвращаемся к К2 слева
+      `C ${rFar} ${a1.y},`,
+      `  ${rFar} ${gap12mid - c1.h * 0.1},`,
+      `  ${rFar} ${gap12mid}`,
+
+      `C ${rFar} ${gap12mid + c2.h * 0.15},`,
+      `  ${a2.x + W * 0.18} ${a2.y + c2.h * 0.08},`,
+      `  ${a2.x} ${a2.y}`,
+
+      // К2 → петля влево → К3
+      // От левого края К2 уходим влево, вниз через зазор, возвращаемся к К3
+      `C ${lFar} ${a2.y},`,
+      `  ${lFar} ${gap23mid - c2.h * 0.05},`,
+      `  ${lFar} ${gap23mid}`,
+
+      `C ${lFar} ${gap23mid + c3.h * 0.12},`,
+      `  ${a3.x - W * 0.16} ${a3.y - c3.h * 0.06},`,
+      `  ${a3.x} ${a3.y}`,
+
+      // К3 → петля вправо → К4
+      `C ${rFar} ${a3.y},`,
+      `  ${rFar} ${gap34mid - c3.h * 0.08},`,
+      `  ${rFar} ${gap34mid}`,
+
+      `C ${rFar} ${gap34mid + c4.h * 0.1},`,
+      `  ${a4.x + W * 0.2} ${a4.y + c4.h * 0.05},`,
+      `  ${a4.x} ${a4.y}`,
     ].join(" ");
 
     setSvgPath(d);
-    setDots([p1, p2, p3, p4]);
+    setDots([a1, a2, a3, a4]);
     setSvgSize({ w: W, h: H });
   };
 
@@ -492,6 +509,8 @@ function PipelineSection() {
     minHeight: 720,
     boxSizing: "border-box",
     position: "relative",
+    zIndex: 1,        // карточки ПОВЕРХ нити
+    isolation: "isolate",
   });
 
   const numBadge = (n: string) => (
@@ -532,33 +551,57 @@ function PipelineSection() {
         {/* Зигзаг */}
         <div ref={containerRef} style={{ position: "relative" }}>
 
-          {/* SVG золотая нить — координаты вычислены из реальных позиций карточек */}
+          {/* SVG золотая нить — ЗА карточками (zIndex 0) */}
           {svgPath && (
             <svg
-              style={{ position: "absolute", top: 0, left: 0, width: svgSize.w, height: svgSize.h, pointerEvents: "none", zIndex: 2, overflow: "visible" }}
+              style={{ position: "absolute", top: 0, left: 0, width: svgSize.w, height: svgSize.h, pointerEvents: "none", zIndex: 0, overflow: "visible" }}
             >
               <defs>
-                <filter id="glow2" x="-80%" y="-80%" width="260%" height="260%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                {/* Широкий bloom */}
+                <filter id="bloom" x="-120%" y="-120%" width="340%" height="340%">
+                  <feGaussianBlur stdDeviation="18" result="b1" />
+                  <feMerge><feMergeNode in="b1" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
-                <filter id="glow2soft" x="-100%" y="-100%" width="300%" height="300%">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
-                  <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                {/* Средний glow */}
+                <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="5" result="b2" />
+                  <feMerge><feMergeNode in="b2" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                {/* Тонкий sharp glow */}
+                <filter id="sharp" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="1.5" result="b3" />
+                  <feMerge><feMergeNode in="b3" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
               </defs>
-              {/* Мягкое свечение */}
-              <path d={svgPath} fill="none" stroke="#D4B074" strokeWidth="6" strokeLinecap="round" filter="url(#glow2soft)" opacity="0.25" />
-              {/* Основная нить */}
-              <path d={svgPath} fill="none" stroke="#e8c870" strokeWidth="1.2" strokeLinecap="round" filter="url(#glow2)" opacity="0.95" />
-              {/* Точки касания */}
+
+              {/* Слой 1 — широкий bloom, почти невидимый */}
+              <path d={svgPath} fill="none" stroke="#c8a050" strokeWidth="20" strokeLinecap="round" filter="url(#bloom)" opacity="0.07" />
+              {/* Слой 2 — мягкое свечение */}
+              <path d={svgPath} fill="none" stroke="#D4B074" strokeWidth="8" strokeLinecap="round" filter="url(#glow)" opacity="0.18" />
+              {/* Слой 3 — medium glow */}
+              <path d={svgPath} fill="none" stroke="#e0be78" strokeWidth="3" strokeLinecap="round" filter="url(#glow)" opacity="0.35" />
+              {/* Слой 4 — основная нить */}
+              <path d={svgPath} fill="none" stroke="#f0d080" strokeWidth="1.4" strokeLinecap="round" filter="url(#sharp)" opacity="0.92" />
+
+              {/* Якорные точки-частицы у карточек */}
               {dots.map((pt, i) => (
                 <g key={i}>
-                  <circle cx={pt.x} cy={pt.y} r="14" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.2" filter="url(#glow2soft)" />
-                  <circle cx={pt.x} cy={pt.y} r="5" fill="#D4B074" opacity="1" filter="url(#glow2)" />
-                  <circle cx={pt.x} cy={pt.y} r="2.5" fill="#fff8e7" opacity="0.9" />
+                  {/* bloom вокруг точки */}
+                  <circle cx={pt.x} cy={pt.y} r="22" fill="#D4B074" filter="url(#bloom)" opacity="0.12" />
+                  <circle cx={pt.x} cy={pt.y} r="10" fill="none" stroke="#D4B074" strokeWidth="1" opacity="0.3" filter="url(#glow)" />
+                  <circle cx={pt.x} cy={pt.y} r="5"  fill="#D4B074" opacity="0.9" filter="url(#sharp)" />
+                  <circle cx={pt.x} cy={pt.y} r="2"  fill="#fffbe8" opacity="1" />
                 </g>
               ))}
+
+              {/* Subtle particles вдоль кривой — статичные spark-точки */}
+              {dots.map((pt, i) => [
+                { dx: 18, dy: -12, r: 1.2, o: 0.5 },
+                { dx: -14, dy: 20, r: 0.8, o: 0.35 },
+                { dx: 30, dy: 8,   r: 1.0, o: 0.4 },
+              ].map((p, j) => (
+                <circle key={`spark-${i}-${j}`} cx={pt.x + p.dx} cy={pt.y + p.dy} r={p.r} fill="#e8c870" opacity={p.o} filter="url(#sharp)" />
+              )))}
             </svg>
           )}
 
