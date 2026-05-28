@@ -202,6 +202,487 @@ function PainCard({
   );
 }
 
+// ─── AI Radar Scanner Animation ──────────────────────────────────────────────
+function RadarScanner() {
+  // Data points around radar (polar coordinates)
+  const points = [
+    { angle: 18, radius: 28, importance: 0.6 },
+    { angle: 52, radius: 38, importance: 1.0 },
+    { angle: 78, radius: 22, importance: 0.5 },
+    { angle: 112, radius: 34, importance: 0.85 },
+    { angle: 145, radius: 40, importance: 0.7 },
+    { angle: 178, radius: 26, importance: 1.0 },
+    { angle: 210, radius: 36, importance: 0.55 },
+    { angle: 238, radius: 30, importance: 0.65 },
+    { angle: 268, radius: 42, importance: 0.95 },
+    { angle: 295, radius: 24, importance: 0.5 },
+    { angle: 325, radius: 38, importance: 0.8 },
+    { angle: 350, radius: 32, importance: 0.6 },
+  ];
+
+  // Floating dust particles
+  const dust = Array.from({ length: 22 }, (_, i) => ({
+    x: (i * 47 + 13) % 100,
+    y: (i * 31 + 7) % 100,
+    size: 0.5 + (i % 4) * 0.3,
+    duration: 7 + (i % 5) * 1.6,
+    delay: (i % 7) * 0.5,
+  }));
+
+  // Particles attracted toward center
+  const attractors = Array.from({ length: 10 }, (_, i) => ({
+    angle: (i * 36 + 12) % 360,
+    distance: 45 + (i % 3) * 8,
+    duration: 5 + (i % 4) * 1.2,
+    delay: (i % 5) * 0.8,
+  }));
+
+  const rings = [28, 42, 56, 70, 84]; // % sizes of concentric rings
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        minHeight: "640px",
+        borderRadius: "28px",
+        overflow: "hidden",
+        background:
+          "radial-gradient(ellipse at 50% 50%, rgba(60,45,20,0.18) 0%, rgba(24,24,22,0) 60%), radial-gradient(ellipse at 30% 80%, rgba(80,55,20,0.12) 0%, transparent 55%), #181816",
+        border: "1px solid rgba(240,232,218,0.1)",
+        boxShadow:
+          "inset 0 1px 0 rgba(255,255,255,0.04), 0 40px 100px rgba(0,0,0,0.6)",
+      }}
+    >
+      {/* Vertical noise texture */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.05,
+          mixBlendMode: "overlay",
+          backgroundImage:
+            "repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 3px)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Volumetric fog */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(212,176,116,0.05) 0%, transparent 45%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Floating dust */}
+      {dust.map((d, i) => (
+        <div
+          key={`d-${i}`}
+          style={{
+            position: "absolute",
+            left: `${d.x}%`,
+            top: `${d.y}%`,
+            width: `${d.size * 2}px`,
+            height: `${d.size * 2}px`,
+            borderRadius: "50%",
+            background: "rgba(240,232,218,0.6)",
+            boxShadow: "0 0 6px rgba(240,232,218,0.45)",
+            animation: `rdDustFloat ${d.duration}s ease-in-out ${d.delay}s infinite`,
+            opacity: 0.35,
+            pointerEvents: "none",
+          }}
+        />
+      ))}
+
+      {/* Attractor particles drifting toward center */}
+      {attractors.map((a, i) => {
+        const rad = (a.angle * Math.PI) / 180;
+        const startX = 50 + Math.cos(rad) * a.distance;
+        const startY = 50 + Math.sin(rad) * a.distance;
+        return (
+          <div
+            key={`a-${i}`}
+            style={{
+              position: "absolute",
+              left: `${startX}%`,
+              top: `${startY}%`,
+              width: "2px",
+              height: "2px",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(255,225,180,0.95) 0%, rgba(220,170,100,0.4) 60%, transparent 100%)",
+              boxShadow: "0 0 8px rgba(255,200,140,0.7)",
+              ["--dx" as string]: `${50 - startX}%`,
+              ["--dy" as string]: `${50 - startY}%`,
+              animation: `rdAttract ${a.duration}s ease-in-out ${a.delay}s infinite`,
+              pointerEvents: "none",
+            } as React.CSSProperties}
+          />
+        );
+      })}
+
+      {/* Radar container */}
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          width: "min(82%, 520px)",
+          aspectRatio: "1 / 1",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        {/* Concentric rings */}
+        {rings.map((size, i) => (
+          <div
+            key={`ring-${i}`}
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              width: `${size}%`,
+              height: `${size}%`,
+              transform: "translate(-50%, -50%)",
+              borderRadius: "50%",
+              border: `1px solid rgba(240,232,218,${0.06 + i * 0.025})`,
+              boxShadow: `inset 0 0 ${20 + i * 6}px rgba(212,176,116,0.04)`,
+            }}
+          />
+        ))}
+
+        {/* Outer halo */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "90%",
+            height: "90%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, transparent 55%, rgba(212,176,116,0.05) 70%, transparent 85%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Cross lines */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "8%",
+            bottom: "8%",
+            width: "1px",
+            transform: "translateX(-50%)",
+            background:
+              "linear-gradient(180deg, transparent, rgba(240,232,218,0.08) 50%, transparent)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "8%",
+            right: "8%",
+            height: "1px",
+            transform: "translateY(-50%)",
+            background:
+              "linear-gradient(90deg, transparent, rgba(240,232,218,0.08) 50%, transparent)",
+          }}
+        />
+
+        {/* Secondary rotating ring (subtle) */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "60%",
+            height: "60%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            border: "1px dashed rgba(212,176,116,0.18)",
+            animation: "rdSpinSlow 28s linear infinite",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "38%",
+            height: "38%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            border: "1px dashed rgba(240,232,218,0.12)",
+            animation: "rdSpinReverse 36s linear infinite",
+          }}
+        />
+
+        {/* Rotating scan sector */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "84%",
+            height: "84%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            background:
+              "conic-gradient(from 0deg, transparent 0deg, rgba(212,176,116,0.02) 20deg, rgba(212,176,116,0.18) 55deg, rgba(255,210,150,0.32) 72deg, rgba(255,225,180,0.4) 78deg, transparent 80deg)",
+            animation: "rdScan 8s linear infinite",
+            filter: "blur(2px)",
+            pointerEvents: "none",
+            mixBlendMode: "screen",
+          }}
+        />
+        {/* Sharp leading edge */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "84%",
+            height: "84%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            background:
+              "conic-gradient(from 0deg, transparent 0deg, transparent 76deg, rgba(255,235,195,0.55) 79deg, rgba(255,240,210,0.7) 80deg, transparent 81deg)",
+            animation: "rdScan 8s linear infinite",
+            pointerEvents: "none",
+            mixBlendMode: "screen",
+          }}
+        />
+
+        {/* Data points */}
+        {points.map((p, i) => {
+          const rad = (p.angle * Math.PI) / 180;
+          const x = 50 + Math.cos(rad) * p.radius;
+          const y = 50 + Math.sin(rad) * p.radius;
+          const isHot = p.importance > 0.85;
+          const size = 6 + p.importance * 5;
+          const delay = (p.angle / 360) * 8; // synced with scan rotation
+          return (
+            <div
+              key={`pt-${i}`}
+              style={{
+                position: "absolute",
+                left: `${x}%`,
+                top: `${y}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                borderRadius: "50%",
+                transform: "translate(-50%, -50%)",
+                background: isHot
+                  ? "radial-gradient(circle, rgba(255,200,130,1) 0%, rgba(220,150,80,0.6) 50%, transparent 90%)"
+                  : "radial-gradient(circle, rgba(240,232,218,0.9) 0%, rgba(200,180,140,0.4) 60%, transparent 100%)",
+                boxShadow: isHot
+                  ? "0 0 12px rgba(255,180,100,0.85), 0 0 24px rgba(255,140,60,0.4)"
+                  : "0 0 8px rgba(240,232,218,0.5)",
+                animation: `rdPointPulse ${4 + (i % 3) * 0.6}s ease-in-out ${delay}s infinite`,
+                pointerEvents: "none",
+              }}
+            />
+          );
+        })}
+
+        {/* Ripple waves from hot points */}
+        {points.filter((p) => p.importance > 0.85).map((p, i) => {
+          const rad = (p.angle * Math.PI) / 180;
+          const x = 50 + Math.cos(rad) * p.radius;
+          const y = 50 + Math.sin(rad) * p.radius;
+          return (
+            <div
+              key={`rp-${i}`}
+              style={{
+                position: "absolute",
+                left: `${x}%`,
+                top: `${y}%`,
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                transform: "translate(-50%, -50%)",
+                border: "1px solid rgba(255,180,100,0.6)",
+                animation: `rdRipple ${4 + i * 0.4}s ease-out ${(p.angle / 360) * 8}s infinite`,
+                pointerEvents: "none",
+              }}
+            />
+          );
+        })}
+
+        {/* Center core */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "10%",
+            height: "10%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(255,230,180,0.5) 0%, rgba(212,176,116,0.25) 40%, transparent 80%)",
+            boxShadow: "0 0 30px rgba(212,176,116,0.4)",
+            animation: "rdCorePulse 3.5s ease-in-out infinite",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "4%",
+            height: "4%",
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            background: "rgba(255,240,210,0.95)",
+            boxShadow:
+              "0 0 14px rgba(255,225,170,0.9), 0 0 28px rgba(255,180,100,0.5)",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+
+      {/* Header label */}
+      <div
+        style={{
+          position: "absolute",
+          top: "22px",
+          left: "24px",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          pointerEvents: "none",
+        }}
+      >
+        <div
+          style={{
+            width: "6px",
+            height: "6px",
+            borderRadius: "50%",
+            background: "#D4B074",
+            boxShadow: "0 0 10px rgba(212,176,116,0.8)",
+            animation: "rdCorePulse 2s ease-in-out infinite",
+          }}
+        />
+        <span
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "10px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "rgba(240,232,218,0.55)",
+          }}
+        >
+          AI Scanning · Active
+        </span>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "22px",
+          right: "24px",
+          fontFamily: "Inter, sans-serif",
+          fontSize: "10px",
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          color: "rgba(240,232,218,0.4)",
+          pointerEvents: "none",
+        }}
+      >
+        12 Signals · 3 Critical
+      </div>
+
+      {/* Bottom legend */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "22px",
+          left: "24px",
+          right: "24px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          fontFamily: "Inter, sans-serif",
+          fontSize: "10px",
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          color: "rgba(240,232,218,0.4)",
+          pointerEvents: "none",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              background: "rgba(255,200,130,0.9)",
+              boxShadow: "0 0 8px rgba(255,180,100,0.7)",
+            }}
+          />
+          <span>Hidden Loss</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              background: "rgba(240,232,218,0.7)",
+            }}
+          />
+          <span>Data Signal</span>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes rdScan {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes rdSpinSlow {
+          0% { transform: translate(-50%, -50%) rotate(0deg); }
+          100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes rdSpinReverse {
+          0% { transform: translate(-50%, -50%) rotate(360deg); }
+          100% { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+        @keyframes rdPointPulse {
+          0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+          50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.35); }
+        }
+        @keyframes rdRipple {
+          0%   { width: 8px; height: 8px; opacity: 0.8; }
+          100% { width: 70px; height: 70px; opacity: 0; }
+        }
+        @keyframes rdCorePulse {
+          0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+          50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.18); }
+        }
+        @keyframes rdDustFloat {
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          50%      { transform: translate(8px, -12px); opacity: 0.65; }
+        }
+        @keyframes rdAttract {
+          0%   { transform: translate(0, 0); opacity: 0; }
+          15%  { opacity: 0.9; }
+          85%  { opacity: 0.8; }
+          100% { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ─── Pain Cards Section ────────────────────────────────────────────────────────
 function PainSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -555,7 +1036,9 @@ function PipelineSection() {
                 </div>
               </div>
               {dot()}
-              <div className="hidden lg:block w-[48%]" />
+              <div className="hidden lg:block w-[48%]" style={{ height: "700px", position: "relative" }}>
+                <RadarScanner />
+              </div>
             </div>
 
             {/* ── CARD 4 — RIGHT ── */}
