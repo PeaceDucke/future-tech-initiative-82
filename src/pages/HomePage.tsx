@@ -406,28 +406,45 @@ function PipelineSection() {
     const W = cr.width;
     const H = cr.height;
 
-    // Точки касания: правый край К1, левый К2, правый К3, левый К4
-    const p1 = { x: c1.right, y: c1.midY };
-    const p2 = { x: c2.left,  y: c2.midY };
-    const p3 = { x: c3.right, y: c3.midY };
-    const p4 = { x: c4.left,  y: c4.midY };
+    // Точки касания — строго на нижней трети карточки, у внешнего края
+    // К1 слева → точка на правом крае, нижняя треть
+    // К2 справа → точка на левом крае, нижняя треть
+    // К3 слева → точка на правом крае, нижняя треть
+    // К4 справа → точка на левом крае, нижняя треть
+    const p1 = { x: c1.right, y: c1.top + c1.bottom * 0.72 - c1.top * 0.72 };
+    const p2 = { x: c2.left,  y: c2.top + (c2.bottom - c2.top) * 0.28 };
+    const p3 = { x: c3.right, y: c3.top + (c3.bottom - c3.top) * 0.72 };
+    const p4 = { x: c4.left,  y: c4.top + (c4.bottom - c4.top) * 0.28 };
 
-    // Строим путь с петлями как на макете
-    const mid12x = W * 0.72;
-    const mid23x = W * 0.18;
-    const mid34x = W * 0.72;
+    // Зазор — нить идёт через свободное пространство МЕЖДУ карточками
+    // Правая петля уходит за правый край экрана, левая — за левый
+    const gapTop12 = c1.bottom;   // низ К1
+    const gapBot12 = c2.top;      // верх К2
+    const mid12y = (gapTop12 + gapBot12) / 2;
+
+    const gapTop23 = c2.bottom;
+    const gapBot23 = c3.top;
+    const mid23y = (gapTop23 + gapBot23) / 2;
+
+    const gapTop34 = c3.bottom;
+    const gapBot34 = c4.top;
+    const mid34y = (gapTop34 + gapBot34) / 2;
+
+    // Петли уходят далеко в свободное пространство
+    const farRight = W * 0.85;
+    const farLeft  = W * 0.15;
 
     const d = [
       `M ${p1.x} ${p1.y}`,
-      // К1 → петля вправо → К2
-      `C ${mid12x} ${p1.y}, ${mid12x} ${p1.y + (p2.y - p1.y) * 0.25}, ${mid12x} ${p1.y + (p2.y - p1.y) * 0.5}`,
-      `C ${mid12x} ${p2.y - (p2.y - p1.y) * 0.1}, ${p2.x + 60} ${p2.y - 40}, ${p2.x} ${p2.y}`,
-      // К2 → петля влево → К3
-      `C ${p2.x - 80} ${p2.y + 40}, ${mid23x} ${p2.y + (p3.y - p2.y) * 0.1}, ${mid23x} ${p2.y + (p3.y - p2.y) * 0.5}`,
-      `C ${mid23x} ${p3.y - (p3.y - p2.y) * 0.1}, ${p3.x - 60} ${p3.y - 40}, ${p3.x} ${p3.y}`,
-      // К3 → петля вправо → К4
-      `C ${p3.x + 80} ${p3.y + 40}, ${mid34x} ${p3.y + (p4.y - p3.y) * 0.1}, ${mid34x} ${p3.y + (p4.y - p3.y) * 0.5}`,
-      `C ${mid34x} ${p4.y - (p4.y - p3.y) * 0.1}, ${p4.x + 60} ${p4.y - 40}, ${p4.x} ${p4.y}`,
+      // К1 → gap → петля вправо → gap → К2
+      `C ${farRight} ${p1.y}, ${farRight} ${mid12y}, ${farRight} ${mid12y}`,
+      `C ${farRight} ${mid12y}, ${farRight} ${p2.y}, ${p2.x} ${p2.y}`,
+      // К2 → gap → петля влево → gap → К3
+      `C ${farLeft} ${p2.y}, ${farLeft} ${mid23y}, ${farLeft} ${mid23y}`,
+      `C ${farLeft} ${mid23y}, ${farLeft} ${p3.y}, ${p3.x} ${p3.y}`,
+      // К3 → gap → петля вправо → gap → К4
+      `C ${farRight} ${p3.y}, ${farRight} ${mid34y}, ${farRight} ${mid34y}`,
+      `C ${farRight} ${mid34y}, ${farRight} ${p4.y}, ${p4.x} ${p4.y}`,
     ].join(" ");
 
     setSvgPath(d);
