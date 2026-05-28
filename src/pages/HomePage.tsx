@@ -378,28 +378,35 @@ function PainSection() {
 
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
+  // Цветовая система
+  const W = "#FBF6EC";           // белый/кремовый — основной текст
+  const G = "#D4B074";           // золотой — акценты, лейблы
+  const B = "#F5EDD8";           // бежевый old money — вторичный текст
+  const RED = "#FF6B6B";         // красный — ошибки, потери
+  const GREEN = "#4ADE80";       // зелёный — рост, успех
+
   const pCard: React.CSSProperties = {
-    background: "linear-gradient(160deg, #161614 0%, #0e0e0d 60%, #0a0a09 100%)",
-    border: "1px solid rgba(251,246,236,0.09)",
-    borderRadius: "24px",
-    padding: "48px 44px",
+    background: "linear-gradient(160deg, #181714 0%, #111009 100%)",
+    border: "1px solid rgba(212,176,116,0.2)",
+    borderRadius: "28px",
+    padding: "52px 48px",
     position: "relative",
     overflow: "hidden",
-    boxShadow: "0 0 0 1px rgba(251,246,236,0.04), 0 32px 80px rgba(0,0,0,0.65), 0 0 60px rgba(251,246,236,0.015)",
+    boxShadow: "0 0 0 1px rgba(251,246,236,0.04), 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(251,246,236,0.03)",
   };
 
-  const tag = (text: string, icon?: string) => (
-    <div key={text} className="flex items-center gap-2 px-4 py-2.5 rounded-xl" style={{ background: "rgba(251,246,236,0.04)", border: "1px solid rgba(251,246,236,0.09)" }}>
-      {icon && <Icon name={icon} size={13} style={{ color: "#D4B074", flexShrink: 0 }} />}
-      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.7)", fontWeight: 400 }}>{text}</span>
+  const num = (n: string) => (
+    <div className="flex items-center gap-4 mb-8">
+      <div style={{ width: 48, height: 48, borderRadius: "50%", border: "1.5px solid rgba(212,176,116,0.45)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.07)", flexShrink: 0 }}>
+        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: G, fontWeight: 700 }}>{n}</span>
+      </div>
+      <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, ${G}40, transparent)` }} />
     </div>
   );
 
-  const statBox = (label: string, value: string, sub: string, accent = false) => (
-    <div style={{ background: accent ? "rgba(212,176,116,0.07)" : "rgba(251,246,236,0.04)", border: `1px solid ${accent ? "rgba(212,176,116,0.22)" : "rgba(251,246,236,0.08)"}`, borderRadius: "16px", padding: "20px 22px" }}>
-      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: accent ? "rgba(212,176,116,0.65)" : "rgba(251,246,236,0.35)", marginBottom: "8px", textTransform: "uppercase", letterSpacing: "0.1em" }}>{label}</p>
-      <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: accent ? "40px" : "24px", color: accent ? "#D4B074" : "#FBF6EC", lineHeight: 1, marginBottom: "4px" }}>{value}</p>
-      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.35)" }}>{sub}</p>
+  const dot = () => (
+    <div className="hidden lg:flex w-[4%] justify-center" style={{ alignSelf: "center" }}>
+      <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
     </div>
   );
 
@@ -407,109 +414,102 @@ function PipelineSection() {
     <section style={{ background: "#151513", padding: "120px 20px 140px" }}>
       <style>{`
         @keyframes beigePulse {
-          0%,100% { box-shadow: 0 0 0 1px rgba(251,246,236,0.07), 0 32px 80px rgba(0,0,0,0.65), 0 0 50px rgba(251,246,236,0.02); }
-          50%      { box-shadow: 0 0 0 1px rgba(251,246,236,0.13), 0 32px 80px rgba(0,0,0,0.65), 0 0 80px rgba(251,246,236,0.055), 0 0 120px rgba(251,246,236,0.02); }
+          0%,100% { box-shadow: 0 0 0 1px rgba(212,176,116,0.18), 0 40px 100px rgba(0,0,0,0.7), 0 0 60px rgba(251,246,236,0.02); }
+          50%      { box-shadow: 0 0 0 1px rgba(212,176,116,0.32), 0 40px 100px rgba(0,0,0,0.7), 0 0 100px rgba(251,246,236,0.06); }
         }
         .pc { animation: beigePulse 5s ease-in-out infinite; }
         .pc:nth-child(2) { animation-delay: 1.25s; }
         .pc:nth-child(3) { animation-delay: 2.5s; }
         .pc:nth-child(4) { animation-delay: 3.75s; }
-        @keyframes wfBar { 0%,100%{ transform:scaleY(0.45); } 50%{ transform:scaleY(1); } }
       `}</style>
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-24">
           <div className="flex items-center justify-center gap-3 mb-5">
-            <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.45 }} />
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
             <span style={labelStyle}>Как работает SalesFlow</span>
-            <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.45 }} />
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
           </div>
           <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
             AI видит то, что невозможно<br />контролировать вручную
           </h2>
-          <p style={{ ...bodyText, fontSize: "16px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75 }}>
+          <p style={{ ...bodyText, fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75, color: B }}>
             Мы превращаем хаос звонков в понятные причины<br />и точки роста продаж.
           </p>
         </div>
 
-        {/* Zigzag */}
         <div className="relative">
-          {/* Center timeline */}
-          <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(251,246,236,0.1) 8%, rgba(251,246,236,0.1) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
+          <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: `linear-gradient(to bottom, transparent 0%, ${G}22 8%, ${G}22 92%, transparent 100%)`, transform: "translateX(-50%)" }} />
 
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── CARD 1 — LEFT ── */}
             <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-60px", left: "-60px", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(251,246,236,0.025) 0%, transparent 65%)", pointerEvents: "none" }} />
-                <div className="flex items-center gap-4 mb-7">
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(212,176,116,0.35)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.06)" }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#D4B074", fontWeight: 700 }}>01</span>
-                  </div>
-                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(212,176,116,0.25), transparent)" }} />
-                </div>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.5vw, 28px)", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.25, marginBottom: "14px" }}>Подключаем все каналы коммуникации</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.48)", lineHeight: 1.75, marginBottom: "28px" }}>
-                  SalesFlow автоматически собирает звонки, сообщения и обращения клиентов со всех площадок в единую AI-систему анализа — без ручных выгрузок и потери данных.
+                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${G}08 0%, transparent 65%)`, pointerEvents: "none" }} />
+                {num("01")}
+                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+                  Подключаем все каналы коммуникации
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+                  SalesFlow автоматически собирает звонки, переписки и обращения клиентов со всех ваших каналов в единую систему. Ничего не теряется, ничего не пропускается — каждый разговор попадает в AI-анализ.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-7">
-                  {[["Phone","Телефония"],["Database","CRM-система"],["MessageCircle","WhatsApp / Telegram"],["Globe","Сайт и формы"],["Megaphone","Рекламные источники"]].map(([ic, lb]) => tag(lb, ic))}
+                <div className="flex flex-wrap gap-3 mb-8">
+                  {[
+                    ["Phone", "Телефония"],
+                    ["Database", "CRM-система"],
+                    ["MessageCircle", "WhatsApp / Telegram"],
+                    ["Globe", "Сайт и формы"],
+                    ["Megaphone", "Рекламные источники"],
+                  ].map(([ic, lb]) => (
+                    <div key={lb} className="flex items-center gap-2.5 px-4 py-3 rounded-xl" style={{ background: `${G}0D`, border: `1px solid ${G}30` }}>
+                      <Icon name={ic} size={14} style={{ color: G, flexShrink: 0 }} />
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: W, fontWeight: 500 }}>{lb}</span>
+                    </div>
+                  ))}
                 </div>
-                <div style={{ borderTop: "1px solid rgba(251,246,236,0.07)", paddingTop: "22px", display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                  <div style={{ width: 36, height: 36, borderRadius: "10px", background: "rgba(34,200,100,0.1)", border: "1px solid rgba(34,200,100,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Icon name="CheckCircle" size={16} style={{ color: "#22c864" }} />
-                  </div>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.45)", lineHeight: 1.7, fontStyle: "italic" }}>
-                    Никакого ручного контроля — все данные поступают автоматически. Подключение за 15 минут.
+                <div style={{ borderTop: `1px solid ${G}20`, paddingTop: "24px", display: "flex", alignItems: "center", gap: "16px" }}>
+                  <Icon name="CheckCircle" size={20} style={{ color: GREEN, flexShrink: 0 }} />
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: GREEN, lineHeight: 1.6, fontWeight: 500 }}>
+                    Никакого ручного контроля. Подключение за 15 минут. Работает 24/7 без пауз.
                   </p>
                 </div>
               </div>
-              <div className="hidden lg:flex w-[4%] justify-center">
-                <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#D4B074", boxShadow: "0 0 0 5px rgba(212,176,116,0.1), 0 0 24px rgba(212,176,116,0.35)" }} />
-              </div>
+              {dot()}
               <div className="hidden lg:block w-[48%]" />
             </div>
 
             {/* ── CARD 2 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-60px", right: "-60px", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(251,246,236,0.025) 0%, transparent 65%)", pointerEvents: "none" }} />
-                <div className="flex items-center gap-4 mb-7">
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(212,176,116,0.35)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.06)" }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#D4B074", fontWeight: 700 }}>02</span>
-                  </div>
-                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(212,176,116,0.25), transparent)" }} />
-                </div>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.5vw, 28px)", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.25, marginBottom: "14px" }}>AI анализирует каждое взаимодействие</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.48)", lineHeight: 1.75, marginBottom: "28px" }}>
-                  Система распознаёт структуру диалога, тональность речи, эмоции клиента и ключевые моменты, напрямую влияющие на исход продажи.
+                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${G}08 0%, transparent 65%)`, pointerEvents: "none" }} />
+                {num("02")}
+                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+                  AI анализирует каждый разговор
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+                  Система слушает диалог и в режиме реального времени распознаёт структуру разговора, тональность речи, эмоции клиента и критические моменты, которые определяют исход сделки.
                 </p>
-                <div style={{ background: "rgba(251,246,236,0.03)", borderRadius: "16px", padding: "20px 22px", border: "1px solid rgba(251,246,236,0.07)", marginBottom: "20px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(212,176,116,0.6)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}>Обнаруженные сигналы возражений</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {["дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь"].map((t) => (
-                      <span key={t} style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.2)", borderRadius: "20px", padding: "5px 14px" }}>[{t}]</span>
+
+                <div style={{ background: `${G}0A`, borderRadius: "18px", padding: "24px 26px", border: `1px solid ${G}28`, marginBottom: "24px" }}>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "16px", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь"].map((t) => (
+                      <span key={t} style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, background: `${RED}15`, border: `1px solid ${RED}35`, borderRadius: "20px", padding: "6px 16px", fontWeight: 500 }}>[ {t} ]</span>
                     ))}
                   </div>
-                  {/* Mini waveform */}
-                  <div className="flex items-center gap-[3px]" style={{ height: "32px" }}>
-                    {[4,8,14,10,20,13,7,17,11,21,8,16,5,18,9,14,7,11,17,8,12,20,9,15,5].map((h, i) => (
-                      <div key={i} style={{ flex: 1, borderRadius: "2px", height: `${h}px`, background: i < 10 ? "rgba(212,176,116,0.7)" : "rgba(251,246,236,0.12)", animation: `wfBar ${0.8 + (i % 5) * 0.15}s ease-in-out ${i * 60}ms infinite` }} />
-                    ))}
+                  <div style={{ borderTop: `1px solid ${G}18`, paddingTop: "16px" }}>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, lineHeight: 1.7 }}>
+                      AI точно определяет момент, где менеджер теряет инициативу — и почему клиент не доходит до сделки.
+                    </p>
                   </div>
-                </div>
-                <div style={{ borderTop: "1px solid rgba(251,246,236,0.07)", paddingTop: "20px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.45)", lineHeight: 1.7 }}>
-                    AI понимает, где менеджер теряет инициативу и почему клиент не доходит до сделки — и фиксирует точный момент.
-                  </p>
                 </div>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }}>
-                <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#D4B074", boxShadow: "0 0 0 5px rgba(212,176,116,0.1), 0 0 24px rgba(212,176,116,0.35)" }} />
+                <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
               </div>
-              {/* Spline в левой зоне между карточкой 1 и 3 */}
+              {/* Spline */}
               <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
                 <Spline
                   scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode"
@@ -521,96 +521,92 @@ function PipelineSection() {
             {/* ── CARD 3 — LEFT ── */}
             <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-60px", left: "-60px", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(251,246,236,0.025) 0%, transparent 65%)", pointerEvents: "none" }} />
-                <div className="flex items-center gap-4 mb-7">
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(212,176,116,0.35)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.06)" }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#D4B074", fontWeight: 700 }}>03</span>
-                  </div>
-                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(212,176,116,0.25), transparent)" }} />
-                </div>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.5vw, 28px)", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.25, marginBottom: "14px" }}>Система находит скрытые точки потери выручки</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.48)", lineHeight: 1.75, marginBottom: "28px" }}>
-                  SalesFlow не просто собирает данные — он выявляет конкретные причины, по которым ваш отдел продаж теряет деньги каждый день.
+                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}06 0%, transparent 65%)`, pointerEvents: "none" }} />
+                {num("03")}
+                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+                  Система находит скрытые причины потери денег
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+                  SalesFlow не просто фиксирует данные — он вскрывает конкретные причины, по которым ваш отдел продаж теряет выручку каждый день. Без прослушки вручную, без субъективных оценок.
                 </p>
-                <div className="space-y-3 mb-7">
+                <div className="space-y-3 mb-8">
                   {[
-                    { icon: "AlertTriangle", label: "Нарушения скрипта продаж", desc: "менеджер отклоняется от структуры", color: "#ef4444" },
-                    { icon: "ShieldOff", label: "Слабая обработка возражений", desc: "клиент уходит без ответа на сомнения", color: "#f59e0b" },
-                    { icon: "TrendingDown", label: "Потеря интереса клиента", desc: "момент, когда клиент перестаёт слушать", color: "#f59e0b" },
-                    { icon: "UserX", label: "Критические ошибки менеджеров", desc: "давление, перебивания, игнор потребностей", color: "#f59e0b" },
-                    { icon: "BarChart2", label: "Причины падения конверсии", desc: "системный анализ по этапам воронки", color: "#22c55e" },
+                    { icon: "AlertTriangle", label: "Нарушения скрипта продаж", desc: "менеджер уходит от структуры в критический момент", color: RED },
+                    { icon: "ShieldOff",     label: "Слабая обработка возражений", desc: "клиент уходит с неотработанным сомнением", color: RED },
+                    { icon: "TrendingDown",  label: "Потеря интереса клиента", desc: "AI фиксирует момент, когда клиент «отключился»", color: RED },
+                    { icon: "UserX",         label: "Ошибки и давление менеджера", desc: "перебивания, игнорирование потребностей", color: RED },
+                    { icon: "BarChart2",     label: "Рост после устранения ошибок", desc: "конверсия растёт уже в первый месяц работы", color: GREEN },
                   ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-3 p-3 rounded-xl" style={{ background: "rgba(251,246,236,0.025)", border: "1px solid rgba(251,246,236,0.06)" }}>
-                      <div style={{ width: 34, height: 34, borderRadius: "10px", background: `${item.color}12`, border: `1px solid ${item.color}28`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }}>
-                        <Icon name={item.icon} size={15} style={{ color: item.color }} />
+                    <div key={item.label} className="flex items-start gap-4 px-5 py-4 rounded-2xl" style={{ background: `${item.color}0C`, border: `1px solid ${item.color}28` }}>
+                      <div style={{ width: 36, height: 36, borderRadius: "10px", background: `${item.color}18`, border: `1px solid ${item.color}35`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
+                        <Icon name={item.icon} size={16} style={{ color: item.color }} />
                       </div>
                       <div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.8)", fontWeight: 500, marginBottom: "2px" }}>{item.label}</p>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.35)", lineHeight: 1.5 }}>{item.desc}</p>
+                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: item.color, fontWeight: 600, marginBottom: "3px" }}>{item.label}</p>
+                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.55 }}>{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div style={{ borderTop: "1px solid rgba(251,246,236,0.07)", paddingTop: "20px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.4)", lineHeight: 1.7, fontStyle: "italic" }}>
-                    Система показывает не просто цифры — она объясняет реальные причины потери продаж.
-                  </p>
-                </div>
               </div>
-              <div className="hidden lg:flex w-[4%] justify-center">
-                <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#D4B074", boxShadow: "0 0 0 5px rgba(212,176,116,0.1), 0 0 24px rgba(212,176,116,0.35)" }} />
-              </div>
+              {dot()}
               <div className="hidden lg:block w-[48%]" />
             </div>
 
             {/* ── CARD 4 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-60px", right: "-60px", width: "300px", height: "300px", background: "radial-gradient(circle, rgba(251,246,236,0.025) 0%, transparent 65%)", pointerEvents: "none" }} />
-                <div className="flex items-center gap-4 mb-7">
-                  <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(212,176,116,0.35)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.06)" }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#D4B074", fontWeight: 700 }}>04</span>
-                  </div>
-                  <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(212,176,116,0.25), transparent)" }} />
-                </div>
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.5vw, 28px)", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.25, marginBottom: "14px" }}>Вы получаете готовые точки роста продаж</h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.48)", lineHeight: 1.75, marginBottom: "28px" }}>
-                  AI превращает хаотичные разговоры в конкретные бизнес-инсайты. Вы видите, где теряете деньги — и знаете, что именно изменить.
+                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${GREEN}07 0%, transparent 65%)`, pointerEvents: "none" }} />
+                {num("04")}
+                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+                  Вы получаете готовые точки роста выручки
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+                  AI превращает разрозненные разговоры в чёткие бизнес-выводы. Вы видите не просто цифры — вы видите, что именно изменить, чтобы продавать больше уже сейчас.
                 </p>
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {statBox("Потенциал роста конверсии", "+18%", "уже в первый месяц", true)}
-                  {statBox("Потери в месяц", "840 000 ₽", "выявлено автоматически")}
-                </div>
-                <div style={{ background: "rgba(212,176,116,0.05)", borderRadius: "16px", padding: "20px 22px", border: "1px solid rgba(212,176,116,0.14)", marginBottom: "20px" }}>
-                  <div className="flex items-center gap-2 mb-14px">
-                    <Icon name="Sparkles" size={14} style={{ color: "#D4B074" }} />
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(212,176,116,0.8)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>Рекомендации AI</p>
+
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div style={{ background: `${GREEN}10`, border: `1px solid ${GREEN}30`, borderRadius: "18px", padding: "22px 24px" }}>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: GREEN, marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Потенциал роста</p>
+                    <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "44px", color: GREEN, lineHeight: 1, marginBottom: "6px" }}>+18%</p>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B }}>конверсии в сделку</p>
                   </div>
-                  <div className="space-y-3 mt-3">
+                  <div style={{ background: `${RED}10`, border: `1px solid ${RED}30`, borderRadius: "18px", padding: "22px 24px" }}>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: RED, marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Теряется сейчас</p>
+                    <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: RED, lineHeight: 1.1, marginBottom: "6px" }}>840 000 ₽</p>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B }}>в месяц, выявлено AI</p>
+                  </div>
+                </div>
+
+                <div style={{ background: `${G}0A`, borderRadius: "18px", padding: "24px 26px", border: `1px solid ${G}28`, marginBottom: "24px" }}>
+                  <div className="flex items-center gap-3 mb-5">
+                    <Icon name="Sparkles" size={16} style={{ color: G }} />
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>Конкретные рекомендации AI</p>
+                  </div>
+                  <div className="space-y-4">
                     {[
-                      { text: "Сократить обсуждение цены в первые 3 минуты", icon: "Clock" },
-                      { text: "Усилить фиксацию потребности клиента", icon: "Target" },
-                      { text: "Улучшить обработку возражений по скрипту", icon: "ShieldCheck" },
+                      { text: "Сократить обсуждение цены в первые 3 минуты разговора", icon: "Clock", color: G },
+                      { text: "Усилить фиксацию потребности — задавать вопросы до КП", icon: "Target", color: G },
+                      { text: "Проработать скрипт обработки возражений по 5 точкам", icon: "ShieldCheck", color: G },
                     ].map((r) => (
                       <div key={r.text} className="flex items-start gap-3">
-                        <div style={{ width: 28, height: 28, borderRadius: "8px", background: "rgba(212,176,116,0.1)", border: "1px solid rgba(212,176,116,0.18)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                          <Icon name={r.icon} size={13} style={{ color: "#D4B074" }} />
+                        <div style={{ width: 32, height: 32, borderRadius: "10px", background: `${r.color}12`, border: `1px solid ${r.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
+                          <Icon name={r.icon} size={14} style={{ color: r.color }} />
                         </div>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.65)", lineHeight: 1.6, paddingTop: "4px" }}>{r.text}</span>
+                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, lineHeight: 1.65, paddingTop: "5px" }}>{r.text}</p>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div style={{ borderTop: "1px solid rgba(251,246,236,0.07)", paddingTop: "20px", display: "flex", alignItems: "center", gap: "12px" }}>
-                  <Icon name="TrendingUp" size={16} style={{ color: "#22c864", flexShrink: 0 }} />
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.4)", lineHeight: 1.6 }}>
-                    Клиенты SalesFlow увеличивают выручку в среднем на <span style={{ color: "rgba(251,246,236,0.75)", fontWeight: 500 }}>15–30%</span> в течение первых двух месяцев.
+
+                <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "18px 22px", background: `${GREEN}0C`, borderRadius: "14px", border: `1px solid ${GREEN}28` }}>
+                  <Icon name="TrendingUp" size={20} style={{ color: GREEN, flexShrink: 0 }} />
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: GREEN, lineHeight: 1.6, fontWeight: 500 }}>
+                    Клиенты SalesFlow увеличивают выручку на <strong>15–30%</strong> в первые два месяца работы.
                   </p>
                 </div>
               </div>
-              <div className="hidden lg:flex w-[4%] justify-center">
-                <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#D4B074", boxShadow: "0 0 0 5px rgba(212,176,116,0.1), 0 0 24px rgba(212,176,116,0.35)" }} />
-              </div>
+              {dot()}
               <div className="hidden lg:block w-[48%]" />
             </div>
 
