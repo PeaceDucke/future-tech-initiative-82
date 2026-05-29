@@ -207,16 +207,16 @@ function RadarScanner() {
   // Data points around radar (polar coordinates)
   const points = [
     { angle: 18, radius: 28, importance: 0.6 },
-    { angle: 52, radius: 38, importance: 1.0 },
+    { angle: 52, radius: 38, importance: 1.0, danger: true },
     { angle: 78, radius: 22, importance: 0.5 },
     { angle: 112, radius: 34, importance: 0.85 },
     { angle: 145, radius: 40, importance: 0.7 },
     { angle: 178, radius: 26, importance: 1.0 },
     { angle: 210, radius: 36, importance: 0.55 },
-    { angle: 238, radius: 30, importance: 0.65 },
+    { angle: 238, radius: 30, importance: 0.65, danger: true },
     { angle: 268, radius: 42, importance: 0.95 },
     { angle: 295, radius: 24, importance: 0.5 },
-    { angle: 325, radius: 38, importance: 0.8 },
+    { angle: 325, radius: 38, importance: 0.8, danger: true },
     { angle: 350, radius: 32, importance: 0.6 },
   ];
 
@@ -448,8 +448,9 @@ function RadarScanner() {
           const rad = (p.angle * Math.PI) / 180;
           const x = 50 + Math.cos(rad) * p.radius;
           const y = 50 + Math.sin(rad) * p.radius;
+          const isDanger = (p as { danger?: boolean }).danger;
           const isHot = p.importance > 0.85;
-          const size = 6 + p.importance * 5;
+          const size = isDanger ? 9 : 6 + p.importance * 5;
           const delay = (p.angle / 360) * 8; // synced with scan rotation
           return (
             <div
@@ -462,10 +463,14 @@ function RadarScanner() {
                 height: `${size}px`,
                 borderRadius: "50%",
                 transform: "translate(-50%, -50%)",
-                background: isHot
+                background: isDanger
+                  ? "radial-gradient(circle, rgba(255,90,90,1) 0%, rgba(255,60,60,0.6) 50%, transparent 90%)"
+                  : isHot
                   ? "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(240,232,218,0.6) 50%, transparent 90%)"
                   : "radial-gradient(circle, rgba(240,232,218,0.95) 0%, rgba(220,210,190,0.4) 60%, transparent 100%)",
-                boxShadow: isHot
+                boxShadow: isDanger
+                  ? "0 0 16px rgba(255,80,80,0.95), 0 0 32px rgba(255,60,60,0.55)"
+                  : isHot
                   ? "0 0 14px rgba(255,255,250,0.95), 0 0 28px rgba(255,255,250,0.5)"
                   : "0 0 8px rgba(240,232,218,0.55)",
                 animation: `rdPointPulse ${4 + (i % 3) * 0.6}s ease-in-out ${delay}s infinite`,
@@ -475,11 +480,12 @@ function RadarScanner() {
           );
         })}
 
-        {/* Ripple waves from hot points */}
-        {points.filter((p) => p.importance > 0.85).map((p, i) => {
+        {/* Ripple waves from danger & hot points */}
+        {points.filter((p) => (p as { danger?: boolean }).danger || p.importance > 0.85).map((p, i) => {
           const rad = (p.angle * Math.PI) / 180;
           const x = 50 + Math.cos(rad) * p.radius;
           const y = 50 + Math.sin(rad) * p.radius;
+          const isDanger = (p as { danger?: boolean }).danger;
           return (
             <div
               key={`rp-${i}`}
@@ -491,7 +497,9 @@ function RadarScanner() {
                 height: "8px",
                 borderRadius: "50%",
                 transform: "translate(-50%, -50%)",
-                border: "1px solid rgba(255,255,250,0.7)",
+                border: isDanger
+                  ? "1px solid rgba(255,80,80,0.7)"
+                  : "1px solid rgba(255,255,250,0.7)",
                 animation: `rdRipple ${4 + i * 0.4}s ease-out ${(p.angle / 360) * 8}s infinite`,
                 pointerEvents: "none",
               }}
