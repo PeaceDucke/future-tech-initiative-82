@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import Spline from "@splinetool/react-spline";
@@ -1604,6 +1604,211 @@ function PipelineSection() {
 
 
 
+/* ─────────────────────────────────────────────
+   Что получает клиент — scroll-reveal section
+───────────────────────────────────────────── */
+function SlideCard({
+  side,
+  image,
+  label,
+  title,
+  desc,
+  items,
+  index,
+}: {
+  side: "left" | "right";
+  image: string;
+  label: string;
+  title: string;
+  desc: string;
+  items: string[];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
+  const x = useTransform(scrollYProgress, [0, 1], [side === "left" ? -120 : 120, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 1], [0, 0.6, 1]);
+
+  const G = "#C8A96A";
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ x, opacity }}
+      className={`flex flex-col lg:flex-row ${side === "right" ? "lg:flex-row-reverse" : ""} items-center gap-10 lg:gap-16`}
+    >
+      {/* Image */}
+      <div style={{ flex: "0 0 auto", width: "100%", maxWidth: "580px" }}>
+        <div style={{
+          borderRadius: "20px",
+          overflow: "hidden",
+          border: "1px solid rgba(255,255,255,0.1)",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07)",
+          position: "relative",
+        }}>
+          <img
+            src={image}
+            alt={title}
+            style={{ width: "100%", display: "block", borderRadius: "20px" }}
+          />
+          <div style={{
+            position: "absolute", inset: 0, borderRadius: "20px",
+            background: "linear-gradient(to bottom, transparent 60%, rgba(21,21,19,0.4) 100%)",
+            pointerEvents: "none",
+          }} />
+        </div>
+      </div>
+
+      {/* Text */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="flex items-center gap-3 mb-5">
+          <div style={{ width: "32px", height: "1px", background: G, opacity: 0.7 }} />
+          <span style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "11px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase" as const,
+            color: G,
+            fontWeight: 600,
+          }}>{label}</span>
+        </div>
+
+        <h3 style={{
+          fontFamily: '"Bodoni Moda", Georgia, serif',
+          fontSize: "clamp(26px, 3vw, 40px)",
+          color: "#F7F2EA",
+          fontWeight: 400,
+          lineHeight: 1.2,
+          marginBottom: "18px",
+          letterSpacing: "0.01em",
+        }}>{title}</h3>
+
+        <p style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: "16px",
+          color: "#B8B2A8",
+          lineHeight: 1.75,
+          marginBottom: "28px",
+        }}>{desc}</p>
+
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "13px" }}>
+          {items.map((item, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <div style={{
+                width: "20px", height: "20px", borderRadius: "50%",
+                background: "rgba(200,169,106,0.12)",
+                border: "1px solid rgba(200,169,106,0.3)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0, marginTop: "2px",
+              }}>
+                <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: G }} />
+              </div>
+              <span style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "15px",
+                color: "#D4CEC5",
+                lineHeight: 1.65,
+              }}>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function ClientValueSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+
+  const G = "#C8A96A";
+
+  const items = [
+    {
+      side: "left" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/dd57f37a-25c8-4e1d-8e59-a89287bcb473.png",
+      label: "Анализ звонков",
+      title: "AI слышит каждый разговор — и разбирает его по косточкам",
+      desc: "Никакого ручного прослушивания. Система в реальном времени анализирует речь, эмоции, ключевые темы и даёт оценку каждому звонку автоматически.",
+      items: [
+        "Транскрипция и анализ 100% звонков без участия руководителя",
+        "Эмоциональный фон разговора и момент разворота клиента",
+        "AI-рекомендация прямо по итогу звонка — что исправить",
+        "Общий балл разговора и сравнение со стандартом команды",
+      ],
+    },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: "#151513",
+        padding: "0 20px 160px",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* top divider */}
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div
+          className="text-center"
+          style={{
+            marginBottom: "100px",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(28px)",
+            transition: "opacity 0.8s ease, transform 0.8s ease",
+          }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+            <span style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase" as const,
+              color: G,
+              fontWeight: 600,
+            }}>Что получает клиент</span>
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          </div>
+          <h2 style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontSize: "clamp(32px, 5vw, 62px)",
+            color: "#F7F2EA",
+            fontWeight: 400,
+            lineHeight: 1.1,
+            marginBottom: "22px",
+            letterSpacing: "0.01em",
+          }}>
+            Не просто отчёт.<br />Полная система контроля продаж.
+          </h2>
+          <p style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "17px",
+            color: "#9A9490",
+            maxWidth: "500px",
+            margin: "0 auto",
+            lineHeight: 1.75,
+          }}>
+            SalesFlow даёт руководителю полное видение того,<br />что происходит в каждом разговоре.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "120px" }}>
+          {items.map((item, i) => (
+            <SlideCard key={i} index={i} {...item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   // По умолчанию — оригинальные оттенки дашборда
@@ -2864,6 +3069,9 @@ AI определяет:
 
         {/* ═══ SPLINE FEATURE ═══ */}
         <SplineFeatureSection />
+
+        {/* ═══ CLIENT VALUE ═══ */}
+        <ClientValueSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
