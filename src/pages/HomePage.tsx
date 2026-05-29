@@ -1721,7 +1721,7 @@ function ClientValueSection() {
     },
     {
       side: "right" as const,
-      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/8192daf4-00f5-444e-bc80-2ef04815fb9b.png",
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c8933f12-4fab-4a30-a421-f0fab1be3c5e.png",
       label: "Экономия времени отдела контроля качества",
     },
   ];
