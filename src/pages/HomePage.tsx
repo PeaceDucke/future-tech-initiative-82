@@ -1719,6 +1719,11 @@ function ClientValueSection() {
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/b61dd88e-b645-4a88-8f0e-3055e0be4387.png",
       label: "Точки роста конверсии",
     },
+    {
+      side: "right" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/8192daf4-00f5-444e-bc80-2ef04815fb9b.png",
+      label: "Экономия времени отдела контроля качества",
+    },
   ];
 
   return (
