@@ -1255,19 +1255,32 @@ function SplineFeatureSection() {
                 opacity: inView ? 1 : 0,
                 transition: "opacity 1s ease 0.2s",
               }}>
-                <Spline
-                  scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
-                  style={{ width: "100%", height: "100%" }}
-                />
+                {/* Расширенная зона захвата курсора — контейнер шире визуального робота */}
+                <div style={{
+                  position: "absolute",
+                  top: "-80px",
+                  left: "-140px",
+                  right: "-140px",
+                  bottom: "-80px",
+                  zIndex: 1,
+                }}>
+                  <Spline
+                    scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
+                {/* Fade edges поверх расширенной зоны */}
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(to right, #151513 0%, transparent 18%, transparent 82%, #151513 100%)",
+                  background: "linear-gradient(to right, #151513 0%, transparent 22%, transparent 78%, #151513 100%)",
                   pointerEvents: "none",
+                  zIndex: 2,
                 }} />
                 <div style={{
                   position: "absolute", inset: 0,
-                  background: "linear-gradient(to bottom, #151513 0%, transparent 12%, transparent 80%, #151513 100%)",
+                  background: "linear-gradient(to bottom, #151513 0%, transparent 14%, transparent 78%, #151513 100%)",
                   pointerEvents: "none",
+                  zIndex: 2,
                 }} />
               </div>
             </div>
