@@ -1633,7 +1633,7 @@ function SlideCard({
         initial={{ x: side === "left" ? -160 : 160, opacity: 0 }}
         animate={inView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-        style={{ width: "86%", maxWidth: "1080px", marginLeft: "-3%" }}
+        style={{ width: "86%", maxWidth: "1080px", marginLeft: "-8%" }}
       >
         <div style={{
           borderRadius: "20px",
@@ -1645,7 +1645,7 @@ function SlideCard({
           <img
             src={image}
             alt={label}
-            style={{ width: "100%", display: "block" }}
+            style={{ width: "100%", display: "block", height: "auto", maxHeight: "520px", objectFit: "cover", objectPosition: "center" }}
           />
           <div style={{
             position: "absolute", inset: 0,
