@@ -1709,6 +1709,11 @@ function ClientValueSection() {
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7e97e2f6-6a87-49b7-8804-933d1ee88305.png",
       label: "Оценка качества обработки заявок",
     },
+    {
+      side: "right" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/44a9430a-21d0-4bc4-98a4-087ab5dc73aa.png",
+      label: "Контроль РОПа",
+    },
   ];
 
   return (
