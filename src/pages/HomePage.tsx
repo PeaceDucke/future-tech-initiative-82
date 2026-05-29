@@ -1218,14 +1218,54 @@ function SplineFeatureSection() {
         </div>
 
         {/* ── Main composition: cards + robot ── */}
-        <div style={{ position: "relative", marginTop: "60px" }}>
+        {/* Spline canvas — absolute на всю зону, карточки поверх */}
+        <div style={{ position: "relative", marginTop: "60px", minHeight: "680px" }}>
 
-          {/* Desktop layout */}
+          {/* Spline на весь контейнер — canvas покрывает всю интерактивную область */}
+          <div className="hidden lg:block" style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            opacity: inView ? 1 : 0,
+            transition: "opacity 1s ease 0.2s",
+            pointerEvents: "auto",
+          }}>
+            {/* Ambient glow */}
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "radial-gradient(ellipse at 50% 50%, rgba(200,169,106,0.07) 0%, transparent 55%)",
+              pointerEvents: "none",
+              zIndex: 1,
+            }} />
+            <Spline
+              scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+              style={{ width: "100%", height: "100%" }}
+            />
+            {/* Fade edges — скрывают края canvas, не мешают событиям */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to right, #151513 0%, transparent 20%, transparent 80%, #151513 100%)",
+              pointerEvents: "none",
+              zIndex: 2,
+            }} />
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to bottom, #151513 0%, transparent 12%, transparent 82%, #151513 100%)",
+              pointerEvents: "none",
+              zIndex: 2,
+            }} />
+          </div>
+
+          {/* Desktop layout — карточки поверх Spline canvas */}
           <div className="hidden lg:grid" style={{
             gridTemplateColumns: "280px 1fr 280px",
-            gridTemplateRows: "auto auto",
+            gridTemplateRows: "auto",
             gap: "20px",
             alignItems: "center",
+            position: "relative",
+            zIndex: 3,
+            minHeight: "580px",
           }}>
             {/* Left column */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -1233,57 +1273,8 @@ function SplineFeatureSection() {
               <Card card={cards[1]} idx={1} />
             </div>
 
-            {/* Center: robot */}
-            <div style={{
-              position: "relative",
-              height: "580px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              {/* Ambient glow behind robot */}
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                background: "radial-gradient(ellipse at 50% 55%, rgba(200,169,106,0.07) 0%, transparent 60%)",
-                pointerEvents: "none",
-              }} />
-              <div style={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                opacity: inView ? 1 : 0,
-                transition: "opacity 1s ease 0.2s",
-              }}>
-                {/* Расширенная зона захвата курсора — контейнер шире визуального робота */}
-                <div style={{
-                  position: "absolute",
-                  top: "-80px",
-                  left: "-140px",
-                  right: "-140px",
-                  bottom: "-80px",
-                  zIndex: 1,
-                }}>
-                  <Spline
-                    scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </div>
-                {/* Fade edges поверх расширенной зоны */}
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(to right, #151513 0%, transparent 22%, transparent 78%, #151513 100%)",
-                  pointerEvents: "none",
-                  zIndex: 2,
-                }} />
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(to bottom, #151513 0%, transparent 14%, transparent 78%, #151513 100%)",
-                  pointerEvents: "none",
-                  zIndex: 2,
-                }} />
-              </div>
-            </div>
+            {/* Center: пустое пространство под робота */}
+            <div style={{ height: "580px" }} />
 
             {/* Right column */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -1293,7 +1284,7 @@ function SplineFeatureSection() {
           </div>
 
           {/* Bottom center card */}
-          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 2 }}>
+          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 3 }}>
             <div style={{ width: "360px" }}>
               <Card card={cards[4]} idx={4} />
             </div>
@@ -1301,7 +1292,6 @@ function SplineFeatureSection() {
 
           {/* Mobile layout */}
           <div className="flex lg:hidden flex-col gap-4" style={{ marginTop: "40px" }}>
-            {/* Robot small on mobile */}
             <div style={{ height: "300px", position: "relative", opacity: inView ? 1 : 0, transition: "opacity 1s ease" }}>
               <Spline
                 scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
