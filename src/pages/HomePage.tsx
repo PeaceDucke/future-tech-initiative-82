@@ -1003,6 +1003,173 @@ function PainSection() {
   );
 }
 
+// ─── Spline Feature Section ───────────────────────────────────────────────────
+function SplineFeatureSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: "#151513",
+        padding: "0 20px 140px",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* Subtle top separator */}
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(212,176,116,0.15) 30%, rgba(212,176,116,0.15) 70%, transparent)" }} />
+
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div
+          className="text-center"
+          style={{
+            paddingTop: "100px",
+            paddingBottom: "0",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(28px)",
+            transition: "opacity 0.7s ease, transform 0.7s ease",
+          }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
+            <span style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "11px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase" as const,
+              color: "#D4B074",
+              fontWeight: 600,
+            }}>Платформа SalesFlow</span>
+            <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
+          </div>
+          <h2 style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontSize: "clamp(32px, 5vw, 60px)",
+            color: "#FBF6EC",
+            fontWeight: 400,
+            lineHeight: 1.1,
+            marginBottom: "22px",
+          }}>
+            Единая система контроля<br />качества продаж
+          </h2>
+          <p style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "17px",
+            color: "#F5EDD8",
+            maxWidth: "480px",
+            margin: "0 auto",
+            lineHeight: 1.75,
+            opacity: 0.7,
+          }}>
+            Все данные, аналитика и рекомендации —<br />в одном интерфейсе.
+          </p>
+        </div>
+
+        {/* Spline 3D — центр */}
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "clamp(480px, 70vw, 800px)",
+            marginTop: "-40px",
+            opacity: inView ? 1 : 0,
+            transition: "opacity 1.2s ease 0.3s",
+          }}
+        >
+          <Spline
+            scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+            style={{ width: "100%", height: "100%" }}
+          />
+          {/* Fade edges */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to right, #151513 0%, transparent 12%, transparent 88%, #151513 100%)",
+            pointerEvents: "none",
+          }} />
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, #151513 0%, transparent 15%, transparent 80%, #151513 100%)",
+            pointerEvents: "none",
+          }} />
+        </div>
+
+        {/* 3 колонки фич под анимацией */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          style={{
+            marginTop: "-20px",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(32px)",
+            transition: "opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s",
+          }}
+        >
+          {[
+            {
+              icon: "Mic",
+              title: "Автоматическая транскрипция",
+              desc: "Каждый звонок — в текст. AI читает диалог и выделяет ключевые моменты.",
+            },
+            {
+              icon: "BrainCircuit",
+              title: "Глубокий AI-анализ",
+              desc: "Система понимает контекст, тональность и структуру каждого разговора.",
+            },
+            {
+              icon: "BarChart3",
+              title: "Готовые отчёты",
+              desc: "Еженедельные и ежедневные отчёты по каждому менеджеру и команде.",
+            },
+          ].map((f, i) => (
+            <div
+              key={f.title}
+              style={{
+                padding: "32px 28px",
+                borderRadius: "20px",
+                border: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(255,255,255,0.025)",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(20px)",
+                transition: `opacity 0.6s ease ${0.9 + i * 0.15}s, transform 0.6s ease ${0.9 + i * 0.15}s`,
+              }}
+            >
+              <div style={{
+                width: 44, height: 44,
+                borderRadius: "12px",
+                background: "rgba(212,176,116,0.1)",
+                border: "1px solid rgba(212,176,116,0.2)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                marginBottom: "18px",
+              }}>
+                <Icon name={f.icon} size={20} style={{ color: "#D4B074" }} />
+              </div>
+              <p style={{
+                fontFamily: '"Bodoni Moda", Georgia, serif',
+                fontSize: "18px",
+                color: "#FBF6EC",
+                fontWeight: 400,
+                marginBottom: "10px",
+                lineHeight: 1.3,
+              }}>{f.title}</p>
+              <p style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "14px",
+                color: "#F5EDD8",
+                lineHeight: 1.7,
+                opacity: 0.65,
+              }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
   // Цветовая система
@@ -2512,6 +2679,9 @@ AI определяет:
 
         {/* ═══ AI PIPELINE ═══ */}
         <PipelineSection />
+
+        {/* ═══ SPLINE FEATURE ═══ */}
+        <SplineFeatureSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
