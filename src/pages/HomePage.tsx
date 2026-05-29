@@ -1704,6 +1704,11 @@ function ClientValueSection() {
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/79fda0af-022a-4830-9cd3-e4de940c3576.png",
       label: "Выявление слабых мест",
     },
+    {
+      side: "left" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7e97e2f6-6a87-49b7-8804-933d1ee88305.png",
+      label: "Оценка качества обработки заявок",
+    },
   ];
 
   return (
