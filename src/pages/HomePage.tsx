@@ -1706,7 +1706,7 @@ function ClientValueSection() {
     },
     {
       side: "left" as const,
-      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7e97e2f6-6a87-49b7-8804-933d1ee88305.png",
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/29a644ad-f298-4373-a9b3-60b82e6b9338.png",
       label: "Оценка качества обработки заявок",
     },
     {
