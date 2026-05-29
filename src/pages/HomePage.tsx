@@ -1701,7 +1701,7 @@ function ClientValueSection() {
     },
     {
       side: "right" as const,
-      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/79fda0af-022a-4830-9cd3-e4de940c3576.png",
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/3d94dcab-8d6f-4b27-972c-e35480430c78.png",
       label: "Выявление слабых мест",
     },
     {
