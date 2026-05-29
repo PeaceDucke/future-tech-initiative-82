@@ -1714,6 +1714,11 @@ function ClientValueSection() {
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/44a9430a-21d0-4bc4-98a4-087ab5dc73aa.png",
       label: "Контроль РОПа",
     },
+    {
+      side: "left" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/b61dd88e-b645-4a88-8f0e-3055e0be4387.png",
+      label: "Точки роста конверсии",
+    },
   ];
 
   return (
