@@ -1097,8 +1097,8 @@ function SplineFeatureSection() {
         style={{
           background: isGold
             ? active
-              ? "linear-gradient(145deg, #1e1b14 0%, #141208 60%, #100f08 100%)"
-              : "linear-gradient(145deg, #1a1710 0%, #111009 60%, #0e0d07 100%)"
+              ? "linear-gradient(145deg, #F5EFE2 0%, #EDE4D0 60%, #E8DEC8 100%)"
+              : "linear-gradient(145deg, #F2EBD9 0%, #EAE0CC 60%, #E5D9C2 100%)"
             : active
               ? "linear-gradient(145deg, #1c1c1e 0%, #111110 60%, #0e0e0d 100%)"
               : "linear-gradient(145deg, #181818 0%, #0f0f0e 60%, #0c0c0b 100%)",
@@ -1152,7 +1152,7 @@ function SplineFeatureSection() {
         <p style={{
           fontFamily: '"Bodoni Moda", Georgia, serif',
           fontSize: isGold ? "20px" : "18px",
-          color: "#F5F0E8",
+          color: isGold ? "#1A1610" : "#F5F0E8",
           fontWeight: 400,
           lineHeight: 1.25,
           marginBottom: "13px",
@@ -1163,7 +1163,7 @@ function SplineFeatureSection() {
         <p style={{
           fontFamily: "Inter, sans-serif",
           fontSize: isGold ? "14.5px" : "14px",
-          color: "#CCCAC4",
+          color: isGold ? "#3D3628" : "#CCCAC4",
           lineHeight: 1.72,
           marginBottom: "20px",
           fontWeight: 400,
@@ -1192,7 +1192,7 @@ function SplineFeatureSection() {
           <span style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "12.5px",
-            color: "#8a8680",
+            color: isGold ? "#7A6E5A" : "#8a8680",
             letterSpacing: "0.03em",
           }}>{card.metric}</span>
           <span style={{
@@ -1301,7 +1301,7 @@ function SplineFeatureSection() {
           {/* pointer-events: none на всех обёртках — Spline видит мышь везде */}
           {/* pointer-events: auto только на самих карточках */}
           <div className="hidden lg:grid" style={{
-            gridTemplateColumns: "320px 1fr 320px",
+            gridTemplateColumns: "360px 1fr 360px",
             gridTemplateRows: "auto",
             gap: "20px",
             alignItems: "center",
@@ -1328,7 +1328,7 @@ function SplineFeatureSection() {
 
           {/* Bottom center card */}
           <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
-            <div style={{ width: "420px", pointerEvents: "none" }}>
+            <div style={{ width: "460px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
           </div>
