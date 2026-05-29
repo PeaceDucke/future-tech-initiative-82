@@ -1299,6 +1299,8 @@ function SplineFeatureSection() {
             zIndex: 3,
             minHeight: "580px",
             pointerEvents: "none",
+            marginLeft: "-60px",
+            marginRight: "-60px",
           }}>
             {/* Left column */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px", pointerEvents: "none" }}>
@@ -1317,7 +1319,7 @@ function SplineFeatureSection() {
           </div>
 
           {/* Bottom center card */}
-          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
+          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "24px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
             <div style={{ width: "540px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
