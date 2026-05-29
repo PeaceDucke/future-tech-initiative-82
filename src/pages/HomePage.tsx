@@ -208,16 +208,17 @@ function GrowthChart() {
   const inView = useInView(wrapRef, { once: true, margin: "-15% 0px" });
 
   // SVG viewBox dimensions
-  const W = 600;
+  const W = 760;
   const H = 560;
   const padX = 40;
   const padTop = 60;
   const padBottom = 60;
 
-  // Хаотичные, но растущие приращения (32 перелома)
+  // Хаотичные, но растущие приращения (42 перелома) — увеличенные перепады
   const deltas = [
-    8, -3, 12, 5, -4, 9, 15, -6, 7, 4, -2, 11, 6, -5, 13, 8,
-    -3, 10, 5, 14, -7, 6, 9, -4, 12, 7, -3, 10, 6, -5, 11, 8,
+    14, -7, 20, 9, -10, 16, 24, -12, 13, 8, -6, 19, 11, -11, 22, 14,
+    -8, 18, 10, 25, -13, 12, 17, -9, 21, 13, -7, 18, 11, -12, 20, 15,
+    -9, 23, 12, -8, 17, 10, -11, 19, 14, 9,
   ];
 
   // Строим значения, начиная с 0
@@ -240,12 +241,6 @@ function GrowthChart() {
 
   // Сглаженная (но с острыми углами) ломаная линия
   const linePath = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
-
-  // Площадь под графиком
-  const areaPath =
-    `M ${pts[0].x.toFixed(1)} ${(padTop + innerH).toFixed(1)} ` +
-    pts.map((p) => `L ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ") +
-    ` L ${pts[n - 1].x.toFixed(1)} ${(padTop + innerH).toFixed(1)} Z`;
 
   // Длина линии для анимации рисования
   const pathLen = pts.reduce((acc, p, i) => {
@@ -273,15 +268,10 @@ function GrowthChart() {
     >
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        style={{ width: "112%", height: "100%", overflow: "visible" }}
+        style={{ width: "138%", height: "100%", overflow: "visible", transform: "translateX(-12%)" }}
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
-          <linearGradient id="gcArea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(245,237,216,0.22)" />
-            <stop offset="55%" stopColor="rgba(212,176,116,0.07)" />
-            <stop offset="100%" stopColor="rgba(245,237,216,0)" />
-          </linearGradient>
           <linearGradient id="gcLine" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#F5EDD8" />
             <stop offset="55%" stopColor="#FBF6EC" />
@@ -321,16 +311,6 @@ function GrowthChart() {
           y2={padTop + innerH}
           stroke="rgba(245,237,216,0.18)"
           strokeWidth="1"
-        />
-
-        {/* Площадь */}
-        <path
-          d={areaPath}
-          fill="url(#gcArea)"
-          style={{
-            opacity: inView ? 1 : 0,
-            transition: `opacity 1s ease ${drawDur * 0.5}s`,
-          }}
         />
 
         {/* Линия графика */}
