@@ -209,15 +209,15 @@ function GrowthChart() {
 
   // SVG viewBox dimensions
   const W = 760;
+  const H = 560;
   const padX = 40;
   const padTop = 60;
   const padBottom = 60;
 
-  // Хаотичные, но растущие приращения (42 перелома) — увеличенные перепады x2
+  // Хаотичные, но растущие приращения (21 перелом) — крупные перепады
   const deltas = [
-    28, -14, 40, 18, -20, 32, 48, -24, 26, 16, -12, 38, 22, -22, 44, 28,
-    -16, 36, 20, 50, -26, 24, 34, -18, 42, 26, -14, 36, 22, -24, 40, 30,
-    -18, 46, 24, -16, 34, 20, -22, 38, 28, 18,
+    14, -7, 20, 9, -10, 16, 24, -12, 13, 8, -6, 19,
+    11, -11, 22, 14, -8, 18, 10, 25, -13,
   ];
 
   // Строим значения, начиная с 0
@@ -228,13 +228,9 @@ function GrowthChart() {
   const maxV = Math.max(...values);
   const range = maxV - minV || 1;
 
-  // Фиксированный вертикальный масштаб (пикселей на единицу значения)
-  const yScale = 3.0;
-  const innerH = range * yScale;
-  const H = innerH + padTop + padBottom;
-
   const n = values.length;
   const innerW = W - padX * 2;
+  const innerH = H - padTop - padBottom;
 
   const pts = values.map((v, i) => {
     const x = padX + (innerW * i) / (n - 1);
