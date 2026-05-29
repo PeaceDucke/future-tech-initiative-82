@@ -202,6 +202,232 @@ function PainCard({
   );
 }
 
+// ─── Growth Chart Animation ──────────────────────────────────────────────────
+function GrowthChart() {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrapRef, { once: true, margin: "-15% 0px" });
+
+  // SVG viewBox dimensions
+  const W = 600;
+  const H = 560;
+  const padX = 40;
+  const padTop = 60;
+  const padBottom = 60;
+
+  // Хаотичные, но растущие приращения (32 перелома)
+  const deltas = [
+    8, -3, 12, 5, -4, 9, 15, -6, 7, 4, -2, 11, 6, -5, 13, 8,
+    -3, 10, 5, 14, -7, 6, 9, -4, 12, 7, -3, 10, 6, -5, 11, 8,
+  ];
+
+  // Строим значения, начиная с 0
+  const values: number[] = [0];
+  deltas.forEach((d) => values.push(values[values.length - 1] + d));
+
+  const minV = Math.min(...values);
+  const maxV = Math.max(...values);
+  const range = maxV - minV || 1;
+
+  const n = values.length;
+  const innerW = W - padX * 2;
+  const innerH = H - padTop - padBottom;
+
+  const pts = values.map((v, i) => {
+    const x = padX + (innerW * i) / (n - 1);
+    const y = padTop + innerH - ((v - minV) / range) * innerH;
+    return { x, y, v };
+  });
+
+  // Сглаженная (но с острыми углами) ломаная линия
+  const linePath = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
+
+  // Площадь под графиком
+  const areaPath =
+    `M ${pts[0].x.toFixed(1)} ${(padTop + innerH).toFixed(1)} ` +
+    pts.map((p) => `L ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ") +
+    ` L ${pts[n - 1].x.toFixed(1)} ${(padTop + innerH).toFixed(1)} Z`;
+
+  // Длина линии для анимации рисования
+  const pathLen = pts.reduce((acc, p, i) => {
+    if (i === 0) return 0;
+    const dx = p.x - pts[i - 1].x;
+    const dy = p.y - pts[i - 1].y;
+    return acc + Math.sqrt(dx * dx + dy * dy);
+  }, 0);
+
+  const drawDur = 3.2; // секунд на отрисовку линии
+
+  const last = pts[n - 1];
+
+  return (
+    <div
+      ref={wrapRef}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        style={{ width: "112%", height: "100%", overflow: "visible" }}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          <linearGradient id="gcArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(245,237,216,0.22)" />
+            <stop offset="55%" stopColor="rgba(212,176,116,0.07)" />
+            <stop offset="100%" stopColor="rgba(245,237,216,0)" />
+          </linearGradient>
+          <linearGradient id="gcLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#F5EDD8" />
+            <stop offset="55%" stopColor="#FBF6EC" />
+            <stop offset="100%" stopColor="#D4B074" />
+          </linearGradient>
+          <filter id="gcGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Горизонтальные направляющие */}
+        {[0, 0.25, 0.5, 0.75, 1].map((g, i) => {
+          const y = padTop + innerH * g;
+          return (
+            <line
+              key={`grid-${i}`}
+              x1={padX}
+              y1={y}
+              x2={W - padX}
+              y2={y}
+              stroke="rgba(245,237,216,0.07)"
+              strokeWidth="1"
+              strokeDasharray="2 6"
+            />
+          );
+        })}
+
+        {/* Базовая ось */}
+        <line
+          x1={padX}
+          y1={padTop + innerH}
+          x2={W - padX}
+          y2={padTop + innerH}
+          stroke="rgba(245,237,216,0.18)"
+          strokeWidth="1"
+        />
+
+        {/* Площадь */}
+        <path
+          d={areaPath}
+          fill="url(#gcArea)"
+          style={{
+            opacity: inView ? 1 : 0,
+            transition: `opacity 1s ease ${drawDur * 0.5}s`,
+          }}
+        />
+
+        {/* Линия графика */}
+        <path
+          d={linePath}
+          fill="none"
+          stroke="url(#gcLine)"
+          strokeWidth="2.6"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          filter="url(#gcGlow)"
+          style={{
+            strokeDasharray: pathLen,
+            strokeDashoffset: inView ? 0 : pathLen,
+            transition: `stroke-dashoffset ${drawDur}s cubic-bezier(0.4, 0, 0.2, 1)`,
+          }}
+        />
+
+        {/* Точки перелома */}
+        {pts.map((p, i) => {
+          const appear = (i / (n - 1)) * drawDur;
+          const isPeak = i === n - 1;
+          return (
+            <circle
+              key={`dot-${i}`}
+              cx={p.x}
+              cy={p.y}
+              r={isPeak ? 4.5 : 2.2}
+              fill={isPeak ? "#FBF6EC" : "#F5EDD8"}
+              style={{
+                opacity: inView ? (isPeak ? 1 : 0.55) : 0,
+                transform: inView ? "scale(1)" : "scale(0)",
+                transformOrigin: `${p.x}px ${p.y}px`,
+                transition: `opacity 0.4s ease ${appear}s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1) ${appear}s`,
+              }}
+            />
+          );
+        })}
+
+        {/* Пульсирующий ореол на финальной точке */}
+        <circle
+          cx={last.x}
+          cy={last.y}
+          r="4.5"
+          fill="none"
+          stroke="#D4B074"
+          strokeWidth="1.5"
+          style={{
+            opacity: inView ? 1 : 0,
+            transformOrigin: `${last.x}px ${last.y}px`,
+            animation: inView ? `gcPulse 2.4s ease-out ${drawDur}s infinite` : "none",
+          }}
+        />
+
+        {/* Итоговая метка роста */}
+        <g
+          style={{
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(8px)",
+            transition: `opacity 0.6s ease ${drawDur + 0.2}s, transform 0.6s ease ${drawDur + 0.2}s`,
+          }}
+        >
+          <text
+            x={last.x}
+            y={last.y - 22}
+            textAnchor="middle"
+            fontFamily='"Bodoni Moda", Georgia, serif'
+            fontSize="30"
+            fill="#FBF6EC"
+          >
+            +{maxV}%
+          </text>
+          <text
+            x={last.x}
+            y={last.y - 4}
+            textAnchor="middle"
+            fontFamily="Inter, sans-serif"
+            fontSize="11"
+            letterSpacing="0.16em"
+            fill="rgba(245,237,216,0.5)"
+          >
+            РОСТ ВЫРУЧКИ
+          </text>
+        </g>
+      </svg>
+
+      <style>{`
+        @keyframes gcPulse {
+          0%   { r: 4.5; opacity: 0.9; }
+          70%  { r: 26;  opacity: 0; }
+          100% { r: 26;  opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // ─── AI Radar Scanner Animation ──────────────────────────────────────────────
 function RadarScanner() {
   // Data points around radar (polar coordinates)
@@ -1037,10 +1263,7 @@ function PipelineSection() {
               </div>
               {dot()}
               <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
-                <Spline
-                  scene="https://prod.spline.design/4CtVGf8iOdaykwIM/scene.splinecode"
-                  style={{ width: "160%", height: "160%", position: "absolute", top: "-30%", left: "-30%" }}
-                />
+                <GrowthChart />
               </div>
             </div>
 
