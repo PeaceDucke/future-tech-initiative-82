@@ -1633,7 +1633,7 @@ function SlideCard({
         initial={{ x: side === "left" ? -160 : 160, opacity: 0 }}
         animate={inView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-        style={{ width: "103%", maxWidth: "1296px", marginLeft: "-8%" }}
+        style={{ width: "103%", maxWidth: "1296px", marginLeft: side === "left" ? "-8%" : undefined, marginRight: side === "right" ? "-8%" : undefined }}
       >
         <div style={{
           borderRadius: "20px",
@@ -1688,6 +1688,11 @@ function ClientValueSection() {
       side: "left" as const,
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/124177dc-9a13-400a-bbfa-d5a5ad625808.png",
       label: "Анализ звонков",
+    },
+    {
+      side: "right" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d6a66739-2a0c-41bf-951e-54b47fa9e498.png",
+      label: "Контроль скриптов",
     },
   ];
 
