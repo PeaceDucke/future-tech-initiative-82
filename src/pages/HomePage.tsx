@@ -1073,17 +1073,19 @@ function SplineFeatureSection() {
         onMouseEnter={() => setHovered(idx)}
         onMouseLeave={() => setHovered(null)}
         style={{
-          background: "rgba(30,28,24,0.72)",
-          backdropFilter: "blur(18px)",
-          WebkitBackdropFilter: "blur(18px)",
-          border: `1px solid ${active ? "rgba(200,169,106,0.5)" : "rgba(200,169,106,0.22)"}`,
+          background: active
+            ? "linear-gradient(145deg, #1c1c1e 0%, #111110 60%, #0e0e0d 100%)"
+            : "linear-gradient(145deg, #181818 0%, #0f0f0e 60%, #0c0c0b 100%)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          border: `1px solid ${active ? "rgba(230,225,215,0.45)" : "rgba(210,205,195,0.18)"}`,
           borderRadius: "18px",
-          padding: "22px 24px",
+          padding: "24px 26px",
           width: "100%",
           cursor: "default",
           boxShadow: active
-            ? "0 8px 40px rgba(200,169,106,0.14), 0 2px 16px rgba(0,0,0,0.5)"
-            : "0 4px 24px rgba(0,0,0,0.35)",
+            ? "0 12px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.07)"
+            : "0 4px 28px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
           transform: active ? "translateY(-6px)" : "translateY(0)",
           transition: "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           opacity: inView ? 1 : 0,
@@ -1092,57 +1094,59 @@ function SplineFeatureSection() {
         }}
       >
         {/* Badge */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
           <div style={{
             width: "5px", height: "5px", borderRadius: "50%",
-            background: card.badgeColor,
-            boxShadow: active ? `0 0 8px ${card.badgeColor}` : "none",
-            transition: "box-shadow 0.4s ease",
+            background: active ? "#e8e2d6" : "#a09890",
+            boxShadow: active ? "0 0 8px rgba(232,226,214,0.6)" : "none",
+            transition: "all 0.4s ease",
             flexShrink: 0,
           }} />
           <span style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "9px",
-            letterSpacing: "0.2em",
+            letterSpacing: "0.22em",
             textTransform: "uppercase" as const,
-            color: card.badgeColor,
+            color: active ? "#c8c0b2" : "#8a8278",
             fontWeight: 600,
           }}>{card.badge}</span>
-          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, rgba(200,169,106,0.25), transparent)` }} />
+          <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(200,195,185,0.2), transparent)" }} />
         </div>
 
         {/* Title */}
         <p style={{
           fontFamily: '"Bodoni Moda", Georgia, serif',
-          fontSize: "15px",
-          color: T,
+          fontSize: "17px",
+          color: "#F5F0E8",
           fontWeight: 400,
           lineHeight: 1.3,
-          marginBottom: "10px",
+          marginBottom: "12px",
+          letterSpacing: "0.01em",
         }}>{card.title}</p>
 
         {/* Body */}
         <p style={{
           fontFamily: "Inter, sans-serif",
-          fontSize: "12.5px",
-          color: S,
-          lineHeight: 1.65,
-          marginBottom: "16px",
+          fontSize: "13.5px",
+          color: "#D4CEC5",
+          lineHeight: 1.7,
+          marginBottom: "18px",
+          fontWeight: 400,
         }}>{card.text}</p>
 
         {/* Progress bar */}
-        <div style={{ marginBottom: "12px" }}>
+        <div style={{ marginBottom: "14px" }}>
           <div style={{
             width: "100%",
-            height: "2px",
+            height: "1.5px",
             borderRadius: "2px",
-            background: "rgba(255,255,255,0.06)",
+            background: "rgba(255,255,255,0.08)",
           }}>
             <div style={{
               width: `${card.progress}%`,
               height: "100%",
               borderRadius: "2px",
-              background: `linear-gradient(to right, rgba(200,169,106,0.4), ${G})`,
+              background: "linear-gradient(to right, rgba(200,195,185,0.3), rgba(220,215,205,0.85))",
               transition: "width 1s ease 0.5s",
             }} />
           </div>
@@ -1152,14 +1156,14 @@ function SplineFeatureSection() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "11px",
-            color: S,
-            opacity: 0.7,
+            fontSize: "12px",
+            color: "#9a9490",
+            letterSpacing: "0.03em",
           }}>{card.metric}</span>
           <span style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "11px",
-            color: G,
+            fontSize: "12px",
+            color: "#E8E2D6",
             fontWeight: 600,
             letterSpacing: "0.05em",
           }}>{card.metricVal}</span>
