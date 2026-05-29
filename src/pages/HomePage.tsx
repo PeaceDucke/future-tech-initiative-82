@@ -1254,7 +1254,10 @@ function SplineFeatureSection() {
           {/* Spline на весь контейнер — canvas покрывает всю интерактивную область */}
           <div className="hidden lg:block" style={{
             position: "absolute",
-            inset: 0,
+            top: "-25%",
+            bottom: "-25%",
+            left: "-25%",
+            right: "-25%",
             zIndex: 0,
             opacity: inView ? 1 : 0,
             transition: "opacity 1s ease 0.2s",
