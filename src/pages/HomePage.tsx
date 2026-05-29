@@ -1645,7 +1645,7 @@ function SlideCard({
           <img
             src={image}
             alt={label}
-            style={{ width: "100%", display: "block", height: "auto", maxHeight: "520px", objectFit: "cover", objectPosition: "center" }}
+            style={{ width: "100%", display: "block" }}
           />
           <div style={{
             position: "absolute", inset: 0,
