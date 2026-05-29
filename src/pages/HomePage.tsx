@@ -312,9 +312,9 @@ function RadarScanner() {
       <div
         style={{
           position: "absolute",
-          left: "50%",
+          left: "62%",
           top: "50%",
-          width: "min(110%, 760px)",
+          width: "min(128%, 880px)",
           aspectRatio: "1 / 1",
           transform: "translate(-50%, -50%)",
         }}
