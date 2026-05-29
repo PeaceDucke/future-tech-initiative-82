@@ -1273,7 +1273,7 @@ function SplineFeatureSection() {
             }} />
             <Spline
               scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: "100%", height: "100%", transform: "scale(0.667)", transformOrigin: "center center" }}
             />
             {/* Fade edges — скрывают края canvas, не мешают событиям */}
             <div style={{
