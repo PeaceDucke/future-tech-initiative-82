@@ -1699,6 +1699,11 @@ function ClientValueSection() {
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/cd8b44b5-632c-4c26-b65f-b173f7d6bfd1.png",
       label: "AI-рейтинг менеджеров",
     },
+    {
+      side: "right" as const,
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/79fda0af-022a-4830-9cd3-e4de940c3576.png",
+      label: "Выявление слабых мест",
+    },
   ];
 
   return (
