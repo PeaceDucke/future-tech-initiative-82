@@ -1611,109 +1611,69 @@ function SlideCard({
   side,
   image,
   label,
-  title,
-  desc,
-  items,
-  index,
 }: {
   side: "left" | "right";
   image: string;
   label: string;
-  title: string;
-  desc: string;
-  items: string[];
-  index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
-  const x = useTransform(scrollYProgress, [0, 1], [side === "left" ? -120 : 120, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 1], [0, 0.6, 1]);
+  const inView = useInView(ref, { once: true, margin: "-5% 0px" });
 
   const G = "#C8A96A";
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      style={{ x, opacity }}
-      className={`flex flex-col lg:flex-row ${side === "right" ? "lg:flex-row-reverse" : ""} items-center gap-10 lg:gap-16`}
+      style={{
+        display: "flex",
+        justifyContent: side === "left" ? "flex-start" : "flex-end",
+      }}
     >
-      {/* Image */}
-      <div style={{ flex: "0 0 auto", width: "100%", maxWidth: "580px" }}>
+      <motion.div
+        initial={{ x: side === "left" ? -160 : 160, opacity: 0 }}
+        animate={inView ? { x: 0, opacity: 1 } : {}}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        style={{ width: "72%", maxWidth: "900px" }}
+      >
         <div style={{
           borderRadius: "20px",
           overflow: "hidden",
           border: "1px solid rgba(255,255,255,0.1)",
-          boxShadow: "0 24px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07)",
+          boxShadow: "0 32px 100px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.07)",
           position: "relative",
         }}>
           <img
             src={image}
-            alt={title}
-            style={{ width: "100%", display: "block", borderRadius: "20px" }}
+            alt={label}
+            style={{ width: "100%", display: "block" }}
           />
           <div style={{
-            position: "absolute", inset: 0, borderRadius: "20px",
-            background: "linear-gradient(to bottom, transparent 60%, rgba(21,21,19,0.4) 100%)",
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, transparent 70%, rgba(21,21,19,0.55) 100%)",
             pointerEvents: "none",
           }} />
+          {/* Label */}
+          <div style={{
+            position: "absolute",
+            bottom: "22px",
+            left: "26px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+          }}>
+            <div style={{ width: "24px", height: "1px", background: G }} />
+            <span style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "12px",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase" as const,
+              color: G,
+              fontWeight: 600,
+            }}>{label}</span>
+          </div>
         </div>
-      </div>
-
-      {/* Text */}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="flex items-center gap-3 mb-5">
-          <div style={{ width: "32px", height: "1px", background: G, opacity: 0.7 }} />
-          <span style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase" as const,
-            color: G,
-            fontWeight: 600,
-          }}>{label}</span>
-        </div>
-
-        <h3 style={{
-          fontFamily: '"Bodoni Moda", Georgia, serif',
-          fontSize: "clamp(26px, 3vw, 40px)",
-          color: "#F7F2EA",
-          fontWeight: 400,
-          lineHeight: 1.2,
-          marginBottom: "18px",
-          letterSpacing: "0.01em",
-        }}>{title}</h3>
-
-        <p style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: "16px",
-          color: "#B8B2A8",
-          lineHeight: 1.75,
-          marginBottom: "28px",
-        }}>{desc}</p>
-
-        <div style={{ display: "flex", flexDirection: "column" as const, gap: "13px" }}>
-          {items.map((item, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-              <div style={{
-                width: "20px", height: "20px", borderRadius: "50%",
-                background: "rgba(200,169,106,0.12)",
-                border: "1px solid rgba(200,169,106,0.3)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                flexShrink: 0, marginTop: "2px",
-              }}>
-                <div style={{ width: "5px", height: "5px", borderRadius: "50%", background: G }} />
-              </div>
-              <span style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "15px",
-                color: "#D4CEC5",
-                lineHeight: 1.65,
-              }}>{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -1728,14 +1688,6 @@ function ClientValueSection() {
       side: "left" as const,
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/dd57f37a-25c8-4e1d-8e59-a89287bcb473.png",
       label: "Анализ звонков",
-      title: "AI слышит каждый разговор — и разбирает его по косточкам",
-      desc: "Никакого ручного прослушивания. Система в реальном времени анализирует речь, эмоции, ключевые темы и даёт оценку каждому звонку автоматически.",
-      items: [
-        "Транскрипция и анализ 100% звонков без участия руководителя",
-        "Эмоциональный фон разговора и момент разворота клиента",
-        "AI-рекомендация прямо по итогу звонка — что исправить",
-        "Общий балл разговора и сравнение со стандартом команды",
-      ],
     },
   ];
 
