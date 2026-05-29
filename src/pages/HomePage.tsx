@@ -1007,99 +1007,306 @@ function PainSection() {
 function SplineFeatureSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  const G = "#C8A96A";
+  const T = "#F3EDE3";
+  const S = "#B8AA98";
+
+  const cards = [
+    {
+      badge: "AI Detected",
+      badgeColor: "#C8A96A",
+      title: "Потребность не выявлена",
+      text: "Менеджер начал презентацию до понимания задачи клиента. AI показывает, где разговор ушёл в сторону.",
+      metric: "Риск потери",
+      metricVal: "Высокий",
+      progress: 78,
+      pos: "left-top",
+    },
+    {
+      badge: "Risk",
+      badgeColor: "#B8AA98",
+      title: "Возражение не обработано",
+      text: "Клиент 3 раза сомневался в решении, но менеджер не снял ключевое возражение. Сделка начала остывать.",
+      metric: "Потеря интереса",
+      metricVal: "72%",
+      progress: 72,
+      pos: "left-bottom",
+    },
+    {
+      badge: "AI Detected",
+      badgeColor: "#C8A96A",
+      title: "Клиента перебили 5 раз",
+      text: "AI видит, когда менеджер не даёт клиенту раскрыть потребность. Снижает доверие и мешает закрыть сделку.",
+      metric: "Вовлечённость",
+      metricVal: "Снижена",
+      progress: 38,
+      pos: "right-top",
+    },
+    {
+      badge: "Risk",
+      badgeColor: "#B8AA98",
+      title: "Ценность не объяснена",
+      text: "Разговор перешёл к цене раньше, чем клиент понял выгоду. AI показывает, где усилить аргументацию.",
+      metric: "Вероятность сделки",
+      metricVal: "Ниже нормы",
+      progress: 44,
+      pos: "right-bottom",
+    },
+    {
+      badge: "Recommendation",
+      badgeColor: "#C8A96A",
+      title: "AI Score: 62 / 100",
+      text: "Усилить выявление потребности, обработать возражение, зафиксировать следующий шаг с клиентом.",
+      metric: "Потенциал роста",
+      metricVal: "+18%",
+      progress: 62,
+      pos: "bottom-center",
+    },
+  ];
+
+  const Card = ({ card, idx }: { card: typeof cards[0]; idx: number }) => {
+    const active = hovered === idx;
+    return (
+      <div
+        onMouseEnter={() => setHovered(idx)}
+        onMouseLeave={() => setHovered(null)}
+        style={{
+          background: "rgba(30,28,24,0.72)",
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          border: `1px solid ${active ? "rgba(200,169,106,0.5)" : "rgba(200,169,106,0.22)"}`,
+          borderRadius: "18px",
+          padding: "22px 24px",
+          width: "100%",
+          cursor: "default",
+          boxShadow: active
+            ? "0 8px 40px rgba(200,169,106,0.14), 0 2px 16px rgba(0,0,0,0.5)"
+            : "0 4px 24px rgba(0,0,0,0.35)",
+          transform: active ? "translateY(-6px)" : "translateY(0)",
+          transition: "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          opacity: inView ? 1 : 0,
+          transitionDelay: inView ? `${0.3 + idx * 0.1}s` : "0s",
+        }}
+      >
+        {/* Badge */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+          <div style={{
+            width: "5px", height: "5px", borderRadius: "50%",
+            background: card.badgeColor,
+            boxShadow: active ? `0 0 8px ${card.badgeColor}` : "none",
+            transition: "box-shadow 0.4s ease",
+            flexShrink: 0,
+          }} />
+          <span style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "9px",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase" as const,
+            color: card.badgeColor,
+            fontWeight: 600,
+          }}>{card.badge}</span>
+          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, rgba(200,169,106,0.25), transparent)` }} />
+        </div>
+
+        {/* Title */}
+        <p style={{
+          fontFamily: '"Bodoni Moda", Georgia, serif',
+          fontSize: "15px",
+          color: T,
+          fontWeight: 400,
+          lineHeight: 1.3,
+          marginBottom: "10px",
+        }}>{card.title}</p>
+
+        {/* Body */}
+        <p style={{
+          fontFamily: "Inter, sans-serif",
+          fontSize: "12.5px",
+          color: S,
+          lineHeight: 1.65,
+          marginBottom: "16px",
+        }}>{card.text}</p>
+
+        {/* Progress bar */}
+        <div style={{ marginBottom: "12px" }}>
+          <div style={{
+            width: "100%",
+            height: "2px",
+            borderRadius: "2px",
+            background: "rgba(255,255,255,0.06)",
+          }}>
+            <div style={{
+              width: `${card.progress}%`,
+              height: "100%",
+              borderRadius: "2px",
+              background: `linear-gradient(to right, rgba(200,169,106,0.4), ${G})`,
+              transition: "width 1s ease 0.5s",
+            }} />
+          </div>
+        </div>
+
+        {/* Metric */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "11px",
+            color: S,
+            opacity: 0.7,
+          }}>{card.metric}</span>
+          <span style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "11px",
+            color: G,
+            fontWeight: 600,
+            letterSpacing: "0.05em",
+          }}>{card.metricVal}</span>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section
       ref={ref}
       style={{
         background: "#151513",
-        padding: "0 20px 140px",
+        padding: "0 20px 160px",
         overflow: "hidden",
         position: "relative",
       }}
     >
-      {/* Subtle top separator */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(212,176,116,0.15) 30%, rgba(212,176,116,0.15) 70%, transparent)" }} />
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)" }} />
 
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div
-          className="text-center"
-          style={{
-            paddingTop: "100px",
-            paddingBottom: "0",
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(28px)",
-            transition: "opacity 0.7s ease, transform 0.7s ease",
-          }}
-        >
+        {/* ── Header ── */}
+        <div className="text-center" style={{
+          paddingTop: "100px",
+          paddingBottom: "0",
+          opacity: inView ? 1 : 0,
+          transform: inView ? "translateY(0)" : "translateY(24px)",
+          transition: "opacity 0.7s ease, transform 0.7s ease",
+        }}>
           <div className="flex items-center justify-center gap-3 mb-5">
-            <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
-            <span style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "11px",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase" as const,
-              color: "#D4B074",
-              fontWeight: 600,
-            }}>Платформа SalesFlow</span>
-            <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>
+              AI-аналитика звонков
+            </span>
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
           </div>
           <h2 style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(32px, 5vw, 60px)",
-            color: "#FBF6EC",
+            fontSize: "clamp(30px, 4.5vw, 58px)",
+            color: T,
             fontWeight: 400,
             lineHeight: 1.1,
-            marginBottom: "22px",
+            marginBottom: "20px",
           }}>
-            Единая система контроля<br />качества продаж
+            Что AI видит внутри разговора
           </h2>
           <p style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "17px",
-            color: "#F5EDD8",
-            maxWidth: "480px",
+            fontSize: "16px",
+            color: S,
+            maxWidth: "520px",
             margin: "0 auto",
-            lineHeight: 1.75,
-            opacity: 0.7,
+            lineHeight: 1.8,
           }}>
-            Все данные, аналитика и рекомендации —<br />в одном интерфейсе.
+            SalesFlow находит моменты, где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
           </p>
         </div>
 
-        {/* Spline 3D — центр */}
-        <div
-          style={{
-            position: "relative",
-            width: "60%",
-            maxWidth: "600px",
-            margin: "-20px auto 0",
-            height: "clamp(320px, 40vw, 520px)",
-            opacity: inView ? 1 : 0,
-            transition: "opacity 1.2s ease 0.3s",
-          }}
-        >
-          <Spline
-            scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
-            style={{ width: "100%", height: "100%" }}
-          />
-          {/* Fade edges */}
-          <div style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to right, #151513 0%, transparent 15%, transparent 85%, #151513 100%)",
-            pointerEvents: "none",
-          }} />
-          <div style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to bottom, #151513 0%, transparent 18%, transparent 78%, #151513 100%)",
-            pointerEvents: "none",
-          }} />
-        </div>
+        {/* ── Main composition: cards + robot ── */}
+        <div style={{ position: "relative", marginTop: "60px" }}>
 
+          {/* Desktop layout */}
+          <div className="hidden lg:grid" style={{
+            gridTemplateColumns: "280px 1fr 280px",
+            gridTemplateRows: "auto auto",
+            gap: "20px",
+            alignItems: "center",
+          }}>
+            {/* Left column */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              <Card card={cards[0]} idx={0} />
+              <Card card={cards[1]} idx={1} />
+            </div>
+
+            {/* Center: robot */}
+            <div style={{
+              position: "relative",
+              height: "580px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+              {/* Ambient glow behind robot */}
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background: "radial-gradient(ellipse at 50% 55%, rgba(200,169,106,0.07) 0%, transparent 60%)",
+                pointerEvents: "none",
+              }} />
+              <div style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                opacity: inView ? 1 : 0,
+                transition: "opacity 1s ease 0.2s",
+              }}>
+                <Spline
+                  scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+                  style={{ width: "100%", height: "100%" }}
+                />
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(to right, #151513 0%, transparent 18%, transparent 82%, #151513 100%)",
+                  pointerEvents: "none",
+                }} />
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(to bottom, #151513 0%, transparent 12%, transparent 80%, #151513 100%)",
+                  pointerEvents: "none",
+                }} />
+              </div>
+            </div>
+
+            {/* Right column */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+              <Card card={cards[2]} idx={2} />
+              <Card card={cards[3]} idx={3} />
+            </div>
+          </div>
+
+          {/* Bottom center card */}
+          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 2 }}>
+            <div style={{ width: "360px" }}>
+              <Card card={cards[4]} idx={4} />
+            </div>
+          </div>
+
+          {/* Mobile layout */}
+          <div className="flex lg:hidden flex-col gap-4" style={{ marginTop: "40px" }}>
+            {/* Robot small on mobile */}
+            <div style={{ height: "300px", position: "relative", opacity: inView ? 1 : 0, transition: "opacity 1s ease" }}>
+              <Spline
+                scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+            {cards.map((card, idx) => (
+              <Card key={idx} card={card} idx={idx} />
+            ))}
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        .sfs-card-glow:hover {
+          box-shadow: 0 8px 40px rgba(200,169,106,0.18), 0 2px 16px rgba(0,0,0,0.5);
+        }
+      `}</style>
     </section>
   );
 }
