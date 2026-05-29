@@ -1072,9 +1072,10 @@ function SplineFeatureSection() {
         <div
           style={{
             position: "relative",
-            width: "100%",
-            height: "clamp(480px, 70vw, 800px)",
-            marginTop: "-40px",
+            width: "60%",
+            maxWidth: "600px",
+            margin: "-20px auto 0",
+            height: "clamp(320px, 40vw, 520px)",
             opacity: inView ? 1 : 0,
             transition: "opacity 1.2s ease 0.3s",
           }}
@@ -1087,84 +1088,17 @@ function SplineFeatureSection() {
           <div style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to right, #151513 0%, transparent 12%, transparent 88%, #151513 100%)",
+            background: "linear-gradient(to right, #151513 0%, transparent 15%, transparent 85%, #151513 100%)",
             pointerEvents: "none",
           }} />
           <div style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, #151513 0%, transparent 15%, transparent 80%, #151513 100%)",
+            background: "linear-gradient(to bottom, #151513 0%, transparent 18%, transparent 78%, #151513 100%)",
             pointerEvents: "none",
           }} />
         </div>
 
-        {/* 3 колонки фич под анимацией */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          style={{
-            marginTop: "-20px",
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(32px)",
-            transition: "opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s",
-          }}
-        >
-          {[
-            {
-              icon: "Mic",
-              title: "Автоматическая транскрипция",
-              desc: "Каждый звонок — в текст. AI читает диалог и выделяет ключевые моменты.",
-            },
-            {
-              icon: "BrainCircuit",
-              title: "Глубокий AI-анализ",
-              desc: "Система понимает контекст, тональность и структуру каждого разговора.",
-            },
-            {
-              icon: "BarChart3",
-              title: "Готовые отчёты",
-              desc: "Еженедельные и ежедневные отчёты по каждому менеджеру и команде.",
-            },
-          ].map((f, i) => (
-            <div
-              key={f.title}
-              style={{
-                padding: "32px 28px",
-                borderRadius: "20px",
-                border: "1px solid rgba(255,255,255,0.07)",
-                background: "rgba(255,255,255,0.025)",
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
-                transition: `opacity 0.6s ease ${0.9 + i * 0.15}s, transform 0.6s ease ${0.9 + i * 0.15}s`,
-              }}
-            >
-              <div style={{
-                width: 44, height: 44,
-                borderRadius: "12px",
-                background: "rgba(212,176,116,0.1)",
-                border: "1px solid rgba(212,176,116,0.2)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                marginBottom: "18px",
-              }}>
-                <Icon name={f.icon} size={20} style={{ color: "#D4B074" }} />
-              </div>
-              <p style={{
-                fontFamily: '"Bodoni Moda", Georgia, serif',
-                fontSize: "18px",
-                color: "#FBF6EC",
-                fontWeight: 400,
-                marginBottom: "10px",
-                lineHeight: 1.3,
-              }}>{f.title}</p>
-              <p style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "14px",
-                color: "#F5EDD8",
-                lineHeight: 1.7,
-                opacity: 0.65,
-              }}>{f.desc}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
