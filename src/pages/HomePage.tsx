@@ -1016,121 +1016,156 @@ function SplineFeatureSection() {
   const cards = [
     {
       badge: "AI Detected",
-      badgeColor: "#C8A96A",
       title: "Потребность не выявлена",
       text: "Менеджер начал презентацию до понимания задачи клиента. AI показывает, где разговор ушёл в сторону.",
       metric: "Риск потери",
       metricVal: "Высокий",
       progress: 78,
+      tone: "danger" as const,
       pos: "left-top",
     },
     {
       badge: "Risk",
-      badgeColor: "#B8AA98",
       title: "Возражение не обработано",
       text: "Клиент 3 раза сомневался в решении, но менеджер не снял ключевое возражение. Сделка начала остывать.",
       metric: "Потеря интереса",
       metricVal: "72%",
       progress: 72,
+      tone: "danger" as const,
       pos: "left-bottom",
     },
     {
       badge: "AI Detected",
-      badgeColor: "#C8A96A",
       title: "Клиента перебили 5 раз",
       text: "AI видит, когда менеджер не даёт клиенту раскрыть потребность. Снижает доверие и мешает закрыть сделку.",
       metric: "Вовлечённость",
       metricVal: "Снижена",
       progress: 38,
+      tone: "danger" as const,
       pos: "right-top",
     },
     {
       badge: "Risk",
-      badgeColor: "#B8AA98",
       title: "Ценность не объяснена",
       text: "Разговор перешёл к цене раньше, чем клиент понял выгоду. AI показывает, где усилить аргументацию.",
       metric: "Вероятность сделки",
       metricVal: "Ниже нормы",
       progress: 44,
+      tone: "danger" as const,
       pos: "right-bottom",
     },
     {
       badge: "Recommendation",
-      badgeColor: "#C8A96A",
       title: "AI Score: 62 / 100",
       text: "Усилить выявление потребности, обработать возражение, зафиксировать следующий шаг с клиентом.",
       metric: "Потенциал роста",
       metricVal: "+18%",
       progress: 62,
+      tone: "gold" as const,
       pos: "bottom-center",
     },
   ];
 
   const Card = ({ card, idx }: { card: typeof cards[0]; idx: number }) => {
     const active = hovered === idx;
+    const isGold = card.tone === "gold";
+    const isDanger = card.tone === "danger";
+
+    const accentColor = isGold ? "#C8A96A" : isDanger ? "#D94F4F" : "#6DBF82";
+    const progressColor = isGold
+      ? "linear-gradient(to right, rgba(200,169,106,0.4), #C8A96A)"
+      : isDanger
+      ? "linear-gradient(to right, rgba(217,79,79,0.4), #D94F4F)"
+      : "linear-gradient(to right, rgba(109,191,130,0.4), #6DBF82)";
+
+    const borderColor = isGold
+      ? active ? "rgba(200,169,106,0.7)" : "rgba(200,169,106,0.42)"
+      : active ? "rgba(230,225,215,0.4)" : "rgba(210,205,195,0.15)";
+
+    const shadow = isGold
+      ? active
+        ? "0 16px 56px rgba(200,169,106,0.22), 0 4px 20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(200,169,106,0.12)"
+        : "0 6px 32px rgba(200,169,106,0.1), 0 4px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(200,169,106,0.08)"
+      : active
+        ? "0 12px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.07)"
+        : "0 4px 28px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)";
+
     return (
       <div
         onMouseEnter={() => setHovered(idx)}
         onMouseLeave={() => setHovered(null)}
         style={{
-          background: active
-            ? "linear-gradient(145deg, #1c1c1e 0%, #111110 60%, #0e0e0d 100%)"
-            : "linear-gradient(145deg, #181818 0%, #0f0f0e 60%, #0c0c0b 100%)",
+          background: isGold
+            ? active
+              ? "linear-gradient(145deg, #1e1b14 0%, #141208 60%, #100f08 100%)"
+              : "linear-gradient(145deg, #1a1710 0%, #111009 60%, #0e0d07 100%)"
+            : active
+              ? "linear-gradient(145deg, #1c1c1e 0%, #111110 60%, #0e0e0d 100%)"
+              : "linear-gradient(145deg, #181818 0%, #0f0f0e 60%, #0c0c0b 100%)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
-          border: `1px solid ${active ? "rgba(230,225,215,0.45)" : "rgba(210,205,195,0.18)"}`,
-          borderRadius: "18px",
-          padding: "24px 26px",
+          border: `1px solid ${borderColor}`,
+          borderRadius: "20px",
+          padding: isGold ? "30px 30px" : "26px 28px",
           width: "100%",
           cursor: "default",
-          boxShadow: active
-            ? "0 12px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.07)"
-            : "0 4px 28px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+          boxShadow: shadow,
           transform: active ? "translateY(-6px)" : "translateY(0)",
           transition: "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           opacity: inView ? 1 : 0,
           transitionDelay: inView ? `${0.3 + idx * 0.1}s` : "0s",
           pointerEvents: "auto",
+          position: "relative" as const,
+          overflow: "hidden",
         }}
       >
-        {/* Badge */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+        {/* Gold top shimmer line */}
+        {isGold && (
           <div style={{
-            width: "5px", height: "5px", borderRadius: "50%",
-            background: active ? "#e8e2d6" : "#a09890",
-            boxShadow: active ? "0 0 8px rgba(232,226,214,0.6)" : "none",
+            position: "absolute", top: 0, left: "10%", right: "10%", height: "1px",
+            background: "linear-gradient(to right, transparent, rgba(200,169,106,0.6), transparent)",
+          }} />
+        )}
+
+        {/* Badge */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+          <div style={{
+            width: "6px", height: "6px", borderRadius: "50%",
+            background: accentColor,
+            boxShadow: active ? `0 0 10px ${accentColor}` : "none",
             transition: "all 0.4s ease",
             flexShrink: 0,
           }} />
           <span style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             letterSpacing: "0.22em",
             textTransform: "uppercase" as const,
-            color: active ? "#c8c0b2" : "#8a8278",
+            color: accentColor,
             fontWeight: 600,
+            opacity: 0.9,
           }}>{card.badge}</span>
-          <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(200,195,185,0.2), transparent)" }} />
+          <div style={{ flex: 1, height: "1px", background: `linear-gradient(to right, ${accentColor}30, transparent)` }} />
         </div>
 
         {/* Title */}
         <p style={{
           fontFamily: '"Bodoni Moda", Georgia, serif',
-          fontSize: "17px",
+          fontSize: isGold ? "20px" : "18px",
           color: "#F5F0E8",
           fontWeight: 400,
-          lineHeight: 1.3,
-          marginBottom: "12px",
+          lineHeight: 1.25,
+          marginBottom: "13px",
           letterSpacing: "0.01em",
         }}>{card.title}</p>
 
         {/* Body */}
         <p style={{
           fontFamily: "Inter, sans-serif",
-          fontSize: "13.5px",
-          color: "#D4CEC5",
-          lineHeight: 1.7,
-          marginBottom: "18px",
+          fontSize: isGold ? "14.5px" : "14px",
+          color: "#CCCAC4",
+          lineHeight: 1.72,
+          marginBottom: "20px",
           fontWeight: 400,
         }}>{card.text}</p>
 
@@ -1138,15 +1173,15 @@ function SplineFeatureSection() {
         <div style={{ marginBottom: "14px" }}>
           <div style={{
             width: "100%",
-            height: "1.5px",
+            height: "2px",
             borderRadius: "2px",
-            background: "rgba(255,255,255,0.08)",
+            background: "rgba(255,255,255,0.07)",
           }}>
             <div style={{
               width: `${card.progress}%`,
               height: "100%",
               borderRadius: "2px",
-              background: "linear-gradient(to right, rgba(200,195,185,0.3), rgba(220,215,205,0.85))",
+              background: progressColor,
               transition: "width 1s ease 0.5s",
             }} />
           </div>
@@ -1156,15 +1191,15 @@ function SplineFeatureSection() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "12px",
-            color: "#9a9490",
+            fontSize: "12.5px",
+            color: "#8a8680",
             letterSpacing: "0.03em",
           }}>{card.metric}</span>
           <span style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "12px",
-            color: "#E8E2D6",
-            fontWeight: 600,
+            fontSize: "13px",
+            color: accentColor,
+            fontWeight: 700,
             letterSpacing: "0.05em",
           }}>{card.metricVal}</span>
         </div>
@@ -1266,7 +1301,7 @@ function SplineFeatureSection() {
           {/* pointer-events: none на всех обёртках — Spline видит мышь везде */}
           {/* pointer-events: auto только на самих карточках */}
           <div className="hidden lg:grid" style={{
-            gridTemplateColumns: "280px 1fr 280px",
+            gridTemplateColumns: "320px 1fr 320px",
             gridTemplateRows: "auto",
             gap: "20px",
             alignItems: "center",
@@ -1293,7 +1328,7 @@ function SplineFeatureSection() {
 
           {/* Bottom center card */}
           <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
-            <div style={{ width: "360px", pointerEvents: "none" }}>
+            <div style={{ width: "420px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
           </div>
