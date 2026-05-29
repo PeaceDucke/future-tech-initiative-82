@@ -1686,7 +1686,7 @@ function ClientValueSection() {
   const items = [
     {
       side: "left" as const,
-      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/dd57f37a-25c8-4e1d-8e59-a89287bcb473.png",
+      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/124177dc-9a13-400a-bbfa-d5a5ad625808.png",
       label: "Анализ звонков",
     },
   ];
