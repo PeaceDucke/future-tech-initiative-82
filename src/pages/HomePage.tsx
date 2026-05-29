@@ -1088,6 +1088,7 @@ function SplineFeatureSection() {
           transition: "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           opacity: inView ? 1 : 0,
           transitionDelay: inView ? `${0.3 + idx * 0.1}s` : "0s",
+          pointerEvents: "auto",
         }}
       >
         {/* Badge */}
@@ -1258,6 +1259,8 @@ function SplineFeatureSection() {
           </div>
 
           {/* Desktop layout — карточки поверх Spline canvas */}
+          {/* pointer-events: none на всех обёртках — Spline видит мышь везде */}
+          {/* pointer-events: auto только на самих карточках */}
           <div className="hidden lg:grid" style={{
             gridTemplateColumns: "280px 1fr 280px",
             gridTemplateRows: "auto",
@@ -1266,26 +1269,27 @@ function SplineFeatureSection() {
             position: "relative",
             zIndex: 3,
             minHeight: "580px",
+            pointerEvents: "none",
           }}>
             {/* Left column */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px", pointerEvents: "none" }}>
               <Card card={cards[0]} idx={0} />
               <Card card={cards[1]} idx={1} />
             </div>
 
-            {/* Center: пустое пространство под робота */}
-            <div style={{ height: "580px" }} />
+            {/* Center: пустое пространство — Spline canvas проходит насквозь */}
+            <div style={{ height: "580px", pointerEvents: "none" }} />
 
             {/* Right column */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px", pointerEvents: "none" }}>
               <Card card={cards[2]} idx={2} />
               <Card card={cards[3]} idx={3} />
             </div>
           </div>
 
           {/* Bottom center card */}
-          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 3 }}>
-            <div style={{ width: "360px" }}>
+          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "-40px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
+            <div style={{ width: "360px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
           </div>
