@@ -1802,10 +1802,10 @@ function FinalCtaSection() {
   const G = "#C8A96A";
 
   const socials = [
-    { name: "WhatsApp", icon: "MessageCircle", href: "https://wa.me/", color: "#25D366" },
-    { name: "Telegram", icon: "Send", href: "https://t.me/", color: "#229ED9" },
-    { name: "Instagram", icon: "Instagram", href: "https://instagram.com/", color: "#E1306C" },
-    { name: "VK", icon: "Globe", href: "https://vk.com/", color: "#0077FF" },
+    { name: "WhatsApp", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d00de53c-fad6-450e-87d0-f57a9cad051c.png", href: "https://wa.me/", color: "#25D366" },
+    { name: "Telegram", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/2f700626-cd00-427d-9f0f-1cc4d3614911.png", href: "https://t.me/", color: "#229ED9" },
+    { name: "Instagram", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/07079e04-41db-4c6a-9866-3d0f7858d5c2.png", href: "https://instagram.com/", color: "#E1306C" },
+    { name: "VK", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/5bfb7468-351f-45a8-ac5b-91fdf57f4237.png", href: "https://vk.com/", color: "#0077FF" },
   ];
 
   return (
@@ -1948,48 +1948,62 @@ function FinalCtaSection() {
             </div>
 
             {/* Social links */}
-            <div className="flex items-center gap-3" style={{ flexWrap: "wrap" as const }}>
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" as const, marginRight: "4px" }}>Мы в</span>
-              {socials.map((s, i) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={s.name}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "10px",
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(240,230,210,0.10)",
-                    color: "rgba(251,246,236,0.55)",
-                    textDecoration: "none",
-                    transition: "all 0.25s ease",
-                    opacity: inView ? 1 : 0,
-                    transitionDelay: `${0.46 + i * 0.06}s`,
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = s.color + "66";
-                    el.style.background = s.color + "18";
-                    el.style.color = s.color;
-                    el.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = "rgba(240,230,210,0.10)";
-                    el.style.background = "rgba(255,255,255,0.04)";
-                    el.style.color = "rgba(251,246,236,0.55)";
-                    el.style.transform = "translateY(0)";
-                  }}
-                >
-                  <Icon name={s.icon} size={17} fallback="Globe" />
-                </a>
-              ))}
+            <div style={{
+              display: "flex",
+              flexDirection: "column" as const,
+              gap: "14px",
+              padding: "20px 24px",
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(200,169,106,0.15)",
+              borderRadius: "16px",
+              maxWidth: "fit-content",
+            }}>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" as const }}>Написать нам</span>
+              <div className="flex items-center gap-4">
+                {socials.map((s, i) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={s.name}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      padding: "10px 16px",
+                      borderRadius: "12px",
+                      background: "rgba(255,255,255,0.04)",
+                      border: `1px solid rgba(240,230,210,0.10)`,
+                      textDecoration: "none",
+                      transition: "all 0.25s ease",
+                      opacity: inView ? 1 : 0,
+                      transitionDelay: `${0.46 + i * 0.07}s`,
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.borderColor = s.color + "55";
+                      el.style.background = s.color + "15";
+                      el.style.transform = "translateY(-3px)";
+                      el.style.boxShadow = `0 8px 24px ${s.color}22`;
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.borderColor = "rgba(240,230,210,0.10)";
+                      el.style.background = "rgba(255,255,255,0.04)";
+                      el.style.transform = "translateY(0)";
+                      el.style.boxShadow = "none";
+                    }}
+                  >
+                    <img
+                      src={s.img}
+                      alt={s.name}
+                      style={{ width: "26px", height: "26px", objectFit: "contain", borderRadius: "6px" }}
+                    />
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", fontWeight: 500, color: "rgba(251,246,236,0.75)", whiteSpace: "nowrap" as const }}>{s.name}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
