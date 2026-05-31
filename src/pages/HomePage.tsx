@@ -142,6 +142,30 @@ function PainCard({
   const rotateY = (1 - p) * -72;
   const opacity = 0.15 + p * 0.85;
 
+  // Толщина карточки (3D)
+  const depth = 26;
+
+  // Внешняя обёртка задаёт перспективу
+  const sceneStyle: React.CSSProperties = {
+    perspective: "1100px",
+    height: "100%",
+    opacity,
+    transition: "none",
+    willChange: "opacity",
+  };
+
+  // 3D-объект, который реально вращается
+  const solidStyle: React.CSSProperties = {
+    position: "relative",
+    height: "100%",
+    transformStyle: "preserve-3d",
+    transformOrigin: "50% 50%",
+    transform: `rotateY(${rotateY}deg)`,
+    transition: "none",
+    willChange: "transform",
+  };
+
+  // Передняя (лицевая) грань с контентом
   const cardBase: React.CSSProperties = {
     background: "#0f0f0f",
     border: "1px solid rgba(240,232,218,0.45)",
@@ -152,19 +176,45 @@ function PainCard({
     position: "relative",
     overflow: "hidden",
     height: "100%",
-    transformOrigin: "50% 50%",
-    transform: `perspective(900px) rotateY(${rotateY}deg)`,
-    opacity,
-    transition: "none",
-    willChange: "transform, opacity",
-    backfaceVisibility: "hidden",
+    transform: `translateZ(${depth / 2}px)`,
     boxShadow: "0 0 0 1px rgba(240,232,218,0.08), 0 0 18px rgba(240,232,218,0.06), 0 0 40px rgba(240,232,218,0.04), inset 0 1px 0 rgba(255,255,255,0.05)",
+  };
+
+  // Правая боковая грань (придаёт толщину)
+  const sideStyle: React.CSSProperties = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    width: `${depth}px`,
+    height: "100%",
+    background: "linear-gradient(to right, #050505 0%, #1a1a18 55%, #2a2824 100%)",
+    borderRadius: "0 16px 16px 0",
+    transform: `rotateY(90deg) translateZ(${depth / 2}px)`,
+    transformOrigin: "right center",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+  };
+
+  // Нижняя грань (для глубины снизу)
+  const bottomStyle: React.CSSProperties = {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    height: `${depth}px`,
+    background: "linear-gradient(to bottom, #060606 0%, #131311 100%)",
+    borderRadius: "0 0 16px 16px",
+    transform: `rotateX(-90deg) translateZ(${depth / 2}px)`,
+    transformOrigin: "bottom center",
   };
 
   const iconSize = 52;
 
   return (
-    <div style={cardBase}>
+    <div style={sceneStyle}>
+    <div style={solidStyle}>
+      <div style={sideStyle} />
+      <div style={bottomStyle} />
+      <div style={cardBase}>
       <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(196,158,84,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       {/* Основной layout: левая колонка (номер + иконка) + правая (текст) */}
@@ -198,6 +248,8 @@ function PainCard({
           </div>
         </div>
       </div>
+      </div>
+    </div>
     </div>
   );
 }
