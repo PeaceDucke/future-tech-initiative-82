@@ -1947,6 +1947,32 @@ function FinalCtaSection() {
               </button>
             </div>
 
+            {/* Social links */}
+            <div style={{ marginTop: "40px" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "16px" }}>Написать нам</p>
+              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                {socials.map((s, i) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={s.name}
+                    style={{
+                      textDecoration: "none",
+                      transition: "transform 0.25s ease",
+                      opacity: inView ? 1 : 0,
+                      transitionDelay: `${0.5 + i * 0.07}s`,
+                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-4px)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
+                  >
+                    <img src={s.img} alt={s.name} style={{ width: "56px", height: "56px", objectFit: "contain" }} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
           </div>
 
           {/* ── Right: Spline animation ── */}
@@ -1977,47 +2003,6 @@ function FinalCtaSection() {
                 pointerEvents: "none",
               }} />
             </div>
-          </div>
-        </div>
-
-        {/* ── Social row ── */}
-        <div style={{
-          marginTop: "100px",
-          paddingTop: "48px",
-          borderTop: "1px solid rgba(200,169,106,0.10)",
-          display: "flex",
-          flexDirection: "column" as const,
-          alignItems: "center",
-          gap: "20px",
-          opacity: inView ? 1 : 0,
-          transition: "opacity 0.9s ease 0.5s",
-        }}>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.22em", textTransform: "uppercase" as const }}>Связаться с нами</p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "32px", flexWrap: "nowrap" as const }}>
-            {socials.map((s, i) => (
-              <a
-                key={s.name}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={s.name}
-                style={{
-                  display: "flex",
-                  flexDirection: "column" as const,
-                  alignItems: "center",
-                  gap: "8px",
-                  textDecoration: "none",
-                  transition: "all 0.25s ease",
-                  opacity: inView ? 1 : 0,
-                  transitionDelay: `${0.6 + i * 0.08}s`,
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-4px)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
-              >
-                <img src={s.img} alt={s.name} style={{ width: "78px", height: "78px", objectFit: "contain" }} />
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 500, color: "rgba(251,246,236,0.5)" }}>{s.name}</span>
-              </a>
-            ))}
           </div>
         </div>
 
