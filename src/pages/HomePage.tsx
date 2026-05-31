@@ -1796,6 +1796,183 @@ function ClientValueSection() {
   );
 }
 
+function FinalCtaSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const G = "#C8A96A";
+
+  const socials = [
+    { name: "WhatsApp", icon: "MessageCircle", href: "https://wa.me/", color: "#25D366" },
+    { name: "Telegram", icon: "Send", href: "https://t.me/", color: "#229ED9" },
+    { name: "Instagram", icon: "Instagram", href: "https://instagram.com/", color: "#E1306C" },
+    { name: "VK", icon: "Globe", href: "https://vk.com/", color: "#0077FF" },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: "#151513",
+        padding: "0 24px 160px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* top divider */}
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+
+      {/* ambient glow */}
+      <div aria-hidden style={{
+        position: "absolute", top: "45%", left: "30%",
+        transform: "translate(-50%,-50%)",
+        width: "min(700px, 80vw)", height: "500px",
+        background: "radial-gradient(ellipse at center, rgba(200,169,106,0.08), transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
+      <div className="max-w-7xl mx-auto relative">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 items-center"
+          style={{ gap: "40px" }}
+        >
+          {/* ── Left: text + buttons ── */}
+          <div
+            style={{
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translateY(0)" : "translateY(36px)",
+              transition: "opacity 0.9s ease, transform 0.9s ease",
+              position: "relative",
+              zIndex: 3,
+            }}
+          >
+            <div className="flex items-center gap-3 mb-7">
+              <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Бесплатный аудит</span>
+            </div>
+
+            <h2 style={{
+              fontFamily: '"Bodoni Moda", Georgia, serif',
+              fontSize: "clamp(34px, 4.5vw, 60px)",
+              fontWeight: 600,
+              color: "#FBF6EC",
+              lineHeight: 1.12,
+              letterSpacing: "0.01em",
+              marginBottom: "24px",
+            }}>
+              Узнайте, где ваш отдел продаж{" "}
+              <span style={{
+                background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontStyle: "italic",
+              }}>теряет деньги</span>
+            </h2>
+
+            <p style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "clamp(16px, 1.8vw, 19px)",
+              color: "rgba(251,246,236,0.62)",
+              lineHeight: 1.65,
+              fontWeight: 300,
+              maxWidth: "520px",
+              marginBottom: "44px",
+            }}>
+              Получите бесплатный AI-аудит звонков и увидьте реальные слабые места вашей команды.
+            </p>
+
+            {/* Social buttons */}
+            <div className="flex flex-wrap gap-4">
+              {socials.map((s, i) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "11px",
+                    padding: "14px 22px",
+                    borderRadius: "12px",
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(240,230,210,0.10)",
+                    textDecoration: "none",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "15px",
+                    fontWeight: 500,
+                    color: "#FBF6EC",
+                    transition: "all 0.3s ease",
+                    opacity: inView ? 1 : 0,
+                    transform: inView ? "translateY(0)" : "translateY(16px)",
+                    transitionDelay: `${0.3 + i * 0.08}s`,
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.borderColor = "rgba(200,169,106,0.5)";
+                    el.style.background = "rgba(200,169,106,0.08)";
+                    el.style.transform = "translateY(-3px)";
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.borderColor = "rgba(240,230,210,0.10)";
+                    el.style.background = "rgba(255,255,255,0.03)";
+                    el.style.transform = "translateY(0)";
+                  }}
+                >
+                  <span style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "34px",
+                    height: "34px",
+                    borderRadius: "9px",
+                    background: `${s.color}1A`,
+                    color: s.color,
+                  }}>
+                    <Icon name={s.icon} size={18} fallback="Globe" />
+                  </span>
+                  {s.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right: Spline animation ── */}
+          <div style={{
+            position: "relative",
+            minHeight: "440px",
+            opacity: inView ? 1 : 0,
+            transition: "opacity 1s ease 0.2s",
+          }}>
+            <div style={{
+              position: "absolute",
+              inset: "-15%",
+              zIndex: 0,
+            }}>
+              <Spline
+                scene="https://prod.spline.design/EEO1FK0SYvQMo8Ap/scene.splinecode"
+                style={{ width: "100%", height: "100%" }}
+              />
+              {/* fade edges */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(to right, #151513 0%, transparent 18%, transparent 82%, #151513 100%)",
+                pointerEvents: "none",
+              }} />
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(to bottom, #151513 0%, transparent 14%, transparent 84%, #151513 100%)",
+                pointerEvents: "none",
+              }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const FAQ_ITEMS = [
   {
     q: "Как SalesFlow анализирует звонки — это безопасно?",
@@ -3666,6 +3843,9 @@ AI определяет:
 
         {/* ═══ FAQ ═══ */}
         <FaqSection />
+
+        {/* ═══ FINAL CTA ═══ */}
+        <FinalCtaSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
