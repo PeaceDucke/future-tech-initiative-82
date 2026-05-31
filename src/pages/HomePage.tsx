@@ -1796,6 +1796,111 @@ function ClientValueSection() {
   );
 }
 
+function IntegrationSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const crms = ["amoCRM", "Битрикс", "Retell", "Ringostat", "Aircall"];
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: "#F7F2EA",
+        padding: "80px 24px 90px",
+      }}
+    >
+      <div
+        className="max-w-5xl mx-auto text-center"
+        style={{
+          opacity: inView ? 1 : 0,
+          transform: inView ? "translateY(0)" : "translateY(32px)",
+          transition: "opacity 0.8s ease, transform 0.8s ease",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontSize: "clamp(26px, 4.5vw, 54px)",
+            fontWeight: 400,
+            color: "#1A1814",
+            lineHeight: 1.25,
+            letterSpacing: "0.01em",
+            marginBottom: "28px",
+          }}
+        >
+          Интеграция за 5 минут — подключите{" "}
+          <span style={{ color: "#B8934A" }}>SalesFlow</span> к вашей CRM
+        </p>
+
+        <div
+          className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
+          style={{ marginBottom: "44px" }}
+        >
+          {crms.map((crm, i) => (
+            <span key={crm} className="flex items-center gap-3">
+              <span
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "clamp(15px, 2vw, 20px)",
+                  fontWeight: 500,
+                  color: "#3A3530",
+                  letterSpacing: "0.01em",
+                }}
+              >
+                {crm}
+              </span>
+              {i < crms.length - 1 && (
+                <span style={{ color: "#C8A96A", fontSize: "18px", opacity: 0.7 }}>·</span>
+              )}
+            </span>
+          ))}
+        </div>
+
+        <p
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "clamp(15px, 2vw, 19px)",
+            color: "#6B6560",
+            fontWeight: 300,
+            marginBottom: "44px",
+            lineHeight: 1.6,
+          }}
+        >
+          и начните зарабатывать больше
+        </p>
+
+        <button
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "14px",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            color: "#B8934A",
+            background: "transparent",
+            border: "1px solid rgba(184,147,74,0.45)",
+            borderRadius: "3px",
+            padding: "13px 32px",
+            cursor: "pointer",
+            textTransform: "uppercase" as const,
+            transition: "border-color 0.25s, color 0.25s",
+          }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "#B8934A";
+            (e.currentTarget as HTMLButtonElement).style.color = "#8A6830";
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,147,74,0.45)";
+            (e.currentTarget as HTMLButtonElement).style.color = "#B8934A";
+          }}
+        >
+          Подробнее об интеграциях
+        </button>
+      </div>
+    </section>
+  );
+}
+
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   // По умолчанию — оригинальные оттенки дашборда
@@ -3059,6 +3164,9 @@ AI определяет:
 
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
+
+        {/* ═══ INTEGRATION ═══ */}
+        <IntegrationSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
