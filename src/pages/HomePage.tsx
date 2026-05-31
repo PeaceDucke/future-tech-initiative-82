@@ -1796,6 +1796,248 @@ function ClientValueSection() {
   );
 }
 
+function PricingSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const G = "#C8A96A";
+
+  const plans = [
+    {
+      name: "Бесплатный",
+      price: null,
+      priceLabel: "Бесплатно",
+      period: null,
+      quick: "300 мин",
+      deep: "30 мин",
+      managers: "до 2",
+      popular: false,
+    },
+    {
+      name: "Старт",
+      price: "6 900",
+      period: "в месяц",
+      quick: "1 500 мин",
+      deep: "150 мин",
+      managers: "до 3",
+      popular: false,
+    },
+    {
+      name: "Команда",
+      price: "14 900",
+      period: "в месяц",
+      quick: "4 000 мин",
+      deep: "500 мин",
+      managers: "до 10",
+      popular: true,
+    },
+    {
+      name: "Бизнес",
+      price: "39 900",
+      period: "в месяц",
+      quick: "10 000 мин",
+      deep: "1 500 мин",
+      managers: "до 20",
+      popular: false,
+    },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: "#151513",
+        padding: "0 24px 150px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* top divider */}
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+
+      {/* ambient glow */}
+      <div aria-hidden style={{
+        position: "absolute", top: "35%", left: "50%",
+        transform: "translate(-50%,-50%)",
+        width: "min(800px, 90vw)", height: "500px",
+        background: "radial-gradient(ellipse at center, rgba(200,169,106,0.07), transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
+      <div
+        className="max-w-7xl mx-auto relative"
+        style={{
+          opacity: inView ? 1 : 0,
+          transform: inView ? "translateY(0)" : "translateY(36px)",
+          transition: "opacity 0.9s ease, transform 0.9s ease",
+        }}
+      >
+        {/* Header */}
+        <div className="text-center" style={{ marginBottom: "72px" }}>
+          <div className="flex items-center justify-center gap-3 mb-7">
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Тарифы</span>
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          </div>
+          <h2 style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontSize: "clamp(34px, 5vw, 66px)",
+            fontWeight: 600,
+            color: "#FBF6EC",
+            lineHeight: 1.1,
+            marginBottom: "20px",
+            letterSpacing: "0.01em",
+          }}>
+            Тарифы для любого{" "}
+            <span style={{
+              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              fontStyle: "italic",
+            }}>масштаба</span>
+          </h2>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "rgba(251,246,236,0.5)", fontWeight: 300 }}>
+            Начните бесплатно — 300 минут Quick-анализа
+          </p>
+        </div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ marginBottom: "56px" }}>
+          {plans.map((plan, i) => (
+            <div
+              key={plan.name}
+              style={{
+                position: "relative",
+                background: plan.popular
+                  ? "linear-gradient(160deg, rgba(200,169,106,0.14) 0%, rgba(200,169,106,0.06) 100%)"
+                  : "rgba(255,255,255,0.03)",
+                border: plan.popular
+                  ? "1px solid rgba(200,169,106,0.55)"
+                  : "1px solid rgba(240,230,210,0.10)",
+                borderRadius: "16px",
+                padding: "32px 28px 36px",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(20px)",
+                transition: `opacity 0.7s ease ${0.1 + i * 0.1}s, transform 0.7s ease ${0.1 + i * 0.1}s`,
+                boxShadow: plan.popular ? "0 0 60px rgba(200,169,106,0.12)" : "none",
+              }}
+            >
+              {/* Popular badge */}
+              {plan.popular && (
+                <div style={{
+                  position: "absolute",
+                  top: "-14px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+                  borderRadius: "999px",
+                  padding: "5px 18px",
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase" as const,
+                  color: "#151513",
+                  whiteSpace: "nowrap",
+                }}>Популярный</div>
+              )}
+
+              {/* Plan name */}
+              <p style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "12px",
+                fontWeight: 600,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase" as const,
+                color: plan.popular ? G : "rgba(251,246,236,0.45)",
+                marginBottom: "16px",
+              }}>{plan.name}</p>
+
+              {/* Price */}
+              <div style={{ marginBottom: "32px" }}>
+                {plan.price ? (
+                  <>
+                    <div style={{
+                      fontFamily: '"Bodoni Moda", Georgia, serif',
+                      fontSize: "clamp(36px, 4vw, 48px)",
+                      fontWeight: 600,
+                      color: "#FBF6EC",
+                      lineHeight: 1,
+                      letterSpacing: "-0.01em",
+                    }}>
+                      {plan.price} <span style={{ fontSize: "0.55em", fontWeight: 400, color: "rgba(251,246,236,0.8)" }}>₽</span>
+                    </div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
+                  </>
+                ) : (
+                  <div style={{
+                    fontFamily: '"Bodoni Moda", Georgia, serif',
+                    fontSize: "clamp(32px, 4vw, 44px)",
+                    fontWeight: 600,
+                    color: "#FBF6EC",
+                    lineHeight: 1,
+                  }}>{plan.priceLabel}</div>
+                )}
+              </div>
+
+              {/* Divider */}
+              <div style={{ width: "100%", height: "1px", background: plan.popular ? "rgba(200,169,106,0.25)" : "rgba(240,230,210,0.08)", marginBottom: "24px" }} />
+
+              {/* Features */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                {[
+                  { icon: "⚡", label: "Quick", value: plan.quick },
+                  { icon: "🔬", label: "Deep", value: plan.deep },
+                  { icon: "👤", label: "Менеджеров", value: plan.managers },
+                ].map(row => (
+                  <div key={row.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", gap: "7px" }}>
+                      <span style={{ fontSize: "13px" }}>{row.icon}</span>
+                      {row.label}
+                    </span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC" }}>{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <button
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "13px",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              color: "#151513",
+              background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+              border: "none",
+              borderRadius: "4px",
+              padding: "16px 44px",
+              cursor: "pointer",
+              textTransform: "uppercase" as const,
+              boxShadow: "0 8px 30px rgba(200,169,106,0.25)",
+              transition: "transform 0.25s ease, box-shadow 0.25s ease",
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.4)";
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.25)";
+            }}
+          >
+            Подробнее о тарифах
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function IntegrationSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -3240,6 +3482,9 @@ AI определяет:
 
         {/* ═══ INTEGRATION ═══ */}
         <IntegrationSection />
+
+        {/* ═══ PRICING ═══ */}
+        <PricingSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
