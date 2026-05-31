@@ -1948,62 +1948,40 @@ function FinalCtaSection() {
             </div>
 
             {/* Social links */}
-            <div style={{
-              display: "flex",
-              flexDirection: "column" as const,
-              gap: "14px",
-              padding: "20px 24px",
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(200,169,106,0.15)",
-              borderRadius: "16px",
-              maxWidth: "fit-content",
-            }}>
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" as const }}>Написать нам</span>
-              <div className="flex items-center gap-4">
-                {socials.map((s, i) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={s.name}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px",
-                      padding: "10px 16px",
-                      borderRadius: "12px",
-                      background: "rgba(255,255,255,0.04)",
-                      border: `1px solid rgba(240,230,210,0.10)`,
-                      textDecoration: "none",
-                      transition: "all 0.25s ease",
-                      opacity: inView ? 1 : 0,
-                      transitionDelay: `${0.46 + i * 0.07}s`,
-                    }}
-                    onMouseEnter={e => {
-                      const el = e.currentTarget as HTMLAnchorElement;
-                      el.style.borderColor = s.color + "55";
-                      el.style.background = s.color + "15";
-                      el.style.transform = "translateY(-3px)";
-                      el.style.boxShadow = `0 8px 24px ${s.color}22`;
-                    }}
-                    onMouseLeave={e => {
-                      const el = e.currentTarget as HTMLAnchorElement;
-                      el.style.borderColor = "rgba(240,230,210,0.10)";
-                      el.style.background = "rgba(255,255,255,0.04)";
-                      el.style.transform = "translateY(0)";
-                      el.style.boxShadow = "none";
-                    }}
-                  >
-                    <img
-                      src={s.img}
-                      alt={s.name}
-                      style={{ width: "26px", height: "26px", objectFit: "contain", borderRadius: "6px" }}
-                    />
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", fontWeight: 500, color: "rgba(251,246,236,0.75)", whiteSpace: "nowrap" as const }}>{s.name}</span>
-                  </a>
-                ))}
-              </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" as const }}>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.18em", textTransform: "uppercase" as const }}>Мы в</span>
+              {socials.map((s, i) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={s.name}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    textDecoration: "none",
+                    transition: "all 0.25s ease",
+                    opacity: inView ? 1 : 0,
+                    transitionDelay: `${0.46 + i * 0.07}s`,
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)";
+                    (e.currentTarget as HTMLAnchorElement).style.opacity = "1";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
+                  }}
+                >
+                  <img
+                    src={s.img}
+                    alt={s.name}
+                    style={{ width: "52px", height: "52px", objectFit: "contain" }}
+                  />
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 500, color: "rgba(251,246,236,0.7)", whiteSpace: "nowrap" as const }}>{s.name}</span>
+                </a>
+              ))}
             </div>
           </div>
 
