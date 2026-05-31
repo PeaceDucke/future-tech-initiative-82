@@ -2996,7 +2996,7 @@ AI определяет:
               </span>
             </a>
 
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
               {["О нас", "Тарифы", "FAQ", "Наша команда"].map(
                 (item) => (
                   <a
@@ -3011,7 +3011,7 @@ AI определяет:
               )}
             </nav>
 
-            <div className="flex items-center gap-4 ml-auto">
+            <div className="flex items-center gap-4">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-2">
                 {[
