@@ -1881,58 +1881,113 @@ function FinalCtaSection() {
               Получите бесплатный AI-аудит звонков и увидьте реальные слабые места вашей команды.
             </p>
 
-            {/* Social buttons */}
-            <div className="flex flex-wrap gap-4">
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-4" style={{ marginBottom: "28px" }}>
+              <button
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  letterSpacing: "0.07em",
+                  textTransform: "uppercase" as const,
+                  color: "#151513",
+                  background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "16px 36px",
+                  cursor: "pointer",
+                  boxShadow: "0 8px 30px rgba(200,169,106,0.28)",
+                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  opacity: inView ? 1 : 0,
+                  transitionDelay: "0.3s",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.45)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.28)";
+                }}
+              >
+                Начать бесплатно
+              </button>
+
+              <button
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  letterSpacing: "0.07em",
+                  textTransform: "uppercase" as const,
+                  color: "#FBF6EC",
+                  background: "transparent",
+                  border: "1px solid rgba(200,169,106,0.45)",
+                  borderRadius: "10px",
+                  padding: "16px 36px",
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
+                  opacity: inView ? 1 : 0,
+                  transitionDelay: "0.38s",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLButtonElement;
+                  el.style.borderColor = "rgba(200,169,106,0.8)";
+                  el.style.background = "rgba(200,169,106,0.09)";
+                  el.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLButtonElement;
+                  el.style.borderColor = "rgba(200,169,106,0.45)";
+                  el.style.background = "transparent";
+                  el.style.transform = "translateY(0)";
+                }}
+              >
+                Связаться с нами
+              </button>
+            </div>
+
+            {/* Social links */}
+            <div className="flex items-center gap-3" style={{ flexWrap: "wrap" as const }}>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.12em", textTransform: "uppercase" as const, marginRight: "4px" }}>Мы в</span>
               {socials.map((s, i) => (
                 <a
                   key={s.name}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title={s.name}
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "11px",
-                    padding: "14px 22px",
-                    borderRadius: "12px",
-                    background: "rgba(255,255,255,0.03)",
+                    justifyContent: "center",
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(240,230,210,0.10)",
+                    color: "rgba(251,246,236,0.55)",
                     textDecoration: "none",
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "15px",
-                    fontWeight: 500,
-                    color: "#FBF6EC",
-                    transition: "all 0.3s ease",
+                    transition: "all 0.25s ease",
                     opacity: inView ? 1 : 0,
-                    transform: inView ? "translateY(0)" : "translateY(16px)",
-                    transitionDelay: `${0.3 + i * 0.08}s`,
+                    transitionDelay: `${0.46 + i * 0.06}s`,
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.borderColor = "rgba(200,169,106,0.5)";
-                    el.style.background = "rgba(200,169,106,0.08)";
-                    el.style.transform = "translateY(-3px)";
+                    el.style.borderColor = s.color + "66";
+                    el.style.background = s.color + "18";
+                    el.style.color = s.color;
+                    el.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLAnchorElement;
                     el.style.borderColor = "rgba(240,230,210,0.10)";
-                    el.style.background = "rgba(255,255,255,0.03)";
+                    el.style.background = "rgba(255,255,255,0.04)";
+                    el.style.color = "rgba(251,246,236,0.55)";
                     el.style.transform = "translateY(0)";
                   }}
                 >
-                  <span style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "34px",
-                    height: "34px",
-                    borderRadius: "9px",
-                    background: `${s.color}1A`,
-                    color: s.color,
-                  }}>
-                    <Icon name={s.icon} size={18} fallback="Globe" />
-                  </span>
-                  {s.name}
+                  <Icon name={s.icon} size={17} fallback="Globe" />
                 </a>
               ))}
             </div>
