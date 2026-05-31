@@ -1920,9 +1920,9 @@ function FaqSection() {
               >
                 <span style={{
                   fontFamily: "Inter, sans-serif",
-                  fontSize: "clamp(15px, 1.8vw, 17px)",
+                  fontSize: "clamp(17px, 2vw, 20px)",
                   fontWeight: 500,
-                  color: open === i ? "#FBF6EC" : "rgba(251,246,236,0.78)",
+                  color: open === i ? "#FBF6EC" : "rgba(251,246,236,0.88)",
                   lineHeight: 1.4,
                   transition: "color 0.25s ease",
                   flex: 1,
@@ -1956,8 +1956,8 @@ function FaqSection() {
               }}>
                 <p style={{
                   fontFamily: "Inter, sans-serif",
-                  fontSize: "clamp(14px, 1.6vw, 16px)",
-                  color: "rgba(251,246,236,0.55)",
+                  fontSize: "clamp(15px, 1.7vw, 18px)",
+                  color: "rgba(251,246,236,0.78)",
                   lineHeight: 1.75,
                   fontWeight: 300,
                   paddingBottom: "28px",
