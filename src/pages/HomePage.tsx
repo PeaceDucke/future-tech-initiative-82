@@ -2576,22 +2576,22 @@ function IntegrationSection() {
             fontWeight: 600,
             letterSpacing: "0.12em",
             color: "#151513",
-            background: "linear-gradient(135deg, #F5E8C0 0%, #EDD98A 30%, #F2E4A0 55%, #E0C878 80%, #F5E8C0 100%)",
+            background: "linear-gradient(135deg, #FBF6EC 0%, #F0E8D8 50%, #FBF6EC 100%)",
             border: "none",
             borderRadius: "4px",
             padding: "16px 40px",
             cursor: "pointer",
             textTransform: "uppercase" as const,
-            boxShadow: "0 8px 30px rgba(251,246,236,0.15)",
+            boxShadow: "0 8px 30px rgba(251,246,236,0.12)",
             transition: "transform 0.25s ease, box-shadow 0.25s ease",
           }}
           onMouseEnter={e => {
             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(251,246,236,0.25)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(251,246,236,0.22)";
           }}
           onMouseLeave={e => {
             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(251,246,236,0.15)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(251,246,236,0.12)";
           }}
         >
           Подробнее об интеграциях
