@@ -2501,17 +2501,7 @@ function IntegrationSection() {
           }}
         >
           Интеграция за{" "}
-          <span
-            style={{
-              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              fontStyle: "italic",
-            }}
-          >
             5 минут
-          </span>
         </h2>
 
         <p
