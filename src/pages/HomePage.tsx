@@ -2886,13 +2886,13 @@ AI определяет:
             </a>
 
             <nav className="hidden lg:flex items-center gap-1">
-              {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
+              {["О нас", "Тарифы", "FAQ", "Наша команда"].map(
                 (item) => (
                   <a
                     key={item}
                     href="#"
-                    className="px-4 py-2 text-[13px] rounded-lg transition-all duration-200"
-                    style={{ color: "rgba(251,246,236,0.78)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+                    className="px-4 py-2 text-[14px] rounded-lg transition-all duration-200"
+                    style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                   >
                     {item}
                   </a>
@@ -2963,14 +2963,14 @@ AI определяет:
               borderColor: "rgba(212,176,116,0.12)",
             }}
           >
-            {["Продукт", "Решения", "Возможности", "Тарифы", "О нас"].map(
+            {["О нас", "Тарифы", "FAQ", "Наша команда"].map(
               (item) => (
                 <a
                   key={item}
                   href="#"
                   onClick={() => setMenuOpen(false)}
-                  className="block px-3 py-2.5 text-[14px] transition-colors"
-                  style={{ color: "rgba(251,246,236,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
+                  className="block px-3 py-2.5 text-[15px] transition-colors"
+                  style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                 >
                   {item}
                 </a>
