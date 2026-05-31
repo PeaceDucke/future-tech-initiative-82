@@ -2232,13 +2232,13 @@ function PricingSection() {
       ref={ref}
       style={{
         background: "#151513",
-        padding: "0 24px 150px",
+        padding: "0 24px 60px",
         position: "relative",
         overflow: "hidden",
       }}
     >
       {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "60px" }} />
 
       {/* ambient glow */}
       <div aria-hidden style={{
@@ -2442,7 +2442,7 @@ function IntegrationSection() {
       }}
     >
       {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "60px" }} />
 
       {/* ambient beige glow */}
       <div
