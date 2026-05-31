@@ -1948,8 +1948,9 @@ function FinalCtaSection() {
             </div>
 
             {/* Social links */}
-            <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" as const }}>
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.18em", textTransform: "uppercase" as const }}>Мы в</span>
+            <div style={{ marginTop: "16px" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", letterSpacing: "0.15em", textTransform: "uppercase" as const, marginBottom: "16px" }}>Связаться с нами</p>
+              <div style={{ display: "flex", alignItems: "center", gap: "24px", flexWrap: "wrap" as const }}>
               {socials.map((s, i) => (
                 <a
                   key={s.name}
@@ -1977,11 +1978,12 @@ function FinalCtaSection() {
                   <img
                     src={s.img}
                     alt={s.name}
-                    style={{ width: "52px", height: "52px", objectFit: "contain" }}
+                    style={{ width: "78px", height: "78px", objectFit: "contain" }}
                   />
                   <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 500, color: "rgba(251,246,236,0.7)", whiteSpace: "nowrap" as const }}>{s.name}</span>
                 </a>
               ))}
+              </div>
             </div>
           </div>
 
