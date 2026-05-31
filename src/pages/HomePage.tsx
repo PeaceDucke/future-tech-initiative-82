@@ -2997,18 +2997,21 @@ AI определяет:
             </a>
 
             <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
-              {["О нас", "Тарифы", "FAQ", "Наша команда"].map(
-                (item) => (
-                  <a
-                    key={item}
-                    href="#"
-                    className="px-4 py-2 text-[16px] rounded-lg transition-all duration-200"
-                    style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
-                  >
-                    {item}
-                  </a>
-                ),
-              )}
+              {[
+                { label: "О нас", href: "/about" },
+                { label: "Тарифы", href: "#pricing" },
+                { label: "FAQ", href: "#faq" },
+                { label: "Наша команда", href: "/about#team" },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="px-4 py-2 text-[16px] rounded-lg transition-all duration-200"
+                  style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
+                >
+                  {item.label}
+                </a>
+              ))}
             </nav>
 
             <div className="flex items-center gap-4">
@@ -3074,16 +3077,20 @@ AI определяет:
               borderColor: "rgba(212,176,116,0.12)",
             }}
           >
-            {["О нас", "Тарифы", "FAQ", "Наша команда"].map(
-              (item) => (
+            {[
+              { label: "О нас", href: "/about" },
+              { label: "Тарифы", href: "#pricing" },
+              { label: "FAQ", href: "#faq" },
+              { label: "Наша команда", href: "/about#team" },
+            ].map((item) => (
                 <a
-                  key={item}
-                  href="#"
+                  key={item.label}
+                  href={item.href}
                   onClick={() => setMenuOpen(false)}
                   className="block px-3 py-2.5 text-[15px] transition-colors"
                   style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ),
             )}
