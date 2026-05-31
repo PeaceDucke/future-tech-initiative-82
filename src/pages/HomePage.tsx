@@ -2096,14 +2096,7 @@ function FaqSection() {
             lineHeight: 1.1,
             letterSpacing: "0.01em",
           }}>
-            Частые{" "}
-            <span style={{
-              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              fontStyle: "italic",
-            }}>вопросы</span>
+            Частые вопросы
           </h2>
         </div>
 
