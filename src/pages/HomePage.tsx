@@ -2915,7 +2915,27 @@ AI определяет:
               )}
             </nav>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
+              {/* Social icons in nav */}
+              <div className="hidden lg:flex items-center gap-2">
+                {[
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d00de53c-fad6-450e-87d0-f57a9cad051c.png", name: "WhatsApp", href: "https://wa.me/" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/2f700626-cd00-427d-9f0f-1cc4d3614911.png", name: "Telegram", href: "https://t.me/" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/07079e04-41db-4c6a-9866-3d0f7858d5c2.png", name: "Instagram", href: "https://instagram.com/" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/5bfb7468-351f-45a8-ac5b-91fdf57f4237.png", name: "VK", href: "https://vk.com/" },
+                ].map(s => (
+                  <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" title={s.name}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "30px", height: "30px", borderRadius: "8px", transition: "transform 0.2s ease, opacity 0.2s ease", opacity: 0.75 }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLAnchorElement).style.opacity = "0.75"; }}
+                  >
+                    <img src={s.img} alt={s.name} style={{ width: "26px", height: "26px", objectFit: "contain" }} />
+                  </a>
+                ))}
+              </div>
+
+              <div className="hidden lg:block" style={{ width: "1px", height: "20px", background: "rgba(240,230,210,0.12)" }} />
+
               <a
                 href="#cta"
                 className="hidden sm:inline-flex items-center gap-2"
@@ -2928,6 +2948,7 @@ AI определяет:
                   fontSize: "13px",
                   padding: "9px 20px",
                   borderRadius: "2px",
+                  marginRight: "8px",
                 }}
               >
                 Запросить демо
