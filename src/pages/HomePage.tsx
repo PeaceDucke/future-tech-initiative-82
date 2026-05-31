@@ -143,7 +143,7 @@ function PainCard({
   const opacity = 0.15 + p * 0.85;
 
   // Толщина карточки (3D)
-  const depth = 22;
+  const depth = 33;
   const half = depth / 2;
 
   // Измеряем реальные размеры карточки, чтобы строить грани в 3D
