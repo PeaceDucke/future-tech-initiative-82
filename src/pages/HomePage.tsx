@@ -1799,99 +1799,172 @@ function ClientValueSection() {
 function IntegrationSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const G = "#C8A96A";
 
-  const crms = ["amoCRM", "Битрикс", "Retell", "Ringostat", "Aircall"];
+  const crms = ["amoCRM", "Битрикс24", "Retell", "Ringostat", "Aircall"];
 
   return (
     <section
       ref={ref}
       style={{
-        background: "#F7F2EA",
-        padding: "80px 24px 90px",
+        background: "#151513",
+        padding: "0 24px 150px",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* top divider */}
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+
+      {/* ambient golden glow */}
       <div
-        className="max-w-5xl mx-auto text-center"
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: "40%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          width: "min(720px, 90vw)",
+          height: "420px",
+          background: "radial-gradient(ellipse at center, rgba(200,169,106,0.10), transparent 70%)",
+          filter: "blur(20px)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div
+        className="max-w-5xl mx-auto text-center relative"
         style={{
           opacity: inView ? 1 : 0,
-          transform: inView ? "translateY(0)" : "translateY(32px)",
-          transition: "opacity 0.8s ease, transform 0.8s ease",
+          transform: inView ? "translateY(0)" : "translateY(36px)",
+          transition: "opacity 0.9s ease, transform 0.9s ease",
         }}
       >
-        <p
+        {/* eyebrow */}
+        <div className="flex items-center justify-center gap-3 mb-7">
+          <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          <span style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "11px",
+            letterSpacing: "0.25em",
+            textTransform: "uppercase" as const,
+            color: G,
+            fontWeight: 600,
+          }}>Подключение</span>
+          <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+        </div>
+
+        <h2
           style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(26px, 4.5vw, 54px)",
-            fontWeight: 400,
-            color: "#1A1814",
-            lineHeight: 1.25,
-            letterSpacing: "0.01em",
-            marginBottom: "28px",
+            fontSize: "clamp(34px, 5.5vw, 70px)",
+            fontWeight: 600,
+            color: "#FBF6EC",
+            lineHeight: 1.08,
+            letterSpacing: "0.005em",
+            marginBottom: "30px",
           }}
         >
-          Интеграция за 5 минут — подключите{" "}
-          <span style={{ color: "#B8934A" }}>SalesFlow</span> к вашей CRM
+          Интеграция за{" "}
+          <span
+            style={{
+              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              fontStyle: "italic",
+            }}
+          >
+            5 минут
+          </span>
+        </h2>
+
+        <p
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "clamp(16px, 2vw, 20px)",
+            color: "rgba(251,246,236,0.6)",
+            fontWeight: 300,
+            maxWidth: "620px",
+            margin: "0 auto 52px",
+            lineHeight: 1.65,
+          }}
+        >
+          Подключите <span style={{ color: "#FBF6EC", fontWeight: 600 }}>SalesFlow</span> к вашей CRM
+          и&nbsp;телефонии — и&nbsp;начните зарабатывать больше уже сегодня.
         </p>
 
+        {/* CRM chips */}
         <div
-          className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
-          style={{ marginBottom: "44px" }}
+          className="flex flex-wrap items-center justify-center gap-3"
+          style={{ marginBottom: "56px" }}
         >
           {crms.map((crm, i) => (
-            <span key={crm} className="flex items-center gap-3">
+            <div
+              key={crm}
+              className="group"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "9px",
+                padding: "11px 20px",
+                background: "rgba(212,176,116,0.05)",
+                border: "1px solid rgba(212,176,116,0.18)",
+                borderRadius: "999px",
+                backdropFilter: "blur(6px)",
+                transition: "all 0.3s ease",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(14px)",
+                transitionDelay: `${0.15 + i * 0.08}s`,
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = "rgba(212,176,116,0.12)";
+                e.currentTarget.style.borderColor = "rgba(212,176,116,0.5)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "rgba(212,176,116,0.05)";
+                e.currentTarget.style.borderColor = "rgba(212,176,116,0.18)";
+              }}
+            >
+              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: G, boxShadow: "0 0 8px rgba(200,169,106,0.8)" }} />
               <span
                 style={{
                   fontFamily: "Inter, sans-serif",
-                  fontSize: "clamp(15px, 2vw, 20px)",
-                  fontWeight: 500,
-                  color: "#3A3530",
+                  fontSize: "clamp(14px, 1.6vw, 17px)",
+                  fontWeight: 600,
+                  color: "#FBF6EC",
                   letterSpacing: "0.01em",
                 }}
               >
                 {crm}
               </span>
-              {i < crms.length - 1 && (
-                <span style={{ color: "#C8A96A", fontSize: "18px", opacity: 0.7 }}>·</span>
-              )}
-            </span>
+            </div>
           ))}
         </div>
-
-        <p
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "clamp(15px, 2vw, 19px)",
-            color: "#6B6560",
-            fontWeight: 300,
-            marginBottom: "44px",
-            lineHeight: 1.6,
-          }}
-        >
-          и начните зарабатывать больше
-        </p>
 
         <button
           style={{
             fontFamily: "Inter, sans-serif",
-            fontSize: "14px",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
-            color: "#B8934A",
-            background: "transparent",
-            border: "1px solid rgba(184,147,74,0.45)",
-            borderRadius: "3px",
-            padding: "13px 32px",
+            fontSize: "13px",
+            fontWeight: 600,
+            letterSpacing: "0.12em",
+            color: "#151513",
+            background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+            border: "none",
+            borderRadius: "4px",
+            padding: "16px 40px",
             cursor: "pointer",
             textTransform: "uppercase" as const,
-            transition: "border-color 0.25s, color 0.25s",
+            boxShadow: "0 8px 30px rgba(200,169,106,0.25)",
+            transition: "transform 0.25s ease, box-shadow 0.25s ease",
           }}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "#B8934A";
-            (e.currentTarget as HTMLButtonElement).style.color = "#8A6830";
+            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.4)";
           }}
           onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(184,147,74,0.45)";
-            (e.currentTarget as HTMLButtonElement).style.color = "#B8934A";
+            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.25)";
           }}
         >
           Подробнее об интеграциях
