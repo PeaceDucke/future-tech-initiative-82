@@ -1796,6 +1796,184 @@ function ClientValueSection() {
   );
 }
 
+const FAQ_ITEMS = [
+  {
+    q: "Как SalesFlow анализирует звонки — это безопасно?",
+    a: "Все данные передаются по зашифрованному каналу (TLS 1.3) и хранятся на серверах в России. Записи звонков не передаются третьим лицам и используются исключительно для анализа внутри вашего аккаунта. Мы соответствуем требованиям 152-ФЗ о персональных данных.",
+  },
+  {
+    q: "Что такое Quick-анализ и Deep-анализ, в чём разница?",
+    a: "Quick-анализ — это экспресс-разбор звонка за 30–60 секунд: тональность разговора, выявление ключевых тем, оценка вежливости и соответствия скрипту. Deep-анализ занимает 3–5 минут и даёт полный транскрипт, детальную карту возражений, оценку каждого этапа продажи и персональные рекомендации для менеджера. Quick подходит для потокового контроля, Deep — для разбора сложных или провальных сделок.",
+  },
+  {
+    q: "Сколько времени занимает подключение к CRM?",
+    a: "В большинстве случаев интеграция с amoCRM, Битрикс24, Ringostat или Aircall занимает от 3 до 15 минут: вы вставляете API-ключ, выбираете воронку и начинаете получать аналитику. Для Retell и нестандартных конфигураций мы предоставляем личного менеджера по онбордингу — он проведёт вас через весь процесс бесплатно.",
+  },
+  {
+    q: "Можно ли попробовать перед оплатой?",
+    a: "Да. Бесплатный тариф даёт 300 минут Quick-анализа и 30 минут Deep-анализа без каких-либо ограничений по времени — пользуйтесь столько, сколько нужно. Карта не требуется. Когда лимит будет исчерпан, вы сможете выбрать подходящий тариф или запросить расширение лимита для пилотного тестирования.",
+  },
+  {
+    q: "Как SalesFlow помогает увеличить конверсию?",
+    a: "Система автоматически выявляет моменты, где менеджеры теряют клиентов: слабая отработка возражений, преждевременное называние цены, отсутствие follow-up и другие паттерны. На основе реальных звонков формируются персональные рекомендации и точки роста для каждого сотрудника. Наши клиенты в среднем фиксируют рост конверсии на 12–28% в течение первых двух месяцев.",
+  },
+  {
+    q: "Работает ли система с несколькими менеджерами и командами?",
+    a: "Да. В тарифах Команда и Бизнес доступны роли: РОП видит сводную аналитику по всему отделу, менеджер — только свои показатели. Можно создавать группы, сравнивать команды между собой и настраивать индивидуальные скрипты и чек-листы для каждой роли.",
+  },
+  {
+    q: "Поддерживает ли SalesFlow входящие звонки или только исходящие?",
+    a: "Система анализирует любые звонки: входящие, исходящие и даже перезвоны по заявкам. Тип звонка фиксируется автоматически из CRM-данных. Для каждого типа можно настроить отдельный чек-лист — например, для входящих оценивать скорость ответа и выявление потребности, для исходящих — качество презентации и закрытие на следующий шаг.",
+  },
+  {
+    q: "Что будет, если минуты в тарифе закончатся?",
+    a: "Вы получите уведомление при достижении 80% лимита. После исчерпания минут новые звонки перестают анализироваться, но уже обработанные данные остаются доступны. Вы можете в любой момент перейти на более высокий тариф или докупить дополнительный пакет минут без смены тарифного плана.",
+  },
+  {
+    q: "Есть ли API для собственных интеграций?",
+    a: "Да, на тарифах Команда и Бизнес доступен REST API с полной документацией. Вы можете интегрировать SalesFlow с любой внутренней системой: ERP, BI-платформами, Slack, Telegram-ботами для уведомлений или собственными дашбордами. Технический специалист команды помогает с нестандартными сценариями.",
+  },
+  {
+    q: "Можно ли отменить подписку в любой момент?",
+    a: "Да, подписку можно отменить в личном кабинете в один клик без звонков и объяснений. Доступ сохраняется до конца оплаченного периода. Возврат средств за неиспользованные дни рассматривается индивидуально — напишите нам, и мы решим вопрос в течение 24 часов.",
+  },
+];
+
+function FaqSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [open, setOpen] = useState<number | null>(null);
+  const G = "#C8A96A";
+
+  return (
+    <section
+      ref={ref}
+      style={{
+        background: "#151513",
+        padding: "0 24px 150px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* top divider */}
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
+
+      <div
+        className="max-w-3xl mx-auto relative"
+        style={{
+          opacity: inView ? 1 : 0,
+          transform: inView ? "translateY(0)" : "translateY(36px)",
+          transition: "opacity 0.9s ease, transform 0.9s ease",
+        }}
+      >
+        {/* Header */}
+        <div className="text-center" style={{ marginBottom: "72px" }}>
+          <div className="flex items-center justify-center gap-3 mb-7">
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>FAQ</span>
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          </div>
+          <h2 style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontSize: "clamp(32px, 5vw, 62px)",
+            fontWeight: 600,
+            color: "#FBF6EC",
+            lineHeight: 1.1,
+            letterSpacing: "0.01em",
+          }}>
+            Частые{" "}
+            <span style={{
+              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              fontStyle: "italic",
+            }}>вопросы</span>
+          </h2>
+        </div>
+
+        {/* Accordion */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
+          {FAQ_ITEMS.map((item, i) => (
+            <div
+              key={i}
+              style={{
+                borderBottom: "1px solid rgba(240,230,210,0.08)",
+                opacity: inView ? 1 : 0,
+                transition: `opacity 0.6s ease ${0.05 + i * 0.05}s`,
+              }}
+            >
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "20px",
+                  padding: "26px 0",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  textAlign: "left",
+                }}
+              >
+                <span style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "clamp(15px, 1.8vw, 17px)",
+                  fontWeight: 500,
+                  color: open === i ? "#FBF6EC" : "rgba(251,246,236,0.78)",
+                  lineHeight: 1.4,
+                  transition: "color 0.25s ease",
+                  flex: 1,
+                }}>
+                  {item.q}
+                </span>
+                <span style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "50%",
+                  border: `1px solid ${open === i ? "rgba(200,169,106,0.6)" : "rgba(240,230,210,0.15)"}`,
+                  background: open === i ? "rgba(200,169,106,0.12)" : "transparent",
+                  color: open === i ? G : "rgba(251,246,236,0.4)",
+                  fontSize: "18px",
+                  fontWeight: 300,
+                  lineHeight: 1,
+                  flexShrink: 0,
+                  transition: "all 0.3s ease",
+                  transform: open === i ? "rotate(45deg)" : "rotate(0deg)",
+                }}>+</span>
+              </button>
+
+              {/* Answer */}
+              <div style={{
+                maxHeight: open === i ? "400px" : "0px",
+                overflow: "hidden",
+                transition: "max-height 0.45s cubic-bezier(0.4,0,0.2,1)",
+              }}>
+                <p style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "clamp(14px, 1.6vw, 16px)",
+                  color: "rgba(251,246,236,0.55)",
+                  lineHeight: 1.75,
+                  fontWeight: 300,
+                  paddingBottom: "28px",
+                  paddingRight: "48px",
+                }}>
+                  {item.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PricingSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -3485,6 +3663,9 @@ AI определяет:
 
         {/* ═══ PRICING ═══ */}
         <PricingSection />
+
+        {/* ═══ FAQ ═══ */}
+        <FaqSection />
 
         {/* ═══ FOOTER ═══ */}
         <footer
