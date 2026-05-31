@@ -2451,7 +2451,7 @@ function IntegrationSection() {
       {/* top divider */}
       <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.15) 30%, rgba(200,169,106,0.15) 70%, transparent)", marginBottom: "120px" }} />
 
-      {/* ambient golden glow */}
+      {/* ambient beige glow */}
       <div
         aria-hidden
         style={{
@@ -2461,7 +2461,7 @@ function IntegrationSection() {
           transform: "translate(-50%,-50%)",
           width: "min(720px, 90vw)",
           height: "420px",
-          background: "radial-gradient(ellipse at center, rgba(200,169,106,0.10), transparent 70%)",
+          background: "radial-gradient(ellipse at center, rgba(251,246,236,0.07), transparent 70%)",
           filter: "blur(20px)",
           pointerEvents: "none",
         }}
@@ -2477,16 +2477,16 @@ function IntegrationSection() {
       >
         {/* eyebrow */}
         <div className="flex items-center justify-center gap-3 mb-7">
-          <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          <div style={{ width: "40px", height: "1px", background: "rgba(251,246,236,0.3)" }} />
           <span style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "11px",
             letterSpacing: "0.25em",
             textTransform: "uppercase" as const,
-            color: G,
+            color: "rgba(251,246,236,0.5)",
             fontWeight: 600,
           }}>Подключение</span>
-          <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          <div style={{ width: "40px", height: "1px", background: "rgba(251,246,236,0.3)" }} />
         </div>
 
         <h2
@@ -2494,21 +2494,23 @@ function IntegrationSection() {
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(34px, 5.5vw, 70px)",
             fontWeight: 600,
-            color: "#FBF6EC",
             lineHeight: 1.08,
             letterSpacing: "0.005em",
             marginBottom: "30px",
+            background: "linear-gradient(135deg, #F5E6B0 0%, #E8C96A 18%, #C8A032 35%, #F0D878 50%, #B8881E 65%, #E8C45A 80%, #F7EBB0 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
           }}
         >
-          Интеграция за{" "}
-            5 минут
+          Интеграция за 5 минут
         </h2>
 
         <p
           style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "clamp(16px, 2vw, 20px)",
-            color: "rgba(251,246,236,0.6)",
+            color: "rgba(251,246,236,0.72)",
             fontWeight: 300,
             maxWidth: "620px",
             margin: "0 auto 52px",
@@ -2533,8 +2535,8 @@ function IntegrationSection() {
                 alignItems: "center",
                 gap: "9px",
                 padding: "11px 20px",
-                background: "rgba(212,176,116,0.05)",
-                border: "1px solid rgba(212,176,116,0.18)",
+                background: "rgba(251,246,236,0.04)",
+                border: "1px solid rgba(251,246,236,0.16)",
                 borderRadius: "999px",
                 backdropFilter: "blur(6px)",
                 transition: "all 0.3s ease",
@@ -2543,15 +2545,15 @@ function IntegrationSection() {
                 transitionDelay: `${0.15 + i * 0.08}s`,
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(212,176,116,0.12)";
-                e.currentTarget.style.borderColor = "rgba(212,176,116,0.5)";
+                e.currentTarget.style.background = "rgba(251,246,236,0.10)";
+                e.currentTarget.style.borderColor = "rgba(251,246,236,0.4)";
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = "rgba(212,176,116,0.05)";
-                e.currentTarget.style.borderColor = "rgba(212,176,116,0.18)";
+                e.currentTarget.style.background = "rgba(251,246,236,0.04)";
+                e.currentTarget.style.borderColor = "rgba(251,246,236,0.16)";
               }}
             >
-              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: G, boxShadow: "0 0 8px rgba(200,169,106,0.8)" }} />
+              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#FBF6EC", boxShadow: "0 0 8px rgba(251,246,236,0.6)" }} />
               <span
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -2574,22 +2576,22 @@ function IntegrationSection() {
             fontWeight: 600,
             letterSpacing: "0.12em",
             color: "#151513",
-            background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+            background: "linear-gradient(135deg, #F5E8C0 0%, #EDD98A 30%, #F2E4A0 55%, #E0C878 80%, #F5E8C0 100%)",
             border: "none",
             borderRadius: "4px",
             padding: "16px 40px",
             cursor: "pointer",
             textTransform: "uppercase" as const,
-            boxShadow: "0 8px 30px rgba(200,169,106,0.25)",
+            boxShadow: "0 8px 30px rgba(251,246,236,0.15)",
             transition: "transform 0.25s ease, box-shadow 0.25s ease",
           }}
           onMouseEnter={e => {
             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.4)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(251,246,236,0.25)";
           }}
           onMouseLeave={e => {
             (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.25)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(251,246,236,0.15)";
           }}
         >
           Подробнее об интеграциях
