@@ -137,119 +137,178 @@ function PainCard({
   progress: number;
   large?: boolean;
 }) {
-  // rotateY: от -88deg (ребром) до 0deg (лицом) — clamp 0..1
+  // rotateY: от -72deg (ребром) до 0deg (лицом) — clamp 0..1
   const p = Math.min(1, Math.max(0, progress));
   const rotateY = (1 - p) * -72;
   const opacity = 0.15 + p * 0.85;
 
   // Толщина карточки (3D)
-  const depth = 26;
+  const depth = 22;
+  const half = depth / 2;
+
+  // Измеряем реальные размеры карточки, чтобы строить грани в 3D
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const el = measureRef.current;
+    if (!el) return;
+    const update = () => setSize({ w: el.offsetWidth, h: el.offsetHeight });
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Внешняя обёртка задаёт перспективу
   const sceneStyle: React.CSSProperties = {
-    perspective: "1100px",
+    perspective: "1400px",
     height: "100%",
     opacity,
     transition: "none",
     willChange: "opacity",
   };
 
-  // 3D-объект, который реально вращается
+  // 3D-объект, который реально вращается вокруг своего центра по толщине
   const solidStyle: React.CSSProperties = {
     position: "relative",
     height: "100%",
     transformStyle: "preserve-3d",
-    transformOrigin: "50% 50%",
     transform: `rotateY(${rotateY}deg)`,
     transition: "none",
     willChange: "transform",
   };
 
-  // Передняя (лицевая) грань с контентом
+  // Серебряный металл для торцов
+  const silver = "linear-gradient(135deg, #6e6e72 0%, #c8c8cc 25%, #9a9a9e 50%, #d6d6da 70%, #7a7a7e 100%)";
+  const silverV = "linear-gradient(90deg, #6e6e72 0%, #c8c8cc 25%, #9a9a9e 50%, #d6d6da 70%, #7a7a7e 100%)";
+
+  // Передняя (лицевая) грань с контентом — выдвинута вперёд на half.
+  // В нормальном потоке: именно она задаёт высоту всего 3D-объекта.
   const cardBase: React.CSSProperties = {
+    position: "relative",
+    minHeight: "100%",
     background: "#0f0f0f",
     border: "1px solid rgba(240,232,218,0.45)",
     borderRadius: "16px",
     padding: large ? "28px 24px 24px" : "24px 20px 20px",
     display: "flex",
     flexDirection: "column",
-    position: "relative",
     overflow: "hidden",
-    height: "100%",
-    transform: `translateZ(${depth / 2}px)`,
-    boxShadow: "0 0 0 1px rgba(240,232,218,0.08), 0 0 18px rgba(240,232,218,0.06), 0 0 40px rgba(240,232,218,0.04), inset 0 1px 0 rgba(255,255,255,0.05)",
+    transform: `translateZ(${half}px)`,
+    boxShadow: "0 0 0 1px rgba(240,232,218,0.08), inset 0 1px 0 rgba(255,255,255,0.05)",
+    zIndex: 1,
   };
 
-  // Правая боковая грань (придаёт толщину)
-  const sideStyle: React.CSSProperties = {
+  // Все торцы строятся от ЦЕНТРА коробки (классический CSS-куб),
+  // когда известны реальные размеры лицевой грани.
+  const W = size.w;
+  const H = size.h;
+
+  // Задняя грань
+  const backStyle: React.CSSProperties = {
     position: "absolute",
-    top: 0,
-    right: 0,
-    width: `${depth}px`,
-    height: "100%",
-    background: "linear-gradient(to right, #050505 0%, #1a1a18 55%, #2a2824 100%)",
-    borderRadius: "0 16px 16px 0",
-    transform: `rotateY(90deg) translateZ(${depth / 2}px)`,
-    transformOrigin: "right center",
-    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+    top: "50%",
+    left: "50%",
+    width: `${W}px`,
+    height: `${H}px`,
+    background: "#0a0a0a",
+    borderRadius: "16px",
+    transform: `translate(-50%, -50%) translateZ(-${half}px)`,
   };
-
-  // Нижняя грань (для глубины снизу)
+  // Правый торец
+  const rightStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: `${depth}px`,
+    height: `${H}px`,
+    background: silverV,
+    transform: `translate(-50%, -50%) translateX(${W / 2}px) rotateY(90deg)`,
+  };
+  // Левый торец
+  const leftStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: `${depth}px`,
+    height: `${H}px`,
+    background: silverV,
+    transform: `translate(-50%, -50%) translateX(-${W / 2}px) rotateY(-90deg)`,
+  };
+  // Верхний торец
+  const topStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: `${W}px`,
+    height: `${depth}px`,
+    background: silver,
+    transform: `translate(-50%, -50%) translateY(-${H / 2}px) rotateX(90deg)`,
+  };
+  // Нижний торец
   const bottomStyle: React.CSSProperties = {
     position: "absolute",
-    bottom: 0,
-    left: 0,
-    width: "100%",
+    top: "50%",
+    left: "50%",
+    width: `${W}px`,
     height: `${depth}px`,
-    background: "linear-gradient(to bottom, #060606 0%, #131311 100%)",
-    borderRadius: "0 0 16px 16px",
-    transform: `rotateX(-90deg) translateZ(${depth / 2}px)`,
-    transformOrigin: "bottom center",
+    background: silver,
+    transform: `translate(-50%, -50%) translateY(${H / 2}px) rotateX(-90deg)`,
   };
 
   const iconSize = 52;
 
   return (
     <div style={sceneStyle}>
-    <div style={solidStyle}>
-      <div style={sideStyle} />
-      <div style={bottomStyle} />
-      <div style={cardBase}>
-      <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(196,158,84,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={solidStyle}>
+        {/* Торцы строятся только когда известны размеры — позиционируются от центра */}
+        {W > 0 && (
+          <>
+            <div style={rightStyle} />
+            <div style={leftStyle} />
+            <div style={topStyle} />
+            <div style={bottomStyle} />
+            <div style={backStyle} />
+          </>
+        )}
 
-      {/* Основной layout: левая колонка (номер + иконка) + правая (текст) */}
-      <div style={{ display: "flex", gap: "18px", flex: 1, minHeight: 0 }}>
+        {/* Лицевая грань */}
+        <div ref={measureRef} style={cardBase}>
+          <div style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px", background: "radial-gradient(circle, rgba(196,158,84,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-        {/* Левая колонка */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 700, letterSpacing: "0.14em" }}>{c.num}</span>
-          <div style={{ width: iconSize, height: iconSize, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <Icon name={c.icon} size={28} style={{ color: "rgba(200,200,210,0.7)" }} />
-          </div>
-        </div>
+          {/* Основной layout: левая колонка (номер + иконка) + правая (текст) */}
+          <div style={{ display: "flex", gap: "18px", flex: 1, minHeight: 0 }}>
 
-        {/* Правая колонка */}
-        <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
-          <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "23px" : "18px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "16px", whiteSpace: "pre-line" }}>{c.title}</h3>
-          <div style={{ marginBottom: "12px" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Проблема:</p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "14px" : "13px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
-          </div>
-          <div style={{ marginBottom: "16px" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Что показывает SalesFlow:</p>
-            <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "14px" : "13px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
-          </div>
-          <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "12px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-            <div>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.38)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "3px" }}>Потенциальная потеря:</p>
-              <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "21px" : "17px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
+            {/* Левая колонка */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#D4B074", fontWeight: 700, letterSpacing: "0.14em" }}>{c.num}</span>
+              <div style={{ width: iconSize, height: iconSize, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Icon name={c.icon} size={28} style={{ color: "rgba(200,200,210,0.7)" }} />
+              </div>
             </div>
-            <Sparkline />
+
+            {/* Правая колонка */}
+            <div style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
+              <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "23px" : "18px", color: "#FBF6EC", fontWeight: 400, lineHeight: 1.3, marginBottom: "16px", whiteSpace: "pre-line" }}>{c.title}</h3>
+              <div style={{ marginBottom: "12px" }}>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Проблема:</p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "14px" : "13px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
+              </div>
+              <div style={{ marginBottom: "16px" }}>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Что показывает SalesFlow:</p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "14px" : "13px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
+              </div>
+              <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "12px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
+                <div>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.38)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "3px" }}>Потенциальная потеря:</p>
+                  <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: large ? "21px" : "17px", color: "#D4B074", fontWeight: 400 }}>{c.loss}</p>
+                </div>
+                <Sparkline />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-    </div>
     </div>
   );
 }
