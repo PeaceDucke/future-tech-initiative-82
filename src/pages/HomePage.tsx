@@ -2891,7 +2891,7 @@ AI определяет:
                   <a
                     key={item}
                     href="#"
-                    className="px-4 py-2 text-[14px] rounded-lg transition-all duration-200"
+                    className="px-4 py-2 text-[16px] rounded-lg transition-all duration-200"
                     style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                   >
                     {item}
