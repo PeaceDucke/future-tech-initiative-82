@@ -2925,8 +2925,8 @@ AI определяет:
                 href="#cta"
                 className="hidden sm:inline-flex items-center gap-2"
                 style={{
-                  background: "linear-gradient(135deg, #F9EFC0 0%, #C8960E 18%, #EDD060 38%, #A87810 58%, #E8C840 78%, #F9EFC0 100%)",
-                  color: "#2A1F00",
+                  background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
+                  color: "#1E1500",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
@@ -2934,11 +2934,11 @@ AI определяет:
                   padding: "9px 20px",
                   borderRadius: "2px",
                   marginRight: "8px",
-                  boxShadow: "0 2px 12px rgba(200,150,14,0.35), inset 0 1px 0 rgba(255,245,180,0.5)",
+                  boxShadow: "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)",
                   transition: "box-shadow 0.25s ease, transform 0.25s ease",
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(200,150,14,0.55), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 12px rgba(200,150,14,0.35), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.45), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
               >
                 Запросить демо
                 <Icon name="ArrowRight" size={13} />
@@ -2981,13 +2981,13 @@ AI определяет:
               onClick={() => setMenuOpen(false)}
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px]"
               style={{
-                background: "linear-gradient(135deg, #F9EFC0 0%, #C8960E 18%, #EDD060 38%, #A87810 58%, #E8C840 78%, #F9EFC0 100%)",
-                color: "#2A1F00",
+                background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
+                color: "#1E1500",
                 fontFamily: "Inter, sans-serif",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 borderRadius: "2px",
-                boxShadow: "0 2px 12px rgba(200,150,14,0.35)",
+                boxShadow: "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)",
               }}
             >
               Запросить демо
@@ -3059,19 +3059,19 @@ AI определяет:
                   href="#cta"
                   className="inline-flex items-center gap-2"
                   style={{
-                    background: "linear-gradient(135deg, #F9EFC0 0%, #C8960E 18%, #EDD060 38%, #A87810 58%, #E8C840 78%, #F9EFC0 100%)",
-                    color: "#2A1F00",
+                    background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
+                    color: "#1E1500",
                     borderRadius: "2px",
                     letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
                     fontSize: "13px",
                     padding: "12px 28px",
-                    boxShadow: "0 4px 20px rgba(200,150,14,0.4), inset 0 1px 0 rgba(255,245,180,0.5)",
+                    boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(200,150,14,0.6), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(200,150,14,0.4), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 24px rgba(180,130,50,0.5), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
                 >
                   Запросить демо
                   <Icon name="ArrowRight" size={14} />
@@ -3954,14 +3954,15 @@ AI определяет:
         href="#cta"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
         style={{
-          background: "#D4B074",
-          color: "#151513",
+          background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
+          color: "#1E1500",
           fontFamily: "Inter, sans-serif",
-          fontWeight: 500,
+          fontWeight: 600,
           letterSpacing: "0.08em",
           fontSize: "13px",
           padding: "11px 22px",
           borderRadius: "2px",
+          boxShadow: "0 4px 18px rgba(180,130,50,0.35), inset 0 1px 0 rgba(255,240,190,0.4)",
         }}
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
