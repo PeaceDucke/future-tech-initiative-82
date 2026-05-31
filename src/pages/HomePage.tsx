@@ -2910,11 +2910,11 @@ AI определяет:
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/5bfb7468-351f-45a8-ac5b-91fdf57f4237.png", name: "VK", href: "https://vk.com/" },
                 ].map(s => (
                   <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" title={s.name}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "30px", height: "30px", borderRadius: "8px", transition: "transform 0.2s ease, opacity 0.2s ease", opacity: 0.75 }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLAnchorElement).style.opacity = "0.75"; }}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "8px", transition: "transform 0.2s ease", opacity: 1 }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
                   >
-                    <img src={s.img} alt={s.name} style={{ width: "26px", height: "26px", objectFit: "contain" }} />
+                    <img src={s.img} alt={s.name} style={{ width: "32px", height: "32px", objectFit: "contain" }} />
                   </a>
                 ))}
               </div>
@@ -2925,16 +2925,20 @@ AI определяет:
                 href="#cta"
                 className="hidden sm:inline-flex items-center gap-2"
                 style={{
-                  background: "#D4B074",
-                  color: "#151513",
+                  background: "linear-gradient(135deg, #F9EFC0 0%, #C8960E 18%, #EDD060 38%, #A87810 58%, #E8C840 78%, #F9EFC0 100%)",
+                  color: "#2A1F00",
                   fontFamily: "Inter, sans-serif",
-                  fontWeight: 500,
+                  fontWeight: 600,
                   letterSpacing: "0.08em",
                   fontSize: "13px",
                   padding: "9px 20px",
                   borderRadius: "2px",
                   marginRight: "8px",
+                  boxShadow: "0 2px 12px rgba(200,150,14,0.35), inset 0 1px 0 rgba(255,245,180,0.5)",
+                  transition: "box-shadow 0.25s ease, transform 0.25s ease",
                 }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(200,150,14,0.55), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 12px rgba(200,150,14,0.35), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
               >
                 Запросить демо
                 <Icon name="ArrowRight" size={13} />
@@ -2977,12 +2981,13 @@ AI определяет:
               onClick={() => setMenuOpen(false)}
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px]"
               style={{
-                background: "#D4B074",
-                color: "#151513",
+                background: "linear-gradient(135deg, #F9EFC0 0%, #C8960E 18%, #EDD060 38%, #A87810 58%, #E8C840 78%, #F9EFC0 100%)",
+                color: "#2A1F00",
                 fontFamily: "Inter, sans-serif",
-                fontWeight: 500,
+                fontWeight: 600,
                 letterSpacing: "0.08em",
                 borderRadius: "2px",
+                boxShadow: "0 2px 12px rgba(200,150,14,0.35)",
               }}
             >
               Запросить демо
@@ -3054,15 +3059,19 @@ AI определяет:
                   href="#cta"
                   className="inline-flex items-center gap-2"
                   style={{
-                    background: "#D4B074",
-                    color: "#151513",
+                    background: "linear-gradient(135deg, #F9EFC0 0%, #C8960E 18%, #EDD060 38%, #A87810 58%, #E8C840 78%, #F9EFC0 100%)",
+                    color: "#2A1F00",
                     borderRadius: "2px",
                     letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
-                    fontWeight: 500,
+                    fontWeight: 600,
                     fontSize: "13px",
                     padding: "12px 28px",
+                    boxShadow: "0 4px 20px rgba(200,150,14,0.4), inset 0 1px 0 rgba(255,245,180,0.5)",
+                    transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(200,150,14,0.6), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(200,150,14,0.4), inset 0 1px 0 rgba(255,245,180,0.5)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
                 >
                   Запросить демо
                   <Icon name="ArrowRight" size={14} />
