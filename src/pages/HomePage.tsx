@@ -3167,18 +3167,7 @@ AI определяет:
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
 
-              <motion.div
-                variants={fadeUp}
-                className="mb-9 flex items-start gap-3"
-                style={{ marginLeft: "45%", width: "60vw", maxWidth: "900px", padding: "14px 18px", borderLeft: "2px solid #D4B074", background: "rgba(212,176,116,0.06)", borderRadius: "2px" }}
-              >
-                <Icon name="ShieldCheck" size={20} style={{ color: "#D4B074", flexShrink: 0, marginTop: "2px" }} />
-                <p style={{ color: "rgba(251,246,236,0.82)", fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: 1.55 }}>
-                  За первые 30 дней ИИ выявит ошибки, потерянные заявки и точки роста в вашем отделе продаж. <span style={{ color: "#D4B074", fontWeight: 600 }}>Если нет — вернём деньги.</span>
-                </p>
-              </motion.div>
-
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-7rem" }}>
                 <a
                   href="#cta"
                   className="inline-flex items-center gap-2"
@@ -3189,8 +3178,8 @@ AI определяет:
                     letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
-                    fontSize: "13px",
-                    padding: "12px 28px",
+                    fontSize: "16px",
+                    padding: "16px 38px",
                     boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
@@ -3200,7 +3189,7 @@ AI определяет:
                   Запросить демо
                 </a>
               </motion.div>
-              <motion.p variants={fadeUp} className="mt-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.3)", fontWeight: 400 }}>
+              <motion.p variants={fadeUp} className="mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
                 нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
