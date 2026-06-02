@@ -3018,10 +3018,7 @@ AI определяет:
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-2">
                 {[
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d00de53c-fad6-450e-87d0-f57a9cad051c.png", name: "WhatsApp", href: "https://wa.me/" },
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/2f700626-cd00-427d-9f0f-1cc4d3614911.png", name: "Telegram", href: "https://t.me/" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/07079e04-41db-4c6a-9866-3d0f7858d5c2.png", name: "Instagram", href: "https://instagram.com/" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/5bfb7468-351f-45a8-ac5b-91fdf57f4237.png", name: "VK", href: "https://vk.com/" },
                 ].map(s => (
                   <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" title={s.name}
                     style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "34px", height: "34px", borderRadius: "8px", transition: "transform 0.2s ease", opacity: 1 }}
