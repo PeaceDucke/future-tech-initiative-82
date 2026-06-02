@@ -3157,13 +3157,13 @@ AI определяет:
               >
                 Ваши продажи
                 <br />
-                <span style={{ color: "#D4B074", display: "block", whiteSpace: "nowrap", paddingLeft: "33%" }}>под контролем</span>
+                <span style={{ color: "#D4B074", display: "block", whiteSpace: "nowrap", paddingLeft: "20%" }}>под контролем</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
                 className="text-[17px] mb-9 max-w-xl"
-                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "33%" }}
+                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "20%" }}
               >
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
