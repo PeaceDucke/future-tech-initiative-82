@@ -2972,7 +2972,7 @@ AI определяет:
             borderColor: "rgba(212,176,116,0.12)",
           }}
         >
-          <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center justify-between">
+          <div className="w-full px-8 py-3.5 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
