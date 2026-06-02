@@ -2996,7 +2996,7 @@ AI определяет:
               </span>
             </a>
 
-            <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
+            <nav className="hidden lg:flex items-center gap-1 ml-10">
               {[
                 { label: "О нас", href: "/about" },
                 { label: "Тарифы", href: "#pricing" },
@@ -3014,7 +3014,7 @@ AI определяет:
               ))}
             </nav>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 ml-auto">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-2">
                 {[
