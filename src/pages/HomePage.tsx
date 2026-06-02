@@ -3017,9 +3017,10 @@ AI определяет:
             <div className="flex items-center gap-4 ml-auto">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-3">
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap" }}>
-                  Остались вопросы? Напишите нам!
-                </span>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
+                  Остались вопросы?<br />Напишите нам!
+                </div>
+                <Icon name="ArrowRight" size={20} style={{ color: "#D4B074" }} />
                 {[
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/2f700626-cd00-427d-9f0f-1cc4d3614911.png", name: "Telegram", href: "https://t.me/" },
                 ].map(s => (
