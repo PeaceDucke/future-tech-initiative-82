@@ -2173,12 +2173,14 @@ function FaqSection() {
 
   return (
     <section
+      id="faq"
       ref={ref}
       style={{
         background: "#151513",
         padding: "0 24px 80px",
         position: "relative",
         overflow: "hidden",
+        scrollMarginTop: "80px",
       }}
     >
       {/* top divider */}
@@ -2340,12 +2342,14 @@ function PricingSection() {
 
   return (
     <section
+      id="pricing"
       ref={ref}
       style={{
         background: "#151513",
         padding: "0 24px 60px",
         position: "relative",
         overflow: "hidden",
+        scrollMarginTop: "80px",
       }}
     >
       {/* top divider */}
@@ -2996,12 +3000,11 @@ AI определяет:
               </span>
             </a>
 
-            <nav className="hidden lg:flex items-center gap-1 ml-10">
+            <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
               {[
-                { label: "О нас", href: "/about" },
                 { label: "Тарифы", href: "#pricing" },
                 { label: "FAQ", href: "#faq" },
-                { label: "Наша команда", href: "/about#team" },
+                { label: "Наша команда", href: "/about" },
               ].map((item) => (
                 <a
                   key={item.label}
@@ -3079,10 +3082,9 @@ AI определяет:
             }}
           >
             {[
-              { label: "О нас", href: "/about" },
               { label: "Тарифы", href: "#pricing" },
               { label: "FAQ", href: "#faq" },
-              { label: "Наша команда", href: "/about#team" },
+              { label: "Наша команда", href: "/about" },
             ].map((item) => (
                 <a
                   key={item.label}
