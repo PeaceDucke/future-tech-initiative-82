@@ -3167,7 +3167,7 @@ AI определяет:
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-4rem" }}>
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-5rem" }}>
                 <a
                   href="#cta"
                   className="inline-flex items-center gap-2"
@@ -3178,8 +3178,8 @@ AI определяет:
                     letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
-                    fontSize: "17px",
-                    padding: "18px 44px",
+                    fontSize: "15px",
+                    padding: "14px 36px",
                     boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
