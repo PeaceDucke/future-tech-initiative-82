@@ -3199,17 +3199,17 @@ AI определяет:
         {/* ═══ METRICS STRIPE ═══ */}
         <section
           className="relative pb-6 px-5 overflow-hidden"
-          style={{ background: "#151513" }}
+          style={{ background: "#151513", paddingTop: "80px" }}
         >
           <div className="max-w-7xl mx-auto">
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
                 {[
-                  { icon: "TrendingUp", num: "+30%", label: "Рост конверсии в среднем" },
-                  { icon: "DollarSign", num: "+25%", label: "Увеличение выручки у клиентов" },
-                  { icon: "TrendingDown", num: "-40%", label: "Сокращение потерь сделок" },
-                  { icon: "Phone", num: "100%", label: "Звонков под контролем 24/7" },
-                  { icon: "Zap", num: "3–5x", label: "Быстрая окупаемость в среднем" },
+                  { icon: "Phone", num: "100%", label: "Анализ звонков" },
+                  { icon: "Users", num: "100%", label: "Контроль менеджеров" },
+                  { icon: "TrendingDown", num: "до 50%", label: "Меньше потерянных лидов" },
+                  { icon: "Zap", num: "в 10 раз", label: "Быстрее контроль качества" },
+                  { icon: "TrendingUp", num: "до 35%", label: "Рост конверсии отдела продаж" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
