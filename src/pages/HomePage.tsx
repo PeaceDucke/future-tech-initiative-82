@@ -3155,7 +3155,7 @@ AI определяет:
                   letterSpacing: "-0.01em",
                 }}
               >
-                <span style={{ display: "block", marginLeft: "-2rem" }}>Ваши продажи</span>
+                <span style={{ display: "block", marginLeft: "-5rem" }}>Ваши продажи</span>
                 <span style={{ color: "#D4B074", display: "block", whiteSpace: "nowrap", paddingLeft: "20%" }}>под контролем</span>
               </motion.h1>
 
