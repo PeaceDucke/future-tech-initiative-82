@@ -3165,8 +3165,7 @@ AI определяет:
                 className="text-[16px] mb-9 max-w-lg"
                 style={{ color: "rgba(251,246,236,0.6)", fontFamily: "Inter, sans-serif", fontWeight: 300, lineHeight: 1.75 }}
               >
-                SalesFlow анализирует каждый звонок, находит точки роста и
-                помогает вашей команде продавать больше каждый день.
+                ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
