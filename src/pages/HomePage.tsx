@@ -3143,7 +3143,7 @@ AI определяет:
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="max-w-2xl"
+              className="max-w-5xl"
             >
               <motion.h1
                 variants={fadeUp}
@@ -3161,8 +3161,8 @@ AI определяет:
 
               <motion.p
                 variants={fadeUp}
-                className="text-[17px] mb-9 max-w-3xl"
-                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%" }}
+                className="text-[17px] mb-9"
+                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px" }}
               >
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
