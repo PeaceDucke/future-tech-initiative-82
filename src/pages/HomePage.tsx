@@ -3147,7 +3147,7 @@ AI определяет:
             >
               <motion.h1
                 variants={fadeUp}
-                className="text-4xl lg:text-6xl xl:text-7xl mb-6 leading-none"
+                className="text-5xl lg:text-7xl xl:text-8xl mb-6 leading-none"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
@@ -3157,13 +3157,13 @@ AI определяет:
               >
                 Ваши продажи
                 <br />
-                <span style={{ color: "#D4B074" }}>под контролем</span>
+                <span style={{ color: "#D4B074", display: "block", paddingLeft: "3rem" }}>под контролем</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="text-[16px] mb-9 max-w-lg"
-                style={{ color: "rgba(251,246,236,0.6)", fontFamily: "Inter, sans-serif", fontWeight: 300, lineHeight: 1.75 }}
+                className="text-[17px] mb-9 max-w-lg"
+                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.75, paddingLeft: "6rem" }}
               >
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
