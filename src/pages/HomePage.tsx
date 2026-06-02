@@ -3059,7 +3059,6 @@ AI определяет:
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
               >
                 Запросить демо
-                <Icon name="ArrowRight" size={13} />
               </a>
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -3195,7 +3194,6 @@ AI определяет:
                   onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
                 >
                   Запросить демо
-                  <Icon name="ArrowRight" size={14} />
                 </a>
               </motion.div>
               <motion.p variants={fadeUp} className="mt-6" style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.3)", fontWeight: 400 }}>
