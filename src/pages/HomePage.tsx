@@ -3145,11 +3145,6 @@ AI определяет:
               variants={stagger}
               className="max-w-2xl"
             >
-              <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
-                <div style={{ width: "40px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
-                <span style={labelStyle}>Речевая аналитика и CRM-интеграции</span>
-              </motion.div>
-
               <motion.h1
                 variants={fadeUp}
                 className="text-4xl lg:text-6xl xl:text-7xl mb-6 leading-none"
