@@ -3161,11 +3161,22 @@ AI определяет:
 
               <motion.p
                 variants={fadeUp}
-                className="text-[17px] mb-9"
+                className="text-[17px] mb-5"
                 style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px" }}
               >
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
+
+              <motion.div
+                variants={fadeUp}
+                className="mb-9 flex items-start gap-3"
+                style={{ marginLeft: "45%", width: "60vw", maxWidth: "900px", padding: "14px 18px", borderLeft: "2px solid #D4B074", background: "rgba(212,176,116,0.06)", borderRadius: "2px" }}
+              >
+                <Icon name="ShieldCheck" size={20} style={{ color: "#D4B074", flexShrink: 0, marginTop: "2px" }} />
+                <p style={{ color: "rgba(251,246,236,0.82)", fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "15px", lineHeight: 1.55 }}>
+                  За первые 30 дней ИИ выявит ошибки, потерянные заявки и точки роста в вашем отделе продаж. <span style={{ color: "#D4B074", fontWeight: 600 }}>Если нет — вернём деньги.</span>
+                </p>
+              </motion.div>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
                 <a
