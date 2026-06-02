@@ -3167,7 +3167,7 @@ AI определяет:
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-7rem" }}>
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-3rem" }}>
                 <a
                   href="#cta"
                   className="inline-flex items-center gap-2"
