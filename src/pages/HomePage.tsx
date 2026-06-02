@@ -3121,7 +3121,7 @@ AI определяет:
         <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/b97b6c29-95db-4263-8e56-bf8ccf876708.jpg"
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e3398b6d-eb3c-4f97-b1a4-9768d29cb5d8.jpg"
               alt="Команда SalesFlow"
               className="w-full h-full object-cover object-center"
             />
