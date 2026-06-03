@@ -3474,7 +3474,7 @@ export function HomePage() {
                       <div className="grid grid-cols-2 gap-4">
                         <div
                           className="rounded-xl p-4"
-                          style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)", cursor: "default", transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)", transform: callsHover ? "translateY(-4px)" : "translateY(0)" }}
+                          style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-acc-rgb-1),0.18)", cursor: "default" }}
                         >
                           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-text-main)", marginBottom: "14px", fontWeight: 600 }}>Последние звонки</div>
                           <div className="space-y-2.5">
@@ -3512,22 +3512,6 @@ export function HomePage() {
                     </div>
                   </div>
                 </div>
-
-                {/* ── Hitbox для "Последние звонки" (ловит hover поверх всех слоёв) ── */}
-                <div
-                  onMouseEnter={() => setCallsHover(true)}
-                  onMouseLeave={() => setCallsHover(false)}
-                  className="absolute"
-                  style={{
-                    top: "595px",
-                    left: "228px",
-                    width: "calc((100% - 256px) / 2 - 8px)",
-                    height: "175px",
-                    zIndex: 200,
-                    cursor: "default",
-                    background: "transparent",
-                  }}
-                />
 
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
