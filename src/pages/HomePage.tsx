@@ -1513,11 +1513,6 @@ function PipelineSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-24">
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span style={labelStyle}>Как работает SalesFlow</span>
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-          </div>
           <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
             AI видит то, что невозможно<br />контролировать вручную
           </h2>
