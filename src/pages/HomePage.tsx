@@ -2804,7 +2804,7 @@ export function HomePage() {
             borderColor: "rgba(212,176,116,0.12)",
           }}
         >
-          <div className="w-full px-8 py-2 flex items-center">
+          <div className="w-full px-8 py-1 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
@@ -2856,11 +2856,11 @@ export function HomePage() {
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/a0f299b2-a9a5-4030-955a-a78f3bef763d.png", name: "Telegram", href: "https://t.me/" },
                 ].map(s => (
                   <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" title={s.name}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "8px", transition: "transform 0.2s ease", opacity: 1 }}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "52px", height: "52px", borderRadius: "8px", transition: "transform 0.2s ease", opacity: 1 }}
                     onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
                   >
-                    <img src={s.img} alt={s.name} style={{ width: "36px", height: "36px", objectFit: "contain" }} />
+                    <img src={s.img} alt={s.name} style={{ width: "52px", height: "52px", objectFit: "contain" }} />
                   </a>
                 ))}
               </div>
