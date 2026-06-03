@@ -3244,6 +3244,9 @@ AI определяет:
           </div>
         </section>
 
+        {/* ═══ AI PIPELINE ═══ */}
+        <PipelineSection />
+
         {/* ═══ DASHBOARD PREVIEW ═══ */}
         <section className="pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
@@ -3987,9 +3990,6 @@ AI определяет:
 
         {/* ═══ PAIN CARDS ═══ */}
         <PainSection />
-
-        {/* ═══ AI PIPELINE ═══ */}
-        <PipelineSection />
 
         {/* ═══ SPLINE FEATURE ═══ */}
         <SplineFeatureSection />
