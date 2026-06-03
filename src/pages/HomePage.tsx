@@ -3002,7 +3002,7 @@ export function HomePage() {
                 <div className="gold-underline" />
               </motion.div>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-1.5rem" }}>
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "1.5rem" }}>
                 <a
                   href="#cta"
                   className="inline-flex items-center gap-2"
