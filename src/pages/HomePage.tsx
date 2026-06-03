@@ -3218,7 +3218,7 @@ AI определяет:
                     style={{ background: "#151513", border: "none" }}
                   >
                     <div className="flex items-center justify-center shrink-0">
-                      <img src={item.img} alt={item.label} style={{ width: "96px", height: "96px", objectFit: "contain" }} />
+                      <img src={item.img} alt={item.label} style={{ width: "144px", height: "144px", objectFit: "contain" }} />
                     </div>
                     <div>
                       <div
