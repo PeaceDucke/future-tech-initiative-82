@@ -3013,8 +3013,8 @@ export function HomePage() {
                     letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
-                    fontSize: "15px",
-                    padding: "14px 36px",
+                    fontSize: "16.5px",
+                    padding: "15px 40px",
                     boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
@@ -3024,7 +3024,7 @@ export function HomePage() {
                   Запросить демо
                 </a>
               </motion.div>
-              <motion.p variants={fadeUp} className="mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
+              <motion.p variants={fadeUp} className="mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
                 нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
