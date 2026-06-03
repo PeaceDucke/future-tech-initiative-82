@@ -2724,178 +2724,6 @@ export function HomePage() {
   const [activeSlider, setActiveSlider] = useState<null | "bg" | "acc" | "text">(null);
   const [customizerOpen, setCustomizerOpen] = useState(false);
 
-  // Hover на карточке "Анализ разговора" — печатающаяся подсказка
-  const [analysisHover, setAnalysisHover] = useState(false);
-  const [analysisTyped, setAnalysisTyped] = useState("");
-  const analysisFullText = `AI находит моменты,
-в которых менеджер теряет клиента.
-
-Например:
-— слишком раннее обсуждение цены
-— отсутствие фиксации потребности
-— слабая обработка возражений
-
-Это помогает повысить конверсию
-без увеличения рекламного бюджета.`;
-
-  useEffect(() => {
-    if (!analysisHover) {
-      setAnalysisTyped("");
-      return;
-    }
-    let intervalId: ReturnType<typeof setInterval> | null = null;
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      intervalId = setInterval(() => {
-        i++;
-        setAnalysisTyped(analysisFullText.slice(0, i));
-        if (i >= analysisFullText.length && intervalId) clearInterval(intervalId);
-      }, 28);
-    }, 1000);
-    return () => {
-      clearTimeout(startDelay);
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [analysisHover]);
-
-  // Hover на карточке "Топ менеджеров" — печатающаяся подсказка
-  const [topMgrHover, setTopMgrHover] = useState(false);
-  const [topMgrTyped, setTopMgrTyped] = useState("");
-  const topMgrFullText = `AI выявляет поведенческие паттерны
-менеджеров с максимальной конверсией.
-
-Система анализирует:
-— структуру диалога
-— скорость реакции
-— эмоциональный тон
-— успешные формулировки
-
-Это позволяет масштабировать
-лучшие практики на весь отдел продаж.`;
-
-  useEffect(() => {
-    if (!topMgrHover) {
-      setTopMgrTyped("");
-      return;
-    }
-    let intervalId: ReturnType<typeof setInterval> | null = null;
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      intervalId = setInterval(() => {
-        i++;
-        setTopMgrTyped(topMgrFullText.slice(0, i));
-        if (i >= topMgrFullText.length && intervalId) clearInterval(intervalId);
-      }, 28);
-    }, 1000);
-    return () => {
-      clearTimeout(startDelay);
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [topMgrHover]);
-
-  // Hover на карточке "Последние звонки" — печатающаяся подсказка
-  const [callsHover, setCallsHover] = useState(false);
-  const [callsTyped, setCallsTyped] = useState("");
-  const callsFullText = `Система автоматически выявляет
-проблемные разговоры,
-требующие внимания руководителя.
-
-AI определяет:
-— потерянные сделки
-— конфликтные диалоги
-— нарушения скрипта
-— слабую обработку возражений
-
-Без необходимости вручную
-прослушивать звонки.`;
-
-  useEffect(() => {
-    if (!callsHover) {
-      setCallsTyped("");
-      return;
-    }
-    let intervalId: ReturnType<typeof setInterval> | null = null;
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      intervalId = setInterval(() => {
-        i++;
-        setCallsTyped(callsFullText.slice(0, i));
-        if (i >= callsFullText.length && intervalId) clearInterval(intervalId);
-      }, 28);
-    }, 1000);
-    return () => {
-      clearTimeout(startDelay);
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [callsHover]);
-
-  // Hover на карточке "AI-Инсайты" — печатающаяся подсказка
-  const [insightsHover, setInsightsHover] = useState(false);
-  const [insightsTyped, setInsightsTyped] = useState("");
-  const insightsFullText = `AI автоматически находит
-скрытые точки потери прибыли.
-
-Например:
-— клиенты уходят после обсуждения цены
-— менеджеры перебивают клиента
-— лиды из Instagram закрываются хуже
-— сделки теряются после второго звонка
-
-Система превращает хаотичные данные
-в конкретные рекомендации для роста.`;
-
-  useEffect(() => {
-    if (!insightsHover) {
-      setInsightsTyped("");
-      return;
-    }
-    let intervalId: ReturnType<typeof setInterval> | null = null;
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      intervalId = setInterval(() => {
-        i++;
-        setInsightsTyped(insightsFullText.slice(0, i));
-        if (i >= insightsFullText.length && intervalId) clearInterval(intervalId);
-      }, 28);
-    }, 1000);
-    return () => {
-      clearTimeout(startDelay);
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [insightsHover]);
-
-  // Hover на карточке "Источники сделок" — печатающаяся подсказка
-  const [sourcesHover, setSourcesHover] = useState(false);
-  const [sourcesTyped, setSourcesTyped] = useState("");
-  const sourcesFullText = `AI показывает,
-какие каналы действительно приносят прибыль,
-а какие только создают видимость активности.
-
-Это помогает сократить
-неэффективные рекламные расходы
-и перераспределить бюджет туда,
-где бизнес реально зарабатывает.`;
-
-  useEffect(() => {
-    if (!sourcesHover) {
-      setSourcesTyped("");
-      return;
-    }
-    let intervalId: ReturnType<typeof setInterval> | null = null;
-    const startDelay = setTimeout(() => {
-      let i = 0;
-      intervalId = setInterval(() => {
-        i++;
-        setSourcesTyped(sourcesFullText.slice(0, i));
-        if (i >= sourcesFullText.length && intervalId) clearInterval(intervalId);
-      }, 28);
-    }, 1000);
-    return () => {
-      clearTimeout(startDelay);
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [sourcesHover]);
-
   // Хелпер: вернуть точные CSS-значения, если пикер не трогали; иначе — pickerCSS
   const resolve = (val: PickerVal, touched: boolean, def: typeof DEFAULTS.bg) => {
     if (!touched) {
@@ -3704,8 +3532,6 @@ AI определяет:
                 {/* ── CARD: AI-Инсайты (справа сверху) ── */}
                 <div
                   className="absolute rounded-2xl p-6 db-card"
-                  onMouseEnter={() => setInsightsHover(true)}
-                  onMouseLeave={() => setInsightsHover(false)}
                   style={{
                     width: "38%",
                     top: "320px",
@@ -3714,8 +3540,6 @@ AI определяет:
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
-                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
-                    transform: insightsHover ? "translateY(-6px)" : "translateY(0)",
                     zIndex: 21,
                   }}
                 >
@@ -3789,8 +3613,6 @@ AI определяет:
                 {/* ── CARD: Анализ разговора (слева) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
-                  onMouseEnter={() => setAnalysisHover(true)}
-                  onMouseLeave={() => setAnalysisHover(false)}
                   style={{
                     width: "34%",
                     bottom: "100px",
@@ -3814,7 +3636,7 @@ AI определяет:
                           height: `${h}px`,
                           background: i < 14 ? "#453321" : "rgba(69,51,33,0.3)",
                           transformOrigin: "center",
-                          animation: analysisHover ? `wf-pulse 1.1s ease-in-out ${i * 40}ms infinite` : "none",
+                          animation: "none",
                         }}
                       />
                     ))}
@@ -3837,8 +3659,6 @@ AI определяет:
                 {/* ── CARD: Источники сделок (центр) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
-                  onMouseEnter={() => setSourcesHover(true)}
-                  onMouseLeave={() => setSourcesHover(false)}
                   style={{
                     width: "32%",
                     top: "465px",
@@ -3846,8 +3666,6 @@ AI определяет:
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
-                    transform: sourcesHover ? "translateY(-6px)" : "translateY(0)",
                     zIndex: 22,
                   }}
                 >
@@ -3944,8 +3762,6 @@ AI определяет:
                 {/* ── CARD: Топ менеджеров (справа) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
-                  onMouseEnter={() => setTopMgrHover(true)}
-                  onMouseLeave={() => setTopMgrHover(false)}
                   style={{
                     width: "36%",
                     bottom: "80px",
@@ -3953,8 +3769,6 @@ AI определяет:
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
-                    transform: topMgrHover ? "translateY(-6px)" : "translateY(0)",
                     zIndex: 25,
                   }}
                 >
@@ -4081,90 +3895,6 @@ AI определяет:
         Запросить демо
       </motion.a>
 
-      {/* ═══ FULLSCREEN HOVER OVERLAY (для всех 5 dashboard карточек) ═══ */}
-      {(() => {
-        const anyHover = analysisHover || sourcesHover || insightsHover || callsHover || topMgrHover;
-        const activeText = analysisHover
-          ? analysisFullText
-          : sourcesHover
-          ? sourcesFullText
-          : insightsHover
-          ? insightsFullText
-          : callsHover
-          ? callsFullText
-          : topMgrHover
-          ? topMgrFullText
-          : "";
-        const activeTyped = analysisHover
-          ? analysisTyped
-          : sourcesHover
-          ? sourcesTyped
-          : insightsHover
-          ? insightsTyped
-          : callsHover
-          ? callsTyped
-          : topMgrHover
-          ? topMgrTyped
-          : "";
-        return (
-          <>
-            <div
-              className="fixed inset-0 pointer-events-none"
-              style={{
-                background: "rgba(8,6,3,0.78)",
-                opacity: anyHover ? 1 : 0,
-                transition: anyHover ? "opacity 0.6s ease 0.8s" : "opacity 0.3s ease",
-                zIndex: 9000,
-              }}
-            />
-            <div
-              className="fixed inset-0 pointer-events-none flex items-center justify-center px-6"
-              style={{
-                opacity: anyHover ? 1 : 0,
-                transform: anyHover ? "translateY(0)" : "translateY(8px)",
-                transition: anyHover
-                  ? "opacity 0.5s ease 1s, transform 0.6s ease 1s"
-                  : "opacity 0.2s ease, transform 0.2s ease",
-                zIndex: 9100,
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  fontFamily: '"Bodoni Moda", Georgia, serif',
-                  fontSize: "clamp(20px, 3vw, 34px)",
-                  lineHeight: 1.5,
-                  letterSpacing: "0.01em",
-                  maxWidth: "820px",
-                  width: "100%",
-                  textShadow: "0 4px 24px rgba(0,0,0,0.7)",
-                  textAlign: "left",
-                  color: "#FBF6EC",
-                }}
-              >
-                <span aria-hidden style={{ visibility: "hidden", whiteSpace: "pre-wrap", display: "block" }}>
-                  {activeText}
-                </span>
-                <span style={{ position: "absolute", inset: 0, whiteSpace: "pre-wrap", color: "#FBF6EC" }}>
-                  {activeTyped}
-                  {anyHover && activeTyped.length < activeText.length && (
-                    <span
-                      style={{
-                        display: "inline-block",
-                        width: "0.5ch",
-                        color: "#D4B074",
-                        animation: "tw-caret 0.9s steps(1) infinite",
-                      }}
-                    >
-                      ▍
-                    </span>
-                  )}
-                </span>
-              </div>
-            </div>
-          </>
-        );
-      })()}
     </div>
   );
 }
