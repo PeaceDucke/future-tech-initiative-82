@@ -3046,7 +3046,7 @@ export function HomePage() {
                     style={{ background: "#151513", border: "none" }}
                   >
                     <div className="flex items-center justify-center shrink-0">
-                      <img src={item.img} alt={item.label} style={{ width: "120px", height: "120px", objectFit: "contain" }} />
+                      <img src={item.img} alt={item.label} style={{ width: "180px", height: "180px", objectFit: "contain" }} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div
