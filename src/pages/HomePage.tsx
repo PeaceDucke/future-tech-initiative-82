@@ -2990,7 +2990,7 @@ export function HomePage() {
               <motion.p
                 variants={fadeUp}
                 className="text-[22px] mb-5"
-                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px" }}
+                style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px", textAlign: "center" }}
               >
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
