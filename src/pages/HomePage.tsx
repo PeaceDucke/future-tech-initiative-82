@@ -2995,7 +2995,14 @@ export function HomePage() {
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-5rem" }}>
+              <motion.div
+                variants={fadeUp}
+                style={{ marginLeft: "45%", width: "60vw", maxWidth: "900px", marginTop: "-0.5rem", marginBottom: "1.5rem" }}
+              >
+                <div className="gold-underline" />
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "-3.5rem" }}>
                 <a
                   href="#cta"
                   className="inline-flex items-center gap-2"
