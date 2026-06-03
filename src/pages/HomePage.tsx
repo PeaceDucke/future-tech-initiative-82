@@ -2966,7 +2966,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 py-20" style={{ marginTop: "16rem" }}>
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 py-20" style={{ marginTop: "20rem" }}>
             <motion.div
               initial="hidden"
               animate="visible"
