@@ -3205,11 +3205,11 @@ AI определяет:
             <Section>
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
                 {[
-                  { icon: "Phone", num: "100%", label: "Анализ звонков" },
-                  { icon: "Users", num: "100%", label: "Контроль менеджеров" },
-                  { icon: "TrendingDown", num: "до 50%", label: "Меньше потерянных лидов" },
-                  { icon: "Zap", num: "в 10 раз", label: "Быстрее контроль качества" },
-                  { icon: "TrendingUp", num: "до 35%", label: "Рост конверсии отдела продаж" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/87dcfc37-c9bd-422a-a0bb-5804f4e808dc.png", num: "100%", label: "Анализ звонков" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/3285fd53-25c6-48fe-b5b4-4aa781d40370.png", num: "100%", label: "Контроль менеджеров" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d25ff61f-0e46-418e-8a09-b8c94641fd34.png", num: "до 50%", label: "Меньше потерянных лидов" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4c2610f5-d480-47ae-a2ff-f27f9861136b.png", num: "в 10 раз", label: "Быстрее контроль качества" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/695a3f1d-16a1-4ae4-abbd-e5c226363fde.png", num: "до 35%", label: "Рост конверсии отдела продаж" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -3221,7 +3221,7 @@ AI определяет:
                       className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
                       style={iconBox}
                     >
-                      <Icon name={item.icon} size={18} style={{ color: "#D4B074" }} />
+                      <img src={item.img} alt={item.label} style={{ width: "32px", height: "32px", objectFit: "contain" }} />
                     </div>
                     <div>
                       <div
