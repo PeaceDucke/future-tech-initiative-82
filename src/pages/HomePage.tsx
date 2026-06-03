@@ -2946,7 +2946,7 @@ export function HomePage() {
 
       <main className="relative z-10">
         {/* ═══ HERO ═══ */}
-        <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden">
+        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e3398b6d-eb3c-4f97-b1a4-9768d29cb5d8.jpg"
@@ -2966,7 +2966,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-40 pt-8">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 py-20">
             <motion.div
               initial="hidden"
               animate="visible"
