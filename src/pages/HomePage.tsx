@@ -3214,26 +3214,26 @@ AI определяет:
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className="flex items-start gap-4 p-5"
+                    className="flex items-center gap-2 p-5"
                     style={{ background: "#151513", border: "none" }}
                   >
                     <div className="flex items-center justify-center shrink-0">
                       <img src={item.img} alt={item.label} style={{ width: "144px", height: "144px", objectFit: "contain" }} />
                     </div>
-                    <div>
+                    <div className="min-w-[110px]">
                       <div
-                        className="leading-none mb-2"
+                        className="leading-none mb-2 whitespace-nowrap"
                         style={{
                           fontFamily: '"Bodoni Moda", Georgia, serif',
                           fontWeight: 400,
-                          fontSize: "36px",
+                          fontSize: "40px",
                           color: "#FBF6EC",
                           letterSpacing: "-0.02em",
                         }}
                       >
                         {item.num}
                       </div>
-                      <div style={{ ...labelStyle, fontSize: "11px", letterSpacing: "0.1em", color: "rgba(212,176,116,0.6)", textTransform: "none" as const }}>
+                      <div style={{ ...labelStyle, fontSize: "13px", lineHeight: 1.35, letterSpacing: "0.06em", color: "rgba(212,176,116,0.95)", textTransform: "none" as const }}>
                         {item.label}
                       </div>
                     </div>
