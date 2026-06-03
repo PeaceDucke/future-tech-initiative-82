@@ -2966,7 +2966,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-20 pt-32">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-20 pt-20">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -2984,7 +2984,7 @@ export function HomePage() {
                 }}
               >
                 <span style={{ display: "block", marginLeft: "-5rem" }}>Ваши продажи</span>
-                <span style={{ color: "#D4B074", display: "block", whiteSpace: "nowrap", paddingLeft: "35%" }}>под контролем</span>
+                <span style={{ color: "#D4B074", display: "block", whiteSpace: "nowrap", paddingLeft: "25%", marginTop: "-0.5rem" }}>под контролем</span>
               </motion.h1>
 
               <motion.p
