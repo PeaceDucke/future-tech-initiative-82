@@ -2966,7 +2966,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-20 pt-20">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 pb-20 pt-8">
             <motion.div
               initial="hidden"
               animate="visible"
