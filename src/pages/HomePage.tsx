@@ -2804,7 +2804,7 @@ export function HomePage() {
             borderColor: "rgba(212,176,116,0.12)",
           }}
         >
-          <div className="w-full px-8 py-3.5 flex items-center">
+          <div className="w-full px-8 py-2 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
@@ -3021,54 +3021,6 @@ export function HomePage() {
                 нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
-          </div>
-        </section>
-
-        {/* ═══ METRICS STRIPE ═══ */}
-        <section
-          className="relative pb-6 px-5 overflow-hidden"
-          style={{ background: "#151513", paddingTop: "80px" }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <Section>
-              <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-                {[
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/87dcfc37-c9bd-422a-a0bb-5804f4e808dc.png", num: "100%", label: "Анализ звонков" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/3285fd53-25c6-48fe-b5b4-4aa781d40370.png", num: "100%", label: "Контроль менеджеров" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d25ff61f-0e46-418e-8a09-b8c94641fd34.png", num: "до 50%", label: "Меньше потерянных лидов" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4c2610f5-d480-47ae-a2ff-f27f9861136b.png", num: "в 10 раз", label: "Быстрее контроль качества" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/695a3f1d-16a1-4ae4-abbd-e5c226363fde.png", num: "до 35%", label: "Рост конверсии отдела продаж" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    variants={fadeUp}
-                    className="flex flex-col items-center text-center gap-2 px-2 py-5"
-                    style={{ background: "#151513", border: "none" }}
-                  >
-                    <div className="flex items-center justify-center shrink-0">
-                      <img src={item.img} alt={item.label} style={{ width: "180px", height: "180px", objectFit: "contain" }} />
-                    </div>
-                    <div className="w-full">
-                      <div
-                        className="leading-none mb-2"
-                        style={{
-                          fontFamily: '"Bodoni Moda", Georgia, serif',
-                          fontWeight: 400,
-                          fontSize: "34px",
-                          color: "#FBF6EC",
-                          letterSpacing: "-0.02em",
-                        }}
-                      >
-                        {item.num}
-                      </div>
-                      <div style={{ ...labelStyle, fontSize: "13px", lineHeight: 1.35, letterSpacing: "0.06em", color: "rgba(212,176,116,0.95)", textTransform: "none" as const }}>
-                        {item.label}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </Section>
           </div>
         </section>
 
@@ -3806,6 +3758,54 @@ export function HomePage() {
 
         {/* ═══ FINAL CTA ═══ */}
         <FinalCtaSection />
+
+        {/* ═══ METRICS STRIPE (временно перенесено вниз) ═══ */}
+        <section
+          className="relative pb-6 px-5 overflow-hidden"
+          style={{ background: "#151513", paddingTop: "80px" }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <Section>
+              <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+                {[
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/87dcfc37-c9bd-422a-a0bb-5804f4e808dc.png", num: "100%", label: "Анализ звонков" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/3285fd53-25c6-48fe-b5b4-4aa781d40370.png", num: "100%", label: "Контроль менеджеров" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d25ff61f-0e46-418e-8a09-b8c94641fd34.png", num: "до 50%", label: "Меньше потерянных лидов" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4c2610f5-d480-47ae-a2ff-f27f9861136b.png", num: "в 10 раз", label: "Быстрее контроль качества" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/695a3f1d-16a1-4ae4-abbd-e5c226363fde.png", num: "до 35%", label: "Рост конверсии отдела продаж" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeUp}
+                    className="flex flex-col items-center text-center gap-2 px-2 py-5"
+                    style={{ background: "#151513", border: "none" }}
+                  >
+                    <div className="flex items-center justify-center shrink-0">
+                      <img src={item.img} alt={item.label} style={{ width: "180px", height: "180px", objectFit: "contain" }} />
+                    </div>
+                    <div className="w-full">
+                      <div
+                        className="leading-none mb-2"
+                        style={{
+                          fontFamily: '"Bodoni Moda", Georgia, serif',
+                          fontWeight: 400,
+                          fontSize: "34px",
+                          color: "#FBF6EC",
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {item.num}
+                      </div>
+                      <div style={{ ...labelStyle, fontSize: "13px", lineHeight: 1.35, letterSpacing: "0.06em", color: "rgba(212,176,116,0.95)", textTransform: "none" as const }}>
+                        {item.label}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </Section>
+          </div>
+        </section>
 
         {/* ═══ FOOTER ═══ */}
         <footer
