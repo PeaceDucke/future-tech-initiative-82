@@ -3042,19 +3042,19 @@ export function HomePage() {
                   <motion.div
                     key={i}
                     variants={fadeUp}
-                    className="flex items-center gap-1 px-2 py-5"
+                    className="flex items-center gap-0 px-1 py-5"
                     style={{ background: "#151513", border: "none" }}
                   >
                     <div className="flex items-center justify-center shrink-0">
-                      <img src={item.img} alt={item.label} style={{ width: "180px", height: "180px", objectFit: "contain" }} />
+                      <img src={item.img} alt={item.label} style={{ width: "120px", height: "120px", objectFit: "contain" }} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div
-                        className="leading-none mb-2 whitespace-nowrap"
+                        className="leading-none mb-2"
                         style={{
                           fontFamily: '"Bodoni Moda", Georgia, serif',
                           fontWeight: 400,
-                          fontSize: "34px",
+                          fontSize: "28px",
                           color: "#FBF6EC",
                           letterSpacing: "-0.02em",
                         }}
