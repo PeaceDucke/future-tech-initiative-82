@@ -2944,7 +2944,7 @@ export function HomePage() {
         )}
       </header>
 
-      <main className="relative z-10 pt-16">
+      <main className="relative z-10">
         {/* ═══ HERO ═══ */}
         <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden">
           <div className="absolute inset-0">
