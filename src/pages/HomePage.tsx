@@ -3217,11 +3217,8 @@ AI определяет:
                     className="flex items-start gap-4 p-5"
                     style={{ background: "#151513", border: "none" }}
                   >
-                    <div
-                      className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0"
-                      style={iconBox}
-                    >
-                      <img src={item.img} alt={item.label} style={{ width: "32px", height: "32px", objectFit: "contain" }} />
+                    <div className="flex items-center justify-center shrink-0">
+                      <img src={item.img} alt={item.label} style={{ width: "64px", height: "64px", objectFit: "contain" }} />
                     </div>
                     <div>
                       <div
