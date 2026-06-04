@@ -1593,7 +1593,7 @@ function PipelineSection() {
             </div>
 
             {/* ── SOLUTION HEADING ── */}
-            <div className="text-center" style={{ marginTop: "-100px", marginBottom: "24px" }}>
+            <div className="text-center" style={{ marginTop: "0px", marginBottom: "24px" }}>
               <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
                 AI видит то, что невозможно<br />контролировать вручную
               </h2>
