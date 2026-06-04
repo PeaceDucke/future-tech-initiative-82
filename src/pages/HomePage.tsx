@@ -1546,8 +1546,8 @@ function PipelineSection() {
             </div>
 
             {/* ── PAIN ANIMATION ── */}
-            <div style={{ width: "100%", height: "500px", overflow: "hidden", position: "relative" }}>
-              <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode" />
+            <div style={{ width: "100%", height: "800px", overflow: "hidden", position: "relative" }}>
+              <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode" style={{ width: "100%", height: "100%" }} />
             </div>
 
             {/* ── CARD 2 — RIGHT ── */}
