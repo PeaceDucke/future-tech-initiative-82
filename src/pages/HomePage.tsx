@@ -1523,7 +1523,7 @@ function PipelineSection() {
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── PAIN CARDS — 3 IN A ROW ── */}
-            <div className="grid grid-cols-1 md:grid-cols-3" style={{ rowGap: "1.5rem", columnGap: "5rem" }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto" style={{ rowGap: "1.5rem", columnGap: "5rem", width: "110%", maxWidth: "100vw" }}>
               {[
                 {
                   icon: "Headphones",
