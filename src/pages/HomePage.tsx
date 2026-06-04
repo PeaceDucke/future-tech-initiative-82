@@ -1514,7 +1514,7 @@ function PipelineSection() {
         {/* Header */}
         <div className="text-center mb-24">
           <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
-            AI видит то, что невозможно<br />контролировать вручную
+            Вы не видите 95% того, что<br />происходит в разговорах с клиентами
           </h2>
           <p style={{ ...bodyText, fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75, color: B }}>
             Мы превращаем хаос звонков в понятные причины<br />и точки роста продаж.
@@ -1526,45 +1526,23 @@ function PipelineSection() {
 
           <div className="flex flex-col gap-20 lg:gap-28">
 
-            {/* ── CARD 1 — LEFT ── */}
-            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
-              <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
-                {num("01")}
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
-                  Подключаем все каналы коммуникации
-                </h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
-                  SalesFlow автоматически собирает звонки, переписки и обращения клиентов со всех ваших каналов в единую систему. Ничего не теряется, ничего не пропускается — каждый разговор попадает в AI-анализ.
-                </p>
-                <div className="flex flex-wrap gap-3 mb-8">
-                  {[
-                    ["Phone", "Телефония"],
-                    ["Database", "CRM-система"],
-                    ["MessageCircle", "WhatsApp / Telegram"],
-                    ["Globe", "Сайт и формы"],
-                    ["Megaphone", "Рекламные источники"],
-                  ].map(([ic, lb]) => (
-                    <div key={lb} className="flex items-center gap-2.5 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)" }}>
-                      <Icon name={ic} size={14} style={{ color: "rgba(255,255,255,0.55)", flexShrink: 0 }} />
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: W, fontWeight: 500 }}>{lb}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ borderTop: `1px solid ${G}20`, paddingTop: "24px", display: "flex", alignItems: "center", gap: "16px" }}>
-                  <Icon name="CheckCircle" size={20} style={{ color: GREEN, flexShrink: 0 }} />
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: GREEN, lineHeight: 1.6, fontWeight: 500 }}>
-                    Никакого ручного контроля. Подключение за 15 минут. Работает 24/7 без пауз.
+            {/* ── PAIN CARDS — 3 IN A ROW ── */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                { icon: "Headphones", text: "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды." },
+                { icon: "SearchX", text: "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников." },
+                { icon: "TrendingDown", text: "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги." },
+              ].map((c, i) => (
+                <div key={i} className="pc" style={{ ...pCard, padding: "40px 34px" }}>
+                  <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
+                  <div style={{ width: "54px", height: "54px", borderRadius: "16px", background: `${RED}15`, border: `1px solid ${RED}35`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "26px" }}>
+                    <Icon name={c.icon} size={24} style={{ color: RED }} />
+                  </div>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: W, lineHeight: 1.75, fontWeight: 400 }}>
+                    {c.text}
                   </p>
                 </div>
-              </div>
-              {dot()}
-              <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
-                <Spline
-                  scene="https://prod.spline.design/Ky9uc7HBwSE-YKOj/scene.splinecode?v=2"
-                  style={{ width: "163%", height: "100%", position: "absolute", top: "0%", left: "-5%" }}
-                />
-              </div>
+              ))}
             </div>
 
             {/* ── CARD 2 — RIGHT ── */}
