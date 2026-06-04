@@ -1516,9 +1516,6 @@ function PipelineSection() {
           <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
             Вы не видите 95% того, что<br />происходит в разговорах с клиентами
           </h2>
-          <p style={{ ...bodyText, fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75, color: B }}>
-            Мы превращаем хаос звонков в понятные причины<br />и точки роста продаж.
-          </p>
         </div>
 
         <div className="relative">
