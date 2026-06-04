@@ -1546,7 +1546,7 @@ function PipelineSection() {
             </div>
 
             {/* ── PAIN ANIMATION ── */}
-            <div style={{ width: "100%", height: "800px", overflow: "hidden", position: "relative" }}>
+            <div style={{ width: "100%", height: "800px", overflow: "hidden", position: "relative", marginTop: "-180px" }}>
               <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode" style={{ width: "100%", height: "100%" }} />
             </div>
 
