@@ -1589,7 +1589,7 @@ function PipelineSection() {
 
             {/* ── PAIN ANIMATION ── */}
             <div style={{ width: "100vw", height: "800px", overflow: "hidden", position: "relative", marginTop: "-300px", left: "50%", transform: "translateX(-50%)" }}>
-              <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=2" style={{ width: "100%", height: "100%" }} />
+              <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=3" style={{ width: "100%", height: "100%" }} />
             </div>
 
             {/* ── SOLUTION HEADING ── */}
