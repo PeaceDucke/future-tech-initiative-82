@@ -1523,20 +1523,66 @@ function PipelineSection() {
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── PAIN CARDS — 3 IN A ROW ── */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7">
               {[
-                { icon: "Headphones", text: "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды." },
-                { icon: "SearchX", text: "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников." },
-                { icon: "TrendingDown", text: "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги." },
+                {
+                  icon: "Headphones",
+                  stat: "70%",
+                  statLabel: "времени РОПа — впустую",
+                  title: "Руководитель отдела продаж работает «ушами», а не головой",
+                  text: "Вместо стратегии, найма и роста выручки ваш РОП вручную переслушивает звонки. Самый дорогой сотрудник отдела делает работу, которую вообще не должен делать.",
+                  consequence: "Вы платите за управление — а получаете прослушку",
+                },
+                {
+                  icon: "SearchX",
+                  stat: "3 из 100",
+                  statLabel: "звонков реально проверяются",
+                  title: "Контроль качества видит лишь верхушку айсберга",
+                  text: "Физически невозможно прослушать все разговоры. 97% диалогов уходят в слепую зону — там, где менеджеры сливают клиентов, нарушают скрипт и теряют сделки незаметно для вас.",
+                  consequence: "То, что вы не контролируете — стоит вам денег",
+                },
+                {
+                  icon: "TrendingDown",
+                  stat: "−∞ ₽",
+                  statLabel: "потери, которые уже случились",
+                  title: "Об ошибках вы узнаёте, когда деньги уже потеряны",
+                  text: "Слитый клиент, упущенная сделка, потерянный контракт — всё это всплывает постфактум, в отчёте за месяц. Исправлять уже нечего: клиент ушёл к конкуренту и не вернётся.",
+                  consequence: "Реакция «после» — это не контроль, а статистика убытков",
+                },
               ].map((c, i) => (
-                <div key={i} className="pc" style={{ ...pCard, padding: "40px 34px" }}>
-                  <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
-                  <div style={{ width: "54px", height: "54px", borderRadius: "16px", background: `${RED}15`, border: `1px solid ${RED}35`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "26px" }}>
-                    <Icon name={c.icon} size={24} style={{ color: RED }} />
+                <div key={i} className="pc group" style={{ ...pCard, padding: "38px 32px 32px", display: "flex", flexDirection: "column" }}>
+                  <div style={{ position: "absolute", top: "-100px", left: "-100px", width: "400px", height: "400px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 60%)`, pointerEvents: "none" }} />
+
+                  <div className="flex items-center justify-between mb-7">
+                    <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: `${RED}15`, border: `1px solid ${RED}35`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Icon name={c.icon} size={26} style={{ color: RED }} />
+                    </div>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>0{i + 1}</span>
                   </div>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: W, lineHeight: 1.75, fontWeight: 400 }}>
+
+                  <div style={{ marginBottom: "20px" }}>
+                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(36px, 4vw, 46px)", color: RED, fontWeight: 500, lineHeight: 1, marginBottom: "8px" }}>
+                      {c.stat}
+                    </div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em", textTransform: "uppercase", fontWeight: 600 }}>
+                      {c.statLabel}
+                    </div>
+                  </div>
+
+                  <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "21px", color: W, fontWeight: 400, lineHeight: 1.3, marginBottom: "16px" }}>
+                    {c.title}
+                  </h3>
+
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.75, fontWeight: 400, marginBottom: "26px", flexGrow: 1 }}>
                     {c.text}
                   </p>
+
+                  <div style={{ borderTop: `1px solid ${RED}25`, paddingTop: "18px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                    <Icon name="AlertTriangle" size={17} style={{ color: RED, flexShrink: 0, marginTop: "2px" }} />
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, lineHeight: 1.55, fontWeight: 500 }}>
+                      {c.consequence}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
