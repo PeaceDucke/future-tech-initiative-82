@@ -1522,7 +1522,6 @@ function PipelineSection() {
         </div>
 
         <div className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 8%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
 
           <div className="flex flex-col gap-20 lg:gap-28">
 
@@ -1549,6 +1548,9 @@ function PipelineSection() {
             <div style={{ width: "100vw", height: "800px", overflow: "hidden", position: "relative", marginTop: "-180px", left: "50%", transform: "translateX(-50%)" }}>
               <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode" style={{ width: "100%", height: "100%" }} />
             </div>
+
+            <div className="relative flex flex-col gap-20 lg:gap-28">
+            <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 8%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
 
             {/* ── CARD 2 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
@@ -1682,6 +1684,7 @@ function PipelineSection() {
               <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
                 <GrowthChart />
               </div>
+            </div>
             </div>
 
           </div>
