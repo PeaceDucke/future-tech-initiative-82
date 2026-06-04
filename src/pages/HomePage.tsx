@@ -1549,6 +1549,16 @@ function PipelineSection() {
               <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode" style={{ width: "100%", height: "100%" }} />
             </div>
 
+            {/* ── SOLUTION HEADING ── */}
+            <div className="text-center" style={{ marginTop: "-100px", marginBottom: "24px" }}>
+              <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
+                AI видит то, что невозможно<br />контролировать вручную
+              </h2>
+              <p style={{ ...bodyText, fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75, color: B }}>
+                Мы превращаем хаос звонков в понятные причины<br />и точки роста продаж.
+              </p>
+            </div>
+
             <div className="relative flex flex-col gap-20 lg:gap-28">
             <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 8%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
 
