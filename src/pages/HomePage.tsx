@@ -1523,7 +1523,7 @@ function PipelineSection() {
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── PAIN CARDS — 3 IN A ROW ── */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ columnGap: "3.3rem" }}>
+            <div className="grid grid-cols-1 md:grid-cols-3" style={{ rowGap: "1.5rem", columnGap: "5rem" }}>
               {[
                 {
                   icon: "Headphones",
@@ -1550,7 +1550,21 @@ function PipelineSection() {
                   consequence: "Реакция «после» — это не контроль, а статистика убытков",
                 },
               ].map((c, i) => (
-                <div key={i} className="pc group" style={{ ...pCard, padding: "38px 32px 32px", display: "flex", flexDirection: "column" }}>
+                <div
+                  key={i}
+                  className="pc group"
+                  style={{ ...pCard, padding: "38px 32px 32px", display: "flex", flexDirection: "column", transition: "border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = `${RED}55`;
+                    e.currentTarget.style.boxShadow = `0 0 0 1px ${RED}30, 0 24px 60px rgba(0,0,0,0.5), 0 0 40px ${RED}15`;
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.boxShadow = "";
+                    e.currentTarget.style.transform = "";
+                  }}
+                >
                   <div style={{ position: "absolute", top: "-100px", left: "-100px", width: "400px", height: "400px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 60%)`, pointerEvents: "none" }} />
 
                   <div className="flex items-center justify-between mb-7">
