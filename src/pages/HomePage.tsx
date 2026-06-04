@@ -1545,6 +1545,11 @@ function PipelineSection() {
               ))}
             </div>
 
+            {/* ── PAIN ANIMATION ── */}
+            <div style={{ width: "100%", height: "500px", overflow: "hidden", position: "relative" }}>
+              <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode" />
+            </div>
+
             {/* ── CARD 2 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
