@@ -3490,10 +3490,10 @@ export function HomePage() {
                             const [x, y] = pt(i, R);
                             return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(var(--db-text-rgb),0.1)" strokeWidth="1" />;
                           })}
-                          <polygon points={poly} fill="rgba(201,163,91,0.22)" stroke="#C9A35B" strokeWidth="2.5" strokeLinejoin="round" />
+                          <polygon points={poly} fill="rgba(173,184,237,0.25)" stroke="#adb8ed" strokeWidth="2.5" strokeLinejoin="round" />
                           {axes.map((a, i) => {
                             const [x, y] = pt(i, R * a.val);
-                            return <circle key={i} cx={x} cy={y} r="4" fill="#B8893E" stroke="var(--db-bg-1)" strokeWidth="2" />;
+                            return <circle key={i} cx={x} cy={y} r="4" fill="#8b97cf" stroke="var(--db-bg-1)" strokeWidth="2" />;
                           })}
                           <circle cx={cx} cy={cy} r="3" fill="rgba(var(--db-text-rgb),0.3)" />
                         </svg>
