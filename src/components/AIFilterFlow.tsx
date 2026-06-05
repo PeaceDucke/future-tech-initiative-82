@@ -235,9 +235,9 @@ function AIFilterFlow() {
         }
         list.push({
           pts,
-          width: 2.9 + layer * 1.2, // thin & clean
+          width: (2.9 + layer * 1.2) * 1.2, // 1.2x thicker, clean
           layer,
-          density: 0.5,
+          density: 0.85, // denser = brighter, crisper line
           clean: true,
         });
       }
@@ -292,8 +292,8 @@ function AIFilterFlow() {
         u: atStart ? -r() * 0.05 : r(),
         off: (r() * 2 - 1),
         speed: (0.0009 + r() * 0.0016) * (0.7 + layer * 0.4) * (path.far ? 0.7 : 1),
-        size: (layer === 2 ? 1.5 : layer === 1 ? 1.05 : 0.7) * (0.6 + r() * 0.9) * (path.far ? 0.5 : 1),
-        alpha: (layer === 2 ? 0.95 : layer === 1 ? 0.6 : 0.32) * (0.55 + r() * 0.45) * (path.far ? 0.4 : 1),
+        size: (layer === 2 ? 1.5 : layer === 1 ? 1.05 : 0.7) * (0.6 + r() * 0.9) * (path.far ? 0.5 : 1) * (path.clean ? 1.2 : 1),
+        alpha: (layer === 2 ? 0.95 : layer === 1 ? 0.6 : 0.32) * (0.55 + r() * 0.45) * (path.far ? 0.4 : 1) * (path.clean ? 1.5 : 1),
         hue: (r() * GOLD.length) | 0,
         tw: r() * Math.PI * 2,
         scatter: 0,
@@ -347,9 +347,9 @@ function AIFilterFlow() {
       // left = far (short), right = near (tall) — kept inside the canvas
       // so the closed top/bottom edges are visible
       const topL = vy(0.04);
-      const botL = vy(0.91);
+      const botL = vy(0.98);
       const topR = vy(-0.05);
-      const botR = vy(0.99);
+      const botR = vy(1.06);
 
       // trapezoid path (used for fill + clip)
       const tracePath = () => {
