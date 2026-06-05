@@ -487,7 +487,7 @@ function AIFilterFlow() {
         style={{
           position: "absolute",
           top: 0,
-          left: 0,
+          left: "-14rem",
           height: "100%",
           width: "100vw",
           display: "block",
