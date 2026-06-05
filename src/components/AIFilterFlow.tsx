@@ -508,11 +508,12 @@ function AIFilterFlow() {
           }
         }
         if (!inField) {
-          // SLOW restore — grains keep drifting/dispersing, then ease back
-          g.hx += (rrun() - 0.5) * Math.min(2, Math.abs(g.hx) * 0.15); // lingering dust
-          g.hy += (rrun() - 0.5) * Math.min(2, Math.abs(g.hy) * 0.15);
-          g.hx *= 0.975;
-          g.hy *= 0.975;
+          // VERY SLOW restore (~2s): grains keep drifting, then ease back gently.
+          // 0.991^120 ≈ 0.34 → ~2s at 60fps to mostly recover.
+          g.hx += (rrun() - 0.5) * Math.min(1.5, Math.abs(g.hx) * 0.12); // lingering dust
+          g.hy += (rrun() - 0.5) * Math.min(1.5, Math.abs(g.hy) * 0.12);
+          g.hx *= 0.991;
+          g.hy *= 0.991;
         }
 
         const x = baseX + g.hx;
