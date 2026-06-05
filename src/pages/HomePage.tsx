@@ -1327,6 +1327,9 @@ function PipelineSection() {
         .pc:nth-child(2) { animation-delay: 1.25s; }
         .pc:nth-child(3) { animation-delay: 2.5s; }
         .pc:nth-child(4) { animation-delay: 3.75s; }
+        @media (min-width: 1024px) {
+          .wide-card-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+        }
       `}</style>
 
       <div className="max-w-6xl mx-auto">
@@ -1342,7 +1345,7 @@ function PipelineSection() {
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── ONE CARD LEFT + SPLINE RIGHT ── */}
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
+            <div className="relative grid grid-cols-1 items-center wide-card-grid" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* connecting line to cards below */}
               <div className="absolute left-1/2 hidden lg:block" style={{ top: "55%", bottom: "0", width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.12) 100%)", transform: "translateX(-50%)" }} />
