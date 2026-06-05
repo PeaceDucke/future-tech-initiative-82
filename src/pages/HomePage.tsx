@@ -1308,14 +1308,7 @@ function PipelineSection() {
     boxShadow: "0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.4), 0 40px 100px rgba(0,0,0,0.75)",
   };
 
-  const num = (n: string) => (
-    <div className="flex items-center gap-4 mb-8">
-      <div style={{ width: 48, height: 48, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.05)", flexShrink: 0 }}>
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>{n}</span>
-      </div>
-      <div style={{ flex: 1, height: "1px", background: "linear-gradient(to right, rgba(255,255,255,0.15), transparent)" }} />
-    </div>
-  );
+  const num = (_n: string) => null;
 
   const dot = () => (
     <div className="hidden lg:flex w-[4%] justify-center" style={{ alignSelf: "center" }}>
