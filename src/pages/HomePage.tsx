@@ -3450,12 +3450,12 @@ export function HomePage() {
                       <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "3px" }}>AI-оценка по ключевым критериям</div>
                     </div>
                     <div className="relative shrink-0">
-                      <svg width="72" height="72" viewBox="0 0 72 72">
-                        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="6"/>
-                        <circle cx="36" cy="36" r="30" fill="none" stroke="#C9A35B" strokeWidth="6" strokeLinecap="round" strokeDasharray={`${0.85 * 2 * Math.PI * 30} ${2 * Math.PI * 30}`} transform="rotate(-90 36 36)"/>
+                      <svg width="56" height="56" viewBox="0 0 56 56">
+                        <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="5"/>
+                        <circle cx="28" cy="28" r="23" fill="none" stroke="#C9A35B" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${0.76 * 2 * Math.PI * 23} ${2 * Math.PI * 23}`} transform="rotate(-90 28 28)"/>
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "var(--db-acc-3)", lineHeight: 1 }}>85%</span>
+                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "var(--db-acc-3)", lineHeight: 1 }}>76%</span>
                       </div>
                     </div>
                   </div>
@@ -3468,7 +3468,7 @@ export function HomePage() {
                       { label: "Презентация решения", icon: "Presentation", val: 0.9 },
                       { label: "Работа с возражениями", icon: "ShieldCheck", val: 0.66 },
                       { label: "Назначение след. шага", icon: "CalendarCheck", val: 0.78 },
-                      { label: "Фиксация договорённостей", icon: "ListChecks", val: 0.88 },
+                      { label: "Фиксация договорённостей", icon: "ListChecks", val: 0.68 },
                       { label: "Завершение разговора", icon: "CircleCheck", val: 0.9 },
                     ];
                     const cx = 160, cy = 160, R = 113;
