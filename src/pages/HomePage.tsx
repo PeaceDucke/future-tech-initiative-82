@@ -57,9 +57,11 @@ const stagger = {
 function Section({
   children,
   className = "",
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: CSSProperties;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -70,6 +72,7 @@ function Section({
       animate={inView ? "visible" : "hidden"}
       variants={stagger}
       className={className}
+      style={style}
     >
       {children}
     </motion.div>
@@ -1435,6 +1438,32 @@ function PipelineSection() {
               <AIFilterFlow />
 
             </div>
+
+            {/* ── AI vision heading ── */}
+            <Section className="text-center" style={{ marginTop: "120px" }}>
+              <motion.h2 variants={fadeUp} style={{
+                fontFamily: '"Bodoni Moda", Georgia, serif',
+                fontSize: "clamp(32px, 5vw, 62px)",
+                color: "#F7F2EA",
+                fontWeight: 400,
+                lineHeight: 1.12,
+                letterSpacing: "0.01em",
+                marginBottom: "20px",
+              }}>
+                AI видит то, что невозможно<br />контролировать вручную
+              </motion.h2>
+              <motion.p variants={fadeUp} style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "clamp(16px, 1.6vw, 20px)",
+                color: "rgba(251,246,236,0.7)",
+                fontWeight: 300,
+                lineHeight: 1.6,
+                maxWidth: "640px",
+                margin: "0 auto",
+              }}>
+                Мы превращаем хаос звонков в понятные причины роста и продаж
+              </motion.p>
+            </Section>
 
             <div className="relative flex flex-col gap-20 lg:gap-28">
             <div className="absolute left-1/2 hidden lg:block" style={{ top: "-7rem", bottom: "0", width: "1px", background: "linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
