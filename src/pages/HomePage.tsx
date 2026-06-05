@@ -3573,9 +3573,9 @@ export function HomePage() {
                           <div className="flex flex-col" style={{ flex: 1, minWidth: 0 }}>
                             <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.7)", whiteSpace: "nowrap" }}>{m.name}</span>
                             {m.best && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#22a868", fontWeight: 600 }}>★ Лучший менеджер</span>}
-                            {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "var(--db-acc-2)", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
+                            {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#e0533d", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
                           </div>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: sc, fontWeight: 600, minWidth: "62px", textAlign: "right" }}>{m.score.toFixed(1)} б.</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: sc, fontWeight: 700, minWidth: "56px", textAlign: "right", paddingRight: "6px" }}>{m.score.toFixed(1)}</span>
                         </div>
                       );
                     })}
