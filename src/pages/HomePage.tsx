@@ -1440,7 +1440,7 @@ function PipelineSection() {
             </div>
 
             {/* ── AI vision heading ── */}
-            <Section className="text-center" style={{ marginTop: "120px" }}>
+            <Section className="text-center" style={{ marginTop: "48px" }}>
               <motion.h2 variants={fadeUp} style={{
                 fontFamily: '"Bodoni Moda", Georgia, serif',
                 fontSize: "clamp(32px, 5vw, 62px)",
