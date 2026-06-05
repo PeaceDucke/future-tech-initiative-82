@@ -27,6 +27,7 @@ type Path = {
   layer: number; // 0 back .. 2 front
   density: number; // relative particle count weight
   clean?: boolean; // true = already-filtered straight stream (after wall)
+  far?: boolean; // true = distant background stream (thin, dim)
 };
 
 type Grain = {
@@ -130,6 +131,30 @@ function AIFilterFlow() {
         }
         list.push({ pts, width, layer, density: 0.5 + width * 0.12 });
       };
+
+      // ── distant background streams (thin, dim, far away) — left → wall ──
+      const fr = rng(4242);
+      const farCount = 9;
+      for (let i = 0; i < farCount; i++) {
+        const y0 = 0.06 + (i / (farCount - 1)) * 0.88 + (fr() - 0.5) * 0.03;
+        const startX = -0.02 + fr() * 0.06;
+        const pts: { x: number; y: number }[] = [];
+        const n = 7;
+        let yy = y0;
+        for (let s = 0; s <= n; s++) {
+          const x = startX + ((WALL - startX) * s) / n;
+          yy += (fr() - 0.5) * 0.05;
+          yy = Math.max(0.03, Math.min(0.97, yy));
+          pts.push({ x, y: yy });
+        }
+        list.push({
+          pts,
+          width: 1.1 + fr() * 0.6, // very thin
+          layer: 0,
+          density: 0.45,
+          far: true,
+        });
+      }
 
       // 6 evenly spaced columns/trunks on the left edge
       const cols = 6;
@@ -257,9 +282,9 @@ function AIFilterFlow() {
         path: pi,
         u: atStart ? -r() * 0.05 : r(),
         off: (r() * 2 - 1),
-        speed: (0.0009 + r() * 0.0016) * (0.7 + layer * 0.4),
-        size: (layer === 2 ? 1.5 : layer === 1 ? 1.05 : 0.7) * (0.6 + r() * 0.9),
-        alpha: (layer === 2 ? 0.95 : layer === 1 ? 0.6 : 0.32) * (0.55 + r() * 0.45),
+        speed: (0.0009 + r() * 0.0016) * (0.7 + layer * 0.4) * (path.far ? 0.7 : 1),
+        size: (layer === 2 ? 1.5 : layer === 1 ? 1.05 : 0.7) * (0.6 + r() * 0.9) * (path.far ? 0.5 : 1),
+        alpha: (layer === 2 ? 0.95 : layer === 1 ? 0.6 : 0.32) * (0.55 + r() * 0.45) * (path.far ? 0.4 : 1),
         hue: (r() * GOLD.length) | 0,
         tw: r() * Math.PI * 2,
         scatter: 0,
