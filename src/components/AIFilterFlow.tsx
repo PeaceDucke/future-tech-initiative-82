@@ -506,13 +506,6 @@ function AIFilterFlow() {
     };
   }, [reduced]);
 
-  const markers = [
-    { top: "24%", left: "40vw", d: 0 },
-    { top: "47%", left: "52vw", d: 0.3 },
-    { top: "68%", left: "46vw", d: 0.6 },
-    { top: "82%", left: "60vw", d: 0.9 },
-  ];
-
   return (
     <div
       ref={wrapRef}
@@ -533,48 +526,54 @@ function AIFilterFlow() {
         }}
       />
 
-      {markers.map((m, i) => (
+      {/* warning markers placed ON 3 of the clean streams (after the wall).
+          canvas is at left:-6rem, width:100vw — so we offset markers the same. */}
+      {[
+        { fx: 0.5, fy: 0.26 }, // clean stream i=1
+        { fx: 0.6, fy: 0.58 }, // clean stream i=3
+        { fx: 0.46, fy: 0.74 }, // clean stream i=4
+      ].map((m, i) => (
         <div
           key={i}
           style={{
             position: "absolute",
-            top: m.top,
-            left: m.left,
-            width: 30,
-            height: 30,
+            top: `${m.fy * 100}%`,
+            left: `calc(-6rem + ${m.fx * 100}vw)`,
+            width: 34,
+            height: 34,
+            transform: `translate(-50%, -50%) ${markersOn ? "scale(1)" : "scale(0.5)"}`,
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "rgba(21,21,18,0.55)",
-            border: "1px solid rgba(244,213,141,0.55)",
+            background: "rgba(220,40,40,0.16)",
+            border: "1px solid rgba(230,70,70,0.45)",
             boxShadow:
-              "0 0 16px rgba(229,190,110,0.4), inset 0 0 9px rgba(244,213,141,0.18)",
-            backdropFilter: "blur(2px)",
+              "0 0 16px rgba(220,50,50,0.3), inset 0 0 10px rgba(230,80,80,0.18)",
+            backdropFilter: "blur(1px)",
             opacity: markersOn ? 1 : 0,
-            transform: markersOn ? "scale(1)" : "scale(0.5)",
-            transition: `opacity 1s ease ${m.d}s, transform 1s cubic-bezier(0.2,0.8,0.2,1) ${m.d}s`,
-            animation: reduced ? "none" : `aiff-pulse 3.4s ease-in-out ${m.d}s infinite`,
+            transition: `opacity 1s ease ${i * 0.3}s, transform 1s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.3}s`,
+            animation: reduced ? "none" : `aiff-pulse 3.4s ease-in-out ${i * 0.3}s infinite`,
           }}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path
               d="M12 3.2 L21.5 20 H2.5 Z"
               stroke="#F4D58D"
-              strokeWidth="1.5"
+              strokeWidth="1.6"
               strokeLinejoin="round"
-              fill="rgba(229,190,110,0.07)"
+              fill="rgba(244,213,141,0.18)"
             />
-            <line x1="12" y1="9" x2="12" y2="14" stroke="#F4D58D" strokeWidth="1.6" strokeLinecap="round" />
-            <circle cx="12" cy="17" r="1" fill="#F4D58D" />
+            <line x1="12" y1="9" x2="12" y2="14.5" stroke="#F4D58D" strokeWidth="1.8" strokeLinecap="round" />
+            <circle cx="12" cy="17.4" r="1.1" fill="#F4D58D" />
           </svg>
         </div>
       ))}
 
       <style>{`
         @keyframes aiff-pulse {
-          0%, 100% { box-shadow: 0 0 16px rgba(229,190,110,0.4), inset 0 0 9px rgba(244,213,141,0.18); }
-          50% { box-shadow: 0 0 26px rgba(229,190,110,0.7), inset 0 0 12px rgba(244,213,141,0.3); }
+          0%, 100% { box-shadow: 0 0 16px rgba(220,50,50,0.3), inset 0 0 10px rgba(230,80,80,0.18); }
+          50% { box-shadow: 0 0 26px rgba(220,50,50,0.5), inset 0 0 12px rgba(230,80,80,0.28); }
         }
       `}</style>
     </div>
