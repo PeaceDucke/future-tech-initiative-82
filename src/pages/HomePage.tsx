@@ -3203,18 +3203,18 @@ export function HomePage() {
                       {/* KPIs */}
                       <div className="grid grid-cols-4 gap-4 mb-5">
                         {[
-                          { label: "Выручка", value: "₽12.4M", change: "+18.7%" },
-                          { label: "Конверсия в сделки", value: "24.6%", change: "+12.4%" },
-                          { label: "Средний чек", value: "₽18,540", change: "+6.2%" },
-                          { label: "Новые лиды", value: "1,243", change: "+14.3%" },
+                          { label: "Проанализировано звонков", value: "3,284", sub: "AI обработал разговоры менеджеров" },
+                          { label: "Выявлено критических ошибок", value: "127", sub: "Ошибки, влияющие на потерю клиентов", change: "-12.4%", dir: "down" },
+                          { label: "Пропущено точек продаж", value: "38%", sub: "Менеджеры не доводят клиента до следующего шага", change: "-6.1%", dir: "down" },
+                          { label: "Средний AI-рейтинг разговоров", value: "81/100", sub: "Общая оценка качества коммуникации", change: "+24.4%", dir: "up" },
                         ].map((k) => (
-                          <div key={k.label} className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.12)" }}>
+                          <div key={k.label} className="rounded-xl p-4 flex flex-col" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.12)" }}>
                             <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.65)", marginBottom: "8px", fontWeight: 500 }}>{k.label}</div>
                             <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: "var(--db-text-main)", marginBottom: "6px", fontWeight: 600 }}>{k.value}</div>
-                            <div className="flex items-center justify-between">
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1a8a52", fontWeight: 600 }}>↑ {k.change} за период</span>
-                              <svg width="48" height="18" viewBox="0 0 60 18"><polyline points="0,15 12,12 24,13 36,7 48,9 60,2" fill="none" stroke="var(--db-text-main)" strokeWidth="1.8" opacity="0.7" strokeLinecap="round" /></svg>
-                            </div>
+                            <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.5)", lineHeight: 1.35, marginBottom: "10px", flex: 1 }}>{k.sub}</div>
+                            {k.change && (
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#1a8a52", fontWeight: 600 }}>{k.dir === "up" ? "↑" : "↓"} {k.change} за период</span>
+                            )}
                           </div>
                         ))}
                       </div>
