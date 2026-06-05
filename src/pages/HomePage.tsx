@@ -1370,7 +1370,7 @@ function PipelineSection() {
                   ].map((t, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "18px" }}>
                       <Icon name="AlertTriangle" size={26} style={{ color: RED, flexShrink: 0, marginTop: "5px" }} />
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(19px, 1.6vw, 23px)", color: W, lineHeight: 1.5, fontWeight: 500 }}>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", color: W, lineHeight: 1.5, fontWeight: 500 }}>
                         {t}
                       </p>
                     </div>
