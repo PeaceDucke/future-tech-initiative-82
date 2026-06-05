@@ -78,7 +78,7 @@ function AIFilterFlow() {
     let running = true;
     let inView = true;
 
-    const WALL = 0.52; // wall position (normalized)
+    const WALL = 0.3; // wall position (normalized, fraction of full-width canvas)
 
     /* build branching flow paths: trunks that split into branches */
     const buildPaths = () => {
@@ -187,14 +187,12 @@ function AIFilterFlow() {
     };
 
     const build = () => {
-      const rect = wrap.getBoundingClientRect();
+      const rect = canvas.getBoundingClientRect();
       W = rect.width;
       H = rect.height;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, W * dpr);
       canvas.height = Math.max(1, H * dpr);
-      canvas.style.width = `${W}px`;
-      canvas.style.height = `${H}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       buildPaths();
       buildGrains();
@@ -405,20 +403,31 @@ function AIFilterFlow() {
   }, [reduced]);
 
   const markers = [
-    { top: "24%", left: "72%", d: 0 },
-    { top: "47%", left: "85%", d: 0.3 },
-    { top: "68%", left: "70%", d: 0.6 },
-    { top: "82%", left: "88%", d: 0.9 },
+    { top: "24%", left: "40vw", d: 0 },
+    { top: "47%", left: "52vw", d: 0.3 },
+    { top: "68%", left: "46vw", d: 0.6 },
+    { top: "82%", left: "60vw", d: 0.9 },
   ];
 
   return (
     <div
       ref={wrapRef}
-      className="hidden lg:block w-[48%] lg:mr-[-12rem]"
+      className="hidden lg:block w-[48%]"
       style={{ position: "relative", height: "560px", overflow: "visible" }}
       aria-hidden="true"
     >
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, display: "block" }} />
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          height: "100%",
+          width: "100vw",
+          display: "block",
+          pointerEvents: "none",
+        }}
+      />
 
       {markers.map((m, i) => (
         <div
