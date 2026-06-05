@@ -1352,7 +1352,7 @@ function PipelineSection() {
             <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* connecting line to cards below */}
-              <div className="absolute left-1/2 hidden lg:block" style={{ top: "50%", bottom: "-7rem", width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 25%, rgba(255,255,255,0.12) 100%)", transform: "translateX(-50%)" }} />
+              <div className="absolute left-1/2 hidden lg:block" style={{ top: "55%", bottom: "0", width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.12) 100%)", transform: "translateX(-50%)" }} />
 
               {/* card */}
               <div className="pc w-full" style={pCard}>
@@ -1392,14 +1392,14 @@ function PipelineSection() {
               </div>
 
               {/* spline */}
-              <div className="lg:mr-[-8rem] lg:ml-[-3rem]" style={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}>
+              <div className="lg:mr-[-8rem] lg:ml-[1.5rem]" style={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}>
                 <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=3" style={{ width: "100%", height: "100%" }} />
               </div>
 
             </div>
 
             <div className="relative flex flex-col gap-20 lg:gap-28">
-            <div className="absolute left-1/2 top-0 bottom-0 hidden lg:block" style={{ width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 8%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
+            <div className="absolute left-1/2 hidden lg:block" style={{ top: "-7rem", bottom: "0", width: "1px", background: "linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
 
             {/* ── CARD 2 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
