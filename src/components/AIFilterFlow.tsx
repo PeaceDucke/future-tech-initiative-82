@@ -334,34 +334,36 @@ function AIFilterFlow() {
       const halfBody = 30; // body half-thickness (thicker than before)
       const halfEdge = 14; // edge lines half-thickness
 
-      // left = far (short), right = near (tall)
-      const topL = H * 0.03;
-      const botL = H * 0.97;
-      const topR = H * -0.07;
-      const botR = H * 1.07;
+      // left = far (short), right = near (tall) — kept inside the canvas
+      // so the closed top/bottom edges are visible
+      const topL = H * 0.14;
+      const botL = H * 0.86;
+      const topR = H * 0.05;
+      const botR = H * 0.95;
 
-      // body trapezoid
+      // body trapezoid — subtle, no strong glow
       const bodyGrad = ctx.createLinearGradient(wx - halfBody, 0, wx + halfBody, 0);
       bodyGrad.addColorStop(0, "rgba(201,151,62,0)");
-      bodyGrad.addColorStop(0.5, `rgba(244,213,141,${0.08 + pulse * 0.05})`);
+      bodyGrad.addColorStop(0.5, `rgba(244,213,141,${0.022 + pulse * 0.012})`);
       bodyGrad.addColorStop(1, "rgba(201,151,62,0)");
       ctx.fillStyle = bodyGrad;
       ctx.beginPath();
-      ctx.moveTo(wx - halfBody, topL);
-      ctx.lineTo(wx + halfBody, topR);
-      ctx.lineTo(wx + halfBody, botR);
-      ctx.lineTo(wx - halfBody, botL);
+      ctx.moveTo(wx - halfEdge, topL);
+      ctx.lineTo(wx + halfEdge, topR);
+      ctx.lineTo(wx + halfEdge, botR);
+      ctx.lineTo(wx - halfEdge, botL);
       ctx.closePath();
       ctx.fill();
 
-      // edge lines (slanted to match perspective)
-      ctx.strokeStyle = `rgba(244,213,141,${0.28 + pulse * 0.2})`;
+      // closed trapezoid outline (left, right, top, bottom)
+      ctx.strokeStyle = `rgba(244,213,141,${0.26 + pulse * 0.16})`;
       ctx.lineWidth = 1.4;
       ctx.beginPath();
-      ctx.moveTo(wx - halfEdge, topL);
-      ctx.lineTo(wx - halfEdge, botL);
-      ctx.moveTo(wx + halfEdge, topR);
-      ctx.lineTo(wx + halfEdge, botR);
+      ctx.moveTo(wx - halfEdge, topL); // top-left
+      ctx.lineTo(wx + halfEdge, topR); // top edge → top-right
+      ctx.lineTo(wx + halfEdge, botR); // right edge → bottom-right
+      ctx.lineTo(wx - halfEdge, botL); // bottom edge → bottom-left
+      ctx.closePath(); // left edge back to top-left
       ctx.stroke();
 
       // inner mesh — interpolate top/bot per row to keep the perspective
