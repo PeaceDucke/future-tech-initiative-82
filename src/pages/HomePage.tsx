@@ -3424,7 +3424,7 @@ export function HomePage() {
                   </div>
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#453321", marginBottom: "10px" }}>Ключевые темы</div>
                   <div className="flex flex-wrap gap-2">
-                    {["Цена", "Сроки", "Интеграция", "Демо"].map(tag => (
+                    {["Цена", "Сроки", "Назначение встречи"].map(tag => (
                       <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(var(--db-text-rgb),0.08)", color: "var(--db-text-main)", border: "1px solid rgba(var(--db-text-rgb),0.25)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
                     ))}
                   </div>
