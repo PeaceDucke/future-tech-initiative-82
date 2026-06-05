@@ -1,7 +1,6 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
-import AIFilterFlow from "@/components/AIFilterFlow";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
@@ -1473,8 +1472,13 @@ function PipelineSection() {
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }}>
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
               </div>
-              {/* AI Filter Flow animation */}
-              <AIFilterFlow />
+              {/* Spline */}
+              <LazySpline
+                className="hidden lg:block w-[48%]"
+                containerStyle={{ height: "700px", overflow: "visible", position: "relative" }}
+                scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode?v=2"
+                style={{ width: "260%", height: "260%", position: "absolute", top: "-80%", left: "-100%" }}
+              />
             </div>
 
             {/* ── CARD 3 — LEFT ── */}
