@@ -1362,36 +1362,19 @@ function PipelineSection() {
               <div className="pc w-full" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
-                  Вы теряете деньги там, где<br />не можете слышать
-                </h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
-                  Каждый день отдел продаж совершает сотни звонков — и почти ни один из них не находится под реальным контролем. Деньги утекают незаметно, а вы узнаёте об этом последним.
-                </p>
-
-                <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "18px", fontWeight: 600 }}>3 дыры, через которые уходит выручка</p>
-
-                  <div className="flex flex-col" style={{ gap: "18px" }}>
-                    {[
-                      "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
-                      "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
-                      "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
-                    ].map((t, i) => (
-                      <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                        <Icon name="AlertTriangle" size={17} style={{ color: RED, flexShrink: 0, marginTop: "3px" }} />
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.65, fontWeight: 400 }}>
-                          {t}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div style={{ borderTop: `1px solid ${RED}25`, paddingTop: "16px", marginTop: "20px" }}>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: RED, lineHeight: 1.6, fontWeight: 500 }}>
-                      Пока разговоры остаются «чёрным ящиком» — вы платите за управление, а получаете прослушку и статистику убытков.
-                    </p>
-                  </div>
+                <div className="flex flex-col" style={{ gap: "26px" }}>
+                  {[
+                    "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
+                    "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
+                    "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
+                  ].map((t, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
+                      <Icon name="AlertTriangle" size={19} style={{ color: RED, flexShrink: 0, marginTop: "3px" }} />
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.7, fontWeight: 400 }}>
+                        {t}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
