@@ -361,15 +361,10 @@ function AIFilterFlow() {
       tracePath();
       ctx.clip();
 
-      // wipe accumulated trail inside the trapezoid to fully transparent,
-      // so the black fill doesn't build up over frames
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0,0,0,1)";
-      ctx.fill();
-
-      // black interior (50% transparent) — drawn once per frame now
+      // semi-transparent black tint — particles behind stay visible through it.
+      // light alpha + the global trail-fade keeps it from building up opaque.
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(0,0,0,0.5)";
+      ctx.fillStyle = "rgba(0,0,0,0.12)";
       ctx.fill();
 
       // many tiny golden stars (deterministic positions, soft twinkle)
