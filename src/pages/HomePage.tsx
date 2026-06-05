@@ -3580,7 +3580,7 @@ export function HomePage() {
                       );
                     })}
                   </div>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)", marginTop: "14px", lineHeight: 1.4 }}>* узнайте слабые стороны конкретного менеджера, помешавшие бизнесу заработать больше</p>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#000000", marginTop: "14px", lineHeight: 1.4 }}>* узнайте слабые стороны конкретного менеджера, помешавшие бизнесу заработать больше</p>
                 </div>
 
               </motion.div>
