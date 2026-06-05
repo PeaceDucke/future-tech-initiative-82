@@ -3550,25 +3550,35 @@ export function HomePage() {
                   <div className="flex items-center justify-between mb-4">
                     <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500 }}>Топ менеджеров</span>
                     <div className="flex items-center gap-1 px-2.5 py-1 rounded" style={{ background: "rgba(var(--db-acc-rgb-2),0.1)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)" }}>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)" }}>По выручке</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)" }}>За месяц</span>
                       <Icon name="ChevronDown" size={10} style={{ color: "var(--db-acc-2)" }} />
                     </div>
                   </div>
                   <div className="space-y-3">
                     {[
-                      { name: "Иван Петров", rev: "₽2.8M", ch: "+24.5%", a: "И" },
-                      { name: "Мария Смирнова", rev: "₽2.3M", ch: "+18.7%", a: "М" },
-                      { name: "Алексей Кузнецов", rev: "₽1.9M", ch: "+15.2%", a: "А" },
-                      { name: "Анна Васильева", rev: "₽1.6M", ch: "+11.3%", a: "А" },
-                      { name: "Дмитрий Новиков", rev: "₽1.2M", ch: "+8.6%", a: "Д" },
-                    ].map((m) => (
-                      <div key={m.name} className="flex items-center gap-3">
-                        <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.7)", flex: 1 }}>{m.name}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)", fontWeight: 500 }}>{m.rev}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#22a868", minWidth: "44px", textAlign: "right" }}>↑ {m.ch}</span>
-                      </div>
-                    ))}
+                      { name: "Иван Петров", score: 89.4, a: "И", best: true },
+                      { name: "Мария Смирнова", score: 78.2, a: "М" },
+                      { name: "Алексей Кузнецов", score: 71.5, a: "А" },
+                      { name: "Анна Васильева", score: 63.8, a: "А" },
+                      { name: "Дмитрий Новиков", score: 49.3, a: "Д", worst: true },
+                    ].map((m) => {
+                      const sc =
+                        m.score >= 80 ? "#22a868" :
+                        m.score >= 65 ? "#9acd32" :
+                        m.score >= 50 ? "#e8b923" :
+                        m.score >= 35 ? "#e8842b" : "#e0533d";
+                      return (
+                        <div key={m.name} className="flex items-center gap-3">
+                          <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
+                          <div className="flex flex-col" style={{ flex: 1, minWidth: 0 }}>
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.7)", whiteSpace: "nowrap" }}>{m.name}</span>
+                            {m.best && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#22a868", fontWeight: 600 }}>★ Лучший менеджер</span>}
+                            {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "var(--db-acc-2)", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
+                          </div>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: sc, fontWeight: 600, minWidth: "62px", textAlign: "right" }}>{m.score.toFixed(1)} б.</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
