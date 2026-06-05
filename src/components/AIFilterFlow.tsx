@@ -331,15 +331,15 @@ function AIFilterFlow() {
     const drawWall = (wx: number, pulse: number) => {
       // thicker wall, with perspective: left side "far" (shorter),
       // right side "near" (taller) → trapezoid widening downward-right.
-      const halfBody = 30; // body half-thickness (thicker than before)
-      const halfEdge = 14; // edge lines half-thickness
+      const halfBody = 38; // body half-thickness
+      const halfEdge = 19; // edge lines half-thickness (a bit wider)
 
       // left = far (short), right = near (tall) — kept inside the canvas
       // so the closed top/bottom edges are visible
-      const topL = H * 0.07;
-      const botL = H * 0.93;
-      const topR = H * -0.02;
-      const botR = H * 1.02;
+      const topL = H * 0.12;
+      const botL = H * 0.88;
+      const topR = H * 0.04;
+      const botR = H * 0.96;
 
       // body trapezoid — subtle, no strong glow
       const bodyGrad = ctx.createLinearGradient(wx - halfBody, 0, wx + halfBody, 0);
@@ -557,7 +557,7 @@ function AIFilterFlow() {
     <div
       ref={wrapRef}
       className="hidden lg:block w-[48%]"
-      style={{ position: "relative", height: "560px", overflow: "visible" }}
+      style={{ position: "relative", height: "660px", marginTop: "-50px", marginBottom: "-50px", overflow: "visible" }}
       aria-hidden="true"
     >
       <canvas
