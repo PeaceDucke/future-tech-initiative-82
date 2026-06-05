@@ -3431,53 +3431,88 @@ export function HomePage() {
 
                 </div>
 
-                {/* ── CARD: Источники сделок (центр) ── */}
+                {/* ── CARD: Качество разговора (радар) ── */}
                 <div
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
-                    width: "32%",
-                    top: "465px",
-                    left: "33%",
+                    width: "38%",
+                    top: "430px",
+                    left: "31%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     zIndex: 22,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "18px" }}>Источники сделок</div>
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500 }}>Качество разговора</div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "2px" }}>AI-оценка по ключевым критериям</div>
+                    </div>
                     <div className="relative shrink-0">
-                      <svg width="110" height="110" viewBox="0 0 110 110">
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.12)" strokeWidth="16"/>
-                        {/* 40% - тёплый коричневый (Old Money) */}
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="#A88B5C" strokeWidth="16" strokeDasharray="113 283" strokeDashoffset="0" transform="rotate(-90 55 55)"/>
-                        {/* 30% - пастельный голубой */}
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="#A8C5D6" strokeWidth="16" strokeDasharray="85 283" strokeDashoffset="-113" transform="rotate(-90 55 55)"/>
-                        {/* 20% - пастельный синий */}
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="#8FA8C9" strokeWidth="16" strokeDasharray="57 283" strokeDashoffset="-198" transform="rotate(-90 55 55)"/>
-                        {/* 10% - пастельный жёлтый */}
-                        <circle cx="55" cy="55" r="45" fill="none" stroke="#E8D5A3" strokeWidth="16" strokeDasharray="28 283" strokeDashoffset="-255" transform="rotate(-90 55 55)"/>
+                      <svg width="56" height="56" viewBox="0 0 56 56">
+                        <circle cx="28" cy="28" r="24" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="5"/>
+                        <circle cx="28" cy="28" r="24" fill="none" stroke="#C9A35B" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${0.85 * 2 * Math.PI * 24} ${2 * Math.PI * 24}`} transform="rotate(-90 28 28)"/>
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)" }}>Всего</span>
-                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "var(--db-acc-3)" }}>128</span>
+                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "var(--db-acc-3)", lineHeight: 1 }}>85%</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "6px", color: "rgba(var(--db-text-rgb),0.45)", marginTop: "1px" }}>общий балл</span>
                       </div>
                     </div>
-                    <div className="space-y-2.5 flex-1">
-                      {[
-                        ["Холодные звонки","40%","#A88B5C"],
-                        ["Рекомендации","30%","#A8C5D6"],
-                        ["Партнёры","20%","#8FA8C9"],
-                        ["Другое","10%","#E8D5A3"],
-                      ].map(([l,v,c]) => (
-                        <div key={String(l)} className="flex items-center gap-2">
-                          <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: String(c) }}/>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.7)", flex: 1, fontWeight: 500 }}>{l}</span>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{v}</span>
-                        </div>
-                      ))}
-                    </div>
                   </div>
+
+                  {(() => {
+                    const axes = [
+                      { label: "Установление контакта", icon: "Handshake", val: 0.92 },
+                      { label: "Выявление потребностей", icon: "ClipboardList", val: 0.8 },
+                      { label: "Выявление боли", icon: "Target", val: 0.62 },
+                      { label: "Презентация решения", icon: "Presentation", val: 0.9 },
+                      { label: "Работа с возражениями", icon: "ShieldCheck", val: 0.66 },
+                      { label: "Назначение след. шага", icon: "CalendarCheck", val: 0.78 },
+                      { label: "Фиксация договорённостей", icon: "ListChecks", val: 0.88 },
+                      { label: "Завершение разговора", icon: "CircleCheck", val: 0.9 },
+                    ];
+                    const cx = 130, cy = 130, R = 95;
+                    const pt = (i: number, r: number) => {
+                      const ang = (Math.PI * 2 * i) / axes.length - Math.PI / 2;
+                      return [cx + Math.cos(ang) * r, cy + Math.sin(ang) * r];
+                    };
+                    const poly = axes.map((a, i) => pt(i, R * a.val).join(",")).join(" ");
+                    return (
+                      <div className="relative mx-auto" style={{ width: 260, height: 260 }}>
+                        <svg width="260" height="260" viewBox="0 0 260 260">
+                          {[0.25, 0.5, 0.75, 1].map((lvl) => (
+                            <polygon key={lvl}
+                              points={axes.map((_, i) => pt(i, R * lvl).join(",")).join(" ")}
+                              fill="none" stroke="rgba(var(--db-text-rgb),0.13)" strokeWidth="1" />
+                          ))}
+                          {axes.map((_, i) => {
+                            const [x, y] = pt(i, R);
+                            return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(var(--db-text-rgb),0.1)" strokeWidth="1" />;
+                          })}
+                          <polygon points={poly} fill="rgba(201,163,91,0.22)" stroke="#C9A35B" strokeWidth="2" strokeLinejoin="round" />
+                          {axes.map((a, i) => {
+                            const [x, y] = pt(i, R * a.val);
+                            return <circle key={i} cx={x} cy={y} r="3" fill="#B8893E" stroke="var(--db-bg-1)" strokeWidth="1.5" />;
+                          })}
+                          <circle cx={cx} cy={cy} r="2.5" fill="rgba(var(--db-text-rgb),0.3)" />
+                        </svg>
+                        {axes.map((a, i) => {
+                          const [x, y] = pt(i, R + 28);
+                          return (
+                            <div key={i} className="absolute flex flex-col items-center"
+                              style={{ left: x, top: y, transform: "translate(-50%,-50%)", width: 78 }}>
+                              <div className="flex items-center justify-center rounded-full shrink-0"
+                                style={{ width: 22, height: 22, border: "1px solid rgba(184,137,62,0.4)", background: "rgba(201,163,91,0.08)", marginBottom: 3 }}>
+                                <Icon name={a.icon} size={11} style={{ color: "#A87B3C" }} fallback="Circle" />
+                              </div>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "8.5px", lineHeight: 1.15, color: "rgba(var(--db-text-rgb),0.7)", textAlign: "center", fontWeight: 500 }}>{a.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 {/* ── CARD: Последние звонки (центр-низ) ── */}
