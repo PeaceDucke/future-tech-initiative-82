@@ -1396,7 +1396,7 @@ function PipelineSection() {
               </div>
 
               {/* spline */}
-              <div className="lg:mr-[-8rem] lg:ml-[1.5rem]" style={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}>
+              <div className="lg:mr-[-16rem] lg:ml-[1.5rem]" style={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}>
                 <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=3" style={{ width: "100%", height: "100%" }} />
               </div>
 
