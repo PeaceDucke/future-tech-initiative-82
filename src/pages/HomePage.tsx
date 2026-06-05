@@ -1362,15 +1362,15 @@ function PipelineSection() {
               <div className="pc w-full" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
-                <div className="flex flex-col" style={{ gap: "26px" }}>
+                <div className="flex flex-col" style={{ gap: "34px" }}>
                   {[
                     "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
                     "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
                     "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
                   ].map((t, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                      <Icon name="AlertTriangle" size={19} style={{ color: RED, flexShrink: 0, marginTop: "3px" }} />
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.7, fontWeight: 400 }}>
+                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "18px" }}>
+                      <Icon name="AlertTriangle" size={26} style={{ color: RED, flexShrink: 0, marginTop: "5px" }} />
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(19px, 1.6vw, 23px)", color: W, lineHeight: 1.5, fontWeight: 500 }}>
                         {t}
                       </p>
                     </div>
