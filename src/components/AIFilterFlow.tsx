@@ -362,8 +362,8 @@ function AIFilterFlow() {
       tracePath();
       ctx.clip();
 
-      // black interior
-      ctx.fillStyle = "#000000";
+      // black interior (50% transparent)
+      ctx.fillStyle = "rgba(0,0,0,0.5)";
       ctx.fill();
 
       // many tiny golden stars (deterministic positions, soft twinkle)
