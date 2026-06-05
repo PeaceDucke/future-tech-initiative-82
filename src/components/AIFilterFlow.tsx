@@ -77,7 +77,8 @@ function AIFilterFlow() {
     let W = 0;
     let H = 0;
     let PAD = 70; // top headroom (px)
-    const vy = (frac: number) => PAD + frac * (H - PAD); // y from fraction of usable area
+    let PAD_BOT = 70; // bottom headroom (px)
+    const vy = (frac: number) => PAD + frac * (H - PAD - PAD_BOT); // y from fraction of usable area
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let paths: Path[] = [];
     let grains: Grain[] = [];
@@ -318,6 +319,7 @@ function AIFilterFlow() {
       W = rect.width;
       H = rect.height;
       PAD = 70; // empty headroom at the top so the trapezoid's top isn't clipped
+      PAD_BOT = 70; // headroom at the bottom so the trapezoid's bottom fits
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, W * dpr);
       canvas.height = Math.max(1, H * dpr);
@@ -484,25 +486,34 @@ function AIFilterFlow() {
         const baseX = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
         const baseY = vy(pos.y) + nrm.ny * lateral + nrm.ny * jitter;
 
-        // ── cursor repulsion: scatter & flow around cursor, smooth return ──
-        let targetHx = 0;
-        let targetHy = 0;
+        // ── cursor repulsion: instant scatter, slow drifting restore ──
+        let inField = false;
         if (mx > -9000) {
           const ddx = baseX - mx;
           const ddy = baseY - my;
           const dist = Math.hypot(ddx, ddy);
           if (dist < MOUSE_R) {
+            inField = true;
             const force = 1 - dist / MOUSE_R; // 0..1, stronger near center
-            const push = force * force * MOUSE_R; // ease-out push
+            const push = force * force * MOUSE_R * 1.6; // stronger blast away
             const inv = dist > 0.01 ? 1 / dist : 0;
-            targetHx = ddx * inv * push + (rrun() - 0.5) * force * 12;
-            targetHy = ddy * inv * push + (rrun() - 0.5) * force * 12;
+            const targetHx = ddx * inv * push;
+            const targetHy = ddy * inv * push;
+            // INSTANT reaction — snap most of the way immediately
+            g.hx += (targetHx - g.hx) * 0.7;
+            g.hy += (targetHy - g.hy) * 0.7;
+            // extra random spray so grains scatter, not just orbit the cursor
+            g.hx += (rrun() - 0.5) * force * 7;
+            g.hy += (rrun() - 0.5) * force * 7;
           }
         }
-        // ease toward target (fast scatter); ease back to 0 (smooth restore)
-        const ease = targetHx !== 0 || targetHy !== 0 ? 0.25 : 0.08;
-        g.hx += (targetHx - g.hx) * ease;
-        g.hy += (targetHy - g.hy) * ease;
+        if (!inField) {
+          // SLOW restore — grains keep drifting/dispersing, then ease back
+          g.hx += (rrun() - 0.5) * Math.min(2, Math.abs(g.hx) * 0.15); // lingering dust
+          g.hy += (rrun() - 0.5) * Math.min(2, Math.abs(g.hy) * 0.15);
+          g.hx *= 0.975;
+          g.hy *= 0.975;
+        }
 
         const x = baseX + g.hx;
         const y = baseY + g.hy;
@@ -583,7 +594,7 @@ function AIFilterFlow() {
           position: "absolute",
           top: "-70px",
           left: "-6rem",
-          height: "calc(100% + 70px)",
+          height: "calc(100% + 140px)",
           width: "100vw",
           display: "block",
           pointerEvents: "none",
