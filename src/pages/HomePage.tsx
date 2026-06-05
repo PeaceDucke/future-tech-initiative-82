@@ -3575,7 +3575,7 @@ export function HomePage() {
                             {m.best && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#22a868", fontWeight: 600 }}>★ Лучший менеджер</span>}
                             {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#e0533d", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
                           </div>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: sc, fontWeight: 700, minWidth: "56px", textAlign: "right", paddingRight: "6px" }}>{m.score.toFixed(1)}</span>
+                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: sc, fontWeight: 700, minWidth: "56px", textAlign: "right" }}>{m.score.toFixed(1)}</span>
                         </div>
                       );
                     })}
