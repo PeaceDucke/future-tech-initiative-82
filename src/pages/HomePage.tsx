@@ -3449,14 +3449,17 @@ export function HomePage() {
                       <div style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: "var(--db-acc-3)", fontWeight: 500 }}>Качество разговора</div>
                       <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "3px" }}>AI-оценка по ключевым критериям</div>
                     </div>
-                    <div className="relative shrink-0">
-                      <svg width="56" height="56" viewBox="0 0 56 56">
-                        <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="5"/>
-                        <circle cx="28" cy="28" r="23" fill="none" stroke="#C9A35B" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${0.76 * 2 * Math.PI * 23} ${2 * Math.PI * 23}`} transform="rotate(-90 28 28)"/>
-                      </svg>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "var(--db-acc-3)", lineHeight: 1 }}>76%</span>
+                    <div className="flex flex-col items-center shrink-0">
+                      <div className="relative">
+                        <svg width="56" height="56" viewBox="0 0 56 56">
+                          <circle cx="28" cy="28" r="23" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="5"/>
+                          <circle cx="28" cy="28" r="23" fill="none" stroke="#C9A35B" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${0.76 * 2 * Math.PI * 23} ${2 * Math.PI * 23}`} transform="rotate(-90 28 28)"/>
+                        </svg>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                          <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "var(--db-acc-3)", lineHeight: 1 }}>76%</span>
+                        </div>
                       </div>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "3px" }}>общая оценка</span>
                     </div>
                   </div>
 
