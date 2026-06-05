@@ -1,7 +1,44 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
-import Spline from "@splinetool/react-spline";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
+
+function LazySpline({
+  scene,
+  style,
+  className,
+  containerStyle,
+}: {
+  scene: string;
+  style?: CSSProperties;
+  className?: string;
+  containerStyle?: CSSProperties;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: "200px 0px", threshold: 0.01 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={className} style={containerStyle}>
+      {visible && (
+        <Suspense fallback={null}>
+          <Spline scene={scene} style={style} />
+        </Suspense>
+      )}
+    </div>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -1394,9 +1431,12 @@ function PipelineSection() {
               </div>
 
               {/* spline */}
-              <div className="lg:mr-[-16rem] lg:ml-[1.5rem] lg:mt-[-10rem]" style={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}>
-                <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=5" style={{ width: "100%", height: "100%" }} />
-              </div>
+              <LazySpline
+                className="lg:mr-[-16rem] lg:ml-[1.5rem] lg:mt-[-10rem]"
+                containerStyle={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}
+                scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=5"
+                style={{ width: "100%", height: "100%" }}
+              />
 
             </div>
 
@@ -1433,12 +1473,12 @@ function PipelineSection() {
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
               </div>
               {/* Spline */}
-              <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
-                <Spline
-                  scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode?v=2"
-                  style={{ width: "260%", height: "260%", position: "absolute", top: "-80%", left: "-100%" }}
-                />
-              </div>
+              <LazySpline
+                className="hidden lg:block w-[48%]"
+                containerStyle={{ height: "700px", overflow: "visible", position: "relative" }}
+                scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode?v=2"
+                style={{ width: "260%", height: "260%", position: "absolute", top: "-80%", left: "-100%" }}
+              />
             </div>
 
             {/* ── CARD 3 — LEFT ── */}
