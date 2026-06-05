@@ -3456,7 +3456,6 @@ export function HomePage() {
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "var(--db-acc-3)", lineHeight: 1 }}>85%</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(var(--db-text-rgb),0.45)", marginTop: "2px" }}>общий балл</span>
                       </div>
                     </div>
                   </div>
@@ -3490,10 +3489,10 @@ export function HomePage() {
                             const [x, y] = pt(i, R);
                             return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(var(--db-text-rgb),0.1)" strokeWidth="1" />;
                           })}
-                          <polygon points={poly} fill="rgba(173,184,237,0.25)" stroke="#adb8ed" strokeWidth="2.5" strokeLinejoin="round" />
+                          <polygon points={poly} fill="rgba(154,159,184,0.25)" stroke="#9a9fb8" strokeWidth="2.5" strokeLinejoin="round" />
                           {axes.map((a, i) => {
                             const [x, y] = pt(i, R * a.val);
-                            return <circle key={i} cx={x} cy={y} r="4" fill="#8b97cf" stroke="var(--db-bg-1)" strokeWidth="2" />;
+                            return <circle key={i} cx={x} cy={y} r="4" fill="#7d839f" stroke="var(--db-bg-1)" strokeWidth="2" />;
                           })}
                           <circle cx={cx} cy={cy} r="3" fill="rgba(var(--db-text-rgb),0.3)" />
                         </svg>
