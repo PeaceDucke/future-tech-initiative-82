@@ -344,45 +344,51 @@ function AIFilterFlow() {
       const topR = vy(-0.05);
       const botR = vy(0.99);
 
-      // body trapezoid — subtle, no strong glow
-      const bodyGrad = ctx.createLinearGradient(wx - halfBody, 0, wx + halfBody, 0);
-      bodyGrad.addColorStop(0, "rgba(201,151,62,0)");
-      bodyGrad.addColorStop(0.5, `rgba(244,213,141,${0.022 + pulse * 0.012})`);
-      bodyGrad.addColorStop(1, "rgba(201,151,62,0)");
-      ctx.fillStyle = bodyGrad;
-      ctx.beginPath();
-      ctx.moveTo(wx - halfEdge, topL);
-      ctx.lineTo(wx + halfEdge, topR);
-      ctx.lineTo(wx + halfEdge, botR);
-      ctx.lineTo(wx - halfEdge, botL);
-      ctx.closePath();
+      // trapezoid path (used for fill + clip)
+      const tracePath = () => {
+        ctx.beginPath();
+        ctx.moveTo(wx - halfEdge, topL);
+        ctx.lineTo(wx + halfEdge, topR);
+        ctx.lineTo(wx + halfEdge, botR);
+        ctx.lineTo(wx - halfEdge, botL);
+        ctx.closePath();
+      };
+
+      // fill interior solid black, then sprinkle tiny golden "stars".
+      // must be source-over (lighter would ignore black).
+      const prevOp = ctx.globalCompositeOperation;
+      ctx.globalCompositeOperation = "source-over";
+      ctx.save();
+      tracePath();
+      ctx.clip();
+
+      // black interior
+      ctx.fillStyle = "#000000";
       ctx.fill();
 
-      // closed trapezoid outline (left, right, top, bottom)
-      ctx.strokeStyle = `rgba(244,213,141,${0.26 + pulse * 0.16})`;
-      ctx.lineWidth = 1.4;
-      ctx.beginPath();
-      ctx.moveTo(wx - halfEdge, topL); // top-left
-      ctx.lineTo(wx + halfEdge, topR); // top edge → top-right
-      ctx.lineTo(wx + halfEdge, botR); // right edge → bottom-right
-      ctx.lineTo(wx - halfEdge, botL); // bottom edge → bottom-left
-      ctx.closePath(); // left edge back to top-left
-      ctx.stroke();
-
-      // inner mesh — interpolate top/bot per row to keep the perspective
-      ctx.strokeStyle = `rgba(229,190,110,${0.06 + pulse * 0.04})`;
-      ctx.lineWidth = 0.6;
-      const rows = 22;
-      for (let i = 1; i < rows; i++) {
-        const f = i / rows;
-        const gyL = topL + (botL - topL) * f;
-        const gyR = topR + (botR - topR) * f;
-        const wob = Math.sin(i * 0.6 + pulse * 6) * 2;
+      // many tiny golden stars (deterministic positions, soft twinkle)
+      const sr = rng(2024);
+      const starCount = 160;
+      const top0 = Math.min(topL, topR);
+      const bot0 = Math.max(botL, botR);
+      for (let i = 0; i < starCount; i++) {
+        const sx = wx - halfEdge + sr() * (halfEdge * 2);
+        const sy = top0 + sr() * (bot0 - top0);
+        const tw = 0.45 + 0.55 * Math.abs(Math.sin(t * 1.5 + i * 1.7));
+        const rad = 0.4 + sr() * 0.9;
+        ctx.fillStyle = `rgba(244,213,141,${(0.4 + sr() * 0.6) * tw})`;
         ctx.beginPath();
-        ctx.moveTo(wx - halfEdge + 1, gyL + wob);
-        ctx.lineTo(wx + halfEdge - 1, gyR + wob);
-        ctx.stroke();
+        ctx.arc(sx, sy, rad, 0, Math.PI * 2);
+        ctx.fill();
       }
+      ctx.restore();
+      ctx.globalCompositeOperation = prevOp;
+
+      // closed golden trapezoid outline (left, right, top, bottom)
+      ctx.strokeStyle = `rgba(244,213,141,${0.32 + pulse * 0.16})`;
+      ctx.lineWidth = 1.4;
+      tracePath();
+      ctx.stroke();
     };
 
     /* normal at progress u for lateral band offset */
