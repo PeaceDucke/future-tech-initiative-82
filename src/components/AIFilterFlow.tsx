@@ -329,33 +329,53 @@ function AIFilterFlow() {
 
     /* ── filter wall (the only stroke element — it's not a flow line) */
     const drawWall = (wx: number, pulse: number) => {
-      const top = H * -0.03;
-      const bot = H * 1.03;
-      const body = ctx.createLinearGradient(wx - 22, 0, wx + 22, 0);
-      body.addColorStop(0, "rgba(201,151,62,0)");
-      body.addColorStop(0.5, `rgba(244,213,141,${0.07 + pulse * 0.05})`);
-      body.addColorStop(1, "rgba(201,151,62,0)");
-      ctx.fillStyle = body;
-      ctx.fillRect(wx - 22, top, 44, bot - top);
+      // thicker wall, with perspective: left side "far" (shorter),
+      // right side "near" (taller) → trapezoid widening downward-right.
+      const halfBody = 30; // body half-thickness (thicker than before)
+      const halfEdge = 14; // edge lines half-thickness
 
-      ctx.strokeStyle = `rgba(244,213,141,${0.28 + pulse * 0.2})`;
-      ctx.lineWidth = 1.3;
+      // left = far (short), right = near (tall)
+      const topL = H * 0.03;
+      const botL = H * 0.97;
+      const topR = H * -0.07;
+      const botR = H * 1.07;
+
+      // body trapezoid
+      const bodyGrad = ctx.createLinearGradient(wx - halfBody, 0, wx + halfBody, 0);
+      bodyGrad.addColorStop(0, "rgba(201,151,62,0)");
+      bodyGrad.addColorStop(0.5, `rgba(244,213,141,${0.08 + pulse * 0.05})`);
+      bodyGrad.addColorStop(1, "rgba(201,151,62,0)");
+      ctx.fillStyle = bodyGrad;
       ctx.beginPath();
-      ctx.moveTo(wx - 9, top);
-      ctx.lineTo(wx - 9, bot);
-      ctx.moveTo(wx + 9, top);
-      ctx.lineTo(wx + 9, bot);
+      ctx.moveTo(wx - halfBody, topL);
+      ctx.lineTo(wx + halfBody, topR);
+      ctx.lineTo(wx + halfBody, botR);
+      ctx.lineTo(wx - halfBody, botL);
+      ctx.closePath();
+      ctx.fill();
+
+      // edge lines (slanted to match perspective)
+      ctx.strokeStyle = `rgba(244,213,141,${0.28 + pulse * 0.2})`;
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(wx - halfEdge, topL);
+      ctx.lineTo(wx - halfEdge, botL);
+      ctx.moveTo(wx + halfEdge, topR);
+      ctx.lineTo(wx + halfEdge, botR);
       ctx.stroke();
 
+      // inner mesh — interpolate top/bot per row to keep the perspective
       ctx.strokeStyle = `rgba(229,190,110,${0.06 + pulse * 0.04})`;
       ctx.lineWidth = 0.6;
       const rows = 22;
       for (let i = 1; i < rows; i++) {
-        const gy = top + ((bot - top) / rows) * i;
+        const f = i / rows;
+        const gyL = topL + (botL - topL) * f;
+        const gyR = topR + (botR - topR) * f;
         const wob = Math.sin(i * 0.6 + pulse * 6) * 2;
         ctx.beginPath();
-        ctx.moveTo(wx - 8, gy + wob);
-        ctx.lineTo(wx + 8, gy + wob);
+        ctx.moveTo(wx - halfEdge + 1, gyL + wob);
+        ctx.lineTo(wx + halfEdge - 1, gyR + wob);
         ctx.stroke();
       }
     };
