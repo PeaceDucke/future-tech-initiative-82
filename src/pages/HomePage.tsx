@@ -1355,15 +1355,36 @@ function PipelineSection() {
               <div className="pc w-full" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
-                <div className="flex flex-col" style={{ gap: "52px" }}>
+                <div className="flex flex-col" style={{ gap: "0px" }}>
                   {[
                     "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
                     "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
                     "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
-                  ].map((t, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "stretch", gap: "22px" }}>
-                      <div style={{ width: "3px", borderRadius: "3px", background: `linear-gradient(to bottom, ${RED}, ${RED}33)`, flexShrink: 0 }} />
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "20px", color: W, lineHeight: 1.55, fontWeight: 500 }}>
+                  ].map((t, i, arr) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "24px",
+                        padding: "40px 0",
+                        borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "Playfair Display, serif",
+                          fontSize: "34px",
+                          fontWeight: 600,
+                          lineHeight: 1,
+                          color: G,
+                          flexShrink: 0,
+                          minWidth: "46px",
+                        }}
+                      >
+                        0{i + 1}
+                      </span>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "20px", color: W, lineHeight: 1.6, fontWeight: 500, paddingTop: "4px" }}>
                         {t}
                       </p>
                     </div>
