@@ -3540,11 +3540,11 @@ export function HomePage() {
                   {/* Rows */}
                   <div className="space-y-2.5">
                     {[
-                      { c: "ООО ТехноПласт", d: "32:14", r: "Успешно", k: "85%", color: "#22a868" },
+                      { c: "ООО ТехноПласт", d: "4:14", r: "Успешно", k: "85%", color: "#22a868" },
                       { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#b8860b" },
                       { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
-                      { c: "Сергей Иванов", d: "22:11", r: "Не удалось", k: "20%", color: "#ef4444" },
-                      { c: "ООО СтройИнвест", d: "31:05", r: "Успешно", k: "70%", color: "#22a868" },
+                      { c: "Сергей Иванов", d: "7:11", r: "Не удалось", k: "20%", color: "#ef4444" },
+                      { c: "ООО СтройИнвест", d: "5:38", r: "Успешно", k: "70%", color: "#22a868" },
                     ].map((row, idx) => (
                       <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
