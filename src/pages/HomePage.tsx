@@ -1332,18 +1332,37 @@ function SplineFeatureSection() {
 
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
-  // measure the AI-vision heading block so the connector line stops at its top
+  // measure the AI-vision heading block so the connector line stops at its top,
+  // and the card bottom so the dot/line start near the bottom of the card
   const aiLineRef = useRef<HTMLDivElement>(null);
   const aiHeadingRef = useRef<HTMLDivElement>(null);
+  const aiWrapRef = useRef<HTMLDivElement>(null);
+  const aiCardRef = useRef<HTMLDivElement>(null);
   const [aiHeadingH, setAiHeadingH] = useState<number>(0);
+  const [cardBottom, setCardBottom] = useState<number>(0);
   useEffect(() => {
-    const el = aiHeadingRef.current;
-    if (!el) return;
-    const update = () => setAiHeadingH(Math.max(0, el.offsetHeight - 48));
+    const head = aiHeadingRef.current;
+    const wrap = aiWrapRef.current;
+    const card = aiCardRef.current;
+    const update = () => {
+      if (head) setAiHeadingH(Math.max(0, head.offsetHeight - 48));
+      if (wrap && card) {
+        const wr = wrap.getBoundingClientRect();
+        const cr = card.getBoundingClientRect();
+        // ~24px above the very bottom of the card
+        setCardBottom(cr.bottom - wr.top - 24);
+      }
+    };
     update();
     const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
+    if (head) ro.observe(head);
+    if (card) ro.observe(card);
+    if (wrap) ro.observe(wrap);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   // Цветовая система
@@ -1397,19 +1416,19 @@ function PipelineSection() {
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── ONE CARD LEFT + SPLINE RIGHT (+ heading below) ── */}
-            <div className="relative">
+            <div ref={aiWrapRef} className="relative">
 
-              {/* connecting line: from bottom of the card down to the top of the heading */}
-              <div ref={aiLineRef} className="absolute left-1/2 hidden lg:block" style={{ top: "calc(50% - 94px)", bottom: `${aiHeadingH}px`, width: "1px", background: "rgba(255,255,255,0.12)", transform: "translateX(-50%)" }} />
-              {/* silver dot at the bottom of the card */}
-              <div className="absolute left-1/2 hidden lg:block" style={{ top: "calc(50% - 94px)", transform: "translate(-50%, -50%)", zIndex: 2 }}>
+              {/* connecting line: from near the bottom of the card down to the top of the heading */}
+              <div ref={aiLineRef} className="absolute left-1/2 hidden lg:block" style={{ top: `${cardBottom}px`, bottom: `${aiHeadingH}px`, width: "1px", background: "rgba(255,255,255,0.12)", transform: "translateX(-50%)" }} />
+              {/* silver dot near the bottom of the card */}
+              <div className="absolute left-1/2 hidden lg:block" style={{ top: `${cardBottom}px`, transform: "translate(-50%, -50%)", zIndex: 2 }}>
                 <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)" }} />
               </div>
 
             <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* card */}
-              <div className="pc w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
+              <div ref={aiCardRef} className="pc w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
                 <div className="flex flex-col" style={{ gap: "0px" }}>
