@@ -336,10 +336,10 @@ function AIFilterFlow() {
 
       // left = far (short), right = near (tall) — kept inside the canvas
       // so the closed top/bottom edges are visible
-      const topL = H * 0.14;
-      const botL = H * 0.86;
-      const topR = H * 0.05;
-      const botR = H * 0.95;
+      const topL = H * 0.07;
+      const botL = H * 0.93;
+      const topR = H * -0.02;
+      const botR = H * 1.02;
 
       // body trapezoid — subtle, no strong glow
       const bodyGrad = ctx.createLinearGradient(wx - halfBody, 0, wx + halfBody, 0);
