@@ -8,65 +8,39 @@ const GOLD = [
   [158, 109, 45], // #9E6D2D
 ];
 
-/* ── tiny value-noise (no deps) ────────────────────────── */
-function makeNoise(seed = 1) {
-  const size = 256;
-  const perm = new Uint8Array(size * 2);
-  let s = seed * 2654435761;
-  const rnd = () => {
+/* deterministic rng */
+function rng(seed: number) {
+  let s = seed >>> 0 || 1;
+  return () => {
     s ^= s << 13;
     s ^= s >>> 17;
     s ^= s << 5;
-    return ((s >>> 0) % 100000) / 100000;
-  };
-  const p = new Uint8Array(size);
-  for (let i = 0; i < size; i++) p[i] = i;
-  for (let i = size - 1; i > 0; i--) {
-    const j = (rnd() * (i + 1)) | 0;
-    const tmp = p[i];
-    p[i] = p[j];
-    p[j] = tmp;
-  }
-  for (let i = 0; i < size * 2; i++) perm[i] = p[i & (size - 1)];
-  const fade = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
-  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-  const grad = (h: number, x: number, y: number) => {
-    const u = h & 1 ? x : -x;
-    const v = h & 2 ? y : -y;
-    return u + v;
-  };
-  return (x: number, y: number) => {
-    const X = Math.floor(x) & (size - 1);
-    const Y = Math.floor(y) & (size - 1);
-    const xf = x - Math.floor(x);
-    const yf = y - Math.floor(y);
-    const u = fade(xf);
-    const v = fade(yf);
-    const aa = perm[perm[X] + Y];
-    const ab = perm[perm[X] + Y + 1];
-    const ba = perm[perm[X + 1] + Y];
-    const bb = perm[perm[X + 1] + Y + 1];
-    const x1 = lerp(grad(aa, xf, yf), grad(ba, xf - 1, yf), u);
-    const x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);
-    return (lerp(x1, x2, v) + 1) * 0.5; // 0..1
+    return ((s >>> 0) % 1000000) / 1000000;
   };
 }
 
-type P = {
-  x: number;
-  y: number;
-  baseY: number;
-  speed: number;
+/* ── A path = an invisible curve (chain of control points)
+   particles flow ALONG it and ARE the line ──────────────── */
+type Path = {
+  pts: { x: number; y: number }[]; // normalized 0..1
+  width: number; // band thickness px
   layer: number; // 0 back .. 2 front
+  density: number; // relative particle count weight
+};
+
+type Grain = {
+  path: number; // path index
+  u: number; // 0..1 progress along path
+  off: number; // lateral offset within band (-1..1)
+  speed: number;
   size: number;
   alpha: number;
   hue: number;
-  twk: number;
-  life: number;
+  tw: number; // twinkle phase
+  scatter: number; // current extra scatter
   filtered: boolean;
   flash: number;
-  px: number;
-  py: number;
+  dead: boolean;
 };
 
 function AIFilterFlow() {
@@ -96,36 +70,120 @@ function AIFilterFlow() {
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    const noise = makeNoise(7);
     let W = 0;
     let H = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let particles: P[] = [];
+    let paths: Path[] = [];
+    let grains: Grain[] = [];
     let running = true;
     let inView = true;
 
-    const wallX = () => W * 0.52;
+    const WALL = 0.52; // wall position (normalized)
 
-    const spawn = (fromLeft: boolean): P => {
-      const layer = Math.random() < 0.45 ? 0 : Math.random() < 0.7 ? 1 : 2;
-      const baseY = H * (0.08 + Math.random() * 0.84);
-      const x = fromLeft ? -Math.random() * W * 0.25 : Math.random() * wallX();
+    /* build branching flow paths: trunks that split into branches */
+    const buildPaths = () => {
+      const r = rng(1337);
+      const list: Path[] = [];
+      const trunks = 5;
+
+      for (let i = 0; i < trunks; i++) {
+        const layer = i % 3;
+        const startY = 0.12 + (i / (trunks - 1)) * 0.76 + (r() - 0.5) * 0.05;
+
+        // trunk: from left edge to the wall
+        const trunkPts: { x: number; y: number }[] = [];
+        const segs = 5;
+        let y = startY;
+        for (let s = 0; s <= segs; s++) {
+          const x = (s / segs) * WALL;
+          y += (r() - 0.5) * 0.12;
+          y = Math.max(0.06, Math.min(0.94, y));
+          trunkPts.push({ x, y });
+        }
+        const endY = trunkPts[trunkPts.length - 1].y;
+        list.push({
+          pts: trunkPts,
+          width: 10 + layer * 6 + r() * 6,
+          layer,
+          density: 1.1 + r() * 0.5,
+        });
+
+        // branches after the wall (1..3), straighter
+        const nb = 1 + ((r() * 3) | 0);
+        for (let b = 0; b < nb; b++) {
+          const bpts: { x: number; y: number }[] = [];
+          const bsegs = 4;
+          let by = endY;
+          const drift = (r() - 0.5) * 0.22;
+          for (let s = 0; s <= bsegs; s++) {
+            const x = WALL + (s / bsegs) * (1 - WALL) * (0.9 + r() * 0.2);
+            by = endY + drift * (s / bsegs) + (r() - 0.5) * 0.02;
+            by = Math.max(0.05, Math.min(0.95, by));
+            bpts.push({ x, y: by });
+          }
+          list.push({
+            pts: bpts,
+            width: 5 + layer * 3 + r() * 3, // thinner, cleaner
+            layer,
+            density: 0.5 + r() * 0.4,
+          });
+        }
+      }
+      paths = list;
+    };
+
+    /* sample a point on a path at progress u (0..1) using catmull-like smoothing */
+    const sample = (path: Path, u: number) => {
+      const pts = path.pts;
+      const n = pts.length - 1;
+      const fu = Math.max(0, Math.min(0.9999, u)) * n;
+      const i = Math.floor(fu);
+      const f = fu - i;
+      const p0 = pts[Math.max(0, i - 1)];
+      const p1 = pts[i];
+      const p2 = pts[Math.min(n, i + 1)];
+      const p3 = pts[Math.min(n, i + 2)];
+      const f2 = f * f;
+      const f3 = f2 * f;
+      const cx =
+        0.5 *
+        ((2 * p1.x) +
+          (-p0.x + p2.x) * f +
+          (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * f2 +
+          (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * f3);
+      const cy =
+        0.5 *
+        ((2 * p1.y) +
+          (-p0.y + p2.y) * f +
+          (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * f2 +
+          (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * f3);
+      return { x: cx, y: cy };
+    };
+
+    const spawnGrain = (r: () => number, atStart: boolean): Grain => {
+      const pi = (r() * paths.length) | 0;
+      const layer = paths[pi].layer;
       return {
-        x,
-        y: baseY,
-        baseY,
-        speed: (0.18 + Math.random() * 0.5) * (0.6 + layer * 0.4),
-        layer,
-        size: (layer === 2 ? 1.6 : layer === 1 ? 1.1 : 0.7) * (0.7 + Math.random() * 0.9),
-        alpha: (layer === 2 ? 0.9 : layer === 1 ? 0.6 : 0.32) * (0.6 + Math.random() * 0.4),
-        hue: (Math.random() * GOLD.length) | 0,
-        twk: Math.random() * Math.PI * 2,
-        life: 0,
+        path: pi,
+        u: atStart ? -r() * 0.05 : r(),
+        off: (r() * 2 - 1),
+        speed: (0.0009 + r() * 0.0016) * (0.7 + layer * 0.4),
+        size: (layer === 2 ? 1.5 : layer === 1 ? 1.05 : 0.7) * (0.6 + r() * 0.9),
+        alpha: (layer === 2 ? 0.95 : layer === 1 ? 0.6 : 0.32) * (0.55 + r() * 0.45),
+        hue: (r() * GOLD.length) | 0,
+        tw: r() * Math.PI * 2,
+        scatter: 0,
         filtered: false,
         flash: 0,
-        px: x,
-        py: baseY,
+        dead: false,
       };
+    };
+
+    const buildGrains = () => {
+      const r = rng(99);
+      const target = Math.max(900, Math.min(2600, Math.round(W * 4.2)));
+      grains = [];
+      for (let i = 0; i < target; i++) grains.push(spawnGrain(r, false));
     };
 
     const build = () => {
@@ -138,31 +196,25 @@ function AIFilterFlow() {
       canvas.style.width = `${W}px`;
       canvas.style.height = `${H}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      const target = Math.max(260, Math.min(620, Math.round(W * 0.85)));
-      particles = [];
-      for (let i = 0; i < target; i++) {
-        const p = spawn(false);
-        p.x = Math.random() * W;
-        particles.push(p);
-      }
+      buildPaths();
+      buildGrains();
     };
 
     build();
     const ro = new ResizeObserver(build);
     ro.observe(wrap);
-
     const io = new IntersectionObserver(
       ([e]) => (inView = e.isIntersecting),
       { rootMargin: "150px 0px" }
     );
     io.observe(wrap);
 
-    /* ── filter wall ─────────────────────────────────── */
+    const rrun = rng(555);
+
+    /* ── filter wall (the only stroke element — it's not a flow line) */
     const drawWall = (wx: number, pulse: number) => {
       const top = H * 0.05;
       const bot = H * 0.95;
-
       const body = ctx.createLinearGradient(wx - 34, 0, wx + 34, 0);
       body.addColorStop(0, "rgba(201,151,62,0)");
       body.addColorStop(0.5, `rgba(244,213,141,${0.07 + pulse * 0.05})`);
@@ -170,8 +222,8 @@ function AIFilterFlow() {
       ctx.fillStyle = body;
       ctx.fillRect(wx - 34, top, 68, bot - top);
 
-      ctx.strokeStyle = `rgba(244,213,141,${0.3 + pulse * 0.22})`;
-      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = `rgba(244,213,141,${0.28 + pulse * 0.2})`;
+      ctx.lineWidth = 1.3;
       ctx.beginPath();
       ctx.moveTo(wx - 14, top);
       ctx.lineTo(wx - 14, bot);
@@ -179,14 +231,14 @@ function AIFilterFlow() {
       ctx.lineTo(wx + 14, bot);
       ctx.stroke();
 
-      ctx.strokeStyle = `rgba(255,240,200,${0.5 + pulse * 0.3})`;
+      ctx.strokeStyle = `rgba(255,240,200,${0.45 + pulse * 0.3})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(wx, top);
       ctx.lineTo(wx, bot);
       ctx.stroke();
 
-      ctx.strokeStyle = `rgba(229,190,110,${0.07 + pulse * 0.04})`;
+      ctx.strokeStyle = `rgba(229,190,110,${0.06 + pulse * 0.04})`;
       ctx.lineWidth = 0.6;
       const rows = 22;
       for (let i = 1; i < rows; i++) {
@@ -199,24 +251,34 @@ function AIFilterFlow() {
       }
     };
 
-    /* ── static fallback ─────────────────────────────── */
+    /* normal at progress u for lateral band offset */
+    const normalAt = (path: Path, u: number) => {
+      const a = sample(path, u - 0.01);
+      const b = sample(path, u + 0.01);
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const len = Math.hypot(dx, dy) || 1;
+      return { nx: -dy / len, ny: dx / len };
+    };
+
     const renderStatic = () => {
       ctx.clearRect(0, 0, W, H);
-      const rg = ctx.createRadialGradient(wallX(), H / 2, 0, wallX(), H / 2, W * 0.55);
-      rg.addColorStop(0, "rgba(201,151,62,0.06)");
-      rg.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = rg;
-      ctx.fillRect(0, 0, W, H);
-      drawWall(wallX(), 0.5);
       ctx.globalCompositeOperation = "lighter";
-      for (const p of particles) {
-        const c = GOLD[p.hue];
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${p.alpha})`;
+      for (const g of grains) {
+        const path = paths[g.path];
+        const pos = sample(path, Math.max(0, g.u));
+        const nrm = normalAt(path, g.u);
+        const bandPx = (path.width / W) * (g.off);
+        const x = pos.x * W + nrm.nx * bandPx * W * 0.02 + nrm.nx * g.off * path.width * 0.5;
+        const y = pos.y * H + nrm.ny * g.off * path.width * 0.5;
+        const c = GOLD[g.hue];
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${g.alpha})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.baseY, p.size, 0, Math.PI * 2);
+        ctx.arc(x, y, g.size, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.globalCompositeOperation = "source-over";
+      drawWall(W * WALL, 0.5);
     };
 
     if (reduced) {
@@ -233,91 +295,97 @@ function AIFilterFlow() {
       if (!running) return;
       rafRef.current = requestAnimationFrame(frame);
       if (!inView) return;
+      t += 0.016;
+      const wx = W * WALL;
 
-      t += 0.0045;
-      const wx = wallX();
-
+      // soft trail fade (cohesion of the sand stream)
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(17,17,15,0.22)";
+      ctx.fillStyle = "rgba(17,17,15,0.30)";
       ctx.fillRect(0, 0, W, H);
 
+      // volumetric glow behind wall
+      ctx.globalCompositeOperation = "lighter";
       const rg = ctx.createRadialGradient(wx, H / 2, 0, wx, H / 2, W * 0.6);
       rg.addColorStop(0, "rgba(201,151,62,0.05)");
       rg.addColorStop(0.55, "rgba(201,151,62,0.015)");
       rg.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.globalCompositeOperation = "lighter";
       ctx.fillStyle = rg;
       ctx.fillRect(0, 0, W, H);
 
-      const pulse = 0.5 + 0.5 * Math.sin(t * 9);
+      const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
 
-      for (const p of particles) {
-        p.px = p.x;
-        p.py = p.y;
-        p.life += 0.016;
-        p.twk += 0.12;
+      for (const g of grains) {
+        const path = paths[g.path];
 
-        const beforeWall = p.x < wx;
-        const ns = noise(p.x * 0.0022 + t * 1.4, p.y * 0.0042 + p.layer * 1.7) - 0.5;
-        const ns2 = noise(p.x * 0.006 - t * 0.9, p.baseY * 0.01 + p.layer) - 0.5;
+        // flow along the path
+        g.u += g.speed * (60 / 60);
+        g.tw += 0.13;
 
-        let curl: number;
-        if (beforeWall) {
-          curl = ns * 46 + ns2 * 22;
+        const pos = sample(path, g.u);
+        const onLeft = pos.x < WALL;
+
+        // micro-vortex / scatter — sand breathing
+        const breathe =
+          Math.sin(t * 1.3 + g.tw) * 0.5 + Math.sin(t * 2.7 + g.path) * 0.5;
+        if (onLeft) {
+          // chaotic: occasionally fling out, then regather
+          g.scatter += (breathe - g.scatter) * 0.05 + (rrun() - 0.5) * 0.06;
         } else {
-          const calm = Math.min(1, (p.x - wx) / (W * 0.22));
-          curl = ns * 12 * (1 - calm * 0.85);
+          // calmer downstream — regather into clean line
+          g.scatter += (0 - g.scatter) * 0.08;
         }
+        const scatterPx = g.scatter * path.width * 0.45;
 
-        p.x += p.speed * (0.6 + p.layer * 0.35);
-        p.y = p.baseY + curl + Math.sin(t * 6 + p.twk) * (beforeWall ? 1.4 : 0.5);
+        const nrm = normalAt(path, g.u);
+        const lateral = g.off * path.width * 0.5 + scatterPx;
+        const jitter = (rrun() - 0.5) * (onLeft ? 1.6 : 0.6);
 
-        if (!p.filtered && p.x >= wx) {
-          p.filtered = true;
-          const r = Math.random();
-          if (r < 0.28) {
-            p.life = 999;
-          } else if (r < 0.55) {
-            p.flash = 1;
-            p.size *= 1.35;
-            p.alpha = Math.min(1, p.alpha + 0.3);
+        const x = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
+        const y = pos.y * H + nrm.ny * lateral + nrm.ny * jitter;
+
+        // crossing the wall — filtering
+        if (!g.filtered && pos.x >= WALL) {
+          g.filtered = true;
+          const roll = rrun();
+          if (roll < 0.3) {
+            g.dead = true; // dissolve
+          } else if (roll < 0.55) {
+            g.flash = 1;
+            g.size *= 1.3;
+            g.alpha = Math.min(1, g.alpha + 0.25);
           }
         }
-        if (p.flash > 0) p.flash *= 0.9;
+        if (g.flash > 0) g.flash *= 0.9;
 
-        if (p.x > W + 20 || p.life > 60) {
-          Object.assign(p, spawn(true));
+        // recycle
+        if (g.u > 1.02 || g.dead) {
+          Object.assign(g, spawnGrain(rrun, true));
           continue;
         }
 
-        const c = GOLD[p.hue];
-        const flick = 0.65 + 0.35 * Math.sin(p.twk * 1.3);
-        const a = p.alpha * flick;
+        const c = GOLD[g.hue];
+        const flick = 0.6 + 0.4 * Math.sin(g.tw * 1.4);
+        const a = g.alpha * flick;
 
-        ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${a * 0.4})`;
-        ctx.lineWidth = p.size * 0.9;
-        ctx.lineCap = "round";
-        ctx.beginPath();
-        ctx.moveTo(p.px, p.py);
-        ctx.lineTo(p.x, p.y);
-        ctx.stroke();
-
-        if (p.flash > 0.04) {
-          ctx.fillStyle = `rgba(255,244,214,${p.flash * 0.8})`;
+        // flash halo
+        if (g.flash > 0.05) {
+          ctx.fillStyle = `rgba(255,244,214,${g.flash * 0.7})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 2.4, 0, Math.PI * 2);
+          ctx.arc(x, y, g.size * 2.2, 0, Math.PI * 2);
           ctx.fill();
         }
 
+        // the grain itself (this IS the line)
         ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${a})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(x, y, g.size, 0, Math.PI * 2);
         ctx.fill();
 
-        if (p.layer === 2) {
-          ctx.fillStyle = `rgba(255,244,214,${a * 0.6})`;
+        // bright core for front layer = crisp readable lines
+        if (g.layer === 2) {
+          ctx.fillStyle = `rgba(255,244,214,${a * 0.55})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 0.45, 0, Math.PI * 2);
+          ctx.arc(x, y, g.size * 0.42, 0, Math.PI * 2);
           ctx.fill();
         }
       }
