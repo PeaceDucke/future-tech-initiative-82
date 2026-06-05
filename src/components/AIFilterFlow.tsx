@@ -124,8 +124,8 @@ function AIFilterFlow() {
         });
 
         // spawn children (thinner). deeper = fewer, thinner.
-        if (depth < 3 && width > 3 && childAnchors.length) {
-          const maxChildren = depth === 0 ? 2 + ((r() * 2) | 0) : 1 + ((r() * 2) | 0);
+        if (depth < 2 && width > 3 && childAnchors.length) {
+          const maxChildren = depth === 0 ? 1 + ((r() * 2) | 0) : (r() < 0.5 ? 1 : 0);
           for (let c = 0; c < maxChildren; c++) {
             const a = childAnchors[(r() * childAnchors.length) | 0];
             if (a.x > WALL - 0.04) continue; // need room before the wall
@@ -137,7 +137,7 @@ function AIFilterFlow() {
       };
 
       // ── roots: several trunks starting at the very left edge ──
-      const trunks = 5;
+      const trunks = 4;
       for (let i = 0; i < trunks; i++) {
         const layer = i % 3;
         const startY = 0.12 + (i / (trunks - 1)) * 0.76 + (r() - 0.5) * 0.04;
