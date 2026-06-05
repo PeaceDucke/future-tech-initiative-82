@@ -1354,7 +1354,7 @@ function PipelineSection() {
               {/* connecting line to cards below */}
               <div className="absolute left-1/2 hidden lg:block" style={{ top: "55%", bottom: "0", width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.12) 100%)", transform: "translateX(-50%)" }} />
               {/* silver dot on the line */}
-              <div className="absolute left-1/2 hidden lg:block" style={{ bottom: "0", transform: "translate(-50%, 50%)" }}>
+              <div className="absolute left-1/2 hidden lg:block" style={{ top: "50%", transform: "translate(-50%, -50%)" }}>
                 <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)" }} />
               </div>
 
