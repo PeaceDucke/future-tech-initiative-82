@@ -116,7 +116,7 @@ function AIFilterFlow() {
       // 6 evenly spaced columns/trunks on the left edge
       const cols = 6;
       const colY = (i: number) => 0.1 + (i / (cols - 1)) * 0.8;
-      const sx = -0.02; // start x (just off the left edge)
+      const sx = 0.03; // start x — at the right edge/contour of the card
 
       // column 1 — no branches, gently curves a bit upward
       {
@@ -284,8 +284,8 @@ function AIFilterFlow() {
 
     /* ── filter wall (the only stroke element — it's not a flow line) */
     const drawWall = (wx: number, pulse: number) => {
-      const top = H * 0.05;
-      const bot = H * 0.95;
+      const top = H * -0.03;
+      const bot = H * 1.03;
       const body = ctx.createLinearGradient(wx - 34, 0, wx + 34, 0);
       body.addColorStop(0, "rgba(201,151,62,0)");
       body.addColorStop(0.5, `rgba(244,213,141,${0.07 + pulse * 0.05})`);
