@@ -301,14 +301,7 @@ function AIFilterFlow() {
       ctx.fillStyle = "rgba(0,0,0,0.34)";
       ctx.fillRect(0, 0, W, H);
 
-      // volumetric glow behind wall
       ctx.globalCompositeOperation = "lighter";
-      const rg = ctx.createRadialGradient(wx, H / 2, 0, wx, H / 2, W * 0.6);
-      rg.addColorStop(0, "rgba(201,151,62,0.05)");
-      rg.addColorStop(0.55, "rgba(201,151,62,0.015)");
-      rg.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = rg;
-      ctx.fillRect(0, 0, W, H);
 
       const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
 
@@ -316,7 +309,7 @@ function AIFilterFlow() {
         const path = paths[g.path];
 
         // flow along the path
-        g.u += g.speed * (60 / 60);
+        g.u += g.speed * 0.5;
         g.tw += 0.13;
 
         const pos = sample(path, g.u);
