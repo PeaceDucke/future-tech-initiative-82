@@ -162,55 +162,62 @@ function AIFilterFlow() {
       const cols = 6;
       const colY = (i: number) => 0.1 + (i / (cols - 1)) * 0.8;
       const sx = 0.03; // start x — at the right edge/contour of the card
+      // straight parallel run: first ~1/5 of the path is perfectly horizontal
+      const px = sx + (WALL - sx) * 0.2;
 
-      // column 1 — no branches, gently curves a bit upward
+      // column 1 — straight start, then gently curves a bit upward
       {
         const y = colY(0);
-        seg(sx, y, WALL, y - 0.05, -0.05, TRUNK_W, 0);
+        seg(sx, y, px, y, 0, TRUNK_W, 0); // parallel run
+        seg(px, y, WALL, y - 0.05, -0.05, TRUNK_W, 0);
       }
 
-      // column 2 — splits in the middle into two branches → wall
+      // column 2 — straight start, then splits in the middle into two
       {
         const y = colY(1);
         const mx = sx + (WALL - sx) * 0.5;
-        seg(sx, y, mx, y, 0.02, TRUNK_W, 1); // trunk to split point
+        seg(sx, y, px, y, 0, TRUNK_W, 1); // parallel run
+        seg(px, y, mx, y, 0.02, TRUNK_W, 1); // trunk to split point
         seg(mx, y, WALL, y - 0.08, -0.04, CHILD_W, 1); // upper branch
         seg(mx, y, WALL, y + 0.08, 0.04, CHILD_W, 1); // lower branch
       }
 
-      // column 3 — early thin branch + a mid split into two → wall
+      // column 3 — straight start, then early thin branch + a mid split
       {
         const y = colY(2);
-        const ex = sx + (WALL - sx) * 0.28; // early branch point
+        const ex = sx + (WALL - sx) * 0.3; // early branch point (after parallel run)
         const mx = sx + (WALL - sx) * 0.55; // mid split point
-        seg(sx, y, mx, y, 0.02, TRUNK_W, 2); // trunk to split
+        seg(sx, y, px, y, 0, TRUNK_W, 2); // parallel run
+        seg(px, y, mx, y, 0.02, TRUNK_W, 2); // trunk to split
         seg(ex, y, WALL, y - 0.14, -0.05, CHILD_W * 0.8, 2); // early thin branch up
         seg(mx, y, WALL, y - 0.04, -0.02, CHILD_W, 2); // mid upper
         seg(mx, y, WALL, y + 0.1, 0.04, CHILD_W, 2); // mid lower
       }
 
-      // column 4 — no branches, straight-ish
+      // column 4 — straight start, then no branches, straight-ish
       {
         const y = colY(3);
-        seg(sx, y, WALL, y + 0.04, 0.03, TRUNK_W, 0);
+        seg(sx, y, px, y, 0, TRUNK_W, 0); // parallel run
+        seg(px, y, WALL, y + 0.04, 0.03, TRUNK_W, 0);
       }
 
-      // column 5 — three branches (early thin + mid split into two)
+      // column 5 — straight start, then three branches
       {
         const y = colY(4);
-        const ex = sx + (WALL - sx) * 0.3;
+        const ex = sx + (WALL - sx) * 0.32;
         const mx = sx + (WALL - sx) * 0.6;
-        seg(sx, y, mx, y, -0.02, TRUNK_W, 1);
+        seg(sx, y, px, y, 0, TRUNK_W, 1); // parallel run
+        seg(px, y, mx, y, -0.02, TRUNK_W, 1);
         seg(ex, y, WALL, y + 0.13, 0.05, CHILD_W * 0.8, 1); // early thin branch down
         seg(mx, y, WALL, y - 0.07, -0.03, CHILD_W, 1);
         seg(mx, y, WALL, y + 0.04, 0.02, CHILD_W, 1);
       }
 
-      // column 6 — two branches almost at the very start
+      // column 6 — straight start, then two branches
       {
         const y = colY(5);
-        const ex = sx + (WALL - sx) * 0.15; // very early
-        seg(sx, y, ex, y, 0, TRUNK_W, 2);
+        const ex = px; // branches right after the parallel run
+        seg(sx, y, ex, y, 0, TRUNK_W, 2); // parallel run (= split point)
         seg(ex, y, WALL, y - 0.06, -0.03, CHILD_W, 2); // upper
         seg(ex, y, WALL, y + 0.06, 0.03, CHILD_W, 2); // lower
       }
