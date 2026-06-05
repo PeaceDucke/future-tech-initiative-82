@@ -39,6 +39,8 @@ type Grain = {
   hue: number;
   tw: number; // twinkle phase
   scatter: number; // current extra scatter
+  hx: number; // smoothed cursor-push offset x (eases back to 0)
+  hy: number; // smoothed cursor-push offset y
   filtered: boolean;
   flash: number;
   dead: boolean;
@@ -78,6 +80,22 @@ function AIFilterFlow() {
     let grains: Grain[] = [];
     let running = true;
     let inView = true;
+
+    // cursor (canvas-local px); -9999 = no cursor
+    let mx = -9999;
+    let my = -9999;
+    const MOUSE_R = 70; // radius of the avoided area (px)
+    const onMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mx = e.clientX - rect.left;
+      my = e.clientY - rect.top;
+    };
+    const onLeave = () => {
+      mx = -9999;
+      my = -9999;
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseout", onLeave);
 
     const WALL = 0.3; // wall position (normalized, fraction of full-width canvas)
 
@@ -245,6 +263,8 @@ function AIFilterFlow() {
         hue: (r() * GOLD.length) | 0,
         tw: r() * Math.PI * 2,
         scatter: 0,
+        hx: 0,
+        hy: 0,
         filtered: !!path.clean, // clean streams are born already filtered
         flash: 0,
         dead: false,
@@ -397,8 +417,31 @@ function AIFilterFlow() {
         const lateral = g.off * path.width * 0.5 + scatterPx;
         const jitter = (rrun() - 0.5) * (onLeft ? 1.6 : 0.6);
 
-        const x = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
-        const y = pos.y * H + nrm.ny * lateral + nrm.ny * jitter;
+        const baseX = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
+        const baseY = pos.y * H + nrm.ny * lateral + nrm.ny * jitter;
+
+        // ── cursor repulsion: scatter & flow around cursor, smooth return ──
+        let targetHx = 0;
+        let targetHy = 0;
+        if (mx > -9000) {
+          const ddx = baseX - mx;
+          const ddy = baseY - my;
+          const dist = Math.hypot(ddx, ddy);
+          if (dist < MOUSE_R) {
+            const force = 1 - dist / MOUSE_R; // 0..1, stronger near center
+            const push = force * force * MOUSE_R; // ease-out push
+            const inv = dist > 0.01 ? 1 / dist : 0;
+            targetHx = ddx * inv * push + (rrun() - 0.5) * force * 12;
+            targetHy = ddy * inv * push + (rrun() - 0.5) * force * 12;
+          }
+        }
+        // ease toward target (fast scatter); ease back to 0 (smooth restore)
+        const ease = targetHx !== 0 || targetHy !== 0 ? 0.25 : 0.08;
+        g.hx += (targetHx - g.hx) * ease;
+        g.hy += (targetHy - g.hy) * ease;
+
+        const x = baseX + g.hx;
+        const y = baseY + g.hy;
 
         // crossing the wall — filtering
         if (!g.filtered && pos.x >= WALL) {
@@ -458,6 +501,8 @@ function AIFilterFlow() {
       cancelAnimationFrame(rafRef.current);
       ro.disconnect();
       io.disconnect();
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseout", onLeave);
     };
   }, [reduced]);
 
