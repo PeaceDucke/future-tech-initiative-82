@@ -298,9 +298,9 @@ function AIFilterFlow() {
       t += 0.016;
       const wx = W * WALL;
 
-      // soft trail fade (cohesion of the sand stream)
-      ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(17,17,15,0.30)";
+      // soft trail fade — transparent (keeps site background visible)
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0,0,0,0.34)";
       ctx.fillRect(0, 0, W, H);
 
       // volumetric glow behind wall
@@ -414,8 +414,8 @@ function AIFilterFlow() {
   return (
     <div
       ref={wrapRef}
-      className="hidden lg:block w-[48%]"
-      style={{ position: "relative", height: "560px", overflow: "hidden" }}
+      className="hidden lg:block w-[48%] lg:mr-[-12rem]"
+      style={{ position: "relative", height: "560px", overflow: "visible" }}
       aria-hidden="true"
     >
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, display: "block" }} />
@@ -457,16 +457,6 @@ function AIFilterFlow() {
           </svg>
         </div>
       ))}
-
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          background:
-            "radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(17,17,15,0.55) 100%)",
-        }}
-      />
 
       <style>{`
         @keyframes aiff-pulse {
