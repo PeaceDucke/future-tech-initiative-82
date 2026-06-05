@@ -86,84 +86,106 @@ function AIFilterFlow() {
        splits, forks). Children are always thinner than their parent.
        AFTER wall — clean straight filtered streams, no branching. */
     const buildPaths = () => {
-      const r = rng(1337);
       const list: Path[] = [];
 
-      // ── grow one branch from (x0,y0) to the wall, then recurse children ──
-      const growBranch = (
+      const TRUNK_W = 4.5; // base trunk thickness (2x thinner than before)
+      const CHILD_W = 2.6; // child branch thickness
+
+      // build a smooth segment from (x0,y0) to (x1,y1) with optional bow (curve)
+      const seg = (
         x0: number,
         y0: number,
-        dir: number, // vertical tendency
+        x1: number,
+        y1: number,
+        bow: number,
         width: number,
-        layer: number,
-        depth: number
+        layer: number
       ) => {
-        const pts: { x: number; y: number }[] = [{ x: x0, y: y0 }];
-        const segs = 4 + ((r() * 3) | 0);
-        // where this branch ends along x (between start and wall)
-        const endX = Math.min(WALL, x0 + (WALL - x0) * (0.55 + r() * 0.45));
-        let y = y0;
-        let d = dir;
-        const childAnchors: { x: number; y: number; dir: number }[] = [];
-        for (let s = 1; s <= segs; s++) {
-          const x = x0 + ((endX - x0) * s) / segs;
-          d += (r() - 0.5) * 0.18;
-          d *= 0.85;
-          y += d * 0.16 + (r() - 0.5) * 0.05;
-          y = Math.max(0.05, Math.min(0.95, y));
-          pts.push({ x, y });
-          // remember possible spots where a child can sprout
-          if (s >= 1 && s < segs) childAnchors.push({ x, y, dir: d });
+        const pts: { x: number; y: number }[] = [];
+        const n = 6;
+        for (let s = 0; s <= n; s++) {
+          const tt = s / n;
+          const x = x0 + (x1 - x0) * tt;
+          // sine bow for organic curvature
+          const y = y0 + (y1 - y0) * tt + Math.sin(tt * Math.PI) * bow;
+          pts.push({ x, y: Math.max(0.04, Math.min(0.96, y)) });
         }
-
-        list.push({
-          pts,
-          width,
-          layer,
-          density: 0.5 + width * 0.06,
-        });
-
-        // spawn children (thinner). deeper = fewer, thinner.
-        if (depth < 2 && width > 3 && childAnchors.length) {
-          const maxChildren = depth === 0 ? 1 + ((r() * 2) | 0) : (r() < 0.5 ? 1 : 0);
-          for (let c = 0; c < maxChildren; c++) {
-            const a = childAnchors[(r() * childAnchors.length) | 0];
-            if (a.x > WALL - 0.04) continue; // need room before the wall
-            const childWidth = width * (0.45 + r() * 0.25); // always thinner
-            const branchDir = (r() < 0.5 ? -1 : 1) * (0.4 + r() * 0.8);
-            growBranch(a.x, a.y, branchDir, childWidth, layer, depth + 1);
-          }
-        }
+        list.push({ pts, width, layer, density: 0.5 + width * 0.12 });
       };
 
-      // ── roots: several trunks starting at the very left edge ──
-      const trunks = 4;
-      for (let i = 0; i < trunks; i++) {
-        const layer = i % 3;
-        const startY = 0.12 + (i / (trunks - 1)) * 0.76 + (r() - 0.5) * 0.04;
-        const startX = -0.02 - r() * 0.04;
-        const width = 9 + layer * 5 + r() * 5;
-        growBranch(startX, startY, (r() - 0.5) * 0.6, width, layer, 0);
+      // 6 evenly spaced columns/trunks on the left edge
+      const cols = 6;
+      const colY = (i: number) => 0.1 + (i / (cols - 1)) * 0.8;
+      const sx = -0.02; // start x (just off the left edge)
+
+      // column 1 — no branches, gently curves a bit upward
+      {
+        const y = colY(0);
+        seg(sx, y, WALL, y - 0.05, -0.05, TRUNK_W, 0);
+      }
+
+      // column 2 — splits in the middle into two branches → wall
+      {
+        const y = colY(1);
+        const mx = sx + (WALL - sx) * 0.5;
+        seg(sx, y, mx, y, 0.02, TRUNK_W, 1); // trunk to split point
+        seg(mx, y, WALL, y - 0.08, -0.04, CHILD_W, 1); // upper branch
+        seg(mx, y, WALL, y + 0.08, 0.04, CHILD_W, 1); // lower branch
+      }
+
+      // column 3 — early thin branch + a mid split into two → wall
+      {
+        const y = colY(2);
+        const ex = sx + (WALL - sx) * 0.28; // early branch point
+        const mx = sx + (WALL - sx) * 0.55; // mid split point
+        seg(sx, y, mx, y, 0.02, TRUNK_W, 2); // trunk to split
+        seg(ex, y, WALL, y - 0.14, -0.05, CHILD_W * 0.8, 2); // early thin branch up
+        seg(mx, y, WALL, y - 0.04, -0.02, CHILD_W, 2); // mid upper
+        seg(mx, y, WALL, y + 0.1, 0.04, CHILD_W, 2); // mid lower
+      }
+
+      // column 4 — no branches, straight-ish
+      {
+        const y = colY(3);
+        seg(sx, y, WALL, y + 0.04, 0.03, TRUNK_W, 0);
+      }
+
+      // column 5 — three branches (early thin + mid split into two)
+      {
+        const y = colY(4);
+        const ex = sx + (WALL - sx) * 0.3;
+        const mx = sx + (WALL - sx) * 0.6;
+        seg(sx, y, mx, y, -0.02, TRUNK_W, 1);
+        seg(ex, y, WALL, y + 0.13, 0.05, CHILD_W * 0.8, 1); // early thin branch down
+        seg(mx, y, WALL, y - 0.07, -0.03, CHILD_W, 1);
+        seg(mx, y, WALL, y + 0.04, 0.02, CHILD_W, 1);
+      }
+
+      // column 6 — two branches almost at the very start
+      {
+        const y = colY(5);
+        const ex = sx + (WALL - sx) * 0.15; // very early
+        seg(sx, y, ex, y, 0, TRUNK_W, 2);
+        seg(ex, y, WALL, y - 0.06, -0.03, CHILD_W, 2); // upper
+        seg(ex, y, WALL, y + 0.06, 0.03, CHILD_W, 2); // lower
       }
 
       // ── AFTER wall: clean, straight, filtered streams (no branching) ──
       const cleanStreams = 6;
       for (let i = 0; i < cleanStreams; i++) {
         const layer = i % 3;
-        const y0 = 0.12 + (i / (cleanStreams - 1)) * 0.76 + (r() - 0.5) * 0.02;
+        const y0 = 0.1 + (i / (cleanStreams - 1)) * 0.8;
         const pts: { x: number; y: number }[] = [];
-        const segs = 4;
-        const drift = (r() - 0.5) * 0.05; // very slight, stays orderly
-        for (let s = 0; s <= segs; s++) {
-          const x = WALL + (s / segs) * (1 - WALL) * 1.05;
-          const y = Math.max(0.05, Math.min(0.95, y0 + drift * (s / segs)));
-          pts.push({ x, y });
+        const n = 4;
+        for (let s = 0; s <= n; s++) {
+          const x = WALL + (s / n) * (1 - WALL) * 1.05;
+          pts.push({ x, y: y0 });
         }
         list.push({
           pts,
-          width: 4 + layer * 2 + r() * 2,
+          width: 2.4 + layer * 1, // thin & clean
           layer,
-          density: 0.5 + r() * 0.3,
+          density: 0.5,
           clean: true,
         });
       }
