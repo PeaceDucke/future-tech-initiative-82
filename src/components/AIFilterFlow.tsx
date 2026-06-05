@@ -76,6 +76,8 @@ function AIFilterFlow() {
 
     let W = 0;
     let H = 0;
+    let PAD = 70; // top headroom (px)
+    const vy = (frac: number) => PAD + frac * (H - PAD); // y from fraction of usable area
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let paths: Path[] = [];
     let grains: Grain[] = [];
@@ -308,6 +310,7 @@ function AIFilterFlow() {
       const rect = canvas.getBoundingClientRect();
       W = rect.width;
       H = rect.height;
+      PAD = 70; // empty headroom at the top so the trapezoid's top isn't clipped
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, W * dpr);
       canvas.height = Math.max(1, H * dpr);
@@ -336,10 +339,10 @@ function AIFilterFlow() {
 
       // left = far (short), right = near (tall) — kept inside the canvas
       // so the closed top/bottom edges are visible
-      const topL = H * 0.04;
-      const botL = H * 0.91;
-      const topR = H * -0.05;
-      const botR = H * 0.99;
+      const topL = vy(0.04);
+      const botL = vy(0.91);
+      const topR = vy(-0.05);
+      const botR = vy(0.99);
 
       // body trapezoid — subtle, no strong glow
       const bodyGrad = ctx.createLinearGradient(wx - halfBody, 0, wx + halfBody, 0);
@@ -465,7 +468,7 @@ function AIFilterFlow() {
         const jitter = (rrun() - 0.5) * (onLeft ? 1.6 : 0.6);
 
         const baseX = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
-        const baseY = pos.y * H + nrm.ny * lateral + nrm.ny * jitter;
+        const baseY = vy(pos.y) + nrm.ny * lateral + nrm.ny * jitter;
 
         // ── cursor repulsion: scatter & flow around cursor, smooth return ──
         let targetHx = 0;
@@ -564,9 +567,9 @@ function AIFilterFlow() {
         ref={canvasRef}
         style={{
           position: "absolute",
-          top: 0,
+          top: "-70px",
           left: "-6rem",
-          height: "100%",
+          height: "calc(100% + 70px)",
           width: "100vw",
           display: "block",
           pointerEvents: "none",
