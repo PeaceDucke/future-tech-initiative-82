@@ -1348,98 +1348,63 @@ function PipelineSection() {
 
           <div className="flex flex-col gap-20 lg:gap-28">
 
-            {/* ── PAIN CARDS — 3 IN A ROW ── */}
-            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto" style={{ rowGap: "1.5rem", columnGap: "5rem", width: "110%", maxWidth: "100vw" }}>
-              {[
-                {
-                  icon: "Headphones",
-                  stat: "70%",
-                  statLabel: "времени РОПа — впустую",
-                  title: "Руководитель отдела продаж работает «ушами», а не головой",
-                  text: "Вместо стратегии, найма и роста выручки ваш РОП вручную переслушивает звонки. Самый дорогой сотрудник отдела делает работу, которую вообще не должен делать.",
-                  consequence: "Вы платите за управление — а получаете прослушку",
-                },
-                {
-                  icon: "SearchX",
-                  stat: "3 из 100",
-                  statLabel: "звонков реально проверяются",
-                  title: "Контроль качества видит лишь верхушку айсберга",
-                  text: "Физически невозможно прослушать все разговоры. 97% диалогов уходят в слепую зону — там, где менеджеры сливают клиентов, нарушают скрипт и теряют сделки незаметно для вас.",
-                  consequence: "То, что вы не контролируете — стоит вам денег",
-                },
-                {
-                  icon: "TrendingDown",
-                  stat: "−∞ ₽",
-                  statLabel: "потери, которые уже случились",
-                  title: "Об ошибках вы узнаёте, когда деньги уже потеряны",
-                  text: "Слитый клиент, упущенная сделка, потерянный контракт — всё это всплывает постфактум, в отчёте за месяц. Исправлять уже нечего: клиент ушёл к конкуренту и не вернётся.",
-                  consequence: "Реакция «после» — это не контроль, а статистика убытков",
-                },
-              ].map((c, i) => (
-                <div
-                  key={i}
-                  className="pc group"
-                  style={{ ...pCard, padding: "38px 32px 32px", display: "flex", flexDirection: "column", transition: "border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = `${RED}55`;
-                    e.currentTarget.style.boxShadow = `0 0 0 1px ${RED}30, 0 24px 60px rgba(0,0,0,0.5), 0 0 40px ${RED}15`;
-                    e.currentTarget.style.transform = "translateY(-4px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "";
-                    e.currentTarget.style.boxShadow = "";
-                    e.currentTarget.style.transform = "";
-                  }}
-                >
-                  <div style={{ position: "absolute", top: "-100px", left: "-100px", width: "400px", height: "400px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 60%)`, pointerEvents: "none" }} />
+            {/* ── ONE CARD LEFT + SPLINE RIGHT ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
-                  <div className="flex items-center justify-between mb-7">
-                    <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: `${RED}15`, border: `1px solid ${RED}35`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Icon name={c.icon} size={26} style={{ color: RED }} />
-                    </div>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>0{i + 1}</span>
+              {/* card */}
+              <div
+                className="pc group"
+                style={{ ...pCard, padding: "38px 32px 32px", display: "flex", flexDirection: "column", transition: "border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = `${RED}55`;
+                  e.currentTarget.style.boxShadow = `0 0 0 1px ${RED}30, 0 24px 60px rgba(0,0,0,0.5), 0 0 40px ${RED}15`;
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "";
+                  e.currentTarget.style.boxShadow = "";
+                  e.currentTarget.style.transform = "";
+                }}
+              >
+                <div style={{ position: "absolute", top: "-100px", left: "-100px", width: "400px", height: "400px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 60%)`, pointerEvents: "none" }} />
+
+                <div className="flex items-center justify-between mb-7">
+                  <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: `${RED}15`, border: `1px solid ${RED}35`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Icon name="Headphones" size={26} style={{ color: RED }} />
                   </div>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>01</span>
+                </div>
 
-                  <div style={{ marginBottom: "20px" }}>
-                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(36px, 4vw, 46px)", color: RED, fontWeight: 500, lineHeight: 1, marginBottom: "8px" }}>
-                      {c.stat}
-                    </div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em", textTransform: "uppercase", fontWeight: 600 }}>
-                      {c.statLabel}
-                    </div>
+                <div style={{ marginBottom: "20px" }}>
+                  <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(36px, 4vw, 46px)", color: RED, fontWeight: 500, lineHeight: 1, marginBottom: "8px" }}>
+                    70%
                   </div>
-
-                  <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "21px", color: W, fontWeight: 400, lineHeight: 1.3, marginBottom: "16px" }}>
-                    {c.title}
-                  </h3>
-
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.75, fontWeight: 400, marginBottom: "26px", flexGrow: 1 }}>
-                    {c.text}
-                  </p>
-
-                  <div style={{ borderTop: `1px solid ${RED}25`, paddingTop: "18px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                    <Icon name="AlertTriangle" size={17} style={{ color: RED, flexShrink: 0, marginTop: "2px" }} />
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, lineHeight: 1.55, fontWeight: 500 }}>
-                      {c.consequence}
-                    </p>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em", textTransform: "uppercase", fontWeight: 600 }}>
+                    времени РОПа — впустую
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {/* ── PAIN ANIMATION ── */}
-            <div style={{ width: "100vw", height: "800px", overflow: "hidden", position: "relative", marginTop: "-300px", left: "50%", transform: "translateX(-50%)" }}>
-              <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=3" style={{ width: "100%", height: "100%" }} />
-            </div>
+                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "21px", color: W, fontWeight: 400, lineHeight: 1.3, marginBottom: "16px" }}>
+                  Руководитель отдела продаж работает «ушами», а не головой
+                </h3>
 
-            {/* ── SOLUTION HEADING ── */}
-            <div className="text-center" style={{ marginTop: "0px", marginBottom: "24px" }}>
-              <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
-                AI видит то, что невозможно<br />контролировать вручную
-              </h2>
-              <p style={{ ...bodyText, fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75, color: B }}>
-                Мы превращаем хаос звонков в понятные причины<br />и точки роста продаж.
-              </p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.75, fontWeight: 400, marginBottom: "26px", flexGrow: 1 }}>
+                  Вместо стратегии, найма и роста выручки ваш РОП вручную переслушивает звонки. Самый дорогой сотрудник отдела делает работу, которую вообще не должен делать.
+                </p>
+
+                <div style={{ borderTop: `1px solid ${RED}25`, paddingTop: "18px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                  <Icon name="AlertTriangle" size={17} style={{ color: RED, flexShrink: 0, marginTop: "2px" }} />
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, lineHeight: 1.55, fontWeight: 500 }}>
+                    Вы платите за управление — а получаете прослушку
+                  </p>
+                </div>
+              </div>
+
+              {/* spline */}
+              <div style={{ width: "100%", height: "520px", overflow: "hidden", position: "relative" }}>
+                <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=3" style={{ width: "100%", height: "100%" }} />
+              </div>
+
             </div>
 
             <div className="relative flex flex-col gap-20 lg:gap-28">
