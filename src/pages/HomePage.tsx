@@ -1332,6 +1332,20 @@ function SplineFeatureSection() {
 
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
+  // measure the AI-vision heading block so the connector line stops at its top
+  const aiLineRef = useRef<HTMLDivElement>(null);
+  const aiHeadingRef = useRef<HTMLDivElement>(null);
+  const [aiHeadingH, setAiHeadingH] = useState<number>(0);
+  useEffect(() => {
+    const el = aiHeadingRef.current;
+    if (!el) return;
+    const update = () => setAiHeadingH(Math.max(0, el.offsetHeight - 48));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   // Цветовая система
   const W = "#FBF6EC";           // белый/кремовый — основной текст
   const G = "#D4B074";           // золотой — акценты, лейблы
@@ -1382,15 +1396,17 @@ function PipelineSection() {
 
           <div className="flex flex-col gap-20 lg:gap-28">
 
-            {/* ── ONE CARD LEFT + SPLINE RIGHT ── */}
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
+            {/* ── ONE CARD LEFT + SPLINE RIGHT (+ heading below) ── */}
+            <div className="relative">
 
-              {/* connecting line to cards below */}
-              <div className="absolute left-1/2 hidden lg:block" style={{ top: "55%", bottom: "0", width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.12) 100%)", transform: "translateX(-50%)" }} />
-              {/* silver dot on the line */}
-              <div className="absolute left-1/2 hidden lg:block" style={{ top: "50%", transform: "translate(-50%, -50%)" }}>
+              {/* connecting line: from bottom of the card down to the top of the heading */}
+              <div ref={aiLineRef} className="absolute left-1/2 hidden lg:block" style={{ top: "calc(50% - 94px)", bottom: `${aiHeadingH}px`, width: "1px", background: "rgba(255,255,255,0.12)", transform: "translateX(-50%)" }} />
+              {/* silver dot at the bottom of the card */}
+              <div className="absolute left-1/2 hidden lg:block" style={{ top: "calc(50% - 94px)", transform: "translate(-50%, -50%)", zIndex: 2 }}>
                 <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)" }} />
               </div>
+
+            <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* card */}
               <div className="pc w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
@@ -1440,7 +1456,8 @@ function PipelineSection() {
             </div>
 
             {/* ── AI vision heading ── */}
-            <Section className="text-center" style={{ marginTop: "48px" }}>
+            <div ref={aiHeadingRef} style={{ paddingTop: "48px" }}>
+            <Section className="text-center">
               <motion.h2 variants={fadeUp} style={{
                 fontFamily: '"Bodoni Moda", Georgia, serif',
                 fontSize: "clamp(32px, 5vw, 62px)",
@@ -1464,6 +1481,9 @@ function PipelineSection() {
                 Мы превращаем хаос звонков в понятные причины роста и продаж
               </motion.p>
             </Section>
+            </div>
+
+            </div>
 
             <div className="relative flex flex-col gap-20 lg:gap-28">
             <div className="absolute left-1/2 hidden lg:block" style={{ top: "-7rem", bottom: "0", width: "1px", background: "linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.12) 92%, transparent 100%)", transform: "translateX(-50%)" }} />
