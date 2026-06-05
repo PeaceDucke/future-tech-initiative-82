@@ -1352,51 +1352,39 @@ function PipelineSection() {
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* card */}
-              <div
-                className="pc group"
-                style={{ ...pCard, padding: "38px 32px 32px", display: "flex", flexDirection: "column", transition: "border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = `${RED}55`;
-                  e.currentTarget.style.boxShadow = `0 0 0 1px ${RED}30, 0 24px 60px rgba(0,0,0,0.5), 0 0 40px ${RED}15`;
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "";
-                  e.currentTarget.style.boxShadow = "";
-                  e.currentTarget.style.transform = "";
-                }}
-              >
-                <div style={{ position: "absolute", top: "-100px", left: "-100px", width: "400px", height: "400px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 60%)`, pointerEvents: "none" }} />
-
-                <div className="flex items-center justify-between mb-7">
-                  <div style={{ width: "56px", height: "56px", borderRadius: "16px", background: `${RED}15`, border: `1px solid ${RED}35`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Icon name="Headphones" size={26} style={{ color: RED }} />
-                  </div>
-                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>01</span>
-                </div>
-
-                <div style={{ marginBottom: "20px" }}>
-                  <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(36px, 4vw, 46px)", color: RED, fontWeight: 500, lineHeight: 1, marginBottom: "8px" }}>
-                    70%
-                  </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.04em", textTransform: "uppercase", fontWeight: 600 }}>
-                    времени РОПа — впустую
-                  </div>
-                </div>
-
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "21px", color: W, fontWeight: 400, lineHeight: 1.3, marginBottom: "16px" }}>
-                  Руководитель отдела продаж работает «ушами», а не головой
+              <div className="pc w-full" style={pCard}>
+                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
+                {num("01")}
+                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+                  Вы теряете деньги там, где<br />не можете слышать
                 </h3>
-
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.75, fontWeight: 400, marginBottom: "26px", flexGrow: 1 }}>
-                  Вместо стратегии, найма и роста выручки ваш РОП вручную переслушивает звонки. Самый дорогой сотрудник отдела делает работу, которую вообще не должен делать.
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+                  Каждый день отдел продаж совершает сотни звонков — и почти ни один из них не находится под реальным контролем. Деньги утекают незаметно, а вы узнаёте об этом последним.
                 </p>
 
-                <div style={{ borderTop: `1px solid ${RED}25`, paddingTop: "18px", display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                  <Icon name="AlertTriangle" size={17} style={{ color: RED, flexShrink: 0, marginTop: "2px" }} />
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, lineHeight: 1.55, fontWeight: 500 }}>
-                    Вы платите за управление — а получаете прослушку
-                  </p>
+                <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
+                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "18px", fontWeight: 600 }}>3 дыры, через которые уходит выручка</p>
+
+                  <div className="flex flex-col" style={{ gap: "18px" }}>
+                    {[
+                      "РОП тратит часы на ручное прослушивание звонков вместо управления продажами, найма и развития команды — самый дорогой сотрудник занят рутиной, которая не приносит роста.",
+                      "Отдел контроля качества физически не способен проверить все разговоры: проверяется лишь верхушка, а остальные диалоги уходят в слепую зону без какого-либо контроля.",
+                      "Ошибки менеджеров всплывают только постфактум — когда сделка уже слита, клиент ушёл к конкуренту, а деньги потеряны безвозвратно.",
+                    ].map((t, i) => (
+                      <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                        <Icon name="AlertTriangle" size={17} style={{ color: RED, flexShrink: 0, marginTop: "3px" }} />
+                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.65, fontWeight: 400 }}>
+                          {t}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ borderTop: `1px solid ${RED}25`, paddingTop: "16px", marginTop: "20px" }}>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: RED, lineHeight: 1.6, fontWeight: 500 }}>
+                      Пока разговоры остаются «чёрным ящиком» — вы платите за управление, а получаете прослушку и статистику убытков.
+                    </p>
+                  </div>
                 </div>
               </div>
 
