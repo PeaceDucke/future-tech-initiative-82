@@ -40,8 +40,10 @@ type Grain = {
   hue: number;
   tw: number; // twinkle phase
   scatter: number; // current extra scatter
-  hx: number; // smoothed cursor-push offset x (eases back to 0)
-  hy: number; // smoothed cursor-push offset y
+  hx: number; // displacement from the line (x) — its own little life
+  hy: number; // displacement from the line (y)
+  vx: number; // velocity x (inertia)
+  vy: number; // velocity y
   filtered: boolean;
   flash: number;
   dead: boolean;
@@ -88,15 +90,31 @@ function AIFilterFlow() {
     // cursor (canvas-local px); -9999 = no cursor
     let mx = -9999;
     let my = -9999;
-    const MOUSE_R = 70; // radius of the avoided area (px)
+    let pmx = -9999; // previous cursor pos (for velocity / push direction)
+    let pmy = -9999;
+    let mvx = 0; // cursor velocity x
+    let mvy = 0;
+    const MOUSE_R = 47; // interaction radius (1.5x smaller than before)
     const onMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mx = e.clientX - rect.left;
-      my = e.clientY - rect.top;
+      const nx = e.clientX - rect.left;
+      const ny = e.clientY - rect.top;
+      if (pmx > -9000) {
+        mvx = nx - pmx;
+        mvy = ny - pmy;
+      }
+      pmx = nx;
+      pmy = ny;
+      mx = nx;
+      my = ny;
     };
     const onLeave = () => {
       mx = -9999;
       my = -9999;
+      pmx = -9999;
+      pmy = -9999;
+      mvx = 0;
+      mvy = 0;
     };
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseout", onLeave);
@@ -300,6 +318,8 @@ function AIFilterFlow() {
         scatter: 0,
         hx: 0,
         hy: 0,
+        vx: 0,
+        vy: 0,
         filtered: !!path.clean, // clean streams are born already filtered
         flash: 0,
         dead: false,
@@ -448,6 +468,10 @@ function AIFilterFlow() {
       t += 0.016;
       const wx = W * WALL;
 
+      // decay cursor velocity so a still mouse stops pushing
+      mvx *= 0.6;
+      mvy *= 0.6;
+
       // soft trail fade — transparent (keeps site background visible)
       ctx.globalCompositeOperation = "destination-out";
       ctx.fillStyle = "rgba(0,0,0,0.34)";
@@ -486,35 +510,38 @@ function AIFilterFlow() {
         const baseX = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
         const baseY = vy(pos.y) + nrm.ny * lateral + nrm.ny * jitter;
 
-        // ── cursor repulsion: instant scatter, slow drifting restore ──
-        let inField = false;
+        // ── each grain lives its own little life: a velocity-based offset
+        // (hx,hy) from its line. cursor flicks it in its movement direction,
+        // then a soft spring pulls it home over ~2s. ──
+        // instant kick when the cursor passes close
         if (mx > -9000) {
           const ddx = baseX - mx;
           const ddy = baseY - my;
           const dist = Math.hypot(ddx, ddy);
           if (dist < MOUSE_R) {
-            inField = true;
             const force = 1 - dist / MOUSE_R; // 0..1, stronger near center
-            const push = force * force * MOUSE_R * 1.6; // stronger blast away
+            // push mainly in the direction the mouse is moving
+            const mspeed = Math.hypot(mvx, mvy);
+            if (mspeed > 0.1) {
+              g.vx += (mvx / mspeed) * force * 4.2;
+              g.vy += (mvy / mspeed) * force * 4.2;
+            }
+            // small radial component + spray so it doesn't just orbit
             const inv = dist > 0.01 ? 1 / dist : 0;
-            const targetHx = ddx * inv * push;
-            const targetHy = ddy * inv * push;
-            // INSTANT reaction — snap most of the way immediately
-            g.hx += (targetHx - g.hx) * 0.7;
-            g.hy += (targetHy - g.hy) * 0.7;
-            // extra random spray so grains scatter, not just orbit the cursor
-            g.hx += (rrun() - 0.5) * force * 7;
-            g.hy += (rrun() - 0.5) * force * 7;
+            g.vx += ddx * inv * force * 1.4 + (rrun() - 0.5) * force * 2;
+            g.vy += ddy * inv * force * 1.4 + (rrun() - 0.5) * force * 2;
           }
         }
-        if (!inField) {
-          // VERY SLOW restore (~2s): grains keep drifting, then ease back gently.
-          // 0.991^120 ≈ 0.34 → ~2s at 60fps to mostly recover.
-          g.hx += (rrun() - 0.5) * Math.min(1.5, Math.abs(g.hx) * 0.12); // lingering dust
-          g.hy += (rrun() - 0.5) * Math.min(1.5, Math.abs(g.hy) * 0.12);
-          g.hx *= 0.991;
-          g.hy *= 0.991;
-        }
+
+        // spring back to the line (k small → slow ~2s recovery) + damping
+        const k = 0.012; // restore stiffness
+        const damp = 0.92; // velocity damping
+        g.vx += -g.hx * k;
+        g.vy += -g.hy * k;
+        g.vx *= damp;
+        g.vy *= damp;
+        g.hx += g.vx;
+        g.hy += g.vy;
 
         const x = baseX + g.hx;
         const y = baseY + g.hy;
