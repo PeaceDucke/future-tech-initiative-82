@@ -1385,7 +1385,7 @@ function PipelineSection() {
                         alt=""
                         style={{ width: "144px", height: "144px", objectFit: "contain", flexShrink: 0, marginLeft: "-32px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
                       />
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "20px", color: W, lineHeight: 1.6, fontWeight: 500 }}>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: W, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
                       </p>
                     </div>
