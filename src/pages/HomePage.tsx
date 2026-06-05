@@ -1357,35 +1357,36 @@ function PipelineSection() {
                 {num("01")}
                 <div className="flex flex-col" style={{ gap: "0px" }}>
                   {[
-                    "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
-                    "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
-                    "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
-                  ].map((t, i, arr) => (
+                    {
+                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/737be0e7-316d-4380-b844-3f873c734d46.png",
+                      text: "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
+                    },
+                    {
+                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/330efac3-b85d-4a12-b30b-c3e388e726cf.png",
+                      text: "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
+                    },
+                    {
+                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6be343a7-15dc-4739-891e-9c6c1623233c.png",
+                      text: "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
+                    },
+                  ].map((item, i, arr) => (
                     <div
                       key={i}
                       style={{
                         display: "flex",
-                        alignItems: "flex-start",
-                        gap: "24px",
-                        padding: "40px 0",
+                        alignItems: "center",
+                        gap: "26px",
+                        padding: "36px 0",
                         borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
                       }}
                     >
-                      <span
-                        style={{
-                          fontFamily: "Playfair Display, serif",
-                          fontSize: "34px",
-                          fontWeight: 600,
-                          lineHeight: 1,
-                          color: G,
-                          flexShrink: 0,
-                          minWidth: "46px",
-                        }}
-                      >
-                        0{i + 1}
-                      </span>
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "20px", color: W, lineHeight: 1.6, fontWeight: 500, paddingTop: "4px" }}>
-                        {t}
+                      <img
+                        src={item.img}
+                        alt=""
+                        style={{ width: "64px", height: "64px", objectFit: "contain", flexShrink: 0, filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
+                      />
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "20px", color: W, lineHeight: 1.6, fontWeight: 500 }}>
+                        {item.text}
                       </p>
                     </div>
                   ))}
