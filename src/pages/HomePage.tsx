@@ -3538,9 +3538,9 @@ export function HomePage() {
                 <div
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
-                    width: "36%",
-                    bottom: "80px",
-                    right: "1%",
+                    width: "38%",
+                    bottom: "60px",
+                    right: "0%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
@@ -3548,9 +3548,9 @@ export function HomePage() {
                   }}
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500 }}>Топ менеджеров</span>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "var(--db-acc-3)", fontWeight: 500 }}>Топ менеджеров</span>
                     <div className="flex items-center gap-1 px-2.5 py-1 rounded" style={{ background: "rgba(var(--db-acc-rgb-2),0.1)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)" }}>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)" }}>За месяц</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)" }}>За месяц</span>
                       <Icon name="ChevronDown" size={10} style={{ color: "var(--db-acc-2)" }} />
                     </div>
                   </div>
@@ -3571,9 +3571,9 @@ export function HomePage() {
                         <div key={m.name} className="flex items-center gap-3">
                           <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
                           <div className="flex flex-col" style={{ flex: 1, minWidth: 0 }}>
-                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.7)", whiteSpace: "nowrap" }}>{m.name}</span>
-                            {m.best && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#22a868", fontWeight: 600 }}>★ Лучший менеджер</span>}
-                            {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#e0533d", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(var(--db-text-rgb),0.7)", whiteSpace: "nowrap" }}>{m.name}</span>
+                            {m.best && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#22a868", fontWeight: 600 }}>★ Лучший менеджер</span>}
+                            {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#e0533d", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
                           </div>
                           <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: sc, fontWeight: 700, minWidth: "56px", textAlign: "right", marginRight: "28px" }}>{m.score.toFixed(1)}</span>
                         </div>
