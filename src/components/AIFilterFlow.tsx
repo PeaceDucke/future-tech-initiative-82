@@ -286,27 +286,20 @@ function AIFilterFlow() {
     const drawWall = (wx: number, pulse: number) => {
       const top = H * -0.03;
       const bot = H * 1.03;
-      const body = ctx.createLinearGradient(wx - 34, 0, wx + 34, 0);
+      const body = ctx.createLinearGradient(wx - 22, 0, wx + 22, 0);
       body.addColorStop(0, "rgba(201,151,62,0)");
       body.addColorStop(0.5, `rgba(244,213,141,${0.07 + pulse * 0.05})`);
       body.addColorStop(1, "rgba(201,151,62,0)");
       ctx.fillStyle = body;
-      ctx.fillRect(wx - 34, top, 68, bot - top);
+      ctx.fillRect(wx - 22, top, 44, bot - top);
 
       ctx.strokeStyle = `rgba(244,213,141,${0.28 + pulse * 0.2})`;
       ctx.lineWidth = 1.3;
       ctx.beginPath();
-      ctx.moveTo(wx - 14, top);
-      ctx.lineTo(wx - 14, bot);
-      ctx.moveTo(wx + 14, top);
-      ctx.lineTo(wx + 14, bot);
-      ctx.stroke();
-
-      ctx.strokeStyle = `rgba(255,240,200,${0.45 + pulse * 0.3})`;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(wx, top);
-      ctx.lineTo(wx, bot);
+      ctx.moveTo(wx - 9, top);
+      ctx.lineTo(wx - 9, bot);
+      ctx.moveTo(wx + 9, top);
+      ctx.lineTo(wx + 9, bot);
       ctx.stroke();
 
       ctx.strokeStyle = `rgba(229,190,110,${0.06 + pulse * 0.04})`;
@@ -316,8 +309,8 @@ function AIFilterFlow() {
         const gy = top + ((bot - top) / rows) * i;
         const wob = Math.sin(i * 0.6 + pulse * 6) * 2;
         ctx.beginPath();
-        ctx.moveTo(wx - 13, gy + wob);
-        ctx.lineTo(wx + 13, gy + wob);
+        ctx.moveTo(wx - 8, gy + wob);
+        ctx.lineTo(wx + 8, gy + wob);
         ctx.stroke();
       }
     };
