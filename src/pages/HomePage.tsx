@@ -1349,7 +1349,10 @@ function PipelineSection() {
           <div className="flex flex-col gap-20 lg:gap-28">
 
             {/* ── ONE CARD LEFT + SPLINE RIGHT ── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
+            <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
+
+              {/* connecting line to cards below */}
+              <div className="absolute left-1/2 hidden lg:block" style={{ top: "50%", bottom: "-7rem", width: "1px", background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.12) 25%, rgba(255,255,255,0.12) 100%)", transform: "translateX(-50%)" }} />
 
               {/* card */}
               <div className="pc w-full" style={pCard}>
@@ -1389,7 +1392,7 @@ function PipelineSection() {
               </div>
 
               {/* spline */}
-              <div style={{ width: "100%", height: "520px", overflow: "hidden", position: "relative" }}>
+              <div className="lg:mr-[-8rem] lg:ml-[-3rem]" style={{ width: "auto", height: "560px", overflow: "hidden", position: "relative" }}>
                 <Spline scene="https://prod.spline.design/ajHrylTbUEMreEbT/scene.splinecode?v=3" style={{ width: "100%", height: "100%" }} />
               </div>
 
