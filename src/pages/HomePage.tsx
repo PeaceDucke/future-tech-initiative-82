@@ -3435,9 +3435,9 @@ export function HomePage() {
                 <div
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
-                    width: "42%",
+                    width: "38%",
                     top: "350px",
-                    left: "25%",
+                    left: "27%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
@@ -3472,15 +3472,15 @@ export function HomePage() {
                       { label: "Фиксация договорённостей", icon: "ListChecks", val: 0.88 },
                       { label: "Завершение разговора", icon: "CircleCheck", val: 0.9 },
                     ];
-                    const cx = 175, cy = 175, R = 125;
+                    const cx = 160, cy = 160, R = 113;
                     const pt = (i: number, r: number) => {
                       const ang = (Math.PI * 2 * i) / axes.length - Math.PI / 2;
                       return [cx + Math.cos(ang) * r, cy + Math.sin(ang) * r];
                     };
                     const poly = axes.map((a, i) => pt(i, R * a.val).join(",")).join(" ");
                     return (
-                      <div className="relative mx-auto" style={{ width: 350, height: 350 }}>
-                        <svg width="350" height="350" viewBox="0 0 350 350">
+                      <div className="relative mx-auto" style={{ width: 320, height: 320 }}>
+                        <svg width="320" height="320" viewBox="0 0 320 320">
                           {[0.25, 0.5, 0.75, 1].map((lvl) => (
                             <polygon key={lvl}
                               points={axes.map((_, i) => pt(i, R * lvl).join(",")).join(" ")}
