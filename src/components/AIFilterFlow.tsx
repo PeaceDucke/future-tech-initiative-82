@@ -26,6 +26,7 @@ type Path = {
   width: number; // band thickness px
   layer: number; // 0 back .. 2 front
   density: number; // relative particle count weight
+  clean?: boolean; // true = already-filtered straight stream (after wall)
 };
 
 type Grain = {
@@ -80,55 +81,93 @@ function AIFilterFlow() {
 
     const WALL = 0.3; // wall position (normalized, fraction of full-width canvas)
 
-    /* build branching flow paths: trunks that split into branches */
+    /* build flow paths:
+       BEFORE wall — a real branching tree (trunks → smaller child branches,
+       splits, forks). Children are always thinner than their parent.
+       AFTER wall — clean straight filtered streams, no branching. */
     const buildPaths = () => {
       const r = rng(1337);
       const list: Path[] = [];
-      const trunks = 5;
 
-      for (let i = 0; i < trunks; i++) {
-        const layer = i % 3;
-        const startY = 0.12 + (i / (trunks - 1)) * 0.76 + (r() - 0.5) * 0.05;
-
-        // trunk: from left edge to the wall
-        const trunkPts: { x: number; y: number }[] = [];
-        const segs = 5;
-        let y = startY;
-        for (let s = 0; s <= segs; s++) {
-          const x = (s / segs) * WALL;
-          y += (r() - 0.5) * 0.12;
-          y = Math.max(0.06, Math.min(0.94, y));
-          trunkPts.push({ x, y });
+      // ── grow one branch from (x0,y0) to the wall, then recurse children ──
+      const growBranch = (
+        x0: number,
+        y0: number,
+        dir: number, // vertical tendency
+        width: number,
+        layer: number,
+        depth: number
+      ) => {
+        const pts: { x: number; y: number }[] = [{ x: x0, y: y0 }];
+        const segs = 4 + ((r() * 3) | 0);
+        // where this branch ends along x (between start and wall)
+        const endX = Math.min(WALL, x0 + (WALL - x0) * (0.55 + r() * 0.45));
+        let y = y0;
+        let d = dir;
+        const childAnchors: { x: number; y: number; dir: number }[] = [];
+        for (let s = 1; s <= segs; s++) {
+          const x = x0 + ((endX - x0) * s) / segs;
+          d += (r() - 0.5) * 0.18;
+          d *= 0.85;
+          y += d * 0.16 + (r() - 0.5) * 0.05;
+          y = Math.max(0.05, Math.min(0.95, y));
+          pts.push({ x, y });
+          // remember possible spots where a child can sprout
+          if (s >= 1 && s < segs) childAnchors.push({ x, y, dir: d });
         }
-        const endY = trunkPts[trunkPts.length - 1].y;
+
         list.push({
-          pts: trunkPts,
-          width: 10 + layer * 6 + r() * 6,
+          pts,
+          width,
           layer,
-          density: 1.1 + r() * 0.5,
+          density: 0.5 + width * 0.06,
         });
 
-        // branches after the wall (1..3), straighter
-        const nb = 1 + ((r() * 3) | 0);
-        for (let b = 0; b < nb; b++) {
-          const bpts: { x: number; y: number }[] = [];
-          const bsegs = 4;
-          let by = endY;
-          const drift = (r() - 0.5) * 0.22;
-          for (let s = 0; s <= bsegs; s++) {
-            const x = WALL + (s / bsegs) * (1 - WALL) * (0.9 + r() * 0.2);
-            by = endY + drift * (s / bsegs) + (r() - 0.5) * 0.02;
-            by = Math.max(0.05, Math.min(0.95, by));
-            bpts.push({ x, y: by });
+        // spawn children (thinner). deeper = fewer, thinner.
+        if (depth < 3 && width > 3 && childAnchors.length) {
+          const maxChildren = depth === 0 ? 2 + ((r() * 2) | 0) : 1 + ((r() * 2) | 0);
+          for (let c = 0; c < maxChildren; c++) {
+            const a = childAnchors[(r() * childAnchors.length) | 0];
+            if (a.x > WALL - 0.04) continue; // need room before the wall
+            const childWidth = width * (0.45 + r() * 0.25); // always thinner
+            const branchDir = (r() < 0.5 ? -1 : 1) * (0.4 + r() * 0.8);
+            growBranch(a.x, a.y, branchDir, childWidth, layer, depth + 1);
           }
-          list.push({
-            pts: bpts,
-            width: 5 + layer * 3 + r() * 3, // thinner, cleaner
-            layer,
-            density: 0.5 + r() * 0.4,
-          });
         }
+      };
+
+      // ── roots: several trunks starting at the very left edge ──
+      const trunks = 5;
+      for (let i = 0; i < trunks; i++) {
+        const layer = i % 3;
+        const startY = 0.12 + (i / (trunks - 1)) * 0.76 + (r() - 0.5) * 0.04;
+        const startX = -0.02 - r() * 0.04;
+        const width = 9 + layer * 5 + r() * 5;
+        growBranch(startX, startY, (r() - 0.5) * 0.6, width, layer, 0);
       }
+
+      // ── AFTER wall: clean, straight, filtered streams (no branching) ──
+      const cleanStreams = 6;
+      for (let i = 0; i < cleanStreams; i++) {
+        const layer = i % 3;
+        const y0 = 0.12 + (i / (cleanStreams - 1)) * 0.76 + (r() - 0.5) * 0.02;
+        const pts: { x: number; y: number }[] = [];
+        const segs = 4;
+        const drift = (r() - 0.5) * 0.05; // very slight, stays orderly
+        for (let s = 0; s <= segs; s++) {
+          const x = WALL + (s / segs) * (1 - WALL) * 1.05;
+          const y = Math.max(0.05, Math.min(0.95, y0 + drift * (s / segs)));
+          pts.push({ x, y });
+        }
+        list.push({
+          pts,
+          width: 4 + layer * 2 + r() * 2,
+          layer,
+          density: 0.5 + r() * 0.3,
+          clean: true,
+        });
+      }
+
       paths = list;
     };
 
@@ -160,9 +199,20 @@ function AIFilterFlow() {
       return { x: cx, y: cy };
     };
 
+    let densSum = 0;
+    const pickPath = (r: () => number) => {
+      let acc = r() * densSum;
+      for (let i = 0; i < paths.length; i++) {
+        acc -= paths[i].density;
+        if (acc <= 0) return i;
+      }
+      return paths.length - 1;
+    };
+
     const spawnGrain = (r: () => number, atStart: boolean): Grain => {
-      const pi = (r() * paths.length) | 0;
-      const layer = paths[pi].layer;
+      const pi = pickPath(r);
+      const path = paths[pi];
+      const layer = path.layer;
       return {
         path: pi,
         u: atStart ? -r() * 0.05 : r(),
@@ -173,7 +223,7 @@ function AIFilterFlow() {
         hue: (r() * GOLD.length) | 0,
         tw: r() * Math.PI * 2,
         scatter: 0,
-        filtered: false,
+        filtered: !!path.clean, // clean streams are born already filtered
         flash: 0,
         dead: false,
       };
@@ -181,6 +231,7 @@ function AIFilterFlow() {
 
     const buildGrains = () => {
       const r = rng(99);
+      densSum = paths.reduce((a, p) => a + p.density, 0);
       const target = Math.max(900, Math.min(2600, Math.round(W * 4.2)));
       grains = [];
       for (let i = 0; i < target; i++) grains.push(spawnGrain(r, false));
