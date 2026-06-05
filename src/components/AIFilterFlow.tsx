@@ -1,287 +1,357 @@
 import { useRef, useEffect, useState } from "react";
 
-type Particle = {
+/* ── palette ───────────────────────────────────────────── */
+const GOLD = [
+  [244, 213, 141], // #F4D58D
+  [229, 190, 110], // #E5BE6E
+  [201, 151, 62], // #C9973E
+  [158, 109, 45], // #9E6D2D
+];
+
+/* ── tiny value-noise (no deps) ────────────────────────── */
+function makeNoise(seed = 1) {
+  const size = 256;
+  const perm = new Uint8Array(size * 2);
+  let s = seed * 2654435761;
+  const rnd = () => {
+    s ^= s << 13;
+    s ^= s >>> 17;
+    s ^= s << 5;
+    return ((s >>> 0) % 100000) / 100000;
+  };
+  const p = new Uint8Array(size);
+  for (let i = 0; i < size; i++) p[i] = i;
+  for (let i = size - 1; i > 0; i--) {
+    const j = (rnd() * (i + 1)) | 0;
+    const tmp = p[i];
+    p[i] = p[j];
+    p[j] = tmp;
+  }
+  for (let i = 0; i < size * 2; i++) perm[i] = p[i & (size - 1)];
+  const fade = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+  const grad = (h: number, x: number, y: number) => {
+    const u = h & 1 ? x : -x;
+    const v = h & 2 ? y : -y;
+    return u + v;
+  };
+  return (x: number, y: number) => {
+    const X = Math.floor(x) & (size - 1);
+    const Y = Math.floor(y) & (size - 1);
+    const xf = x - Math.floor(x);
+    const yf = y - Math.floor(y);
+    const u = fade(xf);
+    const v = fade(yf);
+    const aa = perm[perm[X] + Y];
+    const ab = perm[perm[X] + Y + 1];
+    const ba = perm[perm[X + 1] + Y];
+    const bb = perm[perm[X + 1] + Y + 1];
+    const x1 = lerp(grad(aa, xf, yf), grad(ba, xf - 1, yf), u);
+    const x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);
+    return (lerp(x1, x2, v) + 1) * 0.5; // 0..1
+  };
+}
+
+type P = {
   x: number;
   y: number;
   baseY: number;
-  size: number;
   speed: number;
-  phase: number;
-  amp: number;
-  opacity: number;
-  flicker: number;
+  layer: number; // 0 back .. 2 front
+  size: number;
+  alpha: number;
+  hue: number;
+  twk: number;
+  life: number;
   filtered: boolean;
-  flashed: boolean;
-  bright: number;
-  color: string;
+  flash: number;
+  px: number;
+  py: number;
 };
 
-const COLORS = ["#F3DCA2", "#E8C878", "#C89B45"];
-
 function AIFilterFlow() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
-  const particlesRef = useRef<Particle[]>([]);
   const [reduced, setReduced] = useState(false);
   const [markersOn, setMarkersOn] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = () => setReduced(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
   useEffect(() => {
-    const t = setTimeout(() => setMarkersOn(true), 600);
+    const t = setTimeout(() => setMarkersOn(true), 700);
     return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
+    const wrap = wrapRef.current;
     const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
-    const ctx = canvas.getContext("2d");
+    if (!wrap || !canvas) return;
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
+    const noise = makeNoise(7);
     let W = 0;
     let H = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let particles: P[] = [];
+    let running = true;
+    let inView = true;
 
-    const makeParticle = (startLeft: boolean): Particle => {
-      const baseY = H * (0.12 + Math.random() * 0.76);
+    const wallX = () => W * 0.52;
+
+    const spawn = (fromLeft: boolean): P => {
+      const layer = Math.random() < 0.45 ? 0 : Math.random() < 0.7 ? 1 : 2;
+      const baseY = H * (0.08 + Math.random() * 0.84);
+      const x = fromLeft ? -Math.random() * W * 0.25 : Math.random() * wallX();
       return {
-        x: startLeft ? -20 - Math.random() * W * 0.3 : Math.random() * W,
+        x,
         y: baseY,
         baseY,
-        size: 0.8 + Math.random() * 2.4,
-        speed: 0.25 + Math.random() * 0.55,
-        phase: Math.random() * Math.PI * 2,
-        amp: 14 + Math.random() * 26,
-        opacity: 0.3 + Math.random() * 0.7,
-        flicker: Math.random() * Math.PI * 2,
+        speed: (0.18 + Math.random() * 0.5) * (0.6 + layer * 0.4),
+        layer,
+        size: (layer === 2 ? 1.6 : layer === 1 ? 1.1 : 0.7) * (0.7 + Math.random() * 0.9),
+        alpha: (layer === 2 ? 0.9 : layer === 1 ? 0.6 : 0.32) * (0.6 + Math.random() * 0.4),
+        hue: (Math.random() * GOLD.length) | 0,
+        twk: Math.random() * Math.PI * 2,
+        life: 0,
         filtered: false,
-        flashed: false,
-        bright: 0,
-        color: COLORS[(Math.random() * COLORS.length) | 0],
+        flash: 0,
+        px: x,
+        py: baseY,
       };
     };
 
-    const resize = () => {
-      const rect = container.getBoundingClientRect();
+    const build = () => {
+      const rect = wrap.getBoundingClientRect();
       W = rect.width;
       H = rect.height;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
+      canvas.width = Math.max(1, W * dpr);
+      canvas.height = Math.max(1, H * dpr);
       canvas.style.width = `${W}px`;
       canvas.style.height = `${H}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.max(70, Math.min(150, Math.round(W * 0.22)));
-      const arr: Particle[] = [];
-      for (let i = 0; i < count; i++) {
-        const p = makeParticle(false);
+      const target = Math.max(260, Math.min(620, Math.round(W * 0.85)));
+      particles = [];
+      for (let i = 0; i < target; i++) {
+        const p = spawn(false);
         p.x = Math.random() * W;
-        arr.push(p);
+        particles.push(p);
       }
-      particlesRef.current = arr;
     };
 
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(container);
+    build();
+    const ro = new ResizeObserver(build);
+    ro.observe(wrap);
 
-    let t = 0;
-    const wallX = () => W * 0.5;
+    const io = new IntersectionObserver(
+      ([e]) => (inView = e.isIntersecting),
+      { rootMargin: "150px 0px" }
+    );
+    io.observe(wrap);
 
+    /* ── filter wall ─────────────────────────────────── */
     const drawWall = (wx: number, pulse: number) => {
-      const grad = ctx.createLinearGradient(wx - 30, 0, wx + 30, 0);
-      grad.addColorStop(0, "rgba(200,155,69,0)");
-      grad.addColorStop(0.5, `rgba(243,220,162,${0.1 + pulse * 0.05})`);
-      grad.addColorStop(1, "rgba(200,155,69,0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(wx - 30, 0, 60, H);
+      const top = H * 0.05;
+      const bot = H * 0.95;
 
-      const top = H * 0.06;
-      const bottom = H * 0.94;
-      ctx.strokeStyle = `rgba(243,220,162,${0.32 + pulse * 0.18})`;
+      const body = ctx.createLinearGradient(wx - 34, 0, wx + 34, 0);
+      body.addColorStop(0, "rgba(201,151,62,0)");
+      body.addColorStop(0.5, `rgba(244,213,141,${0.07 + pulse * 0.05})`);
+      body.addColorStop(1, "rgba(201,151,62,0)");
+      ctx.fillStyle = body;
+      ctx.fillRect(wx - 34, top, 68, bot - top);
+
+      ctx.strokeStyle = `rgba(244,213,141,${0.3 + pulse * 0.22})`;
       ctx.lineWidth = 1.4;
       ctx.beginPath();
-      ctx.moveTo(wx, top);
-      ctx.lineTo(wx, bottom);
+      ctx.moveTo(wx - 14, top);
+      ctx.lineTo(wx - 14, bot);
+      ctx.moveTo(wx + 14, top);
+      ctx.lineTo(wx + 14, bot);
       ctx.stroke();
 
-      ctx.strokeStyle = `rgba(232,200,120,${0.08 + pulse * 0.05})`;
-      ctx.lineWidth = 0.6;
-      const rows = 14;
-      for (let i = 1; i < rows; i++) {
-        const gy = top + ((bottom - top) / rows) * i;
-        ctx.beginPath();
-        ctx.moveTo(wx - 9, gy);
-        ctx.lineTo(wx + 9, gy);
-        ctx.stroke();
-      }
+      ctx.strokeStyle = `rgba(255,240,200,${0.5 + pulse * 0.3})`;
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(wx - 9, top);
-      ctx.lineTo(wx - 9, bottom);
-      ctx.moveTo(wx + 9, top);
-      ctx.lineTo(wx + 9, bottom);
+      ctx.moveTo(wx, top);
+      ctx.lineTo(wx, bot);
       ctx.stroke();
-    };
 
-    const drawLines = (wx: number) => {
-      const lines = 4;
-      for (let l = 0; l < lines; l++) {
-        const yc = H * (0.22 + l * 0.18);
+      ctx.strokeStyle = `rgba(229,190,110,${0.07 + pulse * 0.04})`;
+      ctx.lineWidth = 0.6;
+      const rows = 22;
+      for (let i = 1; i < rows; i++) {
+        const gy = top + ((bot - top) / rows) * i;
+        const wob = Math.sin(i * 0.6 + pulse * 6) * 2;
         ctx.beginPath();
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(232,200,120,${0.14 + l * 0.02})`;
-        for (let x = 0; x <= W; x += 6) {
-          let y: number;
-          if (x < wx) {
-            const chaos =
-              Math.sin(x * 0.018 + t * 0.6 + l) * 16 +
-              Math.sin(x * 0.05 + t * 0.9 + l * 2) * 8;
-            y = yc + chaos;
-          } else {
-            const fade = Math.min(1, (x - wx) / (W * 0.2));
-            const calm = Math.sin(x * 0.012 + t * 0.4 + l) * 4;
-            y = yc + calm * fade;
-          }
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
+        ctx.moveTo(wx - 13, gy + wob);
+        ctx.lineTo(wx + 13, gy + wob);
         ctx.stroke();
       }
     };
 
+    /* ── static fallback ─────────────────────────────── */
     const renderStatic = () => {
       ctx.clearRect(0, 0, W, H);
-      const rg = ctx.createRadialGradient(W * 0.5, H * 0.5, 0, W * 0.5, H * 0.5, W * 0.5);
-      rg.addColorStop(0, "rgba(200,155,69,0.06)");
+      const rg = ctx.createRadialGradient(wallX(), H / 2, 0, wallX(), H / 2, W * 0.55);
+      rg.addColorStop(0, "rgba(201,151,62,0.06)");
       rg.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = rg;
       ctx.fillRect(0, 0, W, H);
       drawWall(wallX(), 0.5);
-      for (const p of particlesRef.current) {
-        ctx.globalAlpha = p.opacity;
-        ctx.fillStyle = p.color;
+      ctx.globalCompositeOperation = "lighter";
+      for (const p of particles) {
+        const c = GOLD[p.hue];
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${p.alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.baseY, p.size, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = "source-over";
     };
 
     if (reduced) {
       renderStatic();
       return () => {
         ro.disconnect();
+        io.disconnect();
       };
     }
 
-    const loop = () => {
-      t += 0.016;
-      ctx.clearRect(0, 0, W, H);
+    let t = 0;
 
+    const frame = () => {
+      if (!running) return;
+      rafRef.current = requestAnimationFrame(frame);
+      if (!inView) return;
+
+      t += 0.0045;
       const wx = wallX();
 
-      const rg = ctx.createRadialGradient(wx, H * 0.5, 0, wx, H * 0.5, W * 0.55);
-      rg.addColorStop(0, "rgba(200,155,69,0.07)");
-      rg.addColorStop(0.6, "rgba(200,155,69,0.02)");
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = "rgba(17,17,15,0.22)";
+      ctx.fillRect(0, 0, W, H);
+
+      const rg = ctx.createRadialGradient(wx, H / 2, 0, wx, H / 2, W * 0.6);
+      rg.addColorStop(0, "rgba(201,151,62,0.05)");
+      rg.addColorStop(0.55, "rgba(201,151,62,0.015)");
       rg.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalCompositeOperation = "lighter";
       ctx.fillStyle = rg;
       ctx.fillRect(0, 0, W, H);
 
-      drawLines(wx);
+      const pulse = 0.5 + 0.5 * Math.sin(t * 9);
 
-      const pulse = 0.5 + 0.5 * Math.sin(t * 1.2);
+      for (const p of particles) {
+        p.px = p.x;
+        p.py = p.y;
+        p.life += 0.016;
+        p.twk += 0.12;
 
-      for (const p of particlesRef.current) {
-        p.x += p.speed;
-        p.flicker += 0.08;
+        const beforeWall = p.x < wx;
+        const ns = noise(p.x * 0.0022 + t * 1.4, p.y * 0.0042 + p.layer * 1.7) - 0.5;
+        const ns2 = noise(p.x * 0.006 - t * 0.9, p.baseY * 0.01 + p.layer) - 0.5;
 
-        if (p.x < wx) {
-          p.y = p.baseY + Math.sin(t * 0.9 + p.phase) * p.amp;
+        let curl: number;
+        if (beforeWall) {
+          curl = ns * 46 + ns2 * 22;
         } else {
-          if (!p.filtered) {
-            p.filtered = true;
-            const roll = Math.random();
-            if (roll < 0.25) {
-              p.opacity = 0;
-            } else if (roll < 0.55) {
-              p.flashed = true;
-              p.bright = 1;
-              p.size *= 1.4;
-            }
-          }
-          const fade = Math.min(1, (p.x - wx) / (W * 0.18));
-          p.y = p.baseY + Math.sin(t * 0.5 + p.phase) * p.amp * (1 - fade * 0.8);
+          const calm = Math.min(1, (p.x - wx) / (W * 0.22));
+          curl = ns * 12 * (1 - calm * 0.85);
         }
 
-        if (p.bright > 0) p.bright *= 0.94;
+        p.x += p.speed * (0.6 + p.layer * 0.35);
+        p.y = p.baseY + curl + Math.sin(t * 6 + p.twk) * (beforeWall ? 1.4 : 0.5);
 
-        if (p.x > W + 30 || p.opacity <= 0.01) {
-          const np = makeParticle(true);
-          Object.assign(p, np);
+        if (!p.filtered && p.x >= wx) {
+          p.filtered = true;
+          const r = Math.random();
+          if (r < 0.28) {
+            p.life = 999;
+          } else if (r < 0.55) {
+            p.flash = 1;
+            p.size *= 1.35;
+            p.alpha = Math.min(1, p.alpha + 0.3);
+          }
+        }
+        if (p.flash > 0) p.flash *= 0.9;
+
+        if (p.x > W + 20 || p.life > 60) {
+          Object.assign(p, spawn(true));
           continue;
         }
 
-        const flick = 0.7 + 0.3 * Math.sin(p.flicker);
-        const alpha = p.opacity * flick;
+        const c = GOLD[p.hue];
+        const flick = 0.65 + 0.35 * Math.sin(p.twk * 1.3);
+        const a = p.alpha * flick;
 
-        if (p.bright > 0.02) {
-          ctx.globalAlpha = Math.min(1, p.bright);
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = "#F3DCA2";
-          ctx.fillStyle = "#FFF3D6";
+        ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${a * 0.4})`;
+        ctx.lineWidth = p.size * 0.9;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(p.px, p.py);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+
+        if (p.flash > 0.04) {
+          ctx.fillStyle = `rgba(255,244,214,${p.flash * 0.8})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 1.3, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, p.size * 2.4, 0, Math.PI * 2);
           ctx.fill();
-          ctx.shadowBlur = 0;
         }
 
-        ctx.globalAlpha = alpha;
-        ctx.shadowBlur = p.size * 2.2;
-        ctx.shadowColor = p.color;
-        ctx.fillStyle = p.color;
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${a})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0;
+
+        if (p.layer === 2) {
+          ctx.fillStyle = `rgba(255,244,214,${a * 0.6})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * 0.45, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
 
-      ctx.globalAlpha = 1;
       drawWall(wx, pulse);
-
-      rafRef.current = requestAnimationFrame(loop);
+      ctx.globalCompositeOperation = "source-over";
     };
 
-    rafRef.current = requestAnimationFrame(loop);
+    rafRef.current = requestAnimationFrame(frame);
 
     return () => {
+      running = false;
       cancelAnimationFrame(rafRef.current);
       ro.disconnect();
+      io.disconnect();
     };
   }, [reduced]);
 
   const markers = [
-    { top: "26%", left: "70%", delay: 0 },
-    { top: "52%", left: "82%", delay: 0.25 },
-    { top: "72%", left: "66%", delay: 0.5 },
+    { top: "24%", left: "72%", d: 0 },
+    { top: "47%", left: "85%", d: 0.3 },
+    { top: "68%", left: "70%", d: 0.6 },
+    { top: "82%", left: "88%", d: 0.9 },
   ];
 
   return (
     <div
-      ref={containerRef}
+      ref={wrapRef}
       className="hidden lg:block w-[48%]"
-      style={{ position: "relative", height: "520px", overflow: "hidden" }}
+      style={{ position: "relative", height: "560px", overflow: "hidden" }}
       aria-hidden="true"
     >
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0 }} />
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, display: "block" }} />
+
       {markers.map((m, i) => (
         <div
           key={i}
@@ -295,33 +365,45 @@ function AIFilterFlow() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "rgba(24,24,22,0.7)",
-            border: "1px solid rgba(243,220,162,0.5)",
-            boxShadow: "0 0 14px rgba(232,200,120,0.35), inset 0 0 8px rgba(243,220,162,0.15)",
+            background: "rgba(21,21,18,0.55)",
+            border: "1px solid rgba(244,213,141,0.55)",
+            boxShadow:
+              "0 0 16px rgba(229,190,110,0.4), inset 0 0 9px rgba(244,213,141,0.18)",
             backdropFilter: "blur(2px)",
             opacity: markersOn ? 1 : 0,
-            transform: markersOn ? "scale(1)" : "scale(0.6)",
-            transition: `opacity 0.9s ease ${m.delay}s, transform 0.9s ease ${m.delay}s`,
-            animation: reduced ? "none" : `aiff-glow 3s ease-in-out ${m.delay}s infinite`,
+            transform: markersOn ? "scale(1)" : "scale(0.5)",
+            transition: `opacity 1s ease ${m.d}s, transform 1s cubic-bezier(0.2,0.8,0.2,1) ${m.d}s`,
+            animation: reduced ? "none" : `aiff-pulse 3.4s ease-in-out ${m.d}s infinite`,
           }}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
             <path
-              d="M12 3 L22 20 H2 Z"
-              stroke="#F3DCA2"
-              strokeWidth="1.6"
+              d="M12 3.2 L21.5 20 H2.5 Z"
+              stroke="#F4D58D"
+              strokeWidth="1.5"
               strokeLinejoin="round"
-              fill="rgba(232,200,120,0.08)"
+              fill="rgba(229,190,110,0.07)"
             />
-            <line x1="12" y1="9" x2="12" y2="14" stroke="#F3DCA2" strokeWidth="1.6" strokeLinecap="round" />
-            <circle cx="12" cy="17" r="0.9" fill="#F3DCA2" />
+            <line x1="12" y1="9" x2="12" y2="14" stroke="#F4D58D" strokeWidth="1.6" strokeLinecap="round" />
+            <circle cx="12" cy="17" r="1" fill="#F4D58D" />
           </svg>
         </div>
       ))}
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(120% 100% at 50% 50%, transparent 55%, rgba(17,17,15,0.55) 100%)",
+        }}
+      />
+
       <style>{`
-        @keyframes aiff-glow {
-          0%, 100% { box-shadow: 0 0 14px rgba(232,200,120,0.35), inset 0 0 8px rgba(243,220,162,0.15); }
-          50% { box-shadow: 0 0 22px rgba(232,200,120,0.6), inset 0 0 10px rgba(243,220,162,0.25); }
+        @keyframes aiff-pulse {
+          0%, 100% { box-shadow: 0 0 16px rgba(229,190,110,0.4), inset 0 0 9px rgba(244,213,141,0.18); }
+          50% { box-shadow: 0 0 26px rgba(229,190,110,0.7), inset 0 0 12px rgba(244,213,141,0.3); }
         }
       `}</style>
     </div>
