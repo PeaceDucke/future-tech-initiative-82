@@ -3130,7 +3130,7 @@ export function HomePage() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "var(--db-bg-1)", border: "1px solid rgba(var(--db-text-rgb),0.25)" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>1–30 Апреля, 2024</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-text-main)", fontWeight: 500 }}>1–30 Апреля, 2026</span>
                         <Icon name="ChevronDown" size={12} style={{ color: "var(--db-text-main)" }} />
                       </div>
                       {/* Кнопка кастомизации — раскрывает палитру и пикеры */}
