@@ -3463,8 +3463,8 @@ export function HomePage() {
                   {(() => {
                     const axes = [
                       { label: "Установление контакта", icon: "Handshake", val: 0.92 },
-                      { label: "Выявление потребностей", icon: "ClipboardList", val: 0.8 },
                       { label: "Выявление боли", icon: "Target", val: 0.62 },
+                      { label: "Выявление потребностей", icon: "ClipboardList", val: 0.8 },
                       { label: "Презентация решения", icon: "Presentation", val: 0.9 },
                       { label: "Работа с возражениями", icon: "ShieldCheck", val: 0.66 },
                       { label: "Назначение след. шага", icon: "CalendarCheck", val: 0.78 },
