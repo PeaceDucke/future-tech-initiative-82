@@ -357,12 +357,18 @@ function AIFilterFlow() {
       // fill interior solid black, then sprinkle tiny golden "stars".
       // must be source-over (lighter would ignore black).
       const prevOp = ctx.globalCompositeOperation;
-      ctx.globalCompositeOperation = "source-over";
       ctx.save();
       tracePath();
       ctx.clip();
 
-      // black interior (50% transparent)
+      // wipe accumulated trail inside the trapezoid to fully transparent,
+      // so the black fill doesn't build up over frames
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fill();
+
+      // black interior (50% transparent) — drawn once per frame now
+      ctx.globalCompositeOperation = "source-over";
       ctx.fillStyle = "rgba(0,0,0,0.5)";
       ctx.fill();
 
