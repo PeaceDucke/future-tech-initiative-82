@@ -1302,7 +1302,7 @@ function PipelineSection() {
     background: "linear-gradient(160deg, #1c1c1c 0%, #141414 40%, #0e0e0e 70%, #161618 100%)",
     border: "1px solid rgba(255,255,255,0.12)",
     borderRadius: "28px",
-    padding: "32px 48px",
+    padding: "18px 48px",
     position: "relative",
     overflow: "hidden",
     boxShadow: "0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.4), 0 40px 100px rgba(0,0,0,0.75)",
