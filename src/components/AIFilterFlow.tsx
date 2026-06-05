@@ -106,8 +106,8 @@ function AIFilterFlow() {
     const buildPaths = () => {
       const list: Path[] = [];
 
-      const TRUNK_W = 4.5; // base trunk thickness (2x thinner than before)
-      const CHILD_W = 2.6; // child branch thickness
+      const TRUNK_W = 5.4; // base trunk thickness
+      const CHILD_W = 3.12; // child branch thickness
 
       // build a smooth segment from (x0,y0) to (x1,y1) with optional bow (curve)
       const seg = (
@@ -201,7 +201,7 @@ function AIFilterFlow() {
         }
         list.push({
           pts,
-          width: 2.4 + layer * 1, // thin & clean
+          width: 2.9 + layer * 1.2, // thin & clean
           layer,
           density: 0.5,
           clean: true,
