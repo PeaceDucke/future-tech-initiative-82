@@ -3435,9 +3435,9 @@ export function HomePage() {
                 <div
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
-                    width: "38%",
-                    top: "430px",
-                    left: "31%",
+                    width: "42%",
+                    top: "395px",
+                    left: "25%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
@@ -3446,17 +3446,17 @@ export function HomePage() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500 }}>Качество разговора</div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "2px" }}>AI-оценка по ключевым критериям</div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: "var(--db-acc-3)", fontWeight: 500 }}>Качество разговора</div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "3px" }}>AI-оценка по ключевым критериям</div>
                     </div>
                     <div className="relative shrink-0">
-                      <svg width="56" height="56" viewBox="0 0 56 56">
-                        <circle cx="28" cy="28" r="24" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="5"/>
-                        <circle cx="28" cy="28" r="24" fill="none" stroke="#C9A35B" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${0.85 * 2 * Math.PI * 24} ${2 * Math.PI * 24}`} transform="rotate(-90 28 28)"/>
+                      <svg width="72" height="72" viewBox="0 0 72 72">
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(var(--db-acc-rgb-1),0.15)" strokeWidth="6"/>
+                        <circle cx="36" cy="36" r="30" fill="none" stroke="#C9A35B" strokeWidth="6" strokeLinecap="round" strokeDasharray={`${0.85 * 2 * Math.PI * 30} ${2 * Math.PI * 30}`} transform="rotate(-90 36 36)"/>
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "var(--db-acc-3)", lineHeight: 1 }}>85%</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "6px", color: "rgba(var(--db-text-rgb),0.45)", marginTop: "1px" }}>общий балл</span>
+                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "var(--db-acc-3)", lineHeight: 1 }}>85%</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(var(--db-text-rgb),0.45)", marginTop: "2px" }}>общий балл</span>
                       </div>
                     </div>
                   </div>
@@ -3472,15 +3472,15 @@ export function HomePage() {
                       { label: "Фиксация договорённостей", icon: "ListChecks", val: 0.88 },
                       { label: "Завершение разговора", icon: "CircleCheck", val: 0.9 },
                     ];
-                    const cx = 130, cy = 130, R = 95;
+                    const cx = 175, cy = 175, R = 125;
                     const pt = (i: number, r: number) => {
                       const ang = (Math.PI * 2 * i) / axes.length - Math.PI / 2;
                       return [cx + Math.cos(ang) * r, cy + Math.sin(ang) * r];
                     };
                     const poly = axes.map((a, i) => pt(i, R * a.val).join(",")).join(" ");
                     return (
-                      <div className="relative mx-auto" style={{ width: 260, height: 260 }}>
-                        <svg width="260" height="260" viewBox="0 0 260 260">
+                      <div className="relative mx-auto" style={{ width: 350, height: 350 }}>
+                        <svg width="350" height="350" viewBox="0 0 350 350">
                           {[0.25, 0.5, 0.75, 1].map((lvl) => (
                             <polygon key={lvl}
                               points={axes.map((_, i) => pt(i, R * lvl).join(",")).join(" ")}
@@ -3490,23 +3490,23 @@ export function HomePage() {
                             const [x, y] = pt(i, R);
                             return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(var(--db-text-rgb),0.1)" strokeWidth="1" />;
                           })}
-                          <polygon points={poly} fill="rgba(201,163,91,0.22)" stroke="#C9A35B" strokeWidth="2" strokeLinejoin="round" />
+                          <polygon points={poly} fill="rgba(201,163,91,0.22)" stroke="#C9A35B" strokeWidth="2.5" strokeLinejoin="round" />
                           {axes.map((a, i) => {
                             const [x, y] = pt(i, R * a.val);
-                            return <circle key={i} cx={x} cy={y} r="3" fill="#B8893E" stroke="var(--db-bg-1)" strokeWidth="1.5" />;
+                            return <circle key={i} cx={x} cy={y} r="4" fill="#B8893E" stroke="var(--db-bg-1)" strokeWidth="2" />;
                           })}
-                          <circle cx={cx} cy={cy} r="2.5" fill="rgba(var(--db-text-rgb),0.3)" />
+                          <circle cx={cx} cy={cy} r="3" fill="rgba(var(--db-text-rgb),0.3)" />
                         </svg>
                         {axes.map((a, i) => {
-                          const [x, y] = pt(i, R + 28);
+                          const [x, y] = pt(i, R + 36);
                           return (
                             <div key={i} className="absolute flex flex-col items-center"
-                              style={{ left: x, top: y, transform: "translate(-50%,-50%)", width: 78 }}>
+                              style={{ left: x, top: y, transform: "translate(-50%,-50%)", width: 100 }}>
                               <div className="flex items-center justify-center rounded-full shrink-0"
-                                style={{ width: 22, height: 22, border: "1px solid rgba(184,137,62,0.4)", background: "rgba(201,163,91,0.08)", marginBottom: 3 }}>
-                                <Icon name={a.icon} size={11} style={{ color: "#A87B3C" }} fallback="Circle" />
+                                style={{ width: 30, height: 30, border: "1px solid rgba(184,137,62,0.4)", background: "rgba(201,163,91,0.08)", marginBottom: 4 }}>
+                                <Icon name={a.icon} size={15} style={{ color: "#A87B3C" }} fallback="Circle" />
                               </div>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "8.5px", lineHeight: 1.15, color: "rgba(var(--db-text-rgb),0.7)", textAlign: "center", fontWeight: 500 }}>{a.label}</span>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", lineHeight: 1.2, color: "rgba(var(--db-text-rgb),0.7)", textAlign: "center", fontWeight: 500 }}>{a.label}</span>
                             </div>
                           );
                         })}
