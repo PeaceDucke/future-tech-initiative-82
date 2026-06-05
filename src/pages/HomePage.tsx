@@ -3459,7 +3459,7 @@ export function HomePage() {
                           <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "15px", color: "var(--db-acc-3)", lineHeight: 1 }}>76%</span>
                         </div>
                       </div>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "3px" }}>общая оценка</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9px", color: "#000000", marginTop: "3px" }}>общая оценка</span>
                     </div>
                   </div>
 
