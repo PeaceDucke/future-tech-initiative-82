@@ -581,7 +581,7 @@ function AIFilterFlow() {
     <div
       ref={wrapRef}
       className="hidden lg:block w-full"
-      style={{ height: "800px", marginTop: "-50px", position: "relative", overflow: "visible" }}
+      style={{ height: "800px", marginTop: "10px", position: "relative", overflow: "visible" }}
       aria-hidden="true"
     >
       <div
