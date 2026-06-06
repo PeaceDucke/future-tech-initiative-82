@@ -451,6 +451,24 @@ function AIFilterFlow() {
       ctx.fill();
       ctx.restore();
 
+      /* ── translucent material on the TOP face of the cap (yellow-black glass) ── */
+      ctx.save();
+      const capRx = g.bulbHalf * 1.16;
+      const capThick = g.capRy * 0.9;
+      const capTopY = g.topY - capThick;
+      const topGrad = ctx.createRadialGradient(
+        g.cx, capTopY - g.capRy * 0.3, 0,
+        g.cx, capTopY, capRx
+      );
+      topGrad.addColorStop(0, "rgba(70,52,18,0.32)");
+      topGrad.addColorStop(0.55, "rgba(40,30,10,0.26)");
+      topGrad.addColorStop(1, "rgba(12,9,4,0.18)");
+      ctx.fillStyle = topGrad;
+      ctx.beginPath();
+      ctx.ellipse(g.cx, capTopY, capRx, g.capRy, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
       /* ── soft 3D glass body shading (subtle volume) ── */
       ctx.save();
       ctx.beginPath();
