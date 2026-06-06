@@ -1,60 +1,54 @@
 import { useRef, useEffect, useState } from "react";
 
-/* ── palette ───────────────────────────────────────────── */
+/* ── luxury gold palette ─────────────────────────────────── */
 const GOLD = [
+  [255, 233, 173], // bright highlight
   [244, 213, 141], // #F4D58D
   [229, 190, 110], // #E5BE6E
-  [201, 151, 62], // #C9973E
-  [158, 109, 45], // #9E6D2D
+  [201, 151, 62], //  #C9973E
+  [158, 109, 45], //  deep amber
 ];
 
-/* deterministic rng */
-function rng(seed: number) {
-  let s = seed >>> 0 || 1;
-  return () => {
-    s ^= s << 13;
-    s ^= s >>> 17;
-    s ^= s << 5;
-    return ((s >>> 0) % 1000000) / 1000000;
-  };
-}
-
-/* ── A path = an invisible curve (chain of control points)
-   particles flow ALONG it and ARE the line ──────────────── */
-type Path = {
-  pts: { x: number; y: number }[]; // normalized 0..1
-  width: number; // band thickness px
-  layer: number; // 0 back .. 2 front
-  density: number; // relative particle count weight
-  clean?: boolean; // true = already-filtered straight stream (after wall)
-  far?: boolean; // true = distant background stream (thin, dim)
-};
-
 type Grain = {
-  path: number; // path index
-  u: number; // 0..1 progress along path
-  off: number; // lateral offset within band (-1..1)
-  speed: number;
-  size: number;
+  x: number; // px (canvas-local)
+  y: number;
+  vx: number;
+  vy: number;
+  r: number;
+  hue: number; // index into GOLD
   alpha: number;
-  hue: number;
-  tw: number; // twinkle phase
-  scatter: number; // current extra scatter
-  hx: number; // displacement from the line (x) — its own little life
-  hy: number; // displacement from the line (y)
-  vx: number; // velocity x (inertia)
-  vy: number; // velocity y
-  filtered: boolean;
-  flash: number;
-  dead: boolean;
+  settled: boolean;
+  inStream: boolean;
 };
+
+/* hourglass geometry helpers, all in canvas-local px */
+type Geo = {
+  cx: number;
+  topY: number;
+  botY: number;
+  midY: number;
+  neckHalf: number; // half-width of neck opening
+  bulbHalf: number; // half-width at top/bottom edge
+  chamberH: number; // height of one chamber
+};
+
+/* x half-width of the glass funnel at a given y (linear taper to the neck) */
+function halfWidthAt(y: number, g: Geo) {
+  if (y <= g.midY) {
+    // upper chamber: wide at top -> neck at mid
+    const t = (y - g.topY) / (g.midY - g.topY); // 0..1
+    return g.bulbHalf + (g.neckHalf - g.bulbHalf) * t;
+  }
+  // lower chamber: neck at mid -> wide at bottom
+  const t = (y - g.midY) / (g.botY - g.midY); // 0..1
+  return g.neckHalf + (g.bulbHalf - g.neckHalf) * t;
+}
 
 function AIFilterFlow() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
   const [reduced, setReduced] = useState(false);
-  const [markersOn, setMarkersOn] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -62,11 +56,6 @@ function AIFilterFlow() {
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(() => setMarkersOn(true), 700);
-    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
@@ -78,607 +67,356 @@ function AIFilterFlow() {
 
     let W = 0;
     let H = 0;
-    let PAD = 70; // top headroom (px)
-    let PAD_BOT = 70; // bottom headroom (px)
-    const vy = (frac: number) => PAD + frac * (H - PAD - PAD_BOT); // y from fraction of usable area
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let paths: Path[] = [];
+    const geo: Geo = {
+      cx: 0, topY: 0, botY: 0, midY: 0,
+      neckHalf: 0, bulbHalf: 0, chamberH: 0,
+    };
     let grains: Grain[] = [];
+    let pile: number[] = []; // height map of settled bottom pile (per column)
     let running = true;
     let inView = true;
 
-    // cursor (canvas-local px); -9999 = no cursor
-    let mx = -9999;
-    let my = -9999;
-    let pmx = -9999; // previous cursor pos (for velocity / push direction)
-    let pmy = -9999;
-    let mvx = 0; // cursor velocity x
-    let mvy = 0;
-    const MOUSE_R = 47; // interaction radius (1.5x smaller than before)
-    const onMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const nx = e.clientX - rect.left;
-      const ny = e.clientY - rect.top;
-      if (pmx > -9000) {
-        mvx = nx - pmx;
-        mvy = ny - pmy;
-      }
-      pmx = nx;
-      pmy = ny;
-      mx = nx;
-      my = ny;
-    };
-    const onLeave = () => {
-      mx = -9999;
-      my = -9999;
-      pmx = -9999;
-      pmy = -9999;
-      mvx = 0;
-      mvy = 0;
-    };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseout", onLeave);
+    /* rotation state: 0 = upright, 1 = upside-down (PI rad).
+       phase: "flow" -> "flip" -> back to "flow" */
+    let phase: "flow" | "flip" = "flow";
+    let flip = 0; // current rotation 0..1 within a flip
+    let flipDir = 0; // not rotating
+    let flowTimer = 0;
+    const FLOW_DURATION = 9; // seconds of pouring before a flip
 
-    const WALL = 0.3; // wall position (normalized, fraction of full-width canvas)
+    const GRAIN_COUNT = reduced ? 0 : 320;
+    const PILE_COLS = 90;
 
-    /* build flow paths:
-       BEFORE wall — a real branching tree (trunks → smaller child branches,
-       splits, forks). Children are always thinner than their parent.
-       AFTER wall — clean straight filtered streams, no branching. */
-    const buildPaths = () => {
-      const list: Path[] = [];
-
-      const TRUNK_W = 5.4; // base trunk thickness
-      const CHILD_W = 3.12; // child branch thickness
-
-      // build a smooth segment from (x0,y0) to (x1,y1) with optional bow (curve)
-      const seg = (
-        x0: number,
-        y0: number,
-        x1: number,
-        y1: number,
-        bow: number,
-        width: number,
-        layer: number
-      ) => {
-        const pts: { x: number; y: number }[] = [];
-        const n = 6;
-        for (let s = 0; s <= n; s++) {
-          const tt = s / n;
-          const x = x0 + (x1 - x0) * tt;
-          // sine bow for organic curvature
-          const y = y0 + (y1 - y0) * tt + Math.sin(tt * Math.PI) * bow;
-          pts.push({ x, y: Math.max(0.04, Math.min(0.96, y)) });
-        }
-        list.push({ pts, width, layer, density: 0.5 + width * 0.12 });
-      };
-
-      // ── distant background streams (thin, dim, far away) — left → wall ──
-      const fr = rng(4242);
-      const farCount = 9;
-      for (let i = 0; i < farCount; i++) {
-        const y0 = 0.06 + (i / (farCount - 1)) * 0.88 + (fr() - 0.5) * 0.03;
-        const startX = -0.02 + fr() * 0.06;
-        const pts: { x: number; y: number }[] = [];
-        const n = 7;
-        let yy = y0;
-        for (let s = 0; s <= n; s++) {
-          const x = startX + ((WALL - startX) * s) / n;
-          yy += (fr() - 0.5) * 0.05;
-          yy = Math.max(0.03, Math.min(0.97, yy));
-          pts.push({ x, y: yy });
-        }
-        list.push({
-          pts,
-          width: 1.1 + fr() * 0.6, // very thin
-          layer: 0,
-          density: 0.45,
-          far: true,
-        });
-      }
-
-      // 6 evenly spaced columns/trunks on the left edge
-      const cols = 6;
-      const colY = (i: number) => 0.1 + (i / (cols - 1)) * 0.8;
-      const sx = 0.03; // start x — at the right edge/contour of the card
-      // straight parallel run: first ~1/5 of the path is perfectly horizontal
-      const px = sx + (WALL - sx) * 0.2;
-
-      // column 1 — straight start, then gently curves a bit upward
-      {
-        const y = colY(0);
-        seg(sx, y, px, y, 0, TRUNK_W, 0); // parallel run
-        seg(px, y, WALL, y - 0.05, -0.05, TRUNK_W, 0);
-      }
-
-      // column 2 — straight start, then splits in the middle into two
-      {
-        const y = colY(1);
-        const mx = sx + (WALL - sx) * 0.5;
-        seg(sx, y, px, y, 0, TRUNK_W, 1); // parallel run
-        seg(px, y, mx, y, 0.02, TRUNK_W, 1); // trunk to split point
-        seg(mx, y, WALL, y - 0.08, -0.04, CHILD_W, 1); // upper branch
-        seg(mx, y, WALL, y + 0.08, 0.04, CHILD_W, 1); // lower branch
-      }
-
-      // column 3 — straight start, then early thin branch + a mid split
-      {
-        const y = colY(2);
-        const ex = sx + (WALL - sx) * 0.3; // early branch point (after parallel run)
-        const mx = sx + (WALL - sx) * 0.55; // mid split point
-        seg(sx, y, px, y, 0, TRUNK_W, 2); // parallel run
-        seg(px, y, mx, y, 0.02, TRUNK_W, 2); // trunk to split
-        seg(ex, y, WALL, y - 0.14, -0.05, CHILD_W * 0.8, 2); // early thin branch up
-        seg(mx, y, WALL, y - 0.04, -0.02, CHILD_W, 2); // mid upper
-        seg(mx, y, WALL, y + 0.1, 0.04, CHILD_W, 2); // mid lower
-      }
-
-      // column 4 — straight start, then no branches, straight-ish
-      {
-        const y = colY(3);
-        seg(sx, y, px, y, 0, TRUNK_W, 0); // parallel run
-        seg(px, y, WALL, y + 0.04, 0.03, TRUNK_W, 0);
-      }
-
-      // column 5 — straight start, then three branches
-      {
-        const y = colY(4);
-        const ex = sx + (WALL - sx) * 0.32;
-        const mx = sx + (WALL - sx) * 0.6;
-        seg(sx, y, px, y, 0, TRUNK_W, 1); // parallel run
-        seg(px, y, mx, y, -0.02, TRUNK_W, 1);
-        seg(ex, y, WALL, y + 0.13, 0.05, CHILD_W * 0.8, 1); // early thin branch down
-        seg(mx, y, WALL, y - 0.07, -0.03, CHILD_W, 1);
-        seg(mx, y, WALL, y + 0.04, 0.02, CHILD_W, 1);
-      }
-
-      // column 6 — straight start, then two branches
-      {
-        const y = colY(5);
-        const ex = px; // branches right after the parallel run
-        seg(sx, y, ex, y, 0, TRUNK_W, 2); // parallel run (= split point)
-        seg(ex, y, WALL, y - 0.06, -0.03, CHILD_W, 2); // upper
-        seg(ex, y, WALL, y + 0.06, 0.03, CHILD_W, 2); // lower
-      }
-
-      // ── AFTER wall: clean, straight, filtered streams (no branching) ──
-      const cleanStreams = 6;
-      for (let i = 0; i < cleanStreams; i++) {
-        const layer = i % 3;
-        const y0 = 0.1 + (i / (cleanStreams - 1)) * 0.8;
-        const pts: { x: number; y: number }[] = [];
-        const n = 4;
-        for (let s = 0; s <= n; s++) {
-          const x = WALL + (s / n) * (1 - WALL) * 1.05;
-          pts.push({ x, y: y0 });
-        }
-        list.push({
-          pts,
-          width: (2.9 + layer * 1.2) * 1.2, // 1.2x thicker, clean
-          layer,
-          density: 0.85, // denser = brighter, crisper line
-          clean: true,
-        });
-      }
-
-      paths = list;
+    const setupGeometry = () => {
+      const margin = Math.min(W, H) * 0.12;
+      geo.cx = W / 2;
+      const usableH = H - margin * 2;
+      geo.topY = margin;
+      geo.botY = H - margin;
+      geo.midY = H / 2;
+      geo.chamberH = usableH / 2;
+      geo.bulbHalf = Math.min(W * 0.34, usableH * 0.32);
+      geo.neckHalf = Math.max(6, geo.bulbHalf * 0.085);
     };
 
-    /* sample a point on a path at progress u (0..1) using catmull-like smoothing */
-    const sample = (path: Path, u: number) => {
-      const pts = path.pts;
-      const n = pts.length - 1;
-      const fu = Math.max(0, Math.min(0.9999, u)) * n;
-      const i = Math.floor(fu);
-      const f = fu - i;
-      const p0 = pts[Math.max(0, i - 1)];
-      const p1 = pts[i];
-      const p2 = pts[Math.min(n, i + 1)];
-      const p3 = pts[Math.min(n, i + 2)];
-      const f2 = f * f;
-      const f3 = f2 * f;
-      const cx =
-        0.5 *
-        ((2 * p1.x) +
-          (-p0.x + p2.x) * f +
-          (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * f2 +
-          (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * f3);
-      const cy =
-        0.5 *
-        ((2 * p1.y) +
-          (-p0.y + p2.y) * f +
-          (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * f2 +
-          (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * f3);
-      return { x: cx, y: cy };
+    const resetPile = () => {
+      pile = new Array(PILE_COLS).fill(0);
     };
 
-    let densSum = 0;
-    const pickPath = (r: () => number) => {
-      let acc = r() * densSum;
-      for (let i = 0; i < paths.length; i++) {
-        acc -= paths[i].density;
-        if (acc <= 0) return i;
-      }
-      return paths.length - 1;
-    };
+    const spawnGrain = (): Grain => ({
+      x: geo.cx + (Math.random() - 0.5) * geo.neckHalf * 1.4,
+      y: geo.midY,
+      vx: (Math.random() - 0.5) * 6,
+      vy: 18 + Math.random() * 26,
+      r: 0.9 + Math.random() * 1.7,
+      hue: Math.floor(Math.random() * GOLD.length),
+      alpha: 0.75 + Math.random() * 0.25,
+      settled: false,
+      inStream: true,
+    });
 
-    const spawnGrain = (r: () => number, atStart: boolean): Grain => {
-      const pi = pickPath(r);
-      const path = paths[pi];
-      const layer = path.layer;
-      return {
-        path: pi,
-        u: atStart ? -r() * 0.05 : r(),
-        off: (r() * 2 - 1),
-        speed: (0.0009 + r() * 0.0016) * (0.7 + layer * 0.4) * (path.far ? 0.7 : 1),
-        size: (layer === 2 ? 1.5 : layer === 1 ? 1.05 : 0.7) * (0.6 + r() * 0.9) * (path.far ? 0.5 : 1) * (path.clean ? 1.2 : 1),
-        alpha: (layer === 2 ? 0.95 : layer === 1 ? 0.6 : 0.32) * (0.55 + r() * 0.45) * (path.far ? 0.4 : 1) * (path.clean ? 1.5 : 1),
-        hue: (r() * GOLD.length) | 0,
-        tw: r() * Math.PI * 2,
-        scatter: 0,
-        hx: 0,
-        hy: 0,
-        vx: 0,
-        vy: 0,
-        filtered: !!path.clean, // clean streams are born already filtered
-        flash: 0,
-        dead: false,
-      };
-    };
-
-    const buildGrains = () => {
-      const r = rng(99);
-      densSum = paths.reduce((a, p) => a + p.density, 0);
-      const target = Math.max(900, Math.min(2600, Math.round(W * 4.2)));
+    const initGrains = () => {
       grains = [];
-      for (let i = 0; i < target; i++) grains.push(spawnGrain(r, false));
+      resetPile();
+      // pre-fill the upper chamber with a static "sand mass" look via grains
+      // is drawn separately; particles handle the falling stream + pile.
     };
 
-    const build = () => {
-      const rect = canvas.getBoundingClientRect();
+    const resize = () => {
+      const rect = wrap.getBoundingClientRect();
       W = rect.width;
       H = rect.height;
-      PAD = 70; // empty headroom at the top so the trapezoid's top isn't clipped
-      PAD_BOT = 70; // headroom at the bottom so the trapezoid's bottom fits
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.max(1, W * dpr);
-      canvas.height = Math.max(1, H * dpr);
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      canvas.style.width = `${W}px`;
+      canvas.style.height = `${H}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      buildPaths();
-      buildGrains();
+      setupGeometry();
+      initGrains();
     };
 
-    build();
-    const ro = new ResizeObserver(build);
+    resize();
+    const ro = new ResizeObserver(resize);
     ro.observe(wrap);
+
     const io = new IntersectionObserver(
-      ([e]) => (inView = e.isIntersecting),
-      { rootMargin: "150px 0px" }
+      (entries) => entries.forEach((e) => (inView = e.isIntersecting)),
+      { threshold: 0.05 }
     );
     io.observe(wrap);
 
-    const rrun = rng(555);
+    /* convert a column index (0..PILE_COLS-1) to canvas x */
+    const colToX = (i: number) =>
+      geo.cx - geo.bulbHalf + (i / (PILE_COLS - 1)) * geo.bulbHalf * 2;
+    const xToCol = (x: number) =>
+      Math.round(((x - (geo.cx - geo.bulbHalf)) / (geo.bulbHalf * 2)) * (PILE_COLS - 1));
 
-    /* ── filter wall (the only stroke element — it's not a flow line) */
-    const drawWall = (wx: number, pulse: number) => {
-      // thicker wall, with perspective: left side "far" (shorter),
-      // right side "near" (taller) → trapezoid widening downward-right.
-      const halfBody = 38; // body half-thickness
-      const halfEdge = 19; // edge lines half-thickness (a bit wider)
+    let last = performance.now();
+    let emitAcc = 0;
 
-      // left = far (short), right = near (tall) — kept inside the canvas
-      // so the closed top/bottom edges are visible
-      const topL = vy(0.04);
-      const botL = vy(0.98);
-      const topR = vy(-0.05);
-      const botR = vy(1.06);
+    const draw = (now: number) => {
+      if (!running) return;
+      let dt = (now - last) / 1000;
+      last = now;
+      if (dt > 0.05) dt = 0.05; // clamp after tab switch
 
-      // trapezoid path (used for fill + clip)
-      const tracePath = () => {
-        ctx.beginPath();
-        ctx.moveTo(wx - halfEdge, topL);
-        ctx.lineTo(wx + halfEdge, topR);
-        ctx.lineTo(wx + halfEdge, botR);
-        ctx.lineTo(wx - halfEdge, botL);
-        ctx.closePath();
-      };
-
-      // fill interior solid black, then sprinkle tiny golden "stars".
-      // must be source-over (lighter would ignore black).
-      const prevOp = ctx.globalCompositeOperation;
-      ctx.save();
-      tracePath();
-      ctx.clip();
-
-      // semi-transparent black tint — particles behind stay visible through it.
-      // light alpha + the global trail-fade keeps it from building up opaque.
-      ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(0,0,0,0.12)";
-      ctx.fill();
-
-      // many tiny golden stars (deterministic positions, soft twinkle)
-      const sr = rng(2024);
-      const starCount = 160;
-      const top0 = Math.min(topL, topR);
-      const bot0 = Math.max(botL, botR);
-      for (let i = 0; i < starCount; i++) {
-        const sx = wx - halfEdge + sr() * (halfEdge * 2);
-        const sy = top0 + sr() * (bot0 - top0);
-        const tw = 0.45 + 0.55 * Math.abs(Math.sin(t * 1.5 + i * 1.7));
-        const rad = 0.4 + sr() * 0.9;
-        ctx.fillStyle = `rgba(244,213,141,${(0.4 + sr() * 0.6) * tw})`;
-        ctx.beginPath();
-        ctx.arc(sx, sy, rad, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
-      ctx.globalCompositeOperation = prevOp;
-
-      // closed golden trapezoid outline (left, right, top, bottom)
-      ctx.strokeStyle = `rgba(244,213,141,${0.32 + pulse * 0.16})`;
-      ctx.lineWidth = 1.4;
-      tracePath();
-      ctx.stroke();
-    };
-
-    /* normal at progress u for lateral band offset */
-    const normalAt = (path: Path, u: number) => {
-      const a = sample(path, u - 0.01);
-      const b = sample(path, u + 0.01);
-      const dx = b.x - a.x;
-      const dy = b.y - a.y;
-      const len = Math.hypot(dx, dy) || 1;
-      return { nx: -dy / len, ny: dx / len };
-    };
-
-    const renderStatic = () => {
       ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = "lighter";
-      for (const g of grains) {
-        const path = paths[g.path];
-        const pos = sample(path, Math.max(0, g.u));
-        const nrm = normalAt(path, g.u);
-        const bandPx = (path.width / W) * (g.off);
-        const x = pos.x * W + nrm.nx * bandPx * W * 0.02 + nrm.nx * g.off * path.width * 0.5;
-        const y = pos.y * H + nrm.ny * g.off * path.width * 0.5;
-        const c = GOLD[g.hue];
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${g.alpha})`;
-        ctx.beginPath();
-        ctx.arc(x, y, g.size, 0, Math.PI * 2);
-        ctx.fill();
+
+      if (!inView) {
+        rafRef.current = requestAnimationFrame(draw);
+        return;
       }
-      ctx.globalCompositeOperation = "source-over";
-      drawWall(W * WALL, 0.5);
+
+      /* ── phase timing ─────────────────────────────── */
+      if (phase === "flow") {
+        flowTimer += dt;
+        if (flowTimer >= FLOW_DURATION && flip === 0) {
+          phase = "flip";
+          flipDir = 1;
+        }
+      } else if (phase === "flip") {
+        flip += flipDir * dt * 0.55; // ~1.8s flip
+        if (flip >= 1) {
+          flip = 0;
+          phase = "flow";
+          flowTimer = 0;
+          // after the flip, the "bottom" becomes "top": clear the pile,
+          // grains restart pouring from the neck
+          grains = [];
+          resetPile();
+        }
+      }
+
+      const rot = flip * Math.PI; // 0..PI
+
+      /* ── apply rotation transform around center ────── */
+      ctx.save();
+      ctx.translate(geo.cx, geo.midY);
+      ctx.rotate(rot);
+      ctx.translate(-geo.cx, -geo.midY);
+
+      /* ── draw the glass hourglass shell ────────────── */
+      drawGlass(ctx, geo);
+
+      /* ── draw the static upper sand mass (shrinking) ─ */
+      const fillFrac = phase === "flip" ? 1 : Math.max(0, 1 - flowTimer / FLOW_DURATION);
+      drawUpperSand(ctx, geo, fillFrac);
+
+      /* ── physics: emit + integrate falling grains ──── */
+      if (phase === "flow" && fillFrac > 0.02) {
+        emitAcc += dt * 60; // emission rate
+        while (emitAcc >= 1 && grains.length < GRAIN_COUNT) {
+          emitAcc -= 1;
+          grains.push(spawnGrain());
+        }
+      }
+
+      const g = geo;
+      for (let k = 0; k < grains.length; k++) {
+        const p = grains[k];
+        if (p.settled) continue;
+
+        p.vy += 60 * dt; // gravity
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+
+        // funnel walls in lower chamber: keep grain inside the glass
+        const hw = halfWidthAt(p.y, g);
+        if (p.x < g.cx - hw) {
+          p.x = g.cx - hw;
+          p.vx = Math.abs(p.vx) * 0.3 + 4;
+        } else if (p.x > g.cx + hw) {
+          p.x = g.cx + hw;
+          p.vx = -Math.abs(p.vx) * 0.3 - 4;
+        }
+
+        // settle onto the growing pile at the bottom
+        const col = Math.max(0, Math.min(PILE_COLS - 1, xToCol(p.x)));
+        const pileTopY = g.botY - pile[col];
+        if (p.y >= pileTopY - p.r) {
+          p.y = pileTopY - p.r;
+          p.settled = true;
+          p.inStream = false;
+          // grow the pile + spread to neighbours (angle of repose)
+          pile[col] += p.r * 1.5;
+          if (col > 0) pile[col - 1] += p.r * 0.4;
+          if (col < PILE_COLS - 1) pile[col + 1] += p.r * 0.4;
+        }
+      }
+
+      /* ── draw the settled pile as a smooth golden mound ─ */
+      drawPile(ctx, geo, pile, colToX);
+
+      /* ── draw falling grains (the glowing stream) ───── */
+      for (let k = 0; k < grains.length; k++) {
+        const p = grains[k];
+        const c = GOLD[p.hue];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${p.alpha})`;
+        ctx.fill();
+        if (!p.settled) {
+          // soft glow for falling grains
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 2.4, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},0.06)`;
+          ctx.fill();
+        }
+      }
+
+      ctx.restore();
+
+      rafRef.current = requestAnimationFrame(draw);
     };
 
-    if (reduced) {
-      renderStatic();
-      return () => {
-        ro.disconnect();
-        io.disconnect();
-      };
+    /* ── glass shell with subtle highlights ───────────── */
+    function drawGlass(c: CanvasRenderingContext2D, g: Geo) {
+      const lx = g.cx - g.bulbHalf;
+      const rx = g.cx + g.bulbHalf;
+      c.save();
+
+      // glass body fill (very faint)
+      c.beginPath();
+      c.moveTo(lx, g.topY);
+      c.lineTo(rx, g.topY);
+      c.lineTo(g.cx + g.neckHalf, g.midY);
+      c.lineTo(rx, g.botY);
+      c.lineTo(lx, g.botY);
+      c.lineTo(g.cx - g.neckHalf, g.midY);
+      c.closePath();
+      const grad = c.createLinearGradient(lx, 0, rx, 0);
+      grad.addColorStop(0, "rgba(255,255,255,0.015)");
+      grad.addColorStop(0.5, "rgba(255,255,255,0.05)");
+      grad.addColorStop(1, "rgba(255,255,255,0.015)");
+      c.fillStyle = grad;
+      c.fill();
+
+      // outline
+      c.lineWidth = 1.4;
+      c.strokeStyle = "rgba(244,213,141,0.28)";
+      c.stroke();
+
+      // glossy left highlight
+      c.beginPath();
+      c.moveTo(lx + 4, g.topY + 6);
+      c.lineTo(g.cx - g.neckHalf - 2, g.midY);
+      c.lineTo(lx + 4, g.botY - 6);
+      c.lineWidth = 1.2;
+      c.strokeStyle = "rgba(255,255,255,0.12)";
+      c.stroke();
+
+      // wooden caps top & bottom
+      const capH = 10;
+      const capExt = 14;
+      c.fillStyle = "rgba(201,151,62,0.55)";
+      c.fillRect(lx - capExt, g.topY - capH, (g.bulbHalf + capExt) * 2, capH);
+      c.fillRect(lx - capExt, g.botY, (g.bulbHalf + capExt) * 2, capH);
+      c.fillStyle = "rgba(255,233,173,0.25)";
+      c.fillRect(lx - capExt, g.topY - capH, (g.bulbHalf + capExt) * 2, 2);
+      c.fillRect(lx - capExt, g.botY, (g.bulbHalf + capExt) * 2, 2);
+
+      c.restore();
     }
 
-    let t = 0;
+    /* ── upper sand mass: a settled body whose surface lowers ─ */
+    function drawUpperSand(c: CanvasRenderingContext2D, g: Geo, frac: number) {
+      if (frac <= 0.001) return;
+      // surface y descends from top toward the neck as sand drains
+      const surfaceY = g.topY + (g.midY - g.topY) * (1 - frac) * 0.92;
+      const hwSurf = halfWidthAt(surfaceY, g);
+      c.save();
+      c.beginPath();
+      c.moveTo(g.cx - hwSurf, surfaceY);
+      // concave funnel surface (slight dip toward neck)
+      c.quadraticCurveTo(g.cx, surfaceY + 14, g.cx + hwSurf, surfaceY);
+      c.lineTo(g.cx + g.neckHalf, g.midY);
+      c.lineTo(g.cx - g.neckHalf, g.midY);
+      c.closePath();
+      const grad = c.createLinearGradient(0, surfaceY, 0, g.midY);
+      grad.addColorStop(0, "rgba(255,233,173,0.95)");
+      grad.addColorStop(0.5, "rgba(229,190,110,0.92)");
+      grad.addColorStop(1, "rgba(158,109,45,0.9)");
+      c.fillStyle = grad;
+      c.fill();
+      // glow on surface
+      c.beginPath();
+      c.moveTo(g.cx - hwSurf, surfaceY);
+      c.quadraticCurveTo(g.cx, surfaceY + 14, g.cx + hwSurf, surfaceY);
+      c.lineWidth = 2;
+      c.strokeStyle = "rgba(255,245,210,0.5)";
+      c.stroke();
+      c.restore();
+    }
 
-    const frame = () => {
-      if (!running) return;
-      rafRef.current = requestAnimationFrame(frame);
-      if (!inView) return;
-      t += 0.016;
-      const wx = W * WALL;
-
-      // decay cursor velocity so a still mouse stops pushing
-      mvx *= 0.6;
-      mvy *= 0.6;
-
-      // soft trail fade — transparent (keeps site background visible)
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0,0,0,0.34)";
-      ctx.fillRect(0, 0, W, H);
-
-      ctx.globalCompositeOperation = "lighter";
-
-      const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
-
-      for (const g of grains) {
-        const path = paths[g.path];
-
-        // flow along the path
-        g.u += g.speed * 0.5;
-        g.tw += 0.13;
-
-        const pos = sample(path, g.u);
-        const onLeft = pos.x < WALL;
-
-        // micro-vortex / scatter — sand breathing
-        const breathe =
-          Math.sin(t * 1.3 + g.tw) * 0.5 + Math.sin(t * 2.7 + g.path) * 0.5;
-        if (onLeft) {
-          // chaotic: occasionally fling out, then regather
-          g.scatter += (breathe - g.scatter) * 0.05 + (rrun() - 0.5) * 0.06;
-        } else {
-          // calmer downstream — regather into clean line
-          g.scatter += (0 - g.scatter) * 0.08;
-        }
-        const scatterPx = g.scatter * path.width * 0.45;
-
-        const nrm = normalAt(path, g.u);
-        const lateral = g.off * path.width * 0.5 + scatterPx;
-        const jitter = (rrun() - 0.5) * (onLeft ? 1.6 : 0.6);
-
-        const baseX = pos.x * W + nrm.nx * lateral + nrm.nx * jitter;
-        const baseY = vy(pos.y) + nrm.ny * lateral + nrm.ny * jitter;
-
-        // ── each grain lives its own little life: a velocity-based offset
-        // (hx,hy) from its line. cursor flicks it in its movement direction,
-        // then a soft spring pulls it home over ~2s. ──
-        // instant kick when the cursor passes close
-        if (mx > -9000) {
-          const ddx = baseX - mx;
-          const ddy = baseY - my;
-          const dist = Math.hypot(ddx, ddy);
-          if (dist < MOUSE_R) {
-            const force = 1 - dist / MOUSE_R; // 0..1, stronger near center
-            // push mainly in the direction the mouse is moving
-            const mspeed = Math.hypot(mvx, mvy);
-            if (mspeed > 0.1) {
-              g.vx += (mvx / mspeed) * force * 4.2;
-              g.vy += (mvy / mspeed) * force * 4.2;
-            }
-            // small radial component + spray so it doesn't just orbit
-            const inv = dist > 0.01 ? 1 / dist : 0;
-            g.vx += ddx * inv * force * 1.4 + (rrun() - 0.5) * force * 2;
-            g.vy += ddy * inv * force * 1.4 + (rrun() - 0.5) * force * 2;
-          }
-        }
-
-        // spring back to the line (k small → slow ~2s recovery) + damping
-        const k = 0.012; // restore stiffness
-        const damp = 0.92; // velocity damping
-        g.vx += -g.hx * k;
-        g.vy += -g.hy * k;
-        g.vx *= damp;
-        g.vy *= damp;
-        g.hx += g.vx;
-        g.hy += g.vy;
-
-        const x = baseX + g.hx;
-        const y = baseY + g.hy;
-
-        // crossing the wall — filtering
-        if (!g.filtered && pos.x >= WALL) {
-          g.filtered = true;
-          const roll = rrun();
-          if (roll < 0.3) {
-            g.dead = true; // dissolve
-          } else if (roll < 0.55) {
-            g.flash = 1;
-            g.size *= 1.3;
-            g.alpha = Math.min(1, g.alpha + 0.25);
-          }
-        }
-        if (g.flash > 0) g.flash *= 0.9;
-
-        // recycle
-        if (g.u > 1.02 || g.dead) {
-          Object.assign(g, spawnGrain(rrun, true));
-          continue;
-        }
-
-        const c = GOLD[g.hue];
-        const flick = 0.6 + 0.4 * Math.sin(g.tw * 1.4);
-        const a = g.alpha * flick;
-
-        // flash halo
-        if (g.flash > 0.05) {
-          ctx.fillStyle = `rgba(255,244,214,${g.flash * 0.7})`;
-          ctx.beginPath();
-          ctx.arc(x, y, g.size * 2.2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // the grain itself (this IS the line)
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${a})`;
-        ctx.beginPath();
-        ctx.arc(x, y, g.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        // bright core for front layer = crisp readable lines
-        if (g.layer === 2) {
-          ctx.fillStyle = `rgba(255,244,214,${a * 0.55})`;
-          ctx.beginPath();
-          ctx.arc(x, y, g.size * 0.42, 0, Math.PI * 2);
-          ctx.fill();
-        }
+    /* ── bottom pile rendered as a smooth golden mound ─ */
+    function drawPile(
+      c: CanvasRenderingContext2D,
+      g: Geo,
+      ph: number[],
+      cx2: (i: number) => number
+    ) {
+      let maxH = 0;
+      for (let i = 0; i < ph.length; i++) maxH = Math.max(maxH, ph[i]);
+      if (maxH < 0.5) return;
+      c.save();
+      c.beginPath();
+      c.moveTo(cx2(0), g.botY);
+      for (let i = 0; i < ph.length; i++) {
+        const x = cx2(i);
+        const y = g.botY - ph[i];
+        // clamp inside funnel
+        const hw = halfWidthAt(y, g);
+        const xc = Math.max(g.cx - hw, Math.min(g.cx + hw, x));
+        c.lineTo(xc, y);
       }
+      c.lineTo(cx2(ph.length - 1), g.botY);
+      c.closePath();
+      const grad = c.createLinearGradient(0, g.botY - maxH, 0, g.botY);
+      grad.addColorStop(0, "rgba(255,233,173,0.95)");
+      grad.addColorStop(0.5, "rgba(229,190,110,0.9)");
+      grad.addColorStop(1, "rgba(158,109,45,0.92)");
+      c.fillStyle = grad;
+      c.fill();
+      c.restore();
+    }
 
-      drawWall(wx, pulse);
-      ctx.globalCompositeOperation = "source-over";
-    };
-
-    rafRef.current = requestAnimationFrame(frame);
+    rafRef.current = requestAnimationFrame((t) => {
+      last = t;
+      draw(t);
+    });
 
     return () => {
       running = false;
       cancelAnimationFrame(rafRef.current);
       ro.disconnect();
       io.disconnect();
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseout", onLeave);
     };
   }, [reduced]);
 
   return (
     <div
       ref={wrapRef}
-      className="hidden lg:block w-[48%]"
-      style={{ position: "relative", height: "660px", marginTop: "-50px", marginBottom: "-50px", overflow: "visible" }}
+      className="hidden lg:block w-full"
+      style={{
+        height: "700px",
+        position: "relative",
+        overflow: "visible",
+      }}
       aria-hidden="true"
     >
-      <canvas
-        ref={canvasRef}
+      {/* ambient golden glow behind the glass */}
+      <div
         style={{
           position: "absolute",
-          top: "-70px",
-          left: "-6rem",
-          height: "calc(100% + 140px)",
-          width: "100vw",
-          display: "block",
+          inset: 0,
+          background:
+            "radial-gradient(ellipse 45% 60% at 50% 50%, rgba(212,176,116,0.10) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
-
-      {/* warning markers placed ON 3 of the clean streams (after the wall).
-          canvas is at left:-6rem, width:100vw — so we offset markers the same. */}
-      {[
-        { fx: 0.5, fy: 0.26 }, // clean stream i=1
-        { fx: 0.6, fy: 0.58 }, // clean stream i=3
-        { fx: 0.46, fy: 0.74 }, // clean stream i=4
-      ].map((m, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            top: `${m.fy * 100}%`,
-            left: `calc(-6rem + ${m.fx * 100}vw)`,
-            width: 34,
-            height: 34,
-            transform: `translate(-50%, -50%) ${markersOn ? "scale(1)" : "scale(0.5)"}`,
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "rgba(220,40,40,0.16)",
-            border: "1px solid rgba(230,70,70,0.45)",
-            boxShadow:
-              "0 0 16px rgba(220,50,50,0.3), inset 0 0 10px rgba(230,80,80,0.18)",
-            backdropFilter: "blur(1px)",
-            opacity: markersOn ? 1 : 0,
-            transition: `opacity 1s ease ${i * 0.3}s, transform 1s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.3}s`,
-            animation: reduced ? "none" : `aiff-pulse 3.4s ease-in-out ${i * 0.3}s infinite`,
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M12 3.2 L21.5 20 H2.5 Z"
-              stroke="#F4D58D"
-              strokeWidth="1.6"
-              strokeLinejoin="round"
-              fill="rgba(244,213,141,0.18)"
-            />
-            <line x1="12" y1="9" x2="12" y2="14.5" stroke="#F4D58D" strokeWidth="1.8" strokeLinecap="round" />
-            <circle cx="12" cy="17.4" r="1.1" fill="#F4D58D" />
-          </svg>
-        </div>
-      ))}
-
-      <style>{`
-        @keyframes aiff-pulse {
-          0%, 100% { box-shadow: 0 0 16px rgba(220,50,50,0.3), inset 0 0 10px rgba(230,80,80,0.18); }
-          50% { box-shadow: 0 0 26px rgba(220,50,50,0.5), inset 0 0 12px rgba(230,80,80,0.28); }
-        }
-      `}</style>
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0 }} />
     </div>
   );
 }
