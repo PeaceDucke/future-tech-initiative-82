@@ -249,8 +249,15 @@ function AIFilterFlow() {
         // depth (front..back) for perspective shading
         const dy = r() * 2 - 1;
         const x = geo.cx + (r() * 2 - 1) * hw;
-        // concave surface: reject grains poking above the dip
-        const surf = topSurfaceY + Math.pow(Math.abs(x - geo.cx) / geo.bulbHalf, 1.7) * -8 + 8;
+        // concave surface with a natural central funnel (sand draining down)
+        const dist = Math.abs(x - geo.cx) / geo.bulbHalf; // 0 center … 1 edge
+        // outer gentle concavity
+        let surf = topSurfaceY + Math.pow(dist, 1.7) * -8 + 8;
+        // central dip: a soft crater near the middle (deeper at the very center)
+        const crater = Math.exp(-Math.pow(dist / 0.32, 2)) * 11;
+        surf += crater;
+        // slight irregularity so the rim of the funnel isn't perfectly smooth
+        surf += Math.sin(x * 0.55 + topSurfaceY) * 1.4 * (1 - dist);
         if (y < surf) continue;
 
         const lift = 1 - Math.abs(x - geo.cx) / (hw + 0.001); // center bright
