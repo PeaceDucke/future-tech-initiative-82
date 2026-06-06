@@ -1528,7 +1528,7 @@ function PipelineSection() {
                     <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
                   </div>
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь"].map((t) => (
+                    {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь", "мы подумаем"].map((t) => (
                       <span key={t} className="inline-flex items-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "7px 14px", fontWeight: 500, gap: "8px" }}>
                         <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: G, flexShrink: 0 }} />
                         {t}
