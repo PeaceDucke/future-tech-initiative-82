@@ -460,9 +460,9 @@ function AIFilterFlow() {
         g.cx, capTopY - g.capRy * 0.3, 0,
         g.cx, capTopY, capRx
       );
-      topGrad.addColorStop(0, "rgba(70,52,18,0.32)");
-      topGrad.addColorStop(0.55, "rgba(40,30,10,0.26)");
-      topGrad.addColorStop(1, "rgba(12,9,4,0.18)");
+      topGrad.addColorStop(0, "rgba(48,42,28,0.16)");
+      topGrad.addColorStop(0.55, "rgba(34,30,20,0.13)");
+      topGrad.addColorStop(1, "rgba(16,14,9,0.09)");
       ctx.fillStyle = topGrad;
       ctx.beginPath();
       ctx.ellipse(g.cx, capTopY, capRx, g.capRy, 0, 0, Math.PI * 2);
