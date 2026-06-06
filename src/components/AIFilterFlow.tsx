@@ -203,7 +203,9 @@ function AIFilterFlow() {
           pushPt(ex, ey, drift);
         }
       };
-      ellipse(geo.botY, geo.capRy, geo.bulbHalf, 1.0);
+      // ── BOTTOM: a thin base plate (single ellipse line), wider than bulb ──
+      const baseRx = geo.bulbHalf * 1.12;
+      ellipse(geo.botY, geo.capRy, baseRx, 0.9);
 
       // ── TOP CAP: a volumetric disc, wider than the bulb, with thickness ──
       const capRx = geo.bulbHalf * 1.16; // slightly larger diameter
