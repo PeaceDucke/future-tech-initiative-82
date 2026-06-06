@@ -1527,10 +1527,10 @@ function PipelineSection() {
                     </span>
                     <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
                   </div>
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="grid grid-cols-2 mb-6" style={{ gap: "10px 18px" }}>
                     {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь", "мы подумаем"].map((t) => (
-                      <span key={t} className="inline-flex items-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "7px 14px", fontWeight: 500, gap: "8px" }}>
-                        <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: G, flexShrink: 0 }} />
+                      <span key={t} className="inline-flex items-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "8px 14px", fontWeight: 500, gap: "9px" }}>
+                        <Icon name="TriangleAlert" size={14} style={{ color: RED, flexShrink: 0 }} />
                         {t}
                       </span>
                     ))}
