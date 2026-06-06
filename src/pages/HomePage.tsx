@@ -1513,10 +1513,9 @@ function PipelineSection() {
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
                 <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
-                  AI анализирует каждый разговор
+                  ИИ анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.
                 </h3>
                 <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
-                  ИИ анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.<br /><br />
                   ИИ покажет слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину БЕЗ РУЧНОЙ ПРОВЕРКИ ЗВОНКОВ.
                 </p>
 
