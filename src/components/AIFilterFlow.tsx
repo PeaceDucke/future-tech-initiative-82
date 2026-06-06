@@ -193,72 +193,84 @@ function AIFilterFlow() {
       }
 
       // elliptical rims (front + back arcs) — gives the 3D cap look
-      const ellipse = (cy: number, ry: number) => {
-        const n = reduced ? 50 : 110;
+      const ellipse = (cy: number, ry: number, rx: number, drift: number) => {
+        const n = reduced ? 50 : 130;
         for (let i = 0; i <= n; i++) {
           const ang = (i / n) * Math.PI * 2;
-          const ex = geo.cx + Math.cos(ang) * geo.bulbHalf;
+          const ex = geo.cx + Math.cos(ang) * rx;
           const ey = cy + Math.sin(ang) * ry;
-          pushPt(ex, ey, 1.0);
+          pushPt(ex, ey, drift);
         }
       };
-      ellipse(geo.topY, geo.capRy);
-      ellipse(geo.botY, geo.capRy);
+      ellipse(geo.botY, geo.capRy, geo.bulbHalf, 1.0);
+
+      // ── TOP CAP: a volumetric disc, wider than the bulb, with thickness ──
+      const capRx = geo.bulbHalf * 1.16; // slightly larger diameter
+      const capThick = geo.capRy * 0.9; // visible thickness of the disc
+      const capTopY = geo.topY - capThick; // upper face of the disc
+      const capBotY = geo.topY; //            lower face of the disc
+      ellipse(capTopY, geo.capRy, capRx, 0.8); // upper ellipse line
+      ellipse(capBotY, geo.capRy, capRx, 0.8); // lower ellipse line
+      // side connectors (left & right) joining the two ellipse lines → width
+      for (const side of [-1, 1]) {
+        const n = reduced ? 6 : 12;
+        for (let i = 0; i <= n; i++) {
+          const yy = capTopY + (i / n) * (capBotY - capTopY);
+          pushPt(geo.cx + side * capRx, yy, 0.7);
+        }
+      }
     };
 
-    /* build a static sand mass shape, filled with grains, between two curves */
-    const buildSand = (
-      yTop: number,
-      yBot: number,
-      topCurve: (x: number) => number, // returns surface y at given x
-      botCurve: (x: number) => number,
-      count: number,
-      seed: number
-    ): SandGrain[] => {
+    const initSand = () => {
+      // UPPER remnant — dense, fine-grained, draining into the neck (inverted funnel)
+      topSand = buildUpperSand(reduced ? 2400 : 9000, 9001);
+
+      // BOTTOM: a true 3D conical mound spread across the whole floor
+      botSand = buildCone(reduced ? 3000 : 11000, 4242);
+    };
+
+    /* build the upper sand remnant as a dense fine-grained mass.
+       - slightly concave surface on top
+       - funnels down toward the neck (mass sits against the inner walls)
+       - 3D shading: center/front bright, edges/back deep amber */
+    const buildUpperSand = (count: number, seed: number): SandGrain[] => {
       const r = rng(seed);
       const out: SandGrain[] = [];
+      const yA = topSurfaceY; // surface level
+      const yB = geo.midY - geo.neckHalf * 0.2; // bottom near the neck
       let guard = 0;
-      while (out.length < count && guard < count * 25) {
+      while (out.length < count && guard < count * 30) {
         guard++;
-        const y = yTop + r() * (yBot - yTop);
-        const hw = halfWidthAt(y, geo);
-        const x = geo.cx + (r() - 0.5) * 2 * hw;
-        if (y < topCurve(x) || y > botCurve(x)) continue;
-        // depth shading: center brighter, edges darker (volume)
-        const depth = 1 - Math.abs(x - geo.cx) / (hw + 0.001);
-        const hue =
-          depth > 0.55
-            ? Math.floor(r() * 2) // brighter golds near center top
-            : 2 + Math.floor(r() * 2); // deeper amber at edges
+        const y = yA + r() * (yB - yA);
+        const hw = halfWidthAt(y, geo); // funnel narrows toward neck
+        // depth (front..back) for perspective shading
+        const dy = r() * 2 - 1;
+        const x = geo.cx + (r() * 2 - 1) * hw;
+        // concave surface: reject grains poking above the dip
+        const surf = topSurfaceY + Math.pow(Math.abs(x - geo.cx) / geo.bulbHalf, 1.7) * -8 + 8;
+        if (y < surf) continue;
+
+        const lift = 1 - Math.abs(x - geo.cx) / (hw + 0.001); // center bright
+        const front = (dy + 1) / 2;
+        const litness = lift * 0.55 + front * 0.45;
+        let hue: number;
+        if (litness > 0.72) hue = 4;
+        else if (litness > 0.52) hue = Math.floor(r() * 2);
+        else if (litness > 0.34) hue = 2;
+        else hue = 3;
+
         out.push({
           x,
           y,
-          r: 0.5 + r() * 1.6,
+          r: 0.32 + r() * 0.7, // fine grains, matches the bottom cone
           hue,
-          base: 0.5 + r() * 0.5,
+          base: 0.6 + litness * 0.4,
           tw: r() * Math.PI * 2,
           twSpeed: 0.4 + r() * 1.0,
         });
       }
+      out.sort((a, b) => a.y - b.y);
       return out;
-    };
-
-    const initSand = () => {
-      // UPPER remnant: surface (slightly concave) down to the neck
-      const upTopCurve = (x: number) =>
-        topSurfaceY + Math.pow(Math.abs(x - geo.cx) / geo.bulbHalf, 1.6) * -6 + 6;
-      const upBotCurve = () => geo.midY - geo.neckHalf * 0.3;
-      topSand = buildSand(
-        topSurfaceY - 4,
-        geo.midY,
-        upTopCurve,
-        upBotCurve,
-        reduced ? 220 : 900,
-        9001
-      );
-
-      // BOTTOM: a true 3D conical mound spread across the whole floor
-      botSand = buildCone(reduced ? 3000 : 11000, 4242);
     };
 
     /* build a realistic 3D conical sand mound.
