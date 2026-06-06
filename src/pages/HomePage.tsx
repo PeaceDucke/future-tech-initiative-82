@@ -1520,14 +1520,22 @@ function PipelineSection() {
                   ИИ покажет слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину БЕЗ РУЧНОЙ ПРОВЕРКИ ЗВОНКОВ.
                 </p>
 
-                <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.45)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "16px", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
+                <div style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 100%)", borderRadius: "20px", padding: "26px 28px", border: "1px solid rgba(255,255,255,0.09)", marginBottom: "24px", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+                  <div className="flex items-center" style={{ gap: "10px", marginBottom: "18px" }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "26px", height: "26px", borderRadius: "8px", background: `${G}1a`, border: `1px solid ${G}33` }}>
+                      <Icon name="Radar" size={15} style={{ color: G }} />
+                    </span>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
+                  </div>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь"].map((t) => (
-                      <span key={t} style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: RED, background: `${RED}15`, border: `1px solid ${RED}35`, borderRadius: "20px", padding: "6px 16px", fontWeight: 500 }}>[ {t} ]</span>
+                      <span key={t} className="inline-flex items-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "7px 14px", fontWeight: 500, gap: "8px" }}>
+                        <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: G, flexShrink: 0 }} />
+                        {t}
+                      </span>
                     ))}
                   </div>
-                  <div style={{ borderTop: `1px solid ${G}18`, paddingTop: "16px" }}>
+                  <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "18px" }}>
                     <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, lineHeight: 1.7 }}>
                       AI точно определяет момент, где менеджер теряет инициативу — и почему клиент не доходит до сделки.
                     </p>
