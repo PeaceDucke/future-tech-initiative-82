@@ -402,58 +402,21 @@ function AIFilterFlow() {
 
       const g = geo;
 
-      /* ── ground shadow + dark base plate (часы стоят на чём-то) ── */
+      /* ── small soft oval shadow under the hourglass (grounding) ── */
       ctx.save();
-      // soft contact shadow ellipse on the floor
-      const shY = g.botY + g.capRy * 0.9;
-      const shRx = g.bulbHalf * 1.35;
-      const shRy = g.capRy * 0.9;
+      const shY = g.botY + g.capRy * 0.7;
+      const shRx = g.bulbHalf * 0.95;
+      const shRy = g.capRy * 0.55;
       const shGrad = ctx.createRadialGradient(g.cx, shY, 0, g.cx, shY, shRx);
-      shGrad.addColorStop(0, "rgba(0,0,0,0.55)");
-      shGrad.addColorStop(0.5, "rgba(0,0,0,0.32)");
+      shGrad.addColorStop(0, "rgba(0,0,0,0.5)");
+      shGrad.addColorStop(0.55, "rgba(0,0,0,0.22)");
       shGrad.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = shGrad;
-      ctx.save();
       ctx.translate(g.cx, shY);
       ctx.scale(1, shRy / shRx);
       ctx.beginPath();
       ctx.arc(0, 0, shRx, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
-
-      // dark base plate the hourglass rests on
-      const plateY = g.botY + g.capRy * 0.55;
-      const plateRx = g.bulbHalf * 1.12;
-      const plateRy = g.capRy * 0.72;
-      const plateGrad = ctx.createLinearGradient(0, plateY - plateRy, 0, plateY + plateRy);
-      plateGrad.addColorStop(0, "rgba(36,30,22,0.95)");
-      plateGrad.addColorStop(0.5, "rgba(22,19,15,0.98)");
-      plateGrad.addColorStop(1, "rgba(10,9,7,1)");
-      ctx.fillStyle = plateGrad;
-      ctx.save();
-      ctx.translate(g.cx, plateY);
-      ctx.scale(1, plateRy / plateRx);
-      ctx.beginPath();
-      ctx.arc(0, 0, plateRx, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-      // thin warm gold rim highlight on the plate's front edge
-      ctx.beginPath();
-      ctx.ellipse(g.cx, plateY, plateRx, plateRy, 0, 0.08 * Math.PI, 0.92 * Math.PI);
-      ctx.lineWidth = 1.2;
-      ctx.strokeStyle = "rgba(200,155,69,0.35)";
-      ctx.stroke();
-
-      // vignette under the bottom bulb to ground it (darken the floor area)
-      const vigGrad = ctx.createRadialGradient(
-        g.cx, g.botY, g.bulbHalf * 0.2,
-        g.cx, g.botY, g.bulbHalf * 1.6
-      );
-      vigGrad.addColorStop(0, "rgba(0,0,0,0)");
-      vigGrad.addColorStop(0.6, "rgba(0,0,0,0.18)");
-      vigGrad.addColorStop(1, "rgba(0,0,0,0.42)");
-      ctx.fillStyle = vigGrad;
-      ctx.fillRect(0, g.midY, W, H - g.midY);
       ctx.restore();
 
       /* ── soft 3D glass body shading (subtle volume) ── */
