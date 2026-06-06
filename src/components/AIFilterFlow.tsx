@@ -352,7 +352,7 @@ function AIFilterFlow() {
     const initFlow = () => {
       flow = [];
       const n = reduced ? 0 : 320;
-      const top = topSurfaceY;
+      const top = topSurfaceY + 2;
       const bot = coneTopY + (geo.botY - coneTopY) * 0.15;
       for (let i = 0; i < n; i++) {
         const f = spawnFlow();
@@ -552,18 +552,18 @@ function AIFilterFlow() {
       for (const f of flow) {
         f.y += f.speed * dt;
         f.swirl += dt * 1.6;
-        // organic wobble: widening as the grain falls + per-grain phase
+        // organic wobble (narrow): slight widening as the grain falls
         const fall = (f.y - topSurfaceY) / (coneTopY - topSurfaceY + 0.001);
-        const spread = geo.neckHalf * (0.3 + 0.45 * Math.min(1, Math.max(0, fall)));
+        const spread = geo.neckHalf * (0.14 + 0.2 * Math.min(1, Math.max(0, fall)));
         f.x =
           geo.cx +
           Math.sin(f.swirl) * spread +
-          Math.sin(t * 1.3 + f.tw) * 1.8 +
-          Math.sin(t * 2.7 + f.tw * 1.7) * 1.0;
+          Math.sin(t * 1.3 + f.tw) * 0.8 +
+          Math.sin(t * 2.7 + f.tw * 1.7) * 0.5;
         f.tw += dt * 4;
-        // loop: respawn at the very top → seamless, continuous stream
+        // loop: respawn just below the upper sand surface → no grains poke above
         if (f.y > coneTopY + (geo.botY - coneTopY) * 0.15) {
-          f.y = topSurfaceY - Math.random() * 4;
+          f.y = topSurfaceY + 2 + Math.random() * 3;
         }
         const c = GOLD[f.hue];
         const tw = 0.7 + 0.3 * Math.sin(f.tw);
