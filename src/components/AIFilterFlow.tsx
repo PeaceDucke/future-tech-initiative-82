@@ -204,7 +204,7 @@ function AIFilterFlow() {
         }
       };
       // ── BOTTOM: a thin base plate (single ellipse line), wider than bulb ──
-      const baseRx = geo.bulbHalf * 1.12;
+      const baseRx = geo.bulbHalf * 1.22;
       ellipse(geo.botY, geo.capRy, baseRx, 0.9);
 
       // ── TOP CAP: a volumetric disc, wider than the bulb, with thickness ──
@@ -437,7 +437,7 @@ function AIFilterFlow() {
 
       /* ── light dark fill inside the base ellipse (subtle затемнённое дно) ── */
       ctx.save();
-      const baseRx = g.bulbHalf * 1.12;
+      const baseRx = g.bulbHalf * 1.22;
       const baseGrad = ctx.createRadialGradient(
         g.cx, g.botY, 0,
         g.cx, g.botY, baseRx
