@@ -341,7 +341,7 @@ function AIFilterFlow() {
       x: geo.cx + (Math.random() - 0.5) * geo.neckHalf * 0.9,
       y: geo.midY - (geo.midY - topSurfaceY) * Math.random(), // start within upper sand
       vx: 0,
-      r: 0.6 + Math.random() * 1.4,
+      r: 0.28 + Math.random() * 0.6,
       hue: Math.floor(Math.random() * GOLD.length),
       alpha: 0.55 + Math.random() * 0.45,
       speed: 26 + Math.random() * 18, // slow, hypnotic
@@ -351,7 +351,7 @@ function AIFilterFlow() {
 
     const initFlow = () => {
       flow = [];
-      const n = reduced ? 0 : 90;
+      const n = reduced ? 0 : 320;
       for (let i = 0; i < n; i++) {
         const f = spawnFlow();
         f.y = geo.midY - (geo.midY - coneTopY) + Math.random() * (coneTopY - topSurfaceY);
@@ -549,7 +549,7 @@ function AIFilterFlow() {
       for (const f of flow) {
         f.y += f.speed * dt;
         f.swirl += dt * 1.6;
-        f.x = geo.cx + Math.sin(f.swirl) * geo.neckHalf * 0.5 + (Math.sin(t + f.tw) * 1.5);
+        f.x = geo.cx + Math.sin(f.swirl) * geo.neckHalf * 0.35 + (Math.sin(t + f.tw) * 1.0);
         f.tw += dt * 4;
         // loop: when reaching the cone surface, respawn at the upper sand
         if (f.y > coneTopY + (geo.botY - coneTopY) * 0.15) {
@@ -562,8 +562,8 @@ function AIFilterFlow() {
         ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${f.alpha * tw})`;
         ctx.fill();
         ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r * 2.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},0.06)`;
+        ctx.arc(f.x, f.y, f.r * 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},0.05)`;
         ctx.fill();
       }
 
