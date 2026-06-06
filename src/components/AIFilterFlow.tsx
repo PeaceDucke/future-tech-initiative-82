@@ -142,11 +142,12 @@ function AIFilterFlow() {
     let coneTopY = 0; //   tip height of the bottom cone
 
     const setupGeometry = () => {
-      const usableH = H * 0.8;
+      const usableH = H * 0.78;
+      const TOP_PAD = H * 0.1; // extra headroom so the cap disc fits
       geo.cx = W / 2;
-      geo.midY = H / 2;
-      geo.topY = (H - usableH) / 2;
+      geo.topY = TOP_PAD;
       geo.botY = geo.topY + usableH;
+      geo.midY = (geo.topY + geo.botY) / 2;
       geo.bulbHalf = Math.min(W * 0.32, usableH * 0.3);
       geo.neckHalf = Math.max(8, geo.bulbHalf * 0.07);
       geo.capRy = geo.bulbHalf * 0.26; // ellipse depth for 3D caps
@@ -580,7 +581,7 @@ function AIFilterFlow() {
     <div
       ref={wrapRef}
       className="hidden lg:block w-full"
-      style={{ height: "700px", position: "relative", overflow: "visible" }}
+      style={{ height: "800px", marginTop: "-50px", position: "relative", overflow: "visible" }}
       aria-hidden="true"
     >
       <div
