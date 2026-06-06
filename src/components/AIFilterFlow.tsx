@@ -214,40 +214,30 @@ function AIFilterFlow() {
       const baseRx = geo.bulbHalf * 1.22;
       ellipse(geo.botY, geo.capRy, baseRx, 0.9);
 
-      // ── TOP CAP: a short cylinder (ring) — like the reference photo ──
-      // viewed slightly from below, so the TOP rim shows its inner side
-      // and the cap's BACK edge dips lower than the front.
+      // ── TOP CAP seen from BELOW ──
+      // Looking up at the cap, we DON'T see its top face at all.
+      // We only see: (1) the side wall of the cylinder (its width) and
+      // (2) the INNER bottom of the cap — a concave ellipse whose far edge
+      // curves UP (because we look at the underside of a transparent dish).
       const capRx = geo.bulbHalf * 1.16; // cylinder radius
-      const capThick = geo.capRy * 1.4; // visible height of the cylinder
-      const capTopY = geo.topY - capThick; // upper rim
-      const capBotY = geo.topY; //            lower rim
+      const capThick = geo.capRy * 1.1; // height of the side wall
+      const capTopY = geo.topY - capThick; // top edge of side wall
+      const capBotY = geo.topY; //            bottom edge of side wall
 
-      // helper: tilted ellipse — back (far) half lowered, front raised,
-      // controlled by `tilt` (extra vertical shift applied to the back arc)
-      const tiltEllipse = (
-        cy: number,
-        ry: number,
-        rx: number,
-        drift: number,
-        tilt: number
-      ) => {
-        const n = reduced ? 60 : 140;
-        for (let i = 0; i <= n; i++) {
-          const ang = (i / n) * Math.PI * 2;
-          const s = Math.sin(ang); // -1 (back) … +1 (front)
-          const ex = geo.cx + Math.cos(ang) * rx;
-          // back arc (s<0) pushed DOWN by tilt → looks like seen from below
-          const ey = cy + s * ry + (s < 0 ? -s : 0) * tilt;
-          pushPt(ex, ey, drift);
-        }
-      };
+      // INNER bottom of the cap, viewed from below → far arc bows UP.
+      // s = sin(ang): -1 = far/back, +1 = near/front
+      const innerRy = geo.capRy * 1.0;
+      const nInner = reduced ? 60 : 140;
+      for (let i = 0; i <= nInner; i++) {
+        const ang = (i / nInner) * Math.PI * 2;
+        const s = Math.sin(ang);
+        const ex = geo.cx + Math.cos(ang) * capRx;
+        // near (front) edge low, far (back) edge bowed upward
+        const ey = capTopY - s * innerRy;
+        pushPt(ex, ey, 0.8);
+      }
 
-      // top rim: deeper ellipse + back edge dipped (we look into the cup)
-      tiltEllipse(capTopY, geo.capRy * 1.15, capRx, 0.8, geo.capRy * 0.9);
-      // bottom rim: shallow ellipse, almost flat
-      tiltEllipse(capBotY, geo.capRy * 0.9, capRx, 0.8, geo.capRy * 0.5);
-
-      // vertical side walls joining the two rims → cylinder width
+      // vertical side walls (the visible "width" of the cylinder)
       for (const side of [-1, 1]) {
         const n = reduced ? 8 : 16;
         for (let i = 0; i <= n; i++) {
