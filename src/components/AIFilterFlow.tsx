@@ -352,9 +352,12 @@ function AIFilterFlow() {
     const initFlow = () => {
       flow = [];
       const n = reduced ? 0 : 320;
+      const top = topSurfaceY;
+      const bot = coneTopY + (geo.botY - coneTopY) * 0.15;
       for (let i = 0; i < n; i++) {
         const f = spawnFlow();
-        f.y = geo.midY - (geo.midY - coneTopY) + Math.random() * (coneTopY - topSurfaceY);
+        // spread evenly along the WHOLE fall path → continuous, gap-free stream
+        f.y = top + ((i + Math.random()) / n) * (bot - top);
         flow.push(f);
       }
     };
@@ -549,11 +552,18 @@ function AIFilterFlow() {
       for (const f of flow) {
         f.y += f.speed * dt;
         f.swirl += dt * 1.6;
-        f.x = geo.cx + Math.sin(f.swirl) * geo.neckHalf * 0.35 + (Math.sin(t + f.tw) * 1.0);
+        // organic wobble: widening as the grain falls + per-grain phase
+        const fall = (f.y - topSurfaceY) / (coneTopY - topSurfaceY + 0.001);
+        const spread = geo.neckHalf * (0.3 + 0.45 * Math.min(1, Math.max(0, fall)));
+        f.x =
+          geo.cx +
+          Math.sin(f.swirl) * spread +
+          Math.sin(t * 1.3 + f.tw) * 1.8 +
+          Math.sin(t * 2.7 + f.tw * 1.7) * 1.0;
         f.tw += dt * 4;
-        // loop: when reaching the cone surface, respawn at the upper sand
+        // loop: respawn at the very top → seamless, continuous stream
         if (f.y > coneTopY + (geo.botY - coneTopY) * 0.15) {
-          f.y = topSurfaceY + Math.random() * (geo.midY - topSurfaceY) * 0.5;
+          f.y = topSurfaceY - Math.random() * 4;
         }
         const c = GOLD[f.hue];
         const tw = 0.7 + 0.3 * Math.sin(f.tw);
