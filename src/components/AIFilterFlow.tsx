@@ -148,7 +148,7 @@ function AIFilterFlow() {
       geo.topY = TOP_PAD;
       geo.botY = geo.topY + usableH;
       geo.midY = (geo.topY + geo.botY) / 2;
-      geo.bulbHalf = Math.min(W * 0.32, usableH * 0.3);
+      geo.bulbHalf = Math.min(W * 0.32, usableH * 0.3) * 0.92;
       geo.neckHalf = Math.max(8, geo.bulbHalf * 0.07);
       geo.capRy = geo.bulbHalf * 0.26; // ellipse depth for 3D caps
 
