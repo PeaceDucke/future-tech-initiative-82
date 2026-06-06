@@ -193,20 +193,13 @@ function AIFilterFlow() {
         }
       }
 
-      // elliptical rims (front + back arcs) — gives the 3D cap look.
-      // flip<0 inverts vertical arc: near (front) side goes UP, far side DOWN
-      const ellipse = (
-        cy: number,
-        ry: number,
-        rx: number,
-        drift: number,
-        flip = 1
-      ) => {
+      // elliptical rims (front + back arcs) — gives the 3D cap look
+      const ellipse = (cy: number, ry: number, rx: number, drift: number) => {
         const n = reduced ? 50 : 130;
         for (let i = 0; i <= n; i++) {
           const ang = (i / n) * Math.PI * 2;
           const ex = geo.cx + Math.cos(ang) * rx;
-          const ey = cy + Math.sin(ang) * ry * flip;
+          const ey = cy + Math.sin(ang) * ry;
           pushPt(ex, ey, drift);
         }
       };
@@ -214,32 +207,16 @@ function AIFilterFlow() {
       const baseRx = geo.bulbHalf * 1.22;
       ellipse(geo.botY, geo.capRy, baseRx, 0.9);
 
-      // ── TOP CAP seen from BELOW ──
-      // Looking up at the cap, we DON'T see its top face at all.
-      // We only see: (1) the side wall of the cylinder (its width) and
-      // (2) the INNER bottom of the cap — a concave ellipse whose far edge
-      // curves UP (because we look at the underside of a transparent dish).
-      const capRx = geo.bulbHalf * 1.16; // cylinder radius
-      const capThick = geo.capRy * 1.1; // height of the side wall
-      const capTopY = geo.topY - capThick; // top edge of side wall
-      const capBotY = geo.topY; //            bottom edge of side wall
-
-      // INNER bottom of the cap, viewed from below → far arc bows UP.
-      // s = sin(ang): -1 = far/back, +1 = near/front
-      const innerRy = geo.capRy * 1.0;
-      const nInner = reduced ? 60 : 140;
-      for (let i = 0; i <= nInner; i++) {
-        const ang = (i / nInner) * Math.PI * 2;
-        const s = Math.sin(ang);
-        const ex = geo.cx + Math.cos(ang) * capRx;
-        // near (front) edge low, far (back) edge bowed upward
-        const ey = capTopY - s * innerRy;
-        pushPt(ex, ey, 0.8);
-      }
-
-      // vertical side walls (the visible "width" of the cylinder)
+      // ── TOP CAP: a volumetric disc, wider than the bulb, with thickness ──
+      const capRx = geo.bulbHalf * 1.16; // slightly larger diameter
+      const capThick = geo.capRy * 0.9; // visible thickness of the disc
+      const capTopY = geo.topY - capThick; // upper face of the disc
+      const capBotY = geo.topY; //            lower face of the disc
+      ellipse(capTopY, geo.capRy, capRx, 0.8); // upper ellipse line
+      ellipse(capBotY, geo.capRy, capRx, 0.8); // lower ellipse line
+      // side connectors (left & right) joining the two ellipse lines → width
       for (const side of [-1, 1]) {
-        const n = reduced ? 8 : 16;
+        const n = reduced ? 6 : 12;
         for (let i = 0; i <= n; i++) {
           const yy = capTopY + (i / n) * (capBotY - capTopY);
           pushPt(geo.cx + side * capRx, yy, 0.7);
