@@ -9,7 +9,7 @@ const GOLD = [
   [255, 236, 186], // bright highlight
 ];
 
-/* deterministic rng for stable outline points */
+/* deterministic rng */
 function rng(seed: number) {
   let s = seed >>> 0 || 1;
   return () => {
@@ -28,13 +28,14 @@ type Geo = {
   midY: number;
   neckHalf: number;
   bulbHalf: number;
+  capRy: number; // vertical radius of the elliptical caps (3D depth)
 };
 
-/* half-width of the hourglass funnel at a given y (smooth taper) */
+/* half-width of the hourglass funnel at a given y (smooth concave taper) */
 function halfWidthAt(y: number, g: Geo) {
   if (y <= g.midY) {
     const t = (y - g.topY) / (g.midY - g.topY); // 0..1
-    const e = t * t; // ease toward neck — concave elegant curve
+    const e = t * t;
     return g.bulbHalf + (g.neckHalf - g.bulbHalf) * e;
   }
   const t = (y - g.midY) / (g.botY - g.midY); // 0..1
@@ -42,14 +43,14 @@ function halfWidthAt(y: number, g: Geo) {
   return g.neckHalf + (g.bulbHalf - g.neckHalf) * e;
 }
 
-/* a single outline particle that hovers around the silhouette */
+/* outline particle hovering around the silhouette (living gold dust) */
 type Outline = {
   baseX: number;
   baseY: number;
   x: number;
   y: number;
   phase: number;
-  drift: number; // how far it can stray
+  drift: number;
   size: number;
   hue: number;
   twinkle: number;
@@ -61,20 +62,31 @@ type Outline = {
   vy: number;
 };
 
-/* falling sand grain through the neck */
-type Grain = {
+/* a static grain forming the sand mass (precomputed, just twinkles) */
+type SandGrain = {
+  x: number;
+  y: number;
+  r: number;
+  hue: number;
+  base: number; // base alpha
+  tw: number;
+  twSpeed: number;
+};
+
+/* falling grain in the eternal stream (loops, never accumulates) */
+type Flow = {
   x: number;
   y: number;
   vx: number;
-  vy: number;
   r: number;
   hue: number;
   alpha: number;
+  speed: number;
   tw: number;
-  settled: boolean;
+  swirl: number;
 };
 
-/* ambient dust mote floating around the scene */
+/* ambient dust */
 type Dust = {
   x: number;
   y: number;
@@ -111,115 +123,204 @@ function AIFilterFlow() {
     let W = 0;
     let H = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const geo: Geo = { cx: 0, topY: 0, botY: 0, midY: 0, neckHalf: 0, bulbHalf: 0 };
+    const geo: Geo = {
+      cx: 0, topY: 0, botY: 0, midY: 0, neckHalf: 0, bulbHalf: 0, capRy: 0,
+    };
 
     let outline: Outline[] = [];
-    let grains: Grain[] = [];
+    let topSand: SandGrain[] = [];
+    let botSand: SandGrain[] = [];
+    let flow: Flow[] = [];
     let dust: Dust[] = [];
-    let pile: number[] = []; // bottom cone height map (px) per column
-    const PILE_COLS = 70;
 
     let running = true;
     let inView = true;
-    let t = 0; // global time (s)
+    let t = 0;
+
+    // surface levels (static)
+    let topSurfaceY = 0; // surface of the upper sand remnant
+    let coneTopY = 0; //   tip height of the bottom cone
 
     const setupGeometry = () => {
-      const usableH = H * 0.78;
+      const usableH = H * 0.8;
       geo.cx = W / 2;
       geo.midY = H / 2;
       geo.topY = (H - usableH) / 2;
       geo.botY = geo.topY + usableH;
-      geo.bulbHalf = Math.min(W * 0.3, usableH * 0.3);
-      geo.neckHalf = Math.max(7, geo.bulbHalf * 0.075);
+      geo.bulbHalf = Math.min(W * 0.32, usableH * 0.3);
+      geo.neckHalf = Math.max(8, geo.bulbHalf * 0.07);
+      geo.capRy = geo.bulbHalf * 0.26; // ellipse depth for 3D caps
+
+      // upper sand = small remnant near the neck
+      topSurfaceY = geo.topY + (geo.midY - geo.topY) * 0.55;
+      // bottom cone = big mound rising from the base
+      coneTopY = geo.botY - (geo.botY - geo.midY) * 0.62;
     };
 
-    const colToX = (i: number) =>
-      geo.cx - geo.bulbHalf + (i / (PILE_COLS - 1)) * geo.bulbHalf * 2;
-    const xToCol = (x: number) =>
-      Math.round(((x - (geo.cx - geo.bulbHalf)) / (geo.bulbHalf * 2)) * (PILE_COLS - 1));
-
-    /* build the outline as a dense cloud of particles tracing the silhouette */
+    /* build the dotted silhouette + elliptical 3D rims */
     const buildOutline = () => {
       outline = [];
-      const r = rng(20240607);
-      const SEGMENTS = reduced ? 140 : 320; // points per side
-      const sides = [-1, 1];
-      for (const side of sides) {
-        for (let i = 0; i < SEGMENTS; i++) {
-          const tt = i / (SEGMENTS - 1);
+      const r = rng(77123);
+      const pushPt = (bx: number, by: number, driftBase: number) => {
+        outline.push({
+          baseX: bx,
+          baseY: by,
+          x: bx,
+          y: by,
+          phase: r() * Math.PI * 2,
+          drift: driftBase + r() * 2.5,
+          size: 0.6 + r() * 1.5,
+          hue: Math.floor(r() * GOLD.length),
+          twinkle: r() * Math.PI * 2,
+          twSpeed: 0.6 + r() * 1.4,
+          detached: false,
+          detTime: 0,
+          detLife: 0,
+          vx: 0,
+          vy: 0,
+        });
+      };
+
+      // two curved side walls
+      const SEG = reduced ? 120 : 260;
+      for (const side of [-1, 1]) {
+        for (let i = 0; i < SEG; i++) {
+          const tt = i / (SEG - 1);
           const y = geo.topY + tt * (geo.botY - geo.topY);
           const hw = halfWidthAt(y, geo);
-          const baseX = geo.cx + side * hw;
-          const jx = (r() - 0.5) * 3;
-          const jy = (r() - 0.5) * 3;
-          outline.push({
-            baseX: baseX + jx,
-            baseY: y + jy,
-            x: baseX,
-            y,
-            phase: r() * Math.PI * 2,
-            drift: 1.5 + r() * 3.5,
-            size: 0.6 + r() * 1.5,
-            hue: Math.floor(r() * GOLD.length),
-            twinkle: r() * Math.PI * 2,
-            twSpeed: 0.6 + r() * 1.4,
-            detached: false,
-            detTime: 0,
-            detLife: 0,
-            vx: 0,
-            vy: 0,
-          });
+          pushPt(geo.cx + side * hw + (r() - 0.5) * 2, y + (r() - 0.5) * 2, 1.4);
         }
       }
-      // top & bottom rims (caps made of particles)
-      const rim = (yy: number) => {
-        const hw = halfWidthAt(yy, geo);
-        const n = reduced ? 30 : 60;
+
+      // elliptical rims (front + back arcs) — gives the 3D cap look
+      const ellipse = (cy: number, ry: number) => {
+        const n = reduced ? 50 : 110;
         for (let i = 0; i <= n; i++) {
-          const x = geo.cx - hw + (i / n) * hw * 2;
-          outline.push({
-            baseX: x,
-            baseY: yy,
-            x,
-            y: yy,
-            phase: r() * Math.PI * 2,
-            drift: 1 + r() * 2.5,
-            size: 0.7 + r() * 1.4,
-            hue: Math.floor(r() * GOLD.length),
-            twinkle: r() * Math.PI * 2,
-            twSpeed: 0.6 + r() * 1.4,
-            detached: false,
-            detTime: 0,
-            detLife: 0,
-            vx: 0,
-            vy: 0,
-          });
+          const ang = (i / n) * Math.PI * 2;
+          const ex = geo.cx + Math.cos(ang) * geo.bulbHalf;
+          const ey = cy + Math.sin(ang) * ry;
+          pushPt(ex, ey, 1.0);
         }
       };
-      rim(geo.topY);
-      rim(geo.botY);
+      ellipse(geo.topY, geo.capRy);
+      ellipse(geo.botY, geo.capRy);
+    };
+
+    /* build a static sand mass shape, filled with grains, between two curves */
+    const buildSand = (
+      yTop: number,
+      yBot: number,
+      topCurve: (x: number) => number, // returns surface y at given x
+      botCurve: (x: number) => number,
+      count: number,
+      seed: number
+    ): SandGrain[] => {
+      const r = rng(seed);
+      const out: SandGrain[] = [];
+      let guard = 0;
+      while (out.length < count && guard < count * 25) {
+        guard++;
+        const y = yTop + r() * (yBot - yTop);
+        const hw = halfWidthAt(y, geo);
+        const x = geo.cx + (r() - 0.5) * 2 * hw;
+        if (y < topCurve(x) || y > botCurve(x)) continue;
+        // depth shading: center brighter, edges darker (volume)
+        const depth = 1 - Math.abs(x - geo.cx) / (hw + 0.001);
+        const hue =
+          depth > 0.55
+            ? Math.floor(r() * 2) // brighter golds near center top
+            : 2 + Math.floor(r() * 2); // deeper amber at edges
+        out.push({
+          x,
+          y,
+          r: 0.5 + r() * 1.6,
+          hue,
+          base: 0.5 + r() * 0.5,
+          tw: r() * Math.PI * 2,
+          twSpeed: 0.4 + r() * 1.0,
+        });
+      }
+      return out;
+    };
+
+    const initSand = () => {
+      // UPPER remnant: surface (slightly concave) down to the neck
+      const upTopCurve = (x: number) =>
+        topSurfaceY + Math.pow(Math.abs(x - geo.cx) / geo.bulbHalf, 1.6) * -6 + 6;
+      const upBotCurve = () => geo.midY - geo.neckHalf * 0.3;
+      topSand = buildSand(
+        topSurfaceY - 4,
+        geo.midY,
+        upTopCurve,
+        upBotCurve,
+        reduced ? 220 : 900,
+        9001
+      );
+
+      // BOTTOM cone: from neck area down to base, conical mound
+      const coneTip = coneTopY;
+      const botTopCurve = (x: number) => {
+        // cone surface: peak at center (coneTip), sloping down to the base edges
+        const k = Math.abs(x - geo.cx) / geo.bulbHalf; // 0..1
+        return coneTip + k * (geo.botY - coneTip) * 0.92;
+      };
+      const botBotCurve = () => geo.botY;
+      botSand = buildSand(
+        coneTip - 4,
+        geo.botY,
+        botTopCurve,
+        botBotCurve,
+        reduced ? 320 : 1500,
+        4242
+      );
+    };
+
+    const spawnFlow = (): Flow => ({
+      x: geo.cx + (Math.random() - 0.5) * geo.neckHalf * 0.9,
+      y: geo.midY - (geo.midY - topSurfaceY) * Math.random(), // start within upper sand
+      vx: 0,
+      r: 0.6 + Math.random() * 1.4,
+      hue: Math.floor(Math.random() * GOLD.length),
+      alpha: 0.55 + Math.random() * 0.45,
+      speed: 26 + Math.random() * 18, // slow, hypnotic
+      tw: Math.random() * Math.PI * 2,
+      swirl: Math.random() * Math.PI * 2,
+    });
+
+    const initFlow = () => {
+      flow = [];
+      const n = reduced ? 0 : 90;
+      for (let i = 0; i < n; i++) {
+        const f = spawnFlow();
+        f.y = geo.midY - (geo.midY - coneTopY) + Math.random() * (coneTopY - topSurfaceY);
+        flow.push(f);
+      }
+    };
+
+    const initDust = () => {
+      dust = [];
+      const dN = reduced ? 0 : 60;
+      for (let i = 0; i < dN; i++) {
+        dust.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 3,
+          vy: -2 - Math.random() * 5,
+          r: 0.4 + Math.random() * 1.2,
+          hue: Math.floor(Math.random() * GOLD.length),
+          alpha: 0.08 + Math.random() * 0.3,
+          tw: Math.random() * Math.PI * 2,
+          twSpeed: 0.5 + Math.random() * 1.0,
+        });
+      }
     };
 
     const initScene = () => {
       setupGeometry();
       buildOutline();
-      pile = new Array(PILE_COLS).fill(0);
-      grains = [];
-      dust = [];
-      const dN = reduced ? 0 : 70;
-      for (let i = 0; i < dN; i++) {
-        dust.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 4,
-          vy: -3 - Math.random() * 6,
-          r: 0.5 + Math.random() * 1.4,
-          hue: Math.floor(Math.random() * GOLD.length),
-          alpha: 0.1 + Math.random() * 0.35,
-          tw: Math.random() * Math.PI * 2,
-          twSpeed: 0.5 + Math.random() * 1.2,
-        });
-      }
+      initSand();
+      initFlow();
+      initDust();
     };
 
     const resize = () => {
@@ -244,20 +345,7 @@ function AIFilterFlow() {
     );
     io.observe(wrap);
 
-    const spawnGrain = (): Grain => ({
-      x: geo.cx + (Math.random() - 0.5) * geo.neckHalf * 1.2,
-      y: geo.midY - geo.neckHalf * 0.5,
-      vx: (Math.random() - 0.5) * 4,
-      vy: 14 + Math.random() * 16, // slow, cinematic fall
-      r: 0.7 + Math.random() * 1.6,
-      hue: Math.floor(Math.random() * GOLD.length),
-      alpha: 0.6 + Math.random() * 0.4,
-      tw: Math.random() * Math.PI * 2,
-      settled: false,
-    });
-
     let last = performance.now();
-    let emitAcc = 0;
 
     const draw = (now: number) => {
       if (!running) return;
@@ -272,9 +360,44 @@ function AIFilterFlow() {
         return;
       }
 
-      ctx.globalCompositeOperation = "lighter"; // additive glow
+      const g = geo;
 
-      /* ── ambient dust ─────────────────────────────── */
+      /* ── soft 3D glass body shading (subtle volume) ── */
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(g.cx - g.bulbHalf, g.topY);
+      ctx.lineTo(g.cx + g.bulbHalf, g.topY);
+      // upper wall to neck
+      for (let s = 0; s <= 10; s++) {
+        const y = g.topY + (s / 10) * (g.midY - g.topY);
+        ctx.lineTo(g.cx + halfWidthAt(y, g), y);
+      }
+      for (let s = 0; s <= 10; s++) {
+        const y = g.midY + (s / 10) * (g.botY - g.midY);
+        ctx.lineTo(g.cx + halfWidthAt(y, g), y);
+      }
+      ctx.lineTo(g.cx + g.bulbHalf, g.botY);
+      ctx.lineTo(g.cx - g.bulbHalf, g.botY);
+      for (let s = 10; s >= 0; s--) {
+        const y = g.midY + (s / 10) * (g.botY - g.midY);
+        ctx.lineTo(g.cx - halfWidthAt(y, g), y);
+      }
+      for (let s = 10; s >= 0; s--) {
+        const y = g.topY + (s / 10) * (g.midY - g.topY);
+        ctx.lineTo(g.cx - halfWidthAt(y, g), y);
+      }
+      ctx.closePath();
+      const bodyGrad = ctx.createLinearGradient(g.cx - g.bulbHalf, 0, g.cx + g.bulbHalf, 0);
+      bodyGrad.addColorStop(0, "rgba(255,255,255,0.012)");
+      bodyGrad.addColorStop(0.42, "rgba(255,245,220,0.05)");
+      bodyGrad.addColorStop(0.6, "rgba(255,255,255,0.02)");
+      bodyGrad.addColorStop(1, "rgba(255,255,255,0.01)");
+      ctx.fillStyle = bodyGrad;
+      ctx.fill();
+      ctx.restore();
+
+      /* ── ambient dust (additive) ──────────────────── */
+      ctx.globalCompositeOperation = "lighter";
       for (const d of dust) {
         d.x += d.vx * dt;
         d.y += d.vy * dt;
@@ -293,22 +416,59 @@ function AIFilterFlow() {
         ctx.fill();
       }
 
-      /* ── outline particles (the living silhouette) ── */
+      /* ── STATIC sand masses (top remnant + bottom cone) ── */
+      const drawSand = (arr: SandGrain[]) => {
+        for (const s of arr) {
+          s.tw += s.twSpeed * dt;
+          const c = GOLD[s.hue];
+          const a = s.base * (0.78 + 0.22 * Math.sin(s.tw));
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+          ctx.fill();
+        }
+      };
+      drawSand(topSand);
+      drawSand(botSand);
+
+      /* ── eternal falling stream (loops forever) ────── */
+      for (const f of flow) {
+        f.y += f.speed * dt;
+        f.swirl += dt * 1.6;
+        f.x = geo.cx + Math.sin(f.swirl) * geo.neckHalf * 0.5 + (Math.sin(t + f.tw) * 1.5);
+        f.tw += dt * 4;
+        // loop: when reaching the cone surface, respawn at the upper sand
+        if (f.y > coneTopY + (geo.botY - coneTopY) * 0.15) {
+          f.y = topSurfaceY + Math.random() * (geo.midY - topSurfaceY) * 0.5;
+        }
+        const c = GOLD[f.hue];
+        const tw = 0.7 + 0.3 * Math.sin(f.tw);
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${f.alpha * tw})`;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r * 2.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},0.06)`;
+        ctx.fill();
+      }
+
+      /* ── outline particles (living gold-dust silhouette) ── */
       for (const o of outline) {
         if (!o.detached) {
           o.x = o.baseX + Math.sin(t * 0.7 + o.phase) * o.drift;
           o.y = o.baseY + Math.cos(t * 0.6 + o.phase * 1.3) * o.drift * 0.6;
           o.twinkle += o.twSpeed * dt;
-          if (!reduced && Math.random() < 0.0006) {
+          if (!reduced && Math.random() < 0.0005) {
             o.detached = true;
             o.detTime = 0;
             o.detLife = 2.5 + Math.random() * 2.5;
-            o.vx = (Math.random() - 0.5) * 8;
-            o.vy = -4 - Math.random() * 10;
+            o.vx = (Math.random() - 0.5) * 7;
+            o.vy = -4 - Math.random() * 9;
           }
         } else {
           o.detTime += dt;
-          o.vy += 1.5 * dt;
+          o.vy += 1.4 * dt;
           o.x += o.vx * dt;
           o.y += o.vy * dt;
           if (o.detTime >= o.detLife) {
@@ -317,13 +477,9 @@ function AIFilterFlow() {
             o.y = o.baseY;
           }
         }
-
         const c = GOLD[o.hue];
-        let a = 0.45 + 0.4 * (0.5 + 0.5 * Math.sin(o.twinkle));
-        if (o.detached) {
-          const lifeFrac = o.detTime / o.detLife;
-          a *= Math.max(0, 1 - lifeFrac);
-        }
+        let a = 0.5 + 0.4 * (0.5 + 0.5 * Math.sin(o.twinkle));
+        if (o.detached) a *= Math.max(0, 1 - o.detTime / o.detLife);
         ctx.beginPath();
         ctx.arc(o.x, o.y, o.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${a})`;
@@ -334,153 +490,9 @@ function AIFilterFlow() {
         ctx.fill();
       }
 
-      /* ── upper sand mass (gentle glowing cloud, never empties) ─ */
-      drawUpperMass(ctx, geo, t);
-
-      /* ── emit + integrate falling grains ──────────── */
-      const TARGET = reduced ? 0 : 150;
-      emitAcc += dt * 42;
-      while (emitAcc >= 1) {
-        emitAcc -= 1;
-        if (grains.filter((g) => !g.settled).length < TARGET) grains.push(spawnGrain());
-      }
-
-      const g = geo;
-      for (const p of grains) {
-        if (p.settled) continue;
-        p.vy += 22 * dt; // very gentle gravity (slow-motion)
-        p.vx += Math.sin(t * 2 + p.y * 0.05) * 6 * dt; // micro swirl
-        p.x += p.vx * dt;
-        p.y += p.vy * dt;
-        p.tw += dt * 4;
-
-        const hw = halfWidthAt(p.y, g);
-        if (p.x < g.cx - hw) {
-          p.x = g.cx - hw;
-          p.vx = Math.abs(p.vx) * 0.25 + 2;
-        } else if (p.x > g.cx + hw) {
-          p.x = g.cx + hw;
-          p.vx = -Math.abs(p.vx) * 0.25 - 2;
-        }
-
-        const col = Math.max(0, Math.min(PILE_COLS - 1, xToCol(p.x)));
-        const pileTopY = g.botY - pile[col];
-        if (p.y >= pileTopY - p.r) {
-          p.settled = true;
-          pile[col] += p.r * 1.4;
-          if (col > 0) pile[col - 1] += p.r * 0.5;
-          if (col < PILE_COLS - 1) pile[col + 1] += p.r * 0.5;
-        }
-      }
-
-      // slowly drain the cone so it never overflows (eternal flow)
-      const maxAllowed = (g.botY - g.midY) * 0.86;
-      let coneMax = 0;
-      for (let i = 0; i < PILE_COLS; i++) coneMax = Math.max(coneMax, pile[i]);
-      const drain = coneMax > maxAllowed ? 26 : 9;
-      for (let i = 0; i < PILE_COLS; i++) {
-        pile[i] = Math.max(0, pile[i] - drain * dt);
-      }
-      grains = grains.filter((p) => {
-        if (!p.settled) return true;
-        const col = Math.max(0, Math.min(PILE_COLS - 1, xToCol(p.x)));
-        return p.y <= g.botY - pile[col] + 14;
-      });
-
-      /* ── draw bottom glowing cone ──────────────────── */
-      drawCone(ctx, geo, pile, colToX, t);
-
-      /* ── draw falling grains (the hypnotic stream) ─── */
-      for (const p of grains) {
-        const c = GOLD[p.hue];
-        const tw = 0.7 + 0.3 * Math.sin(p.tw);
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${p.alpha * tw})`;
-        ctx.fill();
-        if (!p.settled) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * 2.8, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},0.07)`;
-          ctx.fill();
-        }
-      }
-
       ctx.globalCompositeOperation = "source-over";
       rafRef.current = requestAnimationFrame(draw);
     };
-
-    /* upper sand body — soft particle cloud that visually never drains */
-    function drawUpperMass(c: CanvasRenderingContext2D, g: Geo, time: number) {
-      const surfaceY = g.topY + (g.midY - g.topY) * 0.32;
-      const hwSurf = halfWidthAt(surfaceY, g);
-      c.save();
-      c.beginPath();
-      c.moveTo(g.cx - hwSurf, surfaceY);
-      const dip = 10 + Math.sin(time * 0.8) * 3;
-      c.quadraticCurveTo(g.cx, surfaceY + dip, g.cx + hwSurf, surfaceY);
-      c.lineTo(g.cx + g.neckHalf, g.midY);
-      c.lineTo(g.cx - g.neckHalf, g.midY);
-      c.closePath();
-      const grad = c.createLinearGradient(0, surfaceY, 0, g.midY);
-      grad.addColorStop(0, "rgba(244,213,141,0.55)");
-      grad.addColorStop(0.5, "rgba(200,155,69,0.5)");
-      grad.addColorStop(1, "rgba(158,109,45,0.45)");
-      c.fillStyle = grad;
-      c.fill();
-      for (let i = 0; i < 26; i++) {
-        const fx = g.cx + (Math.random() - 0.5) * hwSurf * 2;
-        const fy = surfaceY + Math.random() * (g.midY - surfaceY) * 0.8;
-        const col = GOLD[Math.floor(Math.random() * GOLD.length)];
-        c.beginPath();
-        c.arc(fx, fy, Math.random() * 1.3, 0, Math.PI * 2);
-        c.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},0.5)`;
-        c.fill();
-      }
-      c.restore();
-    }
-
-    /* bottom cone rendered as a glowing golden mound of particles */
-    function drawCone(
-      c: CanvasRenderingContext2D,
-      g: Geo,
-      ph: number[],
-      cx2: (i: number) => number,
-      time: number
-    ) {
-      let maxH = 0;
-      for (let i = 0; i < ph.length; i++) maxH = Math.max(maxH, ph[i]);
-      if (maxH < 0.5) return;
-      c.save();
-      c.beginPath();
-      c.moveTo(cx2(0), g.botY);
-      for (let i = 0; i < ph.length; i++) {
-        const x = cx2(i);
-        const y = g.botY - ph[i];
-        const hw = halfWidthAt(y, g);
-        const xc = Math.max(g.cx - hw, Math.min(g.cx + hw, x));
-        c.lineTo(xc, y);
-      }
-      c.lineTo(cx2(ph.length - 1), g.botY);
-      c.closePath();
-      const grad = c.createLinearGradient(0, g.botY - maxH, 0, g.botY);
-      grad.addColorStop(0, "rgba(244,213,141,0.6)");
-      grad.addColorStop(0.5, "rgba(200,155,69,0.5)");
-      grad.addColorStop(1, "rgba(158,109,45,0.5)");
-      c.fillStyle = grad;
-      c.fill();
-      for (let i = 0; i < 30; i++) {
-        const fx = g.cx + (Math.random() - 0.5) * g.bulbHalf * 1.4;
-        const fy = g.botY - Math.random() * maxH;
-        const col = GOLD[Math.floor(Math.random() * GOLD.length)];
-        const a = 0.4 + 0.4 * Math.sin(time * 3 + i);
-        c.beginPath();
-        c.arc(fx, fy, Math.random() * 1.2, 0, Math.PI * 2);
-        c.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${a})`;
-        c.fill();
-      }
-      c.restore();
-    }
 
     rafRef.current = requestAnimationFrame((tt) => {
       last = tt;
@@ -502,7 +514,6 @@ function AIFilterFlow() {
       style={{ height: "700px", position: "relative", overflow: "visible" }}
       aria-hidden="true"
     >
-      {/* warm ambient bloom behind the cloud of dust */}
       <div
         style={{
           position: "absolute",
