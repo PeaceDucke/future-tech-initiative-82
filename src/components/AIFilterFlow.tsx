@@ -257,22 +257,61 @@ function AIFilterFlow() {
         9001
       );
 
-      // BOTTOM cone: from neck area down to base, conical mound
-      const coneTip = coneTopY;
-      const botTopCurve = (x: number) => {
-        // cone surface: peak at center (coneTip), sloping down to the base edges
-        const k = Math.abs(x - geo.cx) / geo.bulbHalf; // 0..1
-        return coneTip + k * (geo.botY - coneTip) * 0.92;
-      };
-      const botBotCurve = () => geo.botY;
-      botSand = buildSand(
-        coneTip - 4,
-        geo.botY,
-        botTopCurve,
-        botBotCurve,
-        reduced ? 320 : 1500,
-        4242
-      );
+      // BOTTOM: a true 3D conical mound spread across the whole floor
+      botSand = buildCone(reduced ? 1400 : 5200, 4242);
+    };
+
+    /* build a realistic 3D conical sand mound.
+       - elliptical base covering the WHOLE floor (perspective depth via ry)
+       - peak at center, smooth round slopes (cone, not pyramid)
+       - fine grains scattered everywhere on the floor */
+    const buildCone = (count: number, seed: number): SandGrain[] => {
+      const r = rng(seed);
+      const out: SandGrain[] = [];
+      const baseRx = geo.bulbHalf * 0.97; // horizontal reach (full floor)
+      const baseRy = geo.capRy * 0.92; //   vertical depth of the elliptical base
+      const baseCy = geo.botY - geo.capRy * 0.35; // floor center (a bit above rim front)
+      const peakY = coneTopY; // tip of the cone
+      const peakH = baseCy - peakY; // mound height
+
+      for (let i = 0; i < count; i++) {
+        // sample a point inside the unit disk, denser toward the center (mound mass)
+        const ang = r() * Math.PI * 2;
+        const rad = Math.pow(r(), 0.65); // 0..1, biased to center
+        const dx = Math.cos(ang) * rad;
+        const dy = Math.sin(ang) * rad; // depth axis (perspective)
+
+        const x = geo.cx + dx * baseRx;
+        // base ellipse Y for this depth + cone height falloff toward edges
+        const floorY = baseCy + dy * baseRy;
+        // cone profile: full height at center, ~0 at the rim (smooth round slope)
+        const h = peakH * (1 - rad) * (0.85 + 0.15 * (1 - Math.abs(dy)));
+        // scatter grains through the volume between floor and surface
+        const y = floorY - r() * Math.max(2, h);
+
+        // shading: top-lit, center-front brighter, deep edges darker → volume
+        const lift = 1 - rad; // higher near peak
+        const front = (dy + 1) / 2; // 0 back .. 1 front
+        const litness = lift * 0.55 + front * 0.45;
+        let hue: number;
+        if (litness > 0.7) hue = 4; // bright highlight
+        else if (litness > 0.5) hue = Math.floor(r() * 2); // light golds
+        else if (litness > 0.32) hue = 2; // mid amber
+        else hue = 3; // deep amber (back/edges)
+
+        out.push({
+          x,
+          y,
+          r: 0.18 + r() * 0.55, // 3x finer grains
+          hue,
+          base: 0.45 + litness * 0.5,
+          tw: r() * Math.PI * 2,
+          twSpeed: 0.4 + r() * 1.0,
+        });
+      }
+      // sort back-to-front so front grains render on top (depth ordering)
+      out.sort((a, b) => a.y - b.y);
+      return out;
     };
 
     const spawnFlow = (): Flow => ({
