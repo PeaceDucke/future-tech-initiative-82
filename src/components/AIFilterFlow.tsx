@@ -212,8 +212,10 @@ function AIFilterFlow() {
       const capThick = geo.capRy * 0.9; // visible thickness of the disc
       const capTopY = geo.topY - capThick; // upper face of the disc
       const capBotY = geo.topY; //            lower face of the disc
-      ellipse(capTopY, geo.capRy, capRx, 0.8); // upper ellipse line
-      ellipse(capBotY, geo.capRy, capRx, 0.8); // lower ellipse line
+      // negative ry → cap is tilted so we look at its INNER side
+      // (back arc dips lower than the front arc)
+      ellipse(capTopY, -geo.capRy, capRx, 0.8); // upper ellipse line
+      ellipse(capBotY, -geo.capRy, capRx, 0.8); // lower ellipse line
       // side connectors (left & right) joining the two ellipse lines → width
       for (const side of [-1, 1]) {
         const n = reduced ? 6 : 12;
