@@ -351,8 +351,8 @@ function AIFilterFlow() {
 
     const initFlow = () => {
       flow = [];
-      const n = reduced ? 0 : 320;
-      const top = topSurfaceY + 2;
+      const n = reduced ? 0 : 520;
+      const top = geo.midY - (geo.midY - topSurfaceY) * 0.45;
       const bot = coneTopY + (geo.botY - coneTopY) * 0.15;
       for (let i = 0; i < n; i++) {
         const f = spawnFlow();
@@ -561,9 +561,11 @@ function AIFilterFlow() {
           Math.sin(t * 1.3 + f.tw) * 0.8 +
           Math.sin(t * 2.7 + f.tw * 1.7) * 0.5;
         f.tw += dt * 4;
-        // loop: respawn just below the upper sand surface → no grains poke above
+        // loop: respawn below the upper sand surface → stream starts at the neck,
+        // never pokes above the upper sand mound
         if (f.y > coneTopY + (geo.botY - coneTopY) * 0.15) {
-          f.y = topSurfaceY + 2 + Math.random() * 3;
+          const top = geo.midY - (geo.midY - topSurfaceY) * 0.45;
+          f.y = top + Math.random() * 4;
         }
         const c = GOLD[f.hue];
         const tw = 0.7 + 0.3 * Math.sin(f.tw);
