@@ -193,13 +193,20 @@ function AIFilterFlow() {
         }
       }
 
-      // elliptical rims (front + back arcs) — gives the 3D cap look
-      const ellipse = (cy: number, ry: number, rx: number, drift: number) => {
+      // elliptical rims (front + back arcs) — gives the 3D cap look.
+      // flip<0 inverts vertical arc: near (front) side goes UP, far side DOWN
+      const ellipse = (
+        cy: number,
+        ry: number,
+        rx: number,
+        drift: number,
+        flip = 1
+      ) => {
         const n = reduced ? 50 : 130;
         for (let i = 0; i <= n; i++) {
           const ang = (i / n) * Math.PI * 2;
           const ex = geo.cx + Math.cos(ang) * rx;
-          const ey = cy + Math.sin(ang) * ry;
+          const ey = cy + Math.sin(ang) * ry * flip;
           pushPt(ex, ey, drift);
         }
       };
@@ -212,11 +219,11 @@ function AIFilterFlow() {
       const capThick = geo.capRy * 0.9; // visible thickness of the disc
       const capTopY = geo.topY - capThick; // upper face of the disc
       const capBotY = geo.topY; //            lower face of the disc
-      // larger ry → cap is "opened" toward viewer, so we see its INNER (top)
-      // side, as if looking up into the cup (front arc raised, back arc dips)
-      const capOpenRy = geo.capRy * 1.7;
-      ellipse(capTopY, capOpenRy, capRx, 0.8); // upper ellipse line
-      ellipse(capBotY, capOpenRy, capRx, 0.8); // lower ellipse line
+      // flip = -1 → near (front) edge of cap raised, far edge lowered,
+      // so we look at the cap's INNER (top) side from below
+      const capOpenRy = geo.capRy * 1.5;
+      ellipse(capTopY, capOpenRy, capRx, 0.8, -1); // upper ellipse line
+      ellipse(capBotY, capOpenRy, capRx, 0.8, -1); // lower ellipse line
       // side connectors (left & right) joining the two ellipse lines → width
       for (const side of [-1, 1]) {
         const n = reduced ? 6 : 12;
