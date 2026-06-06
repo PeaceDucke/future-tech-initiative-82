@@ -417,34 +417,34 @@ function AIFilterFlow() {
 
       const g = geo;
 
-      /* ── wide soft circular shadow under the hourglass (grounding) ── */
+      /* ── soft shadow cast to the side (grounding, light from upper-left) ── */
       ctx.save();
-      const shY = g.botY + g.capRy * 0.45;
-      const shRx = g.bulbHalf * 1.45;
-      const shRy = g.capRy * 0.85;
-      const shGrad = ctx.createRadialGradient(g.cx, shY, 0, g.cx, shY, shRx);
-      shGrad.addColorStop(0, "rgba(0,0,0,0.6)");
-      shGrad.addColorStop(0.45, "rgba(0,0,0,0.35)");
-      shGrad.addColorStop(0.75, "rgba(0,0,0,0.14)");
+      const shCx = g.cx + g.bulbHalf * 0.55; // offset to the right
+      const shY = g.botY + g.capRy * 0.5;
+      const shRx = g.bulbHalf * 1.2;
+      const shRy = g.capRy * 0.7;
+      const shGrad = ctx.createRadialGradient(shCx, shY, 0, shCx, shY, shRx);
+      shGrad.addColorStop(0, "rgba(0,0,0,0.4)");
+      shGrad.addColorStop(0.5, "rgba(0,0,0,0.2)");
       shGrad.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = shGrad;
-      ctx.translate(g.cx, shY);
+      ctx.translate(shCx, shY);
       ctx.scale(1, shRy / shRx);
       ctx.beginPath();
       ctx.arc(0, 0, shRx, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
 
-      /* ── dark fill inside the base ellipse (затемнённое дно) ── */
+      /* ── light dark fill inside the base ellipse (subtle затемнённое дно) ── */
       ctx.save();
       const baseRx = g.bulbHalf * 1.12;
       const baseGrad = ctx.createRadialGradient(
         g.cx, g.botY, 0,
         g.cx, g.botY, baseRx
       );
-      baseGrad.addColorStop(0, "rgba(6,5,4,0.92)");
-      baseGrad.addColorStop(0.7, "rgba(14,11,8,0.8)");
-      baseGrad.addColorStop(1, "rgba(20,16,12,0.25)");
+      baseGrad.addColorStop(0, "rgba(8,6,5,0.4)");
+      baseGrad.addColorStop(0.7, "rgba(14,11,8,0.28)");
+      baseGrad.addColorStop(1, "rgba(20,16,12,0)");
       ctx.fillStyle = baseGrad;
       ctx.beginPath();
       ctx.ellipse(g.cx, g.botY, baseRx, g.capRy, 0, 0, Math.PI * 2);
