@@ -1,45 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
+import { useRef, useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import AIFilterFlow from "@/components/AIFilterFlow";
-
-const Spline = lazy(() => import("@splinetool/react-spline"));
-
-function LazySpline({
-  scene,
-  style,
-  className,
-  containerStyle,
-}: {
-  scene: string;
-  style?: CSSProperties;
-  className?: string;
-  containerStyle?: CSSProperties;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { rootMargin: "200px 0px", threshold: 0.01 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className={className} style={containerStyle}>
-      {visible && (
-        <Suspense fallback={null}>
-          <Spline scene={scene} style={style} />
-        </Suspense>
-      )}
-    </div>
-  );
-}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -1545,13 +1507,10 @@ function PipelineSection() {
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }}>
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
               </div>
-              {/* Spline */}
-              <LazySpline
-                className="hidden lg:block w-[48%]"
-                containerStyle={{ height: "700px", overflow: "visible", position: "relative" }}
-                scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode?v=2"
-                style={{ width: "260%", height: "260%", position: "absolute", top: "-80%", left: "-100%" }}
-              />
+              {/* Scanner */}
+              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible" }}>
+                <RadarScanner />
+              </div>
             </div>
 
             {/* ── CARD 3 — LEFT ── */}
@@ -1584,10 +1543,6 @@ function PipelineSection() {
                     </div>
                   ))}
                 </div>
-              </div>
-              {dot()}
-              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible" }}>
-                <RadarScanner />
               </div>
             </div>
 
