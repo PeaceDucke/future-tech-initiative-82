@@ -620,7 +620,6 @@ function RadarScanner() {
         minHeight: "780px",
         overflow: "visible",
         background: "transparent",
-        contain: "layout paint style",
       }}
     >
       {/* Soft volumetric glow on background only (no card) */}
