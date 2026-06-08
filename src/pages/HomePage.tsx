@@ -1,7 +1,45 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
 import AIFilterFlow from "@/components/AIFilterFlow";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
+
+function LazySpline({
+  scene,
+  style,
+  className,
+  containerStyle,
+}: {
+  scene: string;
+  style?: CSSProperties;
+  className?: string;
+  containerStyle?: CSSProperties;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: "200px 0px", threshold: 0.01 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={className} style={containerStyle}>
+      {visible && (
+        <Suspense fallback={null}>
+          <Spline scene={scene} style={style} />
+        </Suspense>
+      )}
+    </div>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
