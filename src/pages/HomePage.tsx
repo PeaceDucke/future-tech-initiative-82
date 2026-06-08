@@ -1581,13 +1581,6 @@ function PipelineSection() {
           {/* ── Что получает бизнес ── */}
           <div style={{ marginTop: "120px" }}>
             <Section className="text-center">
-              <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-5">
-                <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: G, fontWeight: 600 }}>
-                  Результат
-                </span>
-                <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-              </motion.div>
               <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает бизнес
               </motion.h2>
