@@ -684,7 +684,7 @@ function RadarScanner() {
       <div
         style={{
           position: "absolute",
-          left: "42%",
+          left: "36%",
           top: "50%",
           width: "min(121%, 924px)",
           aspectRatio: "1 / 1",
