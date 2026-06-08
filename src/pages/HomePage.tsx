@@ -1551,7 +1551,7 @@ function PipelineSection() {
                       <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", borderRadius: "7px", background: "#2E2113", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)" }}>
                         <Icon name="ScanSearch" size={14} style={{ color: "#F8F3EA" }} />
                       </span>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#2E2113", fontWeight: 700, letterSpacing: "0.01em" }}>Система нашла причины потери денег</span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1.15 }}>Система нашла причины потери денег</span>
                     </div>
                     <span className="flex items-center" style={{ gap: "5px", fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#C2453C", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
                       <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#C2453C", boxShadow: "0 0 0 3px rgba(194,69,60,0.15)" }} />
@@ -1585,13 +1585,6 @@ function PipelineSection() {
                     ))}
                   </div>
 
-                  {/* footer insight */}
-                  <div className="flex items-center" style={{ gap: "10px", padding: "13px 14px 9px" }}>
-                    <Icon name="TrendingUp" size={16} style={{ color: "#1a8a52", flexShrink: 0 }} />
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "#2E2113", lineHeight: 1.5, fontWeight: 500 }}>
-                      После устранения этих ошибок конверсия растёт уже в первый месяц.
-                    </p>
-                  </div>
                 </div>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }}>
