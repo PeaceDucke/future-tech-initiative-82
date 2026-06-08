@@ -1594,7 +1594,8 @@ function PipelineSection() {
 
               <motion.div
                 variants={stagger}
-                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-10 gap-x-10 lg:gap-x-14"
+                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-12 lg:gap-x-16"
+                style={{ width: "calc(100% + 120px)", marginLeft: "-60px", marginRight: "-60px" }}
               >
                 {[
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c51db25f-5dd3-4d00-99c0-b4cf02fd0206.png", accent: "100%", title: "звонков под контролем", desc: "Ни один разговор не пройдёт мимо" },
