@@ -687,7 +687,7 @@ function RadarScanner() {
           position: "absolute",
           left: "42%",
           top: "50%",
-          width: "min(110%, 840px)",
+          width: "min(121%, 924px)",
           aspectRatio: "1 / 1",
           transform: "translate(-50%, -50%)",
         }}
@@ -1560,7 +1560,7 @@ function PipelineSection() {
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
               </div>
               {/* Scanner */}
-              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible" }}>
+              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible", marginLeft: "-120px" }}>
                 <RadarScanner />
               </div>
             </div>
