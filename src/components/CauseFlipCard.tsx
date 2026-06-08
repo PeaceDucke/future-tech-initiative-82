@@ -97,7 +97,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
         <div
           style={{
             ...faceBase,
-            background: "linear-gradient(135deg, #2E2113 0%, #43321F 100%)",
+            background: "#FFFFFF",
             transform: "rotateY(180deg)",
             gap: "12px",
             padding: "12px 14px",
@@ -112,22 +112,22 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
               width: "30px",
               height: "30px",
               borderRadius: "9px",
-              background: "rgba(255,244,236,0.1)",
-              border: "1px solid rgba(255,244,236,0.18)",
+              background: "#FBEDEA",
+              border: "1px solid rgba(194,69,60,0.18)",
               flexShrink: 0,
               marginTop: "1px",
             }}
           >
-            <Icon name={icon} size={16} style={{ color: "#F0C7AF" }} />
+            <Icon name={icon} size={16} style={{ color: "#C2453C" }} />
           </span>
           <p
             style={{
               flex: 1,
               minWidth: 0,
               fontFamily: "Inter, sans-serif",
-              fontSize: "12.5px",
-              color: "rgba(248,243,234,0.88)",
-              fontWeight: 400,
+              fontSize: "13px",
+              color: "#2E2113",
+              fontWeight: 700,
               lineHeight: 1.45,
             }}
           >
@@ -140,15 +140,15 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
               width: "26px",
               height: "26px",
               borderRadius: "8px",
-              background: "rgba(255,244,236,0.1)",
-              border: "1px solid rgba(255,244,236,0.18)",
+              background: "#FBEDEA",
+              border: "1px solid rgba(194,69,60,0.18)",
               cursor: "pointer",
               flexShrink: 0,
               padding: 0,
             }}
             aria-label="Свернуть"
           >
-            <Icon name="X" size={14} style={{ color: "#F0C7AF" }} />
+            <Icon name="X" size={14} style={{ color: "#C2453C" }} />
           </button>
         </div>
       </div>
