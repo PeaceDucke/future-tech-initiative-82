@@ -1,6 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
+import CauseFlipCard from "@/components/CauseFlipCard";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
@@ -1550,24 +1551,15 @@ function PipelineSection() {
                     <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "29px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12 }}>Система обнаружила скрытые причины потери денег</span>
                   </div>
 
-                  {/* cause cards on beige */}
+                  {/* cause cards on beige (flip on click) */}
                   <div className="flex flex-col" style={{ gap: "10px" }}>
                     {[
-                      { icon: "FileWarning", title: "Нарушения скрипта продаж" },
-                      { icon: "ShieldAlert", title: "Слабая обработка возражений" },
-                      { icon: "Activity", title: "Потеря интереса клиента" },
-                      { icon: "UserX", title: "Ошибки и давление менеджера" },
+                      { icon: "FileWarning", title: "Нарушения скрипта продаж", detail: "Менеджер уходит от структуры в критический момент: пропускает выявление потребностей, презентует не то и не вовремя. AI отмечает каждое отклонение от скрипта." },
+                      { icon: "ShieldAlert", title: "Слабая обработка возражений", detail: "Клиент уходит с неотработанным сомнением — «дорого», «подумаю». AI распознаёт возражения и показывает, где менеджер не довёл аргументацию до конца." },
+                      { icon: "Activity", title: "Потеря интереса клиента", detail: "AI фиксирует момент, когда клиент «отключился»: меняется тон, появляются паузы и односложные ответы. Видно, на какой реплике интерес угас." },
+                      { icon: "UserX", title: "Ошибки и давление менеджера", detail: "Перебивания, игнорирование потребностей, давление вместо диалога. AI выделяет эпизоды, которые отталкивают клиента и срывают сделку." },
                     ].map((r) => (
-                      <div key={r.title} className="flex items-center" style={{ gap: "12px", padding: "11px 14px", background: "#FFFFFF", borderRadius: "11px", border: "1px solid rgba(46,33,19,0.07)", boxShadow: "0 2px 10px rgba(46,33,19,0.05)" }}>
-                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "10px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
-                          <Icon name={r.icon} size={18} style={{ color: "#C2453C" }} />
-                        </span>
-                        <span style={{ flex: 1, minWidth: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#2E2113", fontWeight: 700, lineHeight: 1.25 }}>{r.title}</span>
-                        <span className="inline-flex items-center" style={{ gap: "5px", fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#B8893D", fontWeight: 600, flexShrink: 0, whiteSpace: "nowrap" }}>
-                          Подробнее
-                          <Icon name="ArrowRight" size={15} style={{ color: "#B8893D" }} />
-                        </span>
-                      </div>
+                      <CauseFlipCard key={r.title} icon={r.icon} title={r.title} detail={r.detail} />
                     ))}
                   </div>
 
