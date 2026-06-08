@@ -1441,10 +1441,10 @@ function PipelineSection() {
                 <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)" }} />
               </div>
 
-            <div className="relative" style={{ rowGap: "2rem" }}>
+            <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* card */}
-              <div ref={aiCardRef} className="pc w-full" style={pCard}>
+              <div ref={aiCardRef} className="pc w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
                 <div className="flex flex-col" style={{ gap: "0px" }}>
@@ -1484,6 +1484,14 @@ function PipelineSection() {
                   ))}
                 </div>
               </div>
+
+              {/* Spline animation */}
+              <LazySpline
+                className="hidden lg:block w-full"
+                containerStyle={{ height: "560px", overflow: "visible", position: "relative" }}
+                scene="https://prod.spline.design/RlTNiUewyyrK6f47/scene.splinecode"
+                style={{ width: "100%", height: "100%" }}
+              />
 
             </div>
 
