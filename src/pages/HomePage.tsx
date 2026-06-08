@@ -687,7 +687,7 @@ function RadarScanner() {
           position: "absolute",
           left: "42%",
           top: "50%",
-          width: "min(92%, 700px)",
+          width: "min(110%, 840px)",
           aspectRatio: "1 / 1",
           transform: "translate(-50%, -50%)",
         }}
