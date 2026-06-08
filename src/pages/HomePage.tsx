@@ -1,7 +1,6 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
-import NeuralBrain from "@/components/NeuralBrain";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
@@ -1486,10 +1485,8 @@ function PipelineSection() {
                 </div>
               </div>
 
-              {/* Neural Brain — custom 3D wireframe */}
-              <div className="hidden lg:block w-full" style={{ height: "560px", position: "relative" }}>
-                <NeuralBrain />
-              </div>
+              {/* empty space (right column) */}
+              <div className="hidden lg:block w-full" style={{ height: "560px" }} />
 
             </div>
 
