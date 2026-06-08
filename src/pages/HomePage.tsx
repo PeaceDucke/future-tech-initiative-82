@@ -561,6 +561,20 @@ function GrowthChart() {
 
 // ─── AI Radar Scanner Animation ──────────────────────────────────────────────
 function RadarScanner() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { rootMargin: "100px 0px", threshold: 0.01 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   // Data points around radar (polar coordinates)
   const points = [
     { angle: 18, radius: 28, importance: 0.6 },
@@ -598,6 +612,8 @@ function RadarScanner() {
 
   return (
     <div
+      ref={rootRef}
+      className={active ? "rd-on" : "rd-off"}
       style={{
         position: "relative",
         width: "100%",
@@ -605,6 +621,7 @@ function RadarScanner() {
         minHeight: "780px",
         overflow: "visible",
         background: "transparent",
+        contain: "layout paint style",
       }}
     >
       {/* Soft volumetric glow on background only (no card) */}
@@ -777,9 +794,8 @@ function RadarScanner() {
             background:
               "conic-gradient(from 0deg, transparent 0deg, rgba(240,232,218,0.03) 20deg, rgba(240,232,218,0.2) 55deg, rgba(255,250,240,0.35) 72deg, rgba(255,255,250,0.5) 78deg, transparent 80deg)",
             animation: "rdScan 8s linear infinite",
-            filter: "blur(2px)",
             pointerEvents: "none",
-            mixBlendMode: "screen",
+            willChange: "transform",
           }}
         />
         {/* Sharp leading edge */}
@@ -796,7 +812,7 @@ function RadarScanner() {
               "conic-gradient(from 0deg, transparent 0deg, transparent 76deg, rgba(255,255,250,0.7) 79deg, rgba(255,255,255,0.85) 80deg, transparent 81deg)",
             animation: "rdScan 8s linear infinite",
             pointerEvents: "none",
-            mixBlendMode: "screen",
+            willChange: "transform",
           }}
         />
 
@@ -942,6 +958,8 @@ function RadarScanner() {
       </div>
 
       <style>{`
+        .rd-off * { animation-play-state: paused !important; }
+        .rd-on  * { animation-play-state: running; }
         @keyframes rdScan {
           0% { transform: translate(-50%, -50%) rotate(0deg); }
           100% { transform: translate(-50%, -50%) rotate(360deg); }
