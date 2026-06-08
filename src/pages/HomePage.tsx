@@ -1525,7 +1525,7 @@ function PipelineSection() {
 
             {/* ── CARD 2 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
-              <div className="pc w-full lg:w-[56%]" style={pCard}>
+              <div className="pc w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
                 <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
@@ -1546,39 +1546,41 @@ function PipelineSection() {
                   boxShadow: "0 30px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}>
                   {/* window topbar */}
-                  <div className="flex items-center justify-between" style={{ padding: "14px 18px 4px" }}>
-                    <span className="flex items-center" style={{ gap: "8px", fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#B8893D", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                      <Icon name="ScanSearch" size={14} style={{ color: "#B8893D" }} />
-                      AI-аналитика
-                    </span>
+                  <div className="flex items-center justify-between" style={{ padding: "10px 14px 12px" }}>
+                    <div className="flex items-center" style={{ gap: "9px" }}>
+                      <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", borderRadius: "7px", background: "#2E2113", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)" }}>
+                        <Icon name="ScanSearch" size={14} style={{ color: "#F8F3EA" }} />
+                      </span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1.15 }}>Система нашла причины потери денег</span>
+                    </div>
                     <span className="flex items-center" style={{ gap: "5px", fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#C2453C", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
                       <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#C2453C", boxShadow: "0 0 0 3px rgba(194,69,60,0.15)" }} />
                       LIVE
                     </span>
                   </div>
 
-                  {/* big heading */}
-                  <h4 style={{ fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12, padding: "0 18px 14px" }}>
-                    Система нашла причины потери денег
-                  </h4>
-
                   {/* inner panel */}
-                  <div style={{ background: "#FFFFFF", borderRadius: "13px", padding: "6px 16px", border: "1px solid rgba(46,33,19,0.07)" }}>
+                  <div style={{ background: "#FFFFFF", borderRadius: "13px", padding: "12px", border: "1px solid rgba(46,33,19,0.07)" }}>
                     {[
-                      { icon: "FileWarning", title: "Нарушения скрипта продаж", desc: "уходит от структуры в важный момент", pct: 87 },
-                      { icon: "ShieldAlert", title: "Слабая обработка возражений", desc: "клиент уходит с сомнением", pct: 74 },
-                      { icon: "Activity", title: "Потеря интереса клиента", desc: "момент, когда клиент «отключился»", pct: 68 },
-                      { icon: "UserX", title: "Давление менеджера", desc: "перебивания, игнор потребностей", pct: 52 },
+                      { icon: "FileWarning", title: "Нарушения скрипта продаж", desc: "менеджер уходит от структуры в критический момент", level: "Критично", pct: 87 },
+                      { icon: "ShieldAlert", title: "Слабая обработка возражений", desc: "клиент уходит с неотработанным сомнением", level: "Высокий", pct: 74 },
+                      { icon: "Activity", title: "Потеря интереса клиента", desc: "AI фиксирует момент, когда клиент «отключился»", level: "Высокий", pct: 68 },
+                      { icon: "UserX", title: "Ошибки и давление менеджера", desc: "перебивания, игнорирование потребностей", level: "Средний", pct: 52 },
                     ].map((r, i, arr) => (
-                      <div key={r.title} className="flex items-center" style={{ gap: "15px", padding: "16px 4px", borderBottom: i < arr.length - 1 ? "1px solid rgba(46,33,19,0.07)" : "none" }}>
-                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
-                          <Icon name={r.icon} size={20} style={{ color: "#C2453C" }} />
+                      <div key={r.title} className="flex items-center" style={{ gap: "13px", padding: "12px 6px", borderBottom: i < arr.length - 1 ? "1px solid rgba(46,33,19,0.07)" : "none" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "11px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
+                          <Icon name={r.icon} size={18} style={{ color: "#C2453C" }} />
                         </span>
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <span style={{ display: "block", fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#2E2113", fontWeight: 700, lineHeight: 1.25, marginBottom: "2px" }}>{r.title}</span>
-                          <span style={{ display: "block", fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#6B5E4A", lineHeight: 1.4 }}>{r.desc}</span>
+                          <div className="flex items-center justify-between" style={{ gap: "8px", marginBottom: "5px" }}>
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#2E2113", fontWeight: 700, lineHeight: 1.2 }}>{r.title}</span>
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9.5px", color: "#C2453C", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", background: "rgba(194,69,60,0.1)", border: "1px solid rgba(194,69,60,0.2)", borderRadius: "6px", padding: "3px 7px", whiteSpace: "nowrap", flexShrink: 0 }}>{r.level}</span>
+                          </div>
+                          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "#6B5E4A", lineHeight: 1.45, marginBottom: "7px" }}>{r.desc}</p>
+                          <div style={{ height: "5px", borderRadius: "3px", background: "rgba(46,33,19,0.08)", overflow: "hidden" }}>
+                            <div style={{ width: `${r.pct}%`, height: "100%", borderRadius: "3px", background: "linear-gradient(90deg, #E0795A 0%, #C2453C 100%)" }} />
+                          </div>
                         </div>
-                        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#C2453C", fontWeight: 600, flexShrink: 0, lineHeight: 1 }}>{r.pct}%</span>
                       </div>
                     ))}
                   </div>
@@ -1589,7 +1591,7 @@ function PipelineSection() {
                 <div style={{ width: 16, height: 16, borderRadius: "50%", background: G, boxShadow: `0 0 0 5px rgba(212,176,116,0.12), 0 0 28px rgba(212,176,116,0.4)`, flexShrink: 0 }} />
               </div>
               {/* Scanner */}
-              <div className="hidden lg:block w-[40%]" style={{ height: "780px", position: "relative", overflow: "visible", marginLeft: "-120px" }}>
+              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible", marginLeft: "-120px" }}>
                 <RadarScanner />
               </div>
             </div>
