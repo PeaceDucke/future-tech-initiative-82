@@ -1577,6 +1577,62 @@ function PipelineSection() {
             </div>
 
           </div>
+
+          {/* ── Что получает бизнес ── */}
+          <div style={{ marginTop: "120px" }}>
+            <Section className="text-center">
+              <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-5">
+                <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: G, fontWeight: 600 }}>
+                  Результат
+                </span>
+                <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+              </motion.div>
+              <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
+                Что получает бизнес
+              </motion.h2>
+
+              <motion.div
+                variants={stagger}
+                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-5"
+              >
+                {[
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c51db25f-5dd3-4d00-99c0-b4cf02fd0206.png", text: "Контроль 100% звонков" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e4db2d7c-9198-410e-9d0f-b65254f4f973.png", text: "Рост конверсии на 8–23%" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6c4bdf72-1774-4af5-849b-902b3b1b6439.png", text: "Меньше потерянных лидов" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/358dd693-b223-41b0-9254-e76f2e7c6a9d.png", text: "Рейтинг менеджеров по фактам" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/24dabad9-773e-4312-ba6b-ccf2d9c65d78.png", text: "Понятные отчёты для РОПа и владельца" },
+                ].map((item) => (
+                  <motion.div
+                    key={item.text}
+                    variants={fadeUp}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <div
+                      style={{
+                        width: "100%",
+                        aspectRatio: "1 / 1",
+                        borderRadius: "18px",
+                        background: "rgba(212,176,116,0.04)",
+                        border: "1px solid rgba(212,176,116,0.18)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "14px",
+                        marginBottom: "18px",
+                      }}
+                    >
+                      <img src={item.img} alt={item.text} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                    </div>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, fontWeight: 600, lineHeight: 1.4 }}>
+                      {item.text}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </Section>
+          </div>
+
         </div>
       </div>
     </section>
