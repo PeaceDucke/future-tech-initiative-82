@@ -19,7 +19,8 @@ export default function NeuralBrain() {
     /* ── scene / camera / renderer ─────────────────────────── */
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, W() / H(), 0.1, 100);
-    camera.position.set(0, 0.2, 7.6);
+    camera.position.set(2.6, 1.9, 6.8);
+    camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -42,36 +43,49 @@ export default function NeuralBrain() {
     /* ── procedural brain surface ──────────────────────────────
        Deform a sphere into a brain-like shape with two hemispheres,
        a central fissure and pseudo-gyri (folds) via layered noise.   */
-    const noise3 = (x: number, y: number, z: number) => {
-      // cheap deterministic pseudo-noise from summed sines
-      return (
-        Math.sin(x * 3.1 + y * 1.7) * 0.5 +
-        Math.sin(y * 2.6 + z * 2.2) * 0.3 +
-        Math.sin(z * 3.4 + x * 1.3) * 0.25 +
-        Math.sin((x + z) * 5.2) * 0.12
-      );
-    };
-
+    // ── anatomically-styled brain displacement ────────────────
+    // Coordinate convention on the unit sphere p:
+    //   x = left/right (mediolateral),  y = up/down,  z = front/back
     const shapeVertex = (v: THREE.Vector3) => {
       const p = v.clone().normalize();
-      // base ellipsoid: wider than tall, elongated front-back
       let r = 1.0;
-      // flatten bottom a bit, bulge top
-      r *= 1.0 + 0.06 * p.y;
-      // brain folds
-      const folds =
-        noise3(p.x * 2.0, p.y * 2.0, p.z * 2.0) * 0.10 +
-        noise3(p.x * 4.5, p.y * 4.5, p.z * 4.5) * 0.05 +
-        noise3(p.x * 9.0, p.y * 9.0, p.z * 9.0) * 0.022;
-      r += folds;
-      // central longitudinal fissure between hemispheres
-      const fissure = Math.exp(-Math.pow(p.x / 0.10, 2)) * 0.13;
+
+      // 1) Gyri (folds): ridges that mostly run front-to-back & wrap around,
+      //    giving the characteristic walnut/worm-like convolutions.
+      const gyri =
+        Math.sin(p.z * 11.0 + p.y * 6.0) *
+          Math.cos(p.x * 7.0) * 0.045 +
+        Math.sin(p.y * 13.0 + p.x * 5.0) * 0.03 +
+        Math.cos(p.z * 17.0 + p.x * 9.0) * 0.018;
+      r += gyri;
+
+      // 2) Deep longitudinal fissure splitting the two hemispheres,
+      //    strongest on the TOP, fading toward the bottom.
+      const topMask = THREE.MathUtils.clamp(p.y * 1.4 + 0.25, 0, 1);
+      const fissure =
+        Math.exp(-Math.pow(p.x / 0.14, 2)) * 0.22 * topMask;
       r -= fissure;
+
+      // 3) A few major sulci (lateral / central grooves) for realism.
+      const lateral = Math.exp(-Math.pow((p.y + 0.05) / 0.18, 2)) * 0.05;
+      r -= lateral * (0.5 + 0.5 * Math.cos(p.z * 3.0));
+
+      // 4) Flatten the underside (brains are rounded on top, flatter below).
+      if (p.y < 0) r += p.y * 0.10;
+
       const out = p.multiplyScalar(r);
-      // ellipsoid scaling (mediolateral, dorsoventral, anteroposterior)
-      out.x *= 1.18;
-      out.y *= 0.92;
-      out.z *= 1.32;
+
+      // 5) Overall proportions: a bit wider than tall, clearly elongated
+      //    front-to-back (the egg/ovoid silhouette of a real brain).
+      out.x *= 1.14; // width
+      out.y *= 0.80; // height (lower → not a ball)
+      out.z *= 1.42; // length front-back
+
+      // 6) Frontal lobe slightly narrower & lifted, occipital tapered.
+      const front = THREE.MathUtils.smoothstep(p.z, 0.2, 1.0);
+      out.x *= 1.0 - front * 0.10;
+      out.y += front * 0.05;
+
       return out;
     };
 
@@ -99,7 +113,7 @@ export default function NeuralBrain() {
 
     /* a brighter sparse contour wireframe for definition */
     const contourGeo = new THREE.WireframeGeometry(
-      new THREE.IcosahedronGeometry(1.45, 10)
+      new THREE.IcosahedronGeometry(1.45, 14)
     );
     const cPos = contourGeo.attributes.position as THREE.BufferAttribute;
     for (let i = 0; i < cPos.count; i++) {
@@ -263,11 +277,9 @@ export default function NeuralBrain() {
       const dt = Math.min(clock.getDelta(), 0.05);
       const t = clock.elapsedTime;
 
-      // auto spin + pointer parallax
-      brain.rotation.y += dt * 0.18;
+      // static brain — only subtle pointer parallax (no auto-spin)
       brain.rotation.x += (targetRX - brain.rotation.x) * 0.05;
-      brain.rotation.y += (targetRY - (brain.rotation.y % (Math.PI * 2))) * 0.0;
-      brain.rotation.z = Math.sin(t * 0.3) * 0.04;
+      brain.rotation.y += (targetRY - brain.rotation.y) * 0.05;
 
       // breathing glow
       core.material.opacity = 0.4 + Math.sin(t * 1.6) * 0.12;
