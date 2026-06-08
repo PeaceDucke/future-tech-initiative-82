@@ -1574,64 +1574,6 @@ function PipelineSection() {
               </div>
             </div>
 
-            {/* ── CARD 4 — RIGHT ── */}
-            <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-0">
-              <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
-                {num("04")}
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
-                  Вы получаете готовые точки роста выручки
-                </h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
-                  AI превращает разрозненные разговоры в чёткие бизнес-выводы. Вы видите не просто цифры — вы видите, что именно изменить, чтобы продавать больше уже сейчас.
-                </p>
-
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div style={{ background: `${GREEN}10`, border: `1px solid ${GREEN}30`, borderRadius: "18px", padding: "22px 24px" }}>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: GREEN, marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Потенциал роста</p>
-                    <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "44px", color: GREEN, lineHeight: 1, marginBottom: "6px" }}>+18%</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B }}>конверсии в сделку</p>
-                  </div>
-                  <div style={{ background: `${RED}10`, border: `1px solid ${RED}30`, borderRadius: "18px", padding: "22px 24px" }}>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: RED, marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Теряется сейчас</p>
-                    <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: RED, lineHeight: 1.1, marginBottom: "6px" }}>840 000 ₽</p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B }}>в месяц, выявлено AI</p>
-                  </div>
-                </div>
-
-                <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
-                  <div className="flex items-center gap-3 mb-5">
-                    <Icon name="Sparkles" size={16} style={{ color: "rgba(255,255,255,0.6)" }} />
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.55)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>Конкретные рекомендации AI</p>
-                  </div>
-                  <div className="space-y-4">
-                    {[
-                      { text: "Сократить обсуждение цены в первые 3 минуты разговора", icon: "Clock" },
-                      { text: "Усилить фиксацию потребности — задавать вопросы до КП", icon: "Target" },
-                      { text: "Проработать скрипт обработки возражений по 5 точкам", icon: "ShieldCheck" },
-                    ].map((r) => (
-                      <div key={r.text} className="flex items-start gap-3">
-                        <div style={{ width: 32, height: 32, borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
-                          <Icon name={r.icon} size={14} style={{ color: "rgba(255,255,255,0.6)" }} />
-                        </div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.65, paddingTop: "5px" }}>{r.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "18px 22px", background: `${GREEN}0C`, borderRadius: "14px", border: `1px solid ${GREEN}28` }}>
-                  <Icon name="TrendingUp" size={20} style={{ color: GREEN, flexShrink: 0 }} />
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: GREEN, lineHeight: 1.6, fontWeight: 500 }}>
-                    Клиенты SalesFlow увеличивают выручку на <strong>15–30%</strong> в первые два месяца работы.
-                  </p>
-                </div>
-              </div>
-              {dot()}
-              <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
-                <GrowthChart />
-              </div>
-            </div>
             </div>
 
           </div>
@@ -2632,6 +2574,91 @@ function IntegrationSection() {
         >
           Подробнее об интеграциях
         </button>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   STASHED: «Вы получаете готовые точки роста» + график
+   (временно перенесено в самый низ страницы)
+───────────────────────────────────────────── */
+function GrowthStashSection() {
+  const W = "#FBF6EC";
+  const B = "#F5EDD8";
+  const RED = "#FF6B6B";
+  const GREEN = "#4ADE80";
+  const pCard: React.CSSProperties = {
+    background: "linear-gradient(160deg, #1c1c1c 0%, #141414 40%, #0e0e0e 70%, #161618 100%)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: "28px",
+    padding: "18px 48px",
+    position: "relative",
+    overflow: "hidden",
+    boxShadow: "0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.4), 0 40px 100px rgba(0,0,0,0.75)",
+  };
+
+  return (
+    <section className="py-24 px-5" style={{ background: "#151513" }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-0">
+          <div className="pc w-full lg:w-[48%]" style={pCard}>
+            <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
+            <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+              Вы получаете готовые точки роста выручки
+            </h3>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+              AI превращает разрозненные разговоры в чёткие бизнес-выводы. Вы видите не просто цифры — вы видите, что именно изменить, чтобы продавать больше уже сейчас.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div style={{ background: `${GREEN}10`, border: `1px solid ${GREEN}30`, borderRadius: "18px", padding: "22px 24px" }}>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: GREEN, marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Потенциал роста</p>
+                <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "44px", color: GREEN, lineHeight: 1, marginBottom: "6px" }}>+18%</p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B }}>конверсии в сделку</p>
+              </div>
+              <div style={{ background: `${RED}10`, border: `1px solid ${RED}30`, borderRadius: "18px", padding: "22px 24px" }}>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: RED, marginBottom: "10px", textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 600 }}>Теряется сейчас</p>
+                <p style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: RED, lineHeight: 1.1, marginBottom: "6px" }}>840 000 ₽</p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B }}>в месяц, выявлено AI</p>
+              </div>
+            </div>
+
+            <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: "18px", padding: "24px 26px", border: "1px solid rgba(255,255,255,0.1)", marginBottom: "24px" }}>
+              <div className="flex items-center gap-3 mb-5">
+                <Icon name="Sparkles" size={16} style={{ color: "rgba(255,255,255,0.6)" }} />
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.55)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>Конкретные рекомендации AI</p>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { text: "Сократить обсуждение цены в первые 3 минуты разговора", icon: "Clock" },
+                  { text: "Усилить фиксацию потребности — задавать вопросы до КП", icon: "Target" },
+                  { text: "Проработать скрипт обработки возражений по 5 точкам", icon: "ShieldCheck" },
+                ].map((r) => (
+                  <div key={r.text} className="flex items-start gap-3">
+                    <div style={{ width: 32, height: 32, borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
+                      <Icon name={r.icon} size={14} style={{ color: "rgba(255,255,255,0.6)" }} />
+                    </div>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.65, paddingTop: "5px" }}>{r.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", padding: "18px 22px", background: `${GREEN}0C`, borderRadius: "14px", border: `1px solid ${GREEN}28` }}>
+              <Icon name="TrendingUp" size={20} style={{ color: GREEN, flexShrink: 0 }} />
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: GREEN, lineHeight: 1.6, fontWeight: 500 }}>
+                Клиенты SalesFlow увеличивают выручку на <strong>15–30%</strong> в первые два месяца работы.
+              </p>
+            </div>
+          </div>
+          <div className="hidden lg:flex w-[4%] justify-center" style={{ alignSelf: "center" }}>
+            <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)", flexShrink: 0 }} />
+          </div>
+          <div className="hidden lg:block w-[48%]" style={{ height: "700px", overflow: "visible", position: "relative" }}>
+            <GrowthChart />
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -3738,6 +3765,9 @@ export function HomePage() {
 
         {/* ═══ FINAL CTA ═══ */}
         <FinalCtaSection />
+
+        {/* ═══ STASHED: рост выручки + график (временно внизу) ═══ */}
+        <GrowthStashSection />
 
         {/* ═══ METRICS STRIPE (временно перенесено вниз) ═══ */}
         <section
