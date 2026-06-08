@@ -121,21 +121,6 @@
   transform: translateY(-4px);
 }
 
-/* Dashboard cause tiles */
-.db-tile:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 16px 32px rgba(46, 33, 19, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-  border-color: rgba(194, 69, 60, 0.32) !important;
-}
-.db-tile .db-more {
-  transition: gap 0.25s ease;
-}
-.db-tile:hover .db-more {
-  gap: 10px;
-}
-
 /* Waveform pulse on hover */
 @keyframes wf-pulse {
   0%,

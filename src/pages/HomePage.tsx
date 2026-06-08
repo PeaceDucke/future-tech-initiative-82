@@ -1553,40 +1553,20 @@ function PipelineSection() {
                     <span style={{ fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1.15 }}>Система нашла причины потери денег</span>
                   </div>
 
-                  {/* tiles grid */}
-                  <div className="grid grid-cols-2" style={{ gap: "10px" }}>
+                  {/* inner panel */}
+                  <div style={{ background: "#FFFFFF", borderRadius: "13px", padding: "12px", border: "1px solid rgba(46,33,19,0.07)" }}>
                     {[
-                      { icon: "FileWarning", title: "Нарушения скрипта продаж", n: "01" },
-                      { icon: "ShieldAlert", title: "Слабая обработка возражений", n: "02" },
-                      { icon: "Activity", title: "Потеря интереса клиента", n: "03" },
-                      { icon: "UserX", title: "Ошибки и давление менеджера", n: "04" },
-                    ].map((r) => (
-                      <div
-                        key={r.title}
-                        className="db-tile group"
-                        style={{
-                          position: "relative",
-                          background: "#F4EFE7",
-                          borderRadius: "14px",
-                          padding: "18px 18px 16px",
-                          border: "1px solid rgba(46,33,19,0.08)",
-                          boxShadow: "0 2px 0 rgba(46,33,19,0.04), inset 0 1px 0 rgba(255,255,255,0.7)",
-                          overflow: "hidden",
-                          transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                        }}
-                      >
-                        {/* accent corner glow */}
-                        <span style={{ position: "absolute", top: "-30px", right: "-30px", width: "80px", height: "80px", borderRadius: "50%", background: "radial-gradient(circle, rgba(194,69,60,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-                        {/* faint index */}
-                        <span style={{ position: "absolute", top: "12px", right: "16px", fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "rgba(46,33,19,0.10)", fontWeight: 600, lineHeight: 1 }}>{r.n}</span>
-
-                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "44px", height: "44px", borderRadius: "13px", background: "linear-gradient(145deg, #C2453C 0%, #9E342C 100%)", boxShadow: "0 6px 14px rgba(194,69,60,0.3), inset 0 1px 0 rgba(255,255,255,0.25)", marginBottom: "14px" }}>
-                          <Icon name={r.icon} size={22} style={{ color: "#FFF4EC" }} />
+                      { icon: "FileWarning", title: "Нарушения скрипта продаж" },
+                      { icon: "ShieldAlert", title: "Слабая обработка возражений" },
+                      { icon: "Activity", title: "Потеря интереса клиента" },
+                      { icon: "UserX", title: "Ошибки и давление менеджера" },
+                    ].map((r, i, arr) => (
+                      <div key={r.title} className="flex items-center" style={{ gap: "14px", padding: "16px 6px", borderBottom: i < arr.length - 1 ? "1px solid rgba(46,33,19,0.07)" : "none" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
+                          <Icon name={r.icon} size={20} style={{ color: "#C2453C" }} />
                         </span>
-
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#2E2113", fontWeight: 700, lineHeight: 1.3, marginBottom: "14px", minHeight: "40px" }}>{r.title}</p>
-
-                        <span className="db-more inline-flex items-center" style={{ gap: "6px", fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#B8893D", fontWeight: 600, whiteSpace: "nowrap" }}>
+                        <span style={{ flex: 1, minWidth: 0, fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#2E2113", fontWeight: 700, lineHeight: 1.25 }}>{r.title}</span>
+                        <span className="inline-flex items-center" style={{ gap: "5px", fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#B8893D", fontWeight: 600, flexShrink: 0, whiteSpace: "nowrap" }}>
                           Подробнее
                           <Icon name="ArrowRight" size={15} style={{ color: "#B8893D" }} />
                         </span>
