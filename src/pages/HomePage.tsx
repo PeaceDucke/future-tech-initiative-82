@@ -1608,22 +1608,7 @@ function PipelineSection() {
                     variants={fadeUp}
                     className="flex flex-col items-center text-center"
                   >
-                    <div
-                      style={{
-                        width: "100%",
-                        aspectRatio: "1 / 1",
-                        borderRadius: "18px",
-                        background: "rgba(212,176,116,0.04)",
-                        border: "1px solid rgba(212,176,116,0.18)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: "14px",
-                        marginBottom: "18px",
-                      }}
-                    >
-                      <img src={item.img} alt={item.text} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-                    </div>
+                    <img src={item.img} alt={item.text} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "18px" }} />
                     <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, fontWeight: 600, lineHeight: 1.4 }}>
                       {item.text}
                     </p>
