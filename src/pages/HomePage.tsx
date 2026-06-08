@@ -1546,8 +1546,8 @@ function PipelineSection() {
                   boxShadow: "0 30px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}>
                   {/* heading */}
-                  <div style={{ padding: "14px 18px 18px" }}>
-                    <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1.15 }}>Система обнаружила скрытые причины потери денег</span>
+                  <div style={{ padding: "16px 8px 18px" }}>
+                    <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "29px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12 }}>Система обнаружила скрытые причины потери денег</span>
                   </div>
 
                   {/* cause cards on beige */}
@@ -1558,11 +1558,11 @@ function PipelineSection() {
                       { icon: "Activity", title: "Потеря интереса клиента" },
                       { icon: "UserX", title: "Ошибки и давление менеджера" },
                     ].map((r) => (
-                      <div key={r.title} className="flex items-center" style={{ gap: "14px", padding: "16px 18px", background: "#FFFFFF", borderRadius: "13px", border: "1px solid rgba(46,33,19,0.07)", boxShadow: "0 2px 10px rgba(46,33,19,0.05)" }}>
-                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
-                          <Icon name={r.icon} size={20} style={{ color: "#C2453C" }} />
+                      <div key={r.title} className="flex items-center" style={{ gap: "12px", padding: "11px 14px", background: "#FFFFFF", borderRadius: "11px", border: "1px solid rgba(46,33,19,0.07)", boxShadow: "0 2px 10px rgba(46,33,19,0.05)" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "10px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
+                          <Icon name={r.icon} size={18} style={{ color: "#C2453C" }} />
                         </span>
-                        <span style={{ flex: 1, minWidth: 0, fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#2E2113", fontWeight: 700, lineHeight: 1.25 }}>{r.title}</span>
+                        <span style={{ flex: 1, minWidth: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#2E2113", fontWeight: 700, lineHeight: 1.25 }}>{r.title}</span>
                         <span className="inline-flex items-center" style={{ gap: "5px", fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#B8893D", fontWeight: 600, flexShrink: 0, whiteSpace: "nowrap" }}>
                           Подробнее
                           <Icon name="ArrowRight" size={15} style={{ color: "#B8893D" }} />
