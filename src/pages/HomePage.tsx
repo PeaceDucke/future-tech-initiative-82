@@ -1601,14 +1601,14 @@ function PipelineSection() {
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e4db2d7c-9198-410e-9d0f-b65254f4f973.png", text: "Рост конверсии на 8–23%" },
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6c4bdf72-1774-4af5-849b-902b3b1b6439.png", text: "Меньше потерянных лидов" },
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/358dd693-b223-41b0-9254-e76f2e7c6a9d.png", text: "Рейтинг менеджеров по фактам" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/24dabad9-773e-4312-ba6b-ccf2d9c65d78.png", text: "Понятные отчёты для РОПа и владельца" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/24dabad9-773e-4312-ba6b-ccf2d9c65d78.png", text: "Понятные отчёты для РОПа и владельца", scale: 1.2 },
                 ].map((item) => (
                   <motion.div
                     key={item.text}
                     variants={fadeUp}
                     className="flex flex-col items-center text-center"
                   >
-                    <img src={item.img} alt={item.text} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "18px" }} />
+                    <img src={item.img} alt={item.text} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "18px", transform: item.scale ? `scale(${item.scale})` : undefined }} />
                     <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, fontWeight: 600, lineHeight: 1.4 }}>
                       {item.text}
                     </p>
