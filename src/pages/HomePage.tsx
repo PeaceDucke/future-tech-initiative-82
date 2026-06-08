@@ -1574,39 +1574,6 @@ function PipelineSection() {
               </div>
             </div>
 
-            {/* ── CARD 3 — LEFT ── */}
-            <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-0">
-              <div className="pc w-full lg:w-[48%]" style={pCard}>
-                <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
-                {num("03")}
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
-                  Система находит скрытые причины потери денег
-                </h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
-                  SalesFlow не просто фиксирует данные — он вскрывает конкретные причины, по которым ваш отдел продаж теряет выручку каждый день. Без прослушки вручную, без субъективных оценок.
-                </p>
-                <div className="space-y-3 mb-8">
-                  {[
-                    { icon: "AlertTriangle", label: "Нарушения скрипта продаж", desc: "менеджер уходит от структуры в критический момент", color: RED },
-                    { icon: "ShieldOff",     label: "Слабая обработка возражений", desc: "клиент уходит с неотработанным сомнением", color: RED },
-                    { icon: "TrendingDown",  label: "Потеря интереса клиента", desc: "AI фиксирует момент, когда клиент «отключился»", color: RED },
-                    { icon: "UserX",         label: "Ошибки и давление менеджера", desc: "перебивания, игнорирование потребностей", color: RED },
-                    { icon: "BarChart2",     label: "Рост после устранения ошибок", desc: "конверсия растёт уже в первый месяц работы", color: GREEN },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-4 px-5 py-4 rounded-2xl" style={{ background: `${item.color}0C`, border: `1px solid ${item.color}28` }}>
-                      <div style={{ width: 36, height: 36, borderRadius: "10px", background: `${item.color}18`, border: `1px solid ${item.color}35`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "2px" }}>
-                        <Icon name={item.icon} size={16} style={{ color: item.color }} />
-                      </div>
-                      <div>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: item.color, fontWeight: 600, marginBottom: "3px" }}>{item.label}</p>
-                        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.55 }}>{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
             {/* ── CARD 4 — RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-0">
               <div className="pc w-full lg:w-[48%]" style={pCard}>
