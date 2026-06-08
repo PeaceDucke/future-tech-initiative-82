@@ -1536,24 +1536,60 @@ function PipelineSection() {
                   ИИ покажет слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину БЕЗ РУЧНОЙ ПРОВЕРКИ ЗВОНКОВ.
                 </p>
 
-                <div style={{ background: "linear-gradient(160deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 100%)", borderRadius: "20px", padding: "26px 28px", border: "1px solid rgba(255,255,255,0.09)", marginBottom: "24px", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                  <div className="flex items-center" style={{ gap: "10px", marginBottom: "18px" }}>
-                    <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "26px", height: "26px", borderRadius: "8px", background: `${G}1a`, border: `1px solid ${G}33` }}>
-                      <Icon name="Radar" size={15} style={{ color: G }} />
-                    </span>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}>AI обнаружил сигналы возражений</p>
-                  </div>
-                  <div className="grid grid-cols-2 mb-6" style={{ gap: "10px 18px" }}>
-                    {["слишком дорого", "не уверен", "нужно подумать", "скиньте КП", "посоветуюсь", "мы подумаем"].map((t) => (
-                      <span key={t} className="inline-flex items-center" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "8px 14px", fontWeight: 500, gap: "9px" }}>
-                        <Icon name="TriangleAlert" size={14} style={{ color: RED, flexShrink: 0 }} />
-                        {t}
+                {/* ── light dashboard cut-out ── */}
+                <div style={{
+                  background: "#F8F3EA",
+                  borderRadius: "18px",
+                  padding: "6px",
+                  marginBottom: "24px",
+                  border: "1px solid rgba(212,176,116,0.4)",
+                  boxShadow: "0 30px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.6)",
+                }}>
+                  {/* window topbar */}
+                  <div className="flex items-center justify-between" style={{ padding: "10px 14px 12px" }}>
+                    <div className="flex items-center" style={{ gap: "9px" }}>
+                      <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", borderRadius: "7px", background: "#2E2113", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)" }}>
+                        <Icon name="ScanSearch" size={14} style={{ color: "#F8F3EA" }} />
                       </span>
+                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#2E2113", fontWeight: 700, letterSpacing: "0.01em" }}>Система нашла причины потери денег</span>
+                    </div>
+                    <span className="flex items-center" style={{ gap: "5px", fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#C2453C", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#C2453C", boxShadow: "0 0 0 3px rgba(194,69,60,0.15)" }} />
+                      LIVE
+                    </span>
+                  </div>
+
+                  {/* inner panel */}
+                  <div style={{ background: "#FFFFFF", borderRadius: "13px", padding: "12px", border: "1px solid rgba(46,33,19,0.07)" }}>
+                    {[
+                      { icon: "FileWarning", title: "Нарушения скрипта продаж", desc: "менеджер уходит от структуры в критический момент", level: "Критично", pct: 87 },
+                      { icon: "ShieldAlert", title: "Слабая обработка возражений", desc: "клиент уходит с неотработанным сомнением", level: "Высокий", pct: 74 },
+                      { icon: "Activity", title: "Потеря интереса клиента", desc: "AI фиксирует момент, когда клиент «отключился»", level: "Высокий", pct: 68 },
+                      { icon: "UserX", title: "Ошибки и давление менеджера", desc: "перебивания, игнорирование потребностей", level: "Средний", pct: 52 },
+                    ].map((r, i, arr) => (
+                      <div key={r.title} className="flex items-center" style={{ gap: "13px", padding: "12px 6px", borderBottom: i < arr.length - 1 ? "1px solid rgba(46,33,19,0.07)" : "none" }}>
+                        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "38px", height: "38px", borderRadius: "11px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
+                          <Icon name={r.icon} size={18} style={{ color: "#C2453C" }} />
+                        </span>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div className="flex items-center justify-between" style={{ gap: "8px", marginBottom: "5px" }}>
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#2E2113", fontWeight: 700, lineHeight: 1.2 }}>{r.title}</span>
+                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "9.5px", color: "#C2453C", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", background: "rgba(194,69,60,0.1)", border: "1px solid rgba(194,69,60,0.2)", borderRadius: "6px", padding: "3px 7px", whiteSpace: "nowrap", flexShrink: 0 }}>{r.level}</span>
+                          </div>
+                          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "#6B5E4A", lineHeight: 1.45, marginBottom: "7px" }}>{r.desc}</p>
+                          <div style={{ height: "5px", borderRadius: "3px", background: "rgba(46,33,19,0.08)", overflow: "hidden" }}>
+                            <div style={{ width: `${r.pct}%`, height: "100%", borderRadius: "3px", background: "linear-gradient(90deg, #E0795A 0%, #C2453C 100%)" }} />
+                          </div>
+                        </div>
+                      </div>
                     ))}
                   </div>
-                  <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "18px" }}>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, lineHeight: 1.7 }}>
-                      AI точно определяет момент, где менеджер теряет инициативу — и почему клиент не доходит до сделки.
+
+                  {/* footer insight */}
+                  <div className="flex items-center" style={{ gap: "10px", padding: "13px 14px 9px" }}>
+                    <Icon name="TrendingUp" size={16} style={{ color: "#1a8a52", flexShrink: 0 }} />
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: "#2E2113", lineHeight: 1.5, fontWeight: 500 }}>
+                      После устранения этих ошибок конверсия растёт уже в первый месяц.
                     </p>
                   </div>
                 </div>
