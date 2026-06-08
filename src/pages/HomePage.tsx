@@ -1545,23 +1545,20 @@ function PipelineSection() {
                   border: "1px solid rgba(212,176,116,0.4)",
                   boxShadow: "0 30px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}>
-                  {/* window topbar */}
-                  <div className="flex items-center" style={{ gap: "14px", padding: "12px 14px 14px" }}>
-                    <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", borderRadius: "12px", background: "#2E2113", boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12)", flexShrink: 0 }}>
-                      <Icon name="ScanSearch" size={28} style={{ color: "#F8F3EA" }} />
-                    </span>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1.15 }}>Система нашла причины потери денег</span>
+                  {/* heading */}
+                  <div style={{ padding: "14px 18px 18px" }}>
+                    <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "26px", color: "#2E2113", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1.15 }}>Система обнаружила скрытые причины потери денег</span>
                   </div>
 
-                  {/* inner panel */}
-                  <div style={{ background: "#FFFFFF", borderRadius: "13px", padding: "12px", border: "1px solid rgba(46,33,19,0.07)" }}>
+                  {/* cause cards on beige */}
+                  <div className="flex flex-col" style={{ gap: "10px" }}>
                     {[
                       { icon: "FileWarning", title: "Нарушения скрипта продаж" },
                       { icon: "ShieldAlert", title: "Слабая обработка возражений" },
                       { icon: "Activity", title: "Потеря интереса клиента" },
                       { icon: "UserX", title: "Ошибки и давление менеджера" },
-                    ].map((r, i, arr) => (
-                      <div key={r.title} className="flex items-center" style={{ gap: "14px", padding: "16px 6px", borderBottom: i < arr.length - 1 ? "1px solid rgba(46,33,19,0.07)" : "none" }}>
+                    ].map((r) => (
+                      <div key={r.title} className="flex items-center" style={{ gap: "14px", padding: "16px 18px", background: "#FFFFFF", borderRadius: "13px", border: "1px solid rgba(46,33,19,0.07)", boxShadow: "0 2px 10px rgba(46,33,19,0.05)" }}>
                         <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: "42px", height: "42px", borderRadius: "12px", background: "#FBEDEA", border: "1px solid rgba(194,69,60,0.18)", flexShrink: 0 }}>
                           <Icon name={r.icon} size={20} style={{ color: "#C2453C" }} />
                         </span>
