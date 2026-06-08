@@ -1597,20 +1597,26 @@ function PipelineSection() {
                 className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-5"
               >
                 {[
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c51db25f-5dd3-4d00-99c0-b4cf02fd0206.png", text: "Контроль 100% звонков" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e4db2d7c-9198-410e-9d0f-b65254f4f973.png", text: "Рост конверсии на 8–23%" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6c4bdf72-1774-4af5-849b-902b3b1b6439.png", text: "Меньше потерянных лидов" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/358dd693-b223-41b0-9254-e76f2e7c6a9d.png", text: "Рейтинг менеджеров по фактам" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/24dabad9-773e-4312-ba6b-ccf2d9c65d78.png", text: "Понятные отчёты для РОПа и владельца", scale: 1.44 },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c51db25f-5dd3-4d00-99c0-b4cf02fd0206.png", accent: "100%", title: "звонков под контролем", desc: "Ни один разговор не пройдёт мимо" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e4db2d7c-9198-410e-9d0f-b65254f4f973.png", accent: "+8–23%", title: "к конверсии", desc: "Больше сделок с тем же трафиком" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6c4bdf72-1774-4af5-849b-902b3b1b6439.png", accent: "0", title: "потерянных лидов", desc: "Каждый клиент доведён до результата" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/358dd693-b223-41b0-9254-e76f2e7c6a9d.png", accent: "Честный", title: "рейтинг менеджеров", desc: "Оценка по фактам, а не по ощущениям" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/24dabad9-773e-4312-ba6b-ccf2d9c65d78.png", accent: "Ясные", title: "отчёты для РОПа", desc: "Вся картина бизнеса на одном экране", scale: 1.58 },
                 ].map((item) => (
                   <motion.div
-                    key={item.text}
+                    key={item.title}
                     variants={fadeUp}
                     className="flex flex-col items-center text-center"
                   >
-                    <img src={item.img} alt={item.text} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "18px", transform: item.scale ? `scale(${item.scale})` : undefined }} />
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, fontWeight: 600, lineHeight: 1.4 }}>
-                      {item.text}
+                    <img src={item.img} alt={item.title} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "10px", transform: item.scale ? `scale(${item.scale})` : undefined }} />
+                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 2.4vw, 34px)", color: G, fontWeight: 600, lineHeight: 1.05, letterSpacing: "0.01em", textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>
+                      {item.accent}
+                    </span>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: W, fontWeight: 700, lineHeight: 1.3, marginTop: "4px" }}>
+                      {item.title}
+                    </p>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.6)", fontWeight: 400, lineHeight: 1.45, marginTop: "8px", maxWidth: "200px" }}>
+                      {item.desc}
                     </p>
                   </motion.div>
                 ))}
