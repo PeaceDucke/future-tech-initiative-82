@@ -1,7 +1,6 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
-import AIFilterFlow from "@/components/AIFilterFlow";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
@@ -1443,10 +1442,10 @@ function PipelineSection() {
                 <div style={{ width: 14, height: 14, borderRadius: "50%", background: "rgba(255,255,255,0.85)", boxShadow: "0 0 0 4px rgba(255,255,255,0.08), 0 0 20px rgba(255,255,255,0.2)" }} />
               </div>
 
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
+            <div className="relative" style={{ rowGap: "2rem" }}>
 
               {/* card */}
-              <div ref={aiCardRef} className="pc w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
+              <div ref={aiCardRef} className="pc w-full" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
                 <div className="flex flex-col" style={{ gap: "0px" }}>
@@ -1486,9 +1485,6 @@ function PipelineSection() {
                   ))}
                 </div>
               </div>
-
-              {/* AI Filter Flow — cinematic golden particle stream */}
-              <AIFilterFlow />
 
             </div>
 
