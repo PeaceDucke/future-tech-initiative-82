@@ -1548,7 +1548,7 @@ function PipelineSection() {
                 }}>
                   {/* heading */}
                   <div style={{ padding: "16px 8px 18px" }}>
-                    <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "29px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12 }}>Система обнаружила скрытые причины потери денег</span>
+                    <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "29px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12 }}>Обнаружены причины потерь</span>
                   </div>
 
                   {/* cause cards on beige (flip on click) */}
