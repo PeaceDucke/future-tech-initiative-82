@@ -1390,10 +1390,6 @@ function BeforeAfterSection() {
 
   return (
     <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
-      {/* ambient glows */}
-      <div style={{ position: "absolute", top: "10%", left: "-5%", width: "40%", height: "60%", background: "radial-gradient(ellipse, rgba(255,107,107,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: "8%", right: "-5%", width: "42%", height: "62%", background: "radial-gradient(ellipse, rgba(212,176,116,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
-
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
         {/* heading */}
         <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
@@ -1481,16 +1477,17 @@ function BeforeAfterSection() {
                   initial={{ opacity: 0, x: -40 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.55, delay: 0.35 + i * 0.1 }}
-                  className="group"
+                  className="group sfs-before-row"
                   style={{
-                    background: "linear-gradient(135deg, rgba(40,22,22,0.55) 0%, rgba(20,20,20,0.6) 100%)",
-                    border: "1px solid rgba(255,107,107,0.18)",
+                    background: "linear-gradient(135deg, #2a2c30 0%, #16181b 38%, #0c0d0f 70%, #1d1f23 100%)",
+                    border: "1px solid rgba(255,107,107,0.28)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.5)",
                     borderRadius: "18px",
                     padding: "22px 26px",
                     display: "flex",
                     alignItems: "center",
                     gap: "20px",
-                    transition: "transform 0.3s ease, border-color 0.3s ease",
+                    transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
                   }}
                 >
                   <Icon name="X" size={20} style={{ color: RED, flexShrink: 0, opacity: 0.7 }} />
@@ -1604,6 +1601,11 @@ function BeforeAfterSection() {
         .sfs-after-row:hover {
           transform: translateX(4px);
           border-color: rgba(212,176,116,0.50) !important;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.5), 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .sfs-before-row:hover {
+          transform: translateX(-4px);
+          border-color: rgba(255,107,107,0.5) !important;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.5), 0 8px 40px rgba(0,0,0,0.5);
         }
       `}</style>
