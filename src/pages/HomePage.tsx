@@ -1347,6 +1347,269 @@ function SplineFeatureSection() {
   );
 }
 
+// ─── Before / After Section ─────────────────────────────────────────────────────
+function BeforeAfterSection() {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const RED = "#FF6B6B";
+  const GREEN = "#4ADE80";
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const rows = [
+    {
+      before: { value: "30–40%", label: "звонков слушают выборочно" },
+      after: { value: "100%", label: "звонков под контролем AI" },
+    },
+    {
+      before: { value: "На глаз", label: "оценка работы менеджеров" },
+      after: { value: "По фактам", label: "честный рейтинг и аналитика" },
+    },
+    {
+      before: { value: "Теряются", label: "возражения остаются без ответа" },
+      after: { value: "Закрыты", label: "AI подсказывает, что сказать" },
+    },
+    {
+      before: { value: "Часы", label: "на ручную проверку звонков" },
+      after: { value: "Секунды", label: "отчёт готов автоматически" },
+    },
+    {
+      before: { value: "Догадки", label: "почему падает выручка" },
+      after: { value: "+8–23%", label: "рост конверсии по данным" },
+    },
+  ];
+
+  const labelCss: React.CSSProperties = {
+    fontFamily: "Inter, sans-serif",
+    fontSize: "11px",
+    letterSpacing: "0.22em",
+    textTransform: "uppercase",
+    fontWeight: 600,
+  };
+
+  return (
+    <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+      {/* ambient glows */}
+      <div style={{ position: "absolute", top: "10%", left: "-5%", width: "40%", height: "60%", background: "radial-gradient(ellipse, rgba(255,107,107,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: "8%", right: "-5%", width: "42%", height: "62%", background: "radial-gradient(ellipse, rgba(212,176,116,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+      <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
+        {/* heading */}
+        <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-center gap-3"
+            style={{ marginBottom: "20px" }}
+          >
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+            <span style={{ ...labelCss, color: G }}>Трансформация отдела продаж</span>
+            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.1 }}
+          >
+            Как меняется бизнес <span style={{ color: G, fontStyle: "italic" }}>с нами</span>
+          </motion.h2>
+        </div>
+
+        {/* comparison */}
+        <div style={{ position: "relative" }}>
+          {/* desktop column headers */}
+          <div className="hidden lg:grid" style={{ gridTemplateColumns: "1fr 120px 1fr", alignItems: "center", marginBottom: "26px" }}>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex items-center gap-3"
+            >
+              <div style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,107,107,0.10)", border: "1px solid rgba(255,107,107,0.28)" }}>
+                <Icon name="TrendingDown" size={22} style={{ color: RED }} />
+              </div>
+              <div>
+                <div style={{ ...labelCss, color: RED, fontSize: "12px" }}>До SalesFlow</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
+              </div>
+            </motion.div>
+            <div />
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex items-center gap-3 justify-end"
+              style={{ textAlign: "right" }}
+            >
+              <div>
+                <div style={{ ...labelCss, color: GREEN, fontSize: "12px" }}>С SalesFlow</div>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
+              </div>
+              <div style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.32)" }}>
+                <Icon name="TrendingUp" size={22} style={{ color: G }} />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* center glowing divider (desktop) */}
+          <motion.div
+            className="hidden lg:block"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={inView ? { opacity: 1, scaleY: 1 } : {}}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            style={{
+              position: "absolute",
+              top: "70px",
+              bottom: "0",
+              left: "50%",
+              width: "1px",
+              transformOrigin: "top",
+              background: "linear-gradient(to bottom, transparent, rgba(212,176,116,0.5), transparent)",
+              zIndex: 1,
+            }}
+          />
+
+          {/* rows */}
+          <div className="flex flex-col" style={{ gap: "16px" }}>
+            {rows.map((row, i) => (
+              <div key={i} className="grid grid-cols-1 lg:grid-cols-[1fr_120px_1fr]" style={{ alignItems: "stretch", gap: "16px" }}>
+                {/* before */}
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.55, delay: 0.35 + i * 0.1 }}
+                  className="group"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(40,22,22,0.55) 0%, rgba(20,20,20,0.6) 100%)",
+                    border: "1px solid rgba(255,107,107,0.18)",
+                    borderRadius: "18px",
+                    padding: "22px 26px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    transition: "transform 0.3s ease, border-color 0.3s ease",
+                  }}
+                >
+                  <Icon name="X" size={20} style={{ color: RED, flexShrink: 0, opacity: 0.7 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: RED, fontWeight: 600, lineHeight: 1.05 }}>{row.before.value}</div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.62)", marginTop: "6px", lineHeight: 1.4 }}>{row.before.label}</div>
+                  </div>
+                </motion.div>
+
+                {/* center arrow */}
+                <div className="hidden lg:flex items-center justify-center" style={{ position: "relative", zIndex: 2 }}>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.5 + i * 0.1, type: "spring", stiffness: 200 }}
+                    style={{
+                      width: "46px", height: "46px", borderRadius: "50%",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      background: "#151513",
+                      border: "1px solid rgba(212,176,116,0.4)",
+                      boxShadow: "0 0 24px rgba(212,176,116,0.25)",
+                    }}
+                  >
+                    <Icon name="ArrowRight" size={20} style={{ color: G }} />
+                  </motion.div>
+                </div>
+
+                {/* mobile arrow */}
+                <div className="flex lg:hidden items-center justify-center" style={{ margin: "-4px 0" }}>
+                  <Icon name="ArrowDown" size={20} style={{ color: G }} />
+                </div>
+
+                {/* after */}
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.55, delay: 0.45 + i * 0.1 }}
+                  className="group sfs-after-row"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(212,176,116,0.10) 0%, rgba(74,222,128,0.06) 100%)",
+                    border: "1px solid rgba(212,176,116,0.28)",
+                    borderRadius: "18px",
+                    padding: "22px 26px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                    transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+                  }}
+                >
+                  <div style={{ width: "32px", height: "32px", borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(74,222,128,0.14)" }}>
+                    <Icon name="Check" size={18} style={{ color: GREEN }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: G, fontWeight: 600, lineHeight: 1.05, textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>{row.after.value}</div>
+                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, opacity: 0.85, marginTop: "6px", lineHeight: 1.4 }}>{row.after.label}</div>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+
+          {/* bottom result banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.35 + rows.length * 0.1 }}
+            style={{
+              marginTop: "40px",
+              background: "linear-gradient(120deg, rgba(212,176,116,0.14) 0%, rgba(21,21,19,0.9) 60%)",
+              border: "1px solid rgba(212,176,116,0.32)",
+              borderRadius: "24px",
+              padding: "clamp(28px, 4vw, 44px) clamp(28px, 5vw, 56px)",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "24px",
+              boxShadow: "0 30px 80px rgba(0,0,0,0.4)",
+            }}
+          >
+            <div style={{ maxWidth: "620px" }}>
+              <div style={{ ...labelCss, color: G, marginBottom: "12px" }}>Итог</div>
+              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 3.4vw, 42px)", color: W, lineHeight: 1.12, fontWeight: 500 }}>
+                Та же команда. Тот же трафик.<br />
+                <span style={{ color: G, fontStyle: "italic" }}>Совсем другая выручка.</span>
+              </div>
+            </div>
+            <a
+              href="#cta"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "12px",
+                background: G, color: "#151513",
+                padding: "18px 36px", borderRadius: "999px",
+                fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "17px",
+                textDecoration: "none", whiteSpace: "nowrap",
+                boxShadow: "0 12px 40px rgba(212,176,116,0.35)",
+                transition: "transform 0.25s ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-2px)")}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+            >
+              Хочу так же
+              <Icon name="ArrowRight" size={20} />
+            </a>
+          </motion.div>
+        </div>
+      </div>
+
+      <style>{`
+        .sfs-after-row:hover {
+          transform: translateX(4px);
+          border-color: rgba(212,176,116,0.55) !important;
+          box-shadow: 0 8px 40px rgba(212,176,116,0.18);
+        }
+      `}</style>
+    </section>
+  );
+}
+
 // ─── AI Pipeline Section ───────────────────────────────────────────────────────
 function PipelineSection() {
   // measure the AI-vision heading block so the connector line stops at its top,
@@ -3791,6 +4054,9 @@ export function HomePage() {
 
         {/* ═══ SPLINE FEATURE ═══ */}
         <SplineFeatureSection />
+
+        {/* ═══ BEFORE / AFTER ═══ */}
+        <BeforeAfterSection />
 
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
