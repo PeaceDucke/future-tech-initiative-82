@@ -1479,7 +1479,7 @@ function BeforeAfterSection() {
                   transition={{ duration: 0.55, delay: 0.35 + i * 0.1 }}
                   className="group sfs-before-row"
                   style={{
-                    background: "linear-gradient(135deg, #2a2c30 0%, #16181b 38%, #0c0d0f 70%, #1d1f23 100%)",
+                    background: "linear-gradient(135deg, #2c2c28 0%, #1d1d1a 38%, #161614 70%, #232320 100%)",
                     border: "1px solid rgba(255,107,107,0.28)",
                     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.5)",
                     borderRadius: "18px",
@@ -1527,7 +1527,7 @@ function BeforeAfterSection() {
                   transition={{ duration: 0.55, delay: 0.45 + i * 0.1 }}
                   className="group sfs-after-row"
                   style={{
-                    background: "linear-gradient(135deg, #2a2c30 0%, #16181b 38%, #0c0d0f 70%, #1d1f23 100%)",
+                    background: "linear-gradient(135deg, #2c2c28 0%, #1d1d1a 38%, #161614 70%, #232320 100%)",
                     border: "1px solid rgba(212,176,116,0.30)",
                     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.5)",
                     borderRadius: "18px",
