@@ -1530,8 +1530,9 @@ function BeforeAfterSection() {
                   transition={{ duration: 0.55, delay: 0.45 + i * 0.1 }}
                   className="group sfs-after-row"
                   style={{
-                    background: "linear-gradient(135deg, rgba(212,176,116,0.10) 0%, rgba(74,222,128,0.06) 100%)",
-                    border: "1px solid rgba(212,176,116,0.28)",
+                    background: "linear-gradient(135deg, #2a2c30 0%, #16181b 38%, #0c0d0f 70%, #1d1f23 100%)",
+                    border: "1px solid rgba(212,176,116,0.30)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.5)",
                     borderRadius: "18px",
                     padding: "22px 26px",
                     display: "flex",
@@ -1602,8 +1603,8 @@ function BeforeAfterSection() {
       <style>{`
         .sfs-after-row:hover {
           transform: translateX(4px);
-          border-color: rgba(212,176,116,0.55) !important;
-          box-shadow: 0 8px 40px rgba(212,176,116,0.18);
+          border-color: rgba(212,176,116,0.50) !important;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.5), 0 8px 40px rgba(0,0,0,0.5);
         }
       `}</style>
     </section>
