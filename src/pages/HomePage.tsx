@@ -1539,8 +1539,8 @@ function BeforeAfterSection() {
             transition={{ duration: 0.7, delay: 0.35 + rows.length * 0.1 }}
             style={{
               marginTop: "40px",
-              background: "linear-gradient(120deg, rgba(212,176,116,0.14) 0%, rgba(21,21,19,0.9) 60%)",
-              border: "1px solid rgba(212,176,116,0.32)",
+              background: "linear-gradient(135deg, #1a1a17 0%, #131311 42%, #0d0d0c 72%, #16150f 100%)",
+              border: "1px solid rgba(212,176,116,0.28)",
               borderRadius: "24px",
               padding: "clamp(28px, 4vw, 44px) clamp(28px, 5vw, 56px)",
               display: "flex",
@@ -1548,7 +1548,7 @@ function BeforeAfterSection() {
               alignItems: "center",
               justifyContent: "space-between",
               gap: "24px",
-              boxShadow: "0 30px 80px rgba(0,0,0,0.4)",
+              boxShadow: "inset 0 1px 0 rgba(255,236,200,0.10), inset 0 -1px 0 rgba(0,0,0,0.5), 0 30px 80px rgba(0,0,0,0.45)",
             }}
           >
             <div style={{ maxWidth: "620px" }}>
