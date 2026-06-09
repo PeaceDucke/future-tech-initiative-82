@@ -1213,13 +1213,6 @@ function SplineFeatureSection() {
           transform: inView ? "translateY(0)" : "translateY(24px)",
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}>
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>
-              AI-аналитика звонков
-            </span>
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-          </div>
           <h2 style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(30px, 4.5vw, 58px)",
@@ -1393,17 +1386,6 @@ function BeforeAfterSection() {
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
         {/* heading */}
         <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="flex items-center justify-center gap-3"
-            style={{ marginBottom: "20px" }}
-          >
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span style={{ ...labelCss, color: G }}>Трансформация отдела продаж</span>
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
