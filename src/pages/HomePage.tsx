@@ -3246,7 +3246,18 @@ export function HomePage() {
                 }}
               >
                 <span style={{ display: "block", marginLeft: "-5rem" }}>Ваши продажи</span>
-                <span style={{ color: "#D4B074", display: "block", whiteSpace: "nowrap", paddingLeft: "25%", marginTop: "-0.5rem" }}>под контролем</span>
+                <span style={{
+                  display: "block",
+                  whiteSpace: "nowrap",
+                  paddingLeft: "25%",
+                  marginTop: "-0.5rem",
+                  backgroundImage: "linear-gradient(135deg, #FBE7C0 0%, #E8C786 28%, #D4B074 55%, #A47B3C 80%, #6E4F22 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.25))",
+                }}>под контролем</span>
               </motion.h1>
 
               <motion.p
