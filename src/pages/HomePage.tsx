@@ -1575,7 +1575,7 @@ function BeforeAfterSection() {
               onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(212,176,116,0.85)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(212,176,116,0.45)"; }}
             >
-              Хочу так же
+              Узнать стоимость
               <Icon name="ArrowRight" size={18} />
             </a>
           </motion.div>
