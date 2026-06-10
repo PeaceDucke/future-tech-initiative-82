@@ -1561,19 +1561,22 @@ function BeforeAfterSection() {
             <a
               href="#cta"
               style={{
-                display: "inline-flex", alignItems: "center", gap: "12px",
-                background: G, color: "#151513",
-                padding: "18px 36px", borderRadius: "999px",
-                fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "17px",
+                display: "inline-flex", alignItems: "center", gap: "14px",
+                background: "linear-gradient(135deg, #1c1b17 0%, #141310 50%, #1a1814 100%)",
+                color: G,
+                padding: "18px 38px", borderRadius: "10px",
+                border: "1px solid rgba(212,176,116,0.45)",
+                fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px",
+                letterSpacing: "0.04em", textTransform: "uppercase",
                 textDecoration: "none", whiteSpace: "nowrap",
-                boxShadow: "0 12px 40px rgba(212,176,116,0.35)",
-                transition: "transform 0.25s ease",
+                boxShadow: "inset 0 1px 0 rgba(255,236,200,0.10), 0 10px 30px rgba(0,0,0,0.45)",
+                transition: "border-color 0.25s ease, transform 0.25s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-2px)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(212,176,116,0.85)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = "rgba(212,176,116,0.45)"; }}
             >
               Хочу так же
-              <Icon name="ArrowRight" size={20} />
+              <Icon name="ArrowRight" size={18} />
             </a>
           </motion.div>
         </div>
