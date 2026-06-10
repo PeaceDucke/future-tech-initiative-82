@@ -1340,6 +1340,121 @@ function SplineFeatureSection() {
   );
 }
 
+// ─── Audience Section (Для кого подходит) ───────────────────────────────────────
+function AudienceSection() {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const items = [
+    { icon: "Users", title: "Отделы продаж", desc: "от 5 менеджеров и больше" },
+    { icon: "Headphones", title: "Колл-центры", desc: "большой поток входящих и исходящих" },
+    { icon: "Car", title: "Автодилеры", desc: "длинный цикл и дорогая сделка" },
+    { icon: "Stethoscope", title: "Медицина", desc: "клиники и медицинские центры" },
+    { icon: "Building2", title: "Недвижимость", desc: "агентства и застройщики" },
+    { icon: "GraduationCap", title: "Онлайн-школы", desc: "продажи курсов и обучения" },
+    { icon: "Wrench", title: "Сервисные компании", desc: "услуги, ремонт, поддержка" },
+    { icon: "ShoppingBag", title: "E-commerce", desc: "магазины с телефонными продажами" },
+  ];
+
+  return (
+    <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+      <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
+        <div ref={ref} className="text-center" style={{ marginBottom: "20px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            style={{
+              fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.22em",
+              textTransform: "uppercase", fontWeight: 600, color: G, marginBottom: "16px",
+            }}
+          >
+            Для кого подходит
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            style={{
+              fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
+              fontSize: "clamp(32px, 5vw, 58px)", lineHeight: 1.1, color: W,
+            }}
+          >
+            Чтобы человек <span style={{ color: G, fontStyle: "italic" }}>сам себя узнал</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              fontFamily: "Inter, sans-serif", fontSize: "17px", color: B,
+              maxWidth: "620px", margin: "20px auto 0", lineHeight: 1.6,
+            }}
+          >
+            SalesFlow подходит любому бизнесу, где деньги зависят от телефонных
+            разговоров и качества работы менеджеров.
+          </motion.p>
+        </div>
+
+        <div
+          className="grid"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "20px", marginTop: "56px",
+          }}
+        >
+          {items.map((it, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.15 + i * 0.07 }}
+              className="aud-card"
+              style={{
+                background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
+                border: "1px solid rgba(212,176,116,0.18)",
+                borderRadius: "18px",
+                padding: "28px 26px",
+                boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
+                transition: "transform 0.25s ease, border-color 0.25s ease",
+              }}
+            >
+              <div
+                style={{
+                  width: "48px", height: "48px", borderRadius: "12px",
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  background: "rgba(212,176,116,0.12)",
+                  border: "1px solid rgba(212,176,116,0.25)",
+                  marginBottom: "18px",
+                }}
+              >
+                <Icon name={it.icon} size={24} fallback="CircleDot" style={{ color: G }} />
+              </div>
+              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 500, marginBottom: "8px" }}>
+                {it.title}
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.5 }}>
+                {it.desc}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .aud-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(212,176,116,0.45) !important;
+        }
+      `}</style>
+    </section>
+  );
+}
+
 // ─── Before / After Section ─────────────────────────────────────────────────────
 function BeforeAfterSection() {
   const W = "#FBF6EC";
@@ -4056,6 +4171,9 @@ export function HomePage() {
 
         {/* ═══ BEFORE / AFTER ═══ */}
         <BeforeAfterSection />
+
+        {/* ═══ ДЛЯ КОГО ПОДХОДИТ ═══ */}
+        <AudienceSection />
 
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
