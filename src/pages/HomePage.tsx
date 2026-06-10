@@ -1345,34 +1345,89 @@ function AudienceSection() {
   const W = "#FBF6EC";
   const G = "#D4B074";
   const B = "#C9C2B2";
+  const GREEN = "#4ADE80";
 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const items = [
-    { icon: "Users", title: "Отделы продаж", desc: "от 5 менеджеров и больше" },
-    { icon: "Headphones", title: "Колл-центры", desc: "большой поток входящих и исходящих" },
-    { icon: "Car", title: "Автодилеры", desc: "длинный цикл и дорогая сделка" },
-    { icon: "Stethoscope", title: "Медицина", desc: "клиники и медицинские центры" },
-    { icon: "Building2", title: "Недвижимость", desc: "агентства и застройщики" },
-    { icon: "GraduationCap", title: "Онлайн-школы", desc: "продажи курсов и обучения" },
-    { icon: "Wrench", title: "Сервисные компании", desc: "услуги, ремонт, поддержка" },
-    { icon: "ShoppingBag", title: "E-commerce", desc: "магазины с телефонными продажами" },
+    {
+      icon: "PhoneCall",
+      tag: "Отделы продаж",
+      pain: "«Не понимаю, кто из менеджеров сливает заявки»",
+      gain: "Видите каждый звонок и слабые места команды",
+      metric: "+23%",
+      metricLabel: "к конверсии за квартал",
+    },
+    {
+      icon: "Headphones",
+      tag: "Колл-центры",
+      pain: "«Тысячи звонков — а слушаем только 5%»",
+      gain: "100% разговоров под автоконтролем качества",
+      metric: "20×",
+      metricLabel: "больше проверенных звонков",
+    },
+    {
+      icon: "Car",
+      tag: "Автодилеры",
+      pain: "«Дорогой лид ушёл к конкуренту»",
+      gain: "Ни одна горячая заявка не теряется",
+      metric: "−40%",
+      metricLabel: "упущенных сделок",
+    },
+    {
+      icon: "Stethoscope",
+      tag: "Клиники и медцентры",
+      pain: "«Пациент записался, но так и не дошёл»",
+      gain: "Контроль записи и вежливости администраторов",
+      metric: "+31%",
+      metricLabel: "доходимость до приёма",
+    },
+    {
+      icon: "Building2",
+      tag: "Недвижимость",
+      pain: "«Риелтор забыл перезвонить по объекту»",
+      gain: "Каждый звонок отработан по скрипту",
+      metric: "+18%",
+      metricLabel: "к закрытым сделкам",
+    },
+    {
+      icon: "GraduationCap",
+      tag: "Онлайн-школы",
+      pain: "«Менеджер не отработал возражение по цене»",
+      gain: "AI подсказывает, где упускают оплату",
+      metric: "+27%",
+      metricLabel: "к выручке с потока",
+    },
   ];
 
   return (
     <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+      {/* мягкое золотое свечение по центру */}
+      <div
+        style={{
+          position: "absolute", top: "12%", left: "50%", transform: "translateX(-50%)",
+          width: "760px", height: "420px", pointerEvents: "none",
+          background: "radial-gradient(ellipse at center, rgba(212,176,116,0.10) 0%, transparent 70%)",
+          filter: "blur(20px)", zIndex: 1,
+        }}
+      />
+
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
-        <div ref={ref} className="text-center" style={{ marginBottom: "20px" }}>
+        <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             style={{
+              display: "inline-flex", alignItems: "center", gap: "10px",
               fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.22em",
-              textTransform: "uppercase", fontWeight: 600, color: G, marginBottom: "16px",
+              textTransform: "uppercase", fontWeight: 600, color: G, marginBottom: "18px",
+              padding: "8px 18px", borderRadius: "999px",
+              border: "1px solid rgba(212,176,116,0.25)", background: "rgba(212,176,116,0.06)",
             }}
           >
+            <Icon name="Sparkles" size={14} style={{ color: G }} />
             Для кого подходит
           </motion.div>
           <motion.h2
@@ -1384,7 +1439,8 @@ function AudienceSection() {
               fontSize: "clamp(32px, 5vw, 58px)", lineHeight: 1.1, color: W,
             }}
           >
-            Чтобы человек <span style={{ color: G, fontStyle: "italic" }}>сам себя узнал</span>
+            Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках</span> —
+            <br className="hidden sm:block" /> вы уже теряете деньги без контроля
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -1392,63 +1448,125 @@ function AudienceSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
             style={{
               fontFamily: "Inter, sans-serif", fontSize: "17px", color: B,
-              maxWidth: "620px", margin: "20px auto 0", lineHeight: 1.6,
+              maxWidth: "640px", margin: "22px auto 0", lineHeight: 1.6,
             }}
           >
-            SalesFlow подходит любому бизнесу, где деньги зависят от телефонных
-            разговоров и качества работы менеджеров.
+            Узнайте свою нишу — и посмотрите, сколько выручки SalesFlow возвращает
+            компаниям вроде вашей.
           </motion.p>
         </div>
 
         <div
           className="grid"
           style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "20px", marginTop: "56px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "22px", marginTop: "60px",
           }}
         >
           {items.map((it, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 36 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.15 + i * 0.07 }}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="aud-card"
               style={{
+                position: "relative",
                 background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
                 border: "1px solid rgba(212,176,116,0.18)",
-                borderRadius: "18px",
-                padding: "28px 26px",
+                borderRadius: "20px",
+                padding: "30px 28px",
+                overflow: "hidden",
                 boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
-                transition: "transform 0.25s ease, border-color 0.25s ease",
+                transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
               }}
             >
-              <div
-                style={{
-                  width: "48px", height: "48px", borderRadius: "12px",
-                  display: "inline-flex", alignItems: "center", justifyContent: "center",
-                  background: "rgba(212,176,116,0.12)",
-                  border: "1px solid rgba(212,176,116,0.25)",
-                  marginBottom: "18px",
-                }}
-              >
-                <Icon name={it.icon} size={24} fallback="CircleDot" style={{ color: G }} />
+              {/* верхний бликовый штрих */}
+              <div className="aud-shine" style={{
+                position: "absolute", top: 0, left: 0, right: 0, height: "1px",
+                background: "linear-gradient(90deg, transparent, rgba(212,176,116,0.5), transparent)",
+                opacity: 0, transition: "opacity 0.3s ease",
+              }} />
+
+              <div className="flex items-center justify-between" style={{ marginBottom: "22px" }}>
+                <div
+                  className="aud-icon"
+                  style={{
+                    width: "52px", height: "52px", borderRadius: "14px",
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(212,176,116,0.12)",
+                    border: "1px solid rgba(212,176,116,0.28)",
+                    transition: "transform 0.3s ease, background 0.3s ease",
+                  }}
+                >
+                  <Icon name={it.icon} size={24} fallback="CircleDot" style={{ color: G }} />
+                </div>
+                <span style={{
+                  fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.16em",
+                  textTransform: "uppercase", fontWeight: 600, color: G,
+                  padding: "6px 12px", borderRadius: "999px",
+                  border: "1px solid rgba(212,176,116,0.22)", background: "rgba(212,176,116,0.05)",
+                }}>
+                  {it.tag}
+                </span>
               </div>
-              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 500, marginBottom: "8px" }}>
-                {it.title}
+
+              <div style={{
+                fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "21px", color: W,
+                fontStyle: "italic", lineHeight: 1.3, marginBottom: "16px", minHeight: "56px",
+              }}>
+                {it.pain}
               </div>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.5 }}>
-                {it.desc}
+
+              <div className="flex items-start gap-2" style={{ marginBottom: "22px" }}>
+                <Icon name="Check" size={16} style={{ color: GREEN, marginTop: "3px", flexShrink: 0 }} />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.5 }}>
+                  {it.gain}
+                </span>
+              </div>
+
+              <div className="flex items-baseline gap-3" style={{
+                paddingTop: "18px", borderTop: "1px solid rgba(212,176,116,0.14)",
+              }}>
+                <span style={{
+                  fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600,
+                  color: G, lineHeight: 1,
+                }}>
+                  {it.metric}
+                </span>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.3 }}>
+                  {it.metricLabel}
+                </span>
               </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.9 }}
+          className="text-center"
+          style={{
+            fontFamily: "Inter, sans-serif", fontSize: "15px", color: B,
+            marginTop: "48px", opacity: 0.85,
+          }}
+        >
+          Не нашли себя в списке? Если у вас звонят клиентам —{" "}
+          <span style={{ color: G }}>SalesFlow тоже окупится.</span>
+        </motion.p>
       </div>
 
       <style>{`
         .aud-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(212,176,116,0.45) !important;
+          transform: translateY(-6px);
+          border-color: rgba(212,176,116,0.5) !important;
+          box-shadow: inset 0 1px 0 rgba(255,236,200,0.10), 0 18px 50px rgba(0,0,0,0.55), 0 0 40px rgba(212,176,116,0.10) !important;
+        }
+        .aud-card:hover .aud-shine { opacity: 1; }
+        .aud-card:hover .aud-icon {
+          transform: scale(1.08) rotate(-4deg);
+          background: rgba(212,176,116,0.2) !important;
         }
       `}</style>
     </section>
