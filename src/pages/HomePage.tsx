@@ -1488,21 +1488,6 @@ function AudienceSection() {
 
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1720px", position: "relative", zIndex: 2 }}>
         <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "10px",
-              fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.22em",
-              textTransform: "uppercase", fontWeight: 600, color: G, marginBottom: "18px",
-              padding: "8px 18px", borderRadius: "999px",
-              border: "1px solid rgba(212,176,116,0.25)", background: "rgba(212,176,116,0.06)",
-            }}
-          >
-            <Icon name="Sparkles" size={14} style={{ color: G }} />
-            Для кого подходит
-          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1513,21 +1498,9 @@ function AudienceSection() {
               maxWidth: "1000px", margin: "0 auto",
             }}
           >
-            Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках</span> —
-            SalesFlow ваш надёжный проводник к снижению потери денег
+            Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках, заявках и консультациях</span> —
+            тогда вы уже теряете деньги там, где их не видите
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            style={{
-              fontFamily: "Inter, sans-serif", fontSize: "17px", color: B,
-              maxWidth: "720px", margin: "24px auto 0", lineHeight: 1.6,
-            }}
-          >
-            Мы подходим бизнесам, где клиент сначала спрашивает, сомневается,
-            сравнивает, а потом принимает решение через менеджера.
-          </motion.p>
         </div>
 
         {/* ── Блок 1 ── */}
