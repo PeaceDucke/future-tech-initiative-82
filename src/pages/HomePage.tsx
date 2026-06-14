@@ -1607,26 +1607,6 @@ function AudienceSection() {
           </p>
         </motion.div>
 
-        {/* ── Финальный вывод ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-center"
-          style={{
-            marginTop: "64px", padding: "44px 32px", borderRadius: "22px",
-            background: "linear-gradient(135deg, rgba(212,176,116,0.12) 0%, rgba(20,20,20,0.4) 60%)",
-            border: "1px solid rgba(212,176,116,0.28)",
-          }}
-        >
-          <p style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 3vw, 32px)",
-            color: W, lineHeight: 1.35, fontWeight: 500, maxWidth: "860px", margin: "0 auto",
-          }}>
-            Если у вас есть менеджеры, звонки, заявки и сделки — значит, внутри
-            разговоров уже есть <span style={{ color: G, fontStyle: "italic" }}>деньги, которые можно вернуть</span>.
-          </p>
-        </motion.div>
       </div>
 
       <style>{`
