@@ -1530,12 +1530,13 @@ function AudienceSection() {
           className="text-center"
           style={{ marginTop: "80px", marginBottom: "40px" }}
         >
-          <h3 style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.8vw, 34px)",
-            color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "760px", margin: "0 auto",
+          <h3 className="aud-subhead" style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
+            color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "1100px", margin: "0 auto",
           }}>
             Когда каждый день идут десятки или сотни разговоров
           </h3>
+          <div className="gold-bar" />
         </motion.div>
 
         <div ref={blockOneRef} className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
@@ -1634,6 +1635,35 @@ function AudienceSection() {
         .aud-card:hover .aud-icon {
           transform: scale(1.08) rotate(-4deg);
           background: rgba(212,176,116,0.2) !important;
+        }
+        @media (min-width: 640px) {
+          .aud-subhead { white-space: nowrap; }
+        }
+        .gold-bar {
+          position: relative;
+          width: 180px;
+          height: 2px;
+          margin: 18px auto 0;
+          border-radius: 2px;
+          background: linear-gradient(90deg, rgba(212,176,116,0) 0%, rgba(212,176,116,0.45) 50%, rgba(212,176,116,0) 100%);
+          overflow: hidden;
+        }
+        .gold-bar::after {
+          content: "";
+          position: absolute;
+          top: 0; left: 0;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent 0%, rgba(255,245,220,0.15) 30%, rgba(255,236,190,0.95) 50%, rgba(255,245,220,0.15) 70%, transparent 100%);
+          filter: blur(0.4px);
+          animation: goldShine 4.5s ease-in-out infinite;
+        }
+        @keyframes goldShine {
+          0%   { left: -60%; opacity: 0; }
+          12%  { opacity: 1; }
+          40%  { left: 100%; opacity: 1; }
+          50%  { left: 100%; opacity: 0; }
+          100% { left: 100%; opacity: 0; }
         }
       `}</style>
     </section>
