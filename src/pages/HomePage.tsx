@@ -1641,7 +1641,8 @@ function AudienceSection() {
         }
         .gold-bar {
           position: relative;
-          width: 180px;
+          width: 420px;
+          max-width: 80%;
           height: 2px;
           margin: 18px auto 0;
           border-radius: 2px;
