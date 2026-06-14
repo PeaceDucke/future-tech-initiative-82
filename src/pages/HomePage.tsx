@@ -1341,9 +1341,9 @@ function SplineFeatureSection() {
 }
 
 // ─── Audience Card ──────────────────────────────────────────────────────────────
-function AudienceCard({ it, i, inView, W, G, B, RED }: {
-  it: { icon: string; tag: string; desc: string; pain: string };
-  i: number; inView: boolean; W: string; G: string; B: string; RED: string;
+function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
+  it: { icon: string; tag: string; desc: string; gain: string };
+  i: number; inView: boolean; W: string; G: string; B: string; GREEN: string;
 }) {
   // карточки прилетают с разных сторон: слева / снизу / справа
   const fromX = i % 3 === 0 ? -90 : i % 3 === 2 ? 90 : 0;
@@ -1397,19 +1397,25 @@ function AudienceCard({ it, i, inView, W, G, B, RED }: {
       </p>
 
       <div style={{
-        paddingTop: "24px", borderTop: "1px solid rgba(255,107,107,0.18)",
+        paddingTop: "24px", borderTop: "1px solid rgba(74,222,128,0.2)",
       }}>
         <div className="flex items-center gap-2" style={{ marginBottom: "10px" }}>
-          <Icon name="AlertTriangle" size={16} style={{ color: RED, flexShrink: 0 }} />
+          <span style={{
+            width: "26px", height: "26px", borderRadius: "8px", flexShrink: 0,
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            background: "rgba(74,222,128,0.14)", border: "1px solid rgba(74,222,128,0.35)",
+          }}>
+            <Icon name="Check" size={15} style={{ color: GREEN }} />
+          </span>
           <span style={{
             fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.14em",
-            textTransform: "uppercase", fontWeight: 600, color: RED, opacity: 0.9,
+            textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95,
           }}>
-            Боль
+            Что получит бизнес
           </span>
         </div>
         <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
-          {it.pain}
+          {it.gain}
         </p>
       </div>
     </motion.div>
@@ -1421,7 +1427,7 @@ function AudienceSection() {
   const W = "#FBF6EC";
   const G = "#D4B074";
   const B = "#C9C2B2";
-  const RED = "#FF6B6B";
+  const GREEN = "#4ADE80";
 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -1431,19 +1437,19 @@ function AudienceSection() {
       icon: "Briefcase",
       tag: "Отделы продаж B2B и B2C",
       desc: "Для компаний, где менеджеры обрабатывают входящие заявки, проводят консультации, презентуют продукт и закрывают сделки.",
-      pain: "Руководитель видит только итог в CRM, но не понимает, где именно теряется клиент.",
+      gain: "Видите каждый этап сделки и точно знаете, где теряется клиент — конверсия растёт без расширения штата.",
     },
     {
       icon: "Headphones",
       tag: "Колл-центры и контакт-центры",
       desc: "Для команд, где много звонков, операторов и повторяющихся сценариев общения.",
-      pain: "Невозможно вручную проверить качество каждого разговора и понять, кто работает по стандарту, а кто просто «говорит как привык».",
+      gain: "Автоматически проверяете 100% разговоров и видите, кто работает по стандарту, а кому нужна помощь — качество растёт по всей команде.",
     },
     {
       icon: "Wrench",
       tag: "Сервисные компании с заявками",
       desc: "Ремонт, услуги, доставка, монтаж, поддержка, выездные специалисты, локальные сервисы.",
-      pain: "Клиент оставляет заявку, но часть обращений теряется из-за долгого ответа, слабой консультации или отсутствия следующего шага.",
+      gain: "Ни одна заявка не теряется: видите задержки в ответах и слабые консультации, доводите клиента до следующего шага.",
     },
   ];
 
@@ -1452,19 +1458,19 @@ function AudienceSection() {
       icon: "Stethoscope",
       tag: "Клиники, медцентры и эстетика",
       desc: "Для бизнесов, где запись зависит от качества консультации администратора или менеджера.",
-      pain: "Пациент интересуется услугой, но не записывается, потому что ему не объяснили ценность, не сняли сомнение или не довели до визита.",
+      gain: "Администраторы объясняют ценность и снимают сомнения — больше пациентов записываются и доходят до визита.",
     },
     {
       icon: "Building2",
       tag: "Недвижимость, авто и премиум",
       desc: "Автодилеры, агентства недвижимости, ремонт под ключ, юридические услуги, консалтинг, премиальные услуги.",
-      pain: "Лид дорогой, решение сложное, клиент сравнивает варианты, а менеджер может потерять сделку одним слабым разговором.",
+      gain: "Каждый дорогой лид отработан по скрипту — менеджер не теряет сделку, и вы выигрываете у конкурентов в сравнении.",
     },
     {
       icon: "GraduationCap",
       tag: "Онлайн-образование и эксперты",
       desc: "Онлайн-школы, курсы, наставничество, консультации, образовательные программы.",
-      pain: "Клиент сомневается в цене, результате и доверии к продукту, а менеджер не всегда умеет правильно обработать эти возражения.",
+      gain: "AI подсказывает, как закрывать возражения о цене и результате — менеджеры продают увереннее, а оплат становится больше.",
     },
   ];
 
@@ -1532,12 +1538,6 @@ function AudienceSection() {
           className="text-center"
           style={{ marginTop: "80px", marginBottom: "40px" }}
         >
-          <div style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(48px, 7vw, 80px)", color: G,
-            fontStyle: "italic", fontWeight: 600, lineHeight: 1, marginBottom: "12px",
-          }}>
-            01
-          </div>
           <h3 style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.8vw, 34px)",
             color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "760px", margin: "0 auto",
@@ -1548,7 +1548,7 @@ function AudienceSection() {
 
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
           {blockOne.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} RED={RED} />
+            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
         </div>
 
@@ -1578,12 +1578,6 @@ function AudienceSection() {
           className="text-center"
           style={{ marginTop: "96px", marginBottom: "40px" }}
         >
-          <div style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(48px, 7vw, 80px)", color: G,
-            fontStyle: "italic", fontWeight: 600, lineHeight: 1, marginBottom: "12px",
-          }}>
-            02
-          </div>
           <h3 style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.8vw, 34px)",
             color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "760px", margin: "0 auto",
@@ -1594,7 +1588,7 @@ function AudienceSection() {
 
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
           {blockTwo.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} RED={RED} />
+            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
         </div>
 
