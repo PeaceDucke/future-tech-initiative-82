@@ -1388,20 +1388,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         opacity: 0, transition: "opacity 0.3s ease", zIndex: 2,
       }} />
 
-      <div
-        className="aud-icon"
-        style={{
-          position: "relative", zIndex: 1,
-          width: "92px", height: "92px", borderRadius: "24px",
-          display: "inline-flex", alignItems: "center", justifyContent: "center",
-          background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.28)",
-          marginTop: it.img ? "240px" : "0",
-          marginBottom: "38px", transition: "transform 0.3s ease, background 0.3s ease",
-          backdropFilter: it.img ? "blur(4px)" : undefined,
-        }}
-      >
-        <Icon name={it.icon} size={44} fallback="CircleDot" style={{ color: G }} />
-      </div>
+      <div style={{ marginTop: it.img ? "300px" : "0" }} />
 
       <div style={{
         position: "relative", zIndex: 1,
