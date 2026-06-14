@@ -1346,13 +1346,14 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
   i: number; inView: boolean; W: string; G: string; B: string; GREEN: string;
 }) {
   // карточки прилетают с разных сторон: слева / снизу / справа
-  const fromX = i % 3 === 0 ? -90 : i % 3 === 2 ? 90 : 0;
-  const fromY = i % 3 === 1 ? 70 : 24;
+  const fromX = i % 3 === 0 ? -260 : i % 3 === 2 ? 260 : 0;
+  const fromY = i % 3 === 1 ? 200 : 120;
+  const fromRot = i % 3 === 0 ? -7 : i % 3 === 2 ? 7 : 0;
   return (
     <motion.div
-      initial={{ opacity: 0, x: fromX, y: fromY, scale: 0.94 }}
-      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.75, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, x: fromX, y: fromY, scale: 0.82, rotate: fromRot }}
+      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1, rotate: 0 } : {}}
+      transition={{ duration: 1.05, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] }}
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
