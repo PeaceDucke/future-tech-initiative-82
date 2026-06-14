@@ -1367,7 +1367,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       {/* фото сверху, плавно растворяющееся в фон карточки */}
       {it.img && (
         <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, height: "400px",
+          position: "absolute", top: 0, left: 0, right: 0, height: "440px",
           zIndex: 0, pointerEvents: "none",
         }}>
           <img
@@ -1375,15 +1375,10 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             alt={it.tag}
             style={{
               width: "100%", height: "100%", objectFit: "cover", display: "block",
-              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.35) 78%, rgba(0,0,0,0) 100%)",
-              maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.35) 78%, rgba(0,0,0,0) 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 22%, rgba(0,0,0,0.92) 38%, rgba(0,0,0,0.6) 54%, rgba(0,0,0,0.32) 68%, rgba(0,0,0,0.12) 82%, rgba(0,0,0,0) 95%)",
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 22%, rgba(0,0,0,0.92) 38%, rgba(0,0,0,0.6) 54%, rgba(0,0,0,0.32) 68%, rgba(0,0,0,0.12) 82%, rgba(0,0,0,0) 95%)",
             }}
           />
-          {/* тёплый тон в цвет карточки поверх фото */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(20,20,19,0) 0%, rgba(20,20,19,0.1) 40%, rgba(21,21,19,0.45) 70%, rgba(21,21,19,0.85) 88%, #151513 100%)",
-          }} />
         </div>
       )}
 
