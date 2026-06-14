@@ -1356,10 +1356,10 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
-        minHeight: "440px",
+        minHeight: "620px",
         background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
         border: "1px solid rgba(212,176,116,0.18)",
-        borderRadius: "24px", padding: "44px 38px", overflow: "hidden",
+        borderRadius: "30px", padding: "60px 52px", overflow: "hidden",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
         transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
       }}
@@ -1373,48 +1373,48 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       <div
         className="aud-icon"
         style={{
-          width: "68px", height: "68px", borderRadius: "18px",
+          width: "92px", height: "92px", borderRadius: "24px",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.28)",
-          marginBottom: "28px", transition: "transform 0.3s ease, background 0.3s ease",
+          marginBottom: "38px", transition: "transform 0.3s ease, background 0.3s ease",
         }}
       >
-        <Icon name={it.icon} size={32} fallback="CircleDot" style={{ color: G }} />
+        <Icon name={it.icon} size={44} fallback="CircleDot" style={{ color: G }} />
       </div>
 
       <div style={{
-        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W,
-        fontWeight: 500, lineHeight: 1.25, marginBottom: "18px",
+        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "38px", color: W,
+        fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
       }}>
         {it.tag}
       </div>
 
       <p style={{
-        fontFamily: "Inter, sans-serif", fontSize: "16px", color: B,
-        lineHeight: 1.6, marginBottom: "28px", flex: 1,
+        fontFamily: "Inter, sans-serif", fontSize: "20px", color: B,
+        lineHeight: 1.6, marginBottom: "36px", flex: 1,
       }}>
         {it.desc}
       </p>
 
       <div style={{
-        paddingTop: "24px", borderTop: "1px solid rgba(74,222,128,0.2)",
+        paddingTop: "32px", borderTop: "1px solid rgba(74,222,128,0.2)",
       }}>
-        <div className="flex items-center gap-2" style={{ marginBottom: "10px" }}>
+        <div className="flex items-center gap-3" style={{ marginBottom: "14px" }}>
           <span style={{
-            width: "26px", height: "26px", borderRadius: "8px", flexShrink: 0,
+            width: "34px", height: "34px", borderRadius: "11px", flexShrink: 0,
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             background: "rgba(74,222,128,0.14)", border: "1px solid rgba(74,222,128,0.35)",
           }}>
-            <Icon name="Check" size={15} style={{ color: GREEN }} />
+            <Icon name="Check" size={20} style={{ color: GREEN }} />
           </span>
           <span style={{
-            fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.14em",
+            fontFamily: "Inter, sans-serif", fontSize: "13px", letterSpacing: "0.14em",
             textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95,
           }}>
             Что получит бизнес
           </span>
         </div>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
           {it.gain}
         </p>
       </div>
@@ -1486,7 +1486,7 @@ function AudienceSection() {
         }}
       />
 
-      <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
+      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1720px", position: "relative", zIndex: 2 }}>
         <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1546,7 +1546,7 @@ function AudienceSection() {
           </h3>
         </motion.div>
 
-        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
           {blockOne.map((it, i) => (
             <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
@@ -1586,7 +1586,7 @@ function AudienceSection() {
           </h3>
         </motion.div>
 
-        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
           {blockTwo.map((it, i) => (
             <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
