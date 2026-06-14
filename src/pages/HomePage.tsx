@@ -1494,12 +1494,11 @@ function AudienceSection() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "clamp(30px, 4.6vw, 56px)", lineHeight: 1.12, color: W,
-              maxWidth: "1000px", margin: "0 auto",
+              fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18, color: W,
+              maxWidth: "1500px", margin: "0 auto",
             }}
           >
-            Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках, заявках и консультациях</span> —
-            тогда вы уже теряете деньги там, где их не видите
+            Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках, заявках и консультациях</span> — тогда вы уже теряете деньги там, где их не видите
           </motion.h2>
         </div>
 
