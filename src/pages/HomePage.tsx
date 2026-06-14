@@ -1342,7 +1342,7 @@ function SplineFeatureSection() {
 
 // ─── Audience Card ──────────────────────────────────────────────────────────────
 function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
-  it: { icon: string; tag: string; desc: string; gain: string };
+  it: { icon: string; tag: string; desc: string; gain: string; img?: string };
   i: number; inView: boolean; W: string; G: string; B: string; GREEN: string;
 }) {
   // карточки прилетают с разных сторон: слева / снизу / справа
@@ -1364,25 +1364,52 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
       }}
     >
+      {/* фото сверху, плавно растворяющееся в фон карточки */}
+      {it.img && (
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0, height: "320px",
+          zIndex: 0, pointerEvents: "none",
+        }}>
+          <img
+            src={it.img}
+            alt={it.tag}
+            style={{
+              width: "100%", height: "100%", objectFit: "cover", display: "block",
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 100%)",
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 100%)",
+            }}
+          />
+          {/* тёплый тон в цвет карточки поверх фото */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to bottom, rgba(20,20,19,0.35) 0%, rgba(21,21,19,0.7) 60%, #151513 100%)",
+          }} />
+        </div>
+      )}
+
       <div className="aud-shine" style={{
         position: "absolute", top: 0, left: 0, right: 0, height: "1px",
         background: "linear-gradient(90deg, transparent, rgba(212,176,116,0.5), transparent)",
-        opacity: 0, transition: "opacity 0.3s ease",
+        opacity: 0, transition: "opacity 0.3s ease", zIndex: 2,
       }} />
 
       <div
         className="aud-icon"
         style={{
+          position: "relative", zIndex: 1,
           width: "92px", height: "92px", borderRadius: "24px",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.28)",
+          marginTop: it.img ? "190px" : "0",
           marginBottom: "38px", transition: "transform 0.3s ease, background 0.3s ease",
+          backdropFilter: it.img ? "blur(4px)" : undefined,
         }}
       >
         <Icon name={it.icon} size={44} fallback="CircleDot" style={{ color: G }} />
       </div>
 
       <div style={{
+        position: "relative", zIndex: 1,
         fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "38px", color: W,
         fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
       }}>
@@ -1390,6 +1417,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       </div>
 
       <p style={{
+        position: "relative", zIndex: 1,
         fontFamily: "Inter, sans-serif", fontSize: "20px", color: B,
         lineHeight: 1.6, marginBottom: "36px", flex: 1,
       }}>
@@ -1397,6 +1425,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       </p>
 
       <div style={{
+        position: "relative", zIndex: 1,
         paddingTop: "32px", borderTop: "1px solid rgba(74,222,128,0.2)",
       }}>
         <div className="flex items-center gap-3" style={{ marginBottom: "14px" }}>
@@ -1435,18 +1464,21 @@ function AudienceSection() {
   const blockOne = [
     {
       icon: "Briefcase",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/991277f7-dfcc-45e9-bd9b-a8f1295d68b9.jpg",
       tag: "Отделы продаж B2B и B2C",
       desc: "Для компаний, где менеджеры обрабатывают входящие заявки, проводят консультации, презентуют продукт и закрывают сделки.",
       gain: "Видите каждый этап сделки и точно знаете, где теряется клиент — конверсия растёт без расширения штата.",
     },
     {
       icon: "Headphones",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e20956ae-3ebf-4f89-9e40-54cdf6b5b924.jpg",
       tag: "Колл-центры и контакт-центры",
       desc: "Для команд, где много звонков, операторов и повторяющихся сценариев общения.",
       gain: "Автоматически проверяете 100% разговоров и видите, кто работает по стандарту, а кому нужна помощь — качество растёт по всей команде.",
     },
     {
       icon: "Wrench",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/67a4b9e9-f26b-4609-8f00-2c7d7d2a07f7.jpg",
       tag: "Сервисные компании с заявками",
       desc: "Ремонт, услуги, доставка, монтаж, поддержка, выездные специалисты, локальные сервисы.",
       gain: "Ни одна заявка не теряется: видите задержки в ответах и слабые консультации, доводите клиента до следующего шага.",
