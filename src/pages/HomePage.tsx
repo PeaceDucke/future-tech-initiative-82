@@ -1680,6 +1680,200 @@ function AudienceSection() {
   );
 }
 
+// ─── Implementation Section (Как внедряем) ──────────────────────────────────────
+function ImplementationSection() {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const stepsRef = useRef(null);
+  const stepsInView = useInView(stepsRef, { once: true, margin: "-120px" });
+
+  const steps = [
+    {
+      icon: "PhoneCall",
+      title: "Подключаем телефонию",
+      desc: "Соединяем SalesFlow с вашей АТС или CRM. Ничего менять в работе менеджеров не нужно.",
+    },
+    {
+      icon: "SlidersHorizontal",
+      title: "Настраиваем критерии оценки",
+      desc: "Описываем под ваш бизнес, что считать хорошим разговором: скрипт, этапы, возражения.",
+    },
+    {
+      icon: "UploadCloud",
+      title: "Загружаем первые звонки",
+      desc: "AI слушает реальные разговоры вашей команды и сразу начинает находить закономерности.",
+    },
+    {
+      icon: "FileBarChart",
+      title: "Показываем отчёт",
+      desc: "Вы видите наглядную картину: кто как работает, где теряются заявки и деньги.",
+    },
+    {
+      icon: "TrendingUp",
+      title: "Даём рекомендации по росту продаж",
+      desc: "Конкретные шаги, которые поднимают конверсию — без расширения штата и лишних затрат.",
+    },
+  ];
+
+  return (
+    <section style={{ background: "#100F0E", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+      <div
+        style={{
+          position: "absolute", top: "8%", left: "50%", transform: "translateX(-50%)",
+          width: "820px", height: "440px", pointerEvents: "none",
+          background: "radial-gradient(ellipse at center, rgba(212,176,116,0.09) 0%, transparent 70%)",
+          filter: "blur(20px)", zIndex: 1,
+        }}
+      />
+
+      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px", position: "relative", zIndex: 2 }}>
+        <div ref={ref} className="text-center" style={{ marginBottom: "20px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "10px",
+              padding: "8px 18px", borderRadius: "999px", marginBottom: "26px",
+              background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
+            }}
+          >
+            <Icon name="Rocket" size={16} style={{ color: G }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
+              Как внедряем
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="quartz-text"
+            style={{
+              fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
+              fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18,
+              maxWidth: "900px", margin: "0 auto",
+            }}
+          >
+            Запуск проще, чем кажется — всего 5 шагов под ключ
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              fontFamily: "Inter, sans-serif", fontSize: "clamp(16px, 1.4vw, 19px)", color: B,
+              lineHeight: 1.6, maxWidth: "640px", margin: "24px auto 0",
+            }}
+          >
+            Никакой сложной интеграции и долгого обучения. Мы берём настройку на себя — вы просто начинаете видеть результат.
+          </motion.p>
+        </div>
+
+        {/* Шаги — вертикальный таймлайн */}
+        <div ref={stepsRef} style={{ position: "relative", marginTop: "70px", maxWidth: "880px", marginLeft: "auto", marginRight: "auto" }}>
+          {/* вертикальная линия */}
+          <div className="impl-line" style={{
+            position: "absolute", top: "20px", bottom: "20px", left: "39px", width: "2px",
+            background: "linear-gradient(180deg, rgba(212,176,116,0) 0%, rgba(212,176,116,0.4) 12%, rgba(212,176,116,0.4) 88%, rgba(212,176,116,0) 100%)",
+          }} />
+
+          {steps.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -40 }}
+              animate={stepsInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.12 + i * 0.16, ease: [0.16, 1, 0.3, 1] }}
+              className="impl-step"
+              style={{
+                position: "relative", display: "flex", alignItems: "flex-start", gap: "26px",
+                padding: "24px 28px", marginBottom: i === steps.length - 1 ? "0" : "20px",
+                borderRadius: "22px",
+                background: "linear-gradient(135deg, rgba(28,28,29,0.9) 0%, rgba(17,17,16,0.9) 100%)",
+                border: "1px solid rgba(212,176,116,0.16)",
+                boxShadow: "inset 0 1px 0 rgba(255,236,200,0.05)",
+                transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+              }}
+            >
+              {/* номер-кружок */}
+              <div className="impl-num" style={{
+                position: "relative", zIndex: 1, flexShrink: 0,
+                width: "56px", height: "56px", borderRadius: "50%",
+                display: "inline-flex", alignItems: "center", justifyContent: "center",
+                background: "linear-gradient(135deg, rgba(212,176,116,0.22) 0%, rgba(212,176,116,0.06) 100%)",
+                border: "1px solid rgba(212,176,116,0.4)",
+                fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600,
+                boxShadow: "0 0 22px rgba(212,176,116,0.15)",
+                transition: "transform 0.3s ease, background 0.3s ease",
+              }}>
+                {i + 1}
+              </div>
+
+              <div style={{ flex: 1, paddingTop: "2px" }}>
+                <div className="flex items-center gap-3" style={{ marginBottom: "8px" }}>
+                  <Icon name={s.icon} size={22} style={{ color: G, flexShrink: 0 }} />
+                  <h3 style={{
+                    fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2vw, 26px)",
+                    color: W, fontWeight: 500, lineHeight: 1.25,
+                  }}>
+                    {s.title}
+                  </h3>
+                </div>
+                <p style={{
+                  fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6,
+                }}>
+                  {s.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Снятие страха «это сложно» */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={stepsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="text-center"
+          style={{
+            marginTop: "64px", padding: "40px 32px", borderRadius: "22px",
+            maxWidth: "880px", marginLeft: "auto", marginRight: "auto",
+            background: "linear-gradient(135deg, rgba(212,176,116,0.12) 0%, rgba(20,20,20,0.4) 60%)",
+            border: "1px solid rgba(212,176,116,0.28)",
+          }}
+        >
+          <Icon name="ShieldCheck" size={30} style={{ color: G, marginBottom: "16px" }} />
+          <p style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 30px)",
+            color: W, lineHeight: 1.35, fontWeight: 500, maxWidth: "720px", margin: "0 auto",
+          }}>
+            Бояться нечего — <span style={{ color: G, fontStyle: "italic" }}>всю техническую часть мы берём на себя</span>.
+            От подключения до первого отчёта — обычно за несколько дней.
+          </p>
+        </motion.div>
+      </div>
+
+      <style>{`
+        .impl-step:hover {
+          transform: translateY(-4px);
+          border-color: rgba(212,176,116,0.45) !important;
+          box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 16px 44px rgba(0,0,0,0.5), 0 0 36px rgba(212,176,116,0.08) !important;
+        }
+        .impl-step:hover .impl-num {
+          transform: scale(1.08);
+          background: linear-gradient(135deg, rgba(212,176,116,0.34) 0%, rgba(212,176,116,0.1) 100%) !important;
+        }
+      `}</style>
+    </section>
+  );
+}
+
 // ─── Before / After Section ─────────────────────────────────────────────────────
 function BeforeAfterSection() {
   const W = "#FBF6EC";
@@ -4399,6 +4593,9 @@ export function HomePage() {
 
         {/* ═══ ДЛЯ КОГО ПОДХОДИТ ═══ */}
         <AudienceSection />
+
+        {/* ═══ КАК ВНЕДРЯЕМ ═══ */}
+        <ImplementationSection />
 
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
