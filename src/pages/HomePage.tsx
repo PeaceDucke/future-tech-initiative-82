@@ -1572,7 +1572,7 @@ function AudienceSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
-          style={{ marginTop: "96px", marginBottom: "40px" }}
+          style={{ marginTop: "150px", marginBottom: "40px" }}
         >
           <h3 className="aud-subhead quartz-text" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
@@ -1580,6 +1580,7 @@ function AudienceSection() {
           }}>
             Когда клиенту нужно объяснить ценность перед покупкой
           </h3>
+          <div className="gold-bar" />
         </motion.div>
 
         <div ref={blockTwoRef} className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
