@@ -1530,9 +1530,9 @@ function AudienceSection() {
           className="text-center"
           style={{ marginTop: "80px", marginBottom: "40px" }}
         >
-          <h3 className="aud-subhead" style={{
+          <h3 className="aud-subhead quartz-text" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
-            color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "1100px", margin: "0 auto",
+            fontWeight: 500, lineHeight: 1.25, maxWidth: "1100px", margin: "0 auto",
           }}>
             Когда каждый день идут десятки или сотни разговоров
           </h3>
@@ -1571,9 +1571,9 @@ function AudienceSection() {
           className="text-center"
           style={{ marginTop: "96px", marginBottom: "40px" }}
         >
-          <h3 style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.8vw, 34px)",
-            color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "760px", margin: "0 auto",
+          <h3 className="aud-subhead quartz-text" style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
+            fontWeight: 500, lineHeight: 1.25, maxWidth: "1100px", margin: "0 auto",
           }}>
             Когда клиенту нужно объяснить ценность перед покупкой
           </h3>
@@ -1638,6 +1638,31 @@ function AudienceSection() {
         }
         @media (min-width: 640px) {
           .aud-subhead { white-space: nowrap; }
+        }
+        .quartz-text {
+          background: linear-gradient(
+            105deg,
+            #e9e4d8 0%,
+            #ffffff 22%,
+            #ffffff 38%,
+            #fffefb 46%,
+            #ffffff 54%,
+            #d8d2c6 70%,
+            #ffffff 88%,
+            #eee9dd 100%
+          );
+          background-size: 240% 100%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          animation: quartzShift 7s ease-in-out infinite;
+          text-shadow: 0 0 22px rgba(255,255,255,0.12);
+        }
+        @keyframes quartzShift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
         .gold-bar {
           position: relative;
