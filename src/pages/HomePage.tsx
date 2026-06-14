@@ -1444,6 +1444,11 @@ function AudienceSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
+  const blockOneRef = useRef(null);
+  const blockOneInView = useInView(blockOneRef, { once: true, margin: "-120px" });
+  const blockTwoRef = useRef(null);
+  const blockTwoInView = useInView(blockTwoRef, { once: true, margin: "-120px" });
+
   const blockOne = [
     {
       icon: "Briefcase",
@@ -1533,9 +1538,9 @@ function AudienceSection() {
           </h3>
         </motion.div>
 
-        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
+        <div ref={blockOneRef} className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
           {blockOne.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} GREEN={GREEN} />
+            <AudienceCard key={i} it={it} i={i} inView={blockOneInView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
         </div>
 
@@ -1573,9 +1578,9 @@ function AudienceSection() {
           </h3>
         </motion.div>
 
-        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
+        <div ref={blockTwoRef} className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
           {blockTwo.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} GREEN={GREEN} />
+            <AudienceCard key={i} it={it} i={i} inView={blockTwoInView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
         </div>
 
