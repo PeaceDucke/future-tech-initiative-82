@@ -1340,64 +1340,127 @@ function SplineFeatureSection() {
   );
 }
 
+// ─── Audience Card ──────────────────────────────────────────────────────────────
+function AudienceCard({ it, i, inView, W, G, B, RED }: {
+  it: { icon: string; tag: string; desc: string; pain: string };
+  i: number; inView: boolean; W: string; G: string; B: string; RED: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 36 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="aud-card"
+      style={{
+        position: "relative", display: "flex", flexDirection: "column",
+        background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
+        border: "1px solid rgba(212,176,116,0.18)",
+        borderRadius: "20px", padding: "30px 28px", overflow: "hidden",
+        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
+        transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+      }}
+    >
+      <div className="aud-shine" style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: "1px",
+        background: "linear-gradient(90deg, transparent, rgba(212,176,116,0.5), transparent)",
+        opacity: 0, transition: "opacity 0.3s ease",
+      }} />
+
+      <div
+        className="aud-icon"
+        style={{
+          width: "52px", height: "52px", borderRadius: "14px",
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.28)",
+          marginBottom: "20px", transition: "transform 0.3s ease, background 0.3s ease",
+        }}
+      >
+        <Icon name={it.icon} size={24} fallback="CircleDot" style={{ color: G }} />
+      </div>
+
+      <div style={{
+        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W,
+        fontWeight: 500, lineHeight: 1.25, marginBottom: "14px",
+      }}>
+        {it.tag}
+      </div>
+
+      <p style={{
+        fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B,
+        lineHeight: 1.55, marginBottom: "22px", flex: 1,
+      }}>
+        {it.desc}
+      </p>
+
+      <div style={{
+        paddingTop: "18px", borderTop: "1px solid rgba(255,107,107,0.18)",
+      }}>
+        <div className="flex items-center gap-2" style={{ marginBottom: "8px" }}>
+          <Icon name="AlertTriangle" size={15} style={{ color: RED, flexShrink: 0 }} />
+          <span style={{
+            fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.14em",
+            textTransform: "uppercase", fontWeight: 600, color: RED, opacity: 0.9,
+          }}>
+            Боль
+          </span>
+        </div>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.55, opacity: 0.95 }}>
+          {it.pain}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
 // ─── Audience Section (Для кого подходит) ───────────────────────────────────────
 function AudienceSection() {
   const W = "#FBF6EC";
   const G = "#D4B074";
   const B = "#C9C2B2";
-  const GREEN = "#4ADE80";
+  const RED = "#FF6B6B";
 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
-  const items = [
+  const blockOne = [
     {
-      icon: "PhoneCall",
-      tag: "Отделы продаж",
-      pain: "«Не понимаю, кто из менеджеров сливает заявки»",
-      gain: "Видите каждый звонок и слабые места команды",
-      metric: "+23%",
-      metricLabel: "к конверсии за квартал",
+      icon: "Briefcase",
+      tag: "Отделы продаж B2B и B2C",
+      desc: "Для компаний, где менеджеры обрабатывают входящие заявки, проводят консультации, презентуют продукт и закрывают сделки.",
+      pain: "Руководитель видит только итог в CRM, но не понимает, где именно теряется клиент.",
     },
     {
       icon: "Headphones",
-      tag: "Колл-центры",
-      pain: "«Тысячи звонков — а слушаем только 5%»",
-      gain: "100% разговоров под автоконтролем качества",
-      metric: "20×",
-      metricLabel: "больше проверенных звонков",
+      tag: "Колл-центры и контакт-центры",
+      desc: "Для команд, где много звонков, операторов и повторяющихся сценариев общения.",
+      pain: "Невозможно вручную проверить качество каждого разговора и понять, кто работает по стандарту, а кто просто «говорит как привык».",
     },
     {
-      icon: "Car",
-      tag: "Автодилеры",
-      pain: "«Дорогой лид ушёл к конкуренту»",
-      gain: "Ни одна горячая заявка не теряется",
-      metric: "−40%",
-      metricLabel: "упущенных сделок",
+      icon: "Wrench",
+      tag: "Сервисные компании с заявками",
+      desc: "Ремонт, услуги, доставка, монтаж, поддержка, выездные специалисты, локальные сервисы.",
+      pain: "Клиент оставляет заявку, но часть обращений теряется из-за долгого ответа, слабой консультации или отсутствия следующего шага.",
     },
+  ];
+
+  const blockTwo = [
     {
       icon: "Stethoscope",
-      tag: "Клиники и медцентры",
-      pain: "«Пациент записался, но так и не дошёл»",
-      gain: "Контроль записи и вежливости администраторов",
-      metric: "+31%",
-      metricLabel: "доходимость до приёма",
+      tag: "Клиники, медцентры и эстетика",
+      desc: "Для бизнесов, где запись зависит от качества консультации администратора или менеджера.",
+      pain: "Пациент интересуется услугой, но не записывается, потому что ему не объяснили ценность, не сняли сомнение или не довели до визита.",
     },
     {
       icon: "Building2",
-      tag: "Недвижимость",
-      pain: "«Риелтор забыл перезвонить по объекту»",
-      gain: "Каждый звонок отработан по скрипту",
-      metric: "+18%",
-      metricLabel: "к закрытым сделкам",
+      tag: "Недвижимость, авто и премиум",
+      desc: "Автодилеры, агентства недвижимости, ремонт под ключ, юридические услуги, консалтинг, премиальные услуги.",
+      pain: "Лид дорогой, решение сложное, клиент сравнивает варианты, а менеджер может потерять сделку одним слабым разговором.",
     },
     {
       icon: "GraduationCap",
-      tag: "Онлайн-школы",
-      pain: "«Менеджер не отработал возражение по цене»",
-      gain: "AI подсказывает, где упускают оплату",
-      metric: "+27%",
-      metricLabel: "к выручке с потока",
+      tag: "Онлайн-образование и эксперты",
+      desc: "Онлайн-школы, курсы, наставничество, консультации, образовательные программы.",
+      pain: "Клиент сомневается в цене, результате и доверии к продукту, а менеджер не всегда умеет правильно обработать эти возражения.",
     },
   ];
 
@@ -1436,11 +1499,12 @@ function AudienceSection() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "clamp(32px, 5vw, 58px)", lineHeight: 1.1, color: W,
+              fontSize: "clamp(30px, 4.6vw, 56px)", lineHeight: 1.12, color: W,
+              maxWidth: "1000px", margin: "0 auto",
             }}
           >
             Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках</span> —
-            <br className="hidden sm:block" /> вы уже теряете деньги без контроля
+            SalesFlow ваш надёжный проводник к снижению потери денег
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -1448,113 +1512,128 @@ function AudienceSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
             style={{
               fontFamily: "Inter, sans-serif", fontSize: "17px", color: B,
-              maxWidth: "640px", margin: "22px auto 0", lineHeight: 1.6,
+              maxWidth: "720px", margin: "24px auto 0", lineHeight: 1.6,
             }}
           >
-            Узнайте свою нишу — и посмотрите, сколько выручки SalesFlow возвращает
-            компаниям вроде вашей.
+            Мы подходим бизнесам, где клиент сначала спрашивает, сомневается,
+            сравнивает, а потом принимает решение через менеджера.
           </motion.p>
         </div>
 
-        <div
-          className="grid"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "22px", marginTop: "60px",
-          }}
+        {/* ── Блок 1 ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center gap-4"
+          style={{ marginTop: "72px", marginBottom: "32px" }}
         >
-          {items.map((it, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 36 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="aud-card"
-              style={{
-                position: "relative",
-                background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
-                border: "1px solid rgba(212,176,116,0.18)",
-                borderRadius: "20px",
-                padding: "30px 28px",
-                overflow: "hidden",
-                boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
-                transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
-              }}
-            >
-              {/* верхний бликовый штрих */}
-              <div className="aud-shine" style={{
-                position: "absolute", top: 0, left: 0, right: 0, height: "1px",
-                background: "linear-gradient(90deg, transparent, rgba(212,176,116,0.5), transparent)",
-                opacity: 0, transition: "opacity 0.3s ease",
-              }} />
+          <span style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: G,
+            fontStyle: "italic", fontWeight: 500, whiteSpace: "nowrap",
+          }}>
+            01
+          </span>
+          <h3 style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)",
+            color: W, fontWeight: 500, lineHeight: 1.25,
+          }}>
+            Когда каждый день идут десятки или сотни разговоров
+          </h3>
+          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(212,176,116,0.35), transparent)" }} />
+        </motion.div>
 
-              <div className="flex items-center justify-between" style={{ marginBottom: "22px" }}>
-                <div
-                  className="aud-icon"
-                  style={{
-                    width: "52px", height: "52px", borderRadius: "14px",
-                    display: "inline-flex", alignItems: "center", justifyContent: "center",
-                    background: "rgba(212,176,116,0.12)",
-                    border: "1px solid rgba(212,176,116,0.28)",
-                    transition: "transform 0.3s ease, background 0.3s ease",
-                  }}
-                >
-                  <Icon name={it.icon} size={24} fallback="CircleDot" style={{ color: G }} />
-                </div>
-                <span style={{
-                  fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.16em",
-                  textTransform: "uppercase", fontWeight: 600, color: G,
-                  padding: "6px 12px", borderRadius: "999px",
-                  border: "1px solid rgba(212,176,116,0.22)", background: "rgba(212,176,116,0.05)",
-                }}>
-                  {it.tag}
-                </span>
-              </div>
-
-              <div style={{
-                fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "21px", color: W,
-                fontStyle: "italic", lineHeight: 1.3, marginBottom: "16px", minHeight: "56px",
-              }}>
-                {it.pain}
-              </div>
-
-              <div className="flex items-start gap-2" style={{ marginBottom: "22px" }}>
-                <Icon name="Check" size={16} style={{ color: GREEN, marginTop: "3px", flexShrink: 0 }} />
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.5 }}>
-                  {it.gain}
-                </span>
-              </div>
-
-              <div className="flex items-baseline gap-3" style={{
-                paddingTop: "18px", borderTop: "1px solid rgba(212,176,116,0.14)",
-              }}>
-                <span style={{
-                  fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600,
-                  color: G, lineHeight: 1,
-                }}>
-                  {it.metric}
-                </span>
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.3 }}>
-                  {it.metricLabel}
-                </span>
-              </div>
-            </motion.div>
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
+          {blockOne.map((it, i) => (
+            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} RED={RED} />
           ))}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.7, delay: 0.9 }}
-          className="text-center"
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
           style={{
-            fontFamily: "Inter, sans-serif", fontSize: "15px", color: B,
-            marginTop: "48px", opacity: 0.85,
+            marginTop: "28px", padding: "22px 26px", borderRadius: "16px",
+            background: "rgba(212,176,116,0.05)", border: "1px solid rgba(212,176,116,0.16)",
+            display: "flex", alignItems: "flex-start", gap: "14px",
           }}
         >
-          Не нашли себя в списке? Если у вас звонят клиентам —{" "}
-          <span style={{ color: G }}>SalesFlow тоже окупится.</span>
-        </motion.p>
+          <Icon name="ShieldCheck" size={22} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.6 }}>
+            Здесь SalesFlow работает как автоматический контроль отдела продаж:
+            слушает <span style={{ color: G }}>100% разговоров</span>, находит слабые места
+            менеджеров и показывает, где бизнес теряет заявки.
+          </p>
+        </motion.div>
+
+        {/* ── Блок 2 ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center gap-4"
+          style={{ marginTop: "80px", marginBottom: "32px" }}
+        >
+          <span style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: G,
+            fontStyle: "italic", fontWeight: 500, whiteSpace: "nowrap",
+          }}>
+            02
+          </span>
+          <h3 style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)",
+            color: W, fontWeight: 500, lineHeight: 1.25,
+          }}>
+            Когда клиенту нужно объяснить ценность перед покупкой
+          </h3>
+          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(212,176,116,0.35), transparent)" }} />
+        </motion.div>
+
+        <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
+          {blockTwo.map((it, i) => (
+            <AudienceCard key={i} it={it} i={i} inView={inView} W={W} G={G} B={B} RED={RED} />
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          style={{
+            marginTop: "28px", padding: "22px 26px", borderRadius: "16px",
+            background: "rgba(212,176,116,0.05)", border: "1px solid rgba(212,176,116,0.16)",
+            display: "flex", alignItems: "flex-start", gap: "14px",
+          }}
+        >
+          <Icon name="TrendingDown" size={22} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.6 }}>
+            В таких нишах потерянный разговор — это не просто один звонок.
+            Это <span style={{ color: G }}>потерянная заявка, рекламный бюджет и потенциальная выручка</span>.
+            SalesFlow показывает, почему клиент не дошёл до покупки.
+          </p>
+        </motion.div>
+
+        {/* ── Финальный вывод ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="text-center"
+          style={{
+            marginTop: "64px", padding: "44px 32px", borderRadius: "22px",
+            background: "linear-gradient(135deg, rgba(212,176,116,0.12) 0%, rgba(20,20,20,0.4) 60%)",
+            border: "1px solid rgba(212,176,116,0.28)",
+          }}
+        >
+          <p style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 3vw, 32px)",
+            color: W, lineHeight: 1.35, fontWeight: 500, maxWidth: "860px", margin: "0 auto",
+          }}>
+            Если у вас есть менеджеры, звонки, заявки и сделки — значит, внутри
+            разговоров уже есть <span style={{ color: G, fontStyle: "italic" }}>деньги, которые можно вернуть</span>.
+          </p>
+        </motion.div>
       </div>
 
       <style>{`
