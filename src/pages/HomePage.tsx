@@ -1367,7 +1367,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       {/* фото сверху, плавно растворяющееся в фон карточки */}
       {it.img && (
         <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, height: "320px",
+          position: "absolute", top: 0, left: 0, right: 0, height: "400px",
           zIndex: 0, pointerEvents: "none",
         }}>
           <img
@@ -1375,14 +1375,14 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             alt={it.tag}
             style={{
               width: "100%", height: "100%", objectFit: "cover", display: "block",
-              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 100%)",
-              maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.35) 78%, rgba(0,0,0,0) 100%)",
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.35) 78%, rgba(0,0,0,0) 100%)",
             }}
           />
           {/* тёплый тон в цвет карточки поверх фото */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(20,20,19,0.35) 0%, rgba(21,21,19,0.7) 60%, #151513 100%)",
+            background: "linear-gradient(to bottom, rgba(20,20,19,0) 0%, rgba(20,20,19,0.1) 40%, rgba(21,21,19,0.45) 70%, rgba(21,21,19,0.85) 88%, #151513 100%)",
           }} />
         </div>
       )}
@@ -1400,7 +1400,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
           width: "92px", height: "92px", borderRadius: "24px",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.28)",
-          marginTop: it.img ? "190px" : "0",
+          marginTop: it.img ? "240px" : "0",
           marginBottom: "38px", transition: "transform 0.3s ease, background 0.3s ease",
           backdropFilter: it.img ? "blur(4px)" : undefined,
         }}
