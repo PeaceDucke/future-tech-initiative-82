@@ -1528,7 +1528,7 @@ function AudienceSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
-          style={{ marginTop: "80px", marginBottom: "40px" }}
+          style={{ marginTop: "130px", marginBottom: "40px" }}
         >
           <h3 className="aud-subhead quartz-text" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
