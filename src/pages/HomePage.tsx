@@ -1345,17 +1345,21 @@ function AudienceCard({ it, i, inView, W, G, B, RED }: {
   it: { icon: string; tag: string; desc: string; pain: string };
   i: number; inView: boolean; W: string; G: string; B: string; RED: string;
 }) {
+  // карточки прилетают с разных сторон: слева / снизу / справа
+  const fromX = i % 3 === 0 ? -90 : i % 3 === 2 ? 90 : 0;
+  const fromY = i % 3 === 1 ? 70 : 24;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 36 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.15 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, x: fromX, y: fromY, scale: 0.94 }}
+      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.75, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
+        minHeight: "440px",
         background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
         border: "1px solid rgba(212,176,116,0.18)",
-        borderRadius: "20px", padding: "30px 28px", overflow: "hidden",
+        borderRadius: "24px", padding: "44px 38px", overflow: "hidden",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
         transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
       }}
@@ -1369,34 +1373,34 @@ function AudienceCard({ it, i, inView, W, G, B, RED }: {
       <div
         className="aud-icon"
         style={{
-          width: "52px", height: "52px", borderRadius: "14px",
+          width: "68px", height: "68px", borderRadius: "18px",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.28)",
-          marginBottom: "20px", transition: "transform 0.3s ease, background 0.3s ease",
+          marginBottom: "28px", transition: "transform 0.3s ease, background 0.3s ease",
         }}
       >
-        <Icon name={it.icon} size={24} fallback="CircleDot" style={{ color: G }} />
+        <Icon name={it.icon} size={32} fallback="CircleDot" style={{ color: G }} />
       </div>
 
       <div style={{
-        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W,
-        fontWeight: 500, lineHeight: 1.25, marginBottom: "14px",
+        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W,
+        fontWeight: 500, lineHeight: 1.25, marginBottom: "18px",
       }}>
         {it.tag}
       </div>
 
       <p style={{
-        fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B,
-        lineHeight: 1.55, marginBottom: "22px", flex: 1,
+        fontFamily: "Inter, sans-serif", fontSize: "16px", color: B,
+        lineHeight: 1.6, marginBottom: "28px", flex: 1,
       }}>
         {it.desc}
       </p>
 
       <div style={{
-        paddingTop: "18px", borderTop: "1px solid rgba(255,107,107,0.18)",
+        paddingTop: "24px", borderTop: "1px solid rgba(255,107,107,0.18)",
       }}>
-        <div className="flex items-center gap-2" style={{ marginBottom: "8px" }}>
-          <Icon name="AlertTriangle" size={15} style={{ color: RED, flexShrink: 0 }} />
+        <div className="flex items-center gap-2" style={{ marginBottom: "10px" }}>
+          <Icon name="AlertTriangle" size={16} style={{ color: RED, flexShrink: 0 }} />
           <span style={{
             fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.14em",
             textTransform: "uppercase", fontWeight: 600, color: RED, opacity: 0.9,
@@ -1404,7 +1408,7 @@ function AudienceCard({ it, i, inView, W, G, B, RED }: {
             Боль
           </span>
         </div>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.55, opacity: 0.95 }}>
+        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
           {it.pain}
         </p>
       </div>
@@ -1525,22 +1529,21 @@ function AudienceSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center gap-4"
-          style={{ marginTop: "72px", marginBottom: "32px" }}
+          className="text-center"
+          style={{ marginTop: "80px", marginBottom: "40px" }}
         >
-          <span style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: G,
-            fontStyle: "italic", fontWeight: 500, whiteSpace: "nowrap",
+          <div style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(48px, 7vw, 80px)", color: G,
+            fontStyle: "italic", fontWeight: 600, lineHeight: 1, marginBottom: "12px",
           }}>
             01
-          </span>
+          </div>
           <h3 style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)",
-            color: W, fontWeight: 500, lineHeight: 1.25,
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.8vw, 34px)",
+            color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "760px", margin: "0 auto",
           }}>
             Когда каждый день идут десятки или сотни разговоров
           </h3>
-          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(212,176,116,0.35), transparent)" }} />
         </motion.div>
 
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
@@ -1572,22 +1575,21 @@ function AudienceSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center gap-4"
-          style={{ marginTop: "80px", marginBottom: "32px" }}
+          className="text-center"
+          style={{ marginTop: "96px", marginBottom: "40px" }}
         >
-          <span style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: G,
-            fontStyle: "italic", fontWeight: 500, whiteSpace: "nowrap",
+          <div style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(48px, 7vw, 80px)", color: G,
+            fontStyle: "italic", fontWeight: 600, lineHeight: 1, marginBottom: "12px",
           }}>
             02
-          </span>
+          </div>
           <h3 style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)",
-            color: W, fontWeight: 500, lineHeight: 1.25,
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.8vw, 34px)",
+            color: W, fontWeight: 500, lineHeight: 1.25, maxWidth: "760px", margin: "0 auto",
           }}>
             Когда клиенту нужно объяснить ценность перед покупкой
           </h3>
-          <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, rgba(212,176,116,0.35), transparent)" }} />
         </motion.div>
 
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "22px" }}>
