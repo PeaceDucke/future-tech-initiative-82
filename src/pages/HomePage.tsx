@@ -1786,19 +1786,17 @@ function ImplementationSection() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="text-center"
           style={{
-            marginTop: "64px", padding: "40px 32px", borderRadius: "22px",
-            maxWidth: "880px", marginLeft: "auto", marginRight: "auto",
-            background: "linear-gradient(135deg, rgba(212,176,116,0.12) 0%, rgba(20,20,20,0.4) 60%)",
-            border: "1px solid rgba(212,176,116,0.28)",
+            marginTop: "72px",
+            maxWidth: "1100px", marginLeft: "auto", marginRight: "auto",
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "16px",
           }}
         >
-          <Icon name="ShieldCheck" size={30} style={{ color: G, marginBottom: "16px" }} />
+          <Icon name="CircleCheckBig" size={34} style={{ color: G, flexShrink: 0 }} />
           <p style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 30px)",
-            color: W, lineHeight: 1.35, fontWeight: 500, maxWidth: "720px", margin: "0 auto",
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 30px)",
+            color: W, lineHeight: 1.35, fontWeight: 500, textAlign: "left",
           }}>
-            Бояться нечего — <span style={{ color: G, fontStyle: "italic" }}>всю техническую часть мы берём на себя</span>.
-            От подключения до первого отчёта — обычно за несколько дней.
+            Бояться нечего — <span style={{ color: G, fontStyle: "italic" }}>всю техническую часть мы берём на себя</span>, и от подключения до первого отчёта обычно проходит всего несколько дней.
           </p>
         </motion.div>
       </div>
