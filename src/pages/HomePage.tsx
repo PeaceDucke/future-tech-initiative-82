@@ -1446,8 +1446,6 @@ function AudienceSection() {
 
   const blockOneRef = useRef(null);
   const blockOneInView = useInView(blockOneRef, { once: true, margin: "-120px" });
-  const blockTwoRef = useRef(null);
-  const blockTwoInView = useInView(blockTwoRef, { once: true, margin: "-120px" });
 
   const blockOne = [
     {
@@ -1477,16 +1475,6 @@ function AudienceSection() {
       tag: "Клиники, медцентры и эстетика",
       desc: "Для бизнесов, где запись зависит от качества консультации администратора или менеджера.",
       gain: "Администраторы объясняют ценность и снимают сомнения — больше пациентов записываются и доходят до визита.",
-    },
-  ];
-
-  const blockTwo = [
-    {
-      icon: "GraduationCap",
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/410428b0-4b21-44f8-8c4f-7407a62235df.jpg",
-      tag: "Онлайн-образование и эксперты",
-      desc: "Онлайн-школы, курсы, наставничество, консультации, образовательные программы.",
-      gain: "AI подсказывает, как закрывать возражения о цене и результате — менеджеры продают увереннее, а оплат становится больше.",
     },
   ];
 
@@ -1530,7 +1518,7 @@ function AudienceSection() {
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
             fontWeight: 500, lineHeight: 1.25, maxWidth: "1100px", margin: "0 auto",
           }}>
-            Когда каждый день идут десятки или сотни разговоров
+            Где каждый день идут десятки или сотни разговоров
           </h3>
           <div className="gold-bar" />
         </motion.div>
@@ -1556,47 +1544,6 @@ function AudienceSection() {
             Здесь SalesFlow работает как автоматический контроль отдела продаж:
             слушает <span style={{ color: G }}>100% разговоров</span>, находит слабые места
             менеджеров и показывает, где бизнес теряет заявки.
-          </p>
-        </motion.div>
-
-        {/* ── Блок 2 ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center"
-          style={{ marginTop: "150px", marginBottom: "40px" }}
-        >
-          <h3 className="aud-subhead quartz-text" style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
-            fontWeight: 500, lineHeight: 1.25, maxWidth: "1100px", margin: "0 auto",
-          }}>
-            Когда клиенту нужно объяснить ценность перед покупкой
-          </h3>
-          <div className="gold-bar" />
-        </motion.div>
-
-        <div ref={blockTwoRef} className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
-          {blockTwo.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={blockTwoInView} W={W} G={G} B={B} GREEN={GREEN} />
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          style={{
-            marginTop: "28px", padding: "22px 26px", borderRadius: "16px",
-            background: "rgba(212,176,116,0.05)", border: "1px solid rgba(212,176,116,0.16)",
-            display: "flex", alignItems: "flex-start", gap: "14px",
-          }}
-        >
-          <Icon name="TrendingDown" size={22} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.6 }}>
-            В таких нишах потерянный разговор — это не просто один звонок.
-            Это <span style={{ color: G }}>потерянная заявка, рекламный бюджет и потенциальная выручка</span>.
-            SalesFlow показывает, почему клиент не дошёл до покупки.
           </p>
         </motion.div>
 
