@@ -1465,15 +1465,12 @@ function AudienceSection() {
       gain: "Автоматически проверяете 100% разговоров и видите, кто работает по стандарту, а кому нужна помощь — качество растёт по всей команде.",
     },
     {
-      icon: "Wrench",
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/67a4b9e9-f26b-4609-8f00-2c7d7d2a07f7.jpg",
-      tag: "Сервисные компании с заявками",
-      desc: "Ремонт, услуги, доставка, монтаж, поддержка, выездные специалисты, локальные сервисы.",
-      gain: "Ни одна заявка не теряется: видите задержки в ответах и слабые консультации, доводите клиента до следующего шага.",
+      icon: "Building2",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/31bf772a-18d2-439e-98f3-1a361a364f1a.jpg",
+      tag: "Недвижимость, авто и премиум",
+      desc: "Автодилеры, агентства недвижимости, ремонт под ключ, юридические услуги, консалтинг, премиальные услуги.",
+      gain: "Каждый дорогой лид отработан по скрипту — менеджер не теряет сделку, и вы выигрываете у конкурентов в сравнении.",
     },
-  ];
-
-  const blockTwo = [
     {
       icon: "Stethoscope",
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/b49f2db2-60fc-44d2-b856-50935b537e5f.jpg",
@@ -1481,13 +1478,9 @@ function AudienceSection() {
       desc: "Для бизнесов, где запись зависит от качества консультации администратора или менеджера.",
       gain: "Администраторы объясняют ценность и снимают сомнения — больше пациентов записываются и доходят до визита.",
     },
-    {
-      icon: "Building2",
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/31bf772a-18d2-439e-98f3-1a361a364f1a.jpg",
-      tag: "Недвижимость, авто и премиум",
-      desc: "Автодилеры, агентства недвижимости, ремонт под ключ, юридические услуги, консалтинг, премиальные услуги.",
-      gain: "Каждый дорогой лид отработан по скрипту — менеджер не теряет сделку, и вы выигрываете у конкурентов в сравнении.",
-    },
+  ];
+
+  const blockTwo = [
     {
       icon: "GraduationCap",
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/410428b0-4b21-44f8-8c4f-7407a62235df.jpg",
@@ -1542,7 +1535,7 @@ function AudienceSection() {
           <div className="gold-bar" />
         </motion.div>
 
-        <div ref={blockOneRef} className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "44px" }}>
+        <div ref={blockOneRef} className="aud-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px" }}>
           {blockOne.map((it, i) => (
             <AudienceCard key={i} it={it} i={i} inView={blockOneInView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
@@ -1622,6 +1615,9 @@ function AudienceSection() {
         }
         @media (min-width: 640px) {
           .aud-subhead { white-space: nowrap; }
+        }
+        @media (min-width: 1100px) {
+          .aud-grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
         }
         .quartz-text {
           background: linear-gradient(
