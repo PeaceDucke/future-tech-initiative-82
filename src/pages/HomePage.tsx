@@ -1521,7 +1521,7 @@ function AudienceSection() {
               maxWidth: "1500px", margin: "0 auto",
             }}
           >
-            Для каких бизнесов мы <span style={{ color: G, fontStyle: "italic" }}>создавали SalesFlow</span>
+            SalesFlow создан для компаний, где <span style={{ color: G, fontStyle: "italic" }}>звонки, заявки и консультации</span> напрямую влияют на выручку
           </motion.h2>
         </div>
 
