@@ -1521,7 +1521,7 @@ function AudienceSection() {
               maxWidth: "1500px", margin: "0 auto",
             }}
           >
-            Если бизнес <span style={{ color: G, fontStyle: "italic" }}>живёт на звонках, заявках и консультациях</span> — тогда вы уже теряете деньги там, где их не видите
+            Для каких бизнесов мы <span style={{ color: G, fontStyle: "italic" }}>создавали SalesFlow</span>
           </motion.h2>
         </div>
 
