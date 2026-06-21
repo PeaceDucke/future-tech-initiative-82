@@ -2169,7 +2169,7 @@ function CasesSection() {
       ],
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/b4b297c1-a2ae-4462-a87e-814d39fb47cf.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/0a34ccd5-eb4e-4c9b-aef1-3546ac78df37.jpg",
       name: "Дмитрий Корнев",
       role: "Директор по развитию",
       company: "ГринХаус",
