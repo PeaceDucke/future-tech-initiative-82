@@ -1820,17 +1820,17 @@ function ImplementationSection() {
 function CaseDonut({ value, color, label, sub }: { value: number; color: string; label: string; sub: string }) {
   const W = "#FBF6EC";
   const B = "#C9C2B2";
-  const r = 30;
+  const r = 42;
   const c = 2 * Math.PI * r;
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-      <div style={{ position: "relative", width: "76px", height: "76px" }}>
-        <svg width="76" height="76" viewBox="0 0 76 76" style={{ transform: "rotate(-90deg)" }}>
-          <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="6" />
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "11px" }}>
+      <div style={{ position: "relative", width: "104px", height: "104px" }}>
+        <svg width="104" height="104" viewBox="0 0 104 104" style={{ transform: "rotate(-90deg)" }}>
+          <circle cx="52" cy="52" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="8" />
           <motion.circle
-            cx="38" cy="38" r={r} fill="none" stroke={color} strokeWidth="6" strokeLinecap="round"
+            cx="52" cy="52" r={r} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
             strokeDasharray={c}
             initial={{ strokeDashoffset: c }}
             animate={inView ? { strokeDashoffset: c - (c * value) / 100 } : {}}
@@ -1839,14 +1839,14 @@ function CaseDonut({ value, color, label, sub }: { value: number; color: string;
         </svg>
         <div style={{
           position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", fontWeight: 600, color: W,
+          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", fontWeight: 600, color: W,
         }}>
           {sub}
         </div>
       </div>
       <span style={{
-        fontFamily: "Inter, sans-serif", fontSize: "11.5px", color: B, lineHeight: 1.3,
-        textAlign: "center", maxWidth: "110px",
+        fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.35,
+        textAlign: "center", maxWidth: "140px",
       }}>
         {label}
       </span>
@@ -1866,93 +1866,93 @@ function CaseCard({ it, i, inView }: {
   const G = "#D4B074";
   const B = "#C9C2B2";
   const GREEN = "#4ADE80";
-  const col = i % 4;
-  const fromX = col === 0 ? -160 : col === 3 ? 160 : 0;
-  const fromY = col === 1 || col === 2 ? 120 : 80;
+  const col = i % 2;
+  const fromX = col === 0 ? -120 : 120;
   return (
     <motion.div
-      initial={{ opacity: 0, x: fromX, y: fromY, scale: 0.9 }}
+      initial={{ opacity: 0, x: fromX, y: 60, scale: 0.94 }}
       animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.9, delay: 0.1 + i * 0.18, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.9, delay: 0.1 + i * 0.16, ease: [0.16, 1, 0.3, 1] }}
       className="case-card"
       style={{
-        position: "relative", display: "flex", flexDirection: "column",
+        position: "relative", display: "flex", flexDirection: "row",
         background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
-        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "26px",
-        overflow: "hidden",
-        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
-        transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "32px",
+        overflow: "hidden", minHeight: "560px",
+        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
+        transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      {/* Шапка с фото */}
-      <div style={{ position: "relative", padding: "28px 28px 0", display: "flex", alignItems: "center", gap: "16px" }}>
+      {/* Большое фото клиента — крупный план */}
+      <div className="case-photo" style={{
+        position: "relative", width: "42%", flexShrink: 0, minHeight: "100%", alignSelf: "stretch",
+        overflow: "hidden",
+      }}>
+        <img src={it.img} alt={it.name} style={{
+          position: "absolute", inset: 0, width: "100%", height: "100%",
+          objectFit: "cover", objectPosition: "center 28%", display: "block",
+        }} />
         <div style={{
-          width: "66px", height: "66px", borderRadius: "50%", overflow: "hidden", flexShrink: 0,
-          border: "2px solid rgba(212,176,116,0.5)", boxShadow: "0 6px 18px rgba(0,0,0,0.45)",
-        }}>
-          <img src={it.img} alt={it.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-        </div>
-        <div style={{ minWidth: 0 }}>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+          position: "absolute", inset: 0,
+          background: "linear-gradient(90deg, transparent 55%, rgba(20,20,18,0.55) 80%, #141414 100%), linear-gradient(180deg, transparent 60%, rgba(15,15,16,0.85) 100%)",
+        }} />
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "26px 28px" }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.2vw, 30px)", color: W, fontWeight: 500, lineHeight: 1.15 }}>
             {it.name}
           </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, marginTop: "3px", lineHeight: 1.35 }}>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, marginTop: "5px", lineHeight: 1.35 }}>
             {it.role}
           </div>
+          <span style={{
+            display: "inline-flex", alignItems: "center", gap: "8px", marginTop: "14px",
+            padding: "7px 15px", borderRadius: "999px",
+            background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.3)",
+            fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: G, fontWeight: 600,
+            backdropFilter: "blur(4px)",
+          }}>
+            <Icon name="Building2" size={14} style={{ color: G }} />
+            {it.company} · {it.tag}
+          </span>
         </div>
       </div>
 
-      {/* Бейдж компании */}
-      <div style={{ padding: "16px 28px 0" }}>
-        <span style={{
-          display: "inline-flex", alignItems: "center", gap: "8px",
-          padding: "6px 14px", borderRadius: "999px",
-          background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
-          fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, fontWeight: 600,
+      {/* Контент */}
+      <div className="case-body" style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 42px" }}>
+        <p style={{
+          margin: 0,
+          fontFamily: "Inter, sans-serif", fontSize: "17px", color: B, lineHeight: 1.65,
         }}>
-          <Icon name="Building2" size={13} style={{ color: G }} />
-          {it.company} · {it.tag}
-        </span>
-      </div>
+          <Icon name="Quote" size={20} style={{ color: G, marginRight: "8px", verticalAlign: "-3px" }} />
+          {it.quote}
+        </p>
 
-      {/* Цитата-история */}
-      <p style={{
-        padding: "18px 28px 0", margin: 0,
-        fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.6,
-      }}>
-        <Icon name="Quote" size={16} style={{ color: G, marginRight: "6px", verticalAlign: "-2px" }} />
-        {it.quote}
-      </p>
-
-      {/* Метрики — круговые диаграммы */}
-      <div style={{
-        marginTop: "24px", padding: "22px 20px 20px",
-        display: "flex", justifyContent: "space-around", gap: "10px",
-        borderTop: "1px solid rgba(212,176,116,0.12)",
-        background: "rgba(212,176,116,0.03)",
-      }}>
-        {it.metrics.map((m, k) => (
-          <CaseDonut key={k} value={m.value} sub={m.sub} color={m.color} label={m.label} />
-        ))}
-      </div>
-
-      {/* Что получил */}
-      <div style={{
-        padding: "20px 28px 28px", borderTop: "1px solid rgba(74,222,128,0.16)",
-        display: "flex", flexDirection: "column", gap: "12px", flex: 1,
-      }}>
-        <span style={{
-          fontFamily: "Inter, sans-serif", fontSize: "12px", letterSpacing: "0.14em",
-          textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95, marginBottom: "2px",
+        {/* Метрики — круговые диаграммы */}
+        <div style={{
+          marginTop: "30px", padding: "26px 4px",
+          display: "flex", justifyContent: "flex-start", gap: "34px", flexWrap: "wrap",
+          borderTop: "1px solid rgba(212,176,116,0.14)",
+          borderBottom: "1px solid rgba(212,176,116,0.14)",
         }}>
-          Результат
-        </span>
-        {it.gains.map((g, k) => (
-          <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-            <Icon name="CircleCheck" size={17} style={{ color: GREEN, marginTop: "1px", flexShrink: 0 }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.5 }}>{g}</span>
-          </div>
-        ))}
+          {it.metrics.map((m, k) => (
+            <CaseDonut key={k} value={m.value} sub={m.sub} color={m.color} label={m.label} />
+          ))}
+        </div>
+
+        {/* Что получил */}
+        <div style={{ marginTop: "26px", display: "flex", flexDirection: "column", gap: "14px", flex: 1 }}>
+          <span style={{
+            fontFamily: "Inter, sans-serif", fontSize: "12.5px", letterSpacing: "0.14em",
+            textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95, marginBottom: "2px",
+          }}>
+            Результат
+          </span>
+          {it.gains.map((g, k) => (
+            <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+              <Icon name="CircleCheck" size={20} style={{ color: GREEN, marginTop: "1px", flexShrink: 0 }} />
+              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.55 }}>{g}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
@@ -2046,8 +2046,8 @@ function CasesSection() {
         filter: "blur(20px)", zIndex: 1,
       }} />
 
-      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1480px", position: "relative", zIndex: 2 }}>
-        <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
+      <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: "1760px", position: "relative", zIndex: 2 }}>
+        <div ref={ref} className="text-center" style={{ marginBottom: "72px" }}>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -2091,7 +2091,7 @@ function CasesSection() {
           </motion.p>
         </div>
 
-        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "26px" }}>
+        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "34px" }}>
           {cases.map((it, i) => (
             <CaseCard key={i} it={it} i={i} inView={gridInView} />
           ))}
@@ -2102,13 +2102,15 @@ function CasesSection() {
         .case-card:hover {
           transform: translateY(-6px);
           border-color: rgba(212,176,116,0.45) !important;
-          box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 22px 50px rgba(0,0,0,0.55), 0 0 40px rgba(212,176,116,0.08) !important;
+          box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(212,176,116,0.1) !important;
         }
-        @media (max-width: 1180px) {
-          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 640px) {
+        @media (max-width: 1024px) {
           .cases-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 720px) {
+          .case-card { flex-direction: column !important; min-height: 0 !important; }
+          .case-photo { width: 100% !important; height: 320px !important; min-height: 320px !important; }
+          .case-body { padding: 30px 26px !important; }
         }
       `}</style>
     </section>
