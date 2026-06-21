@@ -1857,7 +1857,8 @@ function CaseDonut({ value, color, label, sub }: { value: number; color: string;
 function CaseCard({ it, i, inView }: {
   it: {
     img: string; name: string; role: string; company: string; tag: string;
-    quote: string; metrics: { value: number; sub: string; color: string; label: string }[];
+    problem: string; solution: string;
+    metrics: { value: number; sub: string; color: string; label: string }[];
     gains: string[];
   };
   i: number; inView: boolean;
@@ -1918,13 +1919,20 @@ function CaseCard({ it, i, inView }: {
 
       {/* Контент */}
       <div className="case-body" style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 42px" }}>
-        <p style={{
-          margin: 0,
-          fontFamily: "Inter, sans-serif", fontSize: "17px", color: B, lineHeight: 1.65,
-        }}>
-          <Icon name="Quote" size={20} style={{ color: G, marginRight: "8px", verticalAlign: "-3px" }} />
-          {it.quote}
-        </p>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+          <Icon name="CircleAlert" size={20} style={{ color: "#FF8B6B", marginTop: "2px", flexShrink: 0 }} />
+          <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6 }}>
+            <span style={{ color: "#FF8B6B", fontWeight: 600 }}>Пришли с проблемой: </span>
+            {it.problem}
+          </p>
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginTop: "18px" }}>
+          <Icon name="Sparkles" size={20} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
+          <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6 }}>
+            <span style={{ color: G, fontWeight: 600 }}>Что мы сделали: </span>
+            {it.solution}
+          </p>
+        </div>
 
         {/* Метрики — круговые диаграммы */}
         <div style={{
@@ -1977,7 +1985,8 @@ function CasesSection() {
       role: "Коммерческий директор",
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
-      quote: "Мы не понимали, почему крупные заявки уходят. SalesFlow показал, что менеджеры не дожимали возражение по цене — поправили скрипт за неделю.",
+      problem: "крупные заявки регулярно срывались, но руководитель не понимал, на каком этапе и почему клиенты уходят к конкурентам.",
+      solution: "за месяц прослушали все звонки через AI, нашли, что менеджеры не дожимали возражение по цене, и переписали скрипт под реальные диалоги.",
       metrics: [
         { value: 31, sub: "+31%", color: GREEN, label: "конверсия в сделку" },
         { value: 78, sub: "−78%", color: BLUE, label: "потерянных заявок" },
@@ -1993,7 +2002,8 @@ function CasesSection() {
       role: "Руководитель отдела продаж",
       company: "Клиника «Вита»",
       tag: "Медцентр",
-      quote: "Администраторы по-разному отвечали на одни и те же вопросы. Теперь у нас единый стандарт, и до визита доходит заметно больше пациентов.",
+      problem: "пациенты записывались, но часто не доходили до приёма, а администраторы отвечали на вопросы по-разному и без единого стандарта.",
+      solution: "разобрали звонки регистратуры, выявили слабые места в консультации и собрали единый сценарий ответов на частые сомнения пациентов.",
       metrics: [
         { value: 42, sub: "+42%", color: GREEN, label: "записей с первого звонка" },
         { value: 64, sub: "9.2", color: G, label: "оценка качества из 10" },
@@ -2009,7 +2019,8 @@ function CasesSection() {
       role: "Основатель",
       company: "SkillUp",
       tag: "Онлайн-школа",
-      quote: "До SalesFlow мы слушали 5% звонков вручную. Теперь AI разбирает каждый — и сразу видно, на каком этапе человек передумывает покупать курс.",
+      problem: "вручную слушали лишь 5% звонков и не понимали, на каком этапе консультации клиент передумывает покупать курс.",
+      solution: "подключили AI ко всем разговорам отдела продаж, нашли момент, где люди срывались, и подсказали менеджерам, как закрывать возражение о цене.",
       metrics: [
         { value: 27, sub: "+27%", color: GREEN, label: "оплат после консультации" },
         { value: 90, sub: "100%", color: BLUE, label: "звонков под контролем" },
@@ -2025,7 +2036,8 @@ function CasesSection() {
       role: "Директор по развитию",
       company: "ГринХаус",
       tag: "Загородная недвижимость",
-      quote: "Цикл сделки у нас длинный, и легко потерять клиента в переписке и звонках. SalesFlow подсвечивает, кому пора перезвонить и что именно сказать.",
+      problem: "при длинном цикле сделки тёплые клиенты терялись между звонками — менеджеры забывали перезвонить, и собственник не видел воронку целиком.",
+      solution: "настроили контроль каждого диалога и напоминания, кому и когда перезвонить, а руководителю собрали прозрачную картину по всей воронке.",
       metrics: [
         { value: 35, sub: "+35%", color: GREEN, label: "повторных касаний" },
         { value: 19, sub: "+19%", color: G, label: "доведённых до показа" },
