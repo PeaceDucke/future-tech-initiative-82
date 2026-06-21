@@ -1816,6 +1816,305 @@ function ImplementationSection() {
   );
 }
 
+// ─── Cases Section (Кейсы клиентов) ─────────────────────────────────────────────
+function CaseDonut({ value, color, label, sub }: { value: number; color: string; label: string; sub: string }) {
+  const W = "#FBF6EC";
+  const B = "#C9C2B2";
+  const r = 30;
+  const c = 2 * Math.PI * r;
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+      <div style={{ position: "relative", width: "76px", height: "76px" }}>
+        <svg width="76" height="76" viewBox="0 0 76 76" style={{ transform: "rotate(-90deg)" }}>
+          <circle cx="38" cy="38" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="6" />
+          <motion.circle
+            cx="38" cy="38" r={r} fill="none" stroke={color} strokeWidth="6" strokeLinecap="round"
+            strokeDasharray={c}
+            initial={{ strokeDashoffset: c }}
+            animate={inView ? { strokeDashoffset: c - (c * value) / 100 } : {}}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          />
+        </svg>
+        <div style={{
+          position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", fontWeight: 600, color: W,
+        }}>
+          {sub}
+        </div>
+      </div>
+      <span style={{
+        fontFamily: "Inter, sans-serif", fontSize: "11.5px", color: B, lineHeight: 1.3,
+        textAlign: "center", maxWidth: "110px",
+      }}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function CaseCard({ it, i, inView }: {
+  it: {
+    img: string; name: string; role: string; company: string; tag: string;
+    quote: string; metrics: { value: number; sub: string; color: string; label: string }[];
+    gains: string[];
+  };
+  i: number; inView: boolean;
+}) {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+  const GREEN = "#4ADE80";
+  const col = i % 4;
+  const fromX = col === 0 ? -160 : col === 3 ? 160 : 0;
+  const fromY = col === 1 || col === 2 ? 120 : 80;
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: fromX, y: fromY, scale: 0.9 }}
+      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.9, delay: 0.1 + i * 0.18, ease: [0.16, 1, 0.3, 1] }}
+      className="case-card"
+      style={{
+        position: "relative", display: "flex", flexDirection: "column",
+        background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
+        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "26px",
+        overflow: "hidden",
+        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
+        transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+      }}
+    >
+      {/* Шапка с фото */}
+      <div style={{ position: "relative", padding: "28px 28px 0", display: "flex", alignItems: "center", gap: "16px" }}>
+        <div style={{
+          width: "66px", height: "66px", borderRadius: "50%", overflow: "hidden", flexShrink: 0,
+          border: "2px solid rgba(212,176,116,0.5)", boxShadow: "0 6px 18px rgba(0,0,0,0.45)",
+        }}>
+          <img src={it.img} alt={it.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        </div>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+            {it.name}
+          </div>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, marginTop: "3px", lineHeight: 1.35 }}>
+            {it.role}
+          </div>
+        </div>
+      </div>
+
+      {/* Бейдж компании */}
+      <div style={{ padding: "16px 28px 0" }}>
+        <span style={{
+          display: "inline-flex", alignItems: "center", gap: "8px",
+          padding: "6px 14px", borderRadius: "999px",
+          background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
+          fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, fontWeight: 600,
+        }}>
+          <Icon name="Building2" size={13} style={{ color: G }} />
+          {it.company} · {it.tag}
+        </span>
+      </div>
+
+      {/* Цитата-история */}
+      <p style={{
+        padding: "18px 28px 0", margin: 0,
+        fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.6,
+      }}>
+        <Icon name="Quote" size={16} style={{ color: G, marginRight: "6px", verticalAlign: "-2px" }} />
+        {it.quote}
+      </p>
+
+      {/* Метрики — круговые диаграммы */}
+      <div style={{
+        marginTop: "24px", padding: "22px 20px 20px",
+        display: "flex", justifyContent: "space-around", gap: "10px",
+        borderTop: "1px solid rgba(212,176,116,0.12)",
+        background: "rgba(212,176,116,0.03)",
+      }}>
+        {it.metrics.map((m, k) => (
+          <CaseDonut key={k} value={m.value} sub={m.sub} color={m.color} label={m.label} />
+        ))}
+      </div>
+
+      {/* Что получил */}
+      <div style={{
+        padding: "20px 28px 28px", borderTop: "1px solid rgba(74,222,128,0.16)",
+        display: "flex", flexDirection: "column", gap: "12px", flex: 1,
+      }}>
+        <span style={{
+          fontFamily: "Inter, sans-serif", fontSize: "12px", letterSpacing: "0.14em",
+          textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95, marginBottom: "2px",
+        }}>
+          Результат
+        </span>
+        {it.gains.map((g, k) => (
+          <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+            <Icon name="CircleCheck" size={17} style={{ color: GREEN, marginTop: "1px", flexShrink: 0 }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.5 }}>{g}</span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function CasesSection() {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+  const GREEN = "#4ADE80";
+  const BLUE = "#7DA9FF";
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const gridRef = useRef(null);
+  const gridInView = useInView(gridRef, { once: true, margin: "-120px" });
+
+  const cases = [
+    {
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/71adc897-6c2d-4878-bf5b-1bd5c72b94ad.jpg",
+      name: "Артём Северцев",
+      role: "Коммерческий директор",
+      company: "ТехноЛайн",
+      tag: "Оптовая электроника",
+      quote: "Мы не понимали, почему крупные заявки уходят. SalesFlow показал, что менеджеры не дожимали возражение по цене — поправили скрипт за неделю.",
+      metrics: [
+        { value: 31, sub: "+31%", color: GREEN, label: "конверсия в сделку" },
+        { value: 78, sub: "−78%", color: BLUE, label: "потерянных заявок" },
+      ],
+      gains: [
+        "Средний чек вырос за счёт работы с возражениями",
+        "Руководитель видит слабые места каждого менеджера",
+      ],
+    },
+    {
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/1fd4c5dd-e476-4b8a-a0fd-7b5d0be88266.jpg",
+      name: "Марина Дорохова",
+      role: "Руководитель отдела продаж",
+      company: "Клиника «Вита»",
+      tag: "Медцентр",
+      quote: "Администраторы по-разному отвечали на одни и те же вопросы. Теперь у нас единый стандарт, и до визита доходит заметно больше пациентов.",
+      metrics: [
+        { value: 42, sub: "+42%", color: GREEN, label: "записей с первого звонка" },
+        { value: 64, sub: "9.2", color: G, label: "оценка качества из 10" },
+      ],
+      gains: [
+        "Пациенты доходят до приёма, а не отваливаются после звонка",
+        "Обучение новых администраторов стало в разы быстрее",
+      ],
+    },
+    {
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/cd319095-a662-4532-9ce2-4c694caa7557.jpg",
+      name: "Кирилл Ваймер",
+      role: "Основатель",
+      company: "SkillUp",
+      tag: "Онлайн-школа",
+      quote: "До SalesFlow мы слушали 5% звонков вручную. Теперь AI разбирает каждый — и сразу видно, на каком этапе человек передумывает покупать курс.",
+      metrics: [
+        { value: 27, sub: "+27%", color: GREEN, label: "оплат после консультации" },
+        { value: 90, sub: "100%", color: BLUE, label: "звонков под контролем" },
+      ],
+      gains: [
+        "Менеджеры увереннее закрывают возражение о цене",
+        "Видно, какие офферы реально доводят до оплаты",
+      ],
+    },
+    {
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/36701c98-b4d6-441e-b758-c45f04ef139d.jpg",
+      name: "Ольга Тенишева",
+      role: "Директор по развитию",
+      company: "ГринХаус",
+      tag: "Загородная недвижимость",
+      quote: "Цикл сделки у нас длинный, и легко потерять клиента в переписке и звонках. SalesFlow подсвечивает, кому пора перезвонить и что именно сказать.",
+      metrics: [
+        { value: 35, sub: "+35%", color: GREEN, label: "повторных касаний" },
+        { value: 19, sub: "+19%", color: G, label: "доведённых до показа" },
+      ],
+      gains: [
+        "Ни один тёплый клиент не остаётся без ответа",
+        "Прозрачная картина воронки для собственника",
+      ],
+    },
+  ];
+
+  return (
+    <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+      <div style={{
+        position: "absolute", top: "6%", left: "50%", transform: "translateX(-50%)",
+        width: "900px", height: "460px", pointerEvents: "none",
+        background: "radial-gradient(ellipse at center, rgba(212,176,116,0.08) 0%, transparent 70%)",
+        filter: "blur(20px)", zIndex: 1,
+      }} />
+
+      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1480px", position: "relative", zIndex: 2 }}>
+        <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "10px",
+              padding: "8px 18px", borderRadius: "999px", marginBottom: "26px",
+              background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
+            }}
+          >
+            <Icon name="Award" size={16} style={{ color: G }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
+              Кейсы клиентов
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="quartz-text"
+            style={{
+              fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
+              fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18,
+              maxWidth: "900px", margin: "0 auto",
+            }}
+          >
+            Реальные компании, реальный рост выручки
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              fontFamily: "Inter, sans-serif", fontSize: "clamp(16px, 1.4vw, 19px)", color: B,
+              lineHeight: 1.6, maxWidth: "660px", margin: "24px auto 0",
+            }}
+          >
+            Разные ниши и задачи — но один результат: больше доведённых до оплаты клиентов и понятная картина продаж.
+          </motion.p>
+        </div>
+
+        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "26px" }}>
+          {cases.map((it, i) => (
+            <CaseCard key={i} it={it} i={i} inView={gridInView} />
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .case-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(212,176,116,0.45) !important;
+          box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 22px 50px rgba(0,0,0,0.55), 0 0 40px rgba(212,176,116,0.08) !important;
+        }
+        @media (max-width: 1180px) {
+          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 640px) {
+          .cases-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
 // ─── Before / After Section ─────────────────────────────────────────────────────
 function BeforeAfterSection() {
   const W = "#FBF6EC";
@@ -4538,6 +4837,9 @@ export function HomePage() {
 
         {/* ═══ КАК ВНЕДРЯЕМ ═══ */}
         <ImplementationSection />
+
+        {/* ═══ КЕЙСЫ КЛИЕНТОВ ═══ */}
+        <CasesSection />
 
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
