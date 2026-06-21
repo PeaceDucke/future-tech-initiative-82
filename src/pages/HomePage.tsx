@@ -1857,7 +1857,7 @@ function CaseDonut({ value, color, label, sub }: { value: number; color: string;
 function CaseCard({ it, i, inView }: {
   it: {
     img: string; name: string; role: string; company: string; tag: string;
-    problem: string; solution: string;
+    story: string;
     metrics: { value: number; sub: string; color: string; label: string }[];
     gains: string[];
   };
@@ -1919,20 +1919,9 @@ function CaseCard({ it, i, inView }: {
 
       {/* Контент */}
       <div className="case-body" style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 42px" }}>
-        <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-          <Icon name="CircleAlert" size={20} style={{ color: "#FF8B6B", marginTop: "2px", flexShrink: 0 }} />
-          <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6 }}>
-            <span style={{ color: "#FF8B6B", fontWeight: 600 }}>Пришли с проблемой: </span>
-            {it.problem}
-          </p>
-        </div>
-        <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginTop: "18px" }}>
-          <Icon name="Sparkles" size={20} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
-          <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6 }}>
-            <span style={{ color: G, fontWeight: 600 }}>Что мы сделали: </span>
-            {it.solution}
-          </p>
-        </div>
+        <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17px", color: B, lineHeight: 1.7 }}>
+          {it.story}
+        </p>
 
         {/* Метрики — круговые диаграммы */}
         <div style={{
@@ -1985,8 +1974,7 @@ function CasesSection() {
       role: "Коммерческий директор",
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
-      problem: "крупные заявки регулярно срывались, но руководитель не понимал, на каком этапе и почему клиенты уходят к конкурентам.",
-      solution: "за месяц прослушали все звонки через AI, нашли, что менеджеры не дожимали возражение по цене, и переписали скрипт под реальные диалоги.",
+      story: "Оптовый поставщик электроники терял крупные заявки и не понимал, почему клиенты уходят к конкурентам. Мы разобрали звонки через AI, нашли слабое место в работе с ценой и помогли перестроить диалоги — уже за месяц.",
       metrics: [
         { value: 31, sub: "+31%", color: GREEN, label: "конверсия в сделку" },
         { value: 78, sub: "−78%", color: BLUE, label: "потерянных заявок" },
@@ -2002,8 +1990,7 @@ function CasesSection() {
       role: "Руководитель отдела продаж",
       company: "Клиника «Вита»",
       tag: "Медцентр",
-      problem: "пациенты записывались, но часто не доходили до приёма, а администраторы отвечали на вопросы по-разному и без единого стандарта.",
-      solution: "разобрали звонки регистратуры, выявили слабые места в консультации и собрали единый сценарий ответов на частые сомнения пациентов.",
+      story: "Медцентр сталкивался с тем, что пациенты записывались, но не доходили до приёма, а администраторы отвечали по-разному. Мы проанализировали звонки регистратуры и собрали единый сценарий, который снимает сомнения и доводит до визита.",
       metrics: [
         { value: 42, sub: "+42%", color: GREEN, label: "записей с первого звонка" },
         { value: 64, sub: "9.2", color: G, label: "оценка качества из 10" },
@@ -2019,8 +2006,7 @@ function CasesSection() {
       role: "Основатель",
       company: "SkillUp",
       tag: "Онлайн-школа",
-      problem: "вручную слушали лишь 5% звонков и не понимали, на каком этапе консультации клиент передумывает покупать курс.",
-      solution: "подключили AI ко всем разговорам отдела продаж, нашли момент, где люди срывались, и подсказали менеджерам, как закрывать возражение о цене.",
+      story: "Онлайн-школа слушала вручную лишь малую часть звонков и не видела, где клиент передумывает покупать курс. Мы подключили AI ко всем разговорам, нашли этот момент и подсказали менеджерам, как уверенно закрывать возражение о цене.",
       metrics: [
         { value: 27, sub: "+27%", color: GREEN, label: "оплат после консультации" },
         { value: 90, sub: "100%", color: BLUE, label: "звонков под контролем" },
@@ -2036,8 +2022,7 @@ function CasesSection() {
       role: "Директор по развитию",
       company: "ГринХаус",
       tag: "Загородная недвижимость",
-      problem: "при длинном цикле сделки тёплые клиенты терялись между звонками — менеджеры забывали перезвонить, и собственник не видел воронку целиком.",
-      solution: "настроили контроль каждого диалога и напоминания, кому и когда перезвонить, а руководителю собрали прозрачную картину по всей воронке.",
+      story: "У застройщика загородной недвижимости длинный цикл сделки, и тёплые клиенты терялись между звонками. Мы наладили контроль каждого диалога с напоминаниями, кому перезвонить, и дали собственнику прозрачную картину всей воронки.",
       metrics: [
         { value: 35, sub: "+35%", color: GREEN, label: "повторных касаний" },
         { value: 19, sub: "+19%", color: G, label: "доведённых до показа" },
