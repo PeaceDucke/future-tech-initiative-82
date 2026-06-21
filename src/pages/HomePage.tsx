@@ -2169,8 +2169,8 @@ function CasesSection() {
       ],
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/36701c98-b4d6-441e-b758-c45f04ef139d.jpg",
-      name: "Ольга Тенишева",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/b4b297c1-a2ae-4462-a87e-814d39fb47cf.jpg",
+      name: "Дмитрий Корнев",
       role: "Директор по развитию",
       company: "ГринХаус",
       tag: "Загородная недвижимость",
