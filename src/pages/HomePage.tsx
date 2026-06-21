@@ -1951,7 +1951,7 @@ function CaseBars({ bars }: { bars: { label: string; value: number; sub: string;
       {bars.map((bar, i) => (
         <div key={i}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px" }}>
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.3 }}>{bar.label}</span>
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.35 }}>{bar.label}</span>
             <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, color: W }}>{bar.sub}</span>
           </div>
           <div style={{ height: "10px", borderRadius: "999px", background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
@@ -2136,9 +2136,9 @@ function CasesSection() {
       chart: {
         type: "bars" as const,
         bars: [
-          { value: 86, sub: "+42%", color: GREEN, label: "записей с первого звонка" },
-          { value: 92, sub: "9.2", color: G, label: "оценка качества из 10" },
-          { value: 74, sub: "+28%", color: BLUE, label: "доходимость до визита" },
+          { value: 86, sub: "+42%", color: "#7FB69A", label: "записей с первого звонка" },
+          { value: 92, sub: "9.2", color: "#C2A878", label: "оценка качества из 10" },
+          { value: 74, sub: "+28%", color: "#8AA3C4", label: "доходимость до визита" },
         ],
       },
       gains: [
