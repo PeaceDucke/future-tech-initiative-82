@@ -1854,11 +1854,152 @@ function CaseDonut({ value, color, label, sub }: { value: number; color: string;
   );
 }
 
+// Полукруглый gauge + крупная цифра
+function CaseGauge({ value, sub, color, label }: { value: number; sub: string; color: string; label: string }) {
+  const W = "#FBF6EC";
+  const B = "#C9C2B2";
+  const r = 60;
+  const c = Math.PI * r; // полукруг
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+      <div style={{ position: "relative", width: "160px", height: "92px" }}>
+        <svg width="160" height="92" viewBox="0 0 160 92">
+          <path d="M 16 84 A 64 64 0 0 1 144 84" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="10" strokeLinecap="round" />
+          <motion.path
+            d="M 16 84 A 64 64 0 0 1 144 84" fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
+            strokeDasharray={c}
+            initial={{ strokeDashoffset: c }}
+            animate={inView ? { strokeDashoffset: c - (c * value) / 100 } : {}}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          />
+        </svg>
+        <div style={{
+          position: "absolute", left: 0, right: 0, bottom: "2px", textAlign: "center",
+          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600, color: W,
+        }}>
+          {sub}
+        </div>
+      </div>
+      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, textAlign: "center", maxWidth: "200px", lineHeight: 1.4 }}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+// Радар-многоугольник как в дашборде
+function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const cx = 90, cy = 86, R = 64;
+  const n = axes.length;
+  const pt = (frac: number, i: number) => {
+    const ang = (Math.PI * 2 * i) / n - Math.PI / 2;
+    return [cx + Math.cos(ang) * R * frac, cy + Math.sin(ang) * R * frac];
+  };
+  const grids = [0.33, 0.66, 1];
+  const dataPts = axes.map((a, i) => pt(a.value / 100, i));
+  const dataStr = dataPts.map((p) => p.join(",")).join(" ");
+  return (
+    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "18px", flexWrap: "wrap" }}>
+      <svg width="180" height="172" viewBox="0 0 180 172">
+        {grids.map((g, gi) => (
+          <polygon key={gi}
+            points={axes.map((_, i) => pt(g, i).join(",")).join(" ")}
+            fill="none" stroke="rgba(245,237,216,0.1)" strokeWidth="1" />
+        ))}
+        {axes.map((_, i) => {
+          const [x, y] = pt(1, i);
+          return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(245,237,216,0.1)" strokeWidth="1" />;
+        })}
+        <motion.polygon
+          points={dataStr}
+          fill="rgba(212,176,116,0.18)" stroke={G} strokeWidth="2" strokeLinejoin="round"
+          initial={{ opacity: 0, scale: 0.3 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          style={{ transformOrigin: `${cx}px ${cy}px` }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        />
+        {dataPts.map((p, i) => (
+          <circle key={i} cx={p[0]} cy={p[1]} r="3" fill={G} />
+        ))}
+      </svg>
+      <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
+        {axes.map((a, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: G, flexShrink: 0 }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.3 }}>{a.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Горизонтальные столбцы (bar chart)
+function CaseBars({ bars }: { bars: { label: string; value: number; sub: string; color: string }[] }) {
+  const W = "#FBF6EC";
+  const B = "#C9C2B2";
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%" }}>
+      {bars.map((bar, i) => (
+        <div key={i}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "8px" }}>
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, lineHeight: 1.3 }}>{bar.label}</span>
+            <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, color: W }}>{bar.sub}</span>
+          </div>
+          <div style={{ height: "10px", borderRadius: "999px", background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={inView ? { width: `${bar.value}%` } : {}}
+              transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.15 }}
+              style={{ height: "100%", borderRadius: "999px", background: `linear-gradient(90deg, ${bar.color}, ${bar.color}cc)` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+type MetricItem = { value: number; sub: string; color: string; label: string };
+type CaseChartData =
+  | { type: "donuts"; items: MetricItem[] }
+  | { type: "gauge"; item: { value: number; sub: string; color: string; label: string } }
+  | { type: "radar"; axes: { label: string; value: number }[] }
+  | { type: "bars"; bars: { label: string; value: number; sub: string; color: string }[] };
+
+// Рендер блока метрик в зависимости от типа
+function CaseChart({ chart }: { chart: CaseChartData }) {
+  if (chart.type === "donuts") {
+    return (
+      <div style={{ display: "flex", justifyContent: "flex-start", gap: "34px", flexWrap: "wrap" }}>
+        {chart.items.map((m, k) => (
+          <CaseDonut key={k} value={m.value} sub={m.sub} color={m.color} label={m.label} />
+        ))}
+      </div>
+    );
+  }
+  if (chart.type === "gauge") {
+    return <CaseGauge {...chart.item} />;
+  }
+  if (chart.type === "radar") {
+    return <CaseRadar axes={chart.axes} />;
+  }
+  return <CaseBars bars={chart.bars} />;
+}
+
 function CaseCard({ it, i, inView }: {
   it: {
     img: string; name: string; role: string; company: string; tag: string;
     story: string;
-    metrics: { value: number; sub: string; color: string; label: string }[];
+    chart: CaseChartData;
     gains: string[];
   };
   i: number; inView: boolean;
@@ -1923,16 +2064,14 @@ function CaseCard({ it, i, inView }: {
           {it.story}
         </p>
 
-        {/* Метрики — круговые диаграммы */}
+        {/* Метрики — у каждого кейса свой формат визуализации */}
         <div style={{
-          marginTop: "30px", padding: "26px 4px",
-          display: "flex", justifyContent: "flex-start", gap: "34px", flexWrap: "wrap",
+          marginTop: "30px", padding: "28px 4px",
+          display: "flex", justifyContent: "flex-start", alignItems: "center",
           borderTop: "1px solid rgba(212,176,116,0.14)",
           borderBottom: "1px solid rgba(212,176,116,0.14)",
         }}>
-          {it.metrics.map((m, k) => (
-            <CaseDonut key={k} value={m.value} sub={m.sub} color={m.color} label={m.label} />
-          ))}
+          <CaseChart chart={it.chart} />
         </div>
 
         {/* Что получил */}
@@ -1975,10 +2114,13 @@ function CasesSection() {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
       story: "Оптовый поставщик электроники терял крупные заявки и не понимал, почему клиенты уходят к конкурентам. Мы разобрали звонки через AI, нашли слабое место в работе с ценой и помогли перестроить диалоги — уже за месяц.",
-      metrics: [
-        { value: 31, sub: "+31%", color: GREEN, label: "конверсия в сделку" },
-        { value: 78, sub: "−78%", color: BLUE, label: "потерянных заявок" },
-      ],
+      chart: {
+        type: "donuts" as const,
+        items: [
+          { value: 31, sub: "+31%", color: GREEN, label: "конверсия в сделку" },
+          { value: 78, sub: "−78%", color: BLUE, label: "потерянных заявок" },
+        ],
+      },
       gains: [
         "Средний чек вырос за счёт работы с возражениями",
         "Руководитель видит слабые места каждого менеджера",
@@ -1991,10 +2133,14 @@ function CasesSection() {
       company: "Клиника «Вита»",
       tag: "Медцентр",
       story: "Медцентр сталкивался с тем, что пациенты записывались, но не доходили до приёма, а администраторы отвечали по-разному. Мы проанализировали звонки регистратуры и собрали единый сценарий, который снимает сомнения и доводит до визита.",
-      metrics: [
-        { value: 42, sub: "+42%", color: GREEN, label: "записей с первого звонка" },
-        { value: 64, sub: "9.2", color: G, label: "оценка качества из 10" },
-      ],
+      chart: {
+        type: "bars" as const,
+        bars: [
+          { value: 86, sub: "+42%", color: GREEN, label: "записей с первого звонка" },
+          { value: 92, sub: "9.2", color: G, label: "оценка качества из 10" },
+          { value: 74, sub: "+28%", color: BLUE, label: "доходимость до визита" },
+        ],
+      },
       gains: [
         "Пациенты доходят до приёма, а не отваливаются после звонка",
         "Обучение новых администраторов стало в разы быстрее",
@@ -2007,10 +2153,16 @@ function CasesSection() {
       company: "SkillUp",
       tag: "Онлайн-школа",
       story: "Онлайн-школа слушала вручную лишь малую часть звонков и не видела, где клиент передумывает покупать курс. Мы подключили AI ко всем разговорам, нашли этот момент и подсказали менеджерам, как уверенно закрывать возражение о цене.",
-      metrics: [
-        { value: 27, sub: "+27%", color: GREEN, label: "оплат после консультации" },
-        { value: 90, sub: "100%", color: BLUE, label: "звонков под контролем" },
-      ],
+      chart: {
+        type: "radar" as const,
+        axes: [
+          { label: "Оплаты после консультации", value: 82 },
+          { label: "Закрытие возражений", value: 90 },
+          { label: "Соблюдение скрипта", value: 76 },
+          { label: "Контроль звонков", value: 100 },
+          { label: "Скорость ответа", value: 68 },
+        ],
+      },
       gains: [
         "Менеджеры увереннее закрывают возражение о цене",
         "Видно, какие офферы реально доводят до оплаты",
@@ -2023,10 +2175,10 @@ function CasesSection() {
       company: "ГринХаус",
       tag: "Загородная недвижимость",
       story: "У застройщика загородной недвижимости длинный цикл сделки, и тёплые клиенты терялись между звонками. Мы наладили контроль каждого диалога с напоминаниями, кому перезвонить, и дали собственнику прозрачную картину всей воронки.",
-      metrics: [
-        { value: 35, sub: "+35%", color: GREEN, label: "повторных касаний" },
-        { value: 19, sub: "+19%", color: G, label: "доведённых до показа" },
-      ],
+      chart: {
+        type: "gauge" as const,
+        item: { value: 73, sub: "+35%", color: GREEN, label: "повторных касаний и +19% доведённых до показа" },
+      },
       gains: [
         "Ни один тёплый клиент не остаётся без ответа",
         "Прозрачная картина воронки для собственника",
