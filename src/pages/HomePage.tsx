@@ -1816,6 +1816,97 @@ function ImplementationSection() {
   );
 }
 
+// ─── Guarantee Section (Гарантия) ───────────────────────────────────────────────
+function GuaranteeSection() {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section style={{ background: "#100F0E", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+      <div style={{
+        position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
+        width: "900px", height: "560px", pointerEvents: "none",
+        background: "radial-gradient(ellipse at center, rgba(212,176,116,0.1) 0%, transparent 70%)",
+        filter: "blur(30px)", zIndex: 1,
+      }} />
+
+      <div ref={ref} className="mx-auto px-5 sm:px-8 text-center" style={{ maxWidth: "920px", position: "relative", zIndex: 2 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: "84px", height: "84px", borderRadius: "50%", marginBottom: "32px",
+            background: "radial-gradient(circle at 50% 35%, rgba(212,176,116,0.22) 0%, rgba(212,176,116,0.05) 70%)",
+            border: "1px solid rgba(212,176,116,0.35)",
+            boxShadow: "0 0 40px rgba(212,176,116,0.18), inset 0 1px 0 rgba(255,236,200,0.1)",
+          }}
+        >
+          <Icon name="ShieldCheck" size={40} style={{ color: G }} />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: "10px",
+            padding: "8px 18px", borderRadius: "999px", marginBottom: "26px",
+            background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
+          }}
+        >
+          <Icon name="BadgeCheck" size={16} style={{ color: G }} />
+          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
+            Гарантия результата
+          </span>
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="quartz-text"
+          style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
+            fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.2, margin: "0 auto 30px",
+          }}
+        >
+          Мы уверены в результате — и берём риск на себя
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          style={{
+            fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: B,
+            lineHeight: 1.75, maxWidth: "760px", margin: "0 auto 22px",
+          }}
+        >
+          За первый месяц работы мы покажем, где именно ваша команда теряет заявки и деньги, и дадим конкретные шаги для роста продаж. Если вы <span style={{ color: W, fontWeight: 500 }}>не увидите понятной пользы</span> — мы вернём оплату полностью, без условий и долгих разбирательств.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          style={{
+            fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: B,
+            lineHeight: 1.75, maxWidth: "760px", margin: "0 auto",
+          }}
+        >
+          Нам важно, чтобы SalesFlow приносил вам прибыль, а не строчку в расходах. Поэтому вы ничем не рискуете — <span style={{ color: G, fontStyle: "italic" }}>рискуем мы</span>.
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
 // ─── Cases Section (Кейсы клиентов) ─────────────────────────────────────────────
 function CaseDonut({ value, color, label, sub }: { value: number; color: string; label: string; sub: string }) {
   const W = "#FBF6EC";
@@ -4991,6 +5082,9 @@ export function HomePage() {
 
         {/* ═══ КЕЙСЫ КЛИЕНТОВ ═══ */}
         <CasesSection />
+
+        {/* ═══ ГАРАНТИЯ ═══ */}
+        <GuaranteeSection />
 
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
