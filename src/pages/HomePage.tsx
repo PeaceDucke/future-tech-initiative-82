@@ -1858,17 +1858,17 @@ function CaseDonut({ value, color, label, sub }: { value: number; color: string;
 function CaseGauge({ value, sub, color, label }: { value: number; sub: string; color: string; label: string }) {
   const W = "#FBF6EC";
   const B = "#C9C2B2";
-  const r = 60;
+  const r = 84;
   const c = Math.PI * r; // полукруг
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
-      <div style={{ position: "relative", width: "160px", height: "92px" }}>
-        <svg width="160" height="92" viewBox="0 0 160 92">
-          <path d="M 16 84 A 64 64 0 0 1 144 84" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="10" strokeLinecap="round" />
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px", width: "100%" }}>
+      <div style={{ position: "relative", width: "208px", height: "118px" }}>
+        <svg width="208" height="118" viewBox="0 0 208 118">
+          <path d="M 20 108 A 84 84 0 0 1 188 108" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="13" strokeLinecap="round" />
           <motion.path
-            d="M 16 84 A 64 64 0 0 1 144 84" fill="none" stroke={color} strokeWidth="10" strokeLinecap="round"
+            d="M 20 108 A 84 84 0 0 1 188 108" fill="none" stroke={color} strokeWidth="13" strokeLinecap="round"
             strokeDasharray={c}
             initial={{ strokeDashoffset: c }}
             animate={inView ? { strokeDashoffset: c - (c * value) / 100 } : {}}
@@ -1877,12 +1877,12 @@ function CaseGauge({ value, sub, color, label }: { value: number; sub: string; c
         </svg>
         <div style={{
           position: "absolute", left: 0, right: 0, bottom: "2px", textAlign: "center",
-          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600, color: W,
+          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "46px", fontWeight: 600, color: W,
         }}>
           {sub}
         </div>
       </div>
-      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: B, textAlign: "center", maxWidth: "200px", lineHeight: 1.4 }}>
+      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, textAlign: "center", maxWidth: "260px", lineHeight: 1.45 }}>
         {label}
       </span>
     </div>
@@ -2177,7 +2177,7 @@ function CasesSection() {
       story: "У застройщика загородной недвижимости длинный цикл сделки, и тёплые клиенты терялись между звонками. Мы наладили контроль каждого диалога с напоминаниями, кому перезвонить, и дали собственнику прозрачную картину всей воронки.",
       chart: {
         type: "gauge" as const,
-        item: { value: 73, sub: "+35%", color: GREEN, label: "повторных касаний и +19% доведённых до показа" },
+        item: { value: 73, sub: "+35%", color: "#7FB69A", label: "повторных касаний и +19% доведённых до показа" },
       },
       gains: [
         "Ни один тёплый клиент не остаётся без ответа",
