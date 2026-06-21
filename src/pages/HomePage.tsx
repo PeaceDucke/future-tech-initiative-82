@@ -1905,7 +1905,7 @@ function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
   const dataPts = axes.map((a, i) => pt(a.value / 100, i));
   const dataStr = dataPts.map((p) => p.join(",")).join(" ");
   return (
-    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "28px" }}>
+    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "16px", marginLeft: "-16px" }}>
       <svg width="270" height="258" viewBox="0 0 270 258" style={{ flexShrink: 0 }}>
         {grids.map((g, gi) => (
           <polygon key={gi}
@@ -1928,11 +1928,11 @@ function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
           <circle key={i} cx={p[0]} cy={p[1]} r="4" fill={G} />
         ))}
       </svg>
-      <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "13px", flexShrink: 0 }}>
         {axes.map((a, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: G, flexShrink: 0 }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.35 }}>{a.label}</span>
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.35, whiteSpace: "nowrap" }}>{a.label}</span>
           </div>
         ))}
       </div>
