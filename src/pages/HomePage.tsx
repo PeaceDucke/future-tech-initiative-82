@@ -1905,7 +1905,7 @@ function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
   const dataPts = axes.map((a, i) => pt(a.value / 100, i));
   const dataStr = dataPts.map((p) => p.join(",")).join(" ");
   return (
-    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "16px", marginLeft: "-16px" }}>
+    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "-40px" }}>
       <svg width="270" height="258" viewBox="0 0 270 258" style={{ flexShrink: 0 }}>
         {grids.map((g, gi) => (
           <polygon key={gi}
