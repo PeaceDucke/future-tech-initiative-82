@@ -1820,17 +1820,17 @@ function ImplementationSection() {
 function CaseDonut({ value, color, label, sub }: { value: number; color: string; label: string; sub: string }) {
   const W = "#FBF6EC";
   const B = "#C9C2B2";
-  const r = 42;
+  const r = 63;
   const c = 2 * Math.PI * r;
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "11px" }}>
-      <div style={{ position: "relative", width: "104px", height: "104px" }}>
-        <svg width="104" height="104" viewBox="0 0 104 104" style={{ transform: "rotate(-90deg)" }}>
-          <circle cx="52" cy="52" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="8" />
+    <div ref={ref} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}>
+      <div style={{ position: "relative", width: "156px", height: "156px" }}>
+        <svg width="156" height="156" viewBox="0 0 156 156" style={{ transform: "rotate(-90deg)" }}>
+          <circle cx="78" cy="78" r={r} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="11" />
           <motion.circle
-            cx="52" cy="52" r={r} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
+            cx="78" cy="78" r={r} fill="none" stroke={color} strokeWidth="11" strokeLinecap="round"
             strokeDasharray={c}
             initial={{ strokeDashoffset: c }}
             animate={inView ? { strokeDashoffset: c - (c * value) / 100 } : {}}
@@ -1839,14 +1839,14 @@ function CaseDonut({ value, color, label, sub }: { value: number; color: string;
         </svg>
         <div style={{
           position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", fontWeight: 600, color: W,
+          fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "38px", fontWeight: 600, color: W,
         }}>
           {sub}
         </div>
       </div>
       <span style={{
-        fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.35,
-        textAlign: "center", maxWidth: "140px",
+        fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.35,
+        textAlign: "center", maxWidth: "180px",
       }}>
         {label}
       </span>
@@ -1979,7 +1979,7 @@ type CaseChartData =
 function CaseChart({ chart }: { chart: CaseChartData }) {
   if (chart.type === "donuts") {
     return (
-      <div style={{ display: "flex", justifyContent: "flex-start", gap: "34px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: "48px", flexWrap: "wrap", width: "100%" }}>
         {chart.items.map((m, k) => (
           <CaseDonut key={k} value={m.value} sub={m.sub} color={m.color} label={m.label} />
         ))}
@@ -2117,8 +2117,8 @@ function CasesSection() {
       chart: {
         type: "donuts" as const,
         items: [
-          { value: 31, sub: "+31%", color: GREEN, label: "конверсия в сделку" },
-          { value: 78, sub: "−78%", color: BLUE, label: "потерянных заявок" },
+          { value: 31, sub: "+31%", color: "#7FB69A", label: "конверсия в сделку" },
+          { value: 78, sub: "−78%", color: "#8AA3C4", label: "потерянных заявок" },
         ],
       },
       gains: [
