@@ -1895,7 +1895,7 @@ function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
   const B = "#C9C2B2";
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const cx = 90, cy = 86, R = 64;
+  const cx = 135, cy = 129, R = 96;
   const n = axes.length;
   const pt = (frac: number, i: number) => {
     const ang = (Math.PI * 2 * i) / n - Math.PI / 2;
@@ -1905,8 +1905,16 @@ function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
   const dataPts = axes.map((a, i) => pt(a.value / 100, i));
   const dataStr = dataPts.map((p) => p.join(",")).join(" ");
   return (
-    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "18px", flexWrap: "wrap" }}>
-      <svg width="180" height="172" viewBox="0 0 180 172">
+    <div ref={ref} style={{ display: "flex", alignItems: "center", gap: "28px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
+        {axes.map((a, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: G, flexShrink: 0 }} />
+            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.35 }}>{a.label}</span>
+          </div>
+        ))}
+      </div>
+      <svg width="270" height="258" viewBox="0 0 270 258">
         {grids.map((g, gi) => (
           <polygon key={gi}
             points={axes.map((_, i) => pt(g, i).join(",")).join(" ")}
@@ -1918,24 +1926,16 @@ function CaseRadar({ axes }: { axes: { label: string; value: number }[] }) {
         })}
         <motion.polygon
           points={dataStr}
-          fill="rgba(212,176,116,0.18)" stroke={G} strokeWidth="2" strokeLinejoin="round"
+          fill="rgba(212,176,116,0.18)" stroke={G} strokeWidth="2.5" strokeLinejoin="round"
           initial={{ opacity: 0, scale: 0.3 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           style={{ transformOrigin: `${cx}px ${cy}px` }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         />
         {dataPts.map((p, i) => (
-          <circle key={i} cx={p[0]} cy={p[1]} r="3" fill={G} />
+          <circle key={i} cx={p[0]} cy={p[1]} r="4" fill={G} />
         ))}
       </svg>
-      <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
-        {axes.map((a, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: G, flexShrink: 0 }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.3 }}>{a.label}</span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
