@@ -2089,7 +2089,7 @@ function CaseChart({ chart }: { chart: CaseChartData }) {
 function CaseCard({ it, i, inView }: {
   it: {
     img: string; name: string; role: string; company: string; tag: string;
-    story: string;
+    story: string; isQuote?: boolean;
     chart: CaseChartData;
     gains: string[];
   };
@@ -2097,7 +2097,6 @@ function CaseCard({ it, i, inView }: {
 }) {
   const W = "#FBF6EC";
   const G = "#D4B074";
-  const B = "#C9C2B2";
   return (
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.96 }}
@@ -2106,17 +2105,26 @@ function CaseCard({ it, i, inView }: {
       className="case-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
-        background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
-        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "26px",
+        background: it.isQuote
+          ? "linear-gradient(160deg, #211d15 0%, #181510 48%, #110f0b 100%)"
+          : "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
+        border: it.isQuote ? "1px solid rgba(212,176,116,0.34)" : "1px solid rgba(212,176,116,0.18)",
+        borderRadius: "26px",
         overflow: "hidden", padding: "32px 30px",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <Icon name="Quote" size={30} style={{ color: G, opacity: 0.35, marginBottom: "16px" }} />
+      {it.isQuote && (
+        <Icon name="Quote" size={36} style={{ color: G, opacity: 0.45, marginBottom: "14px" }} />
+      )}
 
-      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px", color: "#E6E0D2", lineHeight: 1.7, flex: 1 }}>
-        {it.story}
+      <p style={{
+        margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px",
+        color: it.isQuote ? "#F1ECDE" : "#E6E0D2",
+        lineHeight: 1.7, flex: 1, fontStyle: it.isQuote ? "italic" : "normal",
+      }}>
+        {it.isQuote ? `«${it.story}»` : it.story}
       </p>
 
       <div style={{
@@ -2128,7 +2136,7 @@ function CaseCard({ it, i, inView }: {
           width: "44px", height: "44px", borderRadius: "50%", flexShrink: 0,
           background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.3)",
         }}>
-          <Icon name="Building2" size={20} style={{ color: G }} />
+          <Icon name={it.name ? "User" : "Building2"} size={20} style={{ color: G }} />
         </span>
         <div>
           {it.name ? (
@@ -2137,7 +2145,7 @@ function CaseCard({ it, i, inView }: {
                 {it.name}
               </div>
               <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: G, marginTop: "3px", lineHeight: 1.35 }}>
-                {it.company} · {it.tag}
+                {it.role}
               </div>
             </>
           ) : (
@@ -2175,7 +2183,7 @@ function CasesSection() {
       role: "Коммерческий директор",
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
-      story: "Оптовый поставщик электроники терял крупные заявки и не понимал, почему клиенты уходят к конкурентам. Мы разобрали звонки через AI, нашли слабое место в работе с ценой и помогли перестроить диалоги — уже за месяц.",
+      story: "Компания «ТехноЛайн» — оптовый поставщик электроники — обратилась к нам с тем, что крупные заявки уходили к конкурентам, а менеджеры не понимали почему. Мы прослушали через AI больше 1 200 звонков за две недели и увидели: сделки рушились на этапе обсуждения цены. Переписали этот блок скрипта — и за первый месяц конверсия на этапе диалога выросла на 12,3%.",
       chart: {
         type: "donuts" as const,
         items: [
@@ -2194,7 +2202,7 @@ function CasesSection() {
       role: "Руководитель отдела продаж",
       company: "Клиника «Вита»",
       tag: "Медцентр",
-      story: "Медцентр сталкивался с тем, что пациенты записывались, но не доходили до приёма, а администраторы отвечали по-разному. Мы проанализировали звонки регистратуры и собрали единый сценарий, который снимает сомнения и доводит до визита.",
+      story: "Медцентр «Вита» столкнулся с тем, что пациенты записывались, но почти треть не доходила до приёма, а администраторы отвечали по-разному. Мы проанализировали звонки регистратуры за месяц и нашли повторяющиеся моменты, где у пациента оставались сомнения. Собрали единый сценарий записи — доходимость до визита выросла на 18,5% уже к концу второго месяца.",
       chart: {
         type: "bars" as const,
         bars: [
@@ -2214,7 +2222,7 @@ function CasesSection() {
       role: "Основатель",
       company: "SkillUp",
       tag: "Онлайн-школа",
-      story: "Онлайн-школа слушала вручную лишь малую часть звонков и не видела, где клиент передумывает покупать курс. Мы подключили AI ко всем разговорам, нашли этот момент и подсказали менеджерам, как уверенно закрывать возражение о цене.",
+      story: "Онлайн-школа «SkillUp» слушала вручную лишь малую часть звонков и не видела, в какой момент клиент передумывает покупать курс. Мы подключили AI ко всем разговорам отдела продаж и обнаружили, что чаще всего люди отваливались на вопросе о цене. Дали менеджерам точные формулировки — и оплат после консультации стало на 14,7% больше за первый месяц.",
       chart: {
         type: "radar" as const,
         axes: [
@@ -2233,10 +2241,11 @@ function CasesSection() {
     {
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/0a34ccd5-eb4e-4c9b-aef1-3546ac78df37.jpg",
       name: "Дмитрий Корнев",
-      role: "Директор по развитию",
+      role: "Директор по развитию, ГринХаус",
       company: "ГринХаус",
       tag: "Загородная недвижимость",
-      story: "У застройщика загородной недвижимости длинный цикл сделки, и тёплые клиенты терялись между звонками. Мы наладили контроль каждого диалога с напоминаниями, кому перезвонить, и дали собственнику прозрачную картину всей воронки.",
+      isQuote: true,
+      story: "У нас длинный цикл сделки, и тёплые клиенты просто терялись между звонками — кому-то забыли перезвонить, кого-то отдали не тому менеджеру. Ребята настроили контроль каждого диалога и напоминания, и впервые я вижу всю воронку как на ладони. За первый месяц повторных касаний стало на 35% больше, а до показа объектов стало доходить на 19% больше клиентов.",
       chart: {
         type: "gauge" as const,
         item: { value: 73, sub: "+35%", color: "#7FB69A", label: "повторных касаний и +19% доведённых до показа" },
