@@ -2113,9 +2113,7 @@ function CaseCard({ it, i, inView }: {
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      {it.isQuote && (
-        <Icon name="Quote" size={36} style={{ color: G, opacity: 0.45, marginBottom: "14px" }} />
-      )}
+      <Icon name={it.isQuote ? "Quote" : "NotebookPen"} size={36} style={{ color: G, opacity: 0.45, marginBottom: "14px" }} />
 
       <p style={{
         margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px",
