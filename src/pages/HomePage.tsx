@@ -2114,12 +2114,28 @@ function CaseCard({ it, i, inView }: {
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <Icon name={it.isQuote ? "Quote" : "NotebookPen"} size={36} style={{ color: G, opacity: 0.45, marginBottom: "14px" }} />
+      {!it.isQuote && (
+        <div style={{
+          position: "absolute", left: 0, right: 0, bottom: 0, height: "55%", zIndex: 0, overflow: "hidden",
+        }}>
+          <img src={it.img} alt={it.company} style={{
+            position: "absolute", inset: 0, width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center", display: "block",
+          }} />
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(180deg, #141414 0%, rgba(20,20,20,0.85) 22%, rgba(20,20,20,0.45) 55%, rgba(15,15,16,0.78) 100%)",
+          }} />
+        </div>
+      )}
+
+      <Icon name={it.isQuote ? "Quote" : "NotebookPen"} size={36} style={{ color: G, opacity: 0.45, marginBottom: "14px", position: "relative", zIndex: 2 }} />
 
       <p style={{
         margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px",
         color: it.isQuote ? "#F1ECDE" : "#E6E0D2",
         lineHeight: 1.7, flex: 1, fontStyle: it.isQuote ? "italic" : "normal",
+        position: "relative", zIndex: 2,
       }}>
         {it.isQuote ? `«${it.story}»` : it.story}
       </p>
@@ -2127,6 +2143,7 @@ function CaseCard({ it, i, inView }: {
       <div style={{
         marginTop: "32px", paddingTop: "24px", borderTop: "1px solid rgba(212,176,116,0.14)",
         display: "flex", alignItems: "center", gap: "13px",
+        position: "relative", zIndex: 2,
       }}>
         <span style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center",
@@ -2175,7 +2192,7 @@ function CasesSection() {
 
   const cases = [
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/71adc897-6c2d-4878-bf5b-1bd5c72b94ad.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/9812e7ef-1f8c-4bca-b7fb-5fa3c9ed1ac0.jpg",
       name: "",
       role: "Коммерческий директор",
       company: "ТехноЛайн",
@@ -2194,7 +2211,7 @@ function CasesSection() {
       ],
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/1fd4c5dd-e476-4b8a-a0fd-7b5d0be88266.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/fafe6a77-67b5-40ef-a6e0-f37ea8ec3ae8.jpg",
       name: "",
       role: "Руководитель отдела продаж",
       company: "Клиника «Вита»",
@@ -2214,7 +2231,7 @@ function CasesSection() {
       ],
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/cd319095-a662-4532-9ce2-4c694caa7557.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/30082a3f-34cb-4272-af64-1cfc072aad15.jpg",
       name: "",
       role: "Основатель",
       company: "SkillUp",
