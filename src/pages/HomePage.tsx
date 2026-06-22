@@ -2098,87 +2098,41 @@ function CaseCard({ it, i, inView }: {
   const W = "#FBF6EC";
   const G = "#D4B074";
   const B = "#C9C2B2";
-  const GREEN = "#4ADE80";
-  const col = i % 2;
-  const fromX = col === 0 ? -120 : 120;
   return (
     <motion.div
-      initial={{ opacity: 0, x: fromX, y: 60, scale: 0.94 }}
-      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.9, delay: 0.1 + i * 0.16, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 40, scale: 0.96 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
       className="case-card"
       style={{
-        position: "relative", display: "flex", flexDirection: "row",
+        position: "relative", display: "flex", flexDirection: "column",
         background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
-        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "32px",
-        overflow: "hidden", minHeight: "560px",
+        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "22px",
+        overflow: "hidden", padding: "28px 26px",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      {/* Большое фото клиента — крупный план */}
-      <div className="case-photo" style={{
-        position: "relative", width: "42%", flexShrink: 0, minHeight: "100%", alignSelf: "stretch",
-        overflow: "hidden",
+      <span style={{
+        display: "inline-flex", alignItems: "center", gap: "8px", alignSelf: "flex-start",
+        padding: "6px 13px", borderRadius: "999px", marginBottom: "18px",
+        background: "rgba(212,176,116,0.1)", border: "1px solid rgba(212,176,116,0.28)",
+        fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, fontWeight: 600,
       }}>
-        <img src={it.img} alt={it.name} style={{
-          position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center 28%", display: "block",
-        }} />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(90deg, transparent 55%, rgba(20,20,18,0.55) 80%, #141414 100%), linear-gradient(180deg, transparent 60%, rgba(15,15,16,0.85) 100%)",
-        }} />
-        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "26px 28px" }}>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.2vw, 30px)", color: W, fontWeight: 500, lineHeight: 1.15 }}>
-            {it.name}
-          </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, marginTop: "5px", lineHeight: 1.35 }}>
-            {it.role}
-          </div>
-          <span style={{
-            display: "inline-flex", alignItems: "center", gap: "8px", marginTop: "14px",
-            padding: "7px 15px", borderRadius: "999px",
-            background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.3)",
-            fontFamily: "Inter, sans-serif", fontSize: "12.5px", color: G, fontWeight: 600,
-            backdropFilter: "blur(4px)",
-          }}>
-            <Icon name="Building2" size={14} style={{ color: G }} />
-            {it.company} · {it.tag}
-          </span>
+        <Icon name="Building2" size={13} style={{ color: G }} />
+        {it.company} · {it.tag}
+      </span>
+
+      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.65, flex: 1 }}>
+        {it.story}
+      </p>
+
+      <div style={{ marginTop: "22px", paddingTop: "18px", borderTop: "1px solid rgba(212,176,116,0.14)" }}>
+        <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "19px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+          {it.name}
         </div>
-      </div>
-
-      {/* Контент */}
-      <div className="case-body" style={{ flex: 1, display: "flex", flexDirection: "column", padding: "40px 42px" }}>
-        <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17px", color: B, lineHeight: 1.7 }}>
-          {it.story}
-        </p>
-
-        {/* Метрики — у каждого кейса свой формат визуализации */}
-        <div style={{
-          marginTop: "30px", padding: "28px 4px",
-          display: "flex", justifyContent: "flex-start", alignItems: "center",
-          borderTop: "1px solid rgba(212,176,116,0.14)",
-          borderBottom: "1px solid rgba(212,176,116,0.14)",
-        }}>
-          <CaseChart chart={it.chart} />
-        </div>
-
-        {/* Что получил */}
-        <div style={{ marginTop: "26px", display: "flex", flexDirection: "column", gap: "14px", flex: 1 }}>
-          <span style={{
-            fontFamily: "Inter, sans-serif", fontSize: "12.5px", letterSpacing: "0.14em",
-            textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95, marginBottom: "2px",
-          }}>
-            Результат
-          </span>
-          {it.gains.map((g, k) => (
-            <div key={k} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-              <Icon name="CircleCheck" size={20} style={{ color: GREEN, marginTop: "1px", flexShrink: 0 }} />
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.55 }}>{g}</span>
-            </div>
-          ))}
+        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, marginTop: "4px", lineHeight: 1.35 }}>
+          {it.role}
         </div>
       </div>
     </motion.div>
@@ -2286,8 +2240,8 @@ function CasesSection() {
         filter: "blur(20px)", zIndex: 1,
       }} />
 
-      <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: "1760px", position: "relative", zIndex: 2 }}>
-        <div ref={ref} className="text-center" style={{ marginBottom: "72px" }}>
+      <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: "1280px", position: "relative", zIndex: 2 }}>
+        <div ref={ref} className="text-center" style={{ marginBottom: "56px" }}>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -2331,7 +2285,7 @@ function CasesSection() {
           </motion.p>
         </div>
 
-        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "34px" }}>
+        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "22px" }}>
           {cases.map((it, i) => (
             <CaseCard key={i} it={it} i={i} inView={gridInView} />
           ))}
@@ -2344,13 +2298,11 @@ function CasesSection() {
           border-color: rgba(212,176,116,0.45) !important;
           box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(212,176,116,0.1) !important;
         }
-        @media (max-width: 1024px) {
-          .cases-grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 1100px) {
+          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @media (max-width: 720px) {
-          .case-card { flex-direction: column !important; min-height: 0 !important; }
-          .case-photo { width: 100% !important; height: 320px !important; min-height: 320px !important; }
-          .case-body { padding: 30px 26px !important; }
+        @media (max-width: 600px) {
+          .cases-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
