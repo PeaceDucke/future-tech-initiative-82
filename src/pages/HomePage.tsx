@@ -2088,92 +2088,64 @@ function CaseChart({ chart }: { chart: CaseChartData }) {
 
 function CaseCard({ it, i, inView }: {
   it: {
-    img: string; name: string; role: string; company: string; tag: string;
-    story: string; isQuote?: boolean;
-    chart: CaseChartData;
-    gains: string[];
+    company: string; tag: string; result: string;
+    metric: string; metricLabel: string;
   };
   i: number; inView: boolean;
 }) {
   const W = "#FBF6EC";
   const G = "#D4B074";
+  const B = "#C9C2B2";
   return (
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.96 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -16, transition: { duration: 0.18, ease: "easeOut" } }}
+      whileHover={{ y: -12, transition: { duration: 0.18, ease: "easeOut" } }}
       className="case-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
         background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
         border: "1px solid rgba(212,176,116,0.18)",
-        borderRadius: "26px",
-        overflow: "hidden", padding: "32px 30px",
+        borderRadius: "22px",
+        overflow: "hidden", padding: "26px 24px",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      {!it.isQuote && (
-        <div style={{
-          position: "absolute", left: 0, right: 0, bottom: 0, height: "55%", zIndex: 0, overflow: "hidden",
-        }}>
-          <img src={it.img} alt={it.company} style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "center", display: "block",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(180deg, #141414 0%, rgba(20,20,20,0.85) 22%, rgba(20,20,20,0.45) 55%, rgba(15,15,16,0.78) 100%)",
-          }} />
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px" }}>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+            {it.company}
+          </div>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, marginTop: "3px", lineHeight: 1.3 }}>
+            {it.tag}
+          </div>
         </div>
-      )}
-
-      <Icon name={it.isQuote ? "Quote" : "NotebookPen"} size={36} style={{ color: G, opacity: 0.45, marginBottom: "14px", position: "relative", zIndex: 2 }} />
-
-      <p style={{
-        margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px",
-        color: it.isQuote ? "#F1ECDE" : "#E6E0D2",
-        lineHeight: 1.7, flex: 1, fontStyle: it.isQuote ? "italic" : "normal",
-        position: "relative", zIndex: 2,
-      }}>
-        {it.isQuote ? `«${it.story}»` : it.story}
-      </p>
-
-      <div style={{
-        marginTop: "32px", paddingTop: "24px", borderTop: "1px solid rgba(212,176,116,0.14)",
-        display: "flex", alignItems: "center", gap: "13px",
-        position: "relative", zIndex: 2,
-      }}>
         <span style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center",
-          width: "44px", height: "44px", borderRadius: "50%", flexShrink: 0,
+          width: "42px", height: "42px", borderRadius: "12px", flexShrink: 0,
           background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.3)",
         }}>
-          <Icon name={it.name ? "User" : "Building2"} size={20} style={{ color: G }} />
+          <Icon name="Building2" size={20} style={{ color: G }} />
         </span>
-        <div>
-          {it.name ? (
-            <>
-              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
-                {it.name}
-              </div>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: G, marginTop: "4px", lineHeight: 1.35 }}>
-                {it.role}
-              </div>
-            </>
-          ) : (
-            <>
-              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
-                {it.company}
-              </div>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: G, marginTop: "4px", lineHeight: 1.35 }}>
-                {it.tag}
-              </div>
-            </>
-          )}
-        </div>
       </div>
+
+      <div style={{ marginTop: "22px", display: "flex", alignItems: "baseline", gap: "8px" }}>
+        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "40px", color: G, fontWeight: 600, lineHeight: 1 }}>
+          {it.metric}
+        </span>
+        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.3 }}>
+          {it.metricLabel}
+        </span>
+      </div>
+
+      <p style={{
+        margin: "12px 0 0", fontFamily: "Inter, sans-serif", fontSize: "14.5px",
+        color: "#D9D3C6", lineHeight: 1.55,
+      }}>
+        {it.result}
+      </p>
     </motion.div>
   );
 }
@@ -2192,82 +2164,32 @@ function CasesSection() {
 
   const cases = [
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/9812e7ef-1f8c-4bca-b7fb-5fa3c9ed1ac0.jpg",
-      name: "",
-      role: "Коммерческий директор",
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
-      story: "Компания «ТехноЛайн» - оптовый поставщик электроники - обратилась к нам с тем, что крупные заявки уходили к конкурентам, а менеджеры не понимали почему. Мы прослушали через AI больше 1 200 звонков за две недели и увидели: сделки рушились на этапе обсуждения цены. Переписали этот блок скрипта - и за первый месяц конверсия на этапе диалога выросла на 12,3%.",
-      chart: {
-        type: "donuts" as const,
-        items: [
-          { value: 31, sub: "+31%", color: "#7FB69A", label: "конверсия в сделку" },
-          { value: 78, sub: "−78%", color: "#8AA3C4", label: "потерянных заявок" },
-        ],
-      },
-      gains: [
-        "Средний чек вырос за счёт работы с возражениями",
-        "Руководитель видит слабые места каждого менеджера",
-      ],
+      metric: "+12,3%",
+      metricLabel: "к конверсии",
+      result: "После внедрения AI-анализа звонков конверсия на этапе диалога выросла за первый месяц.",
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/fafe6a77-67b5-40ef-a6e0-f37ea8ec3ae8.jpg",
-      name: "",
-      role: "Руководитель отдела продаж",
       company: "Клиника «Вита»",
       tag: "Медцентр",
-      story: "Медцентр «Вита» столкнулся с тем, что пациенты записывались, но почти треть не доходила до приёма, а администраторы отвечали по-разному. Мы проанализировали звонки регистратуры за месяц и нашли повторяющиеся моменты, где у пациента оставались сомнения. Собрали единый сценарий записи - доходимость до визита выросла на 18,5% уже к концу второго месяца.",
-      chart: {
-        type: "bars" as const,
-        bars: [
-          { value: 86, sub: "+42%", color: "#7FB69A", label: "записей с первого звонка" },
-          { value: 92, sub: "9.2", color: "#C2A878", label: "оценка качества из 10" },
-          { value: 74, sub: "+28%", color: "#8AA3C4", label: "доходимость до визита" },
-        ],
-      },
-      gains: [
-        "Пациенты доходят до приёма, а не отваливаются после звонка",
-        "Обучение новых администраторов стало в разы быстрее",
-      ],
+      metric: "+18,5%",
+      metricLabel: "доходимость",
+      result: "Единый сценарий записи поднял доходимость пациентов до визита уже ко второму месяцу.",
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/30082a3f-34cb-4272-af64-1cfc072aad15.jpg",
-      name: "",
-      role: "Основатель",
       company: "SkillUp",
       tag: "Онлайн-школа",
-      story: "Онлайн-школа «SkillUp» слушала вручную лишь малую часть звонков и не видела, в какой момент клиент передумывает покупать курс. Мы подключили AI ко всем разговорам отдела продаж и обнаружили, что чаще всего люди отваливались на вопросе о цене. Дали менеджерам точные формулировки - и оплат после консультации стало на 14,7% больше за первый месяц.",
-      chart: {
-        type: "radar" as const,
-        axes: [
-          { label: "Оплаты после консультации", value: 82 },
-          { label: "Закрытие возражений", value: 90 },
-          { label: "Соблюдение скрипта", value: 76 },
-          { label: "Контроль звонков", value: 100 },
-          { label: "Скорость ответа", value: 68 },
-        ],
-      },
-      gains: [
-        "Менеджеры увереннее закрывают возражение о цене",
-        "Видно, какие офферы реально доводят до оплаты",
-      ],
+      metric: "+14,7%",
+      metricLabel: "оплат",
+      result: "Точные формулировки для менеджеров увеличили число оплат после консультации.",
     },
     {
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/0a34ccd5-eb4e-4c9b-aef1-3546ac78df37.jpg",
-      name: "Дмитрий Корнев",
-      role: "Директор по развитию, ГринХаус",
       company: "ГринХаус",
       tag: "Загородная недвижимость",
-      isQuote: true,
-      story: "У нас довольно длинный цикл сделки, и порой случалось, что клиенты просто терялись между звонками, то кому то забыли перезвонить, кого то не вовремя перевели на другого сотрудника. Ребята настроили контроль каждого диалога и напоминания, и впервые я вижу всю воронку как на ладони. Примерно за месяц, до показа объектов стало доходить заметно больше, а если верить статистике, то на 19% больше клиентов. Вообщем ребят рекомендую, хорошо и вежливо проконсультировали, и штука действительно очень удобная",
-      chart: {
-        type: "gauge" as const,
-        item: { value: 73, sub: "+35%", color: "#7FB69A", label: "повторных касаний и +19% доведённых до показа" },
-      },
-      gains: [
-        "Ни один тёплый клиент не остаётся без ответа",
-        "Прозрачная картина воронки для собственника",
-      ],
+      metric: "+19%",
+      metricLabel: "клиентов",
+      result: "Контроль каждого диалога и напоминания довели до показа объектов больше клиентов.",
     },
   ];
 
