@@ -2107,32 +2107,36 @@ function CaseCard({ it, i, inView }: {
       style={{
         position: "relative", display: "flex", flexDirection: "column",
         background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
-        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "22px",
-        overflow: "hidden", padding: "28px 26px",
+        border: "1px solid rgba(212,176,116,0.18)", borderRadius: "26px",
+        overflow: "hidden", padding: "42px 44px",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <span style={{
-        display: "inline-flex", alignItems: "center", gap: "8px", alignSelf: "flex-start",
-        padding: "6px 13px", borderRadius: "999px", marginBottom: "18px",
-        background: "rgba(212,176,116,0.1)", border: "1px solid rgba(212,176,116,0.28)",
-        fontFamily: "Inter, sans-serif", fontSize: "12px", color: G, fontWeight: 600,
-      }}>
-        <Icon name="Building2" size={13} style={{ color: G }} />
-        {it.company} · {it.tag}
-      </span>
+      <Icon name="Quote" size={34} style={{ color: G, opacity: 0.35, marginBottom: "20px" }} />
 
-      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, lineHeight: 1.65, flex: 1 }}>
+      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px", color: B, lineHeight: 1.75, flex: 1 }}>
         {it.story}
       </p>
 
-      <div style={{ marginTop: "22px", paddingTop: "18px", borderTop: "1px solid rgba(212,176,116,0.14)" }}>
-        <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "19px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
-          {it.name}
-        </div>
-        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", color: B, marginTop: "4px", lineHeight: 1.35 }}>
-          {it.role}
+      <div style={{
+        marginTop: "32px", paddingTop: "24px", borderTop: "1px solid rgba(212,176,116,0.14)",
+        display: "flex", alignItems: "center", gap: "13px",
+      }}>
+        <span style={{
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          width: "44px", height: "44px", borderRadius: "50%", flexShrink: 0,
+          background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.3)",
+        }}>
+          <Icon name="Building2" size={20} style={{ color: G }} />
+        </span>
+        <div>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+            {it.name}
+          </div>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: G, marginTop: "3px", lineHeight: 1.35 }}>
+            {it.company} · {it.tag}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -2285,7 +2289,7 @@ function CasesSection() {
           </motion.p>
         </div>
 
-        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "22px" }}>
+        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "28px" }}>
           {cases.map((it, i) => (
             <CaseCard key={i} it={it} i={i} inView={gridInView} />
           ))}
@@ -2298,10 +2302,7 @@ function CasesSection() {
           border-color: rgba(212,176,116,0.45) !important;
           box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(212,176,116,0.1) !important;
         }
-        @media (max-width: 1100px) {
-          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 600px) {
+        @media (max-width: 860px) {
           .cases-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
