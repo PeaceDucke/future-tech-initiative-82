@@ -2334,8 +2334,8 @@ function CasesSection() {
 
       <style>{`
         .case-card:hover {
-          border-color: rgba(212,176,116,0.45) !important;
-          box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(212,176,116,0.1) !important;
+          border-color: rgba(255,255,255,0.7) !important;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(255,255,255,0.12) !important;
         }
         @media (max-width: 1280px) {
           .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
