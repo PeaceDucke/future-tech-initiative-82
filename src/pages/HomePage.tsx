@@ -2108,14 +2108,14 @@ function CaseCard({ it, i, inView }: {
         position: "relative", display: "flex", flexDirection: "column",
         background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
         border: "1px solid rgba(212,176,116,0.18)", borderRadius: "26px",
-        overflow: "hidden", padding: "42px 44px",
+        overflow: "hidden", padding: "32px 30px",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <Icon name="Quote" size={34} style={{ color: G, opacity: 0.35, marginBottom: "20px" }} />
+      <Icon name="Quote" size={30} style={{ color: G, opacity: 0.35, marginBottom: "16px" }} />
 
-      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px", color: B, lineHeight: 1.75, flex: 1 }}>
+      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.7, flex: 1 }}>
         {it.story}
       </p>
 
@@ -2244,7 +2244,7 @@ function CasesSection() {
         filter: "blur(20px)", zIndex: 1,
       }} />
 
-      <div className="mx-auto px-4 sm:px-6" style={{ maxWidth: "1280px", position: "relative", zIndex: 2 }}>
+      <div className="mx-auto px-4 sm:px-8" style={{ maxWidth: "1920px", position: "relative", zIndex: 2 }}>
         <div ref={ref} className="text-center" style={{ marginBottom: "56px" }}>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -2289,7 +2289,7 @@ function CasesSection() {
           </motion.p>
         </div>
 
-        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: "repeat(2, 1fr)", gap: "28px" }}>
+        <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: `repeat(${cases.length}, 1fr)`, gap: "22px" }}>
           {cases.map((it, i) => (
             <CaseCard key={i} it={it} i={i} inView={gridInView} />
           ))}
@@ -2302,7 +2302,10 @@ function CasesSection() {
           border-color: rgba(212,176,116,0.45) !important;
           box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(212,176,116,0.1) !important;
         }
-        @media (max-width: 860px) {
+        @media (max-width: 1280px) {
+          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 640px) {
           .cases-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
