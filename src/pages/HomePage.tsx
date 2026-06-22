@@ -2102,7 +2102,7 @@ function CaseCard({ it, i, inView }: {
       initial={{ opacity: 0, y: 40, scale: 0.96 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -16, transition: { duration: 0.18, ease: "easeOut" } }}
       className="case-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
