@@ -2131,20 +2131,15 @@ function CaseCard({ it, i, inView }: {
         </span>
       </div>
 
-      <div style={{ marginTop: "22px", display: "flex", alignItems: "baseline", gap: "8px" }}>
-        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "40px", color: G, fontWeight: 600, lineHeight: 1 }}>
-          {it.metric}
-        </span>
-        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.3 }}>
-          {it.metricLabel}
-        </span>
-      </div>
-
       <p style={{
-        margin: "12px 0 0", fontFamily: "Inter, sans-serif", fontSize: "14.5px",
-        color: "#D9D3C6", lineHeight: 1.55,
+        margin: "22px 0 0", fontFamily: "Inter, sans-serif", fontSize: "14.5px",
+        color: "#D9D3C6", lineHeight: 1.6,
       }}>
-        {it.result}
+        {it.result}{" "}
+        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: G, fontWeight: 600 }}>
+          {it.metric}
+        </span>{" "}
+        <span style={{ color: B }}>{it.metricLabel}</span>.
       </p>
     </motion.div>
   );
@@ -2167,29 +2162,29 @@ function CasesSection() {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
       metric: "+12,3%",
-      metricLabel: "к конверсии",
-      result: "После внедрения AI-анализа звонков конверсия на этапе диалога выросла за первый месяц.",
+      metricLabel: "к конверсии за месяц",
+      result: "После внедрения AI-анализа звонков конверсия на этапе диалога выросла на",
     },
     {
       company: "Клиника «Вита»",
       tag: "Медцентр",
       metric: "+18,5%",
-      metricLabel: "доходимость",
-      result: "Единый сценарий записи поднял доходимость пациентов до визита уже ко второму месяцу.",
+      metricLabel: "доходимость до визита",
+      result: "Единый сценарий записи поднял",
     },
     {
       company: "SkillUp",
       tag: "Онлайн-школа",
       metric: "+14,7%",
-      metricLabel: "оплат",
-      result: "Точные формулировки для менеджеров увеличили число оплат после консультации.",
+      metricLabel: "оплат после консультации",
+      result: "Точные формулировки для менеджеров дали",
     },
     {
       company: "ГринХаус",
       tag: "Загородная недвижимость",
       metric: "+19%",
-      metricLabel: "клиентов",
-      result: "Контроль каждого диалога и напоминания довели до показа объектов больше клиентов.",
+      metricLabel: "клиентов до показа",
+      result: "Контроль каждого диалога и напоминания довели до показа объектов на",
     },
   ];
 
