@@ -2132,11 +2132,11 @@ function CaseCard({ it, i, inView }: {
       </div>
 
       <p style={{
-        margin: "22px 0 0", fontFamily: "Inter, sans-serif", fontSize: "14.5px",
-        color: "#D9D3C6", lineHeight: 1.6,
+        margin: "22px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
+        color: "#E6E0D2", lineHeight: 1.6,
       }}>
         {it.result}{" "}
-        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: G, fontWeight: 600 }}>
+        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600 }}>
           {it.metric}
         </span>{" "}
         <span style={{ color: B }}>{it.metricLabel}</span>.
