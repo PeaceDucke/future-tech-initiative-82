@@ -2164,10 +2164,10 @@ function CaseCard({ it, i, inView }: {
             </>
           ) : (
             <>
-              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
                 {it.company}
               </div>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: G, marginTop: "3px", lineHeight: 1.35 }}>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: G, marginTop: "4px", lineHeight: 1.35 }}>
                 {it.tag}
               </div>
             </>
