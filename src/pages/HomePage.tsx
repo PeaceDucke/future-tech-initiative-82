@@ -2102,6 +2102,7 @@ function CaseCard({ it, i, inView }: {
       initial={{ opacity: 0, y: 40, scale: 0.96 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -8 }}
       className="case-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
@@ -2316,7 +2317,6 @@ function CasesSection() {
 
       <style>{`
         .case-card:hover {
-          transform: translateY(-6px);
           border-color: rgba(212,176,116,0.45) !important;
           box-shadow: inset 0 1px 0 rgba(255,236,200,0.08), 0 26px 60px rgba(0,0,0,0.6), 0 0 46px rgba(212,176,116,0.1) !important;
         }
