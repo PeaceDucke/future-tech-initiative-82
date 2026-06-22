@@ -2115,7 +2115,7 @@ function CaseCard({ it, i, inView }: {
     >
       <Icon name="Quote" size={30} style={{ color: G, opacity: 0.35, marginBottom: "16px" }} />
 
-      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.7, flex: 1 }}>
+      <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "17.5px", color: "#E6E0D2", lineHeight: 1.7, flex: 1 }}>
         {it.story}
       </p>
 
@@ -2131,12 +2131,25 @@ function CaseCard({ it, i, inView }: {
           <Icon name="Building2" size={20} style={{ color: G }} />
         </span>
         <div>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
-            {it.name}
-          </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: G, marginTop: "3px", lineHeight: 1.35 }}>
-            {it.company} · {it.tag}
-          </div>
+          {it.name ? (
+            <>
+              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+                {it.name}
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: G, marginTop: "3px", lineHeight: 1.35 }}>
+                {it.company} · {it.tag}
+              </div>
+            </>
+          ) : (
+            <>
+              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+                {it.company}
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: G, marginTop: "3px", lineHeight: 1.35 }}>
+                {it.tag}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </motion.div>
@@ -2158,7 +2171,7 @@ function CasesSection() {
   const cases = [
     {
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/71adc897-6c2d-4878-bf5b-1bd5c72b94ad.jpg",
-      name: "Артём Северцев",
+      name: "",
       role: "Коммерческий директор",
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
@@ -2177,7 +2190,7 @@ function CasesSection() {
     },
     {
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/1fd4c5dd-e476-4b8a-a0fd-7b5d0be88266.jpg",
-      name: "Марина Дорохова",
+      name: "",
       role: "Руководитель отдела продаж",
       company: "Клиника «Вита»",
       tag: "Медцентр",
@@ -2197,7 +2210,7 @@ function CasesSection() {
     },
     {
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/cd319095-a662-4532-9ce2-4c694caa7557.jpg",
-      name: "Кирилл Ваймер",
+      name: "",
       role: "Основатель",
       company: "SkillUp",
       tag: "Онлайн-школа",
