@@ -277,7 +277,7 @@ export default function NeuralBrain() {
       const dt = Math.min(clock.getDelta(), 0.05);
       const t = clock.elapsedTime;
 
-      // static brain — only subtle pointer parallax (no auto-spin)
+      // static brain - only subtle pointer parallax (no auto-spin)
       brain.rotation.x += (targetRX - brain.rotation.x) * 0.05;
       brain.rotation.y += (targetRY - brain.rotation.y) * 0.05;
 
