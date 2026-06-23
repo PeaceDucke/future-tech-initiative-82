@@ -2115,7 +2115,7 @@ function CaseCard({ it, i, inView }: {
     >
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px" }}>
         <div style={{ minWidth: 0 }}>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 500, lineHeight: 1.2 }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
             {it.company}
           </div>
           <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, marginTop: "3px", lineHeight: 1.3 }}>
