@@ -2113,21 +2113,23 @@ function CaseCard({ it, i, inView }: {
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px" }}>
-        <div style={{ minWidth: 0 }}>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
-            {it.company}
-          </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
-            {it.tag}
-          </div>
+      <img src={it.logo} alt={it.company} style={{
+        position: "absolute", top: "-18px", right: "-18px",
+        width: "230px", height: "230px", objectFit: "contain", pointerEvents: "none",
+      }} />
+
+      <div style={{ position: "relative", zIndex: 2, maxWidth: "62%" }}>
+        <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
+          {it.company}
         </div>
-        <img src={it.logo} alt={it.company} style={{ width: "220px", height: "220px", objectFit: "contain", flexShrink: 0 }} />
+        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
+          {it.tag}
+        </div>
       </div>
 
       <p style={{
-        margin: "22px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
-        color: "#E6E0D2", lineHeight: 1.6,
+        margin: "16px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
+        color: "#E6E0D2", lineHeight: 1.6, position: "relative", zIndex: 2,
       }}>
         {it.result}{" "}
         <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600 }}>
