@@ -2122,7 +2122,7 @@ function CaseCard({ it, i, inView }: {
             {it.tag}
           </div>
         </div>
-        <img src={it.logo} alt={it.company} style={{ width: "88px", height: "88px", objectFit: "contain", flexShrink: 0 }} />
+        <img src={it.logo} alt={it.company} style={{ width: "220px", height: "220px", objectFit: "contain", flexShrink: 0 }} />
       </div>
 
       <p style={{
