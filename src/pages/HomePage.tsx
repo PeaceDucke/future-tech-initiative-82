@@ -2114,7 +2114,7 @@ function CaseCard({ it, i, inView }: {
       }}
     >
       <img src={it.logo} alt={it.company} style={{
-        position: "absolute", top: "-34px", right: "-18px",
+        position: "absolute", top: "-44px", right: "-28px",
         width: "230px", height: "230px", objectFit: "contain", pointerEvents: "none",
       }} />
 
@@ -2134,8 +2134,8 @@ function CaseCard({ it, i, inView }: {
         {it.result}{" "}
         <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600 }}>
           {it.metric}
-        </span>{" "}
-        <span style={{ color: B }}>{it.metricLabel}</span>.
+        </span>
+        {it.metricLabel ? <> <span style={{ color: B }}>{it.metricLabel}</span></> : null}.
       </p>
     </motion.div>
   );
@@ -2159,7 +2159,7 @@ function CasesSection() {
       tag: "Оптовая электроника",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       metric: "+12,3%",
-      metricLabel: "к конверсии за месяц",
+      metricLabel: "",
       result: "После внедрения AI-анализа звонков конверсия на этапе диалога выросла на",
     },
     {
@@ -2183,7 +2183,7 @@ function CasesSection() {
       tag: "Загородная недвижимость",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/281a8a8e-f6fe-4404-bb70-547eb5e887d9.png",
       metric: "+19%",
-      metricLabel: "клиентов до показа",
+      metricLabel: "",
       result: "Контроль каждого диалога и напоминания довели до показа объектов на",
     },
   ];
