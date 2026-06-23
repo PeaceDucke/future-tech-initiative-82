@@ -2088,7 +2088,7 @@ function CaseChart({ chart }: { chart: CaseChartData }) {
 
 function CaseCard({ it, i, inView }: {
   it: {
-    company: string; tag: string; result: string;
+    company: string; tag: string; result: string; logo: string;
     metric: string; metricLabel: string;
   };
   i: number; inView: boolean;
@@ -2124,10 +2124,10 @@ function CaseCard({ it, i, inView }: {
         </div>
         <span style={{
           display: "inline-flex", alignItems: "center", justifyContent: "center",
-          width: "42px", height: "42px", borderRadius: "12px", flexShrink: 0,
-          background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.3)",
+          width: "56px", height: "56px", borderRadius: "14px", flexShrink: 0, overflow: "hidden",
+          background: "rgba(255,255,255,0.04)", border: "1px solid rgba(212,176,116,0.3)",
         }}>
-          <Icon name="Building2" size={20} style={{ color: G }} />
+          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </span>
       </div>
 
@@ -2161,6 +2161,7 @@ function CasesSection() {
     {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
+      logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       metric: "+12,3%",
       metricLabel: "к конверсии за месяц",
       result: "После внедрения AI-анализа звонков конверсия на этапе диалога выросла на",
@@ -2168,6 +2169,7 @@ function CasesSection() {
     {
       company: "Клиника «Вита»",
       tag: "Медцентр",
+      logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c5ada1bb-a648-41f0-91dc-a918cd8772eb.png",
       metric: "+18,5%",
       metricLabel: "доходимость до визита",
       result: "Единый сценарий записи поднял",
@@ -2175,6 +2177,7 @@ function CasesSection() {
     {
       company: "SkillUp",
       tag: "Онлайн-школа",
+      logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4aa6264d-6eb8-4b86-8cdd-1f23583e7ba7.png",
       metric: "+14,7%",
       metricLabel: "оплат после консультации",
       result: "Точные формулировки для менеджеров дали",
@@ -2182,6 +2185,7 @@ function CasesSection() {
     {
       company: "ГринХаус",
       tag: "Загородная недвижимость",
+      logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/281a8a8e-f6fe-4404-bb70-547eb5e887d9.png",
       metric: "+19%",
       metricLabel: "клиентов до показа",
       result: "Контроль каждого диалога и напоминания довели до показа объектов на",
