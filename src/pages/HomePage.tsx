@@ -2199,22 +2199,6 @@ function CasesSection() {
 
       <div className="mx-auto px-4 sm:px-8" style={{ maxWidth: "1920px", position: "relative", zIndex: 2 }}>
         <div ref={ref} className="text-center" style={{ marginBottom: "56px" }}>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "10px",
-              padding: "8px 18px", borderRadius: "999px", marginBottom: "26px",
-              background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
-            }}
-          >
-            <Icon name="Award" size={16} style={{ color: G }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
-              Кейсы клиентов
-            </span>
-          </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -2222,24 +2206,12 @@ function CasesSection() {
             className="quartz-text"
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18,
+              fontSize: "clamp(34px, 4.4vw, 64px)", lineHeight: 1.1,
               maxWidth: "900px", margin: "0 auto",
             }}
           >
-            Реальные компании, реальный рост выручки
+            Кейсы клиентов
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            style={{
-              fontFamily: "Inter, sans-serif", fontSize: "clamp(16px, 1.4vw, 19px)", color: B,
-              lineHeight: 1.6, maxWidth: "660px", margin: "24px auto 0",
-            }}
-          >
-            Разные ниши и задачи - но один результат: больше доведённых до оплаты клиентов и понятная картина продаж.
-          </motion.p>
         </div>
 
         <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: `repeat(${cases.length}, 1fr)`, gap: "22px" }}>
