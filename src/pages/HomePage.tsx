@@ -2114,7 +2114,7 @@ function CaseCard({ it, i, inView }: {
       }}
     >
       <img src={it.logo} alt={it.company} style={{
-        position: "absolute", top: "-18px", right: "-18px",
+        position: "absolute", top: "-34px", right: "-18px",
         width: "230px", height: "230px", objectFit: "contain", pointerEvents: "none",
       }} />
 
@@ -2128,7 +2128,7 @@ function CaseCard({ it, i, inView }: {
       </div>
 
       <p style={{
-        margin: "16px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
+        margin: "40px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
         color: "#E6E0D2", lineHeight: 1.6, position: "relative", zIndex: 2,
       }}>
         {it.result}{" "}
