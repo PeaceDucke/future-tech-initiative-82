@@ -1474,7 +1474,6 @@ function ImplementationSection() {
       />
 
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px", position: "relative", zIndex: 3 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.45) 8%, rgba(200,169,106,0.45) 92%, transparent)", marginBottom: "60px", position: "relative", zIndex: 3 }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "20px" }}>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -4669,6 +4668,13 @@ export function HomePage() {
 
         {/* ═══ ДЛЯ КОГО ПОДХОДИТ ═══ */}
         <AudienceSection />
+
+        {/* разделитель между секциями */}
+        <div style={{ background: "#151513" }}>
+          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.45) 8%, rgba(200,169,106,0.45) 92%, transparent)" }} />
+          </div>
+        </div>
 
         {/* ═══ КАК ВНЕДРЯЕМ ═══ */}
         <ImplementationSection />
