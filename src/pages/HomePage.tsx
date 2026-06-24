@@ -10,8 +10,8 @@ function SectionDivider() {
     <div style={{ background: "#151513", padding: "60px 0", display: "flex", justifyContent: "center" }}>
       <div
         style={{
-          width: "84%",
-          maxWidth: "1080px",
+          width: "100%",
+          maxWidth: "1620px",
           height: "1.5px",
           background:
             "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.5) 35%, rgba(200,169,106,0.5) 65%, transparent 100%)",
