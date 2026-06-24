@@ -2525,7 +2525,6 @@ function PipelineSection() {
 
           {/* ── Что получает бизнес ── */}
           <div style={{ marginTop: "120px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "120px" }} />
             <Section className="text-center">
               <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает бизнес
@@ -3887,10 +3886,16 @@ export function HomePage() {
         {/* ═══ AI PIPELINE ═══ */}
         <PipelineSection />
 
+        {/* ═══ DIVIDER: Что получает бизнес → Платформа ═══ */}
+        <div style={{ background: "#151513", padding: "0 20px" }}>
+          <div className="max-w-7xl mx-auto" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)" }} />
+          </div>
+        </div>
+
         {/* ═══ DASHBOARD PREVIEW ═══ */}
         <section className="pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "80px" }} />
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-10">
                 <div className="flex items-center justify-center gap-3 mb-4">
