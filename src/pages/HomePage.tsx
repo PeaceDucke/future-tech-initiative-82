@@ -5,6 +5,22 @@ import CauseFlipCard from "@/components/CauseFlipCard";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
+function SectionDivider() {
+  return (
+    <div style={{ background: "#151513", padding: "60px 0", display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          width: "70%",
+          maxWidth: "900px",
+          height: "1px",
+          background:
+            "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.5) 35%, rgba(200,169,106,0.5) 65%, transparent 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
 function LazySpline({
   scene,
   style,
@@ -997,7 +1013,7 @@ function SplineFeatureSection() {
         position: "relative",
       }}
     >
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
+      <SectionDivider />
 
       <div className="max-w-7xl mx-auto">
         {/* ── Header ── */}
@@ -1289,7 +1305,6 @@ function AudienceSection() {
       />
 
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1720px", position: "relative", zIndex: 2 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -1996,7 +2011,6 @@ function CasesSection() {
       }} />
 
       <div className="mx-auto px-4 sm:px-8" style={{ maxWidth: "1920px", position: "relative", zIndex: 2 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "56px" }}>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -2080,7 +2094,6 @@ function BeforeAfterSection() {
   return (
     <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "100px" }} />
         {/* heading */}
         <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
           <motion.h2
@@ -2527,8 +2540,8 @@ function PipelineSection() {
           </div>
 
           {/* ── Что получает бизнес ── */}
-          <div style={{ marginTop: "120px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "120px" }} />
+          <SectionDivider />
+          <div>
             <Section className="text-center">
               <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает бизнес
@@ -2692,9 +2705,6 @@ function ClientValueSection() {
         position: "relative",
       }}
     >
-      {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "120px" }} />
-
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div
@@ -3882,12 +3892,7 @@ export function HomePage() {
         {/* ═══ AI PIPELINE ═══ */}
         <PipelineSection />
 
-        {/* ═══ DIVIDER: Что получает бизнес → Платформа ═══ */}
-        <div style={{ background: "#151513", padding: "0 20px" }}>
-          <div className="max-w-7xl mx-auto" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ DASHBOARD PREVIEW ═══ */}
         <section className="pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
@@ -4651,74 +4656,52 @@ export function HomePage() {
         {/* ═══ SPLINE FEATURE ═══ */}
         <SplineFeatureSection />
 
+        <SectionDivider />
+
         {/* ═══ BEFORE / AFTER ═══ */}
         <BeforeAfterSection />
+
+        <SectionDivider />
 
         {/* ═══ ДЛЯ КОГО ПОДХОДИТ ═══ */}
         <AudienceSection />
 
-        {/* разделитель между секциями */}
-        <div style={{ background: "#151513", padding: "70px 0" }}>
-          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ КАК ВНЕДРЯЕМ ═══ */}
         <ImplementationSection />
 
+        <SectionDivider />
+
         {/* ═══ КЕЙСЫ КЛИЕНТОВ ═══ */}
         <CasesSection />
 
-        {/* разделитель между секциями */}
-        <div style={{ background: "#151513", padding: "70px 0" }}>
-          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ ГАРАНТИЯ ═══ */}
         <GuaranteeSection />
 
+        <SectionDivider />
+
         {/* ═══ CLIENT VALUE ═══ */}
         <ClientValueSection />
 
-        {/* разделитель между секциями */}
-        <div style={{ background: "#151513", padding: "70px 0" }}>
-          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ INTEGRATION ═══ */}
         <IntegrationSection />
 
-        {/* разделитель между секциями */}
-        <div style={{ background: "#151513", padding: "70px 0" }}>
-          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ PRICING ═══ */}
         <PricingSection />
 
-        {/* разделитель между секциями */}
-        <div style={{ background: "#151513", padding: "70px 0" }}>
-          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ FAQ ═══ */}
         <FaqSection />
 
-        {/* разделитель между секциями */}
-        <div style={{ background: "#151513", padding: "70px 0" }}>
-          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
-          </div>
-        </div>
+        <SectionDivider />
 
         {/* ═══ FINAL CTA ═══ */}
         <FinalCtaSection />
