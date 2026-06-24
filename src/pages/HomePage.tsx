@@ -1623,7 +1623,7 @@ function GuaranteeSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section style={{ background: "#100F0E", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+    <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       <div style={{
         position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
         width: "900px", height: "560px", pointerEvents: "none",
