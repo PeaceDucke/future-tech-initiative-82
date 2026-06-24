@@ -1289,6 +1289,7 @@ function AudienceSection() {
       />
 
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1720px", position: "relative", zIndex: 2 }}>
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -1473,6 +1474,7 @@ function ImplementationSection() {
       />
 
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px", position: "relative", zIndex: 2 }}>
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "20px" }}>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -1630,6 +1632,10 @@ function GuaranteeSection() {
         background: "radial-gradient(ellipse at center, rgba(212,176,116,0.1) 0%, transparent 70%)",
         filter: "blur(30px)", zIndex: 1,
       }} />
+
+      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px", position: "relative", zIndex: 2, marginBottom: "80px" }}>
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)" }} />
+      </div>
 
       <div ref={ref} className="mx-auto px-5 sm:px-8 text-center" style={{ maxWidth: "920px", position: "relative", zIndex: 2 }}>
         <motion.div
@@ -1995,6 +2001,7 @@ function CasesSection() {
       }} />
 
       <div className="mx-auto px-4 sm:px-8" style={{ maxWidth: "1920px", position: "relative", zIndex: 2 }}>
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "56px" }}>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -2078,6 +2085,7 @@ function BeforeAfterSection() {
   return (
     <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "100px" }} />
         {/* heading */}
         <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
           <motion.h2
