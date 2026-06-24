@@ -2774,8 +2774,6 @@ function FinalCtaSection() {
         overflow: "hidden",
       }}
     >
-      {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "60px" }} />
 
       {/* ambient glow */}
       <div aria-hidden style={{
@@ -3028,8 +3026,6 @@ function FaqSection() {
         scrollMarginTop: "80px",
       }}
     >
-      {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "60px" }} />
 
       <div
         className="max-w-3xl mx-auto relative"
@@ -3197,8 +3193,6 @@ function PricingSection() {
         scrollMarginTop: "80px",
       }}
     >
-      {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "60px" }} />
 
       {/* ambient glow */}
       <div aria-hidden style={{
@@ -3401,8 +3395,6 @@ function IntegrationSection() {
         overflow: "hidden",
       }}
     >
-      {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "60px" }} />
 
       {/* ambient beige glow */}
       <div
