@@ -2525,6 +2525,7 @@ function PipelineSection() {
 
           {/* ── Что получает бизнес ── */}
           <div style={{ marginTop: "120px" }}>
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "120px" }} />
             <Section className="text-center">
               <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает бизнес
