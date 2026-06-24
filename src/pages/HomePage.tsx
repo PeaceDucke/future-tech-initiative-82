@@ -1072,8 +1072,9 @@ function SplineFeatureSection() {
               pointerEvents: "none",
               zIndex: 1,
             }} />
-            <Spline
+            <LazySpline
               scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+              containerStyle={{ width: "100%", height: "100%" }}
               style={{ width: "100%", height: "100%", transform: "scale(0.667)", transformOrigin: "center center" }}
             />
             {/* Fade edges - скрывают края canvas, не мешают событиям */}
@@ -1132,8 +1133,9 @@ function SplineFeatureSection() {
           {/* Mobile layout */}
           <div className="flex lg:hidden flex-col gap-4" style={{ marginTop: "40px" }}>
             <div style={{ height: "300px", position: "relative", opacity: inView ? 1 : 0, transition: "opacity 1s ease" }}>
-              <Spline
+              <LazySpline
                 scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
+                containerStyle={{ width: "100%", height: "100%" }}
                 style={{ width: "100%", height: "100%" }}
               />
             </div>
@@ -2951,8 +2953,9 @@ function FinalCtaSection() {
               inset: "-15%",
               zIndex: 0,
             }}>
-              <Spline
+              <LazySpline
                 scene="https://prod.spline.design/EEO1FK0SYvQMo8Ap/scene.splinecode"
+                containerStyle={{ width: "100%", height: "100%" }}
                 style={{ width: "100%", height: "100%" }}
               />
               {/* fade edges */}
