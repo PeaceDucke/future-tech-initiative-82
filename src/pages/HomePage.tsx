@@ -1632,10 +1632,6 @@ function GuaranteeSection() {
         filter: "blur(30px)", zIndex: 1,
       }} />
 
-      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px", position: "relative", zIndex: 2, marginBottom: "80px" }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)" }} />
-      </div>
-
       <div ref={ref} className="mx-auto px-5 sm:px-8 text-center" style={{ maxWidth: "920px", position: "relative", zIndex: 2 }}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -4681,6 +4677,13 @@ export function HomePage() {
 
         {/* ═══ КЕЙСЫ КЛИЕНТОВ ═══ */}
         <CasesSection />
+
+        {/* разделитель между секциями */}
+        <div style={{ background: "#151513", padding: "70px 0" }}>
+          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
+            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+          </div>
+        </div>
 
         {/* ═══ ГАРАНТИЯ ═══ */}
         <GuaranteeSection />
