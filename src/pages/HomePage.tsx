@@ -1004,6 +1004,8 @@ function SplineFeatureSection() {
         <div className="text-center" style={{
           paddingTop: "100px",
           paddingBottom: "0",
+          position: "relative",
+          zIndex: 5,
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(24px)",
           transition: "opacity 0.7s ease, transform 0.7s ease",
