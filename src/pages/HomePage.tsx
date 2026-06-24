@@ -4711,6 +4711,13 @@ export function HomePage() {
         {/* ═══ PRICING ═══ */}
         <PricingSection />
 
+        {/* разделитель между секциями */}
+        <div style={{ background: "#151513", padding: "70px 0" }}>
+          <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
+            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+          </div>
+        </div>
+
         {/* ═══ FAQ ═══ */}
         <FaqSection />
 
