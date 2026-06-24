@@ -997,7 +997,7 @@ function SplineFeatureSection() {
         position: "relative",
       }}
     >
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)" }} />
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
 
       <div className="max-w-7xl mx-auto">
         {/* ── Header ── */}
@@ -1289,7 +1289,7 @@ function AudienceSection() {
       />
 
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1720px", position: "relative", zIndex: 2 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "80px" }} />
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -1996,7 +1996,7 @@ function CasesSection() {
       }} />
 
       <div className="mx-auto px-4 sm:px-8" style={{ maxWidth: "1920px", position: "relative", zIndex: 2 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "80px" }} />
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "80px" }} />
         <div ref={ref} className="text-center" style={{ marginBottom: "56px" }}>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -2080,7 +2080,7 @@ function BeforeAfterSection() {
   return (
     <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
-        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "100px" }} />
+        <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "100px" }} />
         {/* heading */}
         <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
           <motion.h2
@@ -2528,7 +2528,7 @@ function PipelineSection() {
 
           {/* ── Что получает бизнес ── */}
           <div style={{ marginTop: "120px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "120px" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "120px" }} />
             <Section className="text-center">
               <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает бизнес
@@ -2693,7 +2693,7 @@ function ClientValueSection() {
       }}
     >
       {/* top divider */}
-      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)", marginBottom: "120px" }} />
+      <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)", marginBottom: "120px" }} />
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -3885,7 +3885,7 @@ export function HomePage() {
         {/* ═══ DIVIDER: Что получает бизнес → Платформа ═══ */}
         <div style={{ background: "#151513", padding: "0 20px" }}>
           <div className="max-w-7xl mx-auto" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
-            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,106,0.25) 8%, rgba(200,169,106,0.25) 92%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
@@ -4660,7 +4660,7 @@ export function HomePage() {
         {/* разделитель между секциями */}
         <div style={{ background: "#151513", padding: "70px 0" }}>
           <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
@@ -4673,7 +4673,7 @@ export function HomePage() {
         {/* разделитель между секциями */}
         <div style={{ background: "#151513", padding: "70px 0" }}>
           <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
@@ -4686,7 +4686,7 @@ export function HomePage() {
         {/* разделитель между секциями */}
         <div style={{ background: "#151513", padding: "70px 0" }}>
           <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
@@ -4696,7 +4696,7 @@ export function HomePage() {
         {/* разделитель между секциями */}
         <div style={{ background: "#151513", padding: "70px 0" }}>
           <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
@@ -4706,7 +4706,7 @@ export function HomePage() {
         {/* разделитель между секциями */}
         <div style={{ background: "#151513", padding: "70px 0" }}>
           <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
@@ -4716,7 +4716,7 @@ export function HomePage() {
         {/* разделитель между секциями */}
         <div style={{ background: "#151513", padding: "70px 0" }}>
           <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1280px" }}>
-            <div style={{ width: "100%", height: "2px", background: "linear-gradient(to right, transparent, #C8A96A 10%, #C8A96A 90%, transparent)" }} />
+            <div style={{ width: "100%", height: "1px", background: "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.35) 30%, rgba(200,169,106,0.35) 70%, transparent 100%)" }} />
           </div>
         </div>
 
