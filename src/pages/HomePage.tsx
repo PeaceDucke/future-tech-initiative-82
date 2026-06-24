@@ -14,7 +14,7 @@ function SectionDivider() {
           maxWidth: "1620px",
           height: "1.5px",
           background:
-            "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.5) 35%, rgba(200,169,106,0.5) 65%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, rgba(200,169,106,0.38) 35%, rgba(200,169,106,0.38) 65%, transparent 100%)",
         }}
       />
     </div>
