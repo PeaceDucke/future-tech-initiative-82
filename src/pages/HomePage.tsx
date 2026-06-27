@@ -7,12 +7,12 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 
 function GoldParticles() {
   const rnd = (min: number, max: number) => min + Math.random() * (max - min);
-  const particles = Array.from({ length: 15 }, (_, i) => {
+  const particles = Array.from({ length: 25 }, (_, i) => {
     const size = 2 + Math.random() * 4;
-    // ~75% concentrated over the photo center, ~25% near edges
-    const central = Math.random() < 0.75;
-    const left = central ? rnd(22, 78) : rnd(2, 98);
-    const top = central ? rnd(22, 78) : rnd(2, 98);
+    // ~90% concentrated over the photo, ~10% near edges
+    const central = Math.random() < 0.9;
+    const left = central ? rnd(20, 80) : rnd(4, 96);
+    const top = central ? rnd(20, 80) : rnd(4, 96);
     return {
       id: i,
       left,
