@@ -2447,7 +2447,7 @@ function PipelineSection() {
                 <img
                   src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/84a4f48c-9d18-4d1b-a5a6-8a06276f6730.png"
                   alt="Нейросеть"
-                  style={{ width: "200%", maxWidth: "1120px", height: "auto", objectFit: "contain", transform: "translateX(80px)" }}
+                  style={{ width: "167%", maxWidth: "933px", height: "auto", objectFit: "contain", transform: "translateX(80px)" }}
                 />
               </div>
 
