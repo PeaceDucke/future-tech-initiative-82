@@ -8,56 +8,60 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 function GoldParticles() {
   const rnd = (min: number, max: number) => min + Math.random() * (max - min);
   const particles = Array.from({ length: 35 }, (_, i) => {
-    const size = 2 + Math.random() * 4;
+    const size = 2 + Math.random() * 3.5;
     // ~90% concentrated over the photo, ~10% near edges
     const central = Math.random() < 0.9;
     const left = central ? rnd(15, 85) : rnd(6, 94);
     const top = central ? rnd(15, 85) : rnd(6, 94);
+    // a long, wandering, unique path: 5 waypoints drifting in any direction
+    const ox = () => rnd(-55, 55);
+    const oy = () => rnd(-55, 55);
     return {
       id: i,
       left,
       top,
       size,
-      duration: 6 + Math.random() * 6,
-      delay: Math.random() * 7,
-      // chaotic multi-point drift, both axes both directions
-      x1: rnd(-20, 20), y1: rnd(-20, 20),
-      x2: rnd(-20, 20), y2: rnd(-20, 20),
-      x3: rnd(-20, 20), y3: rnd(-20, 20),
+      duration: 9 + Math.random() * 9,
+      delay: Math.random() * 12,
+      path: [ox(), oy(), ox(), oy(), ox(), oy(), ox(), oy(), ox(), oy()],
     };
   });
 
   return (
     <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 3, overflow: "visible" }}>
-      {particles.map((p) => (
-        <span
-          key={p.id}
-          style={{
-            position: "absolute",
-            left: `${p.left}%`,
-            top: `${p.top}%`,
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, #F4DDA0 0%, #D4B074 45%, rgba(212,176,116,0) 75%)",
-            boxShadow: "0 0 8px 2px rgba(212,176,116,0.55)",
-            // @ts-expect-error custom CSS vars
-            "--x1": `${p.x1}px`, "--y1": `${p.y1}px`,
-            "--x2": `${p.x2}px`, "--y2": `${p.y2}px`,
-            "--x3": `${p.x3}px`, "--y3": `${p.y3}px`,
-            opacity: 0,
-            animation: `goldChaos${p.id % 5} ${p.duration}s ease-in-out ${p.delay}s infinite`,
-            willChange: "transform, opacity",
-          }}
-        />
-      ))}
-      <style>{`
-        @keyframes goldChaos0 { 0%{opacity:0;transform:translate(0,0) scale(.6)} 12%{opacity:1} 30%{transform:translate(var(--x1),var(--y1)) scale(1)} 55%{transform:translate(var(--x2),var(--y2)) scale(.85)} 80%{opacity:.9;transform:translate(var(--x3),var(--y3)) scale(1.05)} 100%{opacity:0;transform:translate(0,0) scale(.6)} }
-        @keyframes goldChaos1 { 0%{opacity:0;transform:translate(0,0) scale(.6)} 14%{opacity:1} 35%{transform:translate(var(--x2),var(--y1)) scale(.9)} 60%{transform:translate(var(--x3),var(--y2)) scale(1.05)} 82%{opacity:.85;transform:translate(var(--x1),var(--y3)) scale(.95)} 100%{opacity:0;transform:translate(0,0) scale(.6)} }
-        @keyframes goldChaos2 { 0%{opacity:0;transform:translate(0,0) scale(.6)} 10%{opacity:1} 28%{transform:translate(var(--x3),var(--y2)) scale(1.05)} 52%{transform:translate(var(--x1),var(--y3)) scale(.85)} 78%{opacity:.9;transform:translate(var(--x2),var(--y1)) scale(1)} 100%{opacity:0;transform:translate(0,0) scale(.6)} }
-        @keyframes goldChaos3 { 0%{opacity:0;transform:translate(0,0) scale(.6)} 13%{opacity:1} 33%{transform:translate(var(--x1),var(--y2)) scale(.9)} 58%{transform:translate(var(--x2),var(--y3)) scale(1)} 84%{opacity:.85;transform:translate(var(--x3),var(--y1)) scale(1.05)} 100%{opacity:0;transform:translate(0,0) scale(.6)} }
-        @keyframes goldChaos4 { 0%{opacity:0;transform:translate(0,0) scale(.6)} 11%{opacity:1} 31%{transform:translate(var(--x2),var(--y3)) scale(1)} 56%{transform:translate(var(--x3),var(--y1)) scale(.85)} 81%{opacity:.9;transform:translate(var(--x1),var(--y2)) scale(1.05)} 100%{opacity:0;transform:translate(0,0) scale(.6)} }
-      `}</style>
+      {particles.map((p) => {
+        const [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5] = p.path;
+        const kf = `gp${p.id}`;
+        return (
+          <span
+            key={p.id}
+            style={{
+              position: "absolute",
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, #F4DDA0 0%, #D4B074 45%, rgba(212,176,116,0) 75%)",
+              boxShadow: "0 0 8px 2px rgba(212,176,116,0.55)",
+              opacity: 0,
+              animation: `${kf} ${p.duration}s linear ${p.delay}s infinite`,
+              willChange: "transform, opacity",
+            }}
+          >
+            <style>{`
+              @keyframes ${kf} {
+                0%   { opacity: 0; transform: translate(0px, 0px) scale(0.4); }
+                10%  { opacity: 1; transform: translate(${x1}px, ${y1}px) scale(1); }
+                32%  { opacity: 0.95; transform: translate(${x2}px, ${y2}px) scale(0.9); }
+                54%  { opacity: 0.85; transform: translate(${x3}px, ${y3}px) scale(1.05); }
+                76%  { opacity: 0.6; transform: translate(${x4}px, ${y4}px) scale(0.8); }
+                100% { opacity: 0; transform: translate(${x5}px, ${y5}px) scale(0.3); }
+              }
+            `}</style>
+          </span>
+        );
+      })}
     </div>
   );
 }
