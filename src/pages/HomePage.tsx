@@ -59,17 +59,25 @@ function GoldParticles() {
     }
     return { x: POLY_CX, y: POLY_CY };
   };
-  const ox = () => rnd(-7, 7); // wandering offsets in % (kept small)
-  const oy = () => rnd(-7, 7);
   const PX_PER_PCT = 2.4; // convert the small % wander into px jitter for translate()
-  const makeParticle = (i: number, leftCenter: number, leftSpread: number, topCenter: number, topSpread: number) => {
-    const size = 2 + Math.random() * 3.5;
-    const base = clampToZone(centered(leftCenter, leftSpread), centered(topCenter, topSpread));
+  // pick a random point uniformly inside the polygon (rejection sampling)
+  const randomPointInZone = () => {
+    for (let tries = 0; tries < 60; tries++) {
+      const x = rnd(14, 88);
+      const y = rnd(9, 90);
+      if (inPoly(x, y)) return { x, y };
+    }
+    return { x: POLY_CX, y: POLY_CY };
+  };
+  const ox = () => rnd(-6, 6); // wandering offsets in % (kept small)
+  const oy = () => rnd(-6, 6);
+  const makeStar = (i: number) => {
+    const size = 1.3 + Math.random() * 3; // mix of tiny and bigger "stars"
+    const base = randomPointInZone();
     // build a wandering path, clamping every waypoint to stay inside the zone
     const path: number[] = [];
     for (let k = 0; k < 5; k++) {
       const p = clampToZone(base.x + ox(), base.y + oy());
-      // store offset relative to base as a small px jitter (stays well inside the zone)
       path.push((p.x - base.x) * PX_PER_PCT, (p.y - base.y) * PX_PER_PCT);
     }
     return {
@@ -77,38 +85,26 @@ function GoldParticles() {
       left: base.x,
       top: base.y,
       size,
-      duration: 9 + Math.random() * 9,
-      delay: Math.random() * 12,
+      duration: 7 + Math.random() * 10, // drift speed
+      delay: -Math.random() * 18,       // negative delay = already mid-animation on load
+      twinkleDur: 1.6 + Math.random() * 3.5, // brightness pulse speed
+      twinkleDelay: -Math.random() * 5,
+      maxOpacity: 0.55 + Math.random() * 0.45, // some shine brighter than others
       path,
     };
   };
-  const particles = [
-    ...Array.from({ length: 35 }, (_, i) => makeParticle(i, 49.9, 90, 49.3, 84)),
-    // extra cluster placed a bit higher
-    ...Array.from({ length: 10 }, (_, i) => makeParticle(35 + i, 49.9, 70, 30, 50)),
-    // extra cluster in the bottom-right zone
-    ...Array.from({ length: 5 }, (_, i) => makeParticle(45 + i, 68, 38, 68, 40)),
-  ];
+  const STAR_COUNT = 120;
+  const particles = Array.from({ length: STAR_COUNT }, (_, i) => makeStar(i));
 
   return (
     <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 10, overflow: "hidden" }}>
-      {/* DEBUG: temporary outline of the allowed brain-shaped zone */}
-      <svg
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 20 }}
-      >
-        <polygon
-          points={ZONE_POLY.map(([x, y]) => `${x},${y}`).join(" ")}
-          fill="none"
-          stroke="rgba(255,0,128,0.9)"
-          strokeWidth="0.5"
-          strokeDasharray="1.5 1"
-        />
-      </svg>
       {particles.map((p) => {
         const [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5] = p.path;
-        const kf = `gp${p.id}`;
+        const driftKf = `gd${p.id}`;
+        const twinkleKf = `gt${p.id}`;
+        const dim = (p.maxOpacity * 0.18).toFixed(2); // dimmest point of the twinkle
+        const mid = (p.maxOpacity * 0.6).toFixed(2);
+        const bright = p.maxOpacity.toFixed(2);
         return (
           <span
             key={p.id}
@@ -118,22 +114,34 @@ function GoldParticles() {
               top: `${p.top}%`,
               width: `${p.size}px`,
               height: `${p.size}px`,
-              borderRadius: "50%",
-              background: "radial-gradient(circle, #FFF4D6 0%, #F4DDA0 40%, #D4B074 65%, rgba(212,176,116,0) 80%)",
-              boxShadow: "0 0 10px 3px rgba(244,221,160,0.85), 0 0 18px 5px rgba(212,176,116,0.45)",
-              opacity: 0,
-              animation: `${kf} ${p.duration}s linear ${p.delay}s infinite`,
-              willChange: "transform, opacity",
+              animation: `${driftKf} ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
+              willChange: "transform",
             }}
           >
+            <span
+              style={{
+                display: "block",
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, #FFF7DE 0%, #F4DDA0 40%, #D4B074 65%, rgba(212,176,116,0) 80%)",
+                boxShadow: "0 0 6px 1.5px rgba(244,221,160,0.8), 0 0 12px 3px rgba(212,176,116,0.4)",
+                animation: `${twinkleKf} ${p.twinkleDur}s ease-in-out ${p.twinkleDelay}s infinite`,
+                willChange: "opacity, transform",
+              }}
+            />
             <style>{`
-              @keyframes ${kf} {
-                0%   { opacity: 0; transform: translate(0px, 0px) scale(0.4); }
-                10%  { opacity: 1; transform: translate(${x1}px, ${y1}px) scale(1); }
-                32%  { opacity: 0.95; transform: translate(${x2}px, ${y2}px) scale(0.9); }
-                54%  { opacity: 0.85; transform: translate(${x3}px, ${y3}px) scale(1.05); }
-                76%  { opacity: 0.6; transform: translate(${x4}px, ${y4}px) scale(0.8); }
-                100% { opacity: 0; transform: translate(${x5}px, ${y5}px) scale(0.3); }
+              @keyframes ${driftKf} {
+                0%   { transform: translate(${x1}px, ${y1}px); }
+                25%  { transform: translate(${x2}px, ${y2}px); }
+                50%  { transform: translate(${x3}px, ${y3}px); }
+                75%  { transform: translate(${x4}px, ${y4}px); }
+                100% { transform: translate(${x5}px, ${y5}px); }
+              }
+              @keyframes ${twinkleKf} {
+                0%   { opacity: ${dim}; transform: scale(0.7); }
+                50%  { opacity: ${bright}; transform: scale(1.15); }
+                100% { opacity: ${mid}; transform: scale(0.85); }
               }
             `}</style>
           </span>
