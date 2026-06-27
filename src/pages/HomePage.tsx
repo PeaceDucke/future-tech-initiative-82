@@ -14,8 +14,8 @@ function GoldParticles() {
   };
   const particles = Array.from({ length: 35 }, (_, i) => {
     const size = 2 + Math.random() * 3.5;
-    const left = centered(50, 70); // wider spread, reaching more to the left
-    const top = centered(46, 72);  // wider vertical spread, slightly up
+    const left = centered(44, 76); // shifted further left, wide spread
+    const top = centered(40, 74);  // shifted a bit higher, wide spread
     // wandering path kept small so particles stay inside the photo bounds
     const ox = () => rnd(-16, 16);
     const oy = () => rnd(-16, 16);
@@ -45,8 +45,8 @@ function GoldParticles() {
               width: `${p.size}px`,
               height: `${p.size}px`,
               borderRadius: "50%",
-              background: "radial-gradient(circle, #F4DDA0 0%, #D4B074 45%, rgba(212,176,116,0) 75%)",
-              boxShadow: "0 0 8px 2px rgba(212,176,116,0.55)",
+              background: "radial-gradient(circle, #FFF4D6 0%, #F4DDA0 40%, #D4B074 65%, rgba(212,176,116,0) 80%)",
+              boxShadow: "0 0 10px 3px rgba(244,221,160,0.85), 0 0 18px 5px rgba(212,176,116,0.45)",
               opacity: 0,
               animation: `${kf} ${p.duration}s linear ${p.delay}s infinite`,
               willChange: "transform, opacity",
