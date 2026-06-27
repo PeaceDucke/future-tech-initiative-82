@@ -14,11 +14,11 @@ function GoldParticles() {
   };
   const particles = Array.from({ length: 35 }, (_, i) => {
     const size = 2 + Math.random() * 3.5;
-    const left = centered(80);
-    const top = centered(86);
-    // a long, wandering, unique path: 5 waypoints drifting in any direction
-    const ox = () => rnd(-55, 55);
-    const oy = () => rnd(-55, 55);
+    const left = centered(70);
+    const top = centered(72);
+    // wandering path kept small so particles stay inside the photo bounds
+    const ox = () => rnd(-22, 22);
+    const oy = () => rnd(-22, 22);
     return {
       id: i,
       left,
@@ -31,7 +31,7 @@ function GoldParticles() {
   });
 
   return (
-    <div style={{ position: "absolute", top: "-12%", bottom: "-12%", left: "0", right: "0", pointerEvents: "none", zIndex: 10, overflow: "visible" }}>
+    <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 10, overflow: "hidden" }}>
       {particles.map((p) => {
         const [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5] = p.path;
         const kf = `gp${p.id}`;
