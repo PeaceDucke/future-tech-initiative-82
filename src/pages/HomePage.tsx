@@ -12,33 +12,47 @@ function GoldParticles() {
     const g = (Math.random() + Math.random() + Math.random()) / 3; // ~0.5 mean
     return center + (g - 0.5) * spread;
   };
-  const ox = () => rnd(-16, 16);
-  const oy = () => rnd(-16, 16);
+  // Allowed zone = ellipse describing the brain (all values in % of the photo box).
+  // A point (x,y) is inside when ((x-cx)/rx)^2 + ((y-cy)/ry)^2 <= 1.
+  const ZONE = { cx: 49.9, cy: 49.3, rx: 75.9 / 2, ry: 87.2 / 2 };
+  const MARGIN = 0.9; // keep particles slightly off the very edge
+  // pull a point toward the ellipse center until it sits inside the (margin-shrunk) ellipse
+  const clampToEllipse = (x: number, y: number) => {
+    const nx = (x - ZONE.cx) / (ZONE.rx * MARGIN);
+    const ny = (y - ZONE.cy) / (ZONE.ry * MARGIN);
+    const d = Math.sqrt(nx * nx + ny * ny);
+    if (d <= 1) return { x, y };
+    return { x: ZONE.cx + (nx / d) * ZONE.rx * MARGIN, y: ZONE.cy + (ny / d) * ZONE.ry * MARGIN };
+  };
+  const ox = () => rnd(-7, 7); // wandering offsets in % (kept small)
+  const oy = () => rnd(-7, 7);
+  const PX_PER_PCT = 2.4; // convert the small % wander into px jitter for translate()
   const makeParticle = (i: number, leftCenter: number, leftSpread: number, topCenter: number, topSpread: number) => {
     const size = 2 + Math.random() * 3.5;
-    let left = centered(leftCenter, leftSpread);
-    let top = centered(topCenter, topSpread);
-    // avoid the very bottom-left corner where particles slipped outside the photo
-    if (left < 18 && top > 78) {
-      left += 16;
-      top -= 12;
+    const base = clampToEllipse(centered(leftCenter, leftSpread), centered(topCenter, topSpread));
+    // build a wandering path, clamping every waypoint to stay inside the ellipse
+    const path: number[] = [];
+    for (let k = 0; k < 5; k++) {
+      const p = clampToEllipse(base.x + ox(), base.y + oy());
+      // store offset relative to base as a small px jitter (stays well inside the ellipse)
+      path.push((p.x - base.x) * PX_PER_PCT, (p.y - base.y) * PX_PER_PCT);
     }
     return {
       id: i,
-      left,
-      top,
+      left: base.x,
+      top: base.y,
       size,
       duration: 9 + Math.random() * 9,
       delay: Math.random() * 12,
-      path: [ox(), oy(), ox(), oy(), ox(), oy(), ox(), oy(), ox(), oy()],
+      path,
     };
   };
   const particles = [
-    ...Array.from({ length: 35 }, (_, i) => makeParticle(i, 48, 90, 40, 76)),
+    ...Array.from({ length: 35 }, (_, i) => makeParticle(i, 49.9, 90, 49.3, 84)),
     // extra cluster placed a bit higher
-    ...Array.from({ length: 10 }, (_, i) => makeParticle(35 + i, 48, 70, 26, 40)),
+    ...Array.from({ length: 10 }, (_, i) => makeParticle(35 + i, 49.9, 70, 30, 50)),
     // extra cluster in the bottom-right zone
-    ...Array.from({ length: 5 }, (_, i) => makeParticle(45 + i, 70, 36, 70, 34)),
+    ...Array.from({ length: 5 }, (_, i) => makeParticle(45 + i, 68, 38, 68, 40)),
   ];
 
   return (
