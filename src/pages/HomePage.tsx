@@ -3654,7 +3654,7 @@ export function HomePage() {
                 <Icon name="Waves" size={16} style={{ color: "#D4B074" }} />
               </div>
               <span
-                className="text-[15px] tracking-wide"
+                className="text-[21px] tracking-wide"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
@@ -3675,7 +3675,7 @@ export function HomePage() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-2 text-[16px] rounded-lg transition-all duration-200"
+                  className="px-4 py-2 text-[18px] rounded-lg transition-all duration-200"
                   style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                 >
                   {item.label}
@@ -3686,7 +3686,7 @@ export function HomePage() {
             <div className="flex items-center gap-4 ml-auto">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-3">
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
                   Остались вопросы?<br />Напишите нам!
                 </div>
                 <Icon name="ArrowRight" size={20} style={{ color: "#D4B074" }} />
@@ -3714,7 +3714,7 @@ export function HomePage() {
                   fontFamily: "Inter, sans-serif",
                   fontWeight: 600,
                   letterSpacing: "0.08em",
-                  fontSize: "13px",
+                  fontSize: "15px",
                   padding: "9px 20px",
                   borderRadius: "2px",
                   marginRight: "8px",
