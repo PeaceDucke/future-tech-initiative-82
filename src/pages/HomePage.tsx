@@ -1044,7 +1044,7 @@ function SplineFeatureSection() {
             margin: "0 auto",
             lineHeight: 1.8,
           }}>
-            SalesFlow находит моменты, где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
+            Voice-Tec находит моменты, где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
           </p>
         </div>
 
@@ -1455,7 +1455,7 @@ function ImplementationSection() {
     {
       icon: "PhoneCall",
       title: "Подключаем телефонию",
-      desc: "Соединяем SalesFlow с вашей АТС или CRM. Ничего менять в работе менеджеров не нужно.",
+      desc: "Соединяем Voice-Tec с вашей АТС или CRM. Ничего менять в работе менеджеров не нужно.",
     },
     {
       icon: "SlidersHorizontal",
@@ -2122,7 +2122,7 @@ function BeforeAfterSection() {
                 <Icon name="TrendingDown" size={22} style={{ color: RED }} />
               </div>
               <div>
-                <div style={{ ...labelCss, color: RED, fontSize: "12px" }}>До SalesFlow</div>
+                <div style={{ ...labelCss, color: RED, fontSize: "12px" }}>До Voice-Tec</div>
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
               </div>
             </motion.div>
@@ -2135,7 +2135,7 @@ function BeforeAfterSection() {
               style={{ textAlign: "right" }}
             >
               <div>
-                <div style={{ ...labelCss, color: GREEN, fontSize: "12px" }}>С SalesFlow</div>
+                <div style={{ ...labelCss, color: GREEN, fontSize: "12px" }}>С Voice-Tec</div>
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
               </div>
               <div style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.32)" }}>
@@ -2977,7 +2977,7 @@ function FinalCtaSection() {
 
 const FAQ_ITEMS = [
   {
-    q: "Как SalesFlow анализирует звонки - это безопасно?",
+    q: "Как Voice-Tec анализирует звонки - это безопасно?",
     a: "Все данные передаются по зашифрованному каналу (TLS 1.3) и хранятся на серверах в России. Записи звонков не передаются третьим лицам и используются исключительно для анализа внутри вашего аккаунта. Мы соответствуем требованиям 152-ФЗ о персональных данных.",
   },
   {
@@ -2993,7 +2993,7 @@ const FAQ_ITEMS = [
     a: "Да. Бесплатный тариф даёт 300 минут Quick-анализа и 30 минут Deep-анализа без каких-либо ограничений по времени - пользуйтесь столько, сколько нужно. Карта не требуется. Когда лимит будет исчерпан, вы сможете выбрать подходящий тариф или запросить расширение лимита для пилотного тестирования.",
   },
   {
-    q: "Как SalesFlow помогает увеличить конверсию?",
+    q: "Как Voice-Tec помогает увеличить конверсию?",
     a: "Система автоматически выявляет моменты, где менеджеры теряют клиентов: слабая отработка возражений, преждевременное называние цены, отсутствие follow-up и другие паттерны. На основе реальных звонков формируются персональные рекомендации и точки роста для каждого сотрудника. Наши клиенты в среднем фиксируют рост конверсии на 12–28% в течение первых двух месяцев.",
   },
   {
@@ -3001,7 +3001,7 @@ const FAQ_ITEMS = [
     a: "Да. В тарифах Команда и Бизнес доступны роли: РОП видит сводную аналитику по всему отделу, менеджер - только свои показатели. Можно создавать группы, сравнивать команды между собой и настраивать индивидуальные скрипты и чек-листы для каждой роли.",
   },
   {
-    q: "Поддерживает ли SalesFlow входящие звонки или только исходящие?",
+    q: "Поддерживает ли Voice-Tec входящие звонки или только исходящие?",
     a: "Система анализирует любые звонки: входящие, исходящие и даже перезвоны по заявкам. Тип звонка фиксируется автоматически из CRM-данных. Для каждого типа можно настроить отдельный чек-лист - например, для входящих оценивать скорость ответа и выявление потребности, для исходящих - качество презентации и закрытие на следующий шаг.",
   },
   {
@@ -3010,7 +3010,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Есть ли API для собственных интеграций?",
-    a: "Да, на тарифах Команда и Бизнес доступен REST API с полной документацией. Вы можете интегрировать SalesFlow с любой внутренней системой: ERP, BI-платформами, Slack, Telegram-ботами для уведомлений или собственными дашбордами. Технический специалист команды помогает с нестандартными сценариями.",
+    a: "Да, на тарифах Команда и Бизнес доступен REST API с полной документацией. Вы можете интегрировать Voice-Tec с любой внутренней системой: ERP, BI-платформами, Slack, Telegram-ботами для уведомлений или собственными дашбордами. Технический специалист команды помогает с нестандартными сценариями.",
   },
   {
     q: "Можно ли отменить подписку в любой момент?",
@@ -3472,7 +3472,7 @@ function IntegrationSection() {
             lineHeight: 1.65,
           }}
         >
-          Подключите <span style={{ color: "#FBF6EC", fontWeight: 600 }}>SalesFlow</span> к вашей CRM
+          Подключите <span style={{ color: "#FBF6EC", fontWeight: 600 }}>Voice-Tec</span> к вашей CRM
           и&nbsp;телефонии - и&nbsp;начните зарабатывать больше уже сегодня.
         </p>
 
@@ -3671,7 +3671,7 @@ export function HomePage() {
                   letterSpacing: "0.08em",
                 }}
               >
-                SALES<span style={{ color: "#D4B074" }}>FLOW</span>
+                VOICE<span style={{ color: "#D4B074" }}>-TEC</span>
               </span>
             </a>
 
@@ -3797,7 +3797,7 @@ export function HomePage() {
           <div className="absolute inset-0">
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e3398b6d-eb3c-4f97-b1a4-9768d29cb5d8.jpg"
-              alt="Команда SalesFlow"
+              alt="Команда Voice-Tec"
               className="w-full h-full object-cover object-center"
             />
             <div
@@ -4732,7 +4732,7 @@ export function HomePage() {
                     color: "#FBF6EC",
                   }}
                 >
-                  SALES<span style={{ color: "#D4B074" }}>FLOW</span>
+                  VOICE<span style={{ color: "#D4B074" }}>-TEC</span>
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">

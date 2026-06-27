@@ -79,7 +79,7 @@ const team = [
     name: "Иван Петров",
     role: "Head of Customer Success",
     icon: "Handshake",
-    desc: "Помогает клиентам внедрить SalesFlow без боли. Лично провёл онбординг для 50+ отделов продаж.",
+    desc: "Помогает клиентам внедрить Voice-Tec без боли. Лично провёл онбординг для 50+ отделов продаж.",
     tags: ["Onboarding", "CRM", "Analytics"],
   },
 ];
@@ -94,7 +94,7 @@ const values = [
 const milestones = [
   { year: "2022", event: "Идея родилась из боли", desc: "Основатели столкнулись с проблемой: у руководителя продаж не было инструмента, чтобы понять, почему менеджеры теряют сделки." },
   { year: "2023", event: "Первый прототип", desc: "Собрали MVP за 3 месяца. Первые 5 клиентов дали обратную связь, которая полностью изменила продукт к лучшему." },
-  { year: "2024", event: "Запуск и рост", desc: "Официальный запуск SalesFlow. 100+ компаний подключились в первый год. Средний рост конверсии у клиентов - +23%." },
+  { year: "2024", event: "Запуск и рост", desc: "Официальный запуск Voice-Tec. 100+ компаний подключились в первый год. Средний рост конверсии у клиентов - +23%." },
   { year: "2025", event: "Масштабирование", desc: "Новые модули: AI-коучинг, предиктивная аналитика, интеграции с CRM-системами. Команда выросла до 18 человек." },
 ];
 
@@ -113,7 +113,7 @@ export default function AboutPage() {
               </div>
               <span className="text-[15px] tracking-wide"
                 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 400, color: "#FBF6EC", letterSpacing: "0.08em" }}>
-                SALES<span style={{ color: "#D4B074" }}>FLOW</span>
+                VOICE<span style={{ color: "#D4B074" }}>-TEC</span>
               </span>
             </Link>
 
@@ -166,7 +166,7 @@ export default function AboutPage() {
             </motion.h1>
             <motion.p variants={fadeUp}
               style={{ ...bodyText, fontSize: "18px", maxWidth: "580px", margin: "0 auto 48px" }}>
-              SalesFlow - это команда инженеров, продуктовых дизайнеров и специалистов по продажам,
+              Voice-Tec - это команда инженеров, продуктовых дизайнеров и специалистов по продажам,
               объединённых одной целью: дать каждому бизнесу суперсилу видеть то, что происходит внутри звонков.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-10">
