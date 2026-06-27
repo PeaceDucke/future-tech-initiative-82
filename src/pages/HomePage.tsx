@@ -23,12 +23,12 @@ function GoldParticles() {
     [86, 56],   // right side
     [80, 66],
     [72, 70],
-    [74, 74],   // start of the brain stem (right) — shifted further right
-    [66, 84],
-    [61, 91],   // stem bottom tip — shifted further right
-    [56, 90],
-    [52, 80],
-    [46, 73],   // bottom of the left lobe
+    [74, 70],   // start of the brain stem (right) — raised
+    [66, 79],
+    [61, 86],   // stem bottom tip — raised
+    [56, 85],
+    [52, 76],
+    [46, 70],   // bottom of the left lobe — raised
     [30, 68],
     [22, 60],
     [16, 50],   // left side
