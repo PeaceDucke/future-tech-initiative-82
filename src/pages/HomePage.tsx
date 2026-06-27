@@ -5,6 +5,56 @@ import CauseFlipCard from "@/components/CauseFlipCard";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
+function GoldParticles() {
+  const particles = Array.from({ length: 15 }, (_, i) => {
+    const size = 2 + Math.random() * 4;
+    return {
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size,
+      duration: 4 + Math.random() * 5,
+      delay: Math.random() * 6,
+      drift: (Math.random() - 0.5) * 60,
+      rise: 20 + Math.random() * 50,
+    };
+  });
+
+  return (
+    <div style={{ position: "absolute", inset: "-8%", pointerEvents: "none", zIndex: 3, overflow: "visible" }}>
+      <style>{`
+        @keyframes goldFloat {
+          0%   { opacity: 0; transform: translate(0, 0) scale(0.6); }
+          15%  { opacity: 1; }
+          70%  { opacity: 0.9; }
+          100% { opacity: 0; transform: translate(var(--gp-x), calc(var(--gp-y) * -1)) scale(1.05); }
+        }
+      `}</style>
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          style={{
+            position: "absolute",
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, #F4DDA0 0%, #D4B074 45%, rgba(212,176,116,0) 75%)",
+            boxShadow: "0 0 8px 2px rgba(212,176,116,0.55)",
+            // @ts-expect-error custom CSS vars
+            "--gp-x": `${p.drift}px`,
+            "--gp-y": `${p.rise}px`,
+            opacity: 0,
+            animation: `goldFloat ${p.duration}s ease-in-out ${p.delay}s infinite`,
+            willChange: "transform, opacity",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function SectionDivider() {
   return (
     <div style={{ background: "#151513", padding: "60px 0", display: "flex", justifyContent: "center" }}>
@@ -2444,11 +2494,14 @@ function PipelineSection() {
 
               {/* brain image (right column) */}
               <div className="hidden lg:flex w-full items-center justify-center" style={{ height: "560px", overflow: "visible" }}>
-                <img
-                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/84a4f48c-9d18-4d1b-a5a6-8a06276f6730.png"
-                  alt="Нейросеть"
-                  style={{ width: "167%", maxWidth: "933px", height: "auto", objectFit: "contain", transform: "translateX(80px)" }}
-                />
+                <div style={{ position: "relative", width: "167%", maxWidth: "933px", transform: "translateX(80px)" }}>
+                  <img
+                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/84a4f48c-9d18-4d1b-a5a6-8a06276f6730.png"
+                    alt="Нейросеть"
+                    style={{ width: "100%", height: "auto", objectFit: "contain", display: "block" }}
+                  />
+                  <GoldParticles />
+                </div>
               </div>
 
             </div>
