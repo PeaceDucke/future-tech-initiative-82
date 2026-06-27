@@ -2770,10 +2770,7 @@ function FinalCtaSection() {
   const G = "#C8A96A";
 
   const socials = [
-    { name: "WhatsApp", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d00de53c-fad6-450e-87d0-f57a9cad051c.png", href: "https://wa.me/", color: "#25D366" },
     { name: "Telegram", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/2f700626-cd00-427d-9f0f-1cc4d3614911.png", href: "https://t.me/", color: "#229ED9" },
-    { name: "Instagram", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/07079e04-41db-4c6a-9866-3d0f7858d5c2.png", href: "https://instagram.com/", color: "#E1306C" },
-    { name: "VK", img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/5bfb7468-351f-45a8-ac5b-91fdf57f4237.png", href: "https://vk.com/", color: "#0077FF" },
   ];
 
   return (
