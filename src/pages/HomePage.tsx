@@ -7,12 +7,12 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 
 function GoldParticles() {
   const rnd = (min: number, max: number) => min + Math.random() * (max - min);
-  const particles = Array.from({ length: 25 }, (_, i) => {
+  const particles = Array.from({ length: 35 }, (_, i) => {
     const size = 2 + Math.random() * 4;
     // ~90% concentrated over the photo, ~10% near edges
     const central = Math.random() < 0.9;
-    const left = central ? rnd(20, 80) : rnd(4, 96);
-    const top = central ? rnd(20, 80) : rnd(4, 96);
+    const left = central ? rnd(15, 85) : rnd(6, 94);
+    const top = central ? rnd(15, 85) : rnd(6, 94);
     return {
       id: i,
       left,
@@ -21,14 +21,14 @@ function GoldParticles() {
       duration: 6 + Math.random() * 6,
       delay: Math.random() * 7,
       // chaotic multi-point drift, both axes both directions
-      x1: rnd(-40, 40), y1: rnd(-40, 40),
-      x2: rnd(-40, 40), y2: rnd(-40, 40),
-      x3: rnd(-40, 40), y3: rnd(-40, 40),
+      x1: rnd(-20, 20), y1: rnd(-20, 20),
+      x2: rnd(-20, 20), y2: rnd(-20, 20),
+      x3: rnd(-20, 20), y3: rnd(-20, 20),
     };
   });
 
   return (
-    <div style={{ position: "absolute", inset: "-8%", pointerEvents: "none", zIndex: 3, overflow: "visible" }}>
+    <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 3, overflow: "visible" }}>
       {particles.map((p) => (
         <span
           key={p.id}
@@ -2504,10 +2504,10 @@ function PipelineSection() {
                 <div style={{ position: "relative", width: "167%", maxWidth: "933px", flexShrink: 0, transform: "translateX(80px)" }}>
                   <div style={{
                     position: "absolute",
-                    inset: "-12%",
+                    inset: "-6%",
                     zIndex: 0,
                     pointerEvents: "none",
-                    background: "radial-gradient(ellipse at 50% 48%, rgba(212,176,116,0.18) 0%, rgba(212,176,116,0.08) 38%, rgba(212,176,116,0) 68%)",
+                    background: "radial-gradient(ellipse at 50% 48%, rgba(212,176,116,0.09) 0%, rgba(212,176,116,0.04) 38%, rgba(212,176,116,0) 68%)",
                     filter: "blur(20px)",
                   }} />
                   <img
