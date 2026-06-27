@@ -16,10 +16,17 @@ function GoldParticles() {
   const oy = () => rnd(-16, 16);
   const makeParticle = (i: number, leftCenter: number, leftSpread: number, topCenter: number, topSpread: number) => {
     const size = 2 + Math.random() * 3.5;
+    let left = centered(leftCenter, leftSpread);
+    let top = centered(topCenter, topSpread);
+    // avoid the very bottom-left corner where particles slipped outside the photo
+    if (left < 18 && top > 78) {
+      left += 16;
+      top -= 12;
+    }
     return {
       id: i,
-      left: centered(leftCenter, leftSpread),
-      top: centered(topCenter, topSpread),
+      left,
+      top,
       size,
       duration: 9 + Math.random() * 9,
       delay: Math.random() * 12,
@@ -30,6 +37,8 @@ function GoldParticles() {
     ...Array.from({ length: 35 }, (_, i) => makeParticle(i, 48, 90, 40, 76)),
     // extra cluster placed a bit higher
     ...Array.from({ length: 10 }, (_, i) => makeParticle(35 + i, 48, 70, 26, 40)),
+    // extra cluster in the bottom-right zone
+    ...Array.from({ length: 5 }, (_, i) => makeParticle(45 + i, 70, 36, 70, 34)),
   ];
 
   return (
