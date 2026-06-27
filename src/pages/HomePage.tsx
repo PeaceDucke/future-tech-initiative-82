@@ -57,6 +57,20 @@ function GoldParticles() {
 
   return (
     <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 10, overflow: "hidden" }}>
+      {/* DEBUG: temporary outline of the allowed ellipse zone */}
+      <div
+        style={{
+          position: "absolute",
+          left: `${ZONE.cx - ZONE.rx}%`,
+          top: `${ZONE.cy - ZONE.ry}%`,
+          width: `${ZONE.rx * 2}%`,
+          height: `${ZONE.ry * 2}%`,
+          border: "2px dashed rgba(255,0,128,0.9)",
+          borderRadius: "50%",
+          boxShadow: "0 0 12px rgba(255,0,128,0.5)",
+          zIndex: 20,
+        }}
+      />
       {particles.map((p) => {
         const [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5] = p.path;
         const kf = `gp${p.id}`;
