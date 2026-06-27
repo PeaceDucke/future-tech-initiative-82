@@ -60,20 +60,24 @@ function GoldParticles() {
     return { x: POLY_CX, y: POLY_CY };
   };
   const PX_PER_PCT = 2.4; // convert the small % wander into px jitter for translate()
-  // pick a random point uniformly inside the polygon (rejection sampling)
-  const randomPointInZone = () => {
-    for (let tries = 0; tries < 60; tries++) {
-      const x = rnd(14, 88);
-      const y = rnd(9, 90);
-      if (inPoly(x, y)) return { x, y };
-    }
-    return { x: POLY_CX, y: POLY_CY };
-  };
   const ox = () => rnd(-6, 6); // wandering offsets in % (kept small)
   const oy = () => rnd(-6, 6);
-  const makeStar = (i: number) => {
-    const size = 1.3 + Math.random() * 3; // mix of tiny and bigger "stars"
-    const base = randomPointInZone();
+  // Evenly fill the polygon: scan a jittered grid and keep cells whose center is inside.
+  // This spreads stars into thin areas (left side, top, stem) far better than pure random.
+  const seeds: { x: number; y: number }[] = [];
+  const COLS = 16;
+  const ROWS = 18;
+  const cellW = (88 - 14) / COLS;
+  const cellH = (90 - 9) / ROWS;
+  for (let c = 0; c < COLS; c++) {
+    for (let r = 0; r < ROWS; r++) {
+      const x = 14 + c * cellW + cellW * (0.2 + Math.random() * 0.6);
+      const y = 9 + r * cellH + cellH * (0.2 + Math.random() * 0.6);
+      if (inPoly(x, y)) seeds.push({ x, y });
+    }
+  }
+  const makeStar = (i: number, base: { x: number; y: number }, bright = false) => {
+    const size = bright ? 4 + Math.random() * 2 : 1.3 + Math.random() * 2.6;
     // build a wandering path, clamping every waypoint to stay inside the zone
     const path: number[] = [];
     for (let k = 0; k < 5; k++) {
@@ -85,16 +89,21 @@ function GoldParticles() {
       left: base.x,
       top: base.y,
       size,
+      bright,
       duration: 7 + Math.random() * 10, // drift speed
       delay: -Math.random() * 18,       // negative delay = already mid-animation on load
-      twinkleDur: 1.6 + Math.random() * 3.5, // brightness pulse speed
+      twinkleDur: bright ? 2.4 + Math.random() * 2 : 1.6 + Math.random() * 3.5,
       twinkleDelay: -Math.random() * 5,
-      maxOpacity: 0.55 + Math.random() * 0.45, // some shine brighter than others
+      maxOpacity: bright ? 1 : 0.5 + Math.random() * 0.4,
       path,
     };
   };
-  const STAR_COUNT = 120;
-  const particles = Array.from({ length: STAR_COUNT }, (_, i) => makeStar(i));
+  const particles = seeds.map((s, i) => makeStar(i, s));
+  // 3 rare extra-bright stars placed at random existing seed positions
+  for (let k = 0; k < 3 && seeds.length; k++) {
+    const s = seeds[Math.floor(Math.random() * seeds.length)];
+    particles.push(makeStar(1000 + k, s, true));
+  }
 
   return (
     <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 10, overflow: "hidden" }}>
@@ -124,8 +133,10 @@ function GoldParticles() {
                 width: "100%",
                 height: "100%",
                 borderRadius: "50%",
-                background: "radial-gradient(circle, #FFF7DE 0%, #F4DDA0 40%, #D4B074 65%, rgba(212,176,116,0) 80%)",
-                boxShadow: "0 0 6px 1.5px rgba(244,221,160,0.8), 0 0 12px 3px rgba(212,176,116,0.4)",
+                background: "radial-gradient(circle, #FFFBEF 0%, #F4DDA0 40%, #D4B074 65%, rgba(212,176,116,0) 80%)",
+                boxShadow: p.bright
+                  ? "0 0 12px 4px rgba(255,247,222,0.95), 0 0 26px 8px rgba(244,221,160,0.6)"
+                  : "0 0 6px 1.5px rgba(244,221,160,0.8), 0 0 12px 3px rgba(212,176,116,0.4)",
                 animation: `${twinkleKf} ${p.twinkleDur}s ease-in-out ${p.twinkleDelay}s infinite`,
                 willChange: "opacity, transform",
               }}
