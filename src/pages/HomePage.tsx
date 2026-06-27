@@ -12,23 +12,25 @@ function GoldParticles() {
     const g = (Math.random() + Math.random() + Math.random()) / 3; // ~0.5 mean
     return center + (g - 0.5) * spread;
   };
-  const particles = Array.from({ length: 35 }, (_, i) => {
+  const ox = () => rnd(-16, 16);
+  const oy = () => rnd(-16, 16);
+  const makeParticle = (i: number, leftCenter: number, leftSpread: number, topCenter: number, topSpread: number) => {
     const size = 2 + Math.random() * 3.5;
-    const left = centered(48, 90); // wider, covering the right zone too
-    const top = centered(40, 76);  // higher
-    // wandering path kept small so particles stay inside the photo bounds
-    const ox = () => rnd(-16, 16);
-    const oy = () => rnd(-16, 16);
     return {
       id: i,
-      left,
-      top,
+      left: centered(leftCenter, leftSpread),
+      top: centered(topCenter, topSpread),
       size,
       duration: 9 + Math.random() * 9,
       delay: Math.random() * 12,
       path: [ox(), oy(), ox(), oy(), ox(), oy(), ox(), oy(), ox(), oy()],
     };
-  });
+  };
+  const particles = [
+    ...Array.from({ length: 35 }, (_, i) => makeParticle(i, 48, 90, 40, 76)),
+    // extra cluster placed a bit higher
+    ...Array.from({ length: 10 }, (_, i) => makeParticle(35 + i, 48, 70, 26, 40)),
+  ];
 
   return (
     <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 10, overflow: "hidden" }}>
