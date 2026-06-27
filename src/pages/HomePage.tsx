@@ -2442,8 +2442,14 @@ function PipelineSection() {
                 </div>
               </div>
 
-              {/* empty space (right column) */}
-              <div className="hidden lg:block w-full" style={{ height: "560px" }} />
+              {/* brain image (right column) */}
+              <div className="hidden lg:flex w-full items-center justify-center" style={{ height: "560px" }}>
+                <img
+                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/84a4f48c-9d18-4d1b-a5a6-8a06276f6730.png"
+                  alt="Нейросеть"
+                  style={{ width: "100%", maxWidth: "560px", height: "auto", objectFit: "contain" }}
+                />
+              </div>
 
             </div>
 
