@@ -14,8 +14,8 @@ function GoldParticles() {
   };
   const particles = Array.from({ length: 35 }, (_, i) => {
     const size = 2 + Math.random() * 3.5;
-    const left = centered(44, 76); // shifted further left, wide spread
-    const top = centered(40, 74);  // shifted a bit higher, wide spread
+    const left = centered(49, 76); // back a bit to the right
+    const top = centered(44, 74);  // slightly lower
     // wandering path kept small so particles stay inside the photo bounds
     const ox = () => rnd(-16, 16);
     const oy = () => rnd(-16, 16);
