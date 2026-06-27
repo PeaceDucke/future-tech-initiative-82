@@ -2502,10 +2502,18 @@ function PipelineSection() {
               {/* brain image (right column) */}
               <div className="hidden lg:flex w-full items-center justify-center" style={{ height: "560px", overflow: "visible" }}>
                 <div style={{ position: "relative", width: "167%", maxWidth: "933px", flexShrink: 0, transform: "translateX(80px)" }}>
+                  <div style={{
+                    position: "absolute",
+                    inset: "-12%",
+                    zIndex: 0,
+                    pointerEvents: "none",
+                    background: "radial-gradient(ellipse at 50% 48%, rgba(212,176,116,0.18) 0%, rgba(212,176,116,0.08) 38%, rgba(212,176,116,0) 68%)",
+                    filter: "blur(20px)",
+                  }} />
                   <img
                     src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/84a4f48c-9d18-4d1b-a5a6-8a06276f6730.png"
                     alt="Нейросеть"
-                    style={{ width: "100%", height: "auto", objectFit: "contain", display: "block" }}
+                    style={{ position: "relative", zIndex: 1, width: "100%", height: "auto", objectFit: "contain", display: "block" }}
                   />
                   <GoldParticles />
                 </div>
