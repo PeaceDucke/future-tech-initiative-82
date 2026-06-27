@@ -12,29 +12,63 @@ function GoldParticles() {
     const g = (Math.random() + Math.random() + Math.random()) / 3; // ~0.5 mean
     return center + (g - 0.5) * spread;
   };
-  // Allowed zone = ellipse describing the brain (all values in % of the photo box).
-  // A point (x,y) is inside when ((x-cx)/rx)^2 + ((y-cy)/ry)^2 <= 1.
-  const ZONE = { cx: 49.9, cy: 49.3, rx: 75.9 / 2, ry: 87.2 / 2 };
-  const MARGIN = 0.9; // keep particles slightly off the very edge
-  // pull a point toward the ellipse center until it sits inside the (margin-shrunk) ellipse
-  const clampToEllipse = (x: number, y: number) => {
-    const nx = (x - ZONE.cx) / (ZONE.rx * MARGIN);
-    const ny = (y - ZONE.cy) / (ZONE.ry * MARGIN);
-    const d = Math.sqrt(nx * nx + ny * ny);
-    if (d <= 1) return { x, y };
-    return { x: ZONE.cx + (nx / d) * ZONE.rx * MARGIN, y: ZONE.cy + (ny / d) * ZONE.ry * MARGIN };
+  // Allowed zone = polygon tracing the brain outline (all values in % of the photo box).
+  // Drops the empty bottom-left quadrant of the old ellipse; follows the real brain shape.
+  const ZONE_POLY: [number, number][] = [
+    [33, 12],   // top-left of the dome
+    [52, 9],    // top
+    [70, 14],   // top-right
+    [82, 26],
+    [87, 42],
+    [86, 56],   // right side
+    [80, 66],
+    [72, 70],
+    [66, 74],   // start of the brain stem (right)
+    [60, 84],
+    [55, 92],   // stem bottom tip
+    [48, 90],
+    [45, 80],
+    [40, 73],   // bottom of the left lobe
+    [30, 68],
+    [22, 60],
+    [16, 50],   // left side
+    [15, 38],
+    [18, 26],
+    [24, 18],
+  ];
+  // ray-casting point-in-polygon test
+  const inPoly = (x: number, y: number) => {
+    let inside = false;
+    for (let a = 0, b = ZONE_POLY.length - 1; a < ZONE_POLY.length; b = a++) {
+      const [xi, yi] = ZONE_POLY[a];
+      const [xj, yj] = ZONE_POLY[b];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  const POLY_CX = 50;
+  const POLY_CY = 45;
+  // if a point is outside, pull it toward the polygon centroid until it lands inside
+  const clampToZone = (x: number, y: number) => {
+    if (inPoly(x, y)) return { x, y };
+    for (let t = 0.15; t <= 1; t += 0.05) {
+      const nx = x + (POLY_CX - x) * t;
+      const ny = y + (POLY_CY - y) * t;
+      if (inPoly(nx, ny)) return { x: nx, y: ny };
+    }
+    return { x: POLY_CX, y: POLY_CY };
   };
   const ox = () => rnd(-7, 7); // wandering offsets in % (kept small)
   const oy = () => rnd(-7, 7);
   const PX_PER_PCT = 2.4; // convert the small % wander into px jitter for translate()
   const makeParticle = (i: number, leftCenter: number, leftSpread: number, topCenter: number, topSpread: number) => {
     const size = 2 + Math.random() * 3.5;
-    const base = clampToEllipse(centered(leftCenter, leftSpread), centered(topCenter, topSpread));
-    // build a wandering path, clamping every waypoint to stay inside the ellipse
+    const base = clampToZone(centered(leftCenter, leftSpread), centered(topCenter, topSpread));
+    // build a wandering path, clamping every waypoint to stay inside the zone
     const path: number[] = [];
     for (let k = 0; k < 5; k++) {
-      const p = clampToEllipse(base.x + ox(), base.y + oy());
-      // store offset relative to base as a small px jitter (stays well inside the ellipse)
+      const p = clampToZone(base.x + ox(), base.y + oy());
+      // store offset relative to base as a small px jitter (stays well inside the zone)
       path.push((p.x - base.x) * PX_PER_PCT, (p.y - base.y) * PX_PER_PCT);
     }
     return {
@@ -57,20 +91,20 @@ function GoldParticles() {
 
   return (
     <div style={{ position: "absolute", inset: "0", pointerEvents: "none", zIndex: 10, overflow: "hidden" }}>
-      {/* DEBUG: temporary outline of the allowed ellipse zone */}
-      <div
-        style={{
-          position: "absolute",
-          left: `${ZONE.cx - ZONE.rx}%`,
-          top: `${ZONE.cy - ZONE.ry}%`,
-          width: `${ZONE.rx * 2}%`,
-          height: `${ZONE.ry * 2}%`,
-          border: "2px dashed rgba(255,0,128,0.9)",
-          borderRadius: "50%",
-          boxShadow: "0 0 12px rgba(255,0,128,0.5)",
-          zIndex: 20,
-        }}
-      />
+      {/* DEBUG: temporary outline of the allowed brain-shaped zone */}
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 20 }}
+      >
+        <polygon
+          points={ZONE_POLY.map(([x, y]) => `${x},${y}`).join(" ")}
+          fill="none"
+          stroke="rgba(255,0,128,0.9)"
+          strokeWidth="0.5"
+          strokeDasharray="1.5 1"
+        />
+      </svg>
       {particles.map((p) => {
         const [x1, y1, x2, y2, x3, y3, x4, y4, x5, y5] = p.path;
         const kf = `gp${p.id}`;
