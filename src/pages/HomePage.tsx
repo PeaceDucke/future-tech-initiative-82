@@ -27,10 +27,11 @@ function GoldParticles() {
     [66, 79],
     [61, 86],   // stem bottom tip — raised
     [56, 85],
-    [52, 76],
-    [46, 70],   // bottom of the left lobe — raised
-    [30, 68],
-    [22, 60],
+    [50, 71],
+    [44, 64],   // bottom of the left lobe — raised higher
+    [34, 60],
+    [26, 55],
+    [18, 48],   // lower-left — raised
     [16, 50],   // left side
     [15, 38],
     [18, 26],
