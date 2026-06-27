@@ -7,15 +7,15 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 
 function GoldParticles() {
   const rnd = (min: number, max: number) => min + Math.random() * (max - min);
-  // bell-shaped distribution centered at 50% (avg of 3 randoms) -> denser in center, sparser at edges
-  const centered = (spread: number) => {
+  // bell-shaped distribution (avg of 3 randoms) -> denser in center, sparser at edges
+  const centered = (center: number, spread: number) => {
     const g = (Math.random() + Math.random() + Math.random()) / 3; // ~0.5 mean
-    return 50 + (g - 0.5) * spread;
+    return center + (g - 0.5) * spread;
   };
   const particles = Array.from({ length: 35 }, (_, i) => {
     const size = 2 + Math.random() * 3.5;
-    const left = centered(54);
-    const top = centered(56);
+    const left = centered(58, 54); // shifted right
+    const top = centered(44, 56);  // shifted up
     // wandering path kept small so particles stay inside the photo bounds
     const ox = () => rnd(-16, 16);
     const oy = () => rnd(-16, 16);
