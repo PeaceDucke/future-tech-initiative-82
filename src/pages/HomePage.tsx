@@ -2637,7 +2637,7 @@ function PipelineSection() {
               }}>
                 AI видит то, что невозможно<br />контролировать вручную
               </motion.h2>
-              <motion.p variants={fadeUp} style={{
+              <motion.p variants={fadeUp} className="pipeline-ai-vision-sub" style={{
                 fontFamily: "Inter, sans-serif",
                 fontSize: "clamp(16px, 1.6vw, 20px)",
                 color: "rgba(251,246,236,0.7)",

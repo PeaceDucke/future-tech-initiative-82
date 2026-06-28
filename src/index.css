@@ -330,8 +330,12 @@ body {
   }
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
-    font-size: 13px !important;
+    font-size: 15px !important;
     margin-bottom: 12px !important;
+  }
+  /* "Мы превращаем хаос звонков..." — 2px smaller on mobile */
+  .pipeline-section p.pipeline-ai-vision-sub {
+    font-size: 14px !important;
   }
   .pipeline-section p.pipeline-card2-text {
     font-size: 10px !important;
