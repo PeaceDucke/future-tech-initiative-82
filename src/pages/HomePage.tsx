@@ -3865,7 +3865,7 @@ export function HomePage() {
                 </div>
                 <Icon name="ArrowRight" size={20} style={{ color: "#D4B074" }} />
                 {[
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/a0f299b2-a9a5-4030-955a-a78f3bef763d.png", name: "Telegram", href: "https://t.me/" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ec6abbd1-8802-405a-bc41-b51fb1533a67.png", name: "Telegram", href: "https://t.me/" },
                 ].map(s => (
                   <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" title={s.name}
                     style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "58px", height: "58px", marginTop: "-12px", marginBottom: "-12px", borderRadius: "8px", transition: "transform 0.2s ease", opacity: 1 }}
