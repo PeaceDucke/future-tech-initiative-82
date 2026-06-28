@@ -581,7 +581,7 @@ function RadarScanner() {
   return (
     <div
       ref={rootRef}
-      className={active ? "rd-on" : "rd-off"}
+      className={`rd-root ${active ? "rd-on" : "rd-off"}`}
       style={{
         position: "relative",
         width: "100%",
@@ -2716,7 +2716,7 @@ function PipelineSection() {
 
               <motion.div
                 variants={stagger}
-                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-12 lg:gap-x-16"
+                className="bw-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-12 lg:gap-x-16"
                 style={{ width: "calc(100% + 120px)", marginLeft: "-60px", marginRight: "-60px" }}
               >
                 {[
@@ -2781,6 +2781,7 @@ function SlideCard({
       }}
     >
       <motion.div
+        className="slide-card"
         initial={{ x: side === "left" ? -160 : 160, opacity: 0 }}
         animate={inView ? { x: 0, opacity: 1 } : {}}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -3978,7 +3979,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-5 py-20" style={{ marginTop: "20rem" }}>
+          <div className="hero-inner relative z-10 w-full max-w-7xl mx-auto px-5 py-20" style={{ marginTop: "20rem" }}>
             <motion.div
               initial="hidden"
               animate="visible"
@@ -3987,7 +3988,7 @@ export function HomePage() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="text-5xl lg:text-7xl xl:text-8xl mb-6 leading-none"
+                className="hero-title text-5xl lg:text-7xl xl:text-8xl mb-6 leading-none"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
@@ -3995,8 +3996,8 @@ export function HomePage() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                <span style={{ display: "block", marginLeft: "-5rem" }}>Ваши продажи</span>
-                <span style={{
+                <span className="hero-title-1" style={{ display: "block", marginLeft: "-5rem" }}>Ваши продажи</span>
+                <span className="hero-title-2" style={{
                   display: "block",
                   whiteSpace: "nowrap",
                   paddingLeft: "25%",
@@ -4012,7 +4013,7 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="text-[22px] mb-5"
+                className="hero-lead text-[22px] mb-5"
                 style={{ color: "rgba(251,246,236,0.88)", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px", textAlign: "center" }}
               >
                 ИИ прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
@@ -4020,12 +4021,13 @@ export function HomePage() {
 
               <motion.div
                 variants={fadeUp}
+                className="hero-underline"
                 style={{ marginLeft: "45%", width: "60vw", maxWidth: "900px", marginTop: "-0.5rem", marginBottom: "1.5rem" }}
               >
                 <div className="gold-underline" />
               </motion.div>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-3" style={{ marginTop: "1.5rem" }}>
+              <motion.div variants={fadeUp} className="hero-cta flex flex-wrap gap-3" style={{ marginTop: "1.5rem" }}>
                 <a
                   href="#cta"
                   className="inline-flex items-center gap-2"
@@ -4047,7 +4049,7 @@ export function HomePage() {
                   Запросить демо
                 </a>
               </motion.div>
-              <motion.p variants={fadeUp} className="mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
+              <motion.p variants={fadeUp} className="hero-partners mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
                 нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
