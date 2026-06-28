@@ -77,7 +77,7 @@ function GoldParticles() {
     }
   }
   const makeStar = (i: number, base: { x: number; y: number }, bright = false) => {
-    const size = bright ? 4 + Math.random() * 2 : 1.3 + Math.random() * 2.6;
+    const size = bright ? 4.6 + Math.random() * 2.2 : 1.7 + Math.random() * 2.9;
     // build a wandering path, clamping every waypoint to stay inside the zone
     const path: number[] = [];
     for (let k = 0; k < 5; k++) {
@@ -94,7 +94,7 @@ function GoldParticles() {
       delay: -Math.random() * 18,       // negative delay = already mid-animation on load
       twinkleDur: bright ? 2.4 + Math.random() * 2 : 1.6 + Math.random() * 3.5,
       twinkleDelay: -Math.random() * 5,
-      maxOpacity: bright ? 1 : 0.5 + Math.random() * 0.4,
+      maxOpacity: bright ? 1 : 0.6 + Math.random() * 0.4,
       path,
     };
   };
