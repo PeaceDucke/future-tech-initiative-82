@@ -268,9 +268,7 @@ body {
      The section keeps the photo as a full background but we ensure
      enough height + a focus point that shows everyone. */
   .hero-section {
-    min-height: 62svh !important;
-    justify-content: flex-start !important;
-    padding-bottom: 0.5rem !important;
+    min-height: 100svh !important;
   }
   /* next section ("Вы не видите 95%...") — much smaller top gap on mobile */
   .pipeline-section {
