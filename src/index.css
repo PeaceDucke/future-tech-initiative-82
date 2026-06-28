@@ -312,13 +312,13 @@ body {
     margin-left: -6px !important;
   }
   .pipeline-row-text {
-    font-size: 12.5px !important;
+    font-size: 6.5px !important;
     line-height: 1.4 !important;
   }
   /* "Обнаружены причины потерь" — allow wrap & shrink so it fits */
   .pipeline-causes-title {
     white-space: normal !important;
-    font-size: 15px !important;
+    font-size: 9px !important;
   }
   /* trim the big gaps between the stacked blocks */
   .pipeline-section .gap-20 {
@@ -326,11 +326,11 @@ body {
   }
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
-    font-size: 19px !important;
+    font-size: 13px !important;
     margin-bottom: 12px !important;
   }
   .pipeline-card2-text {
-    font-size: 12.5px !important;
+    font-size: 6.5px !important;
     line-height: 1.55 !important;
     margin-bottom: 16px !important;
   }
