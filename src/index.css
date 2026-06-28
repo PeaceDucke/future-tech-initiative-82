@@ -268,7 +268,16 @@ body {
      The section keeps the photo as a full background but we ensure
      enough height + a focus point that shows everyone. */
   .hero-section {
-    min-height: 100svh !important;
+    min-height: 62svh !important;
+    justify-content: flex-start !important;
+    padding-bottom: 0.5rem !important;
+  }
+  /* next section ("Вы не видите 95%...") — much smaller top gap on mobile */
+  .pipeline-section {
+    padding: 2.5rem 20px 3rem !important;
+  }
+  .pipeline-section .mb-24 {
+    margin-bottom: 2.5rem !important;
   }
   .hero-photo {
     /* show the WHOLE team — no cropping, fit the entire photo in,

@@ -2528,7 +2528,7 @@ function PipelineSection() {
   );
 
   return (
-    <section style={{ background: "#151513", padding: "120px 20px 140px" }}>
+    <section className="pipeline-section" style={{ background: "#151513", padding: "120px 20px 140px" }}>
       <style>{`
         @keyframes metalPulse {
           0%,100% { box-shadow: 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.07), 0 40px 100px rgba(0,0,0,0.75); }
