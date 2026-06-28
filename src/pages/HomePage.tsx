@@ -4927,7 +4927,7 @@ export function HomePage() {
       {/* ═══ FLOATING CTA ═══ */}
       <motion.a
         href="#cta"
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
+        className="floating-cta fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
         style={{
           background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
           color: "#1E1500",
