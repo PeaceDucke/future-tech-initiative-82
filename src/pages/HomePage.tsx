@@ -3829,7 +3829,7 @@ export function HomePage() {
                 <Icon name="Waves" size={16} style={{ color: "#D4B074" }} />
               </div>
               <span
-                className="text-[21px] tracking-wide"
+                className="text-[16px] md:text-[21px] tracking-wide"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 700,
@@ -3938,9 +3938,11 @@ export function HomePage() {
               ),
             )}
             <a
-              href="#cta"
+              href="https://t.me/voicetec"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px]"
+              className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 text-[13px] text-center leading-tight"
               style={{
                 background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
                 color: "#1E1500",
@@ -3951,7 +3953,8 @@ export function HomePage() {
                 boxShadow: "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)",
               }}
             >
-              Запросить демо
+              <Icon name="Send" size={16} style={{ color: "#1E1500" }} />
+              <span>Остались вопросы? Напишите нам!</span>
             </a>
           </motion.div>
         )}
