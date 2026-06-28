@@ -3959,12 +3959,12 @@ export function HomePage() {
 
       <main className="relative z-10">
         {/* ═══ HERO ═══ */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e3398b6d-eb3c-4f97-b1a4-9768d29cb5d8.jpg"
               alt="Команда Voice-Tec"
-              className="w-full h-full object-cover object-center"
+              className="hero-photo w-full h-full object-cover object-center"
             />
             <div
               className="absolute inset-0"
@@ -4213,9 +4213,10 @@ export function HomePage() {
               </motion.div>
 
               {/* Dashboard Scene */}
+              <div className="dash-wrap">
               <motion.div
                 variants={fadeUp}
-                className="relative mx-auto"
+                className="dash-scene relative mx-auto"
                 style={{ maxWidth: "1320px", height: "920px", ...dashVars }}
               >
                 {/* ── LUXURY GLASS FRAME ── */}
@@ -4816,6 +4817,7 @@ export function HomePage() {
                 </div>
 
               </motion.div>
+              </div>
             </Section>
           </div>
         </section>
