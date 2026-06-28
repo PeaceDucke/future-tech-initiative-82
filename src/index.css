@@ -280,7 +280,7 @@ body {
   }
   /* Pull the content up so the team photo behind it stays visible */
   .hero-inner {
-    margin-top: 4.3rem !important;
+    margin-top: 3.6rem !important;
     padding-top: 1.5rem !important;
     padding-bottom: 2rem !important;
     padding-left: 1.25rem !important;
@@ -304,11 +304,11 @@ body {
     white-space: nowrap !important;
     margin-top: -0.2rem !important;
   }
-  /* lead paragraph — lower & further right, -6px smaller font */
+  /* lead paragraph — lower & further right, smaller font */
   .hero-lead {
     margin-left: 22% !important;
     width: 78% !important;
-    font-size: 10.5px !important;
+    font-size: 8.5px !important;
     line-height: 1.5 !important;
     text-align: left !important;
   }
@@ -408,7 +408,7 @@ body {
     font-size: 33px !important;
   }
   .hero-lead {
-    font-size: 10px !important;
+    font-size: 8px !important;
   }
   .hero-partners {
     font-size: 9px !important;
