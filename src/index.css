@@ -270,9 +270,13 @@ body {
   .hero-section {
     min-height: 100svh !important;
   }
-  /* next section ("Вы не видите 95%...") — much smaller top gap on mobile */
+  /* next section ("Вы не видите 95%...") — pull it up into the empty
+     space below the hero WITHOUT touching the hero itself */
   .pipeline-section {
+    margin-top: -38svh !important;
     padding: 2.5rem 20px 3rem !important;
+    position: relative;
+    z-index: 5;
   }
   .pipeline-section .mb-24 {
     margin-bottom: 2.5rem !important;
