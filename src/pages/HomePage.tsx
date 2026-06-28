@@ -2558,7 +2558,7 @@ function PipelineSection() {
             <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* card */}
-              <div ref={aiCardRef} className="pc w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
+              <div ref={aiCardRef} className="pc pipeline-card-left w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
                 <div className="flex flex-col" style={{ gap: "0px" }}>
@@ -2658,7 +2658,7 @@ function PipelineSection() {
 
             {/* ── CARD 2 - RIGHT ── */}
             <div className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-0">
-              <div className="pc w-full lg:w-[48%]" style={pCard}>
+              <div className="pc pipeline-card-right w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
                 <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
@@ -2670,7 +2670,7 @@ function PipelineSection() {
                 </p>
 
                 {/* ── light dashboard cut-out ── */}
-                <div style={{
+                <div className="pipeline-dashboard" style={{
                   background: "#F8F3EA",
                   borderRadius: "18px",
                   padding: "22px",

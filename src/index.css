@@ -287,27 +287,38 @@ body {
   }
   /* cards — less inner padding & smaller radius */
   .pipeline-section .pc {
-    padding: 12px 18px !important;
-    border-radius: 18px !important;
+    padding: 10px 14px !important;
+    border-radius: 16px !important;
+  }
+  /* mirror the desktop staircase: card 1 left, card 2 right */
+  .pipeline-card-left {
+    width: 84% !important;
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+  .pipeline-card-right {
+    width: 84% !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
   }
   /* the 3-icon problem rows — compact */
   .pipeline-row {
-    gap: 12px !important;
-    padding: 18px 0 !important;
+    gap: 10px !important;
+    padding: 14px 0 !important;
   }
   .pipeline-row-img {
-    width: 70px !important;
-    height: 70px !important;
-    margin-left: -8px !important;
+    width: 56px !important;
+    height: 56px !important;
+    margin-left: -6px !important;
   }
   .pipeline-row-text {
-    font-size: 14px !important;
-    line-height: 1.45 !important;
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
   }
   /* "Обнаружены причины потерь" — allow wrap & shrink so it fits */
   .pipeline-causes-title {
     white-space: normal !important;
-    font-size: 18px !important;
+    font-size: 15px !important;
   }
   /* trim the big gaps between the stacked blocks */
   .pipeline-section .gap-20 {
@@ -315,12 +326,22 @@ body {
   }
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
-    font-size: 22px !important;
+    font-size: 19px !important;
+    margin-bottom: 12px !important;
   }
   .pipeline-card2-text {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    margin-bottom: 20px !important;
+    font-size: 12.5px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 16px !important;
+  }
+  /* inner beige dashboard — tighter padding on mobile */
+  .pipeline-dashboard {
+    padding: 12px !important;
+    border-radius: 14px !important;
+    margin-bottom: 0 !important;
+  }
+  .pipeline-dashboard > div:first-child {
+    padding: 6px 4px 10px !important;
   }
   /* "AI видит то / Что получает бизнес" headings */
   .pipeline-section h2,
