@@ -2578,6 +2578,7 @@ function PipelineSection() {
                   ].map((item, i, arr) => (
                     <div
                       key={i}
+                      className="pipeline-row"
                       style={{
                         display: "flex",
                         alignItems: "center",
@@ -2589,9 +2590,10 @@ function PipelineSection() {
                       <img
                         src={item.img}
                         alt=""
+                        className="pipeline-row-img"
                         style={{ width: "158px", height: "158px", objectFit: "contain", flexShrink: 0, marginLeft: "-36px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
                       />
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
+                      <p className="pipeline-row-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
                       </p>
                     </div>
@@ -2659,10 +2661,10 @@ function PipelineSection() {
               <div className="pc w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
-                <h3 style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
+                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px" }}>
                   AI анализирует каждый разговор
                 </h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
+                <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
                   ИИ анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.<br /><br />
                   ИИ покажет слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину БЕЗ РУЧНОЙ ПРОВЕРКИ ЗВОНКОВ.
                 </p>
@@ -2678,7 +2680,7 @@ function PipelineSection() {
                 }}>
                   {/* heading */}
                   <div style={{ padding: "16px 8px 18px" }}>
-                    <span style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "24px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12, whiteSpace: "nowrap" }}>Обнаружены причины потерь</span>
+                    <span className="pipeline-causes-title" style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "24px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12, whiteSpace: "nowrap" }}>Обнаружены причины потерь</span>
                   </div>
 
                   {/* cause cards on beige (flip on click) */}
