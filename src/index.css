@@ -410,7 +410,26 @@ body {
     width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    gap: 1.5rem 1rem !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 0 4px !important;
+  }
+  .bw-img {
+    margin-bottom: 4px !important;
+  }
+  .bw-accent {
+    font-size: 13px !important;
+    line-height: 1.05 !important;
+  }
+  .bw-title {
+    font-size: 8px !important;
+    line-height: 1.15 !important;
+    margin-top: 2px !important;
+  }
+  .bw-desc {
+    font-size: 6.5px !important;
+    line-height: 1.2 !important;
+    margin-top: 3px !important;
+    max-width: none !important;
   }
   .hero-photo {
     /* show the WHOLE team — no cropping, fit the entire photo in,

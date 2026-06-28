@@ -2733,14 +2733,14 @@ function PipelineSection() {
                     variants={fadeUp}
                     className="flex flex-col items-center text-center"
                   >
-                    <img src={item.img} alt={item.title} loading="lazy" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "10px", transform: item.scale ? `scale(${item.scale})` : undefined }} />
-                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 2.4vw, 34px)", color: G, fontWeight: 600, lineHeight: 1.05, letterSpacing: "0.01em", textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>
+                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "10px", transform: item.scale ? `scale(${item.scale})` : undefined }} />
+                    <span className="bw-accent" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 2.4vw, 34px)", color: G, fontWeight: 600, lineHeight: 1.05, letterSpacing: "0.01em", textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>
                       {item.accent}
                     </span>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: W, fontWeight: 700, lineHeight: 1.3, marginTop: "4px" }}>
+                    <p className="bw-title" style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: W, fontWeight: 700, lineHeight: 1.3, marginTop: "4px" }}>
                       {item.title}
                     </p>
-                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.6)", fontWeight: 400, lineHeight: 1.45, marginTop: "8px", maxWidth: "200px" }}>
+                    <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.6)", fontWeight: 400, lineHeight: 1.45, marginTop: "8px", maxWidth: "200px" }}>
                       {item.desc}
                     </p>
                   </motion.div>
