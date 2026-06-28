@@ -285,6 +285,10 @@ body {
   .pipeline-section .mb-24 h2 {
     font-size: 25px !important;
   }
+  /* heading "AI видит то..." — same size as the "95%" heading */
+  .pipeline-section h2.pipeline-ai-vision-title {
+    font-size: 25px !important;
+  }
   /* cards — less inner padding & smaller radius */
   .pipeline-section .pc {
     padding: 10px 14px !important;
