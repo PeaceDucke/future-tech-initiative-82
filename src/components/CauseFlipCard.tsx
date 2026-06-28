@@ -23,8 +23,9 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
   };
 
   return (
-    <div style={{ perspective: "1200px", minHeight: "62px" }}>
+    <div className="cause-flip" style={{ perspective: "1200px", minHeight: "62px" }}>
       <div
+        className="cause-flip-inner"
         style={{
           position: "relative",
           width: "100%",
@@ -36,6 +37,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
       >
         {/* FRONT */}
         <div
+          className="cause-flip-face"
           style={{
             ...faceBase,
             background: "#FFFFFF",
@@ -44,6 +46,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
           }}
         >
           <span
+            className="cause-flip-icon"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -59,6 +62,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
             <Icon name={icon} size={18} style={{ color: "#C2453C" }} />
           </span>
           <span
+            className="cause-flip-title"
             style={{
               flex: 1,
               minWidth: 0,
@@ -73,7 +77,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
           </span>
           <button
             onClick={() => setFlipped(true)}
-            className="inline-flex items-center"
+            className="cause-flip-more inline-flex items-center"
             style={{
               gap: "5px",
               fontFamily: "Inter, sans-serif",
@@ -95,6 +99,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
 
         {/* BACK */}
         <div
+          className="cause-flip-face cause-flip-back"
           style={{
             ...faceBase,
             background: "#FFFFFF",
@@ -105,6 +110,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
           }}
         >
           <span
+            className="cause-flip-icon cause-flip-icon-back"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -121,6 +127,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
             <Icon name={icon} size={16} style={{ color: "#C2453C" }} />
           </span>
           <p
+            className="cause-flip-detail"
             style={{
               flex: 1,
               minWidth: 0,
@@ -135,7 +142,7 @@ export default function CauseFlipCard({ icon, title, detail }: CauseFlipCardProp
           </p>
           <button
             onClick={() => setFlipped(false)}
-            className="inline-flex items-center justify-center"
+            className="cause-flip-close inline-flex items-center justify-center"
             style={{
               width: "26px",
               height: "26px",

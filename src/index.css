@@ -351,6 +351,54 @@ body {
   .pipeline-dashboard > div:first-child {
     padding: 6px 4px 10px !important;
   }
+  /* mini cards "Обнаружены причины потерь" — compact for mobile */
+  .cause-flip,
+  .cause-flip-inner {
+    min-height: 44px !important;
+  }
+  .cause-flip-face {
+    gap: 8px !important;
+    padding: 7px 9px !important;
+    border-radius: 9px !important;
+  }
+  .cause-flip-icon {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 7px !important;
+  }
+  .cause-flip-icon svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .cause-flip-icon-back {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .cause-flip-title {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+  .cause-flip-detail {
+    font-size: 9px !important;
+    line-height: 1.35 !important;
+  }
+  .cause-flip-more {
+    font-size: 9px !important;
+    gap: 3px !important;
+  }
+  .cause-flip-more svg {
+    width: 11px !important;
+    height: 11px !important;
+  }
+  .cause-flip-close {
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 6px !important;
+  }
+  .cause-flip-close svg {
+    width: 11px !important;
+    height: 11px !important;
+  }
   /* "AI видит то / Что получает бизнес" headings */
   .pipeline-section h2,
   .pipeline-section h3 {
