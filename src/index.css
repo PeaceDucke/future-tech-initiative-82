@@ -282,8 +282,8 @@ body {
     margin-bottom: 2rem !important;
   }
   /* heading "Вы не видите 95%..." — smaller on mobile */
-  .pipeline-section h2 {
-    font-size: 30px !important;
+  .pipeline-section .mb-24 h2 {
+    font-size: 25px !important;
   }
   /* cards — less inner padding & smaller radius */
   .pipeline-section .pc {
@@ -292,12 +292,12 @@ body {
   }
   /* mirror the desktop staircase: card 1 left, card 2 right */
   .pipeline-card-left {
-    width: 84% !important;
+    width: 76% !important;
     margin-right: auto !important;
     margin-left: 0 !important;
   }
   .pipeline-card-right {
-    width: 84% !important;
+    width: 76% !important;
     margin-left: auto !important;
     margin-right: 0 !important;
   }
