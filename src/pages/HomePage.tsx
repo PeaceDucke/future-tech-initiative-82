@@ -3831,7 +3831,7 @@ export function HomePage() {
                 className="text-[21px] tracking-wide"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
-                  fontWeight: 400,
+                  fontWeight: 700,
                   color: "#FBF6EC",
                   letterSpacing: "0.08em",
                 }}
