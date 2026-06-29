@@ -556,30 +556,45 @@ body {
     margin-left: -20px;
     margin-right: -20px;
     width: calc(100% + 40px);
-    /* tall enough so the bottom "Recommendation" card is NOT clipped:
-       stage content ≈ 880px * 0.33 ≈ 290px */
-    height: 305px;
+    /* tall enough so the bottom "Recommendation" card is NOT clipped */
+    height: 340px;
     display: flex;
     justify-content: center;
   }
+  /* tighten vertical layout so the bottom card sits closer and fits fully */
+  .aiv-grid {
+    min-height: 0 !important;
+  }
+  .aiv-grid > div:nth-child(2) {
+    height: 460px !important;
+  }
+  .aiv-grid > div {
+    align-self: start !important;
+  }
   .aiv-stage {
     /* wider canvas so the side cards push out to the screen edges */
-    width: 1180px !important;
-    flex: 0 0 1180px;
-    transform: scale(0.33);
+    width: 1280px !important;
+    flex: 0 0 1280px;
+    transform: scale(0.3);
     transform-origin: top center;
   }
   /* spread the columns wider so cards touch the left/right edges,
      spline stays exactly in the middle */
   .aiv-grid {
-    grid-template-columns: 440px 1fr 440px !important;
+    grid-template-columns: 470px 1fr 470px !important;
     gap: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-  /* the spline background must be visible on mobile */
+  /* the spline background must be visible on mobile and contained inside the
+     stage (not -25% which gets clipped by the short window) */
   .aiv-spline-bg {
     display: block !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 760px !important;
   }
 
   /* ---------- RADAR ---------- */
@@ -642,11 +657,11 @@ body {
     /* shrink the dashboard itself by 1.1x (0.288 / 1.1 ≈ 0.262) */
     transform: scale(0.262);
   }
-  /* AI-vision stage a touch smaller so 1180px canvas fits narrow phones */
+  /* AI-vision stage a touch smaller so 1280px canvas fits narrow phones */
   .aiv-stage-wrap {
-    height: 270px;
+    height: 320px;
   }
   .aiv-stage {
-    transform: scale(0.3);
+    transform: scale(0.285);
   }
 }
