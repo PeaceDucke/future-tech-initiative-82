@@ -516,9 +516,12 @@ body {
      to fit the phone, and the wrapper clips the empty scaled-away space. */
   .dash-wrap {
     overflow: hidden;
-    width: 100%;
-    /* visible height = 920 * 0.324 ≈ 298px (whole dashboard, no clipping) */
-    height: 298px;
+    /* widen the window to the site edges (cancel section px-5 = 20px) */
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    /* visible height = 920 * 0.295 ≈ 271px (whole dashboard, no clipping) */
+    height: 271px;
     display: flex;
     justify-content: center;
   }
@@ -526,7 +529,8 @@ body {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    transform: scale(0.324);
+    /* shrink the dashboard itself by 1.1x (0.324 / 1.1 ≈ 0.295) */
+    transform: scale(0.295);
     transform-origin: top center;
     height: 920px !important;
     margin: 0 !important;
@@ -583,8 +587,13 @@ body {
   /* dashboard a touch smaller so 1320px canvas fits narrow phones */
   .dash-wrap {
     height: 265px;
+    /* widen the window to the site edges (cancel section px-5 = 20px) */
+    margin-left: -20px;
+    margin-right: -20px;
+    width: calc(100% + 40px);
   }
   .dash-scene {
-    transform: scale(0.288);
+    /* shrink the dashboard itself by 1.1x (0.288 / 1.1 ≈ 0.262) */
+    transform: scale(0.262);
   }
 }
