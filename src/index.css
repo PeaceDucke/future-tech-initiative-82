@@ -757,7 +757,7 @@ body {
 
   /* ---------- "Бесплатный аудит" (FinalCta) — текст слева, Spline справа ---------- */
   .cta-grid {
-    grid-template-columns: 1.1fr 0.9fr !important;
+    grid-template-columns: 0.85fr 1.15fr !important;
     gap: 8px !important;
     align-items: center !important;
   }
@@ -791,16 +791,22 @@ body {
     width: 40px !important;
     height: 40px !important;
   }
+  /* bigger viewport container */
   .cta-spline {
-    min-height: 300px !important;
+    min-height: 360px !important;
   }
-  /* normal viewport — show animation fully, no cropping */
   .cta-spline-inner {
     inset: 0 !important;
   }
   /* remove edge fades that hid the animation */
   .cta-spline-fade {
     display: none !important;
+  }
+  /* shrink the actual animation object hard */
+  .cta-spline-inner canvas,
+  .cta-spline-inner > div {
+    transform: scale(0.45) !important;
+    transform-origin: center !important;
   }
 
   /* ---------- FAQ ---------- */
