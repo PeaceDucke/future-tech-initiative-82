@@ -757,7 +757,7 @@ body {
 
   /* ---------- "Бесплатный аудит" (FinalCta) — текст слева, Spline справа ---------- */
   .cta-grid {
-    grid-template-columns: 1.45fr 0.55fr !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
     gap: 8px !important;
     align-items: center !important;
   }
@@ -792,10 +792,16 @@ body {
     height: 40px !important;
   }
   .cta-spline {
-    min-height: 180px !important;
+    min-height: 300px !important;
   }
   .cta-spline-inner {
-    inset: 0 !important;
+    inset: -15% !important;
+  }
+  /* shrink the actual Spline image, not its viewport */
+  .cta-spline-inner canvas,
+  .cta-spline-inner > div {
+    transform: scale(0.6) !important;
+    transform-origin: center !important;
   }
 
   /* ---------- FAQ ---------- */
