@@ -582,9 +582,9 @@ body {
   }
   /* dashboard a touch smaller so 1320px canvas fits narrow phones */
   .dash-wrap {
-    height: 221px;
+    height: 265px;
   }
   .dash-scene {
-    transform: scale(0.24);
+    transform: scale(0.288);
   }
 }
