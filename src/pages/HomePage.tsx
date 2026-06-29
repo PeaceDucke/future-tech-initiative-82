@@ -3364,6 +3364,7 @@ function PricingSection() {
     <section
       id="pricing"
       ref={ref}
+      className="pr-section"
       style={{
         background: "#151513",
         padding: "0 24px 60px",
@@ -3504,7 +3505,7 @@ function PricingSection() {
               <div style={{ width: "100%", height: "1px", background: plan.popular ? "rgba(200,169,106,0.25)" : "rgba(240,230,210,0.08)", marginBottom: "24px" }} />
 
               {/* Features */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <div className="pr-feats" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                 {[
                   { icon: "⚡", label: "Quick", value: plan.quick },
                   { icon: "🔬", label: "Deep", value: plan.deep },

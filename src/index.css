@@ -756,6 +756,10 @@ body {
   }
 
   /* ---------- "Тарифы" (Pricing) — все 4 в один ряд ---------- */
+  .pr-section {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
   .pr-badge {
     font-size: 8px !important;
   }
@@ -767,37 +771,56 @@ body {
   }
   .pr-grid {
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 6px !important;
+    gap: 5px !important;
   }
   .pr-card {
-    padding: 16px 7px 18px !important;
+    padding: 22px 6px 18px !important;
     border-radius: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
   }
   .pr-badge-pop {
     font-size: 6px !important;
-    padding: 3px 8px !important;
-    top: -9px !important;
+    padding: 3px 7px !important;
+    top: -8px !important;
+    letter-spacing: 0.04em !important;
   }
   .pr-name {
     font-size: 9px !important;
-    letter-spacing: 0.06em !important;
+    letter-spacing: 0.05em !important;
     margin-bottom: 10px !important;
+    text-align: center !important;
   }
   .pr-price {
-    font-size: 17px !important;
+    font-size: 16px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.02em !important;
   }
   .pr-period {
-    font-size: 9px !important;
+    font-size: 8px !important;
     margin-top: 3px !important;
+    text-align: center !important;
+  }
+  /* features block centered, full width */
+  .pr-feats {
+    width: 100% !important;
+    align-items: center !important;
+    gap: 8px !important;
   }
   .pr-feat-row {
     flex-direction: column !important;
-    align-items: flex-start !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 1px !important;
+    text-align: center !important;
   }
   .pr-feat {
     font-size: 9px !important;
-    gap: 4px !important;
+    gap: 3px !important;
+    justify-content: center !important;
   }
   .pr-btn {
     font-size: 10px !important;
