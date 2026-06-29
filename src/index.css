@@ -601,10 +601,14 @@ body {
   /* Keep the desktop side-by-side layout on mobile: ДО left, После right.
      Shrink everything so two columns fit a phone screen. */
   .cb-title {
-    font-size: 30px !important;
+    font-size: 27px !important;
   }
   .cb-head {
     margin-bottom: 28px !important;
+  }
+  /* hide the vertical golden divider on mobile */
+  .cb-divider {
+    display: none !important;
   }
   /* narrow center column (arrow) so both cards have room */
   .cb-headers {
