@@ -552,19 +552,28 @@ body {
     overflow: hidden;
     margin-top: 28px !important;
     min-height: 0 !important;
-    /* visible height = stage height(~760px) * 0.42 ≈ 320px */
-    height: 320px;
+    /* widen window to the site edges (cancel section px-5 = 20px) */
+    margin-left: -20px;
+    margin-right: -20px;
+    width: calc(100% + 40px);
+    /* tall enough so the bottom "Recommendation" card is NOT clipped:
+       stage content ≈ 880px * 0.33 ≈ 290px */
+    height: 305px;
     display: flex;
     justify-content: center;
   }
   .aiv-stage {
-    width: 900px !important;
-    flex: 0 0 900px;
-    transform: scale(0.42);
+    /* wider canvas so the side cards push out to the screen edges */
+    width: 1180px !important;
+    flex: 0 0 1180px;
+    transform: scale(0.33);
     transform-origin: top center;
   }
-  /* keep the desktop grid layout active on mobile too */
+  /* spread the columns wider so cards touch the left/right edges,
+     spline stays exactly in the middle */
   .aiv-grid {
+    grid-template-columns: 440px 1fr 440px !important;
+    gap: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
@@ -633,11 +642,11 @@ body {
     /* shrink the dashboard itself by 1.1x (0.288 / 1.1 ≈ 0.262) */
     transform: scale(0.262);
   }
-  /* AI-vision stage a touch smaller so 900px canvas fits narrow phones */
+  /* AI-vision stage a touch smaller so 1180px canvas fits narrow phones */
   .aiv-stage-wrap {
-    height: 290px;
+    height: 270px;
   }
   .aiv-stage {
-    transform: scale(0.38);
+    transform: scale(0.3);
   }
 }
