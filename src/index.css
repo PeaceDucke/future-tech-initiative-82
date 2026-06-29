@@ -797,8 +797,8 @@ body {
   }
   /* widen the inner stage so the scaled-down scene is fully visible (no side crop) */
   .cta-spline-inner {
-    top: 0 !important;
-    bottom: 0 !important;
+    top: -12% !important;
+    bottom: 12% !important;
     left: -60% !important;
     right: -60% !important;
   }

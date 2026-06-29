@@ -3124,7 +3124,7 @@ function FinalCtaSection() {
               <LazySpline
                 scene="https://prod.spline.design/EEO1FK0SYvQMo8Ap/scene.splinecode"
                 containerStyle={{ width: "100%", height: "100%" }}
-                style={{ width: "100%", height: "100%", transform: "scale(0.5)", transformOrigin: "center center" }}
+                style={{ width: "100%", height: "100%", transform: "scale(0.4)", transformOrigin: "center center" }}
               />
               {/* fade edges */}
               <div className="cta-spline-fade" style={{
