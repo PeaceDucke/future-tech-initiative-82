@@ -3218,10 +3218,10 @@ function FaqSection() {
         <div className="text-center" style={{ marginBottom: "72px" }}>
           <div className="flex items-center justify-center gap-3 mb-7">
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>FAQ</span>
+            <span className="faq-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>FAQ</span>
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
           </div>
-          <h2 style={{
+          <h2 className="faq-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(32px, 5vw, 62px)",
             fontWeight: 600,
@@ -3259,7 +3259,7 @@ function FaqSection() {
                   textAlign: "left",
                 }}
               >
-                <span style={{
+                <span className="faq-q" style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "clamp(17px, 2vw, 20px)",
                   fontWeight: 500,
@@ -3295,7 +3295,7 @@ function FaqSection() {
                 overflow: "hidden",
                 transition: "max-height 0.45s cubic-bezier(0.4,0,0.2,1)",
               }}>
-                <p style={{
+                <p className="faq-a" style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "clamp(15px, 1.7vw, 18px)",
                   color: "rgba(251,246,236,0.78)",

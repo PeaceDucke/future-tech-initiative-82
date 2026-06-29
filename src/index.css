@@ -755,6 +755,20 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- FAQ ---------- */
+  .faq-badge {
+    font-size: 9px !important;
+  }
+  .faq-title {
+    font-size: 30px !important;
+  }
+  .faq-q {
+    font-size: 15px !important;
+  }
+  .faq-a {
+    font-size: 13px !important;
+  }
+
   /* ---------- "Тарифы" (Pricing) — все 4 в один ряд ---------- */
   .pr-section {
     padding-left: 16px !important;
