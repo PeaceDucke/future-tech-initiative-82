@@ -1804,6 +1804,7 @@ function GuaranteeSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
+          className="grt-shield"
           style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             width: "84px", height: "84px", borderRadius: "50%", marginBottom: "32px",
@@ -1812,7 +1813,7 @@ function GuaranteeSection() {
             boxShadow: "0 0 40px rgba(212,176,116,0.18), inset 0 1px 0 rgba(255,236,200,0.1)",
           }}
         >
-          <Icon name="ShieldCheck" size={40} style={{ color: G }} />
+          <Icon name="ShieldCheck" size={40} className="grt-shield-ic" style={{ color: G }} />
         </motion.div>
 
         <motion.div
@@ -1826,7 +1827,7 @@ function GuaranteeSection() {
           }}
         >
           <Icon name="BadgeCheck" size={16} style={{ color: G }} />
-          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
+          <span className="grt-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
             Гарантия результата
           </span>
         </motion.div>
@@ -1835,7 +1836,7 @@ function GuaranteeSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="quartz-text"
+          className="grt-title quartz-text"
           style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
             fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.2, margin: "0 auto 30px",
@@ -1848,6 +1849,7 @@ function GuaranteeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.25 }}
+          className="grt-text"
           style={{
             fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: B,
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto 22px",
@@ -1860,6 +1862,7 @@ function GuaranteeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.35 }}
+          className="grt-text"
           style={{
             fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: B,
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto",
