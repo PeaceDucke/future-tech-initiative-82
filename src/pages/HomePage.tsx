@@ -1652,7 +1652,7 @@ function ImplementationSection() {
             }}
           >
             <Icon name="Rocket" size={16} style={{ color: G }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
+            <span className="impl-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
               Как внедряем
             </span>
           </motion.div>
@@ -1757,7 +1757,7 @@ function ImplementationSection() {
           }}
         >
           <Icon name="CircleCheckBig" size={34} style={{ color: G, flexShrink: 0 }} />
-          <p style={{
+          <p className="impl-fear" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 30px)",
             color: W, lineHeight: 1.35, fontWeight: 500, textAlign: "left",
           }}>
