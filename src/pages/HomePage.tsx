@@ -2964,7 +2964,7 @@ function FinalCtaSection() {
 
       <div className="max-w-7xl mx-auto relative">
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 items-center"
+          className="cta-grid grid grid-cols-1 lg:grid-cols-2 items-center"
           style={{ gap: "40px" }}
         >
           {/* ── Left: text + buttons ── */}
@@ -2979,10 +2979,10 @@ function FinalCtaSection() {
           >
             <div className="flex items-center gap-3 mb-7">
               <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Бесплатный аудит</span>
+              <span className="cta-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Бесплатный аудит</span>
             </div>
 
-            <h2 style={{
+            <h2 className="cta-title" style={{
               fontFamily: '"Bodoni Moda", Georgia, serif',
               fontSize: "clamp(34px, 4.5vw, 60px)",
               fontWeight: 600,
@@ -3001,7 +3001,7 @@ function FinalCtaSection() {
               }}>теряет деньги</span>
             </h2>
 
-            <p style={{
+            <p className="cta-sub" style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "clamp(16px, 1.8vw, 19px)",
               color: "rgba(251,246,236,0.62)",
@@ -3014,8 +3014,9 @@ function FinalCtaSection() {
             </p>
 
             {/* CTA buttons */}
-            <div className="flex flex-wrap gap-4" style={{ marginBottom: "28px" }}>
+            <div className="cta-btns flex flex-wrap gap-4" style={{ marginBottom: "28px" }}>
               <button
+                className="cta-btn"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "14px",
@@ -3046,6 +3047,7 @@ function FinalCtaSection() {
               </button>
 
               <button
+                className="cta-btn"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "14px",
@@ -3081,7 +3083,7 @@ function FinalCtaSection() {
 
             {/* Social links */}
             <div style={{ marginTop: "40px" }}>
-              <p style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "16px" }}>Написать нам</p>
+              <p className="cta-social-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "16px" }}>Написать нам</p>
               <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                 {socials.map((s, i) => (
                   <a
@@ -3099,7 +3101,7 @@ function FinalCtaSection() {
                     onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-4px)"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
                   >
-                    <img src={s.img} alt={s.name} style={{ width: "56px", height: "56px", objectFit: "contain" }} />
+                    <img className="cta-social-icon" src={s.img} alt={s.name} style={{ width: "56px", height: "56px", objectFit: "contain" }} />
                   </a>
                 ))}
               </div>
@@ -3108,7 +3110,7 @@ function FinalCtaSection() {
           </div>
 
           {/* ── Right: Spline animation ── */}
-          <div style={{
+          <div className="cta-spline" style={{
             position: "relative",
             minHeight: "440px",
             opacity: inView ? 1 : 0,

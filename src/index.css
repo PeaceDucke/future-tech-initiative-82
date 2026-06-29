@@ -755,6 +755,46 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- "Бесплатный аудит" (FinalCta) — текст слева, Spline справа ---------- */
+  .cta-grid {
+    grid-template-columns: 1.2fr 0.8fr !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+  .cta-badge {
+    font-size: 8px !important;
+    letter-spacing: 0.15em !important;
+  }
+  .cta-title {
+    font-size: 24px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
+  }
+  .cta-sub {
+    font-size: 12px !important;
+    margin-bottom: 22px !important;
+  }
+  .cta-btns {
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+  }
+  .cta-btn {
+    font-size: 10px !important;
+    padding: 11px 18px !important;
+    border-radius: 8px !important;
+  }
+  .cta-social-label {
+    font-size: 8px !important;
+    margin-bottom: 10px !important;
+  }
+  .cta-social-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .cta-spline {
+    min-height: 260px !important;
+  }
+
   /* ---------- FAQ ---------- */
   .faq-badge {
     font-size: 9px !important;
