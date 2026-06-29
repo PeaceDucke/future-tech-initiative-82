@@ -675,6 +675,66 @@ body {
   .cb-arrow-down {
     display: none !important;
   }
+  /* ---------- "Voice-Tec AI создан для компаний…" (Audience) ---------- */
+  /* heading −3px (mobile clamp min is 28px) */
+  .aud-title {
+    font-size: 25px !important;
+  }
+  /* subhead −3px (mobile clamp min is 20px) */
+  .aud-subhead {
+    font-size: 17px !important;
+  }
+  /* all 4 cards in one row like desktop — shrink them hard so they fit */
+  .aud-grid-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+  }
+  .aud-card {
+    min-height: 0 !important;
+    border-radius: 9px !important;
+    padding: 10px 7px !important;
+  }
+  .aud-card-img {
+    height: 120px !important;
+  }
+  .aud-card-spacer {
+    margin-top: 78px !important;
+  }
+  .aud-card-tag {
+    font-size: 11px !important;
+    margin-bottom: 7px !important;
+    line-height: 1.15 !important;
+  }
+  .aud-card-desc {
+    font-size: 8px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 10px !important;
+  }
+  .aud-card-gain {
+    padding-top: 9px !important;
+  }
+  .aud-card-gain-head {
+    gap: 5px !important;
+    margin-bottom: 6px !important;
+  }
+  .aud-card-gain-ic {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 5px !important;
+  }
+  .aud-card-gain-ic svg {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  .aud-card-gain-title {
+    font-size: 6px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .aud-card-gain-text {
+    font-size: 8px !important;
+    line-height: 1.35 !important;
+  }
+
   /* "Итог" result banner ~2x smaller on mobile */
   .cb-result {
     margin-top: 22px !important;

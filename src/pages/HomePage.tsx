@@ -1330,7 +1330,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
     >
       {/* фото сверху, плавно растворяющееся в фон карточки */}
       {it.img && (
-        <div style={{
+        <div className="aud-card-img" style={{
           position: "absolute", top: 0, left: 0, right: 0, height: "440px",
           zIndex: 0, pointerEvents: "none",
         }}>
@@ -1352,9 +1352,9 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         opacity: 0, transition: "opacity 0.3s ease", zIndex: 2,
       }} />
 
-      <div style={{ marginTop: it.img ? "300px" : "0" }} />
+      <div className="aud-card-spacer" style={{ marginTop: it.img ? "300px" : "0" }} />
 
-      <div style={{
+      <div className="aud-card-tag" style={{
         position: "relative", zIndex: 1,
         fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "38px", color: W,
         fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
@@ -1362,7 +1362,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         {it.tag}
       </div>
 
-      <p style={{
+      <p className="aud-card-desc" style={{
         position: "relative", zIndex: 1,
         fontFamily: "Inter, sans-serif", fontSize: "20px", color: B,
         lineHeight: 1.6, marginBottom: "36px", flex: 1,
@@ -1370,26 +1370,26 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         {it.desc}
       </p>
 
-      <div style={{
+      <div className="aud-card-gain" style={{
         position: "relative", zIndex: 1,
         paddingTop: "32px", borderTop: "1px solid rgba(74,222,128,0.2)",
       }}>
-        <div className="flex items-center gap-3" style={{ marginBottom: "14px" }}>
-          <span style={{
+        <div className="aud-card-gain-head flex items-center gap-3" style={{ marginBottom: "14px" }}>
+          <span className="aud-card-gain-ic" style={{
             width: "34px", height: "34px", borderRadius: "11px", flexShrink: 0,
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             background: "rgba(74,222,128,0.14)", border: "1px solid rgba(74,222,128,0.35)",
           }}>
             <Icon name="Check" size={20} style={{ color: GREEN }} />
           </span>
-          <span style={{
+          <span className="aud-card-gain-title" style={{
             fontFamily: "Inter, sans-serif", fontSize: "13px", letterSpacing: "0.14em",
             textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95,
           }}>
             Что получит бизнес
           </span>
         </div>
-        <p style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
+        <p className="aud-card-gain-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
           {it.gain}
         </p>
       </div>
@@ -1456,6 +1456,7 @@ function AudienceSection() {
       <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1720px", position: "relative", zIndex: 2 }}>
         <div ref={ref} className="text-center" style={{ marginBottom: "8px" }}>
           <motion.h2
+            className="aud-title"
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
@@ -1465,7 +1466,7 @@ function AudienceSection() {
               maxWidth: "1500px", margin: "0 auto",
             }}
           >
-            SalesFlow создан для компаний, где <span style={{ color: G, fontStyle: "italic" }}>звонки, заявки и консультации</span> напрямую влияют на выручку
+            Voice-Tec AI создан для компаний, где <span style={{ color: G, fontStyle: "italic" }}>звонки, заявки и консультации</span> напрямую влияют на выручку
           </motion.h2>
         </div>
 
@@ -1504,7 +1505,7 @@ function AudienceSection() {
         >
           <Icon name="ShieldCheck" size={22} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
           <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.6 }}>
-            Здесь SalesFlow работает как автоматический контроль отдела продаж:
+            Здесь Voice-Tec AI работает как автоматический контроль отдела продаж:
             слушает <span style={{ color: G }}>100% разговоров</span>, находит слабые места
             менеджеров и показывает, где бизнес теряет заявки.
           </p>
