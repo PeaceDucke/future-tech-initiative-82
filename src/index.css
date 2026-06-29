@@ -755,6 +755,55 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- "Тарифы" (Pricing) — все 4 в один ряд ---------- */
+  .pr-badge {
+    font-size: 8px !important;
+  }
+  .pr-title {
+    font-size: 31px !important;
+  }
+  .pr-sub {
+    font-size: 14px !important;
+  }
+  .pr-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+  }
+  .pr-card {
+    padding: 16px 7px 18px !important;
+    border-radius: 10px !important;
+  }
+  .pr-badge-pop {
+    font-size: 6px !important;
+    padding: 3px 8px !important;
+    top: -9px !important;
+  }
+  .pr-name {
+    font-size: 9px !important;
+    letter-spacing: 0.06em !important;
+    margin-bottom: 10px !important;
+  }
+  .pr-price {
+    font-size: 17px !important;
+  }
+  .pr-period {
+    font-size: 9px !important;
+    margin-top: 3px !important;
+  }
+  .pr-feat-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1px !important;
+  }
+  .pr-feat {
+    font-size: 9px !important;
+    gap: 4px !important;
+  }
+  .pr-btn {
+    font-size: 10px !important;
+    padding: 13px 32px !important;
+  }
+
   /* ---------- "Интеграция за 5 минут" (Integration) ---------- */
   .int-badge {
     font-size: 8px !important;

@@ -3394,10 +3394,10 @@ function PricingSection() {
         <div className="text-center" style={{ marginBottom: "72px" }}>
           <div className="flex items-center justify-center gap-3 mb-7">
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Тарифы</span>
+            <span className="pr-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Тарифы</span>
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
           </div>
-          <h2 style={{
+          <h2 className="pr-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(34px, 5vw, 66px)",
             fontWeight: 600,
@@ -3415,16 +3415,17 @@ function PricingSection() {
               fontStyle: "italic",
             }}>масштаба</span>
           </h2>
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "rgba(251,246,236,0.5)", fontWeight: 300 }}>
+          <p className="pr-sub" style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "rgba(251,246,236,0.5)", fontWeight: 300 }}>
             Начните бесплатно - 300 минут Quick-анализа
           </p>
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ marginBottom: "56px" }}>
+        <div className="pr-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ marginBottom: "56px" }}>
           {plans.map((plan, i) => (
             <div
               key={plan.name}
+              className="pr-card"
               style={{
                 position: "relative",
                 background: plan.popular
@@ -3443,7 +3444,7 @@ function PricingSection() {
             >
               {/* Popular badge */}
               {plan.popular && (
-                <div style={{
+                <div className="pr-badge-pop" style={{
                   position: "absolute",
                   top: "-14px",
                   left: "50%",
@@ -3462,7 +3463,7 @@ function PricingSection() {
               )}
 
               {/* Plan name */}
-              <p style={{
+              <p className="pr-name" style={{
                 fontFamily: "Inter, sans-serif",
                 fontSize: "12px",
                 fontWeight: 600,
@@ -3476,7 +3477,7 @@ function PricingSection() {
               <div style={{ marginBottom: "32px" }}>
                 {plan.price ? (
                   <>
-                    <div style={{
+                    <div className="pr-price" style={{
                       fontFamily: '"Bodoni Moda", Georgia, serif',
                       fontSize: "clamp(36px, 4vw, 48px)",
                       fontWeight: 600,
@@ -3486,10 +3487,10 @@ function PricingSection() {
                     }}>
                       {plan.price} <span style={{ fontSize: "0.55em", fontWeight: 400, color: "rgba(251,246,236,0.8)" }}>₽</span>
                     </div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
+                    <div className="pr-period" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
                   </>
                 ) : (
-                  <div style={{
+                  <div className="pr-price" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif',
                     fontSize: "clamp(32px, 4vw, 44px)",
                     fontWeight: 600,
@@ -3509,12 +3510,12 @@ function PricingSection() {
                   { icon: "🔬", label: "Deep", value: plan.deep },
                   { icon: "👤", label: "Менеджеров", value: plan.managers },
                 ].map(row => (
-                  <div key={row.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", gap: "7px" }}>
+                  <div key={row.label} className="pr-feat-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <span className="pr-feat" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", gap: "7px" }}>
                       <span style={{ fontSize: "13px" }}>{row.icon}</span>
                       {row.label}
                     </span>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC" }}>{row.value}</span>
+                    <span className="pr-feat" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC" }}>{row.value}</span>
                   </div>
                 ))}
               </div>
@@ -3525,6 +3526,7 @@ function PricingSection() {
         {/* CTA */}
         <div className="text-center">
           <button
+            className="pr-btn"
             style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "13px",
