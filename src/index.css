@@ -511,10 +511,13 @@ body {
      desktop composition (no overlap) but shrinks it to fit the phone.
      A wrapper with overflow:hidden + reduced height removes the empty
      space that transform:scale would otherwise leave behind. */
+  /* .dash-scene is now a PLAIN div (we removed framer-motion from it) so a
+     CSS transform on it applies reliably. We shrink the whole 1320px canvas
+     to fit the phone, and the wrapper clips the empty scaled-away space. */
   .dash-wrap {
     overflow: hidden;
-    /* full scaled height = 920 * 0.27 ≈ 248px so the WHOLE dashboard
-       is visible (no clipping). */
+    width: 100%;
+    /* visible height = 920 * 0.27 ≈ 248px (whole dashboard, no clipping) */
     height: 248px;
     display: flex;
     justify-content: center;
@@ -523,8 +526,6 @@ body {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    /* scale() needs a UNITLESS number — calc with px is invalid and
-       would silently disable the transform (cards stay huge). */
     transform: scale(0.27);
     transform-origin: top center;
     height: 920px !important;

@@ -4219,8 +4219,7 @@ export function HomePage() {
 
               {/* Dashboard Scene */}
               <div className="dash-wrap">
-              <motion.div
-                variants={fadeUp}
+              <div
                 className="dash-scene relative mx-auto"
                 style={{ maxWidth: "1320px", height: "920px", ...dashVars }}
               >
@@ -4821,7 +4820,7 @@ export function HomePage() {
                   <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#000000", marginTop: "14px", lineHeight: 1.4 }}>* узнайте слабые стороны конкретного менеджера, помешавшие бизнесу заработать больше</p>
                 </div>
 
-              </motion.div>
+              </div>
               </div>
             </Section>
           </div>
