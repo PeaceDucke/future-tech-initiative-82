@@ -3491,7 +3491,7 @@ function PricingSection() {
                     <div className="pr-period" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
                   </>
                 ) : (
-                  <div className="pr-price" style={{
+                  <div className="pr-price pr-price-free" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif',
                     fontSize: "clamp(32px, 4vw, 44px)",
                     fontWeight: 600,

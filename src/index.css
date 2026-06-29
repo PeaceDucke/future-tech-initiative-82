@@ -799,6 +799,9 @@ body {
     white-space: nowrap !important;
     letter-spacing: -0.02em !important;
   }
+  .pr-price-free {
+    font-size: 15px !important;
+  }
   .pr-period {
     font-size: 8px !important;
     margin-top: 3px !important;
@@ -818,7 +821,7 @@ body {
     text-align: center !important;
   }
   .pr-feat {
-    font-size: 9px !important;
+    font-size: 10px !important;
     gap: 3px !important;
     justify-content: center !important;
   }
