@@ -1053,6 +1053,7 @@ function SplineFeatureSection() {
 
     return (
       <div
+        className="aiv-card"
         onMouseEnter={() => setHovered(idx)}
         onMouseLeave={() => setHovered(null)}
         style={{
@@ -1081,7 +1082,7 @@ function SplineFeatureSection() {
         }}
       >
         {/* Badge */}
-        <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "18px" }}>
+        <div className="aiv-card-badge" style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "18px" }}>
           <div style={{
             width: "7px", height: "7px", borderRadius: "50%",
             background: accentColor,
@@ -1089,7 +1090,7 @@ function SplineFeatureSection() {
             transition: "all 0.4s ease",
             flexShrink: 0,
           }} />
-          <span style={{
+          <span className="aiv-card-badge-text" style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "11px",
             letterSpacing: "0.22em",
@@ -1102,7 +1103,7 @@ function SplineFeatureSection() {
         </div>
 
         {/* Title */}
-        <p style={{
+        <p className="aiv-card-title" style={{
           fontFamily: '"Bodoni Moda", Georgia, serif',
           fontSize: isLight ? "26px" : "21px",
           color: isLight ? "#16140F" : "#F7F2EA",
@@ -1113,7 +1114,7 @@ function SplineFeatureSection() {
         }}>{card.title}</p>
 
         {/* Body */}
-        <p style={{
+        <p className="aiv-card-body" style={{
           fontFamily: "Inter, sans-serif",
           fontSize: isLight ? "16px" : "15px",
           color: isLight ? "#3A352C" : "#D6D3CD",
@@ -1123,7 +1124,7 @@ function SplineFeatureSection() {
         }}>{card.text}</p>
 
         {/* Progress bar */}
-        <div style={{ marginBottom: "16px" }}>
+        <div className="aiv-card-progress" style={{ marginBottom: "16px" }}>
           <div style={{
             width: "100%",
             height: "3px",
@@ -1141,7 +1142,7 @@ function SplineFeatureSection() {
         </div>
 
         {/* Metric */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div className="aiv-card-metric" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{
             fontFamily: "Inter, sans-serif",
             fontSize: isLight ? "14px" : "13.5px",
@@ -1183,7 +1184,7 @@ function SplineFeatureSection() {
           transform: inView ? "translateY(0)" : "translateY(24px)",
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}>
-          <h2 style={{
+          <h2 className="aiv-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(30px, 4.5vw, 58px)",
             color: T,
@@ -1193,7 +1194,7 @@ function SplineFeatureSection() {
           }}>
             Что AI видит внутри разговора
           </h2>
-          <p style={{
+          <p className="aiv-sub" style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "16px",
             color: S,
@@ -1288,8 +1289,8 @@ function SplineFeatureSection() {
           </div>
 
           {/* Mobile layout */}
-          <div className="flex lg:hidden flex-col gap-4" style={{ marginTop: "40px" }}>
-            <div style={{ height: "300px", position: "relative", opacity: inView ? 1 : 0, transition: "opacity 1s ease" }}>
+          <div className="aiv-mobile flex lg:hidden flex-col gap-4" style={{ marginTop: "40px" }}>
+            <div className="aiv-mobile-spline" style={{ height: "300px", position: "relative", opacity: inView ? 1 : 0, transition: "opacity 1s ease" }}>
               <LazySpline
                 scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
                 containerStyle={{ width: "100%", height: "100%" }}

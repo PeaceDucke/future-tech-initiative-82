@@ -536,6 +536,52 @@ body {
     margin: 0 !important;
   }
 
+  /* ---------- "Что AI видит внутри разговора" ---------- */
+  /* headings −2px */
+  .aiv-title {
+    font-size: 28px !important;
+  }
+  .aiv-sub {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+  /* shrink the whole mobile composition: smaller spline + smaller cards */
+  .aiv-mobile {
+    gap: 0.6rem !important;
+    margin-top: 24px !important;
+  }
+  .aiv-mobile-spline {
+    height: 200px !important;
+  }
+  .aiv-card {
+    border-radius: 14px !important;
+    padding: 18px 18px !important;
+  }
+  .aiv-card-badge {
+    gap: 6px !important;
+    margin-bottom: 11px !important;
+  }
+  .aiv-card-badge-text {
+    font-size: 8px !important;
+    letter-spacing: 0.16em !important;
+  }
+  .aiv-card-title {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 9px !important;
+  }
+  .aiv-card-body {
+    font-size: 10.5px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 14px !important;
+  }
+  .aiv-card-progress {
+    margin-bottom: 10px !important;
+  }
+  .aiv-card-metric span {
+    font-size: 9px !important;
+  }
+
   /* ---------- RADAR ---------- */
   .rd-root {
     min-height: 360px !important;
