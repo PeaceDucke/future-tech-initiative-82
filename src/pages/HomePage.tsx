@@ -1208,10 +1208,11 @@ function SplineFeatureSection() {
 
         {/* ── Main composition: cards + robot ── */}
         {/* Spline canvas - absolute на всю зону, карточки поверх */}
-        <div style={{ position: "relative", marginTop: "60px", minHeight: "680px" }}>
+        <div className="aiv-stage-wrap" style={{ position: "relative", marginTop: "60px", minHeight: "680px" }}>
+        <div className="aiv-stage" style={{ position: "relative" }}>
 
           {/* Spline на весь контейнер - canvas покрывает всю интерактивную область */}
-          <div className="hidden lg:block" style={{
+          <div className="aiv-spline-bg" style={{
             position: "absolute",
             top: "-25%",
             bottom: "-25%",
@@ -1253,7 +1254,7 @@ function SplineFeatureSection() {
           {/* Desktop layout - карточки поверх Spline canvas */}
           {/* pointer-events: none на всех обёртках - Spline видит мышь везде */}
           {/* pointer-events: auto только на самих карточках */}
-          <div className="hidden lg:grid" style={{
+          <div className="aiv-grid grid" style={{
             gridTemplateColumns: "400px 1fr 400px",
             gridTemplateRows: "auto",
             gap: "22px",
@@ -1282,25 +1283,13 @@ function SplineFeatureSection() {
           </div>
 
           {/* Bottom center card */}
-          <div className="hidden lg:flex" style={{ justifyContent: "center", marginTop: "24px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
+          <div className="aiv-bottom flex" style={{ justifyContent: "center", marginTop: "24px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
             <div style={{ width: "540px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
           </div>
 
-          {/* Mobile layout */}
-          <div className="aiv-mobile flex lg:hidden flex-col gap-4" style={{ marginTop: "40px" }}>
-            <div className="aiv-mobile-spline" style={{ height: "300px", position: "relative", opacity: inView ? 1 : 0, transition: "opacity 1s ease" }}>
-              <LazySpline
-                scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
-                containerStyle={{ width: "100%", height: "100%" }}
-                style={{ width: "100%", height: "100%" }}
-              />
-            </div>
-            {cards.map((card, idx) => (
-              <Card key={idx} card={card} idx={idx} />
-            ))}
-          </div>
+        </div>
         </div>
       </div>
 

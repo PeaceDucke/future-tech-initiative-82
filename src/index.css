@@ -545,41 +545,32 @@ body {
     font-size: 14px !important;
     line-height: 1.6 !important;
   }
-  /* shrink the whole mobile composition: smaller spline + smaller cards */
-  .aiv-mobile {
-    gap: 0.6rem !important;
-    margin-top: 24px !important;
+  /* Show the SAME desktop composition (spline in the middle, cards around)
+     on mobile by scaling the whole 900px stage down to fit the phone.
+     .aiv-stage is a plain div (no framer transform) so scale() is reliable. */
+  .aiv-stage-wrap {
+    overflow: hidden;
+    margin-top: 28px !important;
+    min-height: 0 !important;
+    /* visible height = stage height(~760px) * 0.42 ≈ 320px */
+    height: 320px;
+    display: flex;
+    justify-content: center;
   }
-  .aiv-mobile-spline {
-    height: 200px !important;
+  .aiv-stage {
+    width: 900px !important;
+    flex: 0 0 900px;
+    transform: scale(0.42);
+    transform-origin: top center;
   }
-  .aiv-card {
-    border-radius: 14px !important;
-    padding: 18px 18px !important;
+  /* keep the desktop grid layout active on mobile too */
+  .aiv-grid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
-  .aiv-card-badge {
-    gap: 6px !important;
-    margin-bottom: 11px !important;
-  }
-  .aiv-card-badge-text {
-    font-size: 8px !important;
-    letter-spacing: 0.16em !important;
-  }
-  .aiv-card-title {
-    font-size: 16px !important;
-    line-height: 1.2 !important;
-    margin-bottom: 9px !important;
-  }
-  .aiv-card-body {
-    font-size: 10.5px !important;
-    line-height: 1.5 !important;
-    margin-bottom: 14px !important;
-  }
-  .aiv-card-progress {
-    margin-bottom: 10px !important;
-  }
-  .aiv-card-metric span {
-    font-size: 9px !important;
+  /* the spline background must be visible on mobile */
+  .aiv-spline-bg {
+    display: block !important;
   }
 
   /* ---------- RADAR ---------- */
@@ -641,5 +632,12 @@ body {
   .dash-scene {
     /* shrink the dashboard itself by 1.1x (0.288 / 1.1 ≈ 0.262) */
     transform: scale(0.262);
+  }
+  /* AI-vision stage a touch smaller so 900px canvas fits narrow phones */
+  .aiv-stage-wrap {
+    height: 290px;
+  }
+  .aiv-stage {
+    transform: scale(0.38);
   }
 }
