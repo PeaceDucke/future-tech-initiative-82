@@ -1661,7 +1661,7 @@ function ImplementationSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="quartz-text"
+            className="impl-title quartz-text"
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
               fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18,
@@ -1672,6 +1672,7 @@ function ImplementationSection() {
           </motion.h2>
 
           <motion.p
+            className="impl-sub"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -1724,16 +1725,16 @@ function ImplementationSection() {
               </div>
 
               <div style={{ flex: 1, paddingTop: "2px" }}>
-                <div className="flex items-center gap-3" style={{ marginBottom: "8px" }}>
-                  <Icon name={s.icon} size={22} style={{ color: G, flexShrink: 0 }} />
-                  <h3 style={{
+                <div className="impl-step-head flex items-center gap-3" style={{ marginBottom: "8px" }}>
+                  <Icon name={s.icon} size={22} className="impl-step-ic" style={{ color: G, flexShrink: 0 }} />
+                  <h3 className="impl-step-title" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2vw, 26px)",
                     color: W, fontWeight: 500, lineHeight: 1.25,
                   }}>
                     {s.title}
                   </h3>
                 </div>
-                <p style={{
+                <p className="impl-step-text" style={{
                   fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6,
                 }}>
                   {s.desc}

@@ -750,6 +750,49 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- "Как внедряем" (Implementation) ---------- */
+  /* heading & subtitle −3px */
+  .impl-title {
+    font-size: 25px !important;
+  }
+  .impl-sub {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-top: 16px !important;
+  }
+  /* smaller step boxes */
+  .impl-step {
+    gap: 14px !important;
+    padding: 14px 16px !important;
+    border-radius: 14px !important;
+    margin-bottom: 12px !important;
+  }
+  .impl-num {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 16px !important;
+  }
+  /* re-center the vertical line to the smaller number circle */
+  .impl-line {
+    left: 31px !important;
+  }
+  .impl-step-head {
+    gap: 8px !important;
+    margin-bottom: 5px !important;
+  }
+  .impl-step-ic {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .impl-step-title {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+  }
+  .impl-step-text {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
   /* "Итог" result banner ~2x smaller on mobile */
   .cb-result {
     margin-top: 22px !important;
