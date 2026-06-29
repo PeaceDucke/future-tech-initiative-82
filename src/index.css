@@ -769,6 +769,9 @@ body {
   .cv-card-label {
     font-size: 6px !important;
   }
+  .cv-cards {
+    gap: 48px !important;
+  }
   /* make screenshots ~1.2x bigger — overhang both sides */
   .slide-card {
     width: 124% !important;

@@ -2923,7 +2923,7 @@ function ClientValueSection() {
         </div>
 
         {/* Cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "120px" }}>
+        <div className="cv-cards" style={{ display: "flex", flexDirection: "column", gap: "120px" }}>
           {items.map((item, i) => (
             <SlideCard key={i} index={i} {...item} />
           ))}
