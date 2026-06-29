@@ -513,8 +513,9 @@ body {
      space that transform:scale would otherwise leave behind. */
   .dash-wrap {
     overflow: hidden;
-    /* 920px * 0.27 ≈ 248px — collapse the empty space left by scale */
-    height: 248px;
+    /* scale is width/1320; height = 920 * scale. Using 100vw fit:
+       (100vw - 32px)/1320. Height collapses the empty scale space. */
+    height: calc((100vw - 32px) / 1320 * 920);
     display: flex;
     justify-content: center;
   }
@@ -522,7 +523,8 @@ body {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    transform: scale(0.27);
+    /* fit full dashboard width into the viewport (16px side padding) */
+    transform: scale(calc((100vw - 32px) / 1320));
     transform-origin: top center;
     height: 920px !important;
     margin: 0 !important;
@@ -575,11 +577,5 @@ body {
   }
   .hero-partners {
     font-size: 6px !important;
-  }
-  .dash-wrap {
-    height: 221px;
-  }
-  .dash-scene {
-    transform: scale(0.24);
   }
 }
