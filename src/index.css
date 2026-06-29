@@ -769,12 +769,12 @@ body {
   .cv-card-label {
     font-size: 9px !important;
   }
-  /* make screenshots bigger — use full width, no side overhang */
+  /* make screenshots ~1.2x bigger — overhang both sides */
   .slide-card {
-    width: 112% !important;
+    width: 124% !important;
     max-width: none !important;
-    margin-left: -6% !important;
-    margin-right: -6% !important;
+    margin-left: -12% !important;
+    margin-right: -12% !important;
   }
 
   /* ---------- "Гарантия результата" (Guarantee) ---------- */
