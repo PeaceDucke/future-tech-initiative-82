@@ -750,6 +750,38 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- "Кейсы клиентов" (Cases) — 4 in one row like desktop ---------- */
+  .cases-title {
+    font-size: 30px !important;
+  }
+  .case-card {
+    padding: 10px 8px !important;
+    border-radius: 10px !important;
+  }
+  .case-logo {
+    width: 70px !important;
+    height: 70px !important;
+    top: -14px !important;
+    right: -8px !important;
+  }
+  .case-company {
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+  }
+  .case-tag {
+    font-size: 7px !important;
+    margin-top: 2px !important;
+    line-height: 1.2 !important;
+  }
+  .case-result {
+    margin-top: 16px !important;
+    font-size: 8px !important;
+    line-height: 1.4 !important;
+  }
+  .case-metric {
+    font-size: 11px !important;
+  }
+
   /* ---------- "Как внедряем" (Implementation) ---------- */
   /* badge "Как внедряем" −5px */
   .impl-badge {

@@ -2078,26 +2078,26 @@ function CaseCard({ it, i, inView }: {
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <img src={it.logo} alt={it.company} style={{
+      <img src={it.logo} alt={it.company} className="case-logo" style={{
         position: "absolute", top: "-44px", right: "-28px",
         width: "230px", height: "230px", objectFit: "contain", pointerEvents: "none",
       }} />
 
       <div style={{ position: "relative", zIndex: 2, maxWidth: "62%" }}>
-        <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
+        <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
           {it.company}
         </div>
-        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
+        <div className="case-tag" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
           {it.tag}
         </div>
       </div>
 
-      <p style={{
+      <p className="case-result" style={{
         margin: "40px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
         color: "#E6E0D2", lineHeight: 1.6, position: "relative", zIndex: 2,
       }}>
         {it.result}{" "}
-        <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600 }}>
+        <span className="case-metric" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600 }}>
           {it.metric}
         </span>
         {it.metricLabel ? <> <span style={{ color: B }}>{it.metricLabel}</span></> : null}.
@@ -2168,7 +2168,7 @@ function CasesSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="quartz-text"
+            className="cases-title quartz-text"
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
               fontSize: "clamp(34px, 4.4vw, 64px)", lineHeight: 1.1,
@@ -2191,11 +2191,11 @@ function CasesSection() {
           border-color: rgba(255,255,255,0.32) !important;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 26px 60px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.05) !important;
         }
-        @media (max-width: 1280px) {
+        @media (max-width: 1280px) and (min-width: 768px) {
           .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @media (max-width: 640px) {
-          .cases-grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 767px) {
+          .cases-grid { gap: 6px !important; }
         }
       `}</style>
     </section>
