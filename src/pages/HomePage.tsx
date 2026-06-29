@@ -2085,7 +2085,9 @@ function CaseCard({ it, i, inView }: {
 
       <div style={{ position: "relative", zIndex: 2, maxWidth: "62%" }}>
         <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
-          {it.company}
+          {it.company === "ТехноЛайн" ? (
+            <>Техно<br className="case-mobile-br" />Лайн</>
+          ) : it.company}
         </div>
         <div className="case-tag" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
           {it.tag}

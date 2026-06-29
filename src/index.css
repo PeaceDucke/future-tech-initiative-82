@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* mobile-only line break inside case company name (hidden on desktop) */
+.case-mobile-br {
+  display: none;
+}
+
 @layer base {
   :root {
     --background: 40 6% 9%;
@@ -769,6 +774,9 @@ body {
     line-height: 1.18 !important;
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
+  }
+  .case-mobile-br {
+    display: inline !important;
   }
   .case-tag {
     font-size: 10px !important;
