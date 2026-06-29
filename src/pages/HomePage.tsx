@@ -2394,6 +2394,7 @@ function BeforeAfterSection() {
 
           {/* bottom result banner */}
           <motion.div
+            className="cb-result"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35 + rows.length * 0.1 }}
@@ -2412,14 +2413,15 @@ function BeforeAfterSection() {
             }}
           >
             <div style={{ maxWidth: "620px" }}>
-              <div style={{ ...labelCss, color: G, marginBottom: "12px" }}>Итог</div>
-              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 3.4vw, 42px)", color: W, lineHeight: 1.12, fontWeight: 500 }}>
+              <div className="cb-result-label" style={{ ...labelCss, color: G, marginBottom: "12px" }}>Итог</div>
+              <div className="cb-result-text" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 3.4vw, 42px)", color: W, lineHeight: 1.12, fontWeight: 500 }}>
                 Та же команда. Тот же трафик.<br />
                 <span style={{ color: G, fontStyle: "italic" }}>Совсем другая выручка.</span>
               </div>
             </div>
             <a
               href="#cta"
+              className="cb-result-btn"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "14px",
                 background: "linear-gradient(135deg, #1c1b17 0%, #141310 50%, #1a1814 100%)",
