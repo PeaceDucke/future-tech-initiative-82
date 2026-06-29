@@ -757,8 +757,8 @@ body {
 
   /* ---------- "Тарифы" (Pricing) — все 4 в один ряд ---------- */
   .pr-section {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
   .pr-badge {
     font-size: 8px !important;
@@ -770,60 +770,56 @@ body {
     font-size: 14px !important;
   }
   .pr-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 5px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
   .pr-card {
-    padding: 22px 6px 18px !important;
-    border-radius: 10px !important;
+    padding: 28px 18px 24px !important;
+    border-radius: 14px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
   }
   .pr-badge-pop {
-    font-size: 6px !important;
-    padding: 3px 7px !important;
-    top: -8px !important;
-    letter-spacing: 0.04em !important;
+    font-size: 9px !important;
+    padding: 4px 14px !important;
+    top: -12px !important;
   }
   .pr-name {
-    font-size: 9px !important;
-    letter-spacing: 0.05em !important;
-    margin-bottom: 10px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+    margin-bottom: 14px !important;
     text-align: center !important;
   }
   .pr-price {
-    font-size: 16px !important;
+    font-size: 30px !important;
     text-align: center !important;
     white-space: nowrap !important;
-    letter-spacing: -0.02em !important;
   }
   .pr-price-free {
-    font-size: 15px !important;
+    font-size: 28px !important;
   }
   .pr-period {
-    font-size: 8px !important;
-    margin-top: 3px !important;
+    font-size: 11px !important;
+    margin-top: 5px !important;
     text-align: center !important;
   }
   /* features block centered, full width */
   .pr-feats {
     width: 100% !important;
-    align-items: center !important;
-    gap: 8px !important;
+    align-items: stretch !important;
+    gap: 11px !important;
   }
   .pr-feat-row {
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
-    justify-content: center !important;
-    gap: 1px !important;
-    text-align: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
   }
   .pr-feat {
-    font-size: 10px !important;
-    gap: 3px !important;
-    justify-content: center !important;
+    font-size: 12px !important;
+    gap: 6px !important;
   }
   .pr-btn {
     font-size: 10px !important;
