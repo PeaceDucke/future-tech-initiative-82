@@ -2244,8 +2244,9 @@ function BeforeAfterSection() {
     <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
         {/* heading */}
-        <div ref={ref} className="text-center" style={{ marginBottom: "64px" }}>
+        <div ref={ref} className="cb-head text-center" style={{ marginBottom: "64px" }}>
           <motion.h2
+            className="cb-title"
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
@@ -2258,19 +2259,19 @@ function BeforeAfterSection() {
         {/* comparison */}
         <div style={{ position: "relative" }}>
           {/* desktop column headers */}
-          <div className="hidden lg:grid" style={{ gridTemplateColumns: "1fr 120px 1fr", alignItems: "center", marginBottom: "26px" }}>
+          <div className="cb-headers grid" style={{ gridTemplateColumns: "1fr 120px 1fr", alignItems: "center", marginBottom: "26px" }}>
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="flex items-center gap-3"
             >
-              <div style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,107,107,0.10)", border: "1px solid rgba(255,107,107,0.28)" }}>
+              <div className="cb-head-ic" style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,107,107,0.10)", border: "1px solid rgba(255,107,107,0.28)" }}>
                 <Icon name="TrendingDown" size={22} style={{ color: RED }} />
               </div>
               <div>
-                <div style={{ ...labelCss, color: RED, fontSize: "12px" }}>До Voice-Tec</div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
+                <div className="cb-head-title" style={{ ...labelCss, color: RED, fontSize: "12px" }}>До Voice-Tec</div>
+                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
               </div>
             </motion.div>
             <div />
@@ -2282,10 +2283,10 @@ function BeforeAfterSection() {
               style={{ textAlign: "right" }}
             >
               <div>
-                <div style={{ ...labelCss, color: GREEN, fontSize: "12px" }}>С Voice-Tec</div>
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
+                <div className="cb-head-title" style={{ ...labelCss, color: GREEN, fontSize: "12px" }}>С Voice-Tec</div>
+                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
               </div>
-              <div style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.32)" }}>
+              <div className="cb-head-ic" style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.32)" }}>
                 <Icon name="TrendingUp" size={22} style={{ color: G }} />
               </div>
             </motion.div>
@@ -2293,7 +2294,7 @@ function BeforeAfterSection() {
 
           {/* center glowing divider (desktop) */}
           <motion.div
-            className="hidden lg:block"
+            className="cb-divider block"
             initial={{ opacity: 0, scaleY: 0 }}
             animate={inView ? { opacity: 1, scaleY: 1 } : {}}
             transition={{ duration: 0.9, delay: 0.3 }}
@@ -2312,7 +2313,7 @@ function BeforeAfterSection() {
           {/* rows */}
           <div className="flex flex-col" style={{ gap: "16px" }}>
             {rows.map((row, i) => (
-              <div key={i} className="grid grid-cols-1 lg:grid-cols-[1fr_120px_1fr]" style={{ alignItems: "stretch", gap: "16px" }}>
+              <div key={i} className="cb-row grid grid-cols-[1fr_120px_1fr]" style={{ alignItems: "stretch", gap: "16px" }}>
                 {/* before */}
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
@@ -2331,15 +2332,15 @@ function BeforeAfterSection() {
                     transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
                   }}
                 >
-                  <Icon name="X" size={20} style={{ color: RED, flexShrink: 0, opacity: 0.7 }} />
+                  <Icon name="X" size={20} className="cb-icon" style={{ color: RED, flexShrink: 0, opacity: 0.7 }} />
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: RED, fontWeight: 600, lineHeight: 1.05 }}>{row.before.value}</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.62)", marginTop: "6px", lineHeight: 1.4 }}>{row.before.label}</div>
+                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: RED, fontWeight: 600, lineHeight: 1.05 }}>{row.before.value}</div>
+                    <div className="cb-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.62)", marginTop: "6px", lineHeight: 1.4 }}>{row.before.label}</div>
                   </div>
                 </motion.div>
 
                 {/* center arrow */}
-                <div className="hidden lg:flex items-center justify-center" style={{ position: "relative", zIndex: 2 }}>
+                <div className="cb-arrow flex items-center justify-center" style={{ position: "relative", zIndex: 2 }}>
                   <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -2356,8 +2357,8 @@ function BeforeAfterSection() {
                   </motion.div>
                 </div>
 
-                {/* mobile arrow */}
-                <div className="flex lg:hidden items-center justify-center" style={{ margin: "-4px 0" }}>
+                {/* mobile arrow (down) - hidden, we keep the desktop side-by-side layout */}
+                <div className="cb-arrow-down hidden items-center justify-center" style={{ margin: "-4px 0" }}>
                   <Icon name="ArrowDown" size={20} style={{ color: G }} />
                 </div>
 
@@ -2379,12 +2380,12 @@ function BeforeAfterSection() {
                     transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
                   }}
                 >
-                  <div style={{ width: "32px", height: "32px", borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(74,222,128,0.14)" }}>
+                  <div className="cb-check" style={{ width: "32px", height: "32px", borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(74,222,128,0.14)" }}>
                     <Icon name="Check" size={18} style={{ color: GREEN }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: G, fontWeight: 600, lineHeight: 1.05, textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>{row.after.value}</div>
-                    <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, opacity: 0.85, marginTop: "6px", lineHeight: 1.4 }}>{row.after.label}</div>
+                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: G, fontWeight: 600, lineHeight: 1.05, textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>{row.after.value}</div>
+                    <div className="cb-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, opacity: 0.85, marginTop: "6px", lineHeight: 1.4 }}>{row.after.label}</div>
                   </div>
                 </motion.div>
               </div>

@@ -597,6 +597,81 @@ body {
     height: 760px !important;
   }
 
+  /* ---------- "Как меняется бизнес с нами" ---------- */
+  /* Keep the desktop side-by-side layout on mobile: ДО left, После right.
+     Shrink everything so two columns fit a phone screen. */
+  .cb-title {
+    font-size: 30px !important;
+  }
+  .cb-head {
+    margin-bottom: 28px !important;
+  }
+  /* narrow center column (arrow) so both cards have room */
+  .cb-headers {
+    grid-template-columns: 1fr 34px 1fr !important;
+    margin-bottom: 14px !important;
+  }
+  .cb-row {
+    grid-template-columns: 1fr 34px 1fr !important;
+    gap: 6px !important;
+  }
+  /* column headers smaller */
+  .cb-head-ic {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 7px !important;
+  }
+  .cb-head-ic svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .cb-head-title {
+    font-size: 8px !important;
+  }
+  .cb-head-desc {
+    font-size: 8px !important;
+    line-height: 1.2 !important;
+  }
+  /* before / after cards smaller */
+  .cb-row .sfs-before-row,
+  .cb-row .sfs-after-row {
+    padding: 11px 12px !important;
+    border-radius: 11px !important;
+    gap: 9px !important;
+  }
+  .cb-icon {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .cb-check {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .cb-check svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .cb-value {
+    font-size: 16px !important;
+  }
+  .cb-label {
+    font-size: 9px !important;
+    margin-top: 3px !important;
+    line-height: 1.25 !important;
+  }
+  /* center arrow smaller, divider visible */
+  .cb-arrow > div {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .cb-arrow svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .cb-arrow-down {
+    display: none !important;
+  }
+
   /* ---------- RADAR ---------- */
   .rd-root {
     min-height: 360px !important;
