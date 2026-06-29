@@ -517,8 +517,8 @@ body {
   .dash-wrap {
     overflow: hidden;
     width: 100%;
-    /* visible height = 920 * 0.27 ≈ 248px (whole dashboard, no clipping) */
-    height: 248px;
+    /* visible height = 920 * 0.324 ≈ 298px (whole dashboard, no clipping) */
+    height: 298px;
     display: flex;
     justify-content: center;
   }
@@ -526,7 +526,7 @@ body {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    transform: scale(0.27);
+    transform: scale(0.324);
     transform-origin: top center;
     height: 920px !important;
     margin: 0 !important;
