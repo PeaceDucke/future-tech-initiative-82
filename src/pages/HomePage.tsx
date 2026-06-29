@@ -2195,7 +2195,7 @@ function CasesSection() {
           .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 767px) {
-          .cases-grid { gap: 6px !important; }
+          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
         }
       `}</style>
     </section>
