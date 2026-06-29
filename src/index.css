@@ -794,14 +794,13 @@ body {
   .cta-spline {
     min-height: 300px !important;
   }
+  /* normal viewport — show animation fully, no cropping */
   .cta-spline-inner {
-    inset: -15% !important;
+    inset: 0 !important;
   }
-  /* shrink the actual Spline image, not its viewport */
-  .cta-spline-inner canvas,
-  .cta-spline-inner > div {
-    transform: scale(0.6) !important;
-    transform-origin: center !important;
+  /* remove edge fades that hid the animation */
+  .cta-spline-fade {
+    display: none !important;
   }
 
   /* ---------- FAQ ---------- */

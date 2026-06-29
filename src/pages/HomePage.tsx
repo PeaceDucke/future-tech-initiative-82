@@ -3127,12 +3127,12 @@ function FinalCtaSection() {
                 style={{ width: "100%", height: "100%" }}
               />
               {/* fade edges */}
-              <div style={{
+              <div className="cta-spline-fade" style={{
                 position: "absolute", inset: 0,
                 background: "linear-gradient(to right, #151513 0%, transparent 18%, transparent 82%, #151513 100%)",
                 pointerEvents: "none",
               }} />
-              <div style={{
+              <div className="cta-spline-fade" style={{
                 position: "absolute", inset: 0,
                 background: "linear-gradient(to bottom, #151513 0%, transparent 14%, transparent 84%, #151513 100%)",
                 pointerEvents: "none",
