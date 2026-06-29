@@ -755,6 +755,28 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- "Что получает клиент" (ClientValue) ---------- */
+  .cv-badge {
+    font-size: 8px !important;
+  }
+  .cv-title {
+    font-size: 29px !important;
+  }
+  .cv-sub {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+  .cv-card-label {
+    font-size: 9px !important;
+  }
+  /* make screenshots bigger — use full width, no side overhang */
+  .slide-card {
+    width: 112% !important;
+    max-width: none !important;
+    margin-left: -6% !important;
+    margin-right: -6% !important;
+  }
+
   /* ---------- "Гарантия результата" (Guarantee) ---------- */
   .grt-title {
     font-size: 25px !important;

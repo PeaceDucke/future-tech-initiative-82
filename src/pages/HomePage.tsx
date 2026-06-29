@@ -2817,7 +2817,7 @@ function SlideCard({
             gap: "10px",
           }}>
             <div style={{ width: "24px", height: "1px", background: G }} />
-            <span style={{
+            <span className="cv-card-label" style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "12px",
               letterSpacing: "0.2em",
@@ -2889,7 +2889,7 @@ function ClientValueSection() {
         >
           <div className="flex items-center justify-center gap-3 mb-5">
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span style={{
+            <span className="cv-badge" style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "11px",
               letterSpacing: "0.2em",
@@ -2899,7 +2899,7 @@ function ClientValueSection() {
             }}>Что получает клиент</span>
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
           </div>
-          <h2 style={{
+          <h2 className="cv-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(32px, 5vw, 62px)",
             color: "#F7F2EA",
@@ -2910,7 +2910,7 @@ function ClientValueSection() {
           }}>
             Не просто отчёт.<br />Полная система контроля продаж.
           </h2>
-          <p style={{
+          <p className="cv-sub" style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "17px",
             color: "#9A9490",
