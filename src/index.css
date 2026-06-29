@@ -755,6 +755,30 @@ body {
     line-height: 1.45 !important;
   }
 
+  /* ---------- "Интеграция за 5 минут" (Integration) ---------- */
+  .int-badge {
+    font-size: 8px !important;
+  }
+  .int-title {
+    font-size: 31px !important;
+  }
+  .int-sub {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+  .int-chip-text {
+    font-size: 11px !important;
+  }
+  .int-btn {
+    font-size: 10px !important;
+    padding: 13px 30px !important;
+  }
+  /* smaller chip "windows" */
+  .int-chip {
+    padding: 8px 14px !important;
+    gap: 6px !important;
+  }
+
   /* ---------- "Что получает клиент" (ClientValue) ---------- */
   .cv-badge {
     font-size: 8px !important;

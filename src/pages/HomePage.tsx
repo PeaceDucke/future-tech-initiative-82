@@ -3602,7 +3602,7 @@ function IntegrationSection() {
         {/* eyebrow */}
         <div className="flex items-center justify-center gap-3 mb-7">
           <div style={{ width: "40px", height: "1px", background: "rgba(251,246,236,0.3)" }} />
-          <span style={{
+          <span className="int-badge" style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "11px",
             letterSpacing: "0.25em",
@@ -3614,6 +3614,7 @@ function IntegrationSection() {
         </div>
 
         <h2
+          className="int-title"
           style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "clamp(34px, 5.5vw, 70px)",
@@ -3631,6 +3632,7 @@ function IntegrationSection() {
         </h2>
 
         <p
+          className="int-sub"
           style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "clamp(16px, 2vw, 20px)",
@@ -3653,7 +3655,7 @@ function IntegrationSection() {
           {crms.map((crm, i) => (
             <div
               key={crm}
-              className="group"
+              className="group int-chip"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -3679,6 +3681,7 @@ function IntegrationSection() {
             >
               <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#FBF6EC", boxShadow: "0 0 8px rgba(251,246,236,0.6)" }} />
               <span
+                className="int-chip-text"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "clamp(14px, 1.6vw, 17px)",
@@ -3694,6 +3697,7 @@ function IntegrationSection() {
         </div>
 
         <button
+          className="int-btn"
           style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "13px",
