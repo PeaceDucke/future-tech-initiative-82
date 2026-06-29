@@ -3116,7 +3116,7 @@ function FinalCtaSection() {
             opacity: inView ? 1 : 0,
             transition: "opacity 1s ease 0.2s",
           }}>
-            <div style={{
+            <div className="cta-spline-inner" style={{
               position: "absolute",
               inset: "-15%",
               zIndex: 0,
