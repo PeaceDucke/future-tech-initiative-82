@@ -1494,6 +1494,7 @@ function AudienceSection() {
         </div>
 
         <motion.div
+          className="aud-note"
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -1503,8 +1504,8 @@ function AudienceSection() {
             display: "flex", alignItems: "flex-start", gap: "14px",
           }}
         >
-          <Icon name="ShieldCheck" size={22} style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
-          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.6 }}>
+          <Icon name="ShieldCheck" size={22} className="aud-note-ic" style={{ color: G, marginTop: "2px", flexShrink: 0 }} />
+          <p className="aud-note-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", color: B, lineHeight: 1.6 }}>
             Здесь Voice-Tec AI работает как автоматический контроль отдела продаж:
             слушает <span style={{ color: G }}>100% разговоров</span>, находит слабые места
             менеджеров и показывает, где бизнес теряет заявки.
