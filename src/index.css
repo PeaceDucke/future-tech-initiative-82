@@ -513,9 +513,9 @@ body {
      space that transform:scale would otherwise leave behind. */
   .dash-wrap {
     overflow: hidden;
-    /* scale is width/1320; height = 920 * scale. Using 100vw fit:
-       (100vw - 32px)/1320. Height collapses the empty scale space. */
-    height: calc((100vw - 32px) / 1320 * 920);
+    /* full scaled height = 920 * 0.27 ≈ 248px so the WHOLE dashboard
+       is visible (no clipping). */
+    height: 248px;
     display: flex;
     justify-content: center;
   }
@@ -523,8 +523,9 @@ body {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    /* fit full dashboard width into the viewport (16px side padding) */
-    transform: scale(calc((100vw - 32px) / 1320));
+    /* scale() needs a UNITLESS number — calc with px is invalid and
+       would silently disable the transform (cards stay huge). */
+    transform: scale(0.27);
     transform-origin: top center;
     height: 920px !important;
     margin: 0 !important;
@@ -577,5 +578,12 @@ body {
   }
   .hero-partners {
     font-size: 6px !important;
+  }
+  /* dashboard a touch smaller so 1320px canvas fits narrow phones */
+  .dash-wrap {
+    height: 221px;
+  }
+  .dash-scene {
+    transform: scale(0.24);
   }
 }
