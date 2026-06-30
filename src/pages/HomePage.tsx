@@ -1164,6 +1164,7 @@ function SplineFeatureSection() {
   return (
     <section
       ref={ref}
+      className="aiv-section"
       style={{
         background: "#151513",
         padding: "0 20px 160px",

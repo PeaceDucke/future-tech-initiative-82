@@ -550,6 +550,10 @@ body {
   .aiv-header {
     padding-top: 24px !important;
   }
+  /* kill the big empty gap below the section on mobile */
+  .aiv-section {
+    padding-bottom: 32px !important;
+  }
   /* headings −2px */
   .aiv-title {
     font-size: 28px !important;
