@@ -993,6 +993,11 @@ body {
   }
 
   /* ---------- "Кейсы клиентов" (Cases) — 4 in one row like desktop ---------- */
+  /* move the whole section up — much smaller top padding on mobile */
+  .cases-section {
+    padding-top: 24px !important;
+    padding-bottom: 48px !important;
+  }
   .cases-title {
     font-size: 30px !important;
   }
