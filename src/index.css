@@ -793,12 +793,12 @@ body {
   }
   /* bigger viewport container */
   .cta-spline {
-    min-height: 340px !important;
+    min-height: 400px !important;
   }
   /* widen the inner stage so the scaled-down scene is fully visible (no side crop) */
   .cta-spline-inner {
     top: -12% !important;
-    bottom: 12% !important;
+    bottom: -18% !important;
     left: -60% !important;
     right: -60% !important;
   }
