@@ -802,6 +802,11 @@ body {
     left: -60% !important;
     right: -60% !important;
   }
+  /* shrink animation object only on mobile */
+  .cta-spline-inner canvas {
+    transform: scale(0.4) !important;
+    transform-origin: center center !important;
+  }
   /* remove edge fades that hid the animation */
   .cta-spline-fade {
     display: none !important;
