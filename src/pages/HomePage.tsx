@@ -3574,6 +3574,7 @@ function IntegrationSection() {
   return (
     <section
       ref={ref}
+      className="int-section"
       style={{
         background: "#151513",
         padding: "0 24px 150px",

@@ -921,6 +921,10 @@ body {
   }
 
   /* ---------- "Интеграция за 5 минут" (Integration) ---------- */
+  /* strongly reduce bottom gap on mobile */
+  .int-section {
+    padding-bottom: 32px !important;
+  }
   .int-badge {
     font-size: 8px !important;
   }
