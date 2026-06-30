@@ -698,6 +698,11 @@ body {
     display: none !important;
   }
   /* ---------- "Voice-Tec AI создан для компаний…" (Audience) ---------- */
+  /* move the whole section up — much smaller top padding on mobile */
+  .aud-section {
+    padding-top: 24px !important;
+    padding-bottom: 48px !important;
+  }
   /* heading −3px (mobile clamp min is 28px) */
   .aud-title {
     font-size: 23px !important;

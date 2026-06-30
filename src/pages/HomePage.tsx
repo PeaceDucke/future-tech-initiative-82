@@ -1443,7 +1443,7 @@ function AudienceSection() {
   ];
 
   return (
-    <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+    <section className="aud-section" style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       {/* мягкое золотое свечение по центру */}
       <div
         style={{
