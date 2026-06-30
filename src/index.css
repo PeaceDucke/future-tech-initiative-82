@@ -552,7 +552,7 @@ body {
   }
   /* kill the big empty gap below the section on mobile */
   .aiv-section {
-    padding-bottom: 32px !important;
+    padding-bottom: 8px !important;
   }
   /* headings −2px */
   .aiv-title {
