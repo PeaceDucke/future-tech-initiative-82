@@ -1175,7 +1175,7 @@ function SplineFeatureSection() {
 
       <div className="max-w-7xl mx-auto">
         {/* ── Header ── */}
-        <div className="text-center" style={{
+        <div className="text-center aiv-header" style={{
           paddingTop: "100px",
           paddingBottom: "0",
           position: "relative",

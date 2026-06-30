@@ -546,6 +546,10 @@ body {
   }
 
   /* ---------- "Что AI видит внутри разговора" ---------- */
+  /* kill the big empty gap above the heading on mobile */
+  .aiv-header {
+    padding-top: 24px !important;
+  }
   /* headings −2px */
   .aiv-title {
     font-size: 28px !important;
