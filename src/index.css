@@ -511,6 +511,10 @@ body {
   }
 
   /* ---------- DASHBOARD ("Всё в одном окне") ---------- */
+  /* reduce big gap between dashboard and "Что AI видит" sections on mobile */
+  .dash-section {
+    padding-bottom: 24px !important;
+  }
   /* The scene is built at a fixed 1320px canvas with absolutely
      positioned cards. Scaling the WHOLE canvas down keeps the exact
      desktop composition (no overlap) but shrinks it to fit the phone.
@@ -555,7 +559,7 @@ body {
      .aiv-stage is a plain div (no framer transform) so scale() is reliable. */
   .aiv-stage-wrap {
     overflow: hidden;
-    margin-top: 28px !important;
+    margin-top: 8px !important;
     min-height: 0 !important;
     /* widen window to the site edges (cancel section px-5 = 20px) */
     margin-left: -20px;

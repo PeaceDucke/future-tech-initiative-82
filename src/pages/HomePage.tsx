@@ -4078,7 +4078,7 @@ export function HomePage() {
         <SectionDivider />
 
         {/* ═══ DASHBOARD PREVIEW ═══ */}
-        <section className="pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
+        <section className="dash-section pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-10">
