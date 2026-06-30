@@ -2250,7 +2250,7 @@ function BeforeAfterSection() {
   };
 
   return (
-    <section style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
+    <section className="cb-section" style={{ background: "#151513", padding: "120px 0 130px", overflow: "hidden", position: "relative" }}>
       <div className="mx-auto px-6" style={{ maxWidth: "1320px", position: "relative", zIndex: 2 }}>
         {/* heading */}
         <div ref={ref} className="cb-head text-center" style={{ marginBottom: "64px" }}>

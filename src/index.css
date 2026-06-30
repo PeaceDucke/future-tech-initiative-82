@@ -617,6 +617,11 @@ body {
   /* ---------- "Как меняется бизнес с нами" ---------- */
   /* Keep the desktop side-by-side layout on mobile: ДО left, После right.
      Shrink everything so two columns fit a phone screen. */
+  /* move the whole section up — much smaller top padding on mobile */
+  .cb-section {
+    padding-top: 24px !important;
+    padding-bottom: 48px !important;
+  }
   .cb-title {
     font-size: 27px !important;
   }
