@@ -2870,6 +2870,7 @@ function ClientValueSection() {
   return (
     <section
       ref={ref}
+      className="cv-section"
       style={{
         background: "#151513",
         padding: "0 20px 160px",
