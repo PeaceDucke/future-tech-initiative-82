@@ -3977,7 +3977,7 @@ export function HomePage() {
         <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e3398b6d-eb3c-4f97-b1a4-9768d29cb5d8.jpg"
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/a8456873-6ecd-4697-b6d7-542d9fe7d89d.jpg"
               alt="Команда Voice-Tec"
               className="hero-photo w-full h-full object-cover object-center"
             />
