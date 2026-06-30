@@ -970,6 +970,11 @@ body {
   }
 
   /* ---------- "Гарантия результата" (Guarantee) ---------- */
+  /* pull section up + reduce bottom gap strongly on mobile */
+  .grt-section {
+    padding-top: 24px !important;
+    padding-bottom: 32px !important;
+  }
   .grt-title {
     font-size: 25px !important;
   }
