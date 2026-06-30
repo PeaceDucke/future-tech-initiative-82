@@ -1630,7 +1630,7 @@ function ImplementationSection() {
   ];
 
   return (
-    <section style={{ background: "#151513", padding: "60px 0 130px", overflow: "hidden", position: "relative" }}>
+    <section className="impl-section" style={{ background: "#151513", padding: "60px 0 130px", overflow: "hidden", position: "relative" }}>
       <div
         style={{
           position: "absolute", top: "8%", left: "50%", transform: "translateX(-50%)",
