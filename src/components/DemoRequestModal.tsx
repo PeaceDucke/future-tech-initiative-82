@@ -53,7 +53,8 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
     borderRadius: "3px",
     color: "#F3ECDD",
     fontFamily: "Inter, sans-serif",
-    fontSize: "15px",
+    fontSize: "17px",
+    fontWeight: 500,
     padding: "13px 14px 13px 44px",
     outline: "none",
     transition: "border-color 0.2s ease, box-shadow 0.2s ease",
@@ -161,7 +162,7 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: "#F3ECDD",
-                    fontSize: "24px",
+                    fontSize: "26px",
                     marginBottom: "8px",
                   }}
                 >
@@ -171,7 +172,8 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   style={{
                     fontFamily: "Inter, sans-serif",
                     color: "#A99F8C",
-                    fontSize: "14.5px",
+                    fontSize: "16.5px",
+                    fontWeight: 500,
                     lineHeight: 1.6,
                   }}
                 >
@@ -185,7 +187,7 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   style={{
                     fontFamily: "'Playfair Display', serif",
                     color: "#F3ECDD",
-                    fontSize: "27px",
+                    fontSize: "29px",
                     lineHeight: 1.2,
                     marginBottom: "8px",
                   }}
@@ -196,7 +198,8 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   style={{
                     fontFamily: "Inter, sans-serif",
                     color: "#9A917F",
-                    fontSize: "14px",
+                    fontSize: "16px",
+                    fontWeight: 500,
                     lineHeight: 1.55,
                     marginBottom: "24px",
                   }}
@@ -285,7 +288,8 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                     style={{
                       fontFamily: "Inter, sans-serif",
                       color: "#8A8171",
-                      fontSize: "12px",
+                      fontSize: "14px",
+                      fontWeight: 500,
                       letterSpacing: "0.08em",
                     }}
                   >
@@ -339,9 +343,9 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                     background: GOLD_GRADIENT,
                     color: "#1E1500",
                     fontFamily: "Inter, sans-serif",
-                    fontWeight: 600,
+                    fontWeight: 700,
                     letterSpacing: "0.06em",
-                    fontSize: "15.5px",
+                    fontSize: "17.5px",
                     padding: "14px",
                     borderRadius: "3px",
                     boxShadow:
@@ -367,7 +371,8 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   style={{
                     fontFamily: "Inter, sans-serif",
                     color: "#6E675A",
-                    fontSize: "11.5px",
+                    fontSize: "13.5px",
+                    fontWeight: 500,
                     lineHeight: 1.5,
                     textAlign: "center",
                     marginTop: "14px",
