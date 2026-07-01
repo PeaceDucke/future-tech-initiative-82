@@ -3837,7 +3837,7 @@ export function HomePage() {
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/39dab65b-81ac-4187-a876-80673fe533b0.png"
                 alt="VOICE-TEC"
-                className="w-9 h-9 md:w-11 md:h-11 object-contain"
+                className="w-28 h-28 md:w-32 md:h-32 object-contain"
               />
               <span
                 className="text-[24px] md:text-[30px] tracking-wide"
