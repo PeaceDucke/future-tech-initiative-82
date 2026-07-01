@@ -275,24 +275,30 @@ body {
      No absolute overlap, no viewport-dependent marginTop. */
   .hero-section {
     min-height: 0 !important;
+    height: auto !important;
     display: block !important;
     background: #151513 !important;
   }
-  /* photo becomes a normal block at the top with a fixed height */
+  /* photo becomes a normal block at the top with a fixed height.
+     Height is based on WIDTH (vw), NOT viewport height (svh/vh),
+     so it never changes when the browser toolbar shows/hides —
+     the result is identical on every phone. */
   .hero-bg {
     position: relative !important;
     inset: auto !important;
-    height: 46svh !important;
+    height: 88vw !important;
+    max-height: 420px !important;
     width: 100% !important;
+    display: block !important;
   }
   .hero-photo {
     transform: none !important;
-    object-position: center 32% !important;
+    object-position: center 30% !important;
   }
-  /* text flows right after the photo — no overlap, no marginTop */
+  /* text flows right after the photo — small, fixed gap, no marginTop */
   .hero-inner {
     margin-top: 0 !important;
-    padding: 1.75rem 20px 2rem !important;
+    padding: 1.5rem 20px 2rem !important;
     z-index: 5;
   }
   /* keep the staircase for the title, but bring the lead/underline
