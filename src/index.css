@@ -324,7 +324,7 @@ body {
     max-width: 100% !important;
   }
   .hero-inner p.hero-lead {
-    text-align: left !important;
+    text-align: center !important;
     font-size: 11px !important;
     line-height: 1.5 !important;
     color: #ffffff !important;
@@ -345,7 +345,7 @@ body {
     padding: 7px 14px !important;
   }
   .hero-inner h1.hero-title {
-    font-size: 49px !important;
+    font-size: 48px !important;
   }
   /* keep the title "staircase" but scale the offsets down so nothing
      runs off the small screen */
