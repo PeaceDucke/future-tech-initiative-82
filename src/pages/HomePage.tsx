@@ -1603,18 +1603,30 @@ function RopSection() {
     {
       icon: "Eye",
       title: "Полная прозрачность отдела",
-      desc: "Видишь каждый разговор без прослушки вручную: кто дожимает, кто сливает, а какие скрипты реально работают.",
+      desc: "Видишь реальную картину: что работает, а что тормозит продажи.",
     },
     {
       icon: "Clock",
-      title: "Больше свободного времени",
-      desc: "AI берёт на себя рутину — прослушку, оценку и отчёты. Ты убираешь ручной контроль и не тонешь в звонках.",
+      title: "Освободи своё время",
+      desc: "AI берёт рутину на себя: отчёты, анализ, контроль, напоминания.",
     },
     {
       icon: "TrendingUp",
-      title: "Фокус на развитии команды",
-      desc: "Направляешь силы туда, где растёт выручка: обучение, стратегия и рост менеджеров, а не бесконечная проверка.",
+      title: "Фокус на развитии",
+      desc: "Больше времени на стратегию, команду и рост результатов.",
     },
+    {
+      icon: "Target",
+      title: "Рост конверсии до 25%",
+      desc: "С Voice-Tec AI и твоим управлением — рост становится системой.",
+    },
+  ];
+
+  const badges = [
+    { icon: "Users", title: "Контроль команды", sub: "в реальном времени", pos: { top: "14%", left: "-4%" } },
+    { icon: "AudioLines", title: "Аналитика звонков", sub: "и переписок с AI", pos: { top: "22%", right: "-6%" } },
+    { icon: "TrendingUp", title: "Выявление точек роста", sub: "и узких мест", pos: { top: "58%", left: "-2%" } },
+    { icon: "FileText", title: "Автоматические отчёты", sub: "без рутины", pos: { top: "66%", right: "-4%" } },
   ];
 
   return (
@@ -1623,255 +1635,278 @@ function RopSection() {
       className="rop-section"
       style={{
         background: "#151513",
-        padding: "120px 0 130px",
+        padding: "100px 0 110px",
         overflow: "hidden",
         position: "relative",
       }}
     >
-      {/* золотое свечение */}
-      <div
-        style={{
-          position: "absolute",
-          top: "8%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "820px",
-          height: "460px",
-          pointerEvents: "none",
-          background:
-            "radial-gradient(ellipse at center, rgba(212,176,116,0.12) 0%, transparent 70%)",
-          filter: "blur(20px)",
-          zIndex: 1,
-        }}
-      />
-
-      <div
-        className="mx-auto px-5 sm:px-8"
-        style={{ maxWidth: "1200px", position: "relative", zIndex: 2 }}
-      >
-        {/* label */}
+      <div className="mx-auto px-5 sm:px-8" style={{ maxWidth: "1400px", position: "relative", zIndex: 2 }}>
+        {/* outer rounded frame */}
         <motion.div
-          className="flex items-center justify-center gap-3"
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          style={{ marginBottom: "22px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="rop-frame"
+          style={{
+            borderRadius: "34px",
+            border: "1px solid rgba(212,176,116,0.16)",
+            background: "linear-gradient(160deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+            padding: "clamp(28px, 4vw, 56px)",
+            position: "relative",
+            overflow: "hidden",
+          }}
         >
-          <div style={{ width: "34px", height: "1px", background: G, opacity: 0.5 }} />
-          <span
+          {/* ambient glow */}
+          <div
+            aria-hidden
             style={{
-              color: G,
-              fontSize: "11px",
-              fontWeight: 500,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              fontFamily: "Inter, sans-serif",
+              position: "absolute", top: "-10%", right: "8%",
+              width: "620px", height: "620px", pointerEvents: "none",
+              background: "radial-gradient(ellipse at center, rgba(212,176,116,0.1) 0%, transparent 70%)",
+              filter: "blur(10px)", zIndex: 0,
+            }}
+          />
+
+          <div className="rop-cols" style={{ position: "relative", zIndex: 1 }}>
+            {/* ── LEFT ── */}
+            <div className="rop-left">
+              {/* pill label */}
+              <div
+                className="inline-flex items-center gap-2"
+                style={{
+                  padding: "9px 18px", borderRadius: "999px",
+                  border: "1px solid rgba(212,176,116,0.3)",
+                  background: "rgba(212,176,116,0.07)", marginBottom: "30px",
+                }}
+              >
+                <Icon name="UserRound" size={15} style={{ color: G }} />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: G }}>
+                  Для РОПов
+                </span>
+              </div>
+
+              <h2
+                className="rop-title"
+                style={{
+                  fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 600,
+                  fontSize: "clamp(32px, 4vw, 54px)", lineHeight: 1.1, color: W,
+                  marginBottom: "24px", letterSpacing: "0.005em",
+                }}
+              >
+                Ты — РОП.<br />
+                Ты управляешь <span style={{ color: G }}>результатом.</span>
+              </h2>
+
+              <p
+                className="rop-sub"
+                style={{
+                  fontFamily: "Inter, sans-serif", fontSize: "clamp(15px, 1.6vw, 18px)",
+                  color: B, lineHeight: 1.65, fontWeight: 300, maxWidth: "560px", marginBottom: "40px",
+                }}
+              >
+                Voice-Tec AI станет твоим инструментом контроля, анализа и роста
+                продаж. Освободи время от рутины и сфокусируйся на развитии команды
+                и увеличении выручки.
+              </p>
+
+              {/* benefit rows */}
+              <div className="flex flex-col" style={{ gap: "14px" }}>
+                {benefits.map((b, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                    className="flex items-start gap-4"
+                    style={{
+                      padding: "20px 22px", borderRadius: "16px",
+                      background: "rgba(255,255,255,0.025)",
+                      border: "1px solid rgba(212,176,116,0.12)",
+                    }}
+                  >
+                    <div
+                      className="flex items-center justify-center flex-shrink-0"
+                      style={{
+                        width: "46px", height: "46px", borderRadius: "12px",
+                        background: "rgba(212,176,116,0.1)",
+                        border: "1px solid rgba(212,176,116,0.22)",
+                      }}
+                    >
+                      <Icon name={b.icon} size={21} style={{ color: G }} />
+                    </div>
+                    <div>
+                      <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", fontWeight: 600, color: W, marginBottom: "4px" }}>
+                        {b.title}
+                      </h3>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.5, fontWeight: 300 }}>
+                        {b.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── RIGHT ── */}
+            <div className="rop-right">
+              <div
+                style={{
+                  position: "relative", borderRadius: "26px",
+                  border: "1px solid rgba(212,176,116,0.14)",
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0))",
+                  padding: "clamp(24px, 3vw, 40px)", overflow: "hidden",
+                }}
+              >
+                {/* photo with golden rings */}
+                <div className="rop-photo-wrap" style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", maxWidth: "480px", margin: "0 auto" }}>
+                  {/* rings */}
+                  <div aria-hidden style={{ position: "absolute", inset: "6%", borderRadius: "50%", border: "1px solid rgba(212,176,116,0.35)", boxShadow: "0 0 60px rgba(212,176,116,0.15) inset" }} />
+                  <div aria-hidden style={{ position: "absolute", inset: "14%", borderRadius: "50%", border: "1px solid rgba(212,176,116,0.18)" }} />
+                  <motion.div
+                    aria-hidden
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    style={{ position: "absolute", inset: "2%", borderRadius: "50%", border: "1px dashed rgba(212,176,116,0.25)" }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute", inset: "12%", borderRadius: "50%", overflow: "hidden",
+                      boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                    }}
+                  >
+                    <img
+                      src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/936ef70c-9e5d-4b92-872f-6e8681dd9da2.jpg"
+                      alt="Руководитель отдела продаж"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: "center 30%" }}
+                    />
+                  </div>
+
+                  {/* floating badges */}
+                  {badges.map((bd, i) => (
+                    <motion.div
+                      key={i}
+                      className="rop-badge flex items-center gap-2.5"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.5, delay: 0.6 + i * 0.15 }}
+                      style={{
+                        position: "absolute", ...bd.pos,
+                        padding: "10px 14px", borderRadius: "12px",
+                        background: "rgba(20,20,18,0.85)",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(212,176,116,0.25)",
+                        boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+                        whiteSpace: "nowrap", zIndex: 3,
+                      }}
+                    >
+                      <Icon name={bd.icon} size={16} style={{ color: G, flexShrink: 0 }} />
+                      <div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", fontWeight: 600, color: W, lineHeight: 1.2 }}>{bd.title}</div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: B, lineHeight: 1.2 }}>{bd.sub}</div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* +25% block */}
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  style={{ marginTop: "34px" }}
+                >
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, fontWeight: 300, marginBottom: "6px" }}>
+                    Увеличь конверсию до
+                  </div>
+                  <div className="inline-flex items-center gap-3">
+                    <span
+                      style={{
+                        fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 600,
+                        fontSize: "clamp(56px, 9vw, 92px)", lineHeight: 1,
+                        background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
+                        WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                      }}
+                    >
+                      +25%
+                    </span>
+                    <Icon name="TrendingUp" size={54} style={{ color: G }} />
+                  </div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, fontWeight: 300, marginTop: "4px" }}>
+                    совместно с Voice-Tec AI
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── BOTTOM BAR ── */}
+          <motion.div
+            className="rop-bottom"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 1 }}
+            style={{
+              marginTop: "40px", padding: "clamp(22px, 3vw, 32px)", borderRadius: "22px",
+              background: "linear-gradient(135deg, rgba(212,176,116,0.1) 0%, rgba(212,176,116,0.02) 100%)",
+              border: "1px solid rgba(212,176,116,0.22)",
+              display: "flex", alignItems: "center", gap: "24px", flexWrap: "wrap",
+              justifyContent: "space-between",
             }}
           >
-            Для руководителей отдела продаж
-          </span>
-          <div style={{ width: "34px", height: "1px", background: G, opacity: 0.5 }} />
-        </motion.div>
+            <div className="flex items-center gap-5" style={{ minWidth: "260px", flex: 1 }}>
+              <Icon name="Crown" size={44} style={{ color: G, flexShrink: 0 }} className="rop-crown" />
+              <div>
+                <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 2vw, 21px)", fontWeight: 600, color: W, marginBottom: "5px" }}>
+                  Хочешь вывести продажи на новый уровень?
+                </h3>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, fontWeight: 300, lineHeight: 1.5 }}>
+                  Расскажи владельцу бизнеса о возможностях Voice-Tec AI.
+                </p>
+              </div>
+            </div>
 
-        {/* heading */}
-        <motion.h2
-          className="rop-title text-center"
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          style={{
-            fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontWeight: 500,
-            fontSize: "clamp(28px, 3.6vw, 48px)",
-            lineHeight: 1.18,
-            color: W,
-            maxWidth: "900px",
-            margin: "0 auto",
-          }}
-        >
-          Хочешь усилить свой{" "}
-          <span style={{ color: G, fontStyle: "italic" }}>отдел продаж</span> и
-          получить признание руководства?
-        </motion.h2>
-
-        <motion.p
-          className="rop-sub text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "clamp(16px, 1.8vw, 19px)",
-            color: B,
-            lineHeight: 1.65,
-            fontWeight: 300,
-            maxWidth: "700px",
-            margin: "26px auto 0",
-          }}
-        >
-          Voice-Tec AI — твой личный инструмент контроля. Ты становишься
-          руководителем, который видит всё и управляет результатом, а не тушит
-          пожары вручную.
-        </motion.p>
-
-        {/* benefits grid */}
-        <div
-          className="rop-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "24px",
-            marginTop: "56px",
-          }}
-        >
-          {benefits.map((b, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 26 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.35 + i * 0.12 }}
-              className="rop-card"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
+              className="inline-flex items-center gap-2 rop-bottom-btn"
               style={{
-                padding: "30px 26px",
-                borderRadius: "18px",
-                background: "rgba(212,176,116,0.05)",
-                border: "1px solid rgba(212,176,116,0.16)",
+                fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600,
+                color: "#151513",
+                background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+                border: "none", borderRadius: "12px", padding: "16px 34px", cursor: "pointer",
+                boxShadow: "0 8px 30px rgba(200,169,106,0.28)",
+                transition: "transform 0.25s ease, box-shadow 0.25s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.45)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.28)";
               }}
             >
-              <div
-                className="flex items-center justify-center"
-                style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "13px",
-                  background: "rgba(212,176,116,0.12)",
-                  border: "1px solid rgba(212,176,116,0.25)",
-                  marginBottom: "20px",
-                }}
-              >
-                <Icon name={b.icon} size={24} style={{ color: G }} />
-              </div>
-              <h3
-                style={{
-                  fontFamily: '"Bodoni Moda", Georgia, serif',
-                  fontSize: "21px",
-                  fontWeight: 500,
-                  color: W,
-                  marginBottom: "12px",
-                  lineHeight: 1.25,
-                }}
-              >
-                {b.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontSize: "15.5px",
-                  color: B,
-                  lineHeight: 1.65,
-                  fontWeight: 300,
-                }}
-              >
-                {b.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* highlight +25% */}
-        <motion.div
-          className="rop-highlight"
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            marginTop: "48px",
-            padding: "clamp(30px, 4vw, 44px)",
-            borderRadius: "22px",
-            background:
-              "linear-gradient(135deg, rgba(212,176,116,0.14) 0%, rgba(212,176,116,0.04) 100%)",
-            border: "1px solid rgba(212,176,116,0.28)",
-            display: "flex",
-            alignItems: "center",
-            gap: "clamp(20px, 4vw, 44px)",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: '"Bodoni Moda", Georgia, serif',
-              fontWeight: 600,
-              fontSize: "clamp(56px, 8vw, 88px)",
-              lineHeight: 1,
-              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              flexShrink: 0,
-            }}
-          >
-            +25%
-          </div>
-          <p
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "clamp(16px, 1.9vw, 20px)",
-              color: W,
-              lineHeight: 1.6,
-              fontWeight: 300,
-              maxWidth: "560px",
-            }}
-          >
-            В связке с твоими усилиями Voice-Tec AI помогает{" "}
-            <span style={{ color: G, fontWeight: 500 }}>
-              увеличить конверсию отдела до 25%
-            </span>
-            . Покажи руководству инструмент, который окупает себя ростом продаж.
-          </p>
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 18 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.95 }}
-          style={{ marginTop: "44px" }}
-        >
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
-            className="inline-flex items-center gap-2"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontSize: "14px",
-              fontWeight: 600,
-              letterSpacing: "0.07em",
-              textTransform: "uppercase",
-              color: "#151513",
-              background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
-              border: "none",
-              borderRadius: "10px",
-              padding: "16px 40px",
-              cursor: "pointer",
-              boxShadow: "0 8px 30px rgba(200,169,106,0.28)",
-              transition: "transform 0.25s ease, box-shadow 0.25s ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.45)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.28)";
-            }}
-          >
-            Получить демо для отдела
-          </button>
+              <Icon name="Send" size={17} />
+              Обсудить с владельцем
+            </button>
+          </motion.div>
         </motion.div>
       </div>
+
+      <style>{`
+        .rop-cols {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: clamp(32px, 4vw, 64px);
+          align-items: start;
+        }
+        @media (max-width: 1023px) {
+          .rop-cols { grid-template-columns: 1fr; }
+          .rop-right { margin-top: 8px; }
+        }
+      `}</style>
     </section>
   );
 }
