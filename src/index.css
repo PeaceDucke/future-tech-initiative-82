@@ -269,16 +269,54 @@ body {
 
 @media (max-width: 767px) {
   /* ---------- HERO ---------- */
-  /* Photo behind the hero: make the team fully visible (not cropped).
-     The section keeps the photo as a full background but we ensure
-     enough height + a focus point that shows everyone. */
+  /* Mobile: turn the hero into a top-to-bottom FLOW so it looks the
+     same on every phone. First the team photo (fixed height block),
+     then the text right below it on the dark background.
+     No absolute overlap, no viewport-dependent marginTop. */
   .hero-section {
-    min-height: 100svh !important;
+    min-height: 0 !important;
+    display: block !important;
+    background: #151513 !important;
   }
-  /* next section ("Вы не видите 95%...") — pull it up into the empty
-     space below the hero WITHOUT touching the hero itself */
+  /* photo becomes a normal block at the top with a fixed height */
+  .hero-bg {
+    position: relative !important;
+    inset: auto !important;
+    height: 46svh !important;
+    width: 100% !important;
+  }
+  .hero-photo {
+    transform: none !important;
+    object-position: center 32% !important;
+  }
+  /* text flows right after the photo — no overlap, no marginTop */
+  .hero-inner {
+    margin-top: 0 !important;
+    padding: 1.75rem 20px 2rem !important;
+    z-index: 5;
+  }
+  /* keep the staircase for the title, but bring the lead/underline
+     back under the left margin so it doesn't run off-screen */
+  .hero-lead,
+  .hero-underline {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .hero-lead {
+    text-align: left !important;
+  }
+  /* keep the title "staircase" but scale the offsets down so nothing
+     runs off the small screen */
+  .hero-title-1 {
+    margin-left: -0.5rem !important;
+  }
+  .hero-title-2 {
+    padding-left: 1.5rem !important;
+  }
+  /* next section follows normally now — no negative pull */
   .pipeline-section {
-    margin-top: -38svh !important;
+    margin-top: 0 !important;
     padding: 2.5rem 20px 3rem !important;
     position: relative;
     z-index: 5;
