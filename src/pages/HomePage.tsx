@@ -2,6 +2,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect, lazy, Suspense, type CSSProperties } from "react";
 import Icon from "@/components/ui/icon";
 import CauseFlipCard from "@/components/CauseFlipCard";
+import DemoRequestModal from "@/components/DemoRequestModal";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
@@ -3739,6 +3740,7 @@ function IntegrationSection() {
 
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
   // По умолчанию - оригинальные оттенки дашборда
   const [bg, setBg] = useState<PickerVal>({ hue: DEFAULTS.bg.hue, light: DEFAULTS.bg.light });
   const [acc, setAcc] = useState<PickerVal>({ hue: DEFAULTS.acc.hue, light: DEFAULTS.acc.light });
@@ -3908,8 +3910,9 @@ export function HomePage() {
 
               <div className="hidden lg:block" style={{ width: "1px", height: "20px", background: "rgba(240,230,210,0.12)" }} />
 
-              <a
-                href="#cta"
+              <button
+                type="button"
+                onClick={() => setDemoOpen(true)}
                 className="hidden sm:inline-flex items-center gap-2"
                 style={{
                   background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
@@ -3924,11 +3927,11 @@ export function HomePage() {
                   boxShadow: "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)",
                   transition: "box-shadow 0.25s ease, transform 0.25s ease",
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.45), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.45), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
               >
                 Запросить демо
-              </a>
+              </button>
               <a
                 href="https://t.me/voicetec"
                 target="_blank"
@@ -4074,8 +4077,9 @@ export function HomePage() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="hero-cta flex flex-wrap gap-3" style={{ marginTop: "1.5rem" }}>
-                <a
-                  href="#cta"
+                <button
+                  type="button"
+                  onClick={() => setDemoOpen(true)}
                   className="inline-flex items-center gap-2"
                   style={{
                     background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
@@ -4089,11 +4093,11 @@ export function HomePage() {
                     boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 24px rgba(180,130,50,0.5), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 24px rgba(180,130,50,0.5), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
                 >
                   Запросить демо
-                </a>
+                </button>
               </motion.div>
               <motion.p variants={fadeUp} className="hero-partners mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
                 нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
@@ -4970,8 +4974,9 @@ export function HomePage() {
       </main>
 
       {/* ═══ FLOATING CTA ═══ */}
-      <motion.a
-        href="#cta"
+      <motion.button
+        type="button"
+        onClick={() => setDemoOpen(true)}
         className="floating-cta fixed bottom-6 right-6 z-50 inline-flex items-center gap-2"
         style={{
           background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
@@ -4990,8 +4995,9 @@ export function HomePage() {
       >
         <Icon name="MessageCircle" size={15} />
         Запросить демо
-      </motion.a>
+      </motion.button>
 
+      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </div>
   );
 }
