@@ -4029,7 +4029,7 @@ export function HomePage() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(21,21,19,0.1) 0%, rgba(21,21,19,0.05) 35%, rgba(21,21,19,0.72) 72%, rgba(21,21,19,0.97) 100%)",
+                  "linear-gradient(to bottom, rgba(21,21,19,0.1) 0%, rgba(21,21,19,0.15) 40%, rgba(21,21,19,0.55) 62%, rgba(21,21,19,0.85) 82%, rgba(21,21,19,1) 100%)",
               }}
             />
             <div
