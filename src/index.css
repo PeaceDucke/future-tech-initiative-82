@@ -298,7 +298,7 @@ body {
   /* text flows right after the photo — small, fixed gap, no marginTop */
   .hero-inner {
     margin-top: 0 !important;
-    padding: 1.5rem 20px 2rem !important;
+    padding: 0.5rem 20px 2rem !important;
     z-index: 5;
   }
   /* keep the staircase for the title, but bring the lead/underline
