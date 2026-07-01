@@ -3832,15 +3832,15 @@ export function HomePage() {
             borderColor: "rgba(212,176,116,0.12)",
           }}
         >
-          <div className="w-full px-8 py-2 flex items-center">
+          <div className="w-full pl-3 pr-4 md:px-8 py-2 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7fcc31d6-3f84-4311-9254-7939b16b78f4.png"
                 alt="VOICE-TEC"
-                className="w-11 h-11 md:w-[52px] md:h-[52px] object-contain"
+                className="w-9 h-9 md:w-[52px] md:h-[52px] object-contain"
               />
               <span
-                className="text-[24px] md:text-[30px] tracking-wide"
+                className="text-[20px] md:text-[30px] tracking-wide"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 900,
@@ -3928,6 +3928,20 @@ export function HomePage() {
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
               >
                 Запросить демо
+              </a>
+              <a
+                href="https://t.me/voicetec"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Telegram"
+                className="lg:hidden flex items-center justify-center"
+                style={{ width: "34px", height: "34px" }}
+              >
+                <img
+                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ec6abbd1-8802-405a-bc41-b51fb1533a67.png"
+                  alt="Telegram"
+                  style={{ width: "34px", height: "34px", objectFit: "contain" }}
+                />
               </a>
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
