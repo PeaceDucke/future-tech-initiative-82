@@ -256,6 +256,18 @@ body::after {
 }
 
 /* ============================================================
+   DESKTOP: lift the hero team photo up so its TOP edge goes
+   off-screen and gets cropped (heads sit higher). We move the
+   whole photo block up and extend its bottom so no gap appears.
+   ============================================================ */
+@media (min-width: 768px) {
+  .hero-bg {
+    top: -90px !important;
+    bottom: -90px !important;
+  }
+}
+
+/* ============================================================
    MOBILE OPTIMIZATION (phones)
    Same look/order as desktop — just smaller objects & text so
    everything fits a narrow screen.
