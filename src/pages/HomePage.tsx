@@ -1772,7 +1772,7 @@ function RopSection() {
                       transition={{ duration: 0.5, delay: 0.6 + i * 0.15 }}
                       style={{
                         position: "absolute", ...bd.pos,
-                        padding: "10px 14px", borderRadius: "12px",
+                        padding: "13px 18px", borderRadius: "14px",
                         background: "rgba(20,20,18,0.85)",
                         backdropFilter: "blur(8px)",
                         border: "1px solid rgba(212,176,116,0.25)",
@@ -1780,10 +1780,10 @@ function RopSection() {
                         whiteSpace: "nowrap", zIndex: 3,
                       }}
                     >
-                      <Icon name={bd.icon} size={16} style={{ color: G, flexShrink: 0 }} />
+                      <Icon name={bd.icon} size={20} style={{ color: G, flexShrink: 0 }} />
                       <div>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12.5px", fontWeight: 600, color: W, lineHeight: 1.2 }}>{bd.title}</div>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: B, lineHeight: 1.2 }}>{bd.sub}</div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600, color: W, lineHeight: 1.25 }}>{bd.title}</div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.25 }}>{bd.sub}</div>
                       </div>
                     </motion.div>
                   ))}
