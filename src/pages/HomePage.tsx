@@ -3834,15 +3834,11 @@ export function HomePage() {
         >
           <div className="w-full px-8 py-2 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{
-                  background: "rgba(212,176,116,0.1)",
-                  border: "1px solid rgba(212,176,116,0.25)",
-                }}
-              >
-                <Icon name="Waves" size={16} style={{ color: "#D4B074" }} />
-              </div>
+              <img
+                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/39dab65b-81ac-4187-a876-80673fe533b0.png"
+                alt="VOICE-TEC"
+                className="w-9 h-9 md:w-11 md:h-11 object-contain"
+              />
               <span
                 className="text-[24px] md:text-[30px] tracking-wide"
                 style={{
