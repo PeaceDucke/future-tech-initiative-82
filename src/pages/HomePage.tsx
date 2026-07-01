@@ -3037,6 +3037,7 @@ function FinalCtaSection() {
                   opacity: inView ? 1 : 0,
                   transitionDelay: "0.3s",
                 }}
+                onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
                   (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.45)";
@@ -3533,6 +3534,7 @@ function PricingSection() {
         <div className="text-center">
           <button
             className="pr-btn"
+            onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
             style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "13px",
@@ -3707,6 +3709,7 @@ function IntegrationSection() {
 
         <button
           className="int-btn"
+          onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
           style={{
             fontFamily: "Inter, sans-serif",
             fontSize: "13px",
@@ -3741,6 +3744,13 @@ function IntegrationSection() {
 export function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
+
+  useEffect(() => {
+    const openDemo = () => setDemoOpen(true);
+    window.addEventListener("open-demo-modal", openDemo);
+    return () => window.removeEventListener("open-demo-modal", openDemo);
+  }, []);
+
   // По умолчанию - оригинальные оттенки дашборда
   const [bg, setBg] = useState<PickerVal>({ hue: DEFAULTS.bg.hue, light: DEFAULTS.bg.light });
   const [acc, setAcc] = useState<PickerVal>({ hue: DEFAULTS.acc.hue, light: DEFAULTS.acc.light });
