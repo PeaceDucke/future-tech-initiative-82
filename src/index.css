@@ -263,6 +263,7 @@ body::after {
 @media (min-width: 768px) {
   .hero-bg {
     transform: translateY(-90px) !important;
+    height: calc(100% + 90px) !important;
   }
 }
 
