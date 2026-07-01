@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 interface DemoRequestModalProps {
@@ -11,10 +12,10 @@ const GOLD_GRADIENT =
   "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)";
 
 export default function DemoRequestModal({ open, onClose }: DemoRequestModalProps) {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [telegram, setTelegram] = useState("");
-  const [submitted, setSubmitted] = useState(false);
 
   // close on Escape + lock body scroll while open
   useEffect(() => {
@@ -34,16 +35,11 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || (!phone.trim() && !telegram.trim())) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      onClose();
-      setTimeout(() => {
-        setSubmitted(false);
-        setName("");
-        setPhone("");
-        setTelegram("");
-      }, 300);
-    }, 1900);
+    onClose();
+    setName("");
+    setPhone("");
+    setTelegram("");
+    navigate("/thank-you");
   };
 
   const inputBase: React.CSSProperties = {
@@ -138,51 +134,7 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
               <Icon name="X" size={18} />
             </button>
 
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center text-center"
-                style={{ padding: "24px 8px 12px" }}
-              >
-                <div
-                  className="flex items-center justify-center"
-                  style={{
-                    width: "64px",
-                    height: "64px",
-                    borderRadius: "50%",
-                    background: GOLD_GRADIENT,
-                    marginBottom: "20px",
-                    boxShadow: "0 6px 24px rgba(180,130,50,0.4)",
-                  }}
-                >
-                  <Icon name="Check" size={32} color="#1E1500" />
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    color: "#F3ECDD",
-                    fontSize: "26px",
-                    marginBottom: "8px",
-                  }}
-                >
-                  Заявка отправлена
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    color: "#A99F8C",
-                    fontSize: "16.5px",
-                    fontWeight: 500,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Мы свяжемся с вами в ближайшее время и покажем, как ИИ
-                  контролирует ваши продажи.
-                </p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <h3
                   style={{
                     fontFamily: "'Playfair Display', serif",
@@ -381,7 +333,6 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   Нажимая кнопку, вы соглашаетесь на обработку персональных данных
                 </p>
               </form>
-            )}
           </motion.div>
         </motion.div>
       )}
