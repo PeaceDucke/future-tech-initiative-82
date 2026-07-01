@@ -1590,6 +1590,292 @@ function AudienceSection() {
   );
 }
 
+// ─── ROP Section (для руководителей отдела продаж) ──────────────────────────────
+function RopSection() {
+  const W = "#FBF6EC";
+  const G = "#D4B074";
+  const B = "#C9C2B2";
+
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  const benefits = [
+    {
+      icon: "Eye",
+      title: "Полная прозрачность отдела",
+      desc: "Видишь каждый разговор без прослушки вручную: кто дожимает, кто сливает, а какие скрипты реально работают.",
+    },
+    {
+      icon: "Clock",
+      title: "Больше свободного времени",
+      desc: "AI берёт на себя рутину — прослушку, оценку и отчёты. Ты убираешь ручной контроль и не тонешь в звонках.",
+    },
+    {
+      icon: "TrendingUp",
+      title: "Фокус на развитии команды",
+      desc: "Направляешь силы туда, где растёт выручка: обучение, стратегия и рост менеджеров, а не бесконечная проверка.",
+    },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      className="rop-section"
+      style={{
+        background: "#151513",
+        padding: "120px 0 130px",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* золотое свечение */}
+      <div
+        style={{
+          position: "absolute",
+          top: "8%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "820px",
+          height: "460px",
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse at center, rgba(212,176,116,0.12) 0%, transparent 70%)",
+          filter: "blur(20px)",
+          zIndex: 1,
+        }}
+      />
+
+      <div
+        className="mx-auto px-5 sm:px-8"
+        style={{ maxWidth: "1200px", position: "relative", zIndex: 2 }}
+      >
+        {/* label */}
+        <motion.div
+          className="flex items-center justify-center gap-3"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: "22px" }}
+        >
+          <div style={{ width: "34px", height: "1px", background: G, opacity: 0.5 }} />
+          <span
+            style={{
+              color: G,
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              fontFamily: "Inter, sans-serif",
+            }}
+          >
+            Для руководителей отдела продаж
+          </span>
+          <div style={{ width: "34px", height: "1px", background: G, opacity: 0.5 }} />
+        </motion.div>
+
+        {/* heading */}
+        <motion.h2
+          className="rop-title text-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          style={{
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontWeight: 500,
+            fontSize: "clamp(28px, 3.6vw, 48px)",
+            lineHeight: 1.18,
+            color: W,
+            maxWidth: "900px",
+            margin: "0 auto",
+          }}
+        >
+          Хочешь усилить свой{" "}
+          <span style={{ color: G, fontStyle: "italic" }}>отдел продаж</span> и
+          получить признание руководства?
+        </motion.h2>
+
+        <motion.p
+          className="rop-sub text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "clamp(16px, 1.8vw, 19px)",
+            color: B,
+            lineHeight: 1.65,
+            fontWeight: 300,
+            maxWidth: "700px",
+            margin: "26px auto 0",
+          }}
+        >
+          Voice-Tec AI — твой личный инструмент контроля. Ты становишься
+          руководителем, который видит всё и управляет результатом, а не тушит
+          пожары вручную.
+        </motion.p>
+
+        {/* benefits grid */}
+        <div
+          className="rop-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "24px",
+            marginTop: "56px",
+          }}
+        >
+          {benefits.map((b, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 26 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.35 + i * 0.12 }}
+              className="rop-card"
+              style={{
+                padding: "30px 26px",
+                borderRadius: "18px",
+                background: "rgba(212,176,116,0.05)",
+                border: "1px solid rgba(212,176,116,0.16)",
+              }}
+            >
+              <div
+                className="flex items-center justify-center"
+                style={{
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "13px",
+                  background: "rgba(212,176,116,0.12)",
+                  border: "1px solid rgba(212,176,116,0.25)",
+                  marginBottom: "20px",
+                }}
+              >
+                <Icon name={b.icon} size={24} style={{ color: G }} />
+              </div>
+              <h3
+                style={{
+                  fontFamily: '"Bodoni Moda", Georgia, serif',
+                  fontSize: "21px",
+                  fontWeight: 500,
+                  color: W,
+                  marginBottom: "12px",
+                  lineHeight: 1.25,
+                }}
+              >
+                {b.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "15.5px",
+                  color: B,
+                  lineHeight: 1.65,
+                  fontWeight: 300,
+                }}
+              >
+                {b.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* highlight +25% */}
+        <motion.div
+          className="rop-highlight"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            marginTop: "48px",
+            padding: "clamp(30px, 4vw, 44px)",
+            borderRadius: "22px",
+            background:
+              "linear-gradient(135deg, rgba(212,176,116,0.14) 0%, rgba(212,176,116,0.04) 100%)",
+            border: "1px solid rgba(212,176,116,0.28)",
+            display: "flex",
+            alignItems: "center",
+            gap: "clamp(20px, 4vw, 44px)",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: '"Bodoni Moda", Georgia, serif',
+              fontWeight: 600,
+              fontSize: "clamp(56px, 8vw, 88px)",
+              lineHeight: 1,
+              background: "linear-gradient(105deg, #E9D29A, #C8A96A 45%, #9C7C3E)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              flexShrink: 0,
+            }}
+          >
+            +25%
+          </div>
+          <p
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "clamp(16px, 1.9vw, 20px)",
+              color: W,
+              lineHeight: 1.6,
+              fontWeight: 300,
+              maxWidth: "560px",
+            }}
+          >
+            В связке с твоими усилиями Voice-Tec AI помогает{" "}
+            <span style={{ color: G, fontWeight: 500 }}>
+              увеличить конверсию отдела до 25%
+            </span>
+            . Покажи руководству инструмент, который окупает себя ростом продаж.
+          </p>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 18 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.95 }}
+          style={{ marginTop: "44px" }}
+        >
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
+            className="inline-flex items-center gap-2"
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: "14px",
+              fontWeight: 600,
+              letterSpacing: "0.07em",
+              textTransform: "uppercase",
+              color: "#151513",
+              background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+              border: "none",
+              borderRadius: "10px",
+              padding: "16px 40px",
+              cursor: "pointer",
+              boxShadow: "0 8px 30px rgba(200,169,106,0.28)",
+              transition: "transform 0.25s ease, box-shadow 0.25s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.45)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.28)";
+            }}
+          >
+            Получить демо для отдела
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Implementation Section (Как внедряем) ──────────────────────────────────────
 function ImplementationSection() {
   const W = "#FBF6EC";
@@ -4893,6 +5179,11 @@ export function HomePage() {
 
         {/* ═══ ДЛЯ КОГО ПОДХОДИТ ═══ */}
         <AudienceSection />
+
+        <SectionDivider />
+
+        {/* ═══ ДЛЯ РОПов ═══ */}
+        <RopSection />
 
         <SectionDivider />
 
