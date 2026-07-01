@@ -16,6 +16,8 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [telegram, setTelegram] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [contactError, setContactError] = useState("");
 
   // close on Escape + lock body scroll while open
   useEffect(() => {
@@ -34,11 +36,23 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || (!phone.trim() && !telegram.trim())) return;
+
+    const nameEmpty = !name.trim();
+    const contactEmpty = !phone.trim() && !telegram.trim();
+
+    setNameError(nameEmpty ? "Пожалуйста, укажите имя" : "");
+    setContactError(
+      contactEmpty ? "Укажите номер телефона или телеграм" : ""
+    );
+
+    if (nameEmpty || contactEmpty) return;
+
     onClose();
     setName("");
     setPhone("");
     setTelegram("");
+    setNameError("");
+    setContactError("");
     navigate("/thank-you");
   };
 
@@ -160,36 +174,62 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                 </p>
 
                 {/* Имя */}
-                <div style={{ position: "relative", marginBottom: "14px" }}>
-                  <Icon
-                    name="User"
-                    size={17}
-                    className="pointer-events-none"
-                    style={{
-                      position: "absolute",
-                      left: "15px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "#B8904A",
-                    }}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Имя"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={inputBase}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = "rgba(211,176,118,0.6)";
-                      e.currentTarget.style.boxShadow =
-                        "0 0 0 3px rgba(211,176,118,0.1)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = "rgba(211,176,118,0.25)";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                    required
-                  />
+                <div style={{ marginBottom: "14px" }}>
+                  <div style={{ position: "relative" }}>
+                    <Icon
+                      name="User"
+                      size={17}
+                      className="pointer-events-none"
+                      style={{
+                        position: "absolute",
+                        left: "15px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "#B8904A",
+                      }}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Имя"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                        if (nameError) setNameError("");
+                      }}
+                      style={{
+                        ...inputBase,
+                        borderColor: nameError
+                          ? "rgba(224,90,90,0.7)"
+                          : "rgba(211,176,118,0.25)",
+                      }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(211,176,118,0.6)";
+                        e.currentTarget.style.boxShadow =
+                          "0 0 0 3px rgba(211,176,118,0.1)";
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = nameError
+                          ? "rgba(224,90,90,0.7)"
+                          : "rgba(211,176,118,0.25)";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    />
+                  </div>
+                  {nameError && (
+                    <div
+                      className="flex items-center gap-1.5"
+                      style={{
+                        marginTop: "7px",
+                        color: "#E68A8A",
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                      }}
+                    >
+                      <Icon name="AlertCircle" size={14} />
+                      {nameError}
+                    </div>
+                  )}
                 </div>
 
                 {/* Телефон */}
@@ -210,7 +250,10 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                     type="tel"
                     placeholder="Номер телефона"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      if (contactError) setContactError("");
+                    }}
                     style={inputBase}
                     onFocus={(e) => {
                       e.currentTarget.style.borderColor = "rgba(211,176,118,0.6)";
@@ -257,35 +300,55 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                 </div>
 
                 {/* Телеграм */}
-                <div style={{ position: "relative", marginBottom: "22px" }}>
-                  <Icon
-                    name="Send"
-                    size={17}
-                    className="pointer-events-none"
-                    style={{
-                      position: "absolute",
-                      left: "15px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "#B8904A",
-                    }}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Телеграм (@username)"
-                    value={telegram}
-                    onChange={(e) => setTelegram(e.target.value)}
-                    style={inputBase}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = "rgba(211,176,118,0.6)";
-                      e.currentTarget.style.boxShadow =
-                        "0 0 0 3px rgba(211,176,118,0.1)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = "rgba(211,176,118,0.25)";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                  />
+                <div style={{ marginBottom: "22px" }}>
+                  <div style={{ position: "relative" }}>
+                    <Icon
+                      name="Send"
+                      size={17}
+                      className="pointer-events-none"
+                      style={{
+                        position: "absolute",
+                        left: "15px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "#B8904A",
+                      }}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Телеграм (@username)"
+                      value={telegram}
+                      onChange={(e) => {
+                        setTelegram(e.target.value);
+                        if (contactError) setContactError("");
+                      }}
+                      style={inputBase}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(211,176,118,0.6)";
+                        e.currentTarget.style.boxShadow =
+                          "0 0 0 3px rgba(211,176,118,0.1)";
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(211,176,118,0.25)";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    />
+                  </div>
+                  {contactError && (
+                    <div
+                      className="flex items-center gap-1.5"
+                      style={{
+                        marginTop: "10px",
+                        color: "#E68A8A",
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                      }}
+                    >
+                      <Icon name="AlertCircle" size={14} />
+                      {contactError}
+                    </div>
+                  )}
                 </div>
 
                 <button
