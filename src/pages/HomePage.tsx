@@ -4914,15 +4914,11 @@ export function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2.5">
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center"
-                  style={{
-                    background: "rgba(212,176,116,0.1)",
-                    border: "1px solid rgba(212,176,116,0.25)",
-                  }}
-                >
-                  <Icon name="Waves" size={14} style={{ color: "#D4B074" }} />
-                </div>
+                <img
+                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7fcc31d6-3f84-4311-9254-7939b16b78f4.png"
+                  alt="VOICE-TEC"
+                  className="w-9 h-9 object-contain"
+                />
                 <span
                   style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif',
@@ -4936,19 +4932,23 @@ export function HomePage() {
                 </span>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
-                {["Услуги", "Кейсы", "Тарифы", "Контакты"].map((link) => (
+                {[
+                  { label: "Тарифы", href: "#pricing" },
+                  { label: "FAQ", href: "#faq" },
+                  { label: "Наша команда", href: "/about" },
+                ].map((link) => (
                   <a
-                    key={link}
-                    href="#"
+                    key={link.label}
+                    href={link.href}
                     className="text-[12px] transition-colors"
                     style={{ color: "rgba(251,246,236,0.7)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}
                   >
-                    {link}
+                    {link.label}
                   </a>
                 ))}
               </div>
               <p style={{ fontSize: "11px", color: "rgba(251,246,236,0.3)", fontFamily: "Inter, sans-serif" }}>
-                © 2025 SalesFlow. Все права защищены.
+                © 2026 VOICE-TEC AI. Все права защищены.
               </p>
             </div>
           </div>
