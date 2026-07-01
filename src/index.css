@@ -286,8 +286,8 @@ body {
   .hero-bg {
     position: relative !important;
     inset: auto !important;
-    height: 88vw !important;
-    max-height: 420px !important;
+    height: 80vw !important;
+    max-height: 380px !important;
     width: 100% !important;
     display: block !important;
   }
@@ -295,10 +295,12 @@ body {
     transform: none !important;
     object-position: center 30% !important;
   }
-  /* text flows right after the photo — small, fixed gap, no marginTop */
+  /* text flows right after the photo — pulled up tight against it.
+     zero top padding + small negative margin => identical & high
+     on every phone */
   .hero-inner {
-    margin-top: 0 !important;
-    padding: 0.5rem 20px 2rem !important;
+    margin-top: -1.25rem !important;
+    padding: 0 20px 2rem !important;
     z-index: 5;
   }
   /* keep the staircase for the title, but bring the lead/underline
