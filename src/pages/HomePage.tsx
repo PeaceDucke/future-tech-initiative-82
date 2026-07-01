@@ -3835,7 +3835,7 @@ export function HomePage() {
           <div className="w-full px-8 py-2 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <img
-                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/39dab65b-81ac-4187-a876-80673fe533b0.png"
+                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7fcc31d6-3f84-4311-9254-7939b16b78f4.png"
                 alt="VOICE-TEC"
                 className="w-28 h-28 md:w-32 md:h-32 object-contain"
               />
