@@ -1648,12 +1648,7 @@ function RopSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="rop-frame"
           style={{
-            borderRadius: "34px",
-            border: "1px solid rgba(212,176,116,0.16)",
-            background: "linear-gradient(160deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
-            padding: "clamp(28px, 4vw, 56px)",
             position: "relative",
-            overflow: "hidden",
           }}
         >
           {/* ambient glow */}
@@ -1670,21 +1665,6 @@ function RopSection() {
           <div className="rop-cols" style={{ position: "relative", zIndex: 1 }}>
             {/* ── LEFT ── */}
             <div className="rop-left">
-              {/* pill label */}
-              <div
-                className="inline-flex items-center gap-2"
-                style={{
-                  padding: "9px 18px", borderRadius: "999px",
-                  border: "1px solid rgba(212,176,116,0.3)",
-                  background: "rgba(212,176,116,0.07)", marginBottom: "30px",
-                }}
-              >
-                <Icon name="UserRound" size={15} style={{ color: G }} />
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: G }}>
-                  Для РОПов
-                </span>
-              </div>
-
               <h2
                 className="rop-title"
                 style={{
