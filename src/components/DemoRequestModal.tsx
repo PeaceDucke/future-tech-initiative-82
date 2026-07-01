@@ -85,13 +85,14 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full"
             style={{
-              maxWidth: "440px",
-              background: "linear-gradient(180deg, #1C1B18 0%, #141310 100%)",
-              border: "1px solid rgba(211,176,118,0.22)",
+              maxWidth: "620px",
+              background:
+                "radial-gradient(120% 140% at 20% 0%, #242424 0%, #141414 45%, #090909 100%)",
+              border: "1px solid rgba(211,176,118,0.2)",
               borderRadius: "6px",
               boxShadow:
-                "0 30px 80px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,240,190,0.06)",
-              padding: "36px 32px 34px",
+                "0 30px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05)",
+              padding: "40px 46px 40px",
               overflow: "hidden",
             }}
           >
@@ -180,18 +181,6 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    color: "#C9A86A",
-                    fontSize: "12px",
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Запросить демо
-                </div>
                 <h3
                   style={{
                     fontFamily: "'Playfair Display', serif",
