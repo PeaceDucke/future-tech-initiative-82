@@ -2429,7 +2429,7 @@ function BeforeAfterSection() {
               </div>
             </div>
             <a
-              href="#cta"
+              href="#pricing"
               className="cb-result-btn"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "14px",
