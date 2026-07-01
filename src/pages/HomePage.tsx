@@ -3844,15 +3844,32 @@ export function HomePage() {
                 <Icon name="Waves" size={16} style={{ color: "#D4B074" }} />
               </div>
               <span
-                className="text-[16px] md:text-[21px] tracking-wide"
+                className="text-[20px] md:text-[26px] tracking-wide"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 700,
-                  color: "#FBF6EC",
                   letterSpacing: "0.08em",
+                  backgroundImage:
+                    "linear-gradient(105deg, #FFFFFF 0%, #FBF3DF 22%, #E8C77C 50%, #C79A4B 78%, #9E7326 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  textShadow: "0 1px 6px rgba(199,154,75,0.18)",
                 }}
               >
-                VOICE<span style={{ color: "#D4B074" }}>-TEC</span>
+                VOICE
+                <span
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "1.25em",
+                    margin: "0 0.02em",
+                    verticalAlign: "-0.04em",
+                  }}
+                >
+                  –
+                </span>
+                TEC
               </span>
             </a>
 
