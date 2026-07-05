@@ -4148,7 +4148,7 @@ export function HomePage() {
           <div className="w-full pl-3 pr-4 md:px-8 py-2 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <img
-                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7fcc31d6-3f84-4311-9254-7939b16b78f4.png"
+                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/62948951-d238-4d48-9ff6-c147d4136a6c.png"
                 alt="VOICE-TEC"
                 className="w-9 h-9 md:w-[52px] md:h-[52px] object-contain"
               />
@@ -5249,7 +5249,7 @@ export function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-2.5">
                 <img
-                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/7fcc31d6-3f84-4311-9254-7939b16b78f4.png"
+                  src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/62948951-d238-4d48-9ff6-c147d4136a6c.png"
                   alt="VOICE-TEC"
                   className="w-9 h-9 object-contain"
                 />
