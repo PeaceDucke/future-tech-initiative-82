@@ -2386,15 +2386,13 @@ function CaseCard({ it, i, inView }: {
       }}
     >
       <img src={it.logo} alt={it.company} className="case-logo" style={{
-        position: "absolute", top: "-44px", right: "-28px",
-        width: "230px", height: "230px", objectFit: "contain", pointerEvents: "none",
+        position: "absolute", top: "-40px", right: "-40px",
+        width: "210px", height: "210px", objectFit: "contain", pointerEvents: "none",
       }} />
 
-      <div style={{ position: "relative", zIndex: 2, maxWidth: "62%" }}>
-        <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2 }}>
-          {it.company === "ТехноЛайн" ? (
-            <>Техно<br className="case-mobile-br" />Лайн</>
-          ) : it.company}
+      <div style={{ position: "relative", zIndex: 2, maxWidth: "58%" }}>
+        <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2, whiteSpace: "nowrap" }}>
+          {it.company}
         </div>
         <div className="case-tag" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
           {it.tag}
