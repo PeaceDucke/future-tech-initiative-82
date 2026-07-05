@@ -1822,57 +1822,6 @@ function RopSection() {
             </div>
           </div>
 
-          {/* ── BOTTOM BAR ── */}
-          <motion.div
-            className="rop-bottom"
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1 }}
-            style={{
-              marginTop: "40px", padding: "clamp(22px, 3vw, 32px)", borderRadius: "22px",
-              background: "linear-gradient(135deg, rgba(212,176,116,0.1) 0%, rgba(212,176,116,0.02) 100%)",
-              border: "1px solid rgba(212,176,116,0.22)",
-              display: "flex", alignItems: "center", gap: "24px", flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            <div className="flex items-center gap-5" style={{ minWidth: "260px", flex: 1 }}>
-              <Icon name="Crown" size={44} style={{ color: G, flexShrink: 0 }} className="rop-crown" />
-              <div>
-                <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 2vw, 21px)", fontWeight: 600, color: W, marginBottom: "5px" }}>
-                  Хочешь вывести продажи на новый уровень?
-                </h3>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, fontWeight: 300, lineHeight: 1.5 }}>
-                  Расскажи владельцу бизнеса о возможностях Voice-Tec AI.
-                </p>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
-              className="inline-flex items-center gap-2 rop-bottom-btn"
-              style={{
-                fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600,
-                color: "#151513",
-                background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
-                border: "none", borderRadius: "12px", padding: "16px 34px", cursor: "pointer",
-                boxShadow: "0 8px 30px rgba(200,169,106,0.28)",
-                transition: "transform 0.25s ease, box-shadow 0.25s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(200,169,106,0.45)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.28)";
-              }}
-            >
-              <Icon name="Send" size={17} />
-              Обсудить с владельцем
-            </button>
-          </motion.div>
         </motion.div>
       </div>
 
