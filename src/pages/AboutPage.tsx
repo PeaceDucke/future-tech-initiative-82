@@ -160,6 +160,12 @@ export default function AboutPage() {
             <motion.div variants={fadeUp}>
               <SectionLabel text="О компании" />
             </motion.div>
+            <motion.img
+              variants={fadeUp}
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/55554d4d-b45c-4cbf-b30c-26720d97d9ce.png"
+              alt="VICE-TEC AI"
+              style={{ width: "min(50vw, 620px)", height: "auto", margin: "12px auto 32px", display: "block" }}
+            />
             <motion.h1 variants={fadeUp}
               style={{ ...h2Style, fontSize: "clamp(36px, 6vw, 72px)", lineHeight: 1.1, marginBottom: "28px" }}>
               Мы строим будущее<br />отделов продаж
