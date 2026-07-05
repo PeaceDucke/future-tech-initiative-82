@@ -3360,6 +3360,11 @@ function FinalCtaSection() {
               </div>
             </div>
 
+            <p style={{ marginTop: "36px", fontSize: "13.5px", lineHeight: 1.65, color: "rgba(251,246,236,0.5)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}>
+              Наш сайт защищен с помощью reCAPTCHA и соответствует Политике конфиденциальности и Условиям использования Google.<br />
+              Вся представленная информация на сайте не является публичной офертой.
+            </p>
+
           </div>
 
           {/* ── Right: Spline animation ── */}
@@ -5235,10 +5240,6 @@ export function HomePage() {
                 © 2026 VOICE-TEC AI. Все права защищены.
               </p>
             </div>
-            <p style={{ marginTop: "22px", textAlign: "right", fontSize: "12px", lineHeight: 1.6, color: "rgba(251,246,236,0.55)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}>
-              Наш сайт защищен с помощью reCAPTCHA и соответствует Политике конфиденциальности и Условиям использования Google.<br />
-              Вся представленная информация на сайте не является публичной офертой.
-            </p>
           </div>
         </footer>
       </main>
