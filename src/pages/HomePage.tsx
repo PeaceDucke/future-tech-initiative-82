@@ -1358,8 +1358,9 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
 
       <div className="aud-card-tag" style={{
         position: "relative", zIndex: 1,
-        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "38px", color: W,
+        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 3vw, 38px)", color: W,
         fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
+        overflowWrap: "break-word", wordBreak: "break-word", hyphens: "auto",
       }}>
         {it.tag}
       </div>
