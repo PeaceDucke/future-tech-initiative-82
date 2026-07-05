@@ -386,14 +386,16 @@ export default function DemoRequestModal({ open, onClose }: DemoRequestModalProp
                   style={{
                     fontFamily: "Inter, sans-serif",
                     color: "#6E675A",
-                    fontSize: "13.5px",
-                    fontWeight: 500,
+                    fontSize: "11.5px",
+                    fontWeight: 400,
                     lineHeight: 1.5,
                     textAlign: "center",
                     marginTop: "14px",
                   }}
                 >
-                  Нажимая кнопку, вы соглашаетесь на обработку персональных данных
+                  Отправляя сообщение в мессенджеры, я подтверждаю, что даю конкретное, предметное, информированное, сознательное и однозначное Согласие на обработку моих персональных данных, и полностью ознакомился и согласен с{" "}
+                  <a href="/user-agreement" target="_blank" rel="noopener noreferrer" style={{ color: "#B8904A", textDecoration: "underline" }}>Пользовательским соглашением</a>,{" "}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#B8904A", textDecoration: "underline" }}>Политикой обработки персональных данных и файлов Cookie</a>
                 </p>
               </form>
           </motion.div>
