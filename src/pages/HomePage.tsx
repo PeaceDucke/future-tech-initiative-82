@@ -3360,11 +3360,6 @@ function FinalCtaSection() {
               </div>
             </div>
 
-            <p style={{ marginTop: "36px", fontSize: "13.5px", lineHeight: 1.65, color: "rgba(251,246,236,0.5)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}>
-              Наш сайт защищен с помощью reCAPTCHA и соответствует Политике конфиденциальности и Условиям использования Google.<br />
-              Вся представленная информация на сайте не является публичной офертой.
-            </p>
-
           </div>
 
           {/* ── Right: Spline animation ── */}
@@ -3398,6 +3393,11 @@ function FinalCtaSection() {
             </div>
           </div>
         </div>
+
+        <p style={{ marginTop: "72px", fontSize: "13.5px", lineHeight: 1.65, color: "rgba(251,246,236,0.5)", fontFamily: "Inter, sans-serif", fontWeight: 300, textAlign: "center" }}>
+          Наш сайт защищен с помощью reCAPTCHA и соответствует Политике конфиденциальности и Условиям использования Google.<br />
+          Вся представленная информация на сайте не является публичной офертой.
+        </p>
 
       </div>
     </section>
