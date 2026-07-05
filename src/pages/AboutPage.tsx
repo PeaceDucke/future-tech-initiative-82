@@ -237,7 +237,7 @@ export default function AboutPage() {
                   это не просто неудача, это конкретный момент в разговоре, который можно найти, изучить и исправить.
                 </motion.p>
                 <motion.p variants={fadeUp} style={{ ...bodyText, fontSize: "16px" }}>
-                  SalesFlow делает именно это - превращает звуковые волны в точные инсайты,
+                  VOICE–TEC AI делает именно это - превращает звуковые волны в точные инсайты,
                   которые помогают командам продавать лучше каждый день.
                 </motion.p>
               </div>
@@ -256,7 +256,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#FBF6EC", fontWeight: 500 }}>Алексей Морозов</div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.45)", marginTop: "2px" }}>CEO & Co-founder, SalesFlow</div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(251,246,236,0.45)", marginTop: "2px" }}>CEO & Co-founder, VOICE–TEC AI</div>
                     </div>
                   </div>
                 </div>
@@ -305,7 +305,7 @@ export default function AboutPage() {
               </h2>
               <p style={{ ...bodyText, fontSize: "16px", maxWidth: "520px", margin: "0 auto" }}>
                 Небольшая команда с большим опытом. Каждый из нас прошёл через боль,
-                которую решает SalesFlow - на собственной шкуре.
+                которую решает VOICE–TEC AI - на собственной шкуре.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -372,7 +372,7 @@ export default function AboutPage() {
                 Готовы увидеть,<br />где теряется выручка?
               </h2>
               <p style={{ ...bodyText, fontSize: "16px", maxWidth: "460px", margin: "0 auto 36px" }}>
-                Подключите SalesFlow за 5 минут и получите первые инсайты уже сегодня.
+                Подключите VOICE–TEC AI за 5 минут и получите первые инсайты уже сегодня.
                 Бесплатный аудит для новых клиентов.
               </p>
               <Link to="/#cta"
