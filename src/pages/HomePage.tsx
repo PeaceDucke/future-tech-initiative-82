@@ -2391,7 +2391,7 @@ function CaseCard({ it, i, inView }: {
       }} />
 
       <div style={{ position: "relative", zIndex: 2, maxWidth: "58%" }}>
-        <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2, whiteSpace: "nowrap" }}>
+        <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2, overflowWrap: "break-word" }}>
           {it.company}
         </div>
         <div className="case-tag" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
@@ -2427,7 +2427,7 @@ function CasesSection() {
 
   const cases = [
     {
-      company: "ТехноЛайн",
+      company: "Техно-Лайн",
       tag: "Оптовая электроника",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       metric: "+12,3%",
