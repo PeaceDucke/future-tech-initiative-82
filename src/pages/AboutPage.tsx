@@ -247,8 +247,12 @@ export default function AboutPage() {
                     "Мы не просто строим продукт. Мы исправляем системную проблему рынка."
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                    <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <Icon name="User" size={22} style={{ color: "#D4B074" }} />
+                    <div style={{ width: "48px", height: "48px", borderRadius: "50%", border: "1px solid rgba(212,176,116,0.25)", overflow: "hidden", flexShrink: 0 }}>
+                      <img
+                        src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/579ade31-6290-4309-b31c-415668de8fc8.png"
+                        alt="Алексей Морозов"
+                        style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }}
+                      />
                     </div>
                     <div>
                       <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#FBF6EC", fontWeight: 500 }}>Алексей Морозов</div>
