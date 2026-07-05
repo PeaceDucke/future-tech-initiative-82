@@ -247,15 +247,12 @@ export default function AboutPage() {
                     <img
                       src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/579ade31-6290-4309-b31c-415668de8fc8.png"
                       alt="Алексей Морозов"
-                      style={{ width: "115%", maxWidth: "none", height: "auto", display: "block", marginLeft: "-7.5%" }}
+                      style={{ width: "88%", maxWidth: "none", height: "auto", display: "block", margin: "0 auto" }}
                     />
                   </div>
-                  <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, marginBottom: "32px", lineHeight: 1.4 }}>
-                    "Мы не просто строим продукт. Мы исправляем системную проблему рынка."
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                    <div style={{ width: "48px", height: "48px", borderRadius: "50%", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <Icon name="User" size={22} style={{ color: "#D4B074" }} />
+                  <div style={{ background: "#0f0f0f", border: "1px solid rgba(240,230,210,0.18)", borderRadius: "20px", padding: "36px 40px" }}>
+                    <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, marginBottom: "24px", lineHeight: 1.4 }}>
+                      "Мы не просто строим продукт. Мы исправляем системную проблему рынка."
                     </div>
                     <div>
                       <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#FBF6EC", fontWeight: 500 }}>Алексей Морозов</div>
