@@ -242,12 +242,12 @@ export default function AboutPage() {
                 </motion.p>
               </div>
               <motion.div variants={fadeUp}>
-                <div style={{ background: "#0f0f0f", border: "1px solid rgba(240,230,210,0.18)", borderRadius: "20px", padding: "40px", overflow: "hidden" }}>
-                  <div style={{ borderRadius: "16px", overflow: "hidden", marginBottom: "32px", background: "#151513" }}>
+                <div>
+                  <div style={{ marginBottom: "28px" }}>
                     <img
                       src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/579ade31-6290-4309-b31c-415668de8fc8.png"
                       alt="Алексей Морозов"
-                      style={{ width: "100%", height: "auto", display: "block", objectFit: "contain" }}
+                      style={{ width: "115%", maxWidth: "none", height: "auto", display: "block", marginLeft: "-7.5%" }}
                     />
                   </div>
                   <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, marginBottom: "32px", lineHeight: 1.4 }}>
