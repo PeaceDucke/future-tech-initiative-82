@@ -243,14 +243,14 @@ export default function AboutPage() {
               </div>
               <motion.div variants={fadeUp}>
                 <div>
-                  <div style={{ marginBottom: "28px" }}>
+                  <div>
                     <img
                       src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/579ade31-6290-4309-b31c-415668de8fc8.png"
                       alt="Алексей Морозов"
                       style={{ width: "88%", maxWidth: "none", height: "auto", display: "block", margin: "0 auto" }}
                     />
                   </div>
-                  <div style={{ background: "#0f0f0f", border: "1px solid rgba(240,230,210,0.18)", borderRadius: "20px", padding: "36px 40px" }}>
+                  <div style={{ position: "relative", marginTop: "-90px", background: "#0f0f0f", border: "1px solid rgba(240,230,210,0.18)", borderRadius: "20px", padding: "36px 40px" }}>
                     <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "#FBF6EC", fontWeight: 400, marginBottom: "24px", lineHeight: 1.4 }}>
                       "Мы не просто строим продукт. Мы исправляем системную проблему рынка."
                     </div>
