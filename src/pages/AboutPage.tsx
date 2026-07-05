@@ -107,13 +107,38 @@ export default function AboutPage() {
         <div className="border-b" style={{ background: "rgba(21,21,19,0.95)", borderColor: "rgba(212,176,116,0.12)" }}>
           <div className="max-w-7xl mx-auto px-5 py-3.5 flex items-center">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: "rgba(212,176,116,0.1)", border: "1px solid rgba(212,176,116,0.25)" }}>
-                <Icon name="Waves" size={16} style={{ color: "#D4B074" }} />
-              </div>
-              <span className="text-[15px] tracking-wide"
-                style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 400, color: "#FBF6EC", letterSpacing: "0.08em" }}>
-                VOICE<span style={{ color: "#D4B074" }}>-TEC</span>
+              <img
+                src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/62948951-d238-4d48-9ff6-c147d4136a6c.png"
+                alt="VOICE-TEC"
+                className="w-9 h-9 md:w-[52px] md:h-[52px] object-contain"
+              />
+              <span
+                className="text-[20px] md:text-[30px] tracking-wide"
+                style={{
+                  fontFamily: '"Bodoni Moda", Georgia, serif',
+                  fontWeight: 900,
+                  letterSpacing: "0.08em",
+                  backgroundImage:
+                    "linear-gradient(105deg, #FFFFFF 0%, #FBF3DF 22%, #E8C77C 50%, #C79A4B 78%, #9E7326 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  textShadow: "0 1px 6px rgba(199,154,75,0.18)",
+                }}
+              >
+                VOICE
+                <span
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "1.25em",
+                    margin: "0 0.02em",
+                    verticalAlign: "-0.04em",
+                  }}
+                >
+                  –
+                </span>
+                TEC
               </span>
             </Link>
 
