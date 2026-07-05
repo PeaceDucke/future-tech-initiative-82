@@ -5269,6 +5269,8 @@ export function HomePage() {
                   { label: "Тарифы", href: "#pricing" },
                   { label: "FAQ", href: "#faq" },
                   { label: "Наша команда", href: "/about" },
+                  { label: "Пользовательское соглашение", href: "/user-agreement" },
+                  { label: "Политика конфиденциальности", href: "/privacy" },
                 ].map((link) => (
                   <a
                     key={link.label}
