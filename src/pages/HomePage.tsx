@@ -4296,7 +4296,7 @@ export function HomePage() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="hero-title text-[52px] lg:text-[68px] xl:text-[76px] mb-6 leading-none"
+                className="hero-title text-[50px] lg:text-[66px] xl:text-[74px] mb-6 leading-none"
                 style={{
                   fontFamily: '"Prata", Georgia, serif',
                   fontWeight: 400,
@@ -4321,7 +4321,7 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="hero-lead text-[20px] mb-5"
+                className="hero-lead text-[18px] mb-5"
                 style={{ color: "#FFFFFF", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
               >
                 Voice–Tec Ai прослушивает и оценивает 100% звонков:<br />
