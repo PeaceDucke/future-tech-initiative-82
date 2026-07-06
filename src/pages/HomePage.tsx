@@ -4322,7 +4322,7 @@ export function HomePage() {
               <motion.p
                 variants={fadeUp}
                 className="hero-lead text-[18px] mb-5"
-                style={{ color: "#FFFFFF", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
+                style={{ color: "#FFFFFF", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "58%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
               >
                 Voice–Tec Ai прослушивает и оценивает 100% звонков:<br />
                 кто сливает заявки, где менеджеры не дожимают клиента,<br />
