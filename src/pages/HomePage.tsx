@@ -4296,7 +4296,7 @@ export function HomePage() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="hero-title text-[50px] lg:text-[66px] xl:text-[74px] mb-6 leading-none"
+                className="hero-title text-[54px] lg:text-[70px] xl:text-[78px] mb-6 leading-none"
                 style={{
                   fontFamily: '"Prata", Georgia, serif',
                   fontWeight: 400,
