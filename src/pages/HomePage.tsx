@@ -4101,27 +4101,27 @@ export function HomePage() {
                 className="w-9 h-9 md:w-[52px] md:h-[52px] object-contain"
               />
               <span
-                className="text-[20px] md:text-[30px] tracking-wide"
+                className="text-[20px] md:text-[30px]"
                 style={{
-                  fontFamily: '"Bodoni Moda", Georgia, serif',
+                  fontFamily: '"Playfair Display", Georgia, serif',
                   fontWeight: 900,
-                  letterSpacing: "0.08em",
+                  letterSpacing: "0.05em",
                   backgroundImage:
                     "linear-gradient(105deg, #FFFFFF 0%, #FBF3DF 22%, #E8C77C 50%, #C79A4B 78%, #9E7326 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
-                  textShadow: "0 1px 6px rgba(199,154,75,0.18)",
+                  textShadow: "0 1px 8px rgba(199,154,75,0.28)",
                 }}
               >
                 VOICE
                 <span
                   style={{
-                    fontWeight: 400,
-                    fontSize: "1.25em",
-                    margin: "0 0.02em",
-                    verticalAlign: "-0.04em",
+                    fontWeight: 900,
+                    fontSize: "1.1em",
+                    margin: "0 0.06em",
+                    verticalAlign: "-0.02em",
                   }}
                 >
                   –
