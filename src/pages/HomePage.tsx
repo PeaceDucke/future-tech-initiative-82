@@ -4296,7 +4296,7 @@ export function HomePage() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="hero-title text-[44px] lg:text-[60px] xl:text-[68px] mb-6 leading-none"
+                className="hero-title text-[46px] lg:text-[62px] xl:text-[70px] mb-6 leading-none"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
