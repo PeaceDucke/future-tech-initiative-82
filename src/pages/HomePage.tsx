@@ -4293,6 +4293,7 @@ export function HomePage() {
               animate="visible"
               variants={stagger}
               className="max-w-5xl"
+              style={{ marginLeft: "8%" }}
             >
               <motion.h1
                 variants={fadeUp}
