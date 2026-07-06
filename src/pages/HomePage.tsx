@@ -4324,7 +4324,8 @@ export function HomePage() {
                 className="hero-lead text-[20px] mb-5"
                 style={{ color: "#FFFFFF", fontFamily: "Inter, sans-serif", fontWeight: 400, lineHeight: 1.6, marginLeft: "45%", width: "60vw", maxWidth: "900px", textAlign: "center" }}
               >
-                Voice–Tec Ai прослушивает и оценивает 100% звонков: кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
+                Voice–Tec Ai прослушивает и оценивает 100% звонков:<br />
+                кто сливает заявки, где менеджеры не дожимают клиента, какие скрипты не работают, а какие реально приносят деньги
               </motion.p>
 
               <motion.div
