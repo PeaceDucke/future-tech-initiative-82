@@ -2907,7 +2907,7 @@ function PipelineSection() {
                 </h3>
                 <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
                   <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "18px", fontWeight: 700, display: "block", textAlign: "center" }}>Voice-Tec анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.</span><br />
-                  <span style={{ display: "block", textAlign: "justify" }}>ИИ покажет слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.</span>
+                  <span style={{ display: "block", textAlign: "justify" }}>ИИ укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.</span>
                 </p>
 
                 {/* ── light dashboard cut-out ── */}
