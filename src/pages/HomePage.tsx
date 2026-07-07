@@ -2880,7 +2880,7 @@ function PipelineSection() {
             <Section className="text-center">
               <motion.h2 variants={fadeUp} className="pipeline-ai-vision-title" style={{
                 fontFamily: '"Bodoni Moda", Georgia, serif',
-                fontSize: "clamp(32px, 5vw, 62px)",
+                fontSize: "50px",
                 color: "#F7F2EA",
                 fontWeight: 400,
                 lineHeight: 1.12,
@@ -2889,17 +2889,6 @@ function PipelineSection() {
               }}>
                 AI видит то, что невозможно<br />контролировать вручную
               </motion.h2>
-              <motion.p variants={fadeUp} className="pipeline-ai-vision-sub" style={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "clamp(16px, 1.6vw, 20px)",
-                color: "rgba(251,246,236,0.7)",
-                fontWeight: 300,
-                lineHeight: 1.6,
-                maxWidth: "640px",
-                margin: "0 auto",
-              }}>
-                Мы превращаем хаос звонков в понятные причины роста и продаж
-              </motion.p>
             </Section>
             </div>
 
