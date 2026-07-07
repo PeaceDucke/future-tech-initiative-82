@@ -4287,13 +4287,13 @@ export function HomePage() {
             />
           </div>
 
-          <div className="hero-inner relative z-10 w-full max-w-7xl mx-auto px-5 py-20" style={{ marginTop: "28rem" }}>
+          <div className="hero-inner relative z-10 w-full max-w-7xl mx-auto px-5 py-20" style={{ marginTop: "20rem" }}>
             <motion.div
               initial="hidden"
               animate="visible"
               variants={stagger}
               className="max-w-5xl"
-              style={{ marginLeft: "8%" }}
+              style={{ marginLeft: "8%", paddingTop: "8rem" }}
             >
               <motion.h1
                 variants={fadeUp}
