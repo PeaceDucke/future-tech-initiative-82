@@ -2795,7 +2795,7 @@ function PipelineSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-24">
-          <h2 style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 60px)", lineHeight: 1.1, marginBottom: "22px" }}>
+          <h2 style={{ ...h2Style, fontSize: "clamp(22px, 5vw, 50px)", lineHeight: 1.1, marginBottom: "22px" }}>
             Вы не видите 95% того, что<br />происходит в разговорах с клиентами
           </h2>
         </div>
