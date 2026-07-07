@@ -2810,7 +2810,7 @@ function PipelineSection() {
             <div className="relative grid grid-cols-1 lg:grid-cols-2 items-center" style={{ columnGap: "3rem", rowGap: "2rem" }}>
 
               {/* card */}
-              <div ref={aiCardRef} className="pc pipeline-card-left w-full lg:ml-[-3rem] lg:w-[calc(100%+3rem)]" style={pCard}>
+              <div ref={aiCardRef} className="pc pipeline-card-left w-full lg:w-[88%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", left: "-80px", width: "350px", height: "350px", background: `radial-gradient(circle, ${RED}0d 0%, transparent 65%)`, pointerEvents: "none" }} />
                 {num("01")}
                 <div className="flex flex-col" style={{ gap: "0px" }}>
@@ -2834,8 +2834,8 @@ function PipelineSection() {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "26px",
-                        padding: "36px 0",
+                        gap: "22px",
+                        padding: "26px 0",
                         borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
                       }}
                     >
@@ -2843,7 +2843,7 @@ function PipelineSection() {
                         src={item.img}
                         alt=""
                         className="pipeline-row-img"
-                        style={{ width: "158px", height: "158px", objectFit: "contain", flexShrink: 0, marginLeft: "-36px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
+                        style={{ width: "128px", height: "128px", objectFit: "contain", flexShrink: 0, marginLeft: "-28px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
                       />
                       <p className="pipeline-row-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
@@ -2854,8 +2854,8 @@ function PipelineSection() {
               </div>
 
               {/* brain image (right column) */}
-              <div className="hidden lg:flex w-full items-center justify-center" style={{ height: "560px", overflow: "visible" }}>
-                <div style={{ position: "relative", width: "167%", maxWidth: "933px", flexShrink: 0, transform: "translateX(80px)" }}>
+              <div className="hidden lg:flex w-full items-center justify-center" style={{ height: "460px", overflow: "visible" }}>
+                <div style={{ position: "relative", width: "134%", maxWidth: "746px", flexShrink: 0, transform: "translateX(80px)" }}>
                   <div style={{
                     position: "absolute",
                     inset: "-6%",
