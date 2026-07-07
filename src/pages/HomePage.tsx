@@ -2914,8 +2914,9 @@ function PipelineSection() {
                 <div className="pipeline-dashboard" style={{
                   background: "#F8F3EA",
                   borderRadius: "18px",
-                  padding: "22px",
+                  padding: "18px",
                   marginBottom: "24px",
+                  maxWidth: "440px",
                   border: "1px solid rgba(212,176,116,0.4)",
                   boxShadow: "0 30px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}>
