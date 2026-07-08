@@ -2843,9 +2843,9 @@ function PipelineSection() {
                         src={item.img}
                         alt=""
                         className="pipeline-row-img"
-                        style={{ width: "128px", height: "128px", objectFit: "contain", flexShrink: 0, marginLeft: "-28px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
+                        style={{ width: "128px", height: "128px", objectFit: "contain", flexShrink: 0, marginLeft: "-28px", marginRight: "-28px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
                       />
-                      <p className="pipeline-row-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
+                      <p className="pipeline-row-text" style={{ flex: 1, minWidth: 0, marginRight: "-24px", fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
                       </p>
                     </div>
