@@ -3014,7 +3014,7 @@ function PipelineSection() {
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.55), 0 20px 50px rgba(0,0,0,0.5)",
                     }}
                   >
-                    <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(15px, 1.5vw, 19px)", color: W, fontWeight: 400, lineHeight: 1.25, letterSpacing: "0.005em" }}>
+                    <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(16px, 1.5vw, 20px)", color: W, fontWeight: 400, lineHeight: 1.25, letterSpacing: "0.005em" }}>
                       {item.title}
                     </p>
                     {item.desc ? (
