@@ -2794,8 +2794,7 @@ function PipelineSection() {
 
         .bw-card {
           position: relative;
-          transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease;
-          z-index: 1;
+          transition: box-shadow 0.35s ease;
         }
         .bw-card::before {
           content: "";
@@ -2813,8 +2812,6 @@ function PipelineSection() {
           pointer-events: none;
         }
         .bw-card:hover {
-          transform: translateY(-14px) scale(1.1);
-          z-index: 5;
           box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 40px rgba(212,176,116,0.25);
         }
         .bw-card:hover::before { opacity: 1; }
@@ -3007,6 +3004,7 @@ function PipelineSection() {
                   <motion.div
                     key={item.title}
                     variants={fadeUp}
+                    whileHover={{ scale: 1.1, y: -14, zIndex: 5, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
                     className="bw-card flex flex-col text-center"
                     style={{
                       background: "linear-gradient(160deg, #222220 0%, #191918 40%, #151514 72%, #1e1e1b 100%)",
