@@ -2909,16 +2909,16 @@ function PipelineSection() {
                 {/* ── light dashboard cut-out ── */}
                 <div className="pipeline-dashboard" style={{
                   background: "#F8F3EA",
-                  borderRadius: "18px",
-                  padding: "18px",
+                  borderRadius: "16px",
+                  padding: "15px",
                   marginBottom: "24px",
-                  maxWidth: "440px",
+                  maxWidth: "375px",
                   border: "1px solid rgba(212,176,116,0.4)",
                   boxShadow: "0 30px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.6)",
                 }}>
                   {/* heading */}
-                  <div style={{ padding: "16px 8px 18px" }}>
-                    <span className="pipeline-causes-title" style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "24px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12, whiteSpace: "nowrap" }}>Обнаружены причины потерь</span>
+                  <div style={{ padding: "13px 6px 15px" }}>
+                    <span className="pipeline-causes-title" style={{ display: "block", textAlign: "center", fontFamily: "Inter, sans-serif", fontSize: "20px", color: "#2E2113", fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.12, whiteSpace: "nowrap" }}>Обнаружены причины потерь</span>
                   </div>
 
                   {/* cause cards on beige (flip on click) */}
