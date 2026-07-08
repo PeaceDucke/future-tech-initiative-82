@@ -2982,7 +2982,7 @@ function PipelineSection() {
                     variants={fadeUp}
                     className="bw-card flex flex-col text-center"
                     style={{
-                      background: "linear-gradient(160deg, #232325 0%, #1a1a1c 40%, #131315 72%, #1e1e20 100%)",
+                      background: "linear-gradient(160deg, #24241f 0%, #1b1b17 40%, #171715 72%, #201f1b 100%)",
                       border: "1px solid rgba(255,255,255,0.05)",
                       borderRadius: "20px",
                       padding: "30px 22px 34px",
