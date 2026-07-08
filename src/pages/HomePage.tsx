@@ -2791,6 +2791,33 @@ function PipelineSection() {
         .pc:nth-child(2) { animation-delay: 1.25s; }
         .pc:nth-child(3) { animation-delay: 2.5s; }
         .pc:nth-child(4) { animation-delay: 3.75s; }
+
+        .bw-card {
+          position: relative;
+          transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease;
+          z-index: 1;
+        }
+        .bw-card::before {
+          content: "";
+          position: absolute;
+          inset: -1px;
+          border-radius: 20px;
+          padding: 1.5px;
+          background: linear-gradient(135deg, #ffffff 0%, #f5e2b8 35%, #d4b074 65%, #ffffff 100%);
+          -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.35s ease;
+          pointer-events: none;
+        }
+        .bw-card:hover {
+          transform: translateY(-14px) scale(1.1);
+          z-index: 5;
+          box-shadow: 0 30px 70px rgba(0,0,0,0.6), 0 0 40px rgba(212,176,116,0.25);
+        }
+        .bw-card:hover::before { opacity: 1; }
       `}</style>
 
       <div className="max-w-6xl mx-auto">
