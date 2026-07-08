@@ -2904,7 +2904,7 @@ function PipelineSection() {
             </div>
 
             {/* ── AI vision heading ── */}
-            <div ref={aiHeadingRef} style={{ paddingTop: "48px" }}>
+            <div ref={aiHeadingRef} style={{ paddingTop: "88px" }}>
             <Section className="text-center">
               <motion.h2 variants={fadeUp} className="pipeline-ai-vision-title" style={{
                 fontFamily: '"Bodoni Moda", Georgia, serif',
@@ -2913,7 +2913,7 @@ function PipelineSection() {
                 fontWeight: 400,
                 lineHeight: 1.12,
                 letterSpacing: "0.01em",
-                marginBottom: "20px",
+                marginBottom: "0px",
               }}>
                 AI видит то, что невозможно<br />контролировать вручную
               </motion.h2>
