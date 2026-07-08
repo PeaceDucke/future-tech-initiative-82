@@ -2902,13 +2902,9 @@ function PipelineSection() {
               <div className="pc pipeline-card-right w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
-                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 2.8vw, 32px)", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "18px", textAlign: "center" }}>
-                  Voice-Tec Ai анализирует каждый разговор
+                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "32px", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "32px", textAlign: "center" }}>
+                  Voice-Tec анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.
                 </h3>
-                <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, marginBottom: "32px" }}>
-                  <span style={{ fontFamily: "'Jost', sans-serif", fontSize: "18px", fontWeight: 700, display: "block", textAlign: "center" }}>Voice-Tec анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.</span><br />
-                  <span style={{ display: "block", textAlign: "justify" }}>ИИ укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.</span>
-                </p>
 
                 {/* ── light dashboard cut-out ── */}
                 <div className="pipeline-dashboard" style={{
@@ -2938,6 +2934,9 @@ function PipelineSection() {
                   </div>
 
                 </div>
+                <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, textAlign: "justify" }}>
+                  ИИ укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
+                </p>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }} />
               {/* Scanner */}
