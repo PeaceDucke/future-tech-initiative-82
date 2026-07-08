@@ -2969,18 +2969,18 @@ function PipelineSection() {
                 style={{ width: "92vw", maxWidth: "1720px", position: "relative", left: "50%", transform: "translateX(-50%)" }}
               >
                 {[
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/4e8b2d79-41bf-4f4b-beea-52e209007f02.jpg", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/3ebc4492-5c09-45ea-b2e9-2c7e929dbd86.jpg", title: "Полная картина работы отдела продаж.", desc: "" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/210d47d4-97e8-41e7-a027-8954d0ba2c98.jpg", title: "Больше успешных сделок без увеличения рекламного бюджета.", desc: "" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/fd3af0d9-2725-4e4f-9ba9-eb594091990d.jpg", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/2cf0db79-7dd1-4815-bafc-a67a43f818f4.jpg", title: "Сокращение расходов на контроль качества", desc: "Наше название берет на себя контроль качества вместо ручной проверки." },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/aff72578-6ac4-4c75-b547-6fb47562b843.jpg", title: "Мгновенное выявление ошибок в разговорах", desc: "Реагируйте до того, как клиент уйдет." },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/9b17d014-73cf-4cb5-af63-2eb3d4301473.jpg", title: "Ясные отчёты для РОПа", desc: "Вся картина бизнеса на одном экране." },
+                  { img: "/bw/waveform.png", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
+                  { img: "/bw/dashboard.png", title: "Полная картина работы отдела продаж.", desc: "" },
+                  { img: "/bw/growth.png", title: "Больше успешных сделок без увеличения рекламного бюджета.", desc: "" },
+                  { img: "/bw/managers.png", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
+                  { img: "/bw/shield.png", title: "Сокращение расходов на контроль качества", desc: "Наше название берет на себя контроль качества вместо ручной проверки." },
+                  { img: "/bw/magnifier.png", title: "Мгновенное выявление ошибок в разговорах", desc: "Реагируйте до того, как клиент уйдет." },
+                  { img: "/bw/monitor.png", title: "Ясные отчёты для РОПа", desc: "Вся картина бизнеса на одном экране." },
                 ].map((item) => (
                   <motion.div
                     key={item.title}
                     variants={fadeUp}
-                    className="bw-card flex flex-col items-center text-center"
+                    className="bw-card flex flex-col text-center"
                     style={{
                       background: "linear-gradient(180deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.02) 100%)",
                       border: "1px solid rgba(255,255,255,0.08)",
@@ -2989,7 +2989,6 @@ function PipelineSection() {
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
                     }}
                   >
-                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "18px", borderRadius: "14px" }} />
                     <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(19px, 1.5vw, 23px)", color: G, fontWeight: 600, lineHeight: 1.25, letterSpacing: "0.005em" }}>
                       {item.title}
                     </p>
@@ -2998,6 +2997,7 @@ function PipelineSection() {
                         {item.desc}
                       </p>
                     ) : null}
+                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginTop: "auto", paddingTop: "20px" }} />
                   </motion.div>
                 ))}
               </motion.div>
