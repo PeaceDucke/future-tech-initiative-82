@@ -2936,7 +2936,7 @@ function PipelineSection() {
                   </div>
 
                 </div>
-                <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.8, textAlign: "justify" }}>
+                <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#FBF6EC", lineHeight: 1.8, textAlign: "justify" }}>
                   ИИ укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
