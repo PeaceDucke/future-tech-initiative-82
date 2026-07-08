@@ -2965,8 +2965,8 @@ function PipelineSection() {
 
               <motion.div
                 variants={stagger}
-                className="bw-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 lg:gap-5"
-                style={{ width: "calc(100% + 120px)", marginLeft: "-60px", marginRight: "-60px" }}
+                className="bw-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-5 lg:gap-6"
+                style={{ width: "92vw", maxWidth: "1720px", position: "relative", left: "50%", transform: "translateX(-50%)" }}
               >
                 {[
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/4e8b2d79-41bf-4f4b-beea-52e209007f02.jpg", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
@@ -2984,17 +2984,17 @@ function PipelineSection() {
                     style={{
                       background: "linear-gradient(180deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.02) 100%)",
                       border: "1px solid rgba(255,255,255,0.08)",
-                      borderRadius: "16px",
-                      padding: "22px 16px 26px",
+                      borderRadius: "20px",
+                      padding: "30px 22px 34px",
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
                     }}
                   >
-                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "14px", borderRadius: "12px" }} />
-                    <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(17px, 1.35vw, 20px)", color: G, fontWeight: 600, lineHeight: 1.25, letterSpacing: "0.005em" }}>
+                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "18px", borderRadius: "14px" }} />
+                    <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(19px, 1.5vw, 23px)", color: G, fontWeight: 600, lineHeight: 1.25, letterSpacing: "0.005em" }}>
                       {item.title}
                     </p>
                     {item.desc ? (
-                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.62)", fontWeight: 400, lineHeight: 1.5, marginTop: "10px" }}>
+                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.62)", fontWeight: 400, lineHeight: 1.55, marginTop: "12px" }}>
                         {item.desc}
                       </p>
                     ) : null}
