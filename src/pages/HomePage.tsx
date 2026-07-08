@@ -2965,31 +2965,39 @@ function PipelineSection() {
 
               <motion.div
                 variants={stagger}
-                className="bw-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-12 lg:gap-x-16"
+                className="bw-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 lg:gap-5"
                 style={{ width: "calc(100% + 120px)", marginLeft: "-60px", marginRight: "-60px" }}
               >
                 {[
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c51db25f-5dd3-4d00-99c0-b4cf02fd0206.png", accent: "100%", title: "звонков под контролем", desc: "Ни один разговор не пройдёт мимо" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e4db2d7c-9198-410e-9d0f-b65254f4f973.png", accent: "+8–23%", title: "к конверсии", desc: "Больше сделок с тем же трафиком" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6c4bdf72-1774-4af5-849b-902b3b1b6439.png", accent: "0", title: "потерянных лидов", desc: "Каждый клиент доведён до результата" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/358dd693-b223-41b0-9254-e76f2e7c6a9d.png", accent: "Честный", title: "рейтинг менеджеров", desc: "Оценка по фактам, а не по ощущениям" },
-                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/24dabad9-773e-4312-ba6b-ccf2d9c65d78.png", accent: "Ясные", title: "отчёты для РОПа", desc: "Вся картина бизнеса на одном экране", scale: 1.58 },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/4e8b2d79-41bf-4f4b-beea-52e209007f02.jpg", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/3ebc4492-5c09-45ea-b2e9-2c7e929dbd86.jpg", title: "Полная картина работы отдела продаж.", desc: "" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/210d47d4-97e8-41e7-a027-8954d0ba2c98.jpg", title: "Больше успешных сделок без увеличения рекламного бюджета.", desc: "" },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/fd3af0d9-2725-4e4f-9ba9-eb594091990d.jpg", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/2cf0db79-7dd1-4815-bafc-a67a43f818f4.jpg", title: "Сокращение расходов на контроль качества", desc: "Наше название берет на себя контроль качества вместо ручной проверки." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/aff72578-6ac4-4c75-b547-6fb47562b843.jpg", title: "Мгновенное выявление ошибок в разговорах", desc: "Реагируйте до того, как клиент уйдет." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/9b17d014-73cf-4cb5-af63-2eb3d4301473.jpg", title: "Ясные отчёты для РОПа", desc: "Вся картина бизнеса на одном экране." },
                 ].map((item) => (
                   <motion.div
                     key={item.title}
                     variants={fadeUp}
-                    className="flex flex-col items-center text-center"
+                    className="bw-card flex flex-col items-center text-center"
+                    style={{
+                      background: "linear-gradient(180deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.02) 100%)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      borderRadius: "16px",
+                      padding: "22px 16px 26px",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
+                    }}
                   >
-                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "10px", transform: item.scale ? `scale(${item.scale})` : undefined }} />
-                    <span className="bw-accent" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 2.4vw, 34px)", color: G, fontWeight: 600, lineHeight: 1.05, letterSpacing: "0.01em", textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>
-                      {item.accent}
-                    </span>
-                    <p className="bw-title" style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: W, fontWeight: 700, lineHeight: 1.3, marginTop: "4px" }}>
+                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginBottom: "14px", borderRadius: "12px" }} />
+                    <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(17px, 1.35vw, 20px)", color: G, fontWeight: 600, lineHeight: 1.25, letterSpacing: "0.005em" }}>
                       {item.title}
                     </p>
-                    <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.6)", fontWeight: 400, lineHeight: 1.45, marginTop: "8px", maxWidth: "200px" }}>
-                      {item.desc}
-                    </p>
+                    {item.desc ? (
+                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.62)", fontWeight: 400, lineHeight: 1.5, marginTop: "10px" }}>
+                        {item.desc}
+                      </p>
+                    ) : null}
                   </motion.div>
                 ))}
               </motion.div>
