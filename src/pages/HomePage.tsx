@@ -2982,11 +2982,11 @@ function PipelineSection() {
                     variants={fadeUp}
                     className="bw-card flex flex-col text-center"
                     style={{
-                      background: "linear-gradient(160deg, #2a2a2c 0%, #1c1c1e 35%, #141416 70%, #202022 100%)",
-                      border: "1px solid rgba(255,255,255,0.1)",
+                      background: "linear-gradient(160deg, #232325 0%, #1a1a1c 40%, #131315 72%, #1e1e20 100%)",
+                      border: "1px solid rgba(255,255,255,0.05)",
                       borderRadius: "20px",
                       padding: "30px 22px 34px",
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.09), inset 0 -1px 0 rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.5)",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.55), 0 20px 50px rgba(0,0,0,0.5)",
                     }}
                   >
                     <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(15px, 1.5vw, 19px)", color: W, fontWeight: 400, lineHeight: 1.25, letterSpacing: "0.005em" }}>
