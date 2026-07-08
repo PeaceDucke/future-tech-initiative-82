@@ -2834,7 +2834,7 @@ function PipelineSection() {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "22px",
+                        gap: "34px",
                         padding: "26px 0",
                         borderBottom: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
                       }}
@@ -2845,7 +2845,7 @@ function PipelineSection() {
                         className="pipeline-row-img"
                         style={{ width: "128px", height: "128px", objectFit: "contain", flexShrink: 0, marginLeft: "-28px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
                       />
-                      <p className="pipeline-row-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
+                      <p className="pipeline-row-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
                       </p>
                     </div>
