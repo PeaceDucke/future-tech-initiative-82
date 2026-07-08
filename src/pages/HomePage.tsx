@@ -2832,9 +2832,9 @@ function PipelineSection() {
                     <motion.div
                       key={i}
                       className="pipeline-row"
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={rowsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-                      transition={{ duration: 0.55, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                      initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
+                      animate={rowsInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 60, filter: "blur(8px)" }}
+                      transition={{ duration: 1.1, delay: i * 0.28, ease: [0.16, 1, 0.3, 1] }}
                       style={{
                         display: "flex",
                         alignItems: "center",
