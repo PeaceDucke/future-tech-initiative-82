@@ -2727,6 +2727,7 @@ function PipelineSection() {
   const aiHeadingRef = useRef<HTMLDivElement>(null);
   const aiWrapRef = useRef<HTMLDivElement>(null);
   const aiCardRef = useRef<HTMLDivElement>(null);
+  const rowsInView = useInView(aiCardRef, { once: true, margin: "-80px" });
   const [aiHeadingH, setAiHeadingH] = useState<number>(0);
   const [cardBottom, setCardBottom] = useState<number>(0);
   useEffect(() => {
@@ -2825,12 +2826,15 @@ function PipelineSection() {
                     },
                     {
                       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6be343a7-15dc-4739-891e-9c6c1623233c.png",
-                      text: "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги.",
+                      text: "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги или не обнаруживаются вовсе.",
                     },
                   ].map((item, i, arr) => (
-                    <div
+                    <motion.div
                       key={i}
                       className="pipeline-row"
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={rowsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+                      transition={{ duration: 0.55, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
                       style={{
                         display: "flex",
                         alignItems: "center",
@@ -2848,7 +2852,7 @@ function PipelineSection() {
                       <p className="pipeline-row-text" style={{ flex: 1, minWidth: 0, marginRight: "-24px", fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
                       </p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
