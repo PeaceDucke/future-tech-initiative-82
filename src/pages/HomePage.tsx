@@ -4371,7 +4371,7 @@ export function HomePage() {
               </span>
             </a>
 
-            <nav className="hidden lg:flex items-center gap-8 flex-1 justify-center pl-16">
+            <nav className="hidden lg:flex items-center gap-16 flex-1 justify-center pl-16">
               {[
                 { label: "Тарифы", href: "#pricing" },
                 { label: "FAQ", href: "#faq" },
