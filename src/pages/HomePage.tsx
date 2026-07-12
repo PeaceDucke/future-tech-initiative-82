@@ -1446,6 +1446,7 @@ function SplineFeatureSection() {
               lineHeight: 1.35,
               textAlign: "center",
               maxWidth: "260px",
+              marginTop: "-24px",
             }}>AI анализирует более 100 параметров каждого разговора</p>
             <p style={{
               fontFamily: "Inter, sans-serif",
@@ -1453,7 +1454,7 @@ function SplineFeatureSection() {
               letterSpacing: "0.08em",
               color: "#C8A96A",
               fontWeight: 600,
-              marginTop: "12px",
+              marginTop: "40px",
               textTransform: "uppercase" as const,
             }}>+ ещё 90+ параметров</p>
           </div>
