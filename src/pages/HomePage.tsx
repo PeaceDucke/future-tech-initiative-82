@@ -4413,7 +4413,7 @@ export function HomePage() {
                 <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
                   Всё в одном окне
                 </h2>
-                <p style={{ ...bodyText, fontSize: "14px", maxWidth: "480px", margin: "0 auto" }}>
+                <p style={{ ...bodyText, fontSize: "14px", margin: "0 auto", whiteSpace: "nowrap" }}>
                   Аналитика звонков, воронки, менеджеры, статистика и AI-инсайты - единый дашборд без лишних вкладок
                 </p>
               </motion.div>
