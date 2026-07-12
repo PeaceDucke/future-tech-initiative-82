@@ -2922,7 +2922,8 @@ function PipelineSection() {
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                   filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
-                }}>Voice-Tec Ai</span> видит то, что невозможно<br />контролировать вручную
+                  fontWeight: 700,
+                }}>Voice-Tec AI</span> видит то, что невозможно<br />контролировать вручную
               </motion.h2>
             </Section>
             </div>
