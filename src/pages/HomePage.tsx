@@ -980,7 +980,6 @@ function SplineFeatureSection() {
   const cards = [
     {
       badge: "AI Detected",
-      emoji: "🎯",
       title: "Нарушения стандартов продаж",
       lead: "AI автоматически определяет:",
       items: [
@@ -996,7 +995,6 @@ function SplineFeatureSection() {
     },
     {
       badge: "Risk",
-      emoji: "📈",
       title: "Причины потери сделок",
       lead: "AI определяет:",
       items: [
@@ -1012,7 +1010,6 @@ function SplineFeatureSection() {
     },
     {
       badge: "AI Detected",
-      emoji: "🤝",
       title: "Качество общения с клиентом",
       lead: "AI фиксирует:",
       items: [
@@ -1029,7 +1026,6 @@ function SplineFeatureSection() {
     },
     {
       badge: "Recommendation",
-      emoji: "🚀",
       title: "Что увеличить, чтобы продавать больше",
       lead: "AI показывает:",
       items: [
