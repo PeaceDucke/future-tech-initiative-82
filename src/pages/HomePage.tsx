@@ -1334,8 +1334,8 @@ function SplineFeatureSection() {
           {/* Spline на весь контейнер - canvas покрывает всю интерактивную область */}
           <div className="aiv-spline-bg" style={{
             position: "absolute",
-            top: "-25%",
-            bottom: "-25%",
+            top: "-40%",
+            bottom: "-10%",
             left: "-25%",
             right: "-25%",
             zIndex: 0,
