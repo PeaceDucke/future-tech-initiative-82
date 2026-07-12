@@ -1098,7 +1098,7 @@ function SplineFeatureSection() {
           WebkitBackdropFilter: "blur(24px)",
           border: `1px solid ${borderColor}`,
           borderRadius: "22px",
-          padding: isLight ? "26px 36px" : "20px 29px",
+          padding: isLight ? "22px 30px" : "20px 29px",
           width: "100%",
           cursor: "default",
           boxShadow: shadow,
@@ -1404,7 +1404,7 @@ function SplineFeatureSection() {
 
           {/* Bottom center card */}
           <div className="aiv-bottom flex" style={{ justifyContent: "center", marginTop: "-60px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
-            <div style={{ width: "491px", pointerEvents: "none" }}>
+            <div style={{ width: "455px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
           </div>
@@ -1425,7 +1425,7 @@ function SplineFeatureSection() {
           transform: "translateX(-50%)",
         }}>
           {/* Линии из белой карточки к спискам */}
-          <svg className="aiv-params-svg" width="100%" height="100%" viewBox="0 0 1000 340" preserveAspectRatio="none" style={{ position: "absolute", top: "-70px", left: 0, width: "100%", height: "calc(100% + 70px)", zIndex: 1, pointerEvents: "none", overflow: "visible" }}>
+          <svg className="aiv-params-svg" width="100%" height="100%" viewBox="0 0 1000 340" preserveAspectRatio="none" style={{ position: "absolute", top: "-10px", left: 0, width: "100%", height: "calc(100% + 10px)", zIndex: 1, pointerEvents: "none", overflow: "visible" }}>
             <defs>
               <linearGradient id="paramLineL" x1="1" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="rgba(255,255,255,0.85)" />
