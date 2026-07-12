@@ -1409,6 +1409,68 @@ function SplineFeatureSection() {
             </div>
           </div>
 
+          {/* ── Params: две колонки с линиями к белой карточке ── */}
+          <div className="aiv-params" style={{
+            position: "relative", zIndex: 3, pointerEvents: "none",
+            marginTop: "36px",
+            display: "grid",
+            gridTemplateColumns: "1fr auto 1fr",
+            alignItems: "center",
+            gap: "0",
+            maxWidth: "1040px",
+            marginLeft: "auto", marginRight: "auto",
+          }}>
+            {/* Левая колонка */}
+            <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-end", textAlign: "right" }}>
+              {["Скрипт продаж", "Эмоции клиента", "Возражения", "Скорость реакции", "Перебивания"].map((p) => (
+                <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
+                  <Icon name="Check" size={15} className="text-[#C8A96A]" />
+                </div>
+              ))}
+            </div>
+
+            {/* Центр: линии + текст */}
+            <div className="aiv-params-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 34px", position: "relative" }}>
+              {/* линия влево */}
+              <div className="aiv-params-line-l" style={{ position: "absolute", right: "100%", top: "50%", width: "170px", height: "1px", background: "linear-gradient(to left, rgba(200,169,106,0.55), transparent)" }} />
+              {/* линия вправо */}
+              <div className="aiv-params-line-r" style={{ position: "absolute", left: "100%", top: "50%", width: "170px", height: "1px", background: "linear-gradient(to right, rgba(200,169,106,0.55), transparent)" }} />
+              <div style={{
+                width: "9px", height: "9px", borderRadius: "50%", background: "#C8A96A",
+                boxShadow: "0 0 14px rgba(200,169,106,0.7)", marginBottom: "16px",
+              }} />
+              <p style={{
+                fontFamily: '"Jost", sans-serif',
+                fontSize: "19px",
+                color: "#F3EDE3",
+                fontWeight: 500,
+                lineHeight: 1.35,
+                textAlign: "center",
+                maxWidth: "260px",
+              }}>AI анализирует более 100 параметров каждого разговора</p>
+              <p style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                color: "#C8A96A",
+                fontWeight: 600,
+                marginTop: "12px",
+                textTransform: "uppercase" as const,
+              }}>+ ещё 90+ параметров</p>
+            </div>
+
+            {/* Правая колонка */}
+            <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start", textAlign: "left" }}>
+              {["Обещания менеджера", "Тон общения", "Ключевые слова", "Следующий шаг", "Вероятность сделки"].map((p) => (
+                <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <Icon name="Check" size={15} className="text-[#C8A96A]" />
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
         </div>
       </div>
@@ -1416,6 +1478,19 @@ function SplineFeatureSection() {
       <style>{`
         .sfs-card-glow:hover {
           box-shadow: 0 8px 40px rgba(200,169,106,0.18), 0 2px 16px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 767px) {
+          .aiv-params {
+            grid-template-columns: 1fr !important;
+            gap: 26px !important;
+            margin-top: 28px !important;
+            padding: 0 16px;
+          }
+          .aiv-params-line-l, .aiv-params-line-r { display: none !important; }
+          .aiv-params-center { order: -1; padding: 0 !important; }
+          .aiv-params-center p:first-of-type { font-size: 17px !important; }
+          .aiv-params-col { align-items: center !important; text-align: center !important; gap: 12px !important; }
+          .aiv-params-col span { font-size: 13.5px !important; }
         }
       `}</style>
     </section>
