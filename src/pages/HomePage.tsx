@@ -2972,7 +2972,7 @@ function PipelineSection() {
                   </div>
 
                 </div>
-                <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#FBF6EC", lineHeight: 1.8, textAlign: "justify" }}>
+                <p className="pipeline-card2-text" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: "#FBF6EC", lineHeight: 1.8, textAlign: "justify" }}>
                   Voice-Tec Ai укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
