@@ -980,42 +980,66 @@ function SplineFeatureSection() {
   const cards = [
     {
       badge: "AI Detected",
-      title: "Потребность не выявлена",
-      text: "Менеджер начал презентовать продукт, ещё не поняв, что важно клиенту. AI подсвечивает момент, где разговор свернул не туда - и подсказывает, какой вопрос вернул бы сделку в нужное русло.",
-      metric: "Риск потери сделки",
-      metricVal: "Высокий",
-      progress: 78,
+      emoji: "🎯",
+      title: "Нарушения стандартов продаж",
+      lead: "AI автоматически определяет:",
+      items: [
+        "Не представились",
+        "Не выявили потребность",
+        "Не обработали возражение",
+        "Рано назвали цену",
+        "Не договорились о следующем шаге",
+      ],
+      footer: "Каждое нарушение привязано к конкретному моменту разговора.",
       tone: "danger" as const,
       pos: "left-top",
     },
     {
       badge: "Risk",
-      title: "Возражение не обработано",
-      text: "Клиент трижды сомневался, но ключевое возражение так и осталось без ответа. Интерес остывает - AI фиксирует точный момент, где сделку ещё можно было вернуть.",
-      metric: "Потеря интереса",
-      metricVal: "72%",
-      progress: 72,
+      emoji: "📈",
+      title: "Причины потери сделок",
+      lead: "AI определяет:",
+      items: [
+        "Почему клиент отказался",
+        "Где интерес начал снижаться",
+        "Какие аргументы не сработали",
+        "Какие обещания не были выполнены",
+        "Где менеджер потерял инициативу",
+      ],
+      footer: "После анализа становится понятно, почему продажа не состоялась.",
       tone: "danger" as const,
       pos: "left-bottom",
     },
     {
       badge: "AI Detected",
-      title: "Клиента перебили 5 раз",
-      text: "Когда менеджер не даёт договорить, клиент закрывается. AI ловит каждое перебивание и показывает, как это рушит доверие и шансы закрыть сделку.",
-      metric: "Вовлечённость клиента",
-      metricVal: "Снижена",
-      progress: 38,
+      emoji: "🤝",
+      title: "Качество общения с клиентом",
+      lead: "AI фиксирует:",
+      items: [
+        "Перебивания клиента",
+        "Грубость и конфликт",
+        "Нецензурную лексику",
+        "Агрессивную интонацию",
+        "Долгие паузы",
+        "Отсутствие эмпатии",
+      ],
+      footer: "Показывает, как это влияет на вероятность сделки.",
       tone: "danger" as const,
       pos: "right-top",
     },
     {
-      badge: "Risk",
-      title: "Ценность не объяснена",
-      text: "Разговор ушёл к цене раньше, чем клиент понял, за что платит. AI показывает, где именно стоило усилить аргументацию и раскрыть выгоду.",
-      metric: "Вероятность сделки",
-      metricVal: "Ниже нормы",
-      progress: 44,
-      tone: "danger" as const,
+      badge: "Recommendation",
+      emoji: "🚀",
+      title: "Что увеличить, чтобы продавать больше",
+      lead: "AI показывает:",
+      items: [
+        "Какие менеджеры продают лучше",
+        "Какие ошибки повторяются чаще всего",
+        "Какие этапы скрипта проседают",
+        "Что нужно изменить для роста конверсии",
+      ],
+      footer: "",
+      tone: "success" as const,
       pos: "right-bottom",
     },
     {
@@ -1030,10 +1054,16 @@ function SplineFeatureSection() {
     },
   ];
 
-  const Card = ({ card, idx }: { card: typeof cards[0]; idx: number }) => {
+  const Card = ({ card, idx }: { card: typeof cards[number]; idx: number }) => {
+    const c = card as {
+      badge: string; title: string; tone: string; pos: string;
+      emoji?: string; lead?: string; items?: string[]; footer?: string;
+      text?: string; metric?: string; metricVal?: string; progress?: number;
+    };
     const active = hovered === idx;
     const isLight = card.tone === "light";
     const isDanger = card.tone === "danger";
+    const hasList = Array.isArray(c.items);
 
     const accentColor = isLight ? "#2F8F4E" : isDanger ? "#D94F4F" : "#6DBF82";
     const progressColor = isDanger
@@ -1110,54 +1140,113 @@ function SplineFeatureSection() {
           color: isLight ? "#16140F" : "#F7F2EA",
           fontWeight: 400,
           lineHeight: 1.22,
-          marginBottom: "15px",
+          marginBottom: hasList ? "16px" : "15px",
           letterSpacing: "0.01em",
-        }}>{card.title}</p>
+          display: "flex",
+          alignItems: "baseline",
+          gap: "10px",
+        }}>
+          {c.emoji && <span style={{ fontSize: "19px", lineHeight: 1 }}>{c.emoji}</span>}
+          <span>{card.title}</span>
+        </p>
 
-        {/* Body */}
-        <p className="aiv-card-body" style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: isLight ? "16px" : "15px",
-          color: isLight ? "#3A352C" : "#D6D3CD",
-          lineHeight: 1.68,
-          marginBottom: "24px",
-          fontWeight: 400,
-        }}>{card.text}</p>
+        {hasList ? (
+          <>
+            {/* Lead */}
+            {c.lead && (
+              <p className="aiv-card-lead" style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: "13.5px",
+                color: "#9a9690",
+                letterSpacing: "0.03em",
+                marginBottom: "14px",
+                fontWeight: 500,
+              }}>{c.lead}</p>
+            )}
+            {/* Checklist */}
+            <div className="aiv-card-list" style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: c.footer ? "22px" : "6px" }}>
+              {c.items!.map((it) => (
+                <div key={it} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                  <span style={{
+                    color: accentColor,
+                    fontSize: "14px",
+                    lineHeight: 1.5,
+                    flexShrink: 0,
+                    fontWeight: 700,
+                  }}>✓</span>
+                  <span style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "14.5px",
+                    color: "#D6D3CD",
+                    lineHeight: 1.5,
+                    fontWeight: 400,
+                  }}>{it}</span>
+                </div>
+              ))}
+            </div>
+            {/* Footer */}
+            {c.footer && (
+              <>
+                <div style={{ height: "1px", background: `linear-gradient(to right, ${accentColor}40, transparent)`, marginBottom: "14px" }} />
+                <p style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "13.5px",
+                  color: "#9a9690",
+                  lineHeight: 1.55,
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                }}>{c.footer}</p>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {/* Body */}
+            <p className="aiv-card-body" style={{
+              fontFamily: "Inter, sans-serif",
+              fontSize: isLight ? "16px" : "15px",
+              color: isLight ? "#3A352C" : "#D6D3CD",
+              lineHeight: 1.68,
+              marginBottom: "24px",
+              fontWeight: 400,
+            }}>{c.text}</p>
 
-        {/* Progress bar */}
-        <div className="aiv-card-progress" style={{ marginBottom: "16px" }}>
-          <div style={{
-            width: "100%",
-            height: "3px",
-            borderRadius: "3px",
-            background: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.07)",
-          }}>
-            <div style={{
-              width: `${card.progress}%`,
-              height: "100%",
-              borderRadius: "3px",
-              background: progressColor,
-              transition: "width 1s ease 0.5s",
-            }} />
-          </div>
-        </div>
+            {/* Progress bar */}
+            <div className="aiv-card-progress" style={{ marginBottom: "16px" }}>
+              <div style={{
+                width: "100%",
+                height: "3px",
+                borderRadius: "3px",
+                background: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.07)",
+              }}>
+                <div style={{
+                  width: `${c.progress}%`,
+                  height: "100%",
+                  borderRadius: "3px",
+                  background: progressColor,
+                  transition: "width 1s ease 0.5s",
+                }} />
+              </div>
+            </div>
 
-        {/* Metric */}
-        <div className="aiv-card-metric" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: isLight ? "14px" : "13.5px",
-            color: isLight ? "#6B6456" : "#9a9690",
-            letterSpacing: "0.03em",
-          }}>{card.metric}</span>
-          <span style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: isLight ? "15px" : "14px",
-            color: accentColor,
-            fontWeight: 700,
-            letterSpacing: "0.05em",
-          }}>{card.metricVal}</span>
-        </div>
+            {/* Metric */}
+            <div className="aiv-card-metric" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: isLight ? "14px" : "13.5px",
+                color: isLight ? "#6B6456" : "#9a9690",
+                letterSpacing: "0.03em",
+              }}>{c.metric}</span>
+              <span style={{
+                fontFamily: "Inter, sans-serif",
+                fontSize: isLight ? "15px" : "14px",
+                color: accentColor,
+                fontWeight: 700,
+                letterSpacing: "0.05em",
+              }}>{c.metricVal}</span>
+            </div>
+          </>
+        )}
       </div>
     );
   };
