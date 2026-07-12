@@ -1419,11 +1419,13 @@ function SplineFeatureSection() {
           gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
           gap: "0",
-          maxWidth: "1240px",
-          marginLeft: "auto", marginRight: "auto",
+          width: "100vw",
+          maxWidth: "1500px",
+          marginLeft: "50%", marginRight: "0",
+          transform: "translateX(-50%)",
         }}>
           {/* Левая колонка */}
-          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-end", textAlign: "right", paddingRight: "80px" }}>
+          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-end", textAlign: "right", paddingRight: "140px" }}>
             {["Скрипт продаж", "Эмоции клиента", "Возражения", "Скорость реакции", "Перебивания"].map((p) => (
               <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <span style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
@@ -1460,7 +1462,7 @@ function SplineFeatureSection() {
           </div>
 
           {/* Правая колонка */}
-          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start", textAlign: "left", paddingLeft: "80px" }}>
+          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start", textAlign: "left", paddingLeft: "140px" }}>
             {["Обещания менеджера", "Тон общения", "Ключевые слова", "Следующий шаг", "Вероятность сделки"].map((p) => (
               <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <Icon name="Check" size={17} className="text-[#C8A96A]" />
