@@ -2939,7 +2939,7 @@ function PipelineSection() {
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
                 <h3 className="pipeline-card2-title" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "56px", textAlign: "center" }}>
-                  Искусственный интеллект анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.
+                  Искусственный интеллект анализирует<br />100% звонков и делает оценку опираясь<br />на скрипты и нормы менеджмента<br />вашей компании.
                 </h3>
 
                 {/* ── light dashboard cut-out ── */}
