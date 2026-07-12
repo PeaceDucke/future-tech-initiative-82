@@ -1456,13 +1456,13 @@ function SplineFeatureSection() {
           <div className="aiv-params-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 34px", position: "relative", zIndex: 2 }}>
             <p style={{
               fontFamily: '"Prata", serif',
-              fontSize: "21px",
+              fontSize: "23px",
               color: "#F3EDE3",
               fontWeight: 400,
               lineHeight: 1.35,
               textAlign: "center",
               maxWidth: "260px",
-              marginTop: "-10px",
+              marginTop: "40px",
             }}>Анализ более чем по 100 параметрам</p>
             <p style={{
               fontFamily: "Inter, sans-serif",
