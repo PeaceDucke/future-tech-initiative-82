@@ -312,6 +312,8 @@ body {
      zero top padding + small negative margin => identical & high
      on every phone */
   .hero-inner {
+    position: relative !important;
+    inset: auto !important;
     margin-top: -1.25rem !important;
     padding: 0 20px 2rem !important;
     z-index: 5;
@@ -526,6 +528,8 @@ body {
   }
   /* Pull the content up so the team photo behind it stays visible */
   .hero-inner {
+    position: relative !important;
+    inset: auto !important;
     margin-top: 2rem !important;
     padding-top: 1.5rem !important;
     padding-bottom: 2rem !important;
