@@ -1098,7 +1098,7 @@ function SplineFeatureSection() {
           WebkitBackdropFilter: "blur(24px)",
           border: `1px solid ${borderColor}`,
           borderRadius: "22px",
-          padding: isLight ? "35px 36px" : "29px 29px",
+          padding: isLight ? "26px 36px" : "20px 29px",
           width: "100%",
           cursor: "default",
           boxShadow: shadow,
@@ -1112,7 +1112,7 @@ function SplineFeatureSection() {
         }}
       >
         {/* Badge */}
-        <div className="aiv-card-badge" style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "18px" }}>
+        <div className="aiv-card-badge" style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "12px" }}>
           <div style={{
             width: "7px", height: "7px", borderRadius: "50%",
             background: accentColor,
@@ -1139,7 +1139,7 @@ function SplineFeatureSection() {
           color: isLight ? "#16140F" : "#F7F2EA",
           fontWeight: 400,
           lineHeight: 1.22,
-          marginBottom: hasList ? "16px" : "15px",
+          marginBottom: hasList ? "10px" : "12px",
           letterSpacing: "0.01em",
           display: "flex",
           alignItems: "baseline",
@@ -1158,12 +1158,12 @@ function SplineFeatureSection() {
                 fontSize: "11.5px",
                 color: "#9a9690",
                 letterSpacing: "0.03em",
-                marginBottom: "14px",
+                marginBottom: "9px",
                 fontWeight: 500,
               }}>{c.lead}</p>
             )}
             {/* Checklist */}
-            <div className="aiv-card-list" style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: c.footer ? "22px" : "6px" }}>
+            <div className="aiv-card-list" style={{ display: "flex", flexDirection: "column", gap: "7px", marginBottom: c.footer ? "14px" : "4px" }}>
               {c.items!.map((it) => (
                 <div key={it} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                   <span style={{
