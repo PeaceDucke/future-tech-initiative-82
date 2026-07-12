@@ -1436,10 +1436,10 @@ function SplineFeatureSection() {
                 <stop offset="100%" stopColor="rgba(255,255,255,0.12)" />
               </linearGradient>
             </defs>
-            {/* из низа карточки (центр сверху) к левому списку */}
-            <path d="M 500 0 L 300 200" stroke="url(#paramLineL)" strokeWidth="1.4" fill="none" />
-            {/* из низа карточки (центр сверху) к правому списку */}
-            <path d="M 500 0 L 700 200" stroke="url(#paramLineR)" strokeWidth="1.4" fill="none" />
+            {/* левая линия — исток от ЛЕВОГО угла карточки к левому списку */}
+            <path d="M 430 0 L 300 200" stroke="url(#paramLineL)" strokeWidth="1.4" fill="none" />
+            {/* правая линия — исток от ПРАВОГО угла карточки к правому списку */}
+            <path d="M 570 0 L 700 200" stroke="url(#paramLineR)" strokeWidth="1.4" fill="none" />
           </svg>
 
           {/* Левая колонка */}
