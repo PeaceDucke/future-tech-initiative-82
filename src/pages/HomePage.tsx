@@ -1375,7 +1375,7 @@ function SplineFeatureSection() {
           {/* pointer-events: none на всех обёртках - Spline видит мышь везде */}
           {/* pointer-events: auto только на самих карточках */}
           <div className="aiv-grid grid" style={{
-            gridTemplateColumns: "364px 1fr 364px",
+            gridTemplateColumns: "330px 1fr 330px",
             gridTemplateRows: "auto",
             gap: "22px",
             alignItems: "center",
@@ -1383,8 +1383,8 @@ function SplineFeatureSection() {
             zIndex: 3,
             minHeight: "580px",
             pointerEvents: "none",
-            marginLeft: "-60px",
-            marginRight: "-60px",
+            marginLeft: "40px",
+            marginRight: "40px",
           }}>
             {/* Left column */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px", pointerEvents: "none" }}>
