@@ -2989,7 +2989,7 @@ function PipelineSection() {
 
               <motion.div
                 variants={stagger}
-                className="bw-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-5 lg:gap-6"
+                className="bw-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 lg:gap-6"
                 style={{ width: "92vw", maxWidth: "1720px", position: "relative", left: "50%", transform: "translateX(-50%)" }}
               >
                 {[
