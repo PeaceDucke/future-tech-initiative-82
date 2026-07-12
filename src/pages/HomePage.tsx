@@ -1423,11 +1423,11 @@ function SplineFeatureSection() {
           marginLeft: "auto", marginRight: "auto",
         }}>
           {/* Левая колонка */}
-          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-end", textAlign: "right" }}>
+          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-end", textAlign: "right", paddingRight: "40px" }}>
             {["Скрипт продаж", "Эмоции клиента", "Возражения", "Скорость реакции", "Перебивания"].map((p) => (
               <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
-                <Icon name="Check" size={15} className="text-[#C8A96A]" />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
+                <Icon name="Check" size={17} className="text-[#C8A96A]" />
               </div>
             ))}
           </div>
@@ -1438,10 +1438,6 @@ function SplineFeatureSection() {
             <div className="aiv-params-line-l" style={{ position: "absolute", right: "100%", top: "50%", width: "170px", height: "1px", background: "linear-gradient(to left, rgba(200,169,106,0.55), transparent)" }} />
             {/* линия вправо */}
             <div className="aiv-params-line-r" style={{ position: "absolute", left: "100%", top: "50%", width: "170px", height: "1px", background: "linear-gradient(to right, rgba(200,169,106,0.55), transparent)" }} />
-            <div style={{
-              width: "9px", height: "9px", borderRadius: "50%", background: "#C8A96A",
-              boxShadow: "0 0 14px rgba(200,169,106,0.7)", marginBottom: "16px",
-            }} />
             <p style={{
               fontFamily: '"Jost", sans-serif',
               fontSize: "19px",
@@ -1463,11 +1459,11 @@ function SplineFeatureSection() {
           </div>
 
           {/* Правая колонка */}
-          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start", textAlign: "left" }}>
+          <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-start", textAlign: "left", paddingLeft: "40px" }}>
             {["Обещания менеджера", "Тон общения", "Ключевые слова", "Следующий шаг", "Вероятность сделки"].map((p) => (
               <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <Icon name="Check" size={15} className="text-[#C8A96A]" />
-                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
+                <Icon name="Check" size={17} className="text-[#C8A96A]" />
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: "#C9C4BB", fontWeight: 400 }}>{p}</span>
               </div>
             ))}
           </div>
