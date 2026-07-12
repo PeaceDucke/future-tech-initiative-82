@@ -2973,7 +2973,7 @@ function PipelineSection() {
 
                 </div>
                 <p className="pipeline-card2-text" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: "#FBF6EC", lineHeight: 1.2, textAlign: "center" }}>
-                  Voice-Tec Ai укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
+                  Voice-Tec AI укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }} />
@@ -3004,7 +3004,7 @@ function PipelineSection() {
                   { img: "/bw/waveform.png", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
                   { img: "/bw/growth.png", title: "Больше успешных сделок без увеличения рекламного бюджета.", desc: "" },
                   { img: "/bw/managers.png", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
-                  { img: "/bw/shield.png", title: "Сокращение расходов на контроль качества", desc: "Voice-Tec Ai берет на себя контроль качества вместо ручной проверки." },
+                  { img: "/bw/shield.png", title: "Сокращение расходов на контроль качества", desc: "Voice-Tec AI берет на себя контроль качества вместо ручной проверки." },
                   { img: "/bw/magnifier.png", title: "Мгновенное выявление ошибок в разговорах", desc: "Реагируйте до того, как клиент уйдет." },
                   { img: "/bw/monitor.png", title: "Ясные отчёты для РОПа", desc: "Вся картина бизнеса на одном экране." },
                 ].map((item) => (
