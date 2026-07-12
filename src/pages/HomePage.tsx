@@ -1455,14 +1455,14 @@ function SplineFeatureSection() {
           {/* Центр: линии + текст */}
           <div className="aiv-params-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 34px", position: "relative", zIndex: 2 }}>
             <p style={{
-              fontFamily: '"Jost", sans-serif',
-              fontSize: "19px",
+              fontFamily: '"Prata", serif',
+              fontSize: "21px",
               color: "#F3EDE3",
-              fontWeight: 500,
+              fontWeight: 400,
               lineHeight: 1.35,
               textAlign: "center",
               maxWidth: "260px",
-              marginTop: "-50px",
+              marginTop: "-10px",
             }}>Анализ более чем по 100 параметрам</p>
             <p style={{
               fontFamily: "Inter, sans-serif",
