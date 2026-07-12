@@ -1188,13 +1188,13 @@ function SplineFeatureSection() {
         }}>
           <h2 className="aiv-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(30px, 4.5vw, 58px)",
+            fontSize: "50px",
             color: T,
             fontWeight: 400,
             lineHeight: 1.1,
             marginBottom: "20px",
           }}>
-            Что AI видит внутри разговора
+            Voice-Tec AI находит моменты, где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
           </h2>
           <p className="aiv-sub" style={{
             fontFamily: "Inter, sans-serif",
@@ -1204,7 +1204,7 @@ function SplineFeatureSection() {
             margin: "0 auto",
             lineHeight: 1.8,
           }}>
-            Voice-Tec находит моменты, где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
+            Что AI видит внутри разговора
           </p>
         </div>
 
