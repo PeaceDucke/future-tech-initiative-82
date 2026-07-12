@@ -4660,7 +4660,7 @@ export function HomePage() {
                   <div className="flex items-center justify-between px-7 py-2 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-text-rgb),0.18)" }}>
                     <div className="flex items-center gap-3">
                       <img src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fd1a04bf-8588-4d0b-9867-0052fba13e81.png" alt="Voice-Tec" style={{ width: "49px", height: "44px", objectFit: "fill" }} />
-                      <span style={{ fontFamily: '"Cabinet Grotesk", sans-serif', fontSize: "27px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 500 }}>Voice<span style={{ color: "var(--db-text-main)", opacity: 0.6 }}>-Tec</span></span>
+                      <span style={{ fontFamily: '"Cabinet Grotesk", sans-serif', fontSize: "30px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 700 }}>Voice<span style={{ color: "var(--db-text-main)", opacity: 0.6 }}>-Tec</span></span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "var(--db-bg-1)", border: "1px solid rgba(var(--db-text-rgb),0.25)" }}>
