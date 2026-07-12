@@ -1414,7 +1414,7 @@ function SplineFeatureSection() {
         {/* ── Params: две колонки с линиями к белой карточке ── */}
         <div className="aiv-params" style={{
           position: "relative", zIndex: 3,
-          marginTop: "110px",
+          marginTop: "20px",
           display: "grid",
           gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
