@@ -2965,7 +2965,7 @@ function PipelineSection() {
 
                 </div>
                 <p className="pipeline-card2-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#FBF6EC", lineHeight: 1.8, textAlign: "justify" }}>
-                  ИИ укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
+                  Voice-Tec Ai укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }} />
