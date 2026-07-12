@@ -1098,7 +1098,7 @@ function SplineFeatureSection() {
           WebkitBackdropFilter: "blur(24px)",
           border: `1px solid ${borderColor}`,
           borderRadius: "22px",
-          padding: isLight ? "38px 40px" : "32px 32px",
+          padding: isLight ? "35px 36px" : "29px 29px",
           width: "100%",
           cursor: "default",
           boxShadow: shadow,
@@ -1135,7 +1135,7 @@ function SplineFeatureSection() {
         {/* Title */}
         <p className="aiv-card-title" style={{
           fontFamily: '"Bodoni Moda", Georgia, serif',
-          fontSize: isLight ? "26px" : "21px",
+          fontSize: isLight ? "24px" : "19px",
           color: isLight ? "#16140F" : "#F7F2EA",
           fontWeight: 400,
           lineHeight: 1.22,
@@ -1155,7 +1155,7 @@ function SplineFeatureSection() {
             {c.lead && (
               <p className="aiv-card-lead" style={{
                 fontFamily: "Inter, sans-serif",
-                fontSize: "13.5px",
+                fontSize: "11.5px",
                 color: "#9a9690",
                 letterSpacing: "0.03em",
                 marginBottom: "14px",
@@ -1175,7 +1175,7 @@ function SplineFeatureSection() {
                   }}>✓</span>
                   <span style={{
                     fontFamily: "Inter, sans-serif",
-                    fontSize: "14.5px",
+                    fontSize: "12.5px",
                     color: "#D6D3CD",
                     lineHeight: 1.5,
                     fontWeight: 400,
@@ -1189,7 +1189,7 @@ function SplineFeatureSection() {
                 <div style={{ height: "1px", background: `linear-gradient(to right, ${accentColor}40, transparent)`, marginBottom: "14px" }} />
                 <p style={{
                   fontFamily: "Inter, sans-serif",
-                  fontSize: "13.5px",
+                  fontSize: "11.5px",
                   color: "#9a9690",
                   lineHeight: 1.55,
                   fontStyle: "italic",
@@ -1203,7 +1203,7 @@ function SplineFeatureSection() {
             {/* Body */}
             <p className="aiv-card-body" style={{
               fontFamily: "Inter, sans-serif",
-              fontSize: isLight ? "16px" : "15px",
+              fontSize: isLight ? "14px" : "13px",
               color: isLight ? "#3A352C" : "#D6D3CD",
               lineHeight: 1.68,
               marginBottom: c.reco ? "18px" : "24px",
@@ -1222,7 +1222,7 @@ function SplineFeatureSection() {
                 {c.recoLabel && (
                   <p style={{
                     fontFamily: "Inter, sans-serif",
-                    fontSize: "12px",
+                    fontSize: "10px",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase" as const,
                     color: accentColor,
@@ -1232,7 +1232,7 @@ function SplineFeatureSection() {
                 )}
                 <p style={{
                   fontFamily: "Inter, sans-serif",
-                  fontSize: isLight ? "15px" : "14px",
+                  fontSize: isLight ? "13px" : "12px",
                   color: isLight ? "#26241E" : "#E4E1DB",
                   lineHeight: 1.6,
                   fontWeight: 400,
@@ -1262,13 +1262,13 @@ function SplineFeatureSection() {
             <div className="aiv-card-metric" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span style={{
                 fontFamily: "Inter, sans-serif",
-                fontSize: isLight ? "14px" : "13.5px",
+                fontSize: isLight ? "12px" : "11.5px",
                 color: isLight ? "#6B6456" : "#9a9690",
                 letterSpacing: "0.03em",
               }}>{c.metric}</span>
               <span style={{
                 fontFamily: "Inter, sans-serif",
-                fontSize: isLight ? "15px" : "14px",
+                fontSize: isLight ? "13px" : "12px",
                 color: accentColor,
                 fontWeight: 700,
                 letterSpacing: "0.05em",
@@ -1354,7 +1354,7 @@ function SplineFeatureSection() {
             <LazySpline
               scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
               containerStyle={{ width: "100%", height: "100%" }}
-              style={{ width: "100%", height: "100%", transform: "scale(0.667)", transformOrigin: "center center" }}
+              style={{ width: "100%", height: "100%", transform: "scale(0.476)", transformOrigin: "center center" }}
             />
             {/* Fade edges - скрывают края canvas, не мешают событиям */}
             <div style={{
@@ -1375,7 +1375,7 @@ function SplineFeatureSection() {
           {/* pointer-events: none на всех обёртках - Spline видит мышь везде */}
           {/* pointer-events: auto только на самих карточках */}
           <div className="aiv-grid grid" style={{
-            gridTemplateColumns: "400px 1fr 400px",
+            gridTemplateColumns: "364px 1fr 364px",
             gridTemplateRows: "auto",
             gap: "22px",
             alignItems: "center",
@@ -1404,7 +1404,7 @@ function SplineFeatureSection() {
 
           {/* Bottom center card */}
           <div className="aiv-bottom flex" style={{ justifyContent: "center", marginTop: "24px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
-            <div style={{ width: "540px", pointerEvents: "none" }}>
+            <div style={{ width: "491px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
           </div>
