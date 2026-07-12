@@ -4380,7 +4380,7 @@ export function HomePage() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-2 text-[18px] rounded-lg transition-all duration-200"
+                  className="px-4 py-2 text-[17px] rounded-lg transition-all duration-200"
                   style={{ color: "rgba(251,246,236,0.95)", fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                 >
                   {item.label}
@@ -4391,7 +4391,7 @@ export function HomePage() {
             <div className="flex items-center gap-4 ml-auto">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-3">
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
+                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
                   Остались вопросы?<br />Напишите нам!
                 </div>
                 <Icon name="ArrowRight" size={20} style={{ color: "#D4B074" }} />
