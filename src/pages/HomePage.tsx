@@ -1403,7 +1403,7 @@ function SplineFeatureSection() {
           </div>
 
           {/* Bottom center card */}
-          <div className="aiv-bottom flex" style={{ justifyContent: "center", marginTop: "24px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
+          <div className="aiv-bottom flex" style={{ justifyContent: "center", marginTop: "-60px", position: "relative", zIndex: 3, pointerEvents: "none" }}>
             <div style={{ width: "491px", pointerEvents: "none" }}>
               <Card card={cards[4]} idx={4} />
             </div>
