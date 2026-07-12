@@ -1437,9 +1437,9 @@ function SplineFeatureSection() {
               </linearGradient>
             </defs>
             {/* левая линия — исток от ЛЕВОГО угла карточки к левому списку */}
-            <path d="M 300 0 L 300 200" stroke="url(#paramLineL)" strokeWidth="1.4" fill="none" />
+            <path d="M 160 0 L 300 200" stroke="url(#paramLineL)" strokeWidth="1.4" fill="none" />
             {/* правая линия — исток от ПРАВОГО угла карточки к правому списку */}
-            <path d="M 700 0 L 700 200" stroke="url(#paramLineR)" strokeWidth="1.4" fill="none" />
+            <path d="M 840 0 L 700 200" stroke="url(#paramLineR)" strokeWidth="1.4" fill="none" />
           </svg>
 
           {/* Левая колонка */}
