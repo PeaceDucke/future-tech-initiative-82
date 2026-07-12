@@ -1436,10 +1436,10 @@ function SplineFeatureSection() {
 
           {/* Центр: линии + текст */}
           <div className="aiv-params-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 34px", position: "relative" }}>
-            {/* линия влево */}
-            <div className="aiv-params-line-l" style={{ position: "absolute", right: "100%", top: "50%", width: "170px", height: "1px", background: "linear-gradient(to left, rgba(200,169,106,0.55), transparent)" }} />
-            {/* линия вправо */}
-            <div className="aiv-params-line-r" style={{ position: "absolute", left: "100%", top: "50%", width: "170px", height: "1px", background: "linear-gradient(to right, rgba(200,169,106,0.55), transparent)" }} />
+            {/* линия влево — от белой карточки к списку */}
+            <div className="aiv-params-line-l" style={{ position: "absolute", right: "100%", top: "50%", width: "270px", height: "1px", background: "linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,0.15))" }} />
+            {/* линия вправо — от белой карточки к списку */}
+            <div className="aiv-params-line-r" style={{ position: "absolute", left: "100%", top: "50%", width: "270px", height: "1px", background: "linear-gradient(to right, rgba(255,255,255,0.75), rgba(255,255,255,0.15))" }} />
             <p style={{
               fontFamily: '"Jost", sans-serif',
               fontSize: "19px",
