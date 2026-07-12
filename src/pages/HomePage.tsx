@@ -4659,7 +4659,7 @@ export function HomePage() {
                   {/* Topbar */}
                   <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-text-rgb),0.18)" }}>
                     <div className="flex items-center gap-3">
-                      <img src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ab26415c-e7bb-47b8-ab19-87e0fdc1994b.png" alt="Voice-Tec" style={{ width: "50px", height: "50px", objectFit: "contain" }} />
+                      <img src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fd1a04bf-8588-4d0b-9867-0052fba13e81.png" alt="Voice-Tec" style={{ width: "50px", height: "50px", objectFit: "contain" }} />
                       <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "27px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 700 }}>VOICE<span style={{ color: "var(--db-text-main)", opacity: 0.6 }}>–TEC</span></span>
                     </div>
                     <div className="flex items-center gap-3">
