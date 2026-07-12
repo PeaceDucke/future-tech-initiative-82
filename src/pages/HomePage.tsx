@@ -1040,11 +1040,13 @@ function SplineFeatureSection() {
     },
     {
       badge: "Recommendation",
-      title: "AI Score: 62 / 100",
-      text: "Звонок можно было закрыть. AI разобрал его по шагам: выяви потребность в начале, сними ключевое возражение и зафиксируй следующий шаг с клиентом - и конверсия пойдёт вверх.",
+      title: "Оценка AI: 59 / 100",
+      text: "На 01:27 клиент выразил сомнение. Менеджер проигнорировал его и продолжил презентацию.",
+      recoLabel: "AI рекомендует",
+      reco: "Ответьте на сомнение клиента до перехода к следующему этапу разговора.",
       metric: "Потенциал роста конверсии",
-      metricVal: "+18%",
-      progress: 62,
+      metricVal: "+21%",
+      progress: 59,
       tone: "light" as const,
       pos: "bottom-center",
     },
@@ -1054,6 +1056,7 @@ function SplineFeatureSection() {
     const c = card as {
       badge: string; title: string; tone: string; pos: string;
       emoji?: string; lead?: string; items?: string[]; footer?: string;
+      recoLabel?: string; reco?: string;
       text?: string; metric?: string; metricVal?: string; progress?: number;
     };
     const active = hovered === idx;
@@ -1203,9 +1206,39 @@ function SplineFeatureSection() {
               fontSize: isLight ? "16px" : "15px",
               color: isLight ? "#3A352C" : "#D6D3CD",
               lineHeight: 1.68,
-              marginBottom: "24px",
+              marginBottom: c.reco ? "18px" : "24px",
               fontWeight: 400,
             }}>{c.text}</p>
+
+            {/* AI recommendation */}
+            {c.reco && (
+              <div style={{
+                background: isLight ? "rgba(47,143,78,0.07)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${accentColor}33`,
+                borderRadius: "12px",
+                padding: "14px 16px",
+                marginBottom: "24px",
+              }}>
+                {c.recoLabel && (
+                  <p style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "12px",
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase" as const,
+                    color: accentColor,
+                    fontWeight: 700,
+                    marginBottom: "7px",
+                  }}>{c.recoLabel}</p>
+                )}
+                <p style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: isLight ? "15px" : "14px",
+                  color: isLight ? "#26241E" : "#E4E1DB",
+                  lineHeight: 1.6,
+                  fontWeight: 400,
+                }}>{c.reco}</p>
+              </div>
+            )}
 
             {/* Progress bar */}
             <div className="aiv-card-progress" style={{ marginBottom: "16px" }}>
