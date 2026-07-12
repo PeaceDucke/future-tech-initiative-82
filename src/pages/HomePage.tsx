@@ -2957,7 +2957,7 @@ function PipelineSection() {
                       { icon: "FileWarning", title: "Нарушения скрипта продаж", detail: "менеджер уходит от структуры в критический момент" },
                       { icon: "ShieldAlert", title: "Слабая обработка возражений", detail: "клиент уходит с неотработанным сомнением" },
                       { icon: "Activity", title: "Потеря интереса клиента", detail: "AI фиксирует момент, когда клиент «отключился»" },
-                      { icon: "UserX", title: "Ошибки и давление менеджера", detail: "перебивания, игнорирование потребностей" },
+                      { icon: "UserX", title: "Ошибки менеджера", detail: "перебивания, игнорирование потребностей" },
                     ].map((r) => (
                       <CauseFlipCard key={r.title} icon={r.icon} title={r.title} detail={r.detail} />
                     ))}
