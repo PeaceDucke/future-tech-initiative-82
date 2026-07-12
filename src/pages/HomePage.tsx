@@ -1383,8 +1383,8 @@ function SplineFeatureSection() {
             zIndex: 3,
             minHeight: "580px",
             pointerEvents: "none",
-            marginLeft: "40px",
-            marginRight: "40px",
+            marginLeft: "-10px",
+            marginRight: "-10px",
           }}>
             {/* Left column */}
             <div style={{ display: "flex", flexDirection: "column", gap: "20px", pointerEvents: "none" }}>
