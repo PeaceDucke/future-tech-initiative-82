@@ -1424,6 +1424,24 @@ function SplineFeatureSection() {
           marginLeft: "50%", marginRight: "0",
           transform: "translateX(-50%)",
         }}>
+          {/* Линии из белой карточки к спискам */}
+          <svg className="aiv-params-svg" width="100%" height="100%" viewBox="0 0 1000 340" preserveAspectRatio="none" style={{ position: "absolute", top: "-70px", left: 0, width: "100%", height: "calc(100% + 70px)", zIndex: 1, pointerEvents: "none", overflow: "visible" }}>
+            <defs>
+              <linearGradient id="paramLineL" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.85)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.12)" />
+              </linearGradient>
+              <linearGradient id="paramLineR" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.85)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.12)" />
+              </linearGradient>
+            </defs>
+            {/* из низа карточки (центр сверху) к левому списку */}
+            <path d="M 500 0 L 300 200" stroke="url(#paramLineL)" strokeWidth="1.4" fill="none" />
+            {/* из низа карточки (центр сверху) к правому списку */}
+            <path d="M 500 0 L 700 200" stroke="url(#paramLineR)" strokeWidth="1.4" fill="none" />
+          </svg>
+
           {/* Левая колонка */}
           <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "16px", alignItems: "flex-end", textAlign: "right", paddingRight: "140px" }}>
             {["Скрипт продаж", "Эмоции клиента", "Возражения", "Скорость реакции", "Перебивания"].map((p) => (
@@ -1435,11 +1453,7 @@ function SplineFeatureSection() {
           </div>
 
           {/* Центр: линии + текст */}
-          <div className="aiv-params-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 34px", position: "relative" }}>
-            {/* линия влево — от белой карточки к списку */}
-            <div className="aiv-params-line-l" style={{ position: "absolute", right: "100%", top: "50%", width: "270px", height: "1px", background: "linear-gradient(to left, rgba(255,255,255,0.75), rgba(255,255,255,0.15))" }} />
-            {/* линия вправо — от белой карточки к списку */}
-            <div className="aiv-params-line-r" style={{ position: "absolute", left: "100%", top: "50%", width: "270px", height: "1px", background: "linear-gradient(to right, rgba(255,255,255,0.75), rgba(255,255,255,0.15))" }} />
+          <div className="aiv-params-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 34px", position: "relative", zIndex: 2 }}>
             <p style={{
               fontFamily: '"Jost", sans-serif',
               fontSize: "19px",
@@ -1485,7 +1499,7 @@ function SplineFeatureSection() {
             margin-top: 28px !important;
             padding: 0 16px;
           }
-          .aiv-params-line-l, .aiv-params-line-r { display: none !important; }
+          .aiv-params-svg { display: none !important; }
           .aiv-params-center { order: -1; padding: 0 !important; }
           .aiv-params-center p:first-of-type { font-size: 17px !important; }
           .aiv-params-col { align-items: center !important; text-align: center !important; gap: 12px !important; }
