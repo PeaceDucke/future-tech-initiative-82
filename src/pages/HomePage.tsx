@@ -1470,7 +1470,7 @@ function SplineFeatureSection() {
               letterSpacing: "0.08em",
               color: "#C8A96A",
               fontWeight: 600,
-              marginTop: "110px",
+              marginTop: "180px",
               textTransform: "uppercase" as const,
             }}>+ ещё 90+ параметров</p>
           </div>
