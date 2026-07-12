@@ -4660,7 +4660,7 @@ export function HomePage() {
                   <div className="flex items-center justify-between px-7 py-4 border-b" style={{ background: "var(--db-bg-2)", borderColor: "rgba(var(--db-text-rgb),0.18)" }}>
                     <div className="flex items-center gap-3">
                       <Icon name="Waves" size={18} style={{ color: "var(--db-text-main)" }} />
-                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 600 }}>SALES<span style={{ color: "var(--db-text-main)", opacity: 0.6 }}>FLOW</span></span>
+                      <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "18px", color: "var(--db-text-main)", letterSpacing: "0.08em", fontWeight: 600 }}>VOICE<span style={{ color: "var(--db-text-main)", opacity: 0.6 }}>–TEC</span></span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2 px-3.5 py-1.5 rounded" style={{ background: "var(--db-bg-1)", border: "1px solid rgba(var(--db-text-rgb),0.25)" }}>
