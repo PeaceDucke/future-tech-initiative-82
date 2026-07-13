@@ -3034,7 +3034,14 @@ function PipelineSection() {
         {/* Header */}
         <div className="text-center mb-24">
           <h2 style={{ ...h2Style, fontSize: "clamp(22px, 5vw, 50px)", lineHeight: 1.1, marginBottom: "22px" }}>
-            Вы не видите 95% того, что<br />происходит в разговорах с клиентами
+<span style={{
+              backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+            }}>Вы не видите 95% того</span>, что<br />происходит в разговорах с клиентами
           </h2>
         </div>
 
