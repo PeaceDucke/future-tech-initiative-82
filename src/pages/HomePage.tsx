@@ -3130,6 +3130,7 @@ function PipelineSection() {
                   filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
                   fontWeight: 700,
                   fontFamily: "Jost, sans-serif",
+                  fontSize: "49px",
                 }}>Voice-Tec AI</span> видит то, что невозможно<br />контролировать вручную
               </motion.h2>
             </Section>
