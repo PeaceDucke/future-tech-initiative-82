@@ -1312,7 +1312,7 @@ function SplineFeatureSection() {
             lineHeight: 1.2,
             marginBottom: "20px",
           }}>
-            <span style={{ whiteSpace: "nowrap" }}>Voice-Tec AI находит моменты, где менеджеры теряют клиентов,</span><br />и показывает, как вернуть продажи.
+Voice-Tec AI находит моменты,<br />где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
           </h2>
           <p className="aiv-sub" style={{
             fontFamily: "Inter, sans-serif",
