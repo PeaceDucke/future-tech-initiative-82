@@ -1323,7 +1323,7 @@ Voice-Tec AI находит моменты,<br />где менеджеры те�
           </h2>
           <p className="aiv-sub" style={{
             fontFamily: "Jost, sans-serif",
-            fontSize: "20px",
+            fontSize: "22px",
             color: "#FFFFFF",
             maxWidth: "520px",
             margin: "0 auto",
@@ -4634,7 +4634,14 @@ export function HomePage() {
                   <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
                 </div>
                 <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
-                  Всё в одном окне
+                  <span style={{
+                    backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
+                    filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+                  }}>Всё</span> в одном окне
                 </h2>
                 <p style={{ ...bodyText, fontSize: "14px", margin: "0 auto", whiteSpace: "nowrap" }}>
                   Аналитика звонков, воронки, менеджеры, статистика и AI-инсайты - единый дашборд без лишних вкладок
