@@ -1315,9 +1315,9 @@ function SplineFeatureSection() {
 Voice-Tec AI находит моменты,<br />где менеджеры теряют клиентов,<br />и показывает, как вернуть продажи.
           </h2>
           <p className="aiv-sub" style={{
-            fontFamily: "Inter, sans-serif",
-            fontSize: "16px",
-            color: S,
+            fontFamily: "Jost, sans-serif",
+            fontSize: "20px",
+            color: "#FFFFFF",
             maxWidth: "520px",
             margin: "0 auto",
             lineHeight: 1.8,
