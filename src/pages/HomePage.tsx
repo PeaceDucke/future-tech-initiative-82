@@ -3146,7 +3146,7 @@ function PipelineSection() {
               <div className="pc pipeline-card-right w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
-                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, marginBottom: "56px", textAlign: "center" }}>
+                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, marginTop: "12px", marginBottom: "44px", textAlign: "center" }}>
                   Искусственный интеллект анализирует<br />100% звонков и делает оценку опираясь<br />на скрипты и нормы менеджмента<br />вашей компании.
                 </h3>
 
@@ -3180,7 +3180,7 @@ function PipelineSection() {
                   </div>
 
                 </div>
-                <p className="pipeline-card2-text" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: "#FBF6EC", lineHeight: 1.2, textAlign: "center" }}>
+                <p className="pipeline-card2-text" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: "#FBF6EC", lineHeight: 1.2, textAlign: "center", marginTop: "-12px" }}>
                   Voice-Tec AI укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
