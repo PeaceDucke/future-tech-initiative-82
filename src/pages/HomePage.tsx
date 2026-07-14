@@ -2740,7 +2740,7 @@ function BeforeAfterSection() {
             >
               <div style={{
                 fontFamily: "Jost, sans-serif",
-                fontSize: "30px",
+                fontSize: "32px",
                 fontWeight: 600,
                 textAlign: "center",
                 backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
@@ -2760,7 +2760,7 @@ function BeforeAfterSection() {
             >
               <div style={{
                 fontFamily: "Jost, sans-serif",
-                fontSize: "30px",
+                fontSize: "32px",
                 fontWeight: 600,
                 textAlign: "center",
                 backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
