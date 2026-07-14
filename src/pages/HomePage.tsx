@@ -2823,7 +2823,7 @@ function BeforeAfterSection() {
                 >
                   <Icon name="X" size={20} className="cb-icon" style={{ color: RED, flexShrink: 0, opacity: 0.7 }} />
                   <div style={{ flex: 1 }}>
-                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)", color: RED, fontWeight: 600, lineHeight: 1.05 }}>{row.before.value}</div>
+                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)", color: "#FF9A8B", fontWeight: 600, lineHeight: 1.05, textShadow: "0 1px 12px rgba(255,107,107,0.35)" }}>{row.before.value}</div>
                     <div className="cb-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.62)", marginTop: "6px", lineHeight: 1.4 }}>{row.before.label}</div>
                   </div>
                 </motion.div>
