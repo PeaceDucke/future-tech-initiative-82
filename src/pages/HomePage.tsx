@@ -2736,25 +2736,40 @@ function BeforeAfterSection() {
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="flex items-center gap-3"
+              className="flex items-center justify-center"
             >
-              <div>
-                <div className="cb-head-title" style={{ ...labelCss, color: RED, fontSize: "18px" }}>До Voice-Tec</div>
-                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
-              </div>
+              <div style={{
+                fontFamily: "Jost, sans-serif",
+                fontSize: "26px",
+                fontWeight: 600,
+                textAlign: "center",
+                backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+                filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+              }}>До Voice-Tec</div>
             </motion.div>
             <div />
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="flex items-center gap-3 justify-end"
-              style={{ textAlign: "right" }}
+              className="flex items-center justify-center"
             >
-              <div>
-                <div className="cb-head-title" style={{ ...labelCss, color: GREEN, fontSize: "18px" }}>С Voice-Tec</div>
-                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
-              </div>
+              <div style={{
+                fontFamily: "Jost, sans-serif",
+                fontSize: "26px",
+                fontWeight: 600,
+                textAlign: "center",
+                backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+                filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+              }}>С Voice-Tec</div>
             </motion.div>
           </div>
 
