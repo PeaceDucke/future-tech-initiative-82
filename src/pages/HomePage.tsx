@@ -2892,7 +2892,7 @@ function BeforeAfterSection() {
               background: "linear-gradient(135deg, #1a1a17 0%, #131311 42%, #0d0d0c 72%, #16150f 100%)",
               border: "1px solid rgba(212,176,116,0.28)",
               borderRadius: "24px",
-              padding: "clamp(28px, 4vw, 44px) clamp(28px, 5vw, 56px)",
+              padding: "clamp(22px, 4vw, 34px) clamp(24px, 5vw, 48px)",
               display: "flex",
               flexWrap: "wrap",
               alignItems: "center",
@@ -2903,7 +2903,7 @@ function BeforeAfterSection() {
           >
             <div style={{ maxWidth: "620px" }}>
               <div className="cb-result-label" style={{ ...labelCss, color: G, marginBottom: "12px" }}>Итог</div>
-              <div className="cb-result-text" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(26px, 3.4vw, 42px)", color: W, lineHeight: 1.12, fontWeight: 500 }}>
+              <div className="cb-result-text" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(24px, 3.4vw, 40px)", color: W, lineHeight: 1.12, fontWeight: 500 }}>
                 Та же команда. Тот же трафик.<br />
                 <span style={{ color: G, fontStyle: "italic" }}>Совсем другая выручка.</span>
               </div>
@@ -2915,7 +2915,7 @@ function BeforeAfterSection() {
                 display: "inline-flex", alignItems: "center", gap: "14px",
                 background: "linear-gradient(135deg, #1c1b17 0%, #141310 50%, #1a1814 100%)",
                 color: G,
-                padding: "18px 38px", borderRadius: "10px",
+                padding: "15px 32px", borderRadius: "10px",
                 border: "1px solid rgba(212,176,116,0.45)",
                 fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px",
                 letterSpacing: "0.04em", textTransform: "uppercase",
