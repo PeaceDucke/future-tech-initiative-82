@@ -2722,9 +2722,17 @@ function BeforeAfterSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.1 }}
+            style={{ ...h2Style, fontSize: "50px", lineHeight: 1.1 }}
           >
-            Как меняется бизнес <span style={{ color: G, fontStyle: "italic" }}>с нами</span>
+            Как меняется бизнес <span style={{
+              fontStyle: "italic",
+              backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+            }}>с нами</span>
           </motion.h2>
         </div>
 
