@@ -2738,12 +2738,9 @@ function BeforeAfterSection() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="flex items-center gap-3"
             >
-              <div className="cb-head-ic" style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,107,107,0.10)", border: "1px solid rgba(255,107,107,0.28)" }}>
-                <Icon name="TrendingDown" size={22} style={{ color: RED }} />
-              </div>
               <div>
-                <div className="cb-head-title" style={{ ...labelCss, color: RED, fontSize: "12px" }}>До Voice-Tec</div>
-                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
+                <div className="cb-head-title" style={{ ...labelCss, color: RED, fontSize: "18px" }}>До Voice-Tec</div>
+                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Деньги утекают незаметно</div>
               </div>
             </motion.div>
             <div />
@@ -2755,11 +2752,8 @@ function BeforeAfterSection() {
               style={{ textAlign: "right" }}
             >
               <div>
-                <div className="cb-head-title" style={{ ...labelCss, color: GREEN, fontSize: "12px" }}>С Voice-Tec</div>
-                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
-              </div>
-              <div className="cb-head-ic" style={{ width: "44px", height: "44px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(212,176,116,0.12)", border: "1px solid rgba(212,176,116,0.32)" }}>
-                <Icon name="TrendingUp" size={22} style={{ color: G }} />
+                <div className="cb-head-title" style={{ ...labelCss, color: GREEN, fontSize: "18px" }}>С Voice-Tec</div>
+                <div className="cb-head-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.5)", marginTop: "2px" }}>Контроль и рост выручки</div>
               </div>
             </motion.div>
           </div>
