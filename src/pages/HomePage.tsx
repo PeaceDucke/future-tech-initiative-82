@@ -2814,7 +2814,7 @@ function BeforeAfterSection() {
                     border: "1px solid rgba(255,107,107,0.28)",
                     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.5)",
                     borderRadius: "18px",
-                    padding: "22px 26px",
+                    padding: "17px 22px",
                     display: "flex",
                     alignItems: "center",
                     gap: "20px",
@@ -2823,7 +2823,7 @@ function BeforeAfterSection() {
                 >
                   <Icon name="X" size={20} className="cb-icon" style={{ color: RED, flexShrink: 0, opacity: 0.7 }} />
                   <div style={{ flex: 1 }}>
-                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: RED, fontWeight: 600, lineHeight: 1.05 }}>{row.before.value}</div>
+                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)", color: RED, fontWeight: 600, lineHeight: 1.05 }}>{row.before.value}</div>
                     <div className="cb-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.62)", marginTop: "6px", lineHeight: 1.4 }}>{row.before.label}</div>
                   </div>
                 </motion.div>
@@ -2862,7 +2862,7 @@ function BeforeAfterSection() {
                     border: "1px solid rgba(212,176,116,0.30)",
                     boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.5)",
                     borderRadius: "18px",
-                    padding: "22px 26px",
+                    padding: "17px 22px",
                     display: "flex",
                     alignItems: "center",
                     gap: "20px",
@@ -2873,7 +2873,7 @@ function BeforeAfterSection() {
                     <Icon name="Check" size={18} style={{ color: GREEN }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(22px, 2.4vw, 30px)", color: G, fontWeight: 600, lineHeight: 1.05, textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>{row.after.value}</div>
+                    <div className="cb-value" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 28px)", color: G, fontWeight: 600, lineHeight: 1.05, textShadow: "0 0 24px rgba(212,176,116,0.25)" }}>{row.after.value}</div>
                     <div className="cb-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: W, opacity: 0.85, marginTop: "6px", lineHeight: 1.4 }}>{row.after.label}</div>
                   </div>
                 </motion.div>
