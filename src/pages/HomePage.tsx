@@ -2598,29 +2598,29 @@ function CaseCard({ it, i, inView }: {
         position: "relative", display: "flex", flexDirection: "column",
         background: `
           linear-gradient(135deg,
-            ${hexToRgba(A, 0.1)} 0%,
-            rgba(18,18,19,0.94) 24%,
+            ${hexToRgba(A, 0.055)} 0%,
+            rgba(18,18,19,0.96) 26%,
             #0d0d0e 48%,
             #101011 62%,
-            rgba(20,20,21,0.94) 80%,
-            ${hexToRgba(A, 0.07)} 100%)
+            rgba(20,20,21,0.96) 82%,
+            ${hexToRgba(A, 0.038)} 100%)
         `,
         border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: "22px",
         overflow: "hidden", padding: "26px 24px",
-        boxShadow: `inset 0 1px 0 ${hexToRgba(A, 0.14)}, inset 0 -1px 0 rgba(0,0,0,0.6), 0 14px 40px rgba(0,0,0,0.5)`,
+        boxShadow: `inset 0 1px 0 ${hexToRgba(A, 0.08)}, inset 0 -1px 0 rgba(0,0,0,0.6), 0 14px 40px rgba(0,0,0,0.5)`,
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
       {/* металлический блик */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-        background: `linear-gradient(115deg, transparent 32%, ${hexToRgba(A, 0.07)} 47%, rgba(255,255,255,0.035) 50%, transparent 62%)`,
+        background: `linear-gradient(115deg, transparent 32%, ${hexToRgba(A, 0.04)} 47%, rgba(255,255,255,0.025) 50%, transparent 62%)`,
       }} />
       <div style={{
         position: "absolute", top: "-30%", right: "-10%", width: "60%", height: "60%",
         pointerEvents: "none", zIndex: 0,
-        background: `radial-gradient(circle, ${hexToRgba(A, 0.09)} 0%, transparent 70%)`,
+        background: `radial-gradient(circle, ${hexToRgba(A, 0.05)} 0%, transparent 70%)`,
         filter: "blur(20px)",
       }} />
 
