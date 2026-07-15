@@ -1630,30 +1630,78 @@ function AudienceSection() {
     {
       icon: "Briefcase",
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/991277f7-dfcc-45e9-bd9b-a8f1295d68b9.jpg",
-      tag: "Отделы продаж B2B и B2C",
+      tag: "Отделы продаж",
       desc: "Для компаний, где менеджеры обрабатывают входящие заявки, проводят консультации, презентуют продукт и закрывают сделки.",
       gain: "Видите каждый этап сделки и точно знаете, где теряется клиент - конверсия растёт без расширения штата.",
     },
     {
       icon: "Headphones",
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/e20956ae-3ebf-4f89-9e40-54cdf6b5b924.jpg",
-      tag: "Колл-центры и контакт-центры",
+      tag: "Колл-центры",
       desc: "Для команд, где много звонков, операторов и повторяющихся сценариев общения.",
       gain: "Автоматически проверяете 100% разговоров и видите, кто работает по стандарту, а кому нужна помощь - качество растёт по всей команде.",
     },
     {
       icon: "Building2",
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/31bf772a-18d2-439e-98f3-1a361a364f1a.jpg",
-      tag: "Недвижимость, авто и премиум",
-      desc: "Автодилеры, агентства недвижимости, ремонт под ключ, юридические услуги, консалтинг, премиальные услуги.",
+      tag: "Недвижимость",
+      desc: "Агентства недвижимости, застройщики, ремонт под ключ и премиальные объекты, где важен каждый дорогой лид.",
       gain: "Каждый дорогой лид отработан по скрипту - менеджер не теряет сделку, и вы выигрываете у конкурентов в сравнении.",
     },
     {
       icon: "Stethoscope",
       img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/b49f2db2-60fc-44d2-b856-50935b537e5f.jpg",
-      tag: "Клиники, медцентры и эстетика",
-      desc: "Для бизнесов, где запись зависит от качества консультации администратора или менеджера.",
+      tag: "Медицина",
+      desc: "Клиники, медцентры и эстетика, где запись зависит от качества консультации администратора или менеджера.",
       gain: "Администраторы объясняют ценность и снимают сомнения - больше пациентов записываются и доходят до визита.",
+    },
+    {
+      icon: "Car",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/f16845f7-4ec3-4acf-8d33-fbe30040659f.jpg",
+      tag: "Автобизнес",
+      desc: "Автодилеры, автосалоны и сервисы, где сделка зависит от того, как менеджер отработал звонок и презентовал предложение.",
+      gain: "Каждый входящий по авто отработан по стандарту - меньше упущенных клиентов и выше средний чек сделки.",
+    },
+  ];
+
+  const blockTwoRef = useRef(null);
+  const blockTwoInView = useInView(blockTwoRef, { once: true, margin: "-120px" });
+
+  const blockTwo = [
+    {
+      icon: "Landmark",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/228a365f-5c5a-4476-bc42-4c1b6bc0685d.jpg",
+      tag: "Банки",
+      desc: "Для банков и финансовых организаций, где консультации по продуктам и заявкам идут потоком каждый день.",
+      gain: "Контролируете качество консультаций и соблюдение скриптов - больше одобренных заявок и меньше жалоб.",
+    },
+    {
+      icon: "ShieldCheck",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/9bcc0dcf-f7a0-4180-8c73-2d9aa7692ce2.jpg",
+      tag: "Страхование",
+      desc: "Для страховых компаний и агентов, где продажа полиса зависит от того, как проведён разговор с клиентом.",
+      gain: "Видите, где агент недожал клиента - выше конверсия в оформленный полис и продление договоров.",
+    },
+    {
+      icon: "Scale",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/a413b453-fdfc-470b-be73-a970dd1fa608.jpg",
+      tag: "Юридические услуги",
+      desc: "Для юридических фирм и консалтинга, где первичная консультация определяет, придёт ли клиент на сделку.",
+      gain: "Каждая консультация отработана по стандарту - больше клиентов доходят до договора и оплаты.",
+    },
+    {
+      icon: "Wrench",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/84e18b9c-4f19-486f-95a0-d50117b28ccd.jpg",
+      tag: "Сервисные компании",
+      desc: "Для сервисов и служб поддержки, где качество общения с клиентом напрямую влияет на повторные обращения.",
+      gain: "Контролируете 100% обращений - выше удовлетворённость клиентов и больше повторных заказов.",
+    },
+    {
+      icon: "GraduationCap",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/files/21dbf594-afdd-4fb0-902e-e2f555dbd17d.jpg",
+      tag: "Онлайн-образование",
+      desc: "Для онлайн-школ и образовательных платформ, где продажа курса зависит от работы менеджера на созвоне.",
+      gain: "Видите, кто из менеджеров закрывает на оплату, а кто теряет ученика - конверсия в продажу растёт.",
     },
   ];
 
@@ -1703,9 +1751,15 @@ function AudienceSection() {
           <div className="gold-bar" />
         </motion.div>
 
-        <div ref={blockOneRef} className="aud-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px" }}>
+        <div ref={blockOneRef} className="aud-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px" }}>
           {blockOne.map((it, i) => (
             <AudienceCard key={i} it={it} i={i} inView={blockOneInView} W={W} G={G} B={B} GREEN={GREEN} />
+          ))}
+        </div>
+
+        <div ref={blockTwoRef} className="aud-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px", marginTop: "32px" }}>
+          {blockTwo.map((it, i) => (
+            <AudienceCard key={i} it={it} i={i} inView={blockTwoInView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
         </div>
 
@@ -1745,7 +1799,7 @@ function AudienceSection() {
           .aud-subhead { white-space: nowrap; }
         }
         @media (min-width: 1100px) {
-          .aud-grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
+          .aud-grid-5 { grid-template-columns: repeat(5, 1fr) !important; }
         }
         .quartz-text {
           background: linear-gradient(
