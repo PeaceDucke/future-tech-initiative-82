@@ -1585,30 +1585,6 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       }}>
         {it.desc}
       </p>
-
-      <div className="aud-card-gain" style={{
-        position: "relative", zIndex: 1,
-        paddingTop: "32px", borderTop: "1px solid rgba(74,222,128,0.2)",
-      }}>
-        <div className="aud-card-gain-head flex items-center gap-3" style={{ marginBottom: "14px" }}>
-          <span className="aud-card-gain-ic" style={{
-            width: "34px", height: "34px", borderRadius: "11px", flexShrink: 0,
-            display: "inline-flex", alignItems: "center", justifyContent: "center",
-            background: "rgba(74,222,128,0.14)", border: "1px solid rgba(74,222,128,0.35)",
-          }}>
-            <Icon name="Check" size={20} style={{ color: GREEN }} />
-          </span>
-          <span className="aud-card-gain-title" style={{
-            fontFamily: "Inter, sans-serif", fontSize: "13px", letterSpacing: "0.14em",
-            textTransform: "uppercase", fontWeight: 600, color: GREEN, opacity: 0.95,
-          }}>
-            Что получит бизнес
-          </span>
-        </div>
-        <p className="aud-card-gain-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "19px", color: B, lineHeight: 1.6, opacity: 0.95 }}>
-          {it.gain}
-        </p>
-      </div>
     </motion.div>
   );
 }
