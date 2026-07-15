@@ -1987,12 +1987,9 @@ function RopSection() {
                       <Icon name={b.icon} size={21} style={{ color: G }} />
                     </div>
                     <div>
-                      <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", fontWeight: 600, color: W, marginBottom: "4px" }}>
+                      <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", fontWeight: 600, color: W }}>
                         {b.title}
                       </h3>
-                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14.5px", color: B, lineHeight: 1.5, fontWeight: 300 }}>
-                        {b.desc}
-                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -2258,11 +2255,6 @@ function ImplementationSection() {
                     {s.title}
                   </h3>
                 </div>
-                <p className="impl-step-text" style={{
-                  fontFamily: "Inter, sans-serif", fontSize: "16.5px", color: B, lineHeight: 1.6,
-                }}>
-                  {s.desc}
-                </p>
               </div>
             </motion.div>
           ))}
