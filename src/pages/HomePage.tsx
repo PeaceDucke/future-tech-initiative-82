@@ -1314,6 +1314,7 @@ function SplineFeatureSection() {
           }}>
 <span style={{
               fontFamily: "Jost, sans-serif",
+              fontWeight: 600,
               backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
@@ -1720,11 +1721,19 @@ function AudienceSection() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18, color: W,
+              fontSize: "50px", lineHeight: 1.18, color: W,
               maxWidth: "1500px", margin: "0 auto",
             }}
           >
-            Voice-Tec AI создан для компаний, где <span style={{ color: G, fontStyle: "italic" }}>звонки, заявки и консультации</span> напрямую влияют на выручку
+            Voice-Tec AI создан для компаний, где <span style={{
+              fontStyle: "italic",
+              backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+            }}>звонки, заявки и консультации</span> напрямую влияют на выручку
           </motion.h2>
         </div>
 
