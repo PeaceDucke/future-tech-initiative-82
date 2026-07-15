@@ -2631,7 +2631,7 @@ function CaseCard({ it, i, inView }: {
           background: hexToRgba(A, 0.1), border: `1px solid ${hexToRgba(A, 0.3)}`,
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
-          <img src={it.logo} alt={it.company} style={{ width: "40px", height: "40px", objectFit: "contain" }} />
+          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "15px" }} />
         </div>
         <span style={{
           fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 700,
