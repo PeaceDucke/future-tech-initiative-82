@@ -1569,17 +1569,26 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
 
       <div className="aud-card-spacer" style={{ marginTop: it.img ? "250px" : "0" }} />
 
-      <div className="aud-card-tag" style={{
-        position: "relative", zIndex: 1,
-        fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 3vw, 32px)", color: W,
-        fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
-        overflowWrap: "break-word", wordBreak: "break-word", hyphens: "auto",
-      }}>
-        {it.tag}
-      </div>
+      {(() => {
+        const oneWord = !it.tag.trim().includes(" ");
+        return (
+          <div className="aud-card-tag" style={{
+            position: "relative", zIndex: 1, textAlign: "center",
+            fontFamily: '"Bodoni Moda", Georgia, serif',
+            fontSize: oneWord ? "clamp(18px, 2.7vw, 30px)" : "clamp(20px, 3vw, 32px)", color: W,
+            fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
+            overflowWrap: oneWord ? "normal" : "break-word",
+            wordBreak: oneWord ? "keep-all" : "break-word",
+            hyphens: oneWord ? "none" : "auto",
+            whiteSpace: oneWord ? "nowrap" : "normal",
+          }}>
+            {it.tag}
+          </div>
+        );
+      })()}
 
       <p className="aud-card-desc" style={{
-        position: "relative", zIndex: 1,
+        position: "relative", zIndex: 1, textAlign: "center",
         fontFamily: "Inter, sans-serif", fontSize: "18px", color: B,
         lineHeight: 1.6, marginBottom: "36px", flex: 1,
       }}>
