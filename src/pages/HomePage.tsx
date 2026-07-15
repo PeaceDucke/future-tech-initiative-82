@@ -1314,7 +1314,8 @@ function SplineFeatureSection() {
           }}>
 <span style={{
               fontFamily: "Jost, sans-serif",
-              fontWeight: 600,
+              fontWeight: 500,
+              fontSize: "43px",
               backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
