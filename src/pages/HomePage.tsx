@@ -1535,10 +1535,9 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
-        minHeight: "540px",
         background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
         border: "1px solid rgba(212,176,116,0.18)",
-        borderRadius: "26px", padding: "48px 42px", overflow: "hidden",
+        borderRadius: "26px", padding: "48px 42px 40px", overflow: "hidden",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
         transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
       }}
@@ -1590,7 +1589,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       <p className="aud-card-desc" style={{
         position: "relative", zIndex: 1, textAlign: "center",
         fontFamily: "Inter, sans-serif", fontSize: "18px", color: B,
-        lineHeight: 1.6, marginBottom: "36px", flex: 1,
+        lineHeight: 1.6, marginBottom: "0",
       }}>
         {it.desc}
       </p>
