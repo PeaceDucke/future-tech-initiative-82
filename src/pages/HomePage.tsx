@@ -2596,11 +2596,13 @@ function CaseCard({ it, i, inView }: {
       className="case-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
-        background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
-        border: `1px solid ${hexToRgba(A, 0.22)}`,
+        background: "linear-gradient(160deg, rgba(28,28,29,0.72) 0%, rgba(20,20,20,0.66) 48%, rgba(15,15,16,0.72) 100%)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        border: `1.5px solid ${hexToRgba(A, 0.35)}`,
         borderRadius: "22px",
         overflow: "hidden", padding: "26px 24px",
-        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.05), 0 14px 40px rgba(0,0,0,0.45)",
+        boxShadow: `inset 0 1px 0 rgba(255,236,200,0.05), 0 14px 40px rgba(0,0,0,0.4), 0 0 0 1px ${hexToRgba(A, 0.08)}`,
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
