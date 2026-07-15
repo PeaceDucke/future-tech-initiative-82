@@ -1555,7 +1555,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       {/* фото сверху, плавно растворяющееся в фон карточки */}
       {it.img && (
         <div className="aud-card-img" style={{
-          position: "absolute", top: 0, left: 0, right: 0, height: "380px",
+          position: "absolute", top: 0, left: 0, right: 0, height: "280px",
           zIndex: 0, pointerEvents: "none",
         }}>
           <img
@@ -1576,7 +1576,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         opacity: 0, transition: "opacity 0.3s ease", zIndex: 2,
       }} />
 
-      <div className="aud-card-spacer" style={{ marginTop: it.img ? "250px" : "0" }} />
+      <div className="aud-card-spacer" style={{ marginTop: it.img ? "180px" : "0" }} />
 
       {(() => {
         const oneWord = !it.tag.trim().includes(" ");
