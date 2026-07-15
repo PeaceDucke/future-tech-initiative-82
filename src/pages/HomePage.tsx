@@ -1312,7 +1312,15 @@ function SplineFeatureSection() {
             lineHeight: 1.2,
             marginBottom: "20px",
           }}>
-Voice-Tec AI находит моменты,<br />где менеджеры теряют клиентов,<br /><span style={{
+<span style={{
+              fontFamily: "Jost, sans-serif",
+              backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+            }}>Voice-Tec AI</span> находит моменты,<br />где менеджеры теряют клиентов,<br /><span style={{
               backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
