@@ -2596,18 +2596,36 @@ function CaseCard({ it, i, inView }: {
       className="case-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
-        background: "linear-gradient(160deg, rgba(28,28,29,0.72) 0%, rgba(20,20,20,0.66) 48%, rgba(15,15,16,0.72) 100%)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        border: `1.5px solid ${hexToRgba(A, 0.35)}`,
+        background: `
+          linear-gradient(135deg,
+            ${hexToRgba(A, 0.22)} 0%,
+            rgba(18,18,19,0.9) 22%,
+            #0d0d0e 46%,
+            #101011 60%,
+            rgba(20,20,21,0.9) 78%,
+            ${hexToRgba(A, 0.16)} 100%)
+        `,
+        border: "1px solid rgba(255,255,255,0.06)",
         borderRadius: "22px",
         overflow: "hidden", padding: "26px 24px",
-        boxShadow: `inset 0 1px 0 rgba(255,236,200,0.05), 0 14px 40px rgba(0,0,0,0.4), 0 0 0 1px ${hexToRgba(A, 0.08)}`,
+        boxShadow: `inset 0 1px 0 ${hexToRgba(A, 0.28)}, inset 0 -1px 0 rgba(0,0,0,0.6), 0 14px 40px rgba(0,0,0,0.5)`,
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
+      {/* металлический блик */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+        background: `linear-gradient(115deg, transparent 30%, ${hexToRgba(A, 0.14)} 46%, rgba(255,255,255,0.05) 50%, transparent 62%)`,
+      }} />
+      <div style={{
+        position: "absolute", top: "-30%", right: "-10%", width: "60%", height: "60%",
+        pointerEvents: "none", zIndex: 0,
+        background: `radial-gradient(circle, ${hexToRgba(A, 0.18)} 0%, transparent 70%)`,
+        filter: "blur(20px)",
+      }} />
+
       {/* header: logo + tag */}
-      <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px" }}>
+      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px" }}>
         <div style={{
           width: "62px", height: "62px", flexShrink: 0, borderRadius: "16px",
           background: hexToRgba(A, 0.1), border: `1px solid ${hexToRgba(A, 0.3)}`,
