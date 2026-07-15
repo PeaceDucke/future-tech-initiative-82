@@ -1583,7 +1583,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
           <div className="aud-card-tag" style={{
             position: "relative", zIndex: 1, textAlign: "center",
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: oneWord ? "clamp(18px, 2.7vw, 30px)" : "clamp(20px, 3vw, 32px)", color: W,
+            fontSize: oneWord ? "clamp(18px, 2.7vw, 30px)" : "clamp(18px, 3vw, 30px)", color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
             minHeight: "2.4em",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
