@@ -3321,19 +3321,14 @@ function PipelineSection() {
                       background: "linear-gradient(160deg, #222220 0%, #191918 40%, #151514 72%, #1e1e1b 100%)",
                       border: "1px solid rgba(255,255,255,0.05)",
                       borderRadius: "20px",
-                      padding: "30px 22px 34px",
+                      padding: "22px 22px 24px",
                       boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.55), 0 20px 50px rgba(0,0,0,0.5)",
                     }}
                   >
                     <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(16px, 1.5vw, 20px)", color: W, fontWeight: 400, lineHeight: 1.25, letterSpacing: "0.005em" }}>
                       {item.title}
                     </p>
-                    {item.desc ? (
-                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.62)", fontWeight: 400, lineHeight: 1.55, marginTop: "12px" }}>
-                        {item.desc}
-                      </p>
-                    ) : null}
-                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "contain", marginTop: "auto", paddingTop: "20px" }} />
+                    <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1.6 / 1", objectFit: "contain", marginTop: "auto", paddingTop: "14px" }} />
                   </motion.div>
                 ))}
               </motion.div>
