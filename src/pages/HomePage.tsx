@@ -1721,7 +1721,7 @@ function AudienceSection() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "50px", lineHeight: 1.18, color: W,
+              fontSize: "45px", lineHeight: 1.18, color: W,
               maxWidth: "1500px", margin: "0 auto",
             }}
           >
@@ -1743,7 +1743,7 @@ function AudienceSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
-          style={{ marginTop: "130px", marginBottom: "40px" }}
+          style={{ marginTop: "48px", marginBottom: "40px" }}
         >
           <h3 className="aud-subhead quartz-text" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.6vw, 32px)",
