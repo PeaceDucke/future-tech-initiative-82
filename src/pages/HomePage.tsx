@@ -1576,6 +1576,8 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: oneWord ? "clamp(18px, 2.7vw, 30px)" : "clamp(20px, 3vw, 32px)", color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
+            minHeight: "2.4em",
+            display: "flex", alignItems: "flex-end", justifyContent: "center",
             overflowWrap: oneWord ? "normal" : "break-word",
             wordBreak: oneWord ? "keep-all" : "break-word",
             hyphens: oneWord ? "none" : "auto",
