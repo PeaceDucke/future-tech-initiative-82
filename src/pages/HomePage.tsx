@@ -1585,7 +1585,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
           <div className="aud-card-tag" style={{
             position: "relative", zIndex: 1, textAlign: "center",
             fontFamily: '"Prata", serif',
-            fontSize: oneWord ? "clamp(23px, 2.7vw, 35px)" : "clamp(25px, 3vw, 37px)", color: W,
+            fontSize: oneWord ? "clamp(20px, 2.7vw, 32px)" : "clamp(22px, 3vw, 34px)", color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "0",
             minHeight: "2.4em",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
