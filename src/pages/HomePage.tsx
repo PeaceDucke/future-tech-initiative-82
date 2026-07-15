@@ -1547,7 +1547,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         position: "relative", display: "flex", flexDirection: "column",
         background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
         border: "1px solid rgba(212,176,116,0.18)",
-        borderRadius: "26px", padding: "48px 28px 28px", overflow: "hidden",
+        borderRadius: "26px", padding: "48px 28px 14px", overflow: "hidden",
         boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 10px 30px rgba(0,0,0,0.4)",
         transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
       }}
@@ -1576,7 +1576,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         opacity: 0, transition: "opacity 0.3s ease", zIndex: 2,
       }} />
 
-      <div className="aud-card-spacer" style={{ marginTop: it.img ? "205px" : "0" }} />
+      <div className="aud-card-spacer" style={{ marginTop: it.img ? "175px" : "0" }} />
 
       {(() => {
         const isOnlineEdu = it.tag.trim() === "Онлайн-образование";
@@ -1586,7 +1586,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             position: "relative", zIndex: 1, textAlign: "center",
             fontFamily: "Jost, sans-serif",
             fontSize: oneWord ? "clamp(23px, 2.7vw, 35px)" : "clamp(25px, 3vw, 37px)", color: W,
-            fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
+            fontWeight: 500, lineHeight: 1.2, marginBottom: "0",
             minHeight: "2.4em",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
             overflowWrap: oneWord ? "normal" : "break-word",
