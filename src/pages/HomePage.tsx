@@ -1598,13 +1598,6 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
         );
       })()}
 
-      <p className="aud-card-desc" style={{
-        position: "relative", zIndex: 1, textAlign: "center",
-        fontFamily: "Inter, sans-serif", fontSize: "16px", color: B,
-        lineHeight: 1.55, marginBottom: "0",
-      }}>
-        {it.desc}
-      </p>
     </motion.div>
   );
 }
