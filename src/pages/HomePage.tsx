@@ -1663,14 +1663,14 @@ function AudienceSection() {
     },
     {
       icon: "ShieldCheck",
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/579afeb7-f282-416b-bfe7-af8868ca31ad.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/b87996ee-4823-4fae-ad46-c4c58225cd84.jpg",
       tag: "Страхование",
       desc: "Для страховых компаний и агентов, где продажа полиса зависит от того, как проведён разговор с клиентом.",
       gain: "Видите, где агент недожал клиента - выше конверсия в оформленный полис и продление договоров.",
     },
     {
       icon: "Scale",
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/f81962e3-cf92-4ec7-912b-695b6a80acc1.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/2d77810b-05ac-4fd3-87e7-414bbf92db03.jpg",
       tag: "Юридические услуги",
       desc: "Для юридических фирм и консалтинга, где первичная консультация определяет, придёт ли клиент на сделку.",
       gain: "Каждая консультация отработана по стандарту - больше клиентов доходят до договора и оплаты.",
@@ -1684,7 +1684,7 @@ function AudienceSection() {
     },
     {
       icon: "GraduationCap",
-      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ea0374bb-ecf7-4696-8560-490af0875bea.jpg",
+      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6320bdc7-acbe-48f8-974f-23859b89514c.jpg",
       tag: "Онлайн-образование",
       desc: "Для онлайн-школ и образовательных платформ, где продажа курса зависит от работы менеджера на созвоне.",
       gain: "Видите, кто из менеджеров закрывает на оплату, а кто теряет ученика - конверсия в продажу растёт.",
