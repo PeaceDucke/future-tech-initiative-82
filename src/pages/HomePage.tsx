@@ -2564,16 +2564,29 @@ function CaseChart({ chart }: { chart: CaseChartData }) {
   return <CaseBars bars={chart.bars} />;
 }
 
+function hexToRgba(hex: string, a: number) {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
 function CaseCard({ it, i, inView }: {
   it: {
-    company: string; tag: string; result: string; logo: string;
-    metric: string; metricLabel: string;
+    company: string; tag: string; logo: string; accent: string;
+    subtitle: string; problem: string; solution: string;
+    period: string; stats: { value: string; label: string }[];
   };
   i: number; inView: boolean;
 }) {
   const W = "#FBF6EC";
-  const G = "#D4B074";
-  const B = "#C9C2B2";
+  const B = "#9A968C";
+  const A = it.accent;
+  const labelCss: React.CSSProperties = {
+    fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 700,
+    color: A, marginBottom: "8px",
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.96 }}
@@ -2584,37 +2597,80 @@ function CaseCard({ it, i, inView }: {
       style={{
         position: "relative", display: "flex", flexDirection: "column",
         background: "linear-gradient(160deg, #1c1c1d 0%, #141414 48%, #0f0f10 100%)",
-        border: "1px solid rgba(212,176,116,0.18)",
+        border: `1px solid ${hexToRgba(A, 0.22)}`,
         borderRadius: "22px",
         overflow: "hidden", padding: "26px 24px",
-        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.06), 0 14px 40px rgba(0,0,0,0.45)",
+        boxShadow: "inset 0 1px 0 rgba(255,236,200,0.05), 0 14px 40px rgba(0,0,0,0.45)",
         transition: "transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease",
       }}
     >
-      <img src={it.logo} alt={it.company} className="case-logo" style={{
-        position: "absolute", top: "-40px", right: "-40px",
-        width: "210px", height: "210px", objectFit: "contain", pointerEvents: "none",
-      }} />
-
-      <div style={{ position: "relative", zIndex: 2, maxWidth: "58%" }}>
-        <div className="case-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "28px", color: W, fontWeight: 600, lineHeight: 1.2, overflowWrap: "break-word" }}>
-          {it.company}
+      {/* header: logo + tag */}
+      <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px" }}>
+        <div style={{
+          width: "62px", height: "62px", flexShrink: 0, borderRadius: "16px",
+          background: hexToRgba(A, 0.1), border: `1px solid ${hexToRgba(A, 0.3)}`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <img src={it.logo} alt={it.company} style={{ width: "40px", height: "40px", objectFit: "contain" }} />
         </div>
-        <div className="case-tag" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: G, marginTop: "4px", lineHeight: 1.3 }}>
+        <span style={{
+          fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 700,
+          letterSpacing: "0.06em", textTransform: "uppercase", color: A,
+          background: hexToRgba(A, 0.12), border: `1px solid ${hexToRgba(A, 0.28)}`,
+          borderRadius: "999px", padding: "6px 12px", lineHeight: 1.2,
+        }}>
           {it.tag}
-        </div>
+        </span>
       </div>
 
-      <p className="case-result" style={{
-        margin: "40px 0 0", fontFamily: "Inter, sans-serif", fontSize: "18px",
-        color: "#E6E0D2", lineHeight: 1.6, position: "relative", zIndex: 2,
+      {/* company + subtitle */}
+      <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: W, fontWeight: 600, lineHeight: 1.15 }}>
+        {it.company}
+      </div>
+      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, marginTop: "8px", lineHeight: 1.45 }}>
+        {it.subtitle}
+      </div>
+
+      {/* problem */}
+      <div style={{ marginTop: "26px" }}>
+        <div style={labelCss}>Проблема</div>
+        <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C7C2B6", lineHeight: 1.55 }}>
+          {it.problem}
+        </p>
+      </div>
+
+      {/* solution */}
+      <div style={{ marginTop: "20px" }}>
+        <div style={labelCss}>Решение</div>
+        <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C7C2B6", lineHeight: 1.55 }}>
+          {it.solution}
+        </p>
+      </div>
+
+      {/* result box */}
+      <div style={{
+        marginTop: "24px",
+        background: hexToRgba(A, 0.07),
+        border: `1px solid ${hexToRgba(A, 0.22)}`,
+        borderRadius: "14px", padding: "18px 20px",
       }}>
-        {it.result}{" "}
-        <span className="case-metric" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600 }}>
-          {it.metric}
-        </span>
-        {it.metricLabel ? <> <span style={{ color: B }}>{it.metricLabel}</span></> : null}.
-      </p>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+          <Icon name="TrendingUp" size={17} style={{ color: A }} />
+          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600, color: A }}>{it.period}</span>
+        </div>
+        <div style={{ display: "flex", gap: "24px" }}>
+          {it.stats.map((s, k) => (
+            <div key={k}>
+              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600, color: A, lineHeight: 1 }}>
+                {s.value}
+              </div>
+              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, marginTop: "6px", lineHeight: 1.3 }}>
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </motion.div>
   );
 }
@@ -2633,36 +2689,60 @@ function CasesSection() {
 
   const cases = [
     {
-      company: "Техно-Лайн",
+      company: "ТехноЛайн",
       tag: "Оптовая электроника",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
-      metric: "+12,3%",
-      metricLabel: "",
-      result: "После внедрения AI-анализа звонков конверсия на этапе диалога выросла на",
+      accent: "#D4B074",
+      subtitle: "Поставщик электроники B2B, 120+ менеджеров",
+      problem: "Менеджеры теряли до 30% лидов на этапе первого контакта. Руководитель не видел, что происходит в диалогах.",
+      solution: "Внедрили AI-анализ всех звонков и контроль этапов разговоров.",
+      period: "Результат за 3 месяца",
+      stats: [
+        { value: "+27%", label: "конверсия в сделку" },
+        { value: "-32%", label: "потерянных лидов" },
+      ],
     },
     {
       company: "Клиника «Вита»",
-      tag: "Медцентр",
+      tag: "Медицинский центр",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c5ada1bb-a648-41f0-91dc-a918cd8772eb.png",
-      metric: "+18,5%",
-      metricLabel: "доходимость до визита",
-      result: "Единый сценарий записи поднял",
+      accent: "#4ADE80",
+      subtitle: "Сеть медицинских центров, 5 филиалов",
+      problem: "Одинаковые вопросы клиентов задавались по-разному, часть не записывалась на приём из-за ошибок в диалогах.",
+      solution: "Создали единый сценарий и внедрили контроль качества разговоров.",
+      period: "Результат за 3 месяца",
+      stats: [
+        { value: "+21%", label: "записей на приём" },
+        { value: "+18%", label: "средний чек" },
+      ],
     },
     {
       company: "SkillUp",
-      tag: "Онлайн-школа",
+      tag: "Онлайн-обучение",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4aa6264d-6eb8-4b86-8cdd-1f23583e7ba7.png",
-      metric: "+14,7%",
-      metricLabel: "оплат после консультации",
-      result: "Точные формулировки для менеджеров дали",
+      accent: "#7DA9FF",
+      subtitle: "Онлайн-школа продаж, 60+ менеджеров",
+      problem: "Менеджеры давали разную информацию, не отрабатывали возражения и снижали конверсию на этапе продажи.",
+      solution: "AI-оценка диалогов, подсказки по улучшению и обучение команды.",
+      period: "Результат за 2 месяца",
+      stats: [
+        { value: "+34%", label: "конверсия в оплату" },
+        { value: "+26%", label: "выручка с менеджера" },
+      ],
     },
     {
       company: "ГринХаус",
       tag: "Загородная недвижимость",
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/281a8a8e-f6fe-4404-bb70-547eb5e887d9.png",
-      metric: "+19%",
-      metricLabel: "",
-      result: "Контроль каждого диалога и напоминания довели до показа объектов на",
+      accent: "#B98CF5",
+      subtitle: "Продажа загородной недвижимости, 40+ менеджеров",
+      problem: "Клиенты долго не принимали решение, менеджеры забывали важные детали, срывались повторные касания.",
+      solution: "Контроль ключевых этапов и напоминания о контактах прямо в CRM.",
+      period: "Результат за 3 месяца",
+      stats: [
+        { value: "+19%", label: "повторных сделок" },
+        { value: "+22%", label: "рост выручки" },
+      ],
     },
   ];
 
@@ -2690,6 +2770,17 @@ function CasesSection() {
           >
             Кейсы клиентов
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              fontFamily: "Inter, sans-serif", fontSize: "clamp(16px, 1.4vw, 20px)",
+              color: "#B7B2A6", lineHeight: 1.5, maxWidth: "680px", margin: "18px auto 0",
+            }}
+          >
+            Компании, которые уже используют <span style={{ color: G }}>Voice-Tec</span> и получают больше прибыли, контролируя каждый разговор.
+          </motion.p>
         </div>
 
         <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: `repeat(${cases.length}, 1fr)`, gap: "22px" }}>
