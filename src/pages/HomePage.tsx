@@ -1583,7 +1583,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
           <div className="aud-card-tag" style={{
             position: "relative", zIndex: 1, textAlign: "center",
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: oneWord ? "clamp(18px, 2.7vw, 30px)" : "clamp(18px, 3vw, 30px)", color: W,
+            fontSize: oneWord ? "clamp(16px, 2.7vw, 28px)" : "clamp(18px, 3vw, 30px)", color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
             minHeight: "2.4em",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
@@ -3287,7 +3287,7 @@ function PipelineSection() {
           <SectionDivider />
           <div>
             <Section className="text-center">
-              <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "clamp(32px, 5vw, 62px)", lineHeight: 1.12, marginBottom: "56px" }}>
+              <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "50px", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает <span style={{
                   backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
