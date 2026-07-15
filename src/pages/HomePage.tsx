@@ -1579,12 +1579,13 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       <div className="aud-card-spacer" style={{ marginTop: it.img ? "180px" : "0" }} />
 
       {(() => {
-        const oneWord = !it.tag.trim().includes(" ");
+        const isOnlineEdu = it.tag.trim() === "Онлайн-образование";
+        const oneWord = !it.tag.trim().includes(" ") && !isOnlineEdu;
         return (
           <div className="aud-card-tag" style={{
             position: "relative", zIndex: 1, textAlign: "center",
-            fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: oneWord ? "clamp(16px, 2.7vw, 28px)" : "clamp(18px, 3vw, 30px)", color: W,
+            fontFamily: "Jost, sans-serif",
+            fontSize: oneWord ? "clamp(19px, 2.7vw, 31px)" : "clamp(21px, 3vw, 33px)", color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "24px",
             minHeight: "2.4em",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
@@ -1593,7 +1594,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             hyphens: oneWord ? "none" : "auto",
             whiteSpace: oneWord ? "nowrap" : "normal",
           }}>
-            {it.tag}
+            {isOnlineEdu ? (<>Онлайн-<br />образование</>) : it.tag}
           </div>
         );
       })()}
