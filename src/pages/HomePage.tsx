@@ -4037,9 +4037,9 @@ function PricingSection() {
       popular: false,
     },
     {
-      name: "Enterprise",
+      name: "Персональный",
       price: null,
-      priceLabel: "По запросу",
+      priceLabel: "",
       period: null,
       quick: "Безлимит",
       deep: "Безлимит",
@@ -4179,6 +4179,25 @@ function PricingSection() {
                     </div>
                     <div className="pr-period" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
                   </>
+                ) : plan.contact ? (
+                  <button
+                    onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
+                    style={{
+                      width: "100%",
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      letterSpacing: "0.03em",
+                      color: "#151513",
+                      background: "linear-gradient(105deg, #E9D29A, #C8A96A 55%, #B8934A)",
+                      border: "none",
+                      borderRadius: "6px",
+                      padding: "13px 16px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Связаться с нами
+                  </button>
                 ) : (
                   <div className="pr-price pr-price-free" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif',
@@ -4209,27 +4228,6 @@ function PricingSection() {
                 ))}
               </div>
 
-              {plan.contact && (
-                <button
-                  onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
-                  style={{
-                    marginTop: "24px",
-                    width: "100%",
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    letterSpacing: "0.04em",
-                    color: G,
-                    background: "transparent",
-                    border: `1px solid ${G}`,
-                    borderRadius: "6px",
-                    padding: "12px 16px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Связаться с нами
-                </button>
-              )}
             </div>
           ))}
         </div>
