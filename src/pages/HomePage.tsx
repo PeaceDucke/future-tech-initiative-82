@@ -2776,7 +2776,7 @@ function CasesSection() {
             className="cases-title quartz-text"
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "clamp(34px, 4.4vw, 64px)", lineHeight: 1.1,
+              fontSize: "50px", lineHeight: 1.1,
               maxWidth: "900px", margin: "0 auto",
             }}
           >
