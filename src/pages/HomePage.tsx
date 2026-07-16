@@ -5238,7 +5238,7 @@ export function HomePage() {
                   style={{
                     width: "38%",
                     top: "540px",
-                    left: "22%",
+                    left: "28%",
                     transform: "scale(1.2)",
                     transformOrigin: "top left",
                     background: "var(--db-bg-1)",
