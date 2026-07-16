@@ -3562,11 +3562,6 @@ function ClientValueSection() {
 
   const items = [
     {
-      side: "left" as const,
-      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/124177dc-9a13-400a-bbfa-d5a5ad625808.png",
-      label: "Анализ звонков",
-    },
-    {
       side: "right" as const,
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/d6a66739-2a0c-41bf-951e-54b47fa9e498.png",
       label: "Контроль скриптов",
@@ -3580,11 +3575,6 @@ function ClientValueSection() {
       side: "right" as const,
       image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/3d94dcab-8d6f-4b27-972c-e35480430c78.png",
       label: "Выявление слабых мест",
-    },
-    {
-      side: "left" as const,
-      image: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/44a9430a-21d0-4bc4-98a4-087ab5dc73aa.png",
-      label: "Контроль РОПа",
     },
   ];
 
