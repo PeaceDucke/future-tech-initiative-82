@@ -613,8 +613,8 @@ body {
     width: calc(100% + 40px);
     margin-left: -20px;
     margin-right: -20px;
-    /* visible height = 920 * 0.295 ≈ 271px (whole dashboard, no clipping) */
-    height: 271px;
+    /* visible height = 1360 * 0.295 ≈ 401px (whole dashboard, no clipping) */
+    height: 401px;
     display: flex;
     justify-content: center;
   }
@@ -625,7 +625,7 @@ body {
     /* shrink the dashboard itself by 1.1x (0.324 / 1.1 ≈ 0.295) */
     transform: scale(0.295);
     transform-origin: top center;
-    height: 920px !important;
+    height: 1360px !important;
     margin: 0 !important;
   }
 
@@ -1263,7 +1263,7 @@ body {
   }
   /* dashboard a touch smaller so 1320px canvas fits narrow phones */
   .dash-wrap {
-    height: 265px;
+    height: 356px;
     /* widen the window to the site edges (cancel section px-5 = 20px) */
     margin-left: -20px;
     margin-right: -20px;

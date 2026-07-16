@@ -4988,7 +4988,7 @@ export function HomePage() {
               <div className="dash-wrap">
               <div
                 className="dash-scene relative mx-auto"
-                style={{ maxWidth: "1320px", height: "920px", ...dashVars }}
+                style={{ maxWidth: "1320px", height: "1360px", ...dashVars }}
               >
                 {/* ── LUXURY GLASS FRAME ── */}
                 <div
@@ -5276,7 +5276,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-6 db-card"
                   style={{
                     width: "38%",
-                    top: "320px",
+                    top: "830px",
                     right: "-3%",
                     background: "linear-gradient(135deg, var(--db-bg-3) 0%, var(--db-bg-4) 100%)",
                     border: "1px solid rgba(212,176,116,0.55)",
@@ -5357,7 +5357,7 @@ export function HomePage() {
                   className="absolute"
                   style={{
                     width: "49%",
-                    bottom: "100px",
+                    top: "1000px",
                     left: "-12%",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: 20,
@@ -5376,7 +5376,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "38%",
-                    top: "350px",
+                    top: "820px",
                     left: "27%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
@@ -5457,107 +5457,104 @@ export function HomePage() {
                   })()}
                 </div>
 
-                {/* ── CARD: Последние звонки (центр-низ) ── */}
+                {/* ── CARD: Панель РОПа (центр) ── */}
                 <div
-                  className="absolute rounded-2xl p-5 db-card"
+                  className="absolute rounded-2xl p-6 db-card"
                   style={{
-                    width: "42%",
-                    bottom: "20px",
-                    left: "29%",
+                    width: "58%",
+                    top: "300px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    zIndex: 23,
+                    boxShadow: "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    zIndex: 26,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
-                  {/* Table header */}
-                  <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(var(--db-acc-rgb-2),0.18)" }}>
-                    {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
-                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
-                    ))}
+                  {/* header */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "var(--db-acc-3)", fontWeight: 600 }}>Панель РОПа</span>
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.15)" }}>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.7)" }}>Текущая неделя</span>
+                        <Icon name="ChevronDown" size={10} style={{ color: "rgba(var(--db-text-rgb),0.5)" }} />
+                      </div>
+                      <div className="flex items-center justify-center rounded" style={{ width: 30, height: 30, background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.15)" }}>
+                        <Icon name="SlidersHorizontal" size={13} style={{ color: "rgba(var(--db-text-rgb),0.6)" }} />
+                      </div>
+                    </div>
                   </div>
-                  {/* Rows */}
-                  <div className="space-y-2.5">
+
+                  {/* KPI row */}
+                  <div className="grid grid-cols-4 gap-3 mb-5">
                     {[
-                      { c: "ООО ТехноПласт", d: "4:14", r: "Успешно", k: "85%", color: "#22a868" },
-                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#b8860b" },
-                      { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
-                      { c: "Сергей Иванов", d: "7:11", r: "Не удалось", k: "20%", color: "#ef4444" },
-                      { c: "ООО СтройИнвест", d: "5:38", r: "Успешно", k: "70%", color: "#22a868" },
-                    ].map((row, idx) => (
-                      <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.55)" }}>{row.d}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: row.color }}>{row.r}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 500 }}>{row.k}</span>
-                        {/* Audio control */}
-                        <div className="flex items-center gap-1.5">
-                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--db-acc-2)" }}>
-                            <Icon name="Play" size={8} style={{ color: "#FBF6EC" }} />
-                          </button>
-                          {/* Mini waveform */}
-                          <div className="flex items-center gap-[1px] flex-1" style={{ height: "14px" }}>
-                            {[4,7,10,5,12,6,9,11,5,8,7,10,4,9,6,8,5,11,7,4].map((h, i) => (
-                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.25)" }} />
-                            ))}
-                          </div>
-                          <button className="shrink-0" title="Скачать">
-                            <Icon name="Download" size={11} style={{ color: "rgba(var(--db-acc-rgb-2),0.7)" }} />
-                          </button>
-                        </div>
+                      { label: "Конверсия в сделку", val: "24%", delta: "+8%", up: true },
+                      { label: "Выручка", val: "2,1 млн ₽", delta: "+18%", up: true },
+                      { label: "Обработано заявок", val: "1 248", delta: "+12%", up: true },
+                      { label: "Упущенная выручка", val: "312 000 ₽", delta: "-9%", up: false },
+                    ].map((k) => (
+                      <div key={k.label} className="rounded-xl p-3.5" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.1)" }}>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.55)", marginBottom: "8px" }}>{k.label}</div>
+                        <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: "var(--db-text-main)", fontWeight: 600, lineHeight: 1 }}>{k.val}</div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: k.up ? "#22a868" : "#e0533d", fontWeight: 600, marginTop: "8px" }}>{k.up ? "↑" : "↓"} {k.delta}</div>
                       </div>
                     ))}
                   </div>
-                </div>
 
-                {/* ── CARD: Топ менеджеров (справа) ── */}
-                <div
-                  className="absolute rounded-2xl p-5 db-card"
-                  style={{
-                    width: "38%",
-                    bottom: "60px",
-                    right: "0%",
-                    background: "var(--db-bg-1)",
-                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    zIndex: 25,
-                  }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "var(--db-acc-3)", fontWeight: 500 }}>Топ менеджеров</span>
-                    <div className="flex items-center gap-1 px-2.5 py-1 rounded" style={{ background: "rgba(var(--db-acc-rgb-2),0.1)", border: "1px solid rgba(var(--db-acc-rgb-2),0.2)" }}>
-                      <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)" }}>За месяц</span>
-                      <Icon name="ChevronDown" size={10} style={{ color: "var(--db-acc-2)" }} />
+                  {/* two columns */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Состояние команды */}
+                    <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.1)" }}>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)", fontWeight: 600, marginBottom: "14px" }}>Состояние команды</div>
+                      <div className="space-y-3">
+                        {[
+                          { name: "Екатерина Смирнова", a: "Е", score: 91, status: "Отлично", color: "#22a868" },
+                          { name: "Алексей Воронов", a: "А", score: 78, status: "Хорошо", color: "#22a868" },
+                          { name: "Мария Иванова", a: "М", score: 62, status: "Средне", color: "#e8b923" },
+                          { name: "Дмитрий Кузнецов", a: "Д", score: 48, status: "Нужно внимание", color: "#e0533d" },
+                        ].map((m) => (
+                          <div key={m.name} className="flex items-center gap-2.5">
+                            <div className="rounded-full flex items-center justify-center shrink-0" style={{ width: 24, height: 24, background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "10px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.8)", whiteSpace: "nowrap" }}>{m.name}</span>
+                              <div className="rounded-full overflow-hidden mt-1" style={{ height: "5px", background: "rgba(var(--db-text-rgb),0.12)" }}>
+                                <div style={{ height: "100%", width: `${m.score}%`, background: "var(--db-acc-1)" }} />
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.6)" }}>{m.score}/100</span>
+                              <span className="rounded-full" style={{ width: 6, height: 6, background: m.color }} />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 600, marginTop: "14px", cursor: "pointer" }}>Смотреть всех менеджеров →</div>
+                    </div>
+
+                    {/* Приоритеты на сегодня */}
+                    <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.1)" }}>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)", fontWeight: 600, marginBottom: "14px" }}>Приоритеты на сегодня</div>
+                      <div className="space-y-2.5">
+                        {[
+                          { icon: "AlertTriangle", color: "#e0533d", title: "5 проблемных звонков", sub: "Требуют разбора" },
+                          { icon: "Coins", color: "#e8b923", title: "12 упущенных возможностей", sub: "Возьмите на контроль" },
+                          { icon: "TrendingDown", color: "#e8842b", title: "Низкая конверсия на этапе работы с возражениями", sub: "Нужно усилить скрипт" },
+                        ].map((p) => (
+                          <div key={p.title} className="flex items-center gap-3 rounded-lg p-2.5" style={{ background: "rgba(var(--db-text-rgb),0.04)", border: "1px solid rgba(var(--db-text-rgb),0.08)" }}>
+                            <div className="rounded-full flex items-center justify-center shrink-0" style={{ width: 30, height: 30, background: `${p.color}22`, border: `1px solid ${p.color}55` }}>
+                              <Icon name={p.icon} size={14} style={{ color: p.color }} fallback="Circle" />
+                            </div>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.85)", fontWeight: 500, lineHeight: 1.25 }}>{p.title}</div>
+                              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.5)", marginTop: "2px" }}>{p.sub}</div>
+                            </div>
+                            <Icon name="ChevronRight" size={13} style={{ color: "rgba(var(--db-text-rgb),0.4)" }} />
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 600, marginTop: "14px", cursor: "pointer" }}>Смотреть все задачи →</div>
                     </div>
                   </div>
-                  <div className="space-y-3">
-                    {[
-                      { name: "Иван Петров", score: 89.4, a: "И", best: true },
-                      { name: "Мария Смирнова", score: 78.2, a: "М" },
-                      { name: "Алексей Кузнецов", score: 71.5, a: "А" },
-                      { name: "Анна Васильева", score: 63.8, a: "А" },
-                      { name: "Дмитрий Новиков", score: 49.3, a: "Д", worst: true },
-                    ].map((m) => {
-                      const sc =
-                        m.score >= 80 ? "#22a868" :
-                        m.score >= 65 ? "#9acd32" :
-                        m.score >= 50 ? "#e8b923" :
-                        m.score >= 35 ? "#e8842b" : "#e0533d";
-                      return (
-                        <div key={m.name} className="flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
-                          <div className="flex flex-col" style={{ flex: 1, minWidth: 0 }}>
-                            <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(var(--db-text-rgb),0.7)", whiteSpace: "nowrap" }}>{m.name}</span>
-                            {m.best && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#22a868", fontWeight: 600 }}>★ Лучший менеджер</span>}
-                            {m.worst && <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#e0533d", textDecoration: "underline", cursor: "pointer" }}>Узнать подробности</span>}
-                          </div>
-                          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: sc, fontWeight: 700, minWidth: "56px", textAlign: "right", marginRight: "28px" }}>{m.score.toFixed(1)}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <p style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "#000000", marginTop: "14px", lineHeight: 1.4 }}>* узнайте слабые стороны конкретного менеджера, помешавшие бизнесу заработать больше</p>
                 </div>
 
               </div>
