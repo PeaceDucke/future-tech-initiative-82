@@ -3392,7 +3392,7 @@ function PipelineSection() {
               >
                 {[
                   { img: "/bw/waveform.png", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
-                  { img: "/bw/growth.png", title: "Больше успешных сделок без увеличения рекламного бюджета.", desc: "" },
+                  { img: "/bw/growth.png", title: "Больше успешных сделок без увеличения рекламного бюджета.", desc: "Рост продаж без лишних затрат на маркетинг." },
                   { img: "/bw/managers.png", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
                   { img: "/bw/shield.png", title: "Сокращение расходов на контроль качества", desc: "Voice-Tec AI берет на себя контроль качества вместо ручной проверки." },
                   { img: "/bw/magnifier.png", title: "Мгновенное выявление ошибок в разговорах", desc: "Реагируйте до того, как клиент уйдет." },
@@ -3414,6 +3414,11 @@ function PipelineSection() {
                     <p className="bw-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(16px, 1.5vw, 20px)", color: W, fontWeight: 400, lineHeight: 1.25, letterSpacing: "0.005em" }}>
                       {item.title}
                     </p>
+                    {item.desc && (
+                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(12px, 1vw, 14px)", color: B, fontWeight: 400, lineHeight: 1.45, marginTop: "10px" }}>
+                        {item.desc}
+                      </p>
+                    )}
                     <img src={item.img} alt={item.title} loading="lazy" className="bw-img" style={{ width: "100%", aspectRatio: "1.6 / 1", objectFit: "contain", marginTop: "auto", paddingTop: "14px" }} />
                   </motion.div>
                 ))}
