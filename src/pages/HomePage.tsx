@@ -2624,7 +2624,7 @@ function CaseCard({ it, i, inView }: {
         filter: "blur(20px)",
       }} />
 
-      {/* header: logo + tag */}
+      {/* header: logo + tag + company */}
       <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px", marginLeft: "-14px" }}>
         <div style={{
           width: it.logoExtraLeft ? `${114 + it.logoExtraLeft}px` : "114px", height: "114px", flexShrink: 0, borderRadius: "20px",
@@ -2633,23 +2633,23 @@ function CaseCard({ it, i, inView }: {
         }}>
           <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)", objectPosition: it.logoExtraLeft ? "left center" : "center" }} />
         </div>
-        <span style={{
-          fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
-          letterSpacing: "0.06em", textTransform: "uppercase", color: A, textAlign: "center",
-          background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
-          borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, marginTop: "-74px", whiteSpace: "nowrap",
-          marginLeft: it.tagShift ? `${it.tagShift}px` : undefined,
-        }}>
-          {it.tag}
-        </span>
-      </div>
-
-      {/* company + subtitle */}
-      <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "26px", color: W, fontWeight: 600, lineHeight: 1.15 }}>
-        {it.company}
-      </div>
-      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, marginTop: "8px", lineHeight: 1.45 }}>
-        {it.subtitle}
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <span style={{
+            fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
+            letterSpacing: "0.06em", textTransform: "uppercase", color: A, textAlign: "center",
+            background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
+            borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, whiteSpace: "nowrap",
+            marginLeft: it.tagShift ? `${it.tagShift}px` : undefined,
+          }}>
+            {it.tag}
+          </span>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 600, lineHeight: 1.15 }}>
+            {it.company}
+          </div>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.4 }}>
+            {it.subtitle}
+          </div>
+        </div>
       </div>
 
       {/* problem */}
