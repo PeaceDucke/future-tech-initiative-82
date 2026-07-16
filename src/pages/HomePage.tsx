@@ -4219,11 +4219,11 @@ function PricingSection() {
                   { icon: "👤", label: "Менеджеров", value: plan.managers },
                 ].map(row => (
                   <div key={row.label} className="pr-feat-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span className="pr-feat" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", gap: "7px" }}>
-                      <span style={{ fontSize: "13px" }}>{row.icon}</span>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", gap: "7px" }}>
+                      <span style={{ fontSize: "15px" }}>{row.icon}</span>
                       {row.label}
                     </span>
-                    <span className="pr-feat" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC" }}>{row.value}</span>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC" }}>{row.value}</span>
                   </div>
                 ))}
               </div>
