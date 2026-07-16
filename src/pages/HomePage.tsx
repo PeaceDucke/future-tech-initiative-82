@@ -2643,10 +2643,10 @@ function CaseCard({ it, i, inView }: {
           }}>
             {it.tag}
           </span>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 600, lineHeight: 1.15, marginLeft: "16px" }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 600, lineHeight: 1.15, marginLeft: `${16 + (it.textExtraShift ?? 0)}px` }}>
             {it.company}
           </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.4, marginLeft: "16px" }}>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.4, marginLeft: `${16 + (it.textExtraShift ?? 0)}px` }}>
             {it.subtitle}
           </div>
         </div>
@@ -2697,6 +2697,7 @@ function CasesSection() {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
       tagShift: 18,
+      textExtraShift: 6,
       logoExtraLeft: 24,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       accent: "#D4B074",
@@ -2713,6 +2714,7 @@ function CasesSection() {
       company: "Клиника «Вита»",
       tag: "Медицинский центр",
       tagShift: 18,
+      textExtraShift: 6,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c5ada1bb-a648-41f0-91dc-a918cd8772eb.png",
       accent: "#4ADE80",
       subtitle: "Сеть медицинских центров, 5 филиалов",
