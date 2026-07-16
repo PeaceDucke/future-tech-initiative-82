@@ -4073,7 +4073,7 @@ function PricingSection() {
     },
     {
       name: "Бизнес",
-      price: "129 000",
+      price: "79 900",
       period: "в месяц",
       quick: "10 000 мин",
       deep: "1 500 мин",
