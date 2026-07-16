@@ -4011,7 +4011,7 @@ function PricingSection() {
     },
     {
       name: "Старт",
-      price: "6 900",
+      price: "19 900",
       period: "в месяц",
       quick: "1 500 мин",
       deep: "150 мин",
@@ -4020,7 +4020,7 @@ function PricingSection() {
     },
     {
       name: "Команда",
-      price: "14 900",
+      price: "39 900",
       period: "в месяц",
       quick: "4 000 мин",
       deep: "500 мин",
@@ -4029,12 +4029,23 @@ function PricingSection() {
     },
     {
       name: "Бизнес",
-      price: "39 900",
+      price: "129 000",
       period: "в месяц",
       quick: "10 000 мин",
       deep: "1 500 мин",
       managers: "до 20",
       popular: false,
+    },
+    {
+      name: "Enterprise",
+      price: null,
+      priceLabel: "По запросу",
+      period: null,
+      quick: "Безлимит",
+      deep: "Безлимит",
+      managers: "Безлимит",
+      popular: false,
+      contact: true,
     },
   ];
 
@@ -4100,7 +4111,7 @@ function PricingSection() {
         </div>
 
         {/* Cards grid */}
-        <div className="pr-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ marginBottom: "56px" }}>
+        <div className="pr-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5" style={{ marginBottom: "56px" }}>
           {plans.map((plan, i) => (
             <div
               key={plan.name}
@@ -4197,6 +4208,28 @@ function PricingSection() {
                   </div>
                 ))}
               </div>
+
+              {plan.contact && (
+                <button
+                  onClick={() => window.dispatchEvent(new Event("open-demo-modal"))}
+                  style={{
+                    marginTop: "24px",
+                    width: "100%",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    letterSpacing: "0.04em",
+                    color: G,
+                    background: "transparent",
+                    border: `1px solid ${G}`,
+                    borderRadius: "6px",
+                    padding: "12px 16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Связаться с нами
+                </button>
+              )}
             </div>
           ))}
         </div>
