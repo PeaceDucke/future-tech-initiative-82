@@ -3576,14 +3576,20 @@ function ClientValueSection() {
           </div>
           <h2 className="cv-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(32px, 5vw, 62px)",
+            fontSize: "50px",
             color: "#F7F2EA",
             fontWeight: 400,
             lineHeight: 1.1,
             marginBottom: "22px",
             letterSpacing: "0.01em",
           }}>
-            Не просто отчёт.<br />Полная система контроля продаж.
+            Не просто отчёт.<br />Полная система <span style={{
+              background: "linear-gradient(105deg, #FBF6EC, #E9D29A 45%, #C8A96A)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+            }}>контроля продаж</span>.
           </h2>
           <p className="cv-sub" style={{
             fontFamily: "Inter, sans-serif",
@@ -4330,18 +4336,21 @@ function IntegrationSection() {
           className="int-title"
           style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(34px, 5.5vw, 70px)",
+            fontSize: "50px",
             fontWeight: 600,
             lineHeight: 1.08,
             letterSpacing: "0.005em",
             marginBottom: "30px",
-            background: "linear-gradient(135deg, #F5E6B0 0%, #E8C96A 18%, #C8A032 35%, #F0D878 50%, #B8881E 65%, #E8C45A 80%, #F7EBB0 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+            color: "#FBF6EC",
           }}
         >
-          Интеграция за 5 минут
+          Интеграция <span style={{
+            background: "linear-gradient(105deg, #FBF6EC, #E9D29A 45%, #C8A96A)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            color: "transparent",
+          }}>за 5 минут</span>
         </h2>
 
         <p
