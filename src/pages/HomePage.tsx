@@ -3415,7 +3415,7 @@ function PipelineSection() {
                       {item.title}
                     </p>
                     {item.desc && (
-                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(12px, 1vw, 14px)", color: B, fontWeight: 400, lineHeight: 1.45, marginTop: "10px" }}>
+                      <p className="bw-desc" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#FBF6EC9E", fontWeight: 400, lineHeight: 1.45, marginTop: "10px" }}>
                         {item.desc}
                       </p>
                     )}
