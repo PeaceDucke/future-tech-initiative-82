@@ -5381,7 +5381,7 @@ export function HomePage() {
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    zIndex: 40,
+                    zIndex: 50,
                   }}
                 >
                   <div className="flex items-start justify-between mb-4">
