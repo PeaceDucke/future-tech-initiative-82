@@ -2636,7 +2636,8 @@ function CaseCard({ it, i, inView }: {
           fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
           letterSpacing: "0.06em", textTransform: "uppercase", color: A, textAlign: "center",
           background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
-          borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, marginTop: "-54px", whiteSpace: "nowrap",
+          borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, marginTop: "-64px", whiteSpace: "nowrap",
+          marginLeft: it.tagShift ? `${it.tagShift}px` : undefined,
         }}>
           {it.tag}
         </span>
@@ -2710,6 +2711,7 @@ function CasesSection() {
     {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
+      tagShift: 18,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       accent: "#D4B074",
       subtitle: "Поставщик электроники B2B, 120+ менеджеров",
@@ -2724,6 +2726,7 @@ function CasesSection() {
     {
       company: "Клиника «Вита»",
       tag: "Медицинский центр",
+      tagShift: 18,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c5ada1bb-a648-41f0-91dc-a918cd8772eb.png",
       accent: "#4ADE80",
       subtitle: "Сеть медицинских центров, 5 филиалов",
@@ -2738,6 +2741,7 @@ function CasesSection() {
     {
       company: "SkillUp",
       tag: "Онлайн-обучение",
+      tagShift: 18,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4aa6264d-6eb8-4b86-8cdd-1f23583e7ba7.png",
       accent: "#7DA9FF",
       subtitle: "Онлайн-школа продаж, 60+ менеджеров",
