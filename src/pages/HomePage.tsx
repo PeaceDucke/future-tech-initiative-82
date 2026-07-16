@@ -2730,6 +2730,7 @@ function CasesSection() {
       company: "SkillUp",
       tag: "Онлайн-обучение",
       tagShift: 36,
+      textExtraShift: 20,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4aa6264d-6eb8-4b86-8cdd-1f23583e7ba7.png",
       accent: "#7DA9FF",
       subtitle: "Онлайн-школа продаж, 60+ менеджеров",
