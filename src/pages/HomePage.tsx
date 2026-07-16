@@ -5558,6 +5558,61 @@ export function HomePage() {
                   </div>
                 </div>
 
+                {/* ── CARD: Последние звонки (низ) ── */}
+                <div
+                  className="absolute rounded-2xl p-5 db-card"
+                  style={{
+                    width: "42%",
+                    top: "1000px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: "var(--db-bg-1)",
+                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
+                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    zIndex: 30,
+                  }}
+                >
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
+                  {/* Table header */}
+                  <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(var(--db-acc-rgb-2),0.18)" }}>
+                    {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
+                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
+                    ))}
+                  </div>
+                  {/* Rows */}
+                  <div className="space-y-2.5">
+                    {[
+                      { c: "ООО ТехноПласт", d: "4:14", r: "Успешно", k: "85%", color: "#22a868" },
+                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#b8860b" },
+                      { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
+                      { c: "Сергей Иванов", d: "7:11", r: "Не удалось", k: "20%", color: "#ef4444" },
+                      { c: "ООО СтройИнвест", d: "5:38", r: "Успешно", k: "70%", color: "#22a868" },
+                    ].map((row, idx) => (
+                      <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.55)" }}>{row.d}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: row.color }}>{row.r}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 500 }}>{row.k}</span>
+                        {/* Audio control */}
+                        <div className="flex items-center gap-1.5">
+                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--db-acc-2)" }}>
+                            <Icon name="Play" size={8} style={{ color: "#FBF6EC" }} />
+                          </button>
+                          {/* Mini waveform */}
+                          <div className="flex items-center gap-[1px] flex-1" style={{ height: "14px" }}>
+                            {[4,7,10,5,12,6,9,11,5,8,7,10,4,9,6,8,5,11,7,4].map((h, i) => (
+                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.25)" }} />
+                            ))}
+                          </div>
+                          <button className="shrink-0" title="Скачать">
+                            <Icon name="Download" size={11} style={{ color: "rgba(var(--db-acc-rgb-2),0.7)" }} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
               </div>
             </Section>
