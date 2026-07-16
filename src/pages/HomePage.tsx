@@ -5239,6 +5239,8 @@ export function HomePage() {
                     width: "38%",
                     top: "620px",
                     left: "40%",
+                    transform: "scale(1.2)",
+                    transformOrigin: "top left",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
