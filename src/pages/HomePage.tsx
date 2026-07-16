@@ -5276,7 +5276,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-6 db-card"
                   style={{
                     width: "30%",
-                    top: "500px",
+                    top: "340px",
                     right: "-9%",
                     background: "linear-gradient(135deg, var(--db-bg-3) 0%, var(--db-bg-4) 100%)",
                     border: "1px solid rgba(212,176,116,0.55)",
