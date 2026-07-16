@@ -2236,13 +2236,23 @@ function ImplementationSection() {
                 position: "relative", zIndex: 1, flexShrink: 0,
                 width: "56px", height: "56px", borderRadius: "50%",
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
-                background: "linear-gradient(135deg, rgba(212,176,116,0.22) 0%, rgba(212,176,116,0.06) 100%)",
-                border: "1px solid rgba(212,176,116,0.4)",
-                fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: G, fontWeight: 600,
+                background: "linear-gradient(135deg, #FBF6EC, #E9D29A 45%, #C8A96A)",
                 boxShadow: "0 0 22px rgba(212,176,116,0.15)",
                 transition: "transform 0.3s ease, background 0.3s ease",
+                padding: "1.5px",
               }}>
-                {i + 1}
+                <div style={{
+                  width: "100%", height: "100%", borderRadius: "50%",
+                  background: "#141312",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <span style={{
+                    fontFamily: '"Prata", Georgia, serif', fontSize: "26px", fontWeight: 400,
+                    background: "linear-gradient(135deg, #FBF6EC, #E9D29A 45%, #C8A96A)",
+                    WebkitBackgroundClip: "text", backgroundClip: "text",
+                    WebkitTextFillColor: "transparent", color: "transparent",
+                  }}>{i + 1}</span>
+                </div>
               </div>
 
               <div style={{ flex: 1, paddingTop: "2px" }}>
