@@ -2636,7 +2636,7 @@ function CaseCard({ it, i, inView }: {
           fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
           letterSpacing: "0.06em", textTransform: "uppercase", color: A, textAlign: "center",
           background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
-          borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, marginTop: "-64px", whiteSpace: "nowrap",
+          borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, marginTop: "-74px", whiteSpace: "nowrap",
           marginLeft: it.tagShift ? `${it.tagShift}px` : undefined,
         }}>
           {it.tag}
@@ -2741,7 +2741,7 @@ function CasesSection() {
     {
       company: "SkillUp",
       tag: "Онлайн-обучение",
-      tagShift: 18,
+      tagShift: 36,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4aa6264d-6eb8-4b86-8cdd-1f23583e7ba7.png",
       accent: "#7DA9FF",
       subtitle: "Онлайн-школа продаж, 60+ менеджеров",
