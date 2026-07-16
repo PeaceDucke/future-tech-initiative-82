@@ -5289,8 +5289,8 @@ export function HomePage() {
                     <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "20px", color: "var(--db-acc-4)", fontWeight: 700, letterSpacing: "-0.01em" }}>AI-Инсайты</span>
                   </div>
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", marginBottom: "18px", fontWeight: 500, fontStyle: "italic" }}>Рекомендации для менеджера</div>
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="w-full">
+                  <div className="flex items-center gap-5">
+                    <div style={{ flex: 1, maxWidth: "160px" }}>
                       <p style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "var(--db-acc-4)", lineHeight: 1.5, marginBottom: "16px", fontWeight: 600 }}>
                         Клиенты чаще всего возражают на этапе обсуждения цены.
                       </p>
