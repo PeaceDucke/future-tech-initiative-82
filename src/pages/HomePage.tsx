@@ -5568,7 +5568,7 @@ export function HomePage() {
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    zIndex: 30,
+                    zIndex: 5,
                   }}
                 >
                   <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
