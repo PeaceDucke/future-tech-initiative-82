@@ -5593,7 +5593,7 @@ export function HomePage() {
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: row.color }}>{row.r}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{row.k}</span>
                         {/* Audio control */}
-                        <div className="flex items-center gap-2" style={{ marginLeft: "-10px" }}>
+                        <div className="flex items-center gap-2" style={{ marginLeft: "-22px" }}>
                           <button className="rounded-full flex items-center justify-center shrink-0" title="Прослушать" style={{ width: 26, height: 26, background: "var(--db-acc-2)" }}>
                             <Icon name="Play" size={11} style={{ color: "#FFFFFF" }} />
                           </button>
