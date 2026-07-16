@@ -5367,7 +5367,7 @@ export function HomePage() {
                     src="/analysis-emotion.png"
                     alt="Эмоциональная тональность и ключевые темы"
                     loading="lazy"
-                    style={{ width: "100%", height: "auto", display: "block" }}
+                    style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 -24px 40px rgba(0,0,0,0.55))" }}
                   />
                 </div>
 
@@ -5563,7 +5563,7 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "42%",
-                    top: "300px",
+                    top: "440px",
                     left: "-16%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
