@@ -5323,12 +5323,11 @@ export function HomePage() {
 
                 {/* ── CARD: Анализ разговора (слева) ── */}
                 <div
-                  className="absolute rounded-2xl db-card"
+                  className="absolute"
                   style={{
-                    width: "63.7%",
+                    width: "58%",
                     bottom: "100px",
                     left: "-16%",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: 20,
                   }}
