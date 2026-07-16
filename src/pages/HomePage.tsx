@@ -4090,7 +4090,7 @@ function PricingSection() {
           </div>
           <h2 className="pr-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(34px, 5vw, 66px)",
+            fontSize: "50px",
             fontWeight: 600,
             color: "#FBF6EC",
             lineHeight: 1.1,
@@ -4106,9 +4106,6 @@ function PricingSection() {
               fontStyle: "italic",
             }}>масштаба</span>
           </h2>
-          <p className="pr-sub" style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", color: "rgba(251,246,236,0.5)", fontWeight: 300 }}>
-            Начните бесплатно - 300 минут Quick-анализа
-          </p>
         </div>
 
         {/* Cards grid */}
