@@ -5357,7 +5357,7 @@ export function HomePage() {
                   className="absolute"
                   style={{
                     width: "49%",
-                    top: "760px",
+                    top: "620px",
                     left: "-18%",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: 20,
