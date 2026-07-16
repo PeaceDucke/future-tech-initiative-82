@@ -5357,8 +5357,8 @@ export function HomePage() {
                   className="absolute"
                   style={{
                     width: "49%",
-                    top: "1000px",
-                    left: "-12%",
+                    top: "900px",
+                    left: "-18%",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: 20,
                   }}
@@ -5376,12 +5376,12 @@ export function HomePage() {
                   className="absolute rounded-2xl p-5 db-card"
                   style={{
                     width: "38%",
-                    top: "820px",
+                    top: "760px",
                     left: "27%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    zIndex: 22,
+                    zIndex: 40,
                   }}
                 >
                   <div className="flex items-start justify-between mb-4">
