@@ -2285,8 +2285,8 @@ function ImplementationSection() {
                 key={label}
                 style={{
                   fontFamily: '"Jost", sans-serif',
-                  fontSize: "15px",
-                  fontWeight: 400,
+                  fontSize: "17px",
+                  fontWeight: 500,
                   letterSpacing: "0.02em",
                   color: "#FFFFFF",
                   padding: "9px 20px",
