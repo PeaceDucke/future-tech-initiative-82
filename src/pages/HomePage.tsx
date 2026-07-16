@@ -2179,11 +2179,17 @@ function ImplementationSection() {
             className="impl-title quartz-text"
             style={{
               fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 500,
-              fontSize: "clamp(28px, 3.6vw, 50px)", lineHeight: 1.18,
+              fontSize: "50px", lineHeight: 1.18,
               maxWidth: "900px", margin: "0 auto",
             }}
           >
-            Запуск проще, чем кажется - всего 5 шагов под ключ
+            Запуск проще, чем кажется - <span style={{
+              background: "linear-gradient(105deg, #FBF6EC, #E9D29A 45%, #C8A96A)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+            }}>всего 5 шагов</span> под ключ
           </motion.h2>
 
           <motion.p
@@ -3907,7 +3913,7 @@ function FaqSection() {
           </div>
           <h2 className="faq-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
-            fontSize: "clamp(32px, 5vw, 62px)",
+            fontSize: "50px",
             fontWeight: 600,
             color: "#FBF6EC",
             lineHeight: 1.1,
