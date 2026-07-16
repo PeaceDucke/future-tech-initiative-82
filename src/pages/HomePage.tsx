@@ -5337,7 +5337,7 @@ export function HomePage() {
                     src="/analysis-emotion.png"
                     alt="Эмоциональная тональность и ключевые темы"
                     loading="lazy"
-                    style={{ width: "100%", height: "auto", display: "block", borderRadius: "16px" }}
+                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 </div>
 
