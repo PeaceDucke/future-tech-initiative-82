@@ -5138,7 +5138,7 @@ export function HomePage() {
                   style={{
                     width: "38%",
                     top: "560px",
-                    right: "-9%",
+                    right: "-15%",
                     background: "linear-gradient(135deg, var(--db-bg-3) 0%, var(--db-bg-4) 100%)",
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
