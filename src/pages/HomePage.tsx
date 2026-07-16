@@ -5323,48 +5323,22 @@ export function HomePage() {
 
                 {/* ── CARD: Анализ разговора (слева) ── */}
                 <div
-                  className="absolute rounded-2xl p-5 db-card"
+                  className="absolute rounded-2xl db-card"
                   style={{
                     width: "34%",
                     bottom: "100px",
                     left: "-3%",
-                    background: "var(--db-bg-1)",
-                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                     zIndex: 20,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "3px" }}>Анализ разговора</div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.5)", marginBottom: "18px" }}>Этап: Работа с возражениями</div>
-                  {/* Waveform */}
-                  <div className="flex items-center gap-0.5 mb-4" style={{ height: "48px" }}>
-                    {[5,9,15,11,21,14,8,18,12,22,9,17,6,19,10,15,8,12,18,9,13,21,10,16,6,12,19,9,15,7,18,10,13,16,8].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-full"
-                        style={{
-                          height: `${h}px`,
-                          background: i < 14 ? "#453321" : "rgba(69,51,33,0.3)",
-                          transformOrigin: "center",
-                          animation: "none",
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "#453321" }}>
-                      <Icon name="Play" size={12} style={{ color: "#FBF6EC" }} />
-                    </div>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#453321" }}>02:37 / 05:21</span>
-                  </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "#453321", marginBottom: "10px" }}>Ключевые темы</div>
-                  <div className="flex flex-wrap gap-2">
-                    {["Цена", "Сроки", "Назначение встречи"].map(tag => (
-                      <span key={tag} className="px-3 py-1 rounded-md" style={{ background: "rgba(var(--db-text-rgb),0.08)", color: "var(--db-text-main)", border: "1px solid rgba(var(--db-text-rgb),0.25)", fontSize: "12px", fontFamily: "Inter, sans-serif" }}>{tag}</span>
-                    ))}
-                  </div>
-
+                  <img
+                    src="/analysis-emotion.png"
+                    alt="Эмоциональная тональность и ключевые темы"
+                    loading="lazy"
+                    style={{ width: "100%", height: "auto", display: "block", borderRadius: "16px" }}
+                  />
                 </div>
 
                 {/* ── CARD: Качество разговора (радар) ── */}
