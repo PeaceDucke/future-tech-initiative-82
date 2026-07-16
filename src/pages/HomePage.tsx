@@ -2627,10 +2627,11 @@ function CaseCard({ it, i, inView }: {
       {/* header: logo + tag */}
       <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px", marginLeft: "-14px" }}>
         <div style={{
-          width: "114px", height: "114px", flexShrink: 0, borderRadius: "20px",
+          width: it.logoExtraLeft ? `${114 + it.logoExtraLeft}px` : "114px", height: "114px", flexShrink: 0, borderRadius: "20px",
+          marginLeft: it.logoExtraLeft ? `${-it.logoExtraLeft}px` : undefined,
           display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
-          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "21px", transform: `scale(${it.logoScale ?? 1.35})` }} />
+          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)" }} />
         </div>
         <span style={{
           fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
@@ -2712,7 +2713,7 @@ function CasesSection() {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
       tagShift: 18,
-      logoScale: 1,
+      logoExtraLeft: 24,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       accent: "#D4B074",
       subtitle: "Поставщик электроники B2B, 120+ менеджеров",
