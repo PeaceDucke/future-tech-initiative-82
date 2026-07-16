@@ -2713,7 +2713,7 @@ function CasesSection() {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
       tagShift: 18,
-      logoShift: 16,
+      logoShift: 32,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
       accent: "#D4B074",
       subtitle: "Поставщик электроники B2B, 120+ менеджеров",
