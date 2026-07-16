@@ -5571,11 +5571,11 @@ export function HomePage() {
                     zIndex: 5,
                   }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "var(--db-acc-3)", fontWeight: 500, marginBottom: "14px" }}>Последние звонки</div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "var(--db-acc-3)", fontWeight: 600, marginBottom: "14px" }}>Последние звонки</div>
                   {/* Table header */}
                   <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(var(--db-acc-rgb-2),0.18)" }}>
                     {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
-                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "10px", color: "rgba(var(--db-text-rgb),0.45)", fontWeight: 500, letterSpacing: "0.04em" }}>{h}</span>
+                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.45)", fontWeight: 600, letterSpacing: "0.04em" }}>{h}</span>
                     ))}
                   </div>
                   {/* Rows */}
@@ -5588,10 +5588,10 @@ export function HomePage() {
                       { c: "ООО СтройИнвест", d: "5:38", r: "Успешно", k: "70%", color: "#22a868" },
                     ].map((row, idx) => (
                       <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.55)" }}>{row.d}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: row.color }}>{row.r}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 500 }}>{row.k}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(var(--db-text-rgb),0.55)" }}>{row.d}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: row.color }}>{row.r}</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{row.k}</span>
                         {/* Audio control */}
                         <div className="flex items-center gap-1.5">
                           <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--db-acc-2)" }}>
