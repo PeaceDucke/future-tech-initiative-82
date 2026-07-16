@@ -4169,7 +4169,7 @@ function PricingSection() {
                   <>
                     <div className="pr-price" style={{
                       fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "clamp(31px, 4vw, 43px)",
+                      fontSize: "clamp(26px, 4vw, 38px)",
                       fontWeight: 600,
                       color: "#FBF6EC",
                       lineHeight: 1,
@@ -4182,7 +4182,7 @@ function PricingSection() {
                 ) : (
                   <div className="pr-price pr-price-free" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif',
-                    fontSize: "clamp(27px, 4vw, 39px)",
+                    fontSize: "clamp(22px, 4vw, 34px)",
                     fontWeight: 600,
                     color: "#FBF6EC",
                     lineHeight: 1,
