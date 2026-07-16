@@ -2631,7 +2631,7 @@ function CaseCard({ it, i, inView }: {
           marginLeft: it.logoExtraLeft ? `${-it.logoExtraLeft}px` : undefined,
           display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
-          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)" }} />
+          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)", objectPosition: it.logoExtraLeft ? "right center" : "center" }} />
         </div>
         <span style={{
           fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
