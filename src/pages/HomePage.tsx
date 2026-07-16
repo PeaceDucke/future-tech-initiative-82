@@ -5476,7 +5476,7 @@ export function HomePage() {
                     <span style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: "var(--db-acc-3)", fontWeight: 600 }}>Панель РОПа</span>
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.15)" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(var(--db-text-rgb),0.7)" }}>Текущая неделя</span>
+                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "#2E2114A6" }}>Текущая неделя</span>
                         <Icon name="ChevronDown" size={10} style={{ color: "rgba(var(--db-text-rgb),0.5)" }} />
                       </div>
                       <div className="flex items-center justify-center rounded" style={{ width: 30, height: 30, background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.15)" }}>
@@ -5494,7 +5494,7 @@ export function HomePage() {
                       { label: "Упущенная выручка", val: "312 000 ₽", delta: "-9%", up: false },
                     ].map((k) => (
                       <div key={k.label} className="rounded-xl p-3.5" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.1)" }}>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.55)", marginBottom: "8px" }}>{k.label}</div>
+                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "#2E2114A6", marginBottom: "8px" }}>{k.label}</div>
                         <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: "var(--db-text-main)", fontWeight: 600, lineHeight: 1 }}>{k.val}</div>
                         <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: k.up ? "#22a868" : "#e0533d", fontWeight: 600, marginTop: "8px" }}>{k.up ? "↑" : "↓"} {k.delta}</div>
                       </div>
@@ -5516,13 +5516,13 @@ export function HomePage() {
                           <div key={m.name} className="flex items-center gap-2.5">
                             <div className="rounded-full flex items-center justify-center shrink-0" style={{ width: 24, height: 24, background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "14px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
                             <div style={{ flex: 1, minWidth: 0 }}>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "rgba(var(--db-text-rgb),0.8)", whiteSpace: "nowrap" }}>{m.name}</span>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#2E2114A6", whiteSpace: "nowrap" }}>{m.name}</span>
                               <div className="rounded-full overflow-hidden mt-1" style={{ height: "5px", background: "rgba(var(--db-text-rgb),0.12)" }}>
                                 <div style={{ height: "100%", width: `${m.score}%`, background: "var(--db-acc-1)" }} />
                               </div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0">
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(var(--db-text-rgb),0.6)" }}>{m.score}/100</span>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#2E2114A6" }}>{m.score}/100</span>
                               <span className="rounded-full" style={{ width: 6, height: 6, background: m.color }} />
                             </div>
                           </div>
