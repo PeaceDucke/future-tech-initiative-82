@@ -5325,7 +5325,7 @@ export function HomePage() {
                 <div
                   className="absolute"
                   style={{
-                    width: "58%",
+                    width: "44.6%",
                     bottom: "100px",
                     left: "-16%",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
