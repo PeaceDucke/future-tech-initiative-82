@@ -5564,7 +5564,7 @@ export function HomePage() {
                   style={{
                     width: "42%",
                     top: "360px",
-                    left: "0%",
+                    left: "-16%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
