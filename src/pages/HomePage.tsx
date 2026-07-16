@@ -4185,8 +4185,7 @@ function PricingSection() {
               {/* Features */}
               <div className="pr-feats" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                 {[
-                  { icon: "⚡", label: "Quick", value: plan.quick },
-                  { icon: "🔬", label: "Deep", value: plan.deep },
+                  { icon: "⚡", label: "Минут Анализа", value: plan.quick },
                   { icon: "👤", label: "Менеджеров", value: plan.managers },
                 ].map(row => (
                   <div key={row.label} className="pr-feat-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
