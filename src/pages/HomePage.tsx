@@ -2633,7 +2633,7 @@ function CaseCard({ it, i, inView }: {
           <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)" }} />
         </div>
         <span style={{
-          fontFamily: "Jost, sans-serif", fontSize: "15px", fontWeight: 700,
+          fontFamily: "Prata, serif", fontSize: "19px", fontWeight: 400,
           letterSpacing: "0.06em", textTransform: "uppercase", color: A,
           background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
           borderRadius: "999px", padding: "6px 12px", lineHeight: 1.2,
