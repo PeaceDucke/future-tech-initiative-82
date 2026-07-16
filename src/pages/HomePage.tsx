@@ -4041,9 +4041,9 @@ function PricingSection() {
       price: null,
       priceLabel: "",
       period: null,
-      quick: "Безлимит",
-      deep: "Безлимит",
-      managers: "Безлимит",
+      quick: "∞",
+      deep: "∞",
+      managers: "∞",
       popular: false,
       contact: true,
     },
@@ -4073,8 +4073,9 @@ function PricingSection() {
       }} />
 
       <div
-        className="max-w-7xl mx-auto relative"
+        className="mx-auto relative"
         style={{
+          maxWidth: "1560px",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(36px)",
           transition: "opacity 0.9s ease, transform 0.9s ease",
@@ -4222,7 +4223,9 @@ function PricingSection() {
                     <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
                       {row.label}
                     </span>
-                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px" }}>{row.value}</span>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px", display: "flex", alignItems: "center" }}>
+                      {row.value === "∞" ? <Icon name="Infinity" size={20} /> : row.value}
+                    </span>
                   </div>
                 ))}
               </div>
