@@ -4000,7 +4000,7 @@ function PricingSection() {
 
   const plans = [
     {
-      name: "Бесплатный",
+      name: "Тестовый",
       price: null,
       priceLabel: "Бесплатно",
       period: null,
@@ -4169,7 +4169,7 @@ function PricingSection() {
                   <>
                     <div className="pr-price" style={{
                       fontFamily: '"Bodoni Moda", Georgia, serif',
-                      fontSize: "clamp(36px, 4vw, 48px)",
+                      fontSize: "clamp(31px, 4vw, 43px)",
                       fontWeight: 600,
                       color: "#FBF6EC",
                       lineHeight: 1,
@@ -4182,7 +4182,7 @@ function PricingSection() {
                 ) : (
                   <div className="pr-price pr-price-free" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif',
-                    fontSize: "clamp(32px, 4vw, 44px)",
+                    fontSize: "clamp(27px, 4vw, 39px)",
                     fontWeight: 600,
                     color: "#FBF6EC",
                     lineHeight: 1,
