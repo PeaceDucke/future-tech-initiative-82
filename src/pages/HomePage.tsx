@@ -4059,7 +4059,7 @@ function PricingSection() {
       period: "в месяц",
       quick: "1 500 мин",
       deep: "150 мин",
-      managers: "до 3",
+      managers: "до 10",
       popular: false,
     },
     {
@@ -4068,7 +4068,7 @@ function PricingSection() {
       period: "в месяц",
       quick: "4 000 мин",
       deep: "500 мин",
-      managers: "до 10",
+      managers: "до 20",
       popular: true,
     },
     {
@@ -4077,7 +4077,7 @@ function PricingSection() {
       period: "в месяц",
       quick: "10 000 мин",
       deep: "1 500 мин",
-      managers: "до 20",
+      managers: "до 50",
       popular: false,
     },
     {
