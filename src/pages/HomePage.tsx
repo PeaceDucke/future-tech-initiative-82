@@ -5519,7 +5519,7 @@ export function HomePage() {
                             <div style={{ flex: 1, minWidth: 0 }}>
                               <span style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "#2E2114A6", fontWeight: 500, whiteSpace: "nowrap" }}>{m.name}</span>
                               <div className="rounded-full overflow-hidden mt-1" style={{ height: "5px", background: "rgba(var(--db-text-rgb),0.12)" }}>
-                                <div style={{ height: "100%", width: `${m.score}%`, background: "var(--db-acc-1)" }} />
+                                <div style={{ height: "100%", width: `${m.score}%`, background: "linear-gradient(90deg, #8B6A2E 0%, #D4B074 100%)" }} />
                               </div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0">
