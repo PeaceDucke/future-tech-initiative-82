@@ -2627,7 +2627,7 @@ function CaseCard({ it, i, inView }: {
       {/* header: logo + tag */}
       <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px", marginLeft: "-14px" }}>
         <div style={{
-          width: "160px", height: "160px", flexShrink: 0, borderRadius: "26px",
+          width: "114px", height: "114px", flexShrink: 0, borderRadius: "20px",
           display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
           <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)" }} />
