@@ -2652,22 +2652,6 @@ function CaseCard({ it, i, inView }: {
         </div>
       </div>
 
-      {/* problem */}
-      <div style={{ marginTop: "26px" }}>
-        <div style={labelCss}>Проблема</div>
-        <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C7C2B6", lineHeight: 1.55 }}>
-          {it.problem}
-        </p>
-      </div>
-
-      {/* solution */}
-      <div style={{ marginTop: "20px" }}>
-        <div style={labelCss}>Решение</div>
-        <p style={{ margin: 0, fontFamily: "Inter, sans-serif", fontSize: "15px", color: "#C7C2B6", lineHeight: 1.55 }}>
-          {it.solution}
-        </p>
-      </div>
-
       {/* result box */}
       <div style={{
         marginTop: "24px",
