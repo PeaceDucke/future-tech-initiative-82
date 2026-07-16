@@ -5062,9 +5062,9 @@ export function HomePage() {
                       <div className="grid grid-cols-4 gap-4 mb-5">
                         {[
                           { label: "Конверсия в сделку", val: "24%", delta: "+8%", up: true },
-                          { label: "Выручка", val: "2,1 млн ₽", delta: "+18%", up: true },
+                          { label: "Пропущено точек продаж", val: "38%", delta: "-6.1%", up: false },
                           { label: "Обработано заявок", val: "1 248", delta: "+12%", up: true },
-                          { label: "Упущенная выручка", val: "312 000 ₽", delta: "-9%", up: false },
+                          { label: "Выявлено критических ошибок", val: "127", delta: "-12.4%", up: false },
                         ].map((k) => (
                           <div key={k.label} className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.12)" }}>
                             <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.65)", fontWeight: 500, marginBottom: "8px" }}>{k.label}</div>
