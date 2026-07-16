@@ -4162,10 +4162,11 @@ function PricingSection() {
                 textTransform: "uppercase" as const,
                 color: plan.popular ? G : "rgba(251,246,236,0.45)",
                 marginBottom: "16px",
+                textAlign: "center",
               }}>{plan.name}</p>
 
               {/* Price */}
-              <div style={{ marginBottom: "32px" }}>
+              <div style={{ marginBottom: "32px", minHeight: "78px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
                 {plan.price ? (
                   <>
                     <div className="pr-price" style={{
