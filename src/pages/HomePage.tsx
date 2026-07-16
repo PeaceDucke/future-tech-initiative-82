@@ -5593,12 +5593,12 @@ export function HomePage() {
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: row.color }}>{row.r}</span>
                         <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{row.k}</span>
                         {/* Audio control */}
-                        <div className="flex items-center gap-2">
-                          <button className="rounded-full flex items-center justify-center shrink-0" title="Прослушать" style={{ width: 22, height: 22, background: "var(--db-acc-2)" }}>
-                            <Icon name="Play" size={9} style={{ color: "#FBF6EC" }} />
+                        <div className="flex items-center gap-2" style={{ marginLeft: "-10px" }}>
+                          <button className="rounded-full flex items-center justify-center shrink-0" title="Прослушать" style={{ width: 26, height: 26, background: "var(--db-acc-2)" }}>
+                            <Icon name="Play" size={11} style={{ color: "#FFFFFF" }} />
                           </button>
-                          <button className="rounded-full flex items-center justify-center shrink-0" title="Скачать запись" style={{ width: 22, height: 22, background: "#6B4A1F", border: "1px solid #8B6A2E" }}>
-                            <Icon name="Download" size={11} style={{ color: "#F3D89A" }} />
+                          <button className="rounded-full flex items-center justify-center shrink-0" title="Скачать запись" style={{ width: 26, height: 26, background: "#9A6E2E", border: "1px solid #C79A50" }}>
+                            <Icon name="Download" size={13} style={{ color: "#FBEFD0" }} />
                           </button>
                         </div>
                       </div>
