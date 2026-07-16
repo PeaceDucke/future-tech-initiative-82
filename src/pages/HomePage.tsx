@@ -5511,6 +5511,7 @@ export function HomePage() {
                           { name: "Екатерина Смирнова", a: "Е", score: 91, status: "Отлично", color: "#22a868" },
                           { name: "Алексей Воронов", a: "А", score: 78, status: "Хорошо", color: "#22a868" },
                           { name: "Мария Иванова", a: "М", score: 62, status: "Средне", color: "#e8b923" },
+                          { name: "Ольга Соколова", a: "О", score: 55, status: "Средне", color: "#e8b923" },
                           { name: "Дмитрий Кузнецов", a: "Д", score: 48, status: "Нужно внимание", color: "#e0533d" },
                         ].map((m) => (
                           <div key={m.name} className="flex items-center gap-2.5">
