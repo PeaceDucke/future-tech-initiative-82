@@ -5217,7 +5217,7 @@ export function HomePage() {
                 <div
                   className="absolute"
                   style={{
-                    width: "49%",
+                    width: "54%",
                     top: "620px",
                     left: "-18%",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
@@ -5238,7 +5238,7 @@ export function HomePage() {
                   style={{
                     width: "38%",
                     top: "540px",
-                    left: "28%",
+                    left: "31%",
                     transform: "scale(1.2)",
                     transformOrigin: "top left",
                     background: "var(--db-bg-1)",
