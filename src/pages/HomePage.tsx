@@ -5282,7 +5282,7 @@ export function HomePage() {
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
-                    zIndex: 21,
+                    zIndex: 45,
                   }}
                 >
                   <div className="flex items-center mb-2">
