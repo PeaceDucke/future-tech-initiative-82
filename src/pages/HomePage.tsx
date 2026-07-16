@@ -2625,12 +2625,12 @@ function CaseCard({ it, i, inView }: {
       }} />
 
       {/* header: logo + tag */}
-      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px" }}>
+      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px", marginLeft: "-14px" }}>
         <div style={{
           width: "160px", height: "160px", flexShrink: 0, borderRadius: "26px",
-          display: "flex", alignItems: "center", justifyContent: "center",
+          display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
-          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px" }} />
+          <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)" }} />
         </div>
         <span style={{
           fontFamily: "Inter, sans-serif", fontSize: "11px", fontWeight: 700,
