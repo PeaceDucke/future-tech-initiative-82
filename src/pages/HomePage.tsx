@@ -5603,8 +5603,8 @@ export function HomePage() {
                               <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.25)" }} />
                             ))}
                           </div>
-                          <button className="shrink-0" title="Скачать">
-                            <Icon name="Download" size={11} style={{ color: "rgba(var(--db-acc-rgb-2),0.7)" }} />
+                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" title="Скачать запись" style={{ background: "rgba(var(--db-acc-rgb-2),0.15)", border: "1px solid rgba(var(--db-acc-rgb-2),0.4)" }}>
+                            <Icon name="Download" size={11} style={{ color: "var(--db-acc-2)" }} />
                           </button>
                         </div>
                       </div>
