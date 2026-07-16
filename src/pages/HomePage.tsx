@@ -2655,8 +2655,8 @@ function CaseCard({ it, i, inView }: {
       {/* result box */}
       <div style={{
         marginTop: "24px",
-        background: hexToRgba(A, 0.07),
-        border: `1px solid ${hexToRgba(A, 0.22)}`,
+        background: hexToRgba(A, 0.03),
+        border: `1px solid ${hexToRgba(A, 0.12)}`,
         borderRadius: "14px", padding: "18px 20px",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
