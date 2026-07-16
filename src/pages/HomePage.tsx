@@ -4222,7 +4222,7 @@ function PricingSection() {
                     <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
                       {row.label}
                     </span>
-                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px" }}>{row.value}</span>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px" }}>{row.value}</span>
                   </div>
                 ))}
               </div>
