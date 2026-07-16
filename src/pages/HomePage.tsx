@@ -2696,7 +2696,7 @@ function CasesSection() {
     {
       company: "ТехноЛайн",
       tag: "Оптовая электроника",
-      tagShift: 8,
+      tagShift: -2,
       textExtraShift: 6,
       logoExtraLeft: 24,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fe70a775-96d0-49c7-9abc-6ceafd54bdf2.png",
@@ -2745,7 +2745,7 @@ function CasesSection() {
     {
       company: "ГринХаус",
       tag: "Загородная недвижимость",
-      tagShift: -10,
+      tagShift: -20,
       logo: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/281a8a8e-f6fe-4404-bb70-547eb5e887d9.png",
       accent: "#B98CF5",
       subtitle: "Продажа загородной недвижимости, 40+ менеджеров",
