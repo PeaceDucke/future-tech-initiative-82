@@ -4215,12 +4215,11 @@ function PricingSection() {
               {/* Features */}
               <div className="pr-feats" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                 {[
-                  { icon: "⚡", label: "Минут Анализа", value: plan.quick },
-                  { icon: "👤", label: "Менеджеров", value: plan.managers },
+                  { label: "Минут Анализа", value: plan.quick },
+                  { label: "Менеджеров", value: plan.managers },
                 ].map(row => (
                   <div key={row.label} className="pr-feat-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", gap: "7px", flexShrink: 1, minWidth: 0 }}>
-                      <span style={{ fontSize: "15px", flexShrink: 0 }}>{row.icon}</span>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
                       {row.label}
                     </span>
                     <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", fontWeight: 600, color: plan.popular ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px" }}>{row.value}</span>
