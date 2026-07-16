@@ -2643,10 +2643,10 @@ function CaseCard({ it, i, inView }: {
           }}>
             {it.tag}
           </span>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 600, lineHeight: 1.15 }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 600, lineHeight: 1.15, marginLeft: "16px" }}>
             {it.company}
           </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.4 }}>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.4, marginLeft: "16px" }}>
             {it.subtitle}
           </div>
         </div>
