@@ -2780,19 +2780,13 @@ function CasesSection() {
               maxWidth: "900px", margin: "0 auto",
             }}
           >
-            Кейсы клиентов
+            Компании которые уже используют{" "}
+            <span style={{
+              background: "linear-gradient(90deg, #FBF6EC 0%, #D4B074 100%)",
+              WebkitBackgroundClip: "text", backgroundClip: "text",
+              WebkitTextFillColor: "transparent", color: "transparent",
+            }}>Voice-Tec AI</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            style={{
-              fontFamily: "Inter, sans-serif", fontSize: "clamp(16px, 1.4vw, 20px)",
-              color: "#B7B2A6", lineHeight: 1.5, maxWidth: "680px", margin: "18px auto 0",
-            }}
-          >
-            Компании, которые уже используют <span style={{ color: G }}>Voice-Tec</span> и получают больше прибыли, контролируя каждый разговор.
-          </motion.p>
         </div>
 
         <div ref={gridRef} className="grid cases-grid" style={{ gridTemplateColumns: `repeat(${cases.length}, 1fr)`, gap: "22px" }}>
