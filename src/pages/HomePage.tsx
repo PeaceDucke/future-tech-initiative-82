@@ -5598,13 +5598,13 @@ export function HomePage() {
                             <Icon name="Play" size={8} style={{ color: "#FBF6EC" }} />
                           </button>
                           {/* Mini waveform */}
-                          <div className="flex items-center gap-[1px] flex-1" style={{ height: "14px" }}>
-                            {[4,7,10,5,12,6,9,11,5,8,7,10,4,9,6,8,5,11,7,4].map((h, i) => (
-                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 14) ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.25)" }} />
+                          <div className="flex items-center gap-[1px]" style={{ height: "14px", flex: "1 1 0", minWidth: 0 }}>
+                            {[4,7,10,5,12,6,9,11,5,8,7,10,4,9].map((h, i) => (
+                              <div key={i} className="flex-1 rounded-full" style={{ height: `${h}px`, background: i < (idx === 3 ? 4 : idx === 1 ? 8 : 10) ? "var(--db-acc-2)" : "rgba(var(--db-acc-rgb-2),0.25)" }} />
                             ))}
                           </div>
-                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" title="Скачать запись" style={{ background: "rgba(var(--db-acc-rgb-2),0.15)", border: "1px solid rgba(var(--db-acc-rgb-2),0.4)" }}>
-                            <Icon name="Download" size={11} style={{ color: "var(--db-acc-2)" }} />
+                          <button className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" title="Скачать запись" style={{ background: "#6B4A1F", border: "1px solid #8B6A2E" }}>
+                            <Icon name="Download" size={11} style={{ color: "#F3D89A" }} />
                           </button>
                         </div>
                       </div>
