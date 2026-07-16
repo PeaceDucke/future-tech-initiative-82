@@ -4166,7 +4166,7 @@ function PricingSection() {
               }}>{plan.name}</p>
 
               {/* Price */}
-              <div style={{ marginBottom: "32px", minHeight: "78px", display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+              <div style={{ marginBottom: "32px", minHeight: "78px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", textAlign: "center" }}>
                 {plan.price ? (
                   <>
                     <div className="pr-price" style={{
