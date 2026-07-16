@@ -5505,7 +5505,7 @@ export function HomePage() {
                   <div className="grid grid-cols-2 gap-4">
                     {/* Состояние команды */}
                     <div className="rounded-xl p-4" style={{ background: "var(--db-bg-2)", border: "1px solid rgba(var(--db-text-rgb),0.1)" }}>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "var(--db-acc-3)", fontWeight: 600, marginBottom: "14px" }}>Состояние команды</div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "var(--db-acc-3)", fontWeight: 600, marginBottom: "14px" }}>Состояние команды</div>
                       <div className="space-y-3">
                         {[
                           { name: "Екатерина Смирнова", a: "Е", score: 91, status: "Отлично", color: "#22a868" },
@@ -5514,21 +5514,21 @@ export function HomePage() {
                           { name: "Дмитрий Кузнецов", a: "Д", score: 48, status: "Нужно внимание", color: "#e0533d" },
                         ].map((m) => (
                           <div key={m.name} className="flex items-center gap-2.5">
-                            <div className="rounded-full flex items-center justify-center shrink-0" style={{ width: 24, height: 24, background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "10px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
+                            <div className="rounded-full flex items-center justify-center shrink-0" style={{ width: 24, height: 24, background: "rgba(var(--db-acc-rgb-2),0.2)", color: "var(--db-acc-2)", fontWeight: 600, fontSize: "11px", fontFamily: "Inter, sans-serif" }}>{m.a}</div>
                             <div style={{ flex: 1, minWidth: 0 }}>
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.8)", whiteSpace: "nowrap" }}>{m.name}</span>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(var(--db-text-rgb),0.8)", whiteSpace: "nowrap" }}>{m.name}</span>
                               <div className="rounded-full overflow-hidden mt-1" style={{ height: "5px", background: "rgba(var(--db-text-rgb),0.12)" }}>
                                 <div style={{ height: "100%", width: `${m.score}%`, background: "var(--db-acc-1)" }} />
                               </div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0">
-                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.6)" }}>{m.score}/100</span>
+                              <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "rgba(var(--db-text-rgb),0.6)" }}>{m.score}/100</span>
                               <span className="rounded-full" style={{ width: 6, height: 6, background: m.color }} />
                             </div>
                           </div>
                         ))}
                       </div>
-                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "var(--db-acc-3)", fontWeight: 600, marginTop: "14px", cursor: "pointer" }}>Смотреть всех менеджеров →</div>
+                      <div style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600, marginTop: "14px", cursor: "pointer" }}>Смотреть всех менеджеров →</div>
                     </div>
 
                     {/* Приоритеты на сегодня */}
