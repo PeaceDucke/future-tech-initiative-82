@@ -1545,6 +1545,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
+        containerType: "inline-size",
         background: "linear-gradient(135deg, #1c1c1d 0%, #141414 42%, #0f0f10 72%, #18181a 100%)",
         border: "1px solid rgba(212,176,116,0.18)",
         borderRadius: "26px", padding: "48px 28px 14px", overflow: "hidden",
@@ -1586,7 +1587,10 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
           <div className="aud-card-tag" style={{
             position: "relative", zIndex: 1, textAlign: "center",
             fontFamily: '"Prata", serif',
-            fontSize: oneWord ? "clamp(17px, 1.7vw, 32px)" : "clamp(18px, 1.9vw, 34px)", color: W,
+            fontSize: forcedTwoLine
+              ? "clamp(15px, 8.5cqw, 30px)"
+              : oneWord ? "clamp(17px, 1.7vw, 32px)" : "clamp(18px, 1.9vw, 34px)",
+            color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "0",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
             overflowWrap: (oneWord || forcedTwoLine) ? "normal" : "break-word",
