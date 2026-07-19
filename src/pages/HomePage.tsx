@@ -4864,36 +4864,49 @@ export function HomePage() {
                   transform-origin: top center;
                   transform: scale(1);
                 }
+                /* На узких экранах scale уже не спасает от обрезки левого
+                   выступа при центрировании — сдвигаем origin левее, чтобы
+                   выступающие карточки всегда оставались в кадре. */
+                @media (max-width: 1340px) {
+                  .dash-scene { transform-origin: top 32%; }
+                }
+                @media (max-width: 1000px) {
+                  .dash-scene { transform-origin: top 40%; }
+                }
                 /* Пропорциональное уменьшение всей сцены (вместе с выступающими
                    карточками) при сужении экрана. Меняем и высоту обёртки,
                    чтобы не оставалось пустого места снизу. */
-                @media (max-width: 1600px) {
-                  .dash-scene { transform: scale(0.9); }
-                  .dash-wrap  { height: 1224px; }
+                @media (max-width: 1700px) {
+                  .dash-scene { transform: scale(0.82); }
+                  .dash-wrap  { height: 1115px; }
                 }
-                @media (max-width: 1440px) {
-                  .dash-scene { transform: scale(0.8); }
-                  .dash-wrap  { height: 1088px; }
-                }
-                @media (max-width: 1280px) {
+                @media (max-width: 1500px) {
                   .dash-scene { transform: scale(0.72); }
                   .dash-wrap  { height: 980px; }
                 }
-                @media (max-width: 1100px) {
+                @media (max-width: 1340px) {
                   .dash-scene { transform: scale(0.62); }
                   .dash-wrap  { height: 844px; }
                 }
-                @media (max-width: 900px) {
-                  .dash-scene { transform: scale(0.5); }
-                  .dash-wrap  { height: 680px; }
+                @media (max-width: 1160px) {
+                  .dash-scene { transform: scale(0.52); }
+                  .dash-wrap  { height: 708px; }
+                }
+                @media (max-width: 1000px) {
+                  .dash-scene { transform: scale(0.44); }
+                  .dash-wrap  { height: 600px; }
+                }
+                @media (max-width: 860px) {
+                  .dash-scene { transform: scale(0.36); }
+                  .dash-wrap  { height: 490px; }
                 }
                 @media (max-width: 720px) {
-                  .dash-scene { transform: scale(0.4); }
-                  .dash-wrap  { height: 544px; }
-                }
-                @media (max-width: 560px) {
                   .dash-scene { transform: scale(0.3); }
                   .dash-wrap  { height: 408px; }
+                }
+                @media (max-width: 560px) {
+                  .dash-scene { transform: scale(0.24); }
+                  .dash-wrap  { height: 326px; }
                 }
               `}</style>
               <div className="dash-wrap">
