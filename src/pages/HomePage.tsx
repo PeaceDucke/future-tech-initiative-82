@@ -1588,7 +1588,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             position: "relative", zIndex: 1, textAlign: "center",
             fontFamily: '"Prata", serif',
             fontSize: forcedTwoLine
-              ? "clamp(15px, 8.5cqw, 30px)"
+              ? "clamp(16px, calc((100cqw - 56px) / 6.6), 34px)"
               : oneWord ? "clamp(17px, 1.7vw, 32px)" : "clamp(18px, 1.9vw, 34px)",
             color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "0",
