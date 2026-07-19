@@ -2271,41 +2271,39 @@ function ImplementationSection() {
                     {s.title}
                   </h3>
                 </div>
+
+                {i === 0 && (
+                  <div
+                    className="impl-integrations"
+                    style={{
+                      display: "flex", flexWrap: "wrap", alignItems: "center",
+                      gap: "9px", marginTop: "14px",
+                    }}
+                  >
+                    {["amoCRM", "Битрикс", "Retell", "Ringostat", "Aircall", "и многие другие"].map((label) => (
+                      <span
+                        key={label}
+                        style={{
+                          fontFamily: '"Jost", sans-serif',
+                          fontSize: "14px",
+                          fontWeight: 500,
+                          letterSpacing: "0.02em",
+                          color: "#FFFFFF",
+                          padding: "6px 15px",
+                          borderRadius: "999px",
+                          border: "1px solid rgba(212,176,116,0.4)",
+                          background: "rgba(212,176,116,0.06)",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
-
-          {/* Интеграции - отдельная строка */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={stepsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="impl-integrations"
-            style={{
-              display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center",
-              gap: "12px", marginTop: "40px",
-            }}
-          >
-            {["amoCRM", "Битрикс", "Retell", "Ringostat", "Aircall", "и многие другие"].map((label) => (
-              <span
-                key={label}
-                style={{
-                  fontFamily: '"Jost", sans-serif',
-                  fontSize: "17px",
-                  fontWeight: 500,
-                  letterSpacing: "0.02em",
-                  color: "#FFFFFF",
-                  padding: "9px 20px",
-                  borderRadius: "999px",
-                  border: "1px solid rgba(255,255,255,0.35)",
-                  background: "transparent",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {label}
-              </span>
-            ))}
-          </motion.div>
         </div>
 
         {/* Снятие страха «это сложно» */}
