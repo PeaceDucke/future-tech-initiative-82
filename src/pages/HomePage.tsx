@@ -4855,6 +4855,47 @@ export function HomePage() {
               </motion.div>
 
               {/* Dashboard Scene */}
+              <style>{`
+                .dash-wrap {
+                  height: 1360px;
+                  overflow: visible;
+                }
+                .dash-scene {
+                  transform-origin: top center;
+                  transform: scale(1);
+                }
+                /* Пропорциональное уменьшение всей сцены (вместе с выступающими
+                   карточками) при сужении экрана. Меняем и высоту обёртки,
+                   чтобы не оставалось пустого места снизу. */
+                @media (max-width: 1600px) {
+                  .dash-scene { transform: scale(0.9); }
+                  .dash-wrap  { height: 1224px; }
+                }
+                @media (max-width: 1440px) {
+                  .dash-scene { transform: scale(0.8); }
+                  .dash-wrap  { height: 1088px; }
+                }
+                @media (max-width: 1280px) {
+                  .dash-scene { transform: scale(0.72); }
+                  .dash-wrap  { height: 980px; }
+                }
+                @media (max-width: 1100px) {
+                  .dash-scene { transform: scale(0.62); }
+                  .dash-wrap  { height: 844px; }
+                }
+                @media (max-width: 900px) {
+                  .dash-scene { transform: scale(0.5); }
+                  .dash-wrap  { height: 680px; }
+                }
+                @media (max-width: 720px) {
+                  .dash-scene { transform: scale(0.4); }
+                  .dash-wrap  { height: 544px; }
+                }
+                @media (max-width: 560px) {
+                  .dash-scene { transform: scale(0.3); }
+                  .dash-wrap  { height: 408px; }
+                }
+              `}</style>
               <div className="dash-wrap">
               <div
                 className="dash-scene relative mx-auto"
