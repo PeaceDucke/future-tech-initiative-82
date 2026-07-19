@@ -4,10 +4,12 @@ import AboutPage from "./pages/AboutPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import UserAgreementPage from "./pages/UserAgreementPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import CookieConsent from "./components/CookieConsent";
 
 function App() {
   return (
     <BrowserRouter>
+      <CookieConsent />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
