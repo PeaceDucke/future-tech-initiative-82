@@ -1580,6 +1580,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
 
       {(() => {
         const isOnlineEdu = it.tag.trim() === "Онлайн-образование";
+        const forcedTwoLine = ["Отделы продаж", "Юридические услуги"].includes(it.tag.trim());
         const oneWord = !it.tag.trim().includes(" ") && !isOnlineEdu;
         return (
           <div className="aud-card-tag" style={{
@@ -1588,12 +1589,14 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
             fontSize: oneWord ? "clamp(17px, 1.7vw, 32px)" : "clamp(18px, 1.9vw, 34px)", color: W,
             fontWeight: 500, lineHeight: 1.2, marginBottom: "0",
             display: "flex", alignItems: "flex-end", justifyContent: "center",
-            overflowWrap: oneWord ? "normal" : "break-word",
-            wordBreak: oneWord ? "keep-all" : "break-word",
-            hyphens: oneWord ? "none" : "auto",
-            whiteSpace: oneWord ? "nowrap" : "normal",
+            overflowWrap: (oneWord || forcedTwoLine) ? "normal" : "break-word",
+            wordBreak: (oneWord || forcedTwoLine) ? "keep-all" : "break-word",
+            hyphens: (oneWord || forcedTwoLine) ? "none" : "auto",
+            whiteSpace: (oneWord || forcedTwoLine) ? "nowrap" : "normal",
           }}>
-            {isOnlineEdu ? (<>Онлайн-<br />образование</>) : it.tag}
+            {isOnlineEdu ? (<>Онлайн-<br />образование</>)
+              : forcedTwoLine ? (<>{it.tag.trim().split(" ")[0]}<br />{it.tag.trim().split(" ")[1]}</>)
+              : it.tag}
           </div>
         );
       })()}
