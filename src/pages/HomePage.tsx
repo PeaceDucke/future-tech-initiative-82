@@ -5399,11 +5399,6 @@ export function HomePage() {
 
         <SectionDivider />
 
-        {/* ═══ CLIENT VALUE ═══ */}
-        <ClientValueSection />
-
-        <SectionDivider />
-
         {/* ═══ PRICING ═══ */}
         <PricingSection />
 
