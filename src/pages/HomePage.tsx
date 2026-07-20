@@ -1983,7 +1983,7 @@ function RopSection() {
                     initial={{ opacity: 0, x: -24 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="flex items-start gap-4"
+                    className="flex items-center gap-4"
                     style={{
                       padding: "20px 22px", borderRadius: "16px",
                       background: "rgba(255,255,255,0.025)",
@@ -2001,7 +2001,7 @@ function RopSection() {
                       <Icon name={b.icon} size={21} style={{ color: G }} />
                     </div>
                     <div>
-                      <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "17px", fontWeight: 600, color: W }}>
+                      <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", fontWeight: 600, color: W }}>
                         {b.title}
                       </h3>
                     </div>
