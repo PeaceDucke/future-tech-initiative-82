@@ -2697,28 +2697,27 @@ function CaseCard({ it, i, inView }: {
       }} />
 
       {/* header: logo + tag + company */}
-      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginBottom: "18px", marginLeft: "-14px" }}>
+      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px", marginLeft: "-14px" }}>
         <div style={{
-          width: it.logoExtraLeft ? `${114 + it.logoExtraLeft}px` : "114px", height: "114px", flexShrink: 0, borderRadius: "20px",
-          marginLeft: it.logoExtraLeft ? `${-it.logoExtraLeft + 4}px` : undefined,
+          width: "clamp(76px, 22%, 114px)", aspectRatio: "1 / 1", flexShrink: 0, borderRadius: "20px",
           display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
           <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)", objectPosition: it.logoExtraLeft ? "left center" : "center" }} />
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: 0, flex: 1 }}>
           <span style={{
-            fontFamily: "Jost, sans-serif", fontSize: "13px", fontWeight: 500,
-            letterSpacing: "0.06em", textTransform: "uppercase", color: A, textAlign: "center",
+            fontFamily: "Jost, sans-serif", fontSize: "clamp(10px, 2.4vw, 13px)", fontWeight: 500,
+            letterSpacing: "0.04em", textTransform: "uppercase", color: A, textAlign: "center",
             background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
-            borderRadius: "999px", padding: "6px 32px", lineHeight: 1.2, whiteSpace: "nowrap",
-            marginLeft: it.tagShift ? `${it.tagShift}px` : undefined,
+            borderRadius: "999px", padding: "6px 16px", lineHeight: 1.2,
+            alignSelf: "flex-start", maxWidth: "100%",
           }}>
             {it.tag}
           </span>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 600, lineHeight: 1.15, marginLeft: `${16 + (it.textExtraShift ?? 0)}px`, marginTop: "8px" }}>
+          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(17px, 4vw, 22px)", color: W, fontWeight: 600, lineHeight: 1.15, marginTop: "8px" }}>
             {it.company}
           </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.4, marginLeft: `${16 + (it.textExtraShift ?? 0)}px` }}>
+          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(11px, 2.6vw, 13px)", color: B, lineHeight: 1.4 }}>
             {it.subtitle}
           </div>
         </div>
