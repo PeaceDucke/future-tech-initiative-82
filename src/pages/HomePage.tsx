@@ -5190,14 +5190,14 @@ export function HomePage() {
                   className="absolute rounded-2xl p-6 db-card"
                   style={{
                     width: "38%",
-                    top: "560px",
-                    right: "-17%",
+                    top: "590px",
+                    right: "-19%",
                     background: "linear-gradient(135deg, var(--db-bg-3) 0%, var(--db-bg-4) 100%)",
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
                     zIndex: 60,
-                    transform: "scale(1.1)",
+                    transform: "scale(1.2)",
                     transformOrigin: "top right",
                   }}
                 >
@@ -5383,7 +5383,7 @@ export function HomePage() {
                   style={{
                     width: "42%",
                     top: "380px",
-                    left: "-16%",
+                    left: "-18%",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
