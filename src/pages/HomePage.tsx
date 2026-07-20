@@ -2335,7 +2335,15 @@ function ImplementationSection() {
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 30px)",
             color: W, lineHeight: 1.35, fontWeight: 500, textAlign: "left",
           }}>
-            Бояться нечего - <span style={{ color: G, fontStyle: "italic" }}>всю техническую часть мы берём на себя</span>, и от подключения до первого отчёта обычно проходит всего несколько дней.
+            Бояться нечего - <span style={{
+              fontStyle: "italic",
+              backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+            }}>всю техническую часть мы берём на себя</span>, и от подключения до первого отчёта обычно проходит всего несколько дней.
           </p>
         </motion.div>
       </div>
