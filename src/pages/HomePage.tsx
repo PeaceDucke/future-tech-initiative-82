@@ -3809,7 +3809,7 @@ function FinalCtaSection() {
                   background: "transparent",
                   border: "1px solid rgba(200,169,106,0.45)",
                   borderRadius: "10px",
-                  padding: "16px 36px",
+                  padding: "5px 36px",
                   cursor: "pointer",
                   transition: "all 0.25s ease",
                   opacity: inView ? 1 : 0,
@@ -3828,7 +3828,7 @@ function FinalCtaSection() {
                   el.style.transform = "translateY(0)";
                 }}
               >
-                <img src={socials[0].img} alt="Telegram" style={{ width: "22px", height: "22px", objectFit: "contain" }} />
+                <img src={socials[0].img} alt="Telegram" style={{ width: "44px", height: "44px", objectFit: "contain", margin: "-11px 0" }} />
                 Связаться с нами
               </a>
             </div>
