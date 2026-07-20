@@ -5197,6 +5197,8 @@ export function HomePage() {
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
                     zIndex: 45,
+                    transform: "scale(1.1)",
+                    transformOrigin: "top right",
                   }}
                 >
                   <div className="flex items-center mb-2">
@@ -5274,6 +5276,8 @@ export function HomePage() {
                     top: "620px",
                     left: "-18%",
                     transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                    transform: "scale(1.1)",
+                    transformOrigin: "top left",
                     zIndex: 20,
                   }}
                 >
@@ -5292,7 +5296,7 @@ export function HomePage() {
                     width: "38%",
                     top: "540px",
                     left: "31%",
-                    transform: "scale(1.2)",
+                    transform: "scale(1.32)",
                     transformOrigin: "top left",
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
@@ -5383,6 +5387,8 @@ export function HomePage() {
                     background: "var(--db-bg-1)",
                     border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
                     boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
+                    transform: "scale(1.1)",
+                    transformOrigin: "top left",
                     zIndex: 5,
                   }}
                 >
