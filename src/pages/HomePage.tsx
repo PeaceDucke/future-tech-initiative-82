@@ -4594,13 +4594,13 @@ export function HomePage() {
 
       <main className="relative z-10">
         {/* ═══ HERO ═══ */}
-        <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+        <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ minHeight: "56.25vw" }}>
           <div className="hero-bg absolute inset-0">
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ca93dd8c-7404-43ca-899f-a3081024e0db.jpg"
               alt="Команда Voice-Tec"
               className="hero-photo w-full h-full object-cover"
-              style={{ objectPosition: "center 30%", transform: "scale(1)", transformOrigin: "center 30%" }}
+              style={{ objectPosition: "center center", transform: "scale(1)", transformOrigin: "center center" }}
             />
             <div
               className="absolute inset-0"
