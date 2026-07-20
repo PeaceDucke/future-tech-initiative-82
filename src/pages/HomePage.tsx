@@ -510,7 +510,7 @@ function PainCard({
                 <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "14px" : "13px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.problem}</p>
               </div>
               <div style={{ marginBottom: "16px" }}>
-                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Что показывает SalesFlow:</p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "#D4B074", fontWeight: 600, marginBottom: "4px" }}>Что показывает Voice-Tec AI:</p>
                 <p style={{ fontFamily: "Inter, sans-serif", fontSize: large ? "14px" : "13px", color: "rgba(251,246,236,0.62)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.solution}</p>
               </div>
               <div style={{ marginTop: "auto", borderTop: "1px solid rgba(212,176,116,0.12)", paddingTop: "12px", display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
@@ -2450,7 +2450,7 @@ function GuaranteeSection() {
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto",
           }}
         >
-          Нам важно, чтобы SalesFlow приносил вам прибыль, а не строчку в расходах. Поэтому вы ничем не рискуете - <span style={{ color: G, fontStyle: "italic" }}>рискуем мы</span>.
+          Нам важно, чтобы Voice-Tec AI приносил вам прибыль, а не строчку в расходах. Поэтому вы ничем не рискуете - <span style={{ color: G, fontStyle: "italic" }}>рискуем мы</span>.
         </motion.p>
       </div>
     </section>
@@ -3661,7 +3661,7 @@ function ClientValueSection() {
             margin: "0 auto",
             lineHeight: 1.75,
           }}>
-            SalesFlow даёт руководителю полное видение того,<br />что происходит в каждом разговоре.
+            Voice-Tec AI даёт руководителю полное видение того,<br />что происходит в каждом разговоре.
           </p>
         </div>
 
