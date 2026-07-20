@@ -2984,7 +2984,7 @@ function BeforeAfterSection() {
             style={{
               position: "absolute",
               top: "70px",
-              bottom: "0",
+              bottom: "clamp(220px, 26vw, 260px)",
               left: "50%",
               width: "1px",
               transformOrigin: "top",
