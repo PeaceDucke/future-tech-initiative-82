@@ -4651,7 +4651,7 @@ export function HomePage() {
               <motion.p
                 variants={fadeUp}
                 className="hero-lead text-[24px] mb-5"
-                style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "54%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
+                style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "49%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
               >
                 Voice-Tec AI прослушивает и оценивает 100% звонков:<br />
                 кто сливает заявки, где менеджеры не дожимают клиента,<br />
