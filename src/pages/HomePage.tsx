@@ -1952,7 +1952,7 @@ function RopSection() {
                   marginBottom: "24px", letterSpacing: "0.005em",
                 }}
               >
-                Ты - РОП.<br />
+                Ты <span data-no-dash="true" style={{ fontWeight: 900, WebkitTextStroke: "1px currentColor" }}>-</span> РОП.<br />
                 Ты управляешь <span style={{
                   backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
