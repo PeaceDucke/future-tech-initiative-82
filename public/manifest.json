@@ -1,0 +1,22 @@
+{
+  "name": "Voice-Tec AI — анализ звонков и рост продаж",
+  "short_name": "Voice-Tec AI",
+  "description": "AI-контроль отдела продаж: анализ 100% звонков, поиск потерь клиентов и рекомендации по росту конверсии.",
+  "lang": "ru-RU",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#151513",
+  "theme_color": "#151513",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,4 +1,19 @@
+# robots.txt — Voice-Tec AI
+
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid&_openstat
+
+User-agent: YandexBot
+Allow: /
+
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Mail.RU_Bot
 Allow: /
 
 User-agent: Bingbot
@@ -10,5 +25,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: TelegramBot
+Allow: /
+
 User-agent: *
 Allow: /
+Disallow: /thank-you
+
+Host: https://voicetec.pro
+Sitemap: https://voicetec.pro/sitemap.xml
