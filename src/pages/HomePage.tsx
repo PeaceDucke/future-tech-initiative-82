@@ -2240,7 +2240,7 @@ function ImplementationSection() {
               transition={{ duration: 0.7, delay: 0.12 + i * 0.16, ease: [0.16, 1, 0.3, 1] }}
               className="impl-step"
               style={{
-                position: "relative", display: "flex", alignItems: "flex-start", gap: "26px",
+                position: "relative", display: "flex", alignItems: "center", gap: "26px",
                 padding: "24px 28px", marginBottom: i === steps.length - 1 ? "0" : "20px",
                 borderRadius: "22px",
                 background: "linear-gradient(135deg, rgba(28,28,29,0.9) 0%, rgba(17,17,16,0.9) 100%)",
@@ -2273,8 +2273,8 @@ function ImplementationSection() {
                 </div>
               </div>
 
-              <div style={{ flex: 1, paddingTop: "2px" }}>
-                <div className="impl-step-head flex items-center gap-3" style={{ marginBottom: "8px" }}>
+              <div style={{ flex: 1 }}>
+                <div className="impl-step-head flex items-center gap-3" style={{ marginBottom: i === 0 ? "8px" : "0" }}>
                   <Icon name={s.icon} size={22} className="impl-step-ic" style={{ color: G, flexShrink: 0 }} />
                   <h3 className="impl-step-title" style={{
                     fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2vw, 26px)",
