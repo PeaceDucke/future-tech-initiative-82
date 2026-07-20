@@ -4595,12 +4595,12 @@ export function HomePage() {
       <main className="relative z-10">
         {/* ═══ HERO ═══ */}
         <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-          <div className="hero-bg absolute inset-0" style={{ background: "#1b1c1f" }}>
+          <div className="hero-bg absolute inset-0">
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/8f3a1293-3963-49ed-890d-0ce04a5367a4.jpg"
               alt="Команда Voice-Tec"
               className="hero-photo w-full h-full object-cover"
-              style={{ objectPosition: "center 38%", transform: "scale(0.88)", transformOrigin: "center 38%" }}
+              style={{ objectPosition: "center 38%", transform: "scale(1)", transformOrigin: "center 38%" }}
             />
             <div
               className="absolute inset-0"
