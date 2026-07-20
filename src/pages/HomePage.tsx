@@ -3790,14 +3790,21 @@ function FinalCtaSection() {
                 Начать бесплатно
               </button>
 
-              <button
+              <a
                 className="cta-btn"
+                href="https://t.me/voicetec"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
                   fontFamily: "Inter, sans-serif",
                   fontSize: "14px",
                   fontWeight: 600,
                   letterSpacing: "0.07em",
                   textTransform: "uppercase" as const,
+                  textDecoration: "none",
                   color: "#FBF6EC",
                   background: "transparent",
                   border: "1px solid rgba(200,169,106,0.45)",
@@ -3809,46 +3816,21 @@ function FinalCtaSection() {
                   transitionDelay: "0.38s",
                 }}
                 onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLButtonElement;
+                  const el = e.currentTarget as HTMLAnchorElement;
                   el.style.borderColor = "rgba(200,169,106,0.8)";
                   el.style.background = "rgba(200,169,106,0.09)";
                   el.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLButtonElement;
+                  const el = e.currentTarget as HTMLAnchorElement;
                   el.style.borderColor = "rgba(200,169,106,0.45)";
                   el.style.background = "transparent";
                   el.style.transform = "translateY(0)";
                 }}
               >
+                <img src={socials[0].img} alt="Telegram" style={{ width: "22px", height: "22px", objectFit: "contain" }} />
                 Связаться с нами
-              </button>
-            </div>
-
-            {/* Social links */}
-            <div style={{ marginTop: "40px" }}>
-              <p className="cta-social-label" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(251,246,236,0.3)", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "16px" }}>Написать нам</p>
-              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                {socials.map((s, i) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={s.name}
-                    style={{
-                      textDecoration: "none",
-                      transition: "transform 0.25s ease",
-                      opacity: inView ? 1 : 0,
-                      transitionDelay: `${0.5 + i * 0.07}s`,
-                    }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-4px)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
-                  >
-                    <img className="cta-social-icon" src={s.img} alt={s.name} style={{ width: "56px", height: "56px", objectFit: "contain" }} />
-                  </a>
-                ))}
-              </div>
+              </a>
             </div>
 
           </div>
