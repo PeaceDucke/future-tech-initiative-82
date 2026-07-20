@@ -2706,10 +2706,10 @@ function CaseCard({ it, i, inView }: {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: 0, flex: 1 }}>
           <span style={{
-            fontFamily: "Jost, sans-serif", fontSize: "clamp(7px, 1.5vw, 13px)", fontWeight: 500,
-            letterSpacing: "0.04em", textTransform: "uppercase", color: A, textAlign: "center",
+            fontFamily: "Jost, sans-serif", fontSize: "clamp(5.5px, 1.15vw, 13px)", fontWeight: 500,
+            letterSpacing: "0.03em", textTransform: "uppercase", color: A, textAlign: "center",
             background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
-            borderRadius: "999px", padding: "clamp(3px, 0.7vw, 6px) clamp(8px, 1.4vw, 16px)", lineHeight: 1.2,
+            borderRadius: "999px", padding: "clamp(2px, 0.55vw, 6px) clamp(5px, 1.1vw, 16px)", lineHeight: 1.2,
             alignSelf: "flex-start", maxWidth: "100%", whiteSpace: "nowrap",
           }}>
             {it.tag}
