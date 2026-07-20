@@ -4597,7 +4597,7 @@ export function HomePage() {
         <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           <div className="hero-bg absolute inset-0">
             <img
-              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/a8456873-6ecd-4697-b6d7-542d9fe7d89d.jpg"
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/8f3a1293-3963-49ed-890d-0ce04a5367a4.jpg"
               alt="Команда Voice-Tec"
               className="hero-photo w-full h-full object-cover"
               style={{ objectPosition: "center 38%", transform: "scale(1)", transformOrigin: "center 38%" }}
