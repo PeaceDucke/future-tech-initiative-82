@@ -1952,8 +1952,15 @@ function RopSection() {
                   marginBottom: "24px", letterSpacing: "0.005em",
                 }}
               >
-                Ты — РОП.<br />
-                Ты управляешь <span style={{ color: G }}>результатом.</span>
+                Ты - РОП.<br />
+                Ты управляешь <span style={{
+                  backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+                }}>результатом.</span>
               </h2>
 
               <p
