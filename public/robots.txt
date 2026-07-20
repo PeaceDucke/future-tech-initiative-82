@@ -32,5 +32,5 @@ User-agent: *
 Allow: /
 Disallow: /thank-you
 
-Host: https://voicetec.pro
-Sitemap: https://voicetec.pro/sitemap.xml
+Host: https://voicetecai.ru
+Sitemap: https://voicetecai.ru/sitemap.xml

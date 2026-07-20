@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://voicetec.pro/</loc>
+    <loc>https://voicetecai.ru/</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://voicetec.pro/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://voicetecai.ru/"/>
   </url>
   <url>
-    <loc>https://voicetec.pro/about</loc>
+    <loc>https://voicetecai.ru/about</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://voicetec.pro/user-agreement</loc>
+    <loc>https://voicetecai.ru/user-agreement</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://voicetec.pro/privacy</loc>
+    <loc>https://voicetecai.ru/privacy</loc>
     <lastmod>2026-07-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
