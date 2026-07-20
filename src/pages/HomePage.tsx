@@ -5191,12 +5191,12 @@ export function HomePage() {
                   style={{
                     width: "38%",
                     top: "560px",
-                    right: "-15%",
+                    right: "-17%",
                     background: "linear-gradient(135deg, var(--db-bg-3) 0%, var(--db-bg-4) 100%)",
                     border: "1px solid rgba(212,176,116,0.55)",
                     boxShadow:
                       "0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(212,176,116,0.3), 0 0 36px rgba(212,176,116,0.22)",
-                    zIndex: 45,
+                    zIndex: 60,
                     transform: "scale(1.1)",
                     transformOrigin: "top right",
                   }}
