@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* slightly bolder dashes across all text */
+.bold-dash {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 /* mobile-only line break inside case company name (hidden on desktop) */
 .case-mobile-br {
   display: none;

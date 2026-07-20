@@ -5,8 +5,10 @@ import ThankYouPage from "./pages/ThankYouPage";
 import UserAgreementPage from "./pages/UserAgreementPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import CookieConsent from "./components/CookieConsent";
+import useBoldDashes from "./hooks/useBoldDashes";
 
 function App() {
+  useBoldDashes();
   return (
     <BrowserRouter>
       <CookieConsent />
