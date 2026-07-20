@@ -425,8 +425,8 @@ body {
     font-size: 14px !important;
   }
   .pipeline-section p.pipeline-card2-text {
-    font-size: 10px !important;
-    line-height: 1.55 !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
     margin-bottom: 16px !important;
   }
   /* inner beige dashboard — tighter padding on mobile */
