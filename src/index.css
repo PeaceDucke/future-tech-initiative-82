@@ -7,8 +7,9 @@
 
 /* slightly bolder dashes across all text */
 .bold-dash {
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  -webkit-text-stroke: 0.4px currentColor;
 }
 
 /* mobile-only line break inside case company name (hidden on desktop) */
