@@ -2343,7 +2343,7 @@ function ImplementationSection() {
               WebkitTextFillColor: "transparent",
               color: "transparent",
               filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
-            }}>всю техническую часть мы берём на себя</span>, и от подключения до первого отчёта обычно проходит всего несколько дней.
+            }}>всю техническую часть мы берём на себя,</span> и от подключения до первого отчёта обычно проходит всего несколько дней.
           </p>
         </motion.div>
       </div>
