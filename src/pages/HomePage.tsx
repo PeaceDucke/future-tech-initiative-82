@@ -4649,7 +4649,7 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="hero-lead text-[19px] mb-5"
+                className="hero-lead text-[21px] mb-5"
                 style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "58%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
               >
                 Voice–Tec Ai прослушивает и оценивает 100% звонков:<br />
