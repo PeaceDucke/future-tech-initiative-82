@@ -1726,7 +1726,14 @@ function AudienceSection() {
               maxWidth: "1500px", margin: "0 auto",
             }}
           >
-            Voice-Tec AI создан для компаний, где <span style={{
+            <span style={{
+              backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+              filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
+            }}>Voice-Tec AI</span> создан для компаний, где <span style={{
               fontStyle: "italic",
               backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
               WebkitBackgroundClip: "text",
