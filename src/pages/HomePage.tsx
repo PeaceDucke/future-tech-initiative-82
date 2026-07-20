@@ -4428,7 +4428,7 @@ export function HomePage() {
                 className="w-9 h-9 md:w-[52px] md:h-[52px] object-contain"
               />
               <span
-                className="text-[20px] md:text-[30px]"
+                className="text-[18px] md:text-[28px]"
                 style={{
                   fontFamily: '"Playfair Display", Georgia, serif',
                   fontWeight: 900,
