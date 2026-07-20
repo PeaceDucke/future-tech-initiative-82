@@ -4933,6 +4933,8 @@ export function HomePage() {
                     boxShadow:
                       "0 80px 160px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(212,176,116,0.45), 0 0 24px rgba(212,176,116,0.08), inset 0 1px 0 rgba(255,240,210,0.55), inset 0 -1px 0 rgba(60,40,15,0.4)",
                     zIndex: 0,
+                    transform: "scale(1.3)",
+                    transformOrigin: "top center",
                   }}
                 >
                   {/* Inner glass layer */}
@@ -5016,6 +5018,8 @@ export function HomePage() {
                     border: "1px solid rgba(212,176,116,0.25)",
                     boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.08)",
                     zIndex: 1,
+                    transform: "scale(1.3)",
+                    transformOrigin: "top center",
                   }}
                 >
                   {/* Topbar */}
