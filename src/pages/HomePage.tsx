@@ -1993,10 +1993,10 @@ function RopSection() {
                     <div
                       className="flex items-center justify-center flex-shrink-0"
                       style={{
-                        width: "55px", height: "55px",
+                        width: "72px", height: "72px",
                       }}
                     >
-                      <Icon name={b.icon} size={25} style={{ color: G }} />
+                      <Icon name={b.icon} size={33} style={{ color: G }} />
                     </div>
                     <div>
                       <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", fontWeight: 600, color: W }}>
