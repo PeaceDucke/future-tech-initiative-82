@@ -4206,6 +4206,26 @@ function PricingSection() {
                     : "none",
               }}
             >
+              {/* Popular label */}
+              {plan.popular && (
+                <div style={{
+                  position: "absolute",
+                  top: "-13px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase" as const,
+                  color: G,
+                  background: "#151513",
+                  padding: "3px 12px",
+                  borderRadius: "999px",
+                  whiteSpace: "nowrap",
+                }}>Популярный</div>
+              )}
+
               {/* Plan name */}
               <p className="pr-name" style={{
                 fontFamily: "Inter, sans-serif",
