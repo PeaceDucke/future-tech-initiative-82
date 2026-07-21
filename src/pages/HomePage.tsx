@@ -1532,16 +1532,12 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
   it: { icon: string; tag: string; desc: string; gain: string; img?: string };
   i: number; inView: boolean; W: string; G: string; B: string; GREEN: string;
 }) {
-  // карточки прилетают со стороны, где они стоят в ряду из 4: крайние - с боков, центральные - снизу
-  const col = i % 4;
-  const fromX = col === 0 ? -260 : col === 3 ? 260 : 0;
-  const fromY = col === 1 || col === 2 ? 200 : 120;
-  const fromRot = col === 0 ? -7 : col === 3 ? 7 : 0;
+  // карточки плавно появляются снизу вверх
   return (
     <motion.div
-      initial={{ opacity: 0, x: fromX, y: fromY, scale: 0.82, rotate: fromRot }}
-      animate={inView ? { opacity: 1, x: 0, y: 0, scale: 1, rotate: 0 } : {}}
-      transition={{ duration: 1.05, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
