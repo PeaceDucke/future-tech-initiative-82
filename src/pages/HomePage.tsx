@@ -4736,11 +4736,6 @@ export function HomePage() {
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-10">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
-                  <span style={labelStyle}>Платформа</span>
-                  <div style={{ width: "32px", height: "1px", background: "#D4B074", opacity: 0.5 }} />
-                </div>
                 <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
                   <span style={{
                     backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
