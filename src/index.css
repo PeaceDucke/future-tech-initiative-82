@@ -712,9 +712,10 @@ br.br-desktop {
   .aiv-section {
     padding-bottom: 8px !important;
   }
-  /* headings −2px */
-  .aiv-title {
-    font-size: 28px !important;
+  /* headings */
+  .aiv-title,
+  .aiv-title span {
+    font-size: 23px !important;
   }
   .aiv-sub {
     font-size: 11px !important;
