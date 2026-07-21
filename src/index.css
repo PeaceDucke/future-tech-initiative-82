@@ -482,6 +482,7 @@ br.br-desktop {
   .pipeline-section p.pipeline-card2-text {
     font-size: 14px !important;
     line-height: 1.2 !important;
+    margin-top: 8px !important;
     margin-bottom: 16px !important;
     text-wrap: balance !important;
   }
