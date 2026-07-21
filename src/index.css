@@ -432,6 +432,11 @@ body {
   .pipeline-section p.pipeline-row-text {
     font-size: 10.5px !important;
     line-height: 1.4 !important;
+    margin-right: 0 !important;
+    padding-right: 4px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
   }
   /* "Обнаружены причины потерь" — allow wrap & shrink so it fits */
   .pipeline-causes-title {
