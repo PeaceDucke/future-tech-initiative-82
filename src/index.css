@@ -335,7 +335,7 @@ body {
   }
   .hero-inner p.hero-lead {
     text-align: left !important;
-    font-size: 12px !important;
+    font-size: 7px !important;
     line-height: 1.55 !important;
     color: #ffffff !important;
     font-weight: 500 !important;
@@ -371,11 +371,11 @@ body {
   /* mobile: both title lines aligned to the left edge, no staircase
      offset so nothing runs off the right side of the screen */
   .hero-title-1 {
-    margin-left: 0 !important;
+    margin-left: -14px !important;
   }
   .hero-title-2 {
     padding-left: 0 !important;
-    margin-left: 0 !important;
+    margin-left: -14px !important;
     white-space: normal !important;
   }
   /* next section follows normally now — no negative pull */
