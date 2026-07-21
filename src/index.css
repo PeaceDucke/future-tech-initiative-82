@@ -733,17 +733,17 @@ br.br-desktop {
     margin-right: -20px;
     width: calc(100% + 40px);
     /* enough height for the whole scaled composition (incl. bottom card) */
-    height: 300px;
+    height: 380px;
     /* flex centering RELIABLY shows the cards; the stage is centered
        horizontally by the flexbox, no manual transform math needed */
     display: flex;
     justify-content: center;
     align-items: flex-start;
   }
-  /* keep the grid compact; columns narrow so both side cards stay on-screen */
+  /* wider center column pushes the side cards out to the screen edges */
   .aiv-grid {
     min-height: 0 !important;
-    grid-template-columns: 330px 300px 330px !important;
+    grid-template-columns: 330px 380px 330px !important;
     gap: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -756,12 +756,12 @@ br.br-desktop {
     align-self: start !important;
   }
   /* fixed-width canvas; flex parent centers it, scale shrinks it to phone.
-     flex: 0 0 auto keeps its intrinsic 960px so it can be centered even
+     flex: 0 0 auto keeps its intrinsic width so it can be centered even
      though it's wider than the box (margins go negative symmetrically). */
   .aiv-stage {
-    width: 960px !important;
-    flex: 0 0 960px;
-    transform: translateX(290px) scale(0.36);
+    width: 1040px !important;
+    flex: 0 0 1040px;
+    transform: translateX(315px) scale(0.432);
     transform-origin: top center;
   }
   /* spline behind cards, contained in the stage */
@@ -1361,10 +1361,10 @@ br.br-desktop {
   /* AI-vision stage a touch smaller so the canvas fits narrow phones.
      Keep the SAME flex-centering mechanism — only tweak the scale. */
   .aiv-stage-wrap {
-    height: 270px;
+    height: 340px;
   }
   .aiv-stage {
-    transform: translateX(258px) scale(0.32);
+    transform: translateX(278px) scale(0.384);
     transform-origin: top center;
   }
 }
