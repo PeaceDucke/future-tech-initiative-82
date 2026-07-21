@@ -4178,7 +4178,7 @@ function PricingSection() {
                 position: "relative",
                 cursor: "pointer",
                 background: isSelected
-                  ? "linear-gradient(160deg, #E9D29A 0%, #C8A96A 55%, #B8934A 100%)"
+                  ? "linear-gradient(160deg, rgba(233,210,154,0.22) 0%, rgba(200,169,106,0.14) 55%, rgba(184,147,74,0.12) 100%)"
                   : "rgba(255,255,255,0.03)",
                 border: isSelected
                   ? "1px solid #C8A96A"
@@ -4213,7 +4213,7 @@ function PricingSection() {
                 fontWeight: 600,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase" as const,
-                color: isSelected ? "#151513" : isHover ? G : "rgba(251,246,236,0.45)",
+                color: isSelected || isHover ? G : "rgba(251,246,236,0.45)",
                 marginBottom: "16px",
                 textAlign: "center",
               }}>{plan.name}</p>
@@ -4226,13 +4226,13 @@ function PricingSection() {
                       fontFamily: '"Bodoni Moda", Georgia, serif',
                       fontSize: "clamp(26px, 4vw, 38px)",
                       fontWeight: 600,
-                      color: isSelected ? "#151513" : "#FBF6EC",
+                      color: "#FBF6EC",
                       lineHeight: 1,
                       letterSpacing: "-0.01em",
                     }}>
-                      {plan.price} <span style={{ fontSize: "0.55em", fontWeight: 400, color: isSelected ? "rgba(21,21,19,0.75)" : "rgba(251,246,236,0.8)" }}>₽</span>
+                      {plan.price} <span style={{ fontSize: "0.55em", fontWeight: 400, color: "rgba(251,246,236,0.8)" }}>₽</span>
                     </div>
-                    <div className="pr-period" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: isSelected ? "rgba(21,21,19,0.6)" : "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
+                    <div className="pr-period" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(251,246,236,0.4)", marginTop: "6px" }}>{plan.period}</div>
                   </>
                 ) : plan.contact ? (
                   <button
@@ -4243,9 +4243,9 @@ function PricingSection() {
                       fontSize: "14px",
                       fontWeight: 600,
                       letterSpacing: "0.03em",
-                      color: isSelected ? "#151513" : "#C8A96A",
+                      color: "#C8A96A",
                       background: "transparent",
-                      border: isSelected ? "1px solid #151513" : "1px solid #C8A96A",
+                      border: "1px solid #C8A96A",
                       borderRadius: "6px",
                       padding: "13px 16px",
                       cursor: "pointer",
@@ -4258,14 +4258,14 @@ function PricingSection() {
                     fontFamily: '"Bodoni Moda", Georgia, serif',
                     fontSize: "clamp(22px, 4vw, 34px)",
                     fontWeight: 600,
-                    color: isSelected ? "#151513" : "#FBF6EC",
+                    color: "#FBF6EC",
                     lineHeight: 1,
                   }}>{plan.priceLabel}</div>
                 )}
               </div>
 
               {/* Divider */}
-              <div style={{ width: "100%", height: "1px", background: isSelected ? "rgba(21,21,19,0.2)" : "rgba(240,230,210,0.08)", marginBottom: "24px" }} />
+              <div style={{ width: "100%", height: "1px", background: isSelected ? "rgba(200,169,106,0.3)" : "rgba(240,230,210,0.08)", marginBottom: "24px" }} />
 
               {/* Features */}
               <div className="pr-feats" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -4274,10 +4274,10 @@ function PricingSection() {
                   { label: "Менеджеров", value: plan.managers },
                 ].map(row => (
                   <div key={row.label} className="pr-feat-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: isSelected ? "rgba(21,21,19,0.7)" : "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
                       {row.label}
                     </span>
-                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: isSelected ? "#151513" : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px", display: "flex", alignItems: "center" }}>
+                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: isSelected ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px", display: "flex", alignItems: "center" }}>
                       {row.value === "∞" ? <Icon name="Infinity" size={20} /> : row.value}
                     </span>
                   </div>
