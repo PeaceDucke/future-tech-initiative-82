@@ -732,49 +732,50 @@ br.br-desktop {
     margin-left: -20px;
     margin-right: -20px;
     width: calc(100% + 40px);
-    /* tall enough so the bottom "Recommendation" card is NOT clipped */
-    height: 340px;
-    /* position (not flex) so the scaled canvas is centered by its OWN
-       center — flex can't center a child that's far wider than the box */
+    /* enough height for the whole scaled composition (incl. bottom card) */
+    height: 300px;
     position: relative;
   }
-  /* tighten vertical layout so the bottom card sits closer and fits fully */
+  /* keep the grid in normal flow but compact */
   .aiv-grid {
     min-height: 0 !important;
+    grid-template-columns: 330px 380px 330px !important;
+    gap: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-items: start !important;
   }
   .aiv-grid > div:nth-child(2) {
-    height: 460px !important;
+    height: 400px !important;
   }
   .aiv-grid > div {
     align-self: start !important;
   }
+  /* The whole stage is a fixed 1040px-wide canvas. We center it by its own
+     middle with left:50% + translateX(-50%), then scale so it fits the
+     phone. Because it's absolutely positioned, the wrapper's fixed height
+     (with overflow:hidden) defines the visible window — no clipping since
+     the scaled content is shorter than the window. */
   .aiv-stage {
-    width: 1280px !important;
-    /* absolutely center the wide canvas by its own middle, then scale;
-       this keeps the spline exactly in the screen center and both card
-       columns symmetric inside the phone width */
+    width: 1040px !important;
     position: absolute !important;
     top: 0;
     left: 50%;
-    transform: translateX(-50%) scale(0.27);
+    transform: translateX(-50%) scale(0.33);
     transform-origin: top center;
   }
-  /* columns narrow enough that both side cards stay fully on-screen */
-  .aiv-grid {
-    grid-template-columns: 430px 1fr 430px !important;
-    gap: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  /* the spline background must be visible on mobile and contained inside the
-     stage (not -25% which gets clipped by the short window) */
+  /* spline behind cards, contained in the stage */
   .aiv-spline-bg {
     display: block !important;
     top: 0 !important;
-    bottom: 0 !important;
+    bottom: auto !important;
     left: 0 !important;
     right: 0 !important;
-    height: 760px !important;
+    height: 620px !important;
+  }
+  /* pull the bottom center card up so it overlaps into the visible window */
+  .aiv-bottom {
+    margin-top: -120px !important;
   }
 
   /* ---------- "Как меняется бизнес с нами" ---------- */
