@@ -1549,9 +1549,12 @@ function SplineFeatureSection() {
             max-width: 90px !important;
             line-height: 1.3 !important;
           }
+          .aiv-title, .aiv-title span {
+            font-size: 21px !important;
+          }
           .aiv-params-center p:last-of-type {
             font-size: 6px !important;
-            margin-top: 8px !important;
+            margin-top: 34px !important;
             letter-spacing: 0 !important;
           }
           /* left list hugs left edge, right list hugs right edge */
