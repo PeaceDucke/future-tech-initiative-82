@@ -1570,7 +1570,7 @@ function SplineFeatureSection() {
             text-align: left !important;
           }
           .aiv-params-col > div { gap: 5px !important; }
-          .aiv-params-col span { font-size: 8px !important; }
+          .aiv-params-col span { font-size: 8px !important; white-space: nowrap !important; }
           .aiv-params-col svg { width: 8px !important; height: 8px !important; }
         }
       `}</style>
