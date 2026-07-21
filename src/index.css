@@ -310,10 +310,13 @@ body {
     max-height: 380px !important;
     width: 100% !important;
     display: block !important;
+    background: #151513 !important;
+    padding-top: 40px !important;
   }
   .hero-photo {
     transform: none !important;
-    object-position: center 55% !important;
+    object-position: center 25% !important;
+    height: calc(100% - 40px) !important;
   }
   /* text flows right after the photo — pulled up tight against it.
      zero top padding + small negative margin => identical & high
