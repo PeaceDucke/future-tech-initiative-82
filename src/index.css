@@ -734,34 +734,34 @@ br.br-desktop {
     width: calc(100% + 40px);
     /* enough height for the whole scaled composition (incl. bottom card) */
     height: 300px;
-    position: relative;
+    /* flex centering RELIABLY shows the cards; the stage is centered
+       horizontally by the flexbox, no manual transform math needed */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
-  /* keep the grid in normal flow but compact */
+  /* keep the grid compact; columns narrow so both side cards stay on-screen */
   .aiv-grid {
     min-height: 0 !important;
-    grid-template-columns: 330px 380px 330px !important;
+    grid-template-columns: 330px 300px 330px !important;
     gap: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     align-items: start !important;
   }
   .aiv-grid > div:nth-child(2) {
-    height: 400px !important;
+    height: 380px !important;
   }
   .aiv-grid > div {
     align-self: start !important;
   }
-  /* The whole stage is a fixed 1040px-wide canvas. We center it by its own
-     middle with left:50% + translateX(-50%), then scale so it fits the
-     phone. Because it's absolutely positioned, the wrapper's fixed height
-     (with overflow:hidden) defines the visible window — no clipping since
-     the scaled content is shorter than the window. */
+  /* fixed-width canvas; flex parent centers it, scale shrinks it to phone.
+     flex: 0 0 auto keeps its intrinsic 960px so it can be centered even
+     though it's wider than the box (margins go negative symmetrically). */
   .aiv-stage {
-    width: 1040px !important;
-    position: absolute !important;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) scale(0.33);
+    width: 960px !important;
+    flex: 0 0 960px;
+    transform: scale(0.36);
     transform-origin: top center;
   }
   /* spline behind cards, contained in the stage */
@@ -771,11 +771,11 @@ br.br-desktop {
     bottom: auto !important;
     left: 0 !important;
     right: 0 !important;
-    height: 620px !important;
+    height: 600px !important;
   }
   /* pull the bottom center card up so it overlaps into the visible window */
   .aiv-bottom {
-    margin-top: -120px !important;
+    margin-top: -110px !important;
   }
 
   /* ---------- "Как меняется бизнес с нами" ---------- */
@@ -1353,11 +1353,13 @@ br.br-desktop {
     /* shrink the dashboard itself by 1.1x (0.288 / 1.1 ≈ 0.262) */
     transform: scale(0.262);
   }
-  /* AI-vision stage a touch smaller so 1280px canvas fits narrow phones */
+  /* AI-vision stage a touch smaller so the canvas fits narrow phones.
+     Keep the SAME flex-centering mechanism — only tweak the scale. */
   .aiv-stage-wrap {
-    height: 320px;
+    height: 270px;
   }
   .aiv-stage {
-    transform: scale(0.285);
+    transform: scale(0.32);
+    transform-origin: top center;
   }
 }
