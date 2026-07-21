@@ -1541,7 +1541,7 @@ function SplineFeatureSection() {
           /* center heading sits BETWEEN the two lists */
           .aiv-params-center {
             order: 0 !important;
-            padding: 0 4px !important;
+            padding: 0 22px !important;
           }
           .aiv-params-center p:first-of-type {
             font-size: 9px !important;
