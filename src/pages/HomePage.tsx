@@ -1566,6 +1566,7 @@ function SplineFeatureSection() {
             margin-top: 0 !important;
             padding-left: 0 !important;
             padding-right: 0 !important;
+            align-self: start !important;
           }
           .aiv-params-col:first-of-type {
             align-items: flex-end !important;
