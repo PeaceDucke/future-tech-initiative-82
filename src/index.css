@@ -335,13 +335,13 @@ body {
   }
   .hero-inner p.hero-lead {
     text-align: left !important;
-    font-size: 7px !important;
+    font-size: 10px !important;
     line-height: 1.55 !important;
     color: #ffffff !important;
     font-weight: 500 !important;
-    margin-left: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    margin-left: 80px !important;
+    width: calc(100% - 80px) !important;
+    max-width: calc(100% - 80px) !important;
     white-space: normal !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
@@ -371,11 +371,11 @@ body {
   /* mobile: both title lines aligned to the left edge, no staircase
      offset so nothing runs off the right side of the screen */
   .hero-title-1 {
-    margin-left: -14px !important;
+    margin-left: -20px !important;
   }
   .hero-title-2 {
     padding-left: 0 !important;
-    margin-left: -14px !important;
+    margin-left: -20px !important;
     white-space: normal !important;
   }
   /* next section follows normally now — no negative pull */
