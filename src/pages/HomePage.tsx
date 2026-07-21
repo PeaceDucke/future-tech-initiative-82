@@ -4173,10 +4173,10 @@ function PricingSection() {
               className="pr-card"
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
-              onClick={() => setSelected(i)}
+              onClick={() => { if (!plan.contact) setSelected(i); }}
               style={{
                 position: "relative",
-                cursor: "pointer",
+                cursor: plan.contact ? "default" : "pointer",
                 background: isSelected
                   ? "linear-gradient(160deg, rgba(233,210,154,0.22) 0%, rgba(200,169,106,0.14) 55%, rgba(184,147,74,0.12) 100%)"
                   : "rgba(255,255,255,0.03)",
@@ -4318,7 +4318,9 @@ function PricingSection() {
               (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.25)";
             }}
           >
-            Оставить заявку
+            {plans[selected]?.contact === undefined && plans[selected]?.price
+              ? `Выбрать тариф ${plans[selected].name}`
+              : "Оставить заявку"}
           </button>
         </div>
       </div>
