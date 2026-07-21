@@ -322,8 +322,12 @@ body {
     position: relative !important;
     inset: auto !important;
     margin-top: -1.25rem !important;
-    padding: 0 20px 2rem !important;
+    padding: 0 16px 2rem !important;
     z-index: 5;
+  }
+  /* kill the desktop 8% left offset so the copy reaches the left edge */
+  .hero-inner .hero-copy {
+    margin-left: 0 !important;
   }
   /* keep the staircase for the title, but bring the lead/underline
      back under the left margin so it doesn't run off-screen */
@@ -335,16 +339,16 @@ body {
   }
   .hero-inner p.hero-lead {
     text-align: left !important;
-    font-size: 10px !important;
+    font-size: 11px !important;
     line-height: 1.55 !important;
     color: #ffffff !important;
     font-weight: 500 !important;
-    margin-left: 80px !important;
-    width: calc(100% - 80px) !important;
-    max-width: calc(100% - 80px) !important;
-    white-space: normal !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
   }
   /* keep the 3-line structure from desktop (<br/> stays a line break) */
   .hero-inner p.hero-lead br {
@@ -371,11 +375,11 @@ body {
   /* mobile: both title lines aligned to the left edge, no staircase
      offset so nothing runs off the right side of the screen */
   .hero-title-1 {
-    margin-left: -20px !important;
+    margin-left: -16px !important;
   }
   .hero-title-2 {
     padding-left: 0 !important;
-    margin-left: -20px !important;
+    margin-left: -16px !important;
     white-space: normal !important;
   }
   /* next section follows normally now — no negative pull */

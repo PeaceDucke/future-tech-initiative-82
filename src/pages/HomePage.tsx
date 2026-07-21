@@ -4650,7 +4650,7 @@ export function HomePage() {
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="max-w-5xl"
+              className="hero-copy max-w-5xl"
               style={{ marginLeft: "8%" }}
             >
               <motion.h1
