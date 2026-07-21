@@ -1535,9 +1535,9 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
   // карточки плавно появляются снизу вверх
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 90 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: i * 0.06, ease: "easeOut" }}
+      transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
       className="aud-card"
       style={{
         position: "relative", display: "flex", flexDirection: "column",
@@ -1616,7 +1616,7 @@ function AudienceSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const blockOneRef = useRef(null);
-  const blockOneInView = useInView(blockOneRef, { once: true, margin: "-120px" });
+  const blockOneInView = useInView(blockOneRef, { once: true, margin: "-15% 0px -20% 0px" });
 
   const blockOne = [
     {
@@ -1657,7 +1657,7 @@ function AudienceSection() {
   ];
 
   const blockTwoRef = useRef(null);
-  const blockTwoInView = useInView(blockTwoRef, { once: true, margin: "-120px" });
+  const blockTwoInView = useInView(blockTwoRef, { once: true, margin: "-15% 0px -20% 0px" });
 
   const blockTwo = [
     {
