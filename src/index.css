@@ -421,13 +421,13 @@ body {
   }
   /* the 3-icon problem rows — compact */
   .pipeline-row {
-    gap: 10px !important;
+    gap: 14px !important;
     padding: 14px 0 !important;
   }
   .pipeline-row-img {
     width: 56px !important;
     height: 56px !important;
-    margin-left: -6px !important;
+    margin-left: -16px !important;
   }
   .pipeline-section p.pipeline-row-text {
     font-size: 10.5px !important;
