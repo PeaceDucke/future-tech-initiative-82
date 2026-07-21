@@ -1545,7 +1545,7 @@ function SplineFeatureSection() {
           }
           .aiv-params-center p:first-of-type {
             font-size: 9px !important;
-            margin-top: -22px !important;
+            margin-top: 40px !important;
             max-width: 90px !important;
             line-height: 1.3 !important;
           }
