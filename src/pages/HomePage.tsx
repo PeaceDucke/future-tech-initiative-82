@@ -4931,12 +4931,12 @@ export function HomePage() {
                   .dash-wrap  { height: 490px; }
                 }
                 @media (max-width: 720px) {
-                  .dash-scene { transform: scale(0.3); }
-                  .dash-wrap  { height: 408px; }
+                  .dash-scene { transform: scale(0.25); }
+                  .dash-wrap  { height: 340px; }
                 }
                 @media (max-width: 560px) {
-                  .dash-scene { transform: scale(0.24); }
-                  .dash-wrap  { height: 326px; }
+                  .dash-scene { transform: scale(0.2); }
+                  .dash-wrap  { height: 272px; }
                 }
               `}</style>
               <div className="dash-wrap">
