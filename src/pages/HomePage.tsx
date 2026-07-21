@@ -1461,6 +1461,12 @@ function SplineFeatureSection() {
             <path d="M 630 0 L 700 200" stroke="url(#paramLineR)" strokeWidth="1.4" fill="none" />
           </svg>
 
+          {/* Мобильные линии из белой карточки к спискам */}
+          <svg className="aiv-params-svg-mob" width="100%" height="100%" viewBox="0 0 300 200" preserveAspectRatio="none" style={{ display: "none", position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 1, pointerEvents: "none", overflow: "visible" }}>
+            <path d="M 150 8 L 70 92" stroke="url(#paramLineL)" strokeWidth="1" fill="none" />
+            <path d="M 150 8 L 230 92" stroke="url(#paramLineR)" strokeWidth="1" fill="none" />
+          </svg>
+
           {/* Левая колонка */}
           <div className="aiv-params-col" style={{ display: "flex", flexDirection: "column", gap: "34px", alignItems: "flex-end", textAlign: "right", paddingRight: "180px", marginTop: "-40px" }}>
             {["Скрипт продаж", "Эмоции клиента", "Возражения", "Скорость реакции", "Перебивания"].map((p) => (
@@ -1528,8 +1534,10 @@ function SplineFeatureSection() {
             margin-left: 0 !important;
             margin-right: 0 !important;
             width: 100% !important;
+            position: relative !important;
           }
           .aiv-params-svg { display: none !important; }
+          .aiv-params-svg-mob { display: block !important; }
           /* center heading sits BETWEEN the two lists */
           .aiv-params-center {
             order: 0 !important;
@@ -1537,7 +1545,7 @@ function SplineFeatureSection() {
           }
           .aiv-params-center p:first-of-type {
             font-size: 9px !important;
-            margin-top: 0 !important;
+            margin-top: -22px !important;
             max-width: 90px !important;
             line-height: 1.3 !important;
           }
