@@ -687,8 +687,8 @@ br.br-desktop {
     width: calc(100% + 40px);
     margin-left: -20px;
     margin-right: -20px;
-    /* visible height = 1360 * 0.268 ≈ 365px (whole dashboard, no clipping) */
-    height: 365px;
+    /* visible height = 1360 * 0.223 ≈ 304px (whole dashboard, no clipping) */
+    height: 304px;
     display: flex;
     justify-content: center;
   }
@@ -696,8 +696,8 @@ br.br-desktop {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    /* shrink the dashboard a bit more (0.295 / 1.1 ≈ 0.268) */
-    transform: scale(0.268);
+    /* shrink the dashboard a bit more (0.268 / 1.2 ≈ 0.223) */
+    transform: scale(0.223);
     transform-origin: top center;
     height: 1360px !important;
     margin: 0 !important;
