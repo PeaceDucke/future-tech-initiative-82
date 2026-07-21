@@ -400,7 +400,8 @@ body {
     font-size: 25px !important;
   }
   /* heading "AI видит то..." — same size as the "95%" heading */
-  .pipeline-section h2.pipeline-ai-vision-title {
+  .pipeline-section h2.pipeline-ai-vision-title,
+  .pipeline-section h2.pipeline-ai-vision-title span {
     font-size: 25px !important;
   }
   /* cards — less inner padding & smaller radius */
