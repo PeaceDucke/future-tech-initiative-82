@@ -1369,6 +1369,7 @@ function SplineFeatureSection() {
               zIndex: 1,
             }} />
             <LazySpline
+              className="aiv-spline-el"
               scene="https://prod.spline.design/ftUPjjfe6wGNb2BY/scene.splinecode"
               containerStyle={{ width: "100%", height: "100%" }}
               style={{ width: "100%", height: "100%", transform: "scale(0.476)", transformOrigin: "center center" }}

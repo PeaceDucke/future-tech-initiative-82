@@ -761,7 +761,7 @@ br.br-desktop {
   .aiv-stage {
     width: 960px !important;
     flex: 0 0 960px;
-    transform: translateX(320px) scale(0.36);
+    transform: translateX(270px) scale(0.36);
     transform-origin: top center;
   }
   /* spline behind cards, contained in the stage */
@@ -772,6 +772,11 @@ br.br-desktop {
     left: 0 !important;
     right: 0 !important;
     height: 600px !important;
+  }
+  /* make the Spline robot 2x bigger on mobile (0.476 → 0.95) */
+  .aiv-spline-el > * {
+    transform: scale(0.95) !important;
+    transform-origin: center center !important;
   }
   /* pull the bottom center card up so it overlaps into the visible window */
   .aiv-bottom {
@@ -1359,7 +1364,7 @@ br.br-desktop {
     height: 270px;
   }
   .aiv-stage {
-    transform: translateX(285px) scale(0.32);
+    transform: translateX(240px) scale(0.32);
     transform-origin: top center;
   }
 }
