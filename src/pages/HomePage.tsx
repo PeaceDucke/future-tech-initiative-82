@@ -1516,49 +1516,49 @@ function SplineFeatureSection() {
              we drop it BELOW the whole composition with a top margin equal to
              the wrapper height. Layout: heading first, then the two lists
              side by side underneath (like desktop, just compact). */
+          /* Desktop-like layout: left list — center heading — right list.
+             Columns pushed to the screen edges, heading centered between. */
           .aiv-params {
-            grid-template-columns: 1fr 1fr !important;
-            align-items: start !important;
-            gap: 14px 10px !important;
+            grid-template-columns: 1fr auto 1fr !important;
+            align-items: center !important;
+            gap: 0 !important;
             margin-top: 24px !important;
-            padding: 0 14px;
+            padding: 0 8px;
             transform: none !important;
             margin-left: 0 !important;
             margin-right: 0 !important;
             width: 100% !important;
           }
           .aiv-params-svg { display: none !important; }
-          /* heading spans full width, on top of the two lists */
+          /* center heading sits BETWEEN the two lists */
           .aiv-params-center {
-            order: -1 !important;
-            grid-column: 1 / -1 !important;
-            padding: 0 !important;
-            margin-bottom: 6px !important;
+            order: 0 !important;
+            padding: 0 4px !important;
           }
           .aiv-params-center p:first-of-type {
             font-size: 9px !important;
             margin-top: 0 !important;
-            max-width: none !important;
+            max-width: 90px !important;
             line-height: 1.3 !important;
           }
           .aiv-params-center p:last-of-type {
-            font-size: 9px !important;
-            margin-top: 10px !important;
+            font-size: 8px !important;
+            margin-top: 8px !important;
           }
-          /* left list aligns right, right list aligns left — like desktop */
+          /* left list hugs left edge, right list hugs right edge */
           .aiv-params-col {
-            gap: 11px !important;
+            gap: 9px !important;
             margin-top: 0 !important;
             padding-left: 0 !important;
             padding-right: 0 !important;
           }
           .aiv-params-col:first-of-type {
-            align-items: flex-end !important;
-            text-align: right !important;
-          }
-          .aiv-params-col:last-of-type {
             align-items: flex-start !important;
             text-align: left !important;
+          }
+          .aiv-params-col:last-of-type {
+            align-items: flex-end !important;
+            text-align: right !important;
           }
           .aiv-params-col span { font-size: 8px !important; }
           .aiv-params-col svg { width: 8px !important; height: 8px !important; }
