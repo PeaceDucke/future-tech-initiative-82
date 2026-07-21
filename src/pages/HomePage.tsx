@@ -1522,7 +1522,7 @@ function SplineFeatureSection() {
             grid-template-columns: 1fr auto 1fr !important;
             align-items: center !important;
             gap: 0 !important;
-            margin-top: 24px !important;
+            margin-top: -40px !important;
             padding: 0 8px;
             transform: none !important;
             margin-left: 0 !important;
