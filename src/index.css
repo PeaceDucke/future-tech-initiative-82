@@ -397,12 +397,12 @@ body {
   }
   /* heading "Вы не видите 95%..." — smaller on mobile */
   .pipeline-section .mb-24 h2 {
-    font-size: 25px !important;
+    font-size: 21px !important;
   }
   /* heading "AI видит то..." — same size as the "95%" heading */
   .pipeline-section h2.pipeline-ai-vision-title,
   .pipeline-section h2.pipeline-ai-vision-title span {
-    font-size: 25px !important;
+    font-size: 21px !important;
   }
   /* cards — less inner padding & smaller radius */
   .pipeline-section .pc {
