@@ -554,30 +554,43 @@ br.br-desktop {
   }
   /* "Что получает бизнес" grid — kill the desktop negative side margins
      that cause horizontal overflow on phones */
+  .bw-heading,
+  .bw-heading span {
+    font-size: 21px !important;
+  }
   .bw-grid {
     width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    grid-template-columns: repeat(5, 1fr) !important;
-    gap: 0 4px !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
   }
-  .bw-img {
-    margin-bottom: 4px !important;
+  .bw-card {
+    padding: 10px 8px 10px !important;
+    border-radius: 14px !important;
   }
   .bw-accent {
     font-size: 13px !important;
     line-height: 1.05 !important;
   }
   .bw-title {
-    font-size: 8px !important;
-    line-height: 1.15 !important;
-    margin-top: 2px !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
   }
   .bw-desc {
-    font-size: 6.5px !important;
-    line-height: 1.2 !important;
-    margin-top: 3px !important;
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+    margin-top: 4px !important;
     max-width: none !important;
+  }
+  /* logo takes ~half of the card at the bottom */
+  .bw-img {
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+    padding-top: 8px !important;
   }
   .hero-photo {
     /* show the WHOLE team — no cropping, fit the entire photo in,

@@ -3446,7 +3446,7 @@ function PipelineSection() {
           <SectionDivider />
           <div>
             <Section className="text-center">
-              <motion.h2 variants={fadeUp} style={{ ...h2Style, fontSize: "50px", lineHeight: 1.12, marginBottom: "56px" }}>
+              <motion.h2 variants={fadeUp} className="bw-heading" style={{ ...h2Style, fontSize: "50px", lineHeight: 1.12, marginBottom: "56px" }}>
                 Что получает <span style={{
                   backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
