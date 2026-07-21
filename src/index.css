@@ -728,10 +728,12 @@ br.br-desktop {
     /* let the params block below be fully visible (not clipped) */
     overflow: visible;
     margin-top: 8px !important;
-    /* reserve just the stage's visible height; params flows AFTER via its
-       own top margin (the stage is absolute, so we push params down) */
-    min-height: 360px !important;
-    height: auto !important;
+    /* FIXED height = the visible composition (robot + all cards). Since the
+       stage inside is position:absolute, this height is what reserves the
+       vertical space; the params block (in normal flow) starts right AFTER
+       it, i.e. BELOW the white card. */
+    min-height: 0 !important;
+    height: 470px !important;
     /* widen window to the site edges (cancel section px-5 = 20px) */
     margin-left: -20px;
     margin-right: -20px;

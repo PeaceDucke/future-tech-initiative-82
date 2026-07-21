@@ -1511,45 +1511,57 @@ function SplineFeatureSection() {
           box-shadow: 0 8px 40px rgba(200,169,106,0.18), 0 2px 16px rgba(0,0,0,0.5);
         }
         @media (max-width: 767px) {
-          /* Mirror the DESKTOP layout (center heading with a list on each
-             side) but tiny, and pushed BELOW the whole robot+cards block.
-             The stage above is position:absolute, so this block starts at the
-             top of the wrapper — a big top margin drops it under the card. */
+          /* The robot + cards live in .aiv-stage-wrap (fixed height). This
+             params block is inside that wrapper but the stage is absolute, so
+             we drop it BELOW the whole composition with a top margin equal to
+             the wrapper height. Layout: heading first, then the two lists
+             side by side underneath (like desktop, just compact). */
           .aiv-params {
-            grid-template-columns: 1fr auto 1fr !important;
-            align-items: center !important;
-            gap: 0 !important;
-            margin-top: 430px !important;
-            padding: 0 8px;
+            grid-template-columns: 1fr 1fr !important;
+            align-items: start !important;
+            gap: 14px 10px !important;
+            margin-top: 480px !important;
+            padding: 0 14px;
             transform: none !important;
             margin-left: 0 !important;
             margin-right: 0 !important;
             width: 100% !important;
           }
           .aiv-params-svg { display: none !important; }
+          /* heading spans full width, on top of the two lists */
           .aiv-params-center {
-            order: 0 !important;
-            padding: 0 6px !important;
+            order: -1 !important;
+            grid-column: 1 / -1 !important;
+            padding: 0 !important;
+            margin-bottom: 6px !important;
           }
-          /* kill the huge desktop inline top-margins */
           .aiv-params-center p:first-of-type {
-            font-size: 11px !important;
+            font-size: 16px !important;
             margin-top: 0 !important;
-            max-width: 110px !important;
-            line-height: 1.25 !important;
+            max-width: none !important;
+            line-height: 1.3 !important;
           }
           .aiv-params-center p:last-of-type {
-            font-size: 7px !important;
-            margin-top: 12px !important;
+            font-size: 10px !important;
+            margin-top: 10px !important;
           }
+          /* left list aligns right, right list aligns left — like desktop */
           .aiv-params-col {
-            gap: 9px !important;
+            gap: 11px !important;
             margin-top: 0 !important;
             padding-left: 0 !important;
             padding-right: 0 !important;
           }
-          .aiv-params-col span { font-size: 8.5px !important; }
-          .aiv-params-col svg { width: 9px !important; height: 9px !important; }
+          .aiv-params-col:first-of-type {
+            align-items: flex-end !important;
+            text-align: right !important;
+          }
+          .aiv-params-col:last-of-type {
+            align-items: flex-start !important;
+            text-align: left !important;
+          }
+          .aiv-params-col span { font-size: 12px !important; }
+          .aiv-params-col svg { width: 12px !important; height: 12px !important; }
         }
       `}</style>
     </section>
