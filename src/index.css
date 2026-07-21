@@ -430,7 +430,7 @@ body {
     margin-left: -6px !important;
   }
   .pipeline-section p.pipeline-row-text {
-    font-size: 12px !important;
+    font-size: 10.5px !important;
     line-height: 1.4 !important;
   }
   /* "Обнаружены причины потерь" — allow wrap & shrink so it fits */
