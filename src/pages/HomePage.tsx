@@ -1552,6 +1552,9 @@ function SplineFeatureSection() {
           .aiv-title, .aiv-title span {
             font-size: 21px !important;
           }
+          .aiv-bottom {
+            margin-top: 20px !important;
+          }
           .aiv-params-center p:last-of-type {
             font-size: 6px !important;
             margin-top: 34px !important;
