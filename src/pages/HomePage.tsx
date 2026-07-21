@@ -1553,12 +1553,12 @@ function SplineFeatureSection() {
             padding-right: 0 !important;
           }
           .aiv-params-col:first-of-type {
-            align-items: flex-start !important;
-            text-align: left !important;
+            align-items: center !important;
+            text-align: center !important;
           }
           .aiv-params-col:last-of-type {
-            align-items: flex-end !important;
-            text-align: right !important;
+            align-items: center !important;
+            text-align: center !important;
           }
           .aiv-params-col span { font-size: 8px !important; }
           .aiv-params-col svg { width: 8px !important; height: 8px !important; }
