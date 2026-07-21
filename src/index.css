@@ -339,12 +339,12 @@ body {
   }
   .hero-inner p.hero-lead {
     text-align: left !important;
-    font-size: 11px !important;
+    font-size: 9.5px !important;
     line-height: 1.55 !important;
     color: #ffffff !important;
     font-weight: 500 !important;
-    margin-left: 0 !important;
-    width: 100% !important;
+    margin-left: auto !important;
+    width: max-content !important;
     max-width: 100% !important;
     white-space: nowrap !important;
     word-break: keep-all !important;
