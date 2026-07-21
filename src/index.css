@@ -287,7 +287,22 @@ body {
   overflow-x: hidden;
 }
 
+/* адаптивные переносы строк: по умолчанию (десктоп) */
+br.br-mobile {
+  display: none;
+}
+br.br-desktop {
+  display: inline;
+}
+
 @media (max-width: 767px) {
+  /* адаптивные переносы строк: на мобильной инвертируем */
+  br.br-mobile {
+    display: inline !important;
+  }
+  br.br-desktop {
+    display: none !important;
+  }
   /* ---------- HERO ---------- */
   /* Mobile: turn the hero into a top-to-bottom FLOW so it looks the
      same on every phone. First the team photo (fixed height block),
@@ -451,6 +466,7 @@ body {
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
     font-size: 14px !important;
+    margin-top: 4px !important;
     margin-bottom: 12px !important;
     text-wrap: balance !important;
   }
