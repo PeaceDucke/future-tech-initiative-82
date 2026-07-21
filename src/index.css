@@ -449,17 +449,24 @@ body {
   }
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
-    font-size: 15px !important;
+    font-size: 14px !important;
     margin-bottom: 12px !important;
+    text-wrap: balance !important;
+  }
+  /* on mobile ignore the desktop hard line breaks so lines balance
+     nicely and no single word is left alone on a line */
+  .pipeline-card2-title br {
+    display: none !important;
   }
   /* "Мы превращаем хаос звонков..." — 2px smaller on mobile */
   .pipeline-section p.pipeline-ai-vision-sub {
     font-size: 14px !important;
   }
   .pipeline-section p.pipeline-card2-text {
-    font-size: 15px !important;
+    font-size: 14px !important;
     line-height: 1.2 !important;
     margin-bottom: 16px !important;
+    text-wrap: balance !important;
   }
   /* inner beige dashboard — tighter padding on mobile */
   .pipeline-dashboard {
