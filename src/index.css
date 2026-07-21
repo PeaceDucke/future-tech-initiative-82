@@ -725,15 +725,17 @@ br.br-desktop {
      on mobile by scaling the whole 900px stage down to fit the phone.
      .aiv-stage is a plain div (no framer transform) so scale() is reliable. */
   .aiv-stage-wrap {
-    overflow: hidden;
+    /* let the params block below be fully visible (not clipped) */
+    overflow: visible;
     margin-top: 8px !important;
-    min-height: 0 !important;
+    /* reserve just the stage's visible height; params flows AFTER via its
+       own top margin (the stage is absolute, so we push params down) */
+    min-height: 360px !important;
+    height: auto !important;
     /* widen window to the site edges (cancel section px-5 = 20px) */
     margin-left: -20px;
     margin-right: -20px;
     width: calc(100% + 40px);
-    /* enough height for the whole scaled composition (incl. bottom card) */
-    height: 380px;
     /* relative wrapper: the stage is absolutely centered inside it, so its
        geometric center always sits at the screen center (no flex quirks
        that push the wide canvas to the left on iOS Safari) */

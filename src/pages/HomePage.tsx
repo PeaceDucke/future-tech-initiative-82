@@ -1513,15 +1513,38 @@ function SplineFeatureSection() {
         @media (max-width: 767px) {
           .aiv-params {
             grid-template-columns: 1fr !important;
-            gap: 26px !important;
-            margin-top: 28px !important;
+            gap: 22px !important;
+            /* the stage above is absolutely positioned, so params starts at
+               the top of the wrapper — push it down past the whole robot +
+               cards so "Анализ..." sits BELOW the white card */
+            margin-top: 372px !important;
             padding: 0 16px;
+            transform: none !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            width: 100% !important;
           }
           .aiv-params-svg { display: none !important; }
           .aiv-params-center { order: -1; padding: 0 !important; }
-          .aiv-params-center p:first-of-type { font-size: 17px !important; }
-          .aiv-params-col { align-items: center !important; text-align: center !important; gap: 12px !important; }
-          .aiv-params-col span { font-size: 13.5px !important; }
+          /* kill the huge desktop inline top-margins that dragged the text up
+             over the robot; keep it right under the card */
+          .aiv-params-center p:first-of-type {
+            font-size: 20px !important;
+            margin-top: 0 !important;
+            max-width: none !important;
+          }
+          .aiv-params-center p:last-of-type {
+            margin-top: 18px !important;
+          }
+          .aiv-params-col {
+            align-items: center !important;
+            text-align: center !important;
+            gap: 12px !important;
+            margin-top: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+          }
+          .aiv-params-col span { font-size: 14px !important; }
         }
       `}</style>
     </section>
