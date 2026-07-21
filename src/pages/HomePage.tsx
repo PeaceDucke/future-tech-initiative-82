@@ -5384,56 +5384,6 @@ export function HomePage() {
                   })()}
                 </div>
 
-                {/* ── CARD: Последние звонки (низ) ── */}
-                <div
-                  className="absolute rounded-2xl p-5 db-card"
-                  style={{
-                    width: "42%",
-                    top: "380px",
-                    left: "-22%",
-                    background: "var(--db-bg-1)",
-                    border: "1px solid rgba(var(--db-bg-rgb-1),0.2)",
-                    boxShadow: "0 35px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(var(--db-bg-rgb-1),0.1)",
-                    transform: "scale(1.1)",
-                    transformOrigin: "top center",
-                    zIndex: 5,
-                  }}
-                >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: "var(--db-acc-3)", fontWeight: 600, marginBottom: "14px" }}>Последние звонки</div>
-                  {/* Table header */}
-                  <div className="grid items-center gap-3 pb-2 mb-2 border-b" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr", borderColor: "rgba(var(--db-acc-rgb-2),0.18)" }}>
-                    {["Клиент","Длительность","Результат","Конверсия","Запись"].map(h => (
-                      <span key={h} style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", color: "rgba(var(--db-text-rgb),0.45)", fontWeight: 600, letterSpacing: "0.04em" }}>{h}</span>
-                    ))}
-                  </div>
-                  {/* Rows */}
-                  <div className="space-y-2.5">
-                    {[
-                      { c: "ООО ТехноПласт", d: "4:14", r: "Успешно", k: "85%", color: "#22a868" },
-                      { c: "Иван Петров", d: "18:42", r: "Перезвонить", k: "40%", color: "#b8860b" },
-                      { c: "АО МаркетПлейс", d: "45:30", r: "Успешно", k: "90%", color: "#22a868" },
-                      { c: "Сергей Иванов", d: "7:11", r: "Не удалось", k: "20%", color: "#ef4444" },
-                      { c: "ООО СтройИнвест", d: "5:38", r: "Успешно", k: "70%", color: "#22a868" },
-                    ].map((row, idx) => (
-                      <div key={row.c} className="grid items-center gap-3" style={{ gridTemplateColumns: "1.6fr 1fr 1.1fr 0.7fr 1.4fr" }}>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(var(--db-text-rgb),0.75)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.c}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: "rgba(var(--db-text-rgb),0.55)" }}>{row.d}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", fontWeight: 500, color: row.color }}>{row.r}</span>
-                        <span style={{ fontFamily: "Inter, sans-serif", fontSize: "12px", color: "var(--db-acc-3)", fontWeight: 600 }}>{row.k}</span>
-                        {/* Audio control */}
-                        <div className="flex items-center gap-2" style={{ marginLeft: "-22px" }}>
-                          <button className="rounded-full flex items-center justify-center shrink-0" title="Прослушать" style={{ width: 26, height: 26, background: "var(--db-acc-2)" }}>
-                            <Icon name="Play" size={11} style={{ color: "#FFFFFF" }} />
-                          </button>
-                          <button className="rounded-full flex items-center justify-center shrink-0" title="Скачать запись" style={{ width: 26, height: 26, background: "#9A6E2E", border: "1px solid #C79A50" }}>
-                            <Icon name="Download" size={13} style={{ color: "#FBEFD0" }} />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
               </div>
               </div>
             </Section>
