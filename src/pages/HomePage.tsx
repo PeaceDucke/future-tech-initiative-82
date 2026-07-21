@@ -1536,13 +1536,13 @@ function SplineFeatureSection() {
             margin-bottom: 6px !important;
           }
           .aiv-params-center p:first-of-type {
-            font-size: 16px !important;
+            font-size: 9px !important;
             margin-top: 0 !important;
             max-width: none !important;
             line-height: 1.3 !important;
           }
           .aiv-params-center p:last-of-type {
-            font-size: 10px !important;
+            font-size: 9px !important;
             margin-top: 10px !important;
           }
           /* left list aligns right, right list aligns left — like desktop */
@@ -1560,8 +1560,8 @@ function SplineFeatureSection() {
             align-items: flex-start !important;
             text-align: left !important;
           }
-          .aiv-params-col span { font-size: 12px !important; }
-          .aiv-params-col svg { width: 12px !important; height: 12px !important; }
+          .aiv-params-col span { font-size: 8px !important; }
+          .aiv-params-col svg { width: 8px !important; height: 8px !important; }
         }
       `}</style>
     </section>
