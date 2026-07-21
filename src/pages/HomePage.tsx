@@ -4318,7 +4318,7 @@ function PricingSection() {
               (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(200,169,106,0.25)";
             }}
           >
-            Подробнее о тарифах
+            Оставить заявку
           </button>
         </div>
       </div>
