@@ -457,7 +457,7 @@ br.br-desktop {
   /* "Обнаружены причины потерь" — allow wrap & shrink so it fits */
   .pipeline-causes-title {
     white-space: normal !important;
-    font-size: 7.5px !important;
+    font-size: 6.3px !important;
   }
   /* trim the big gaps between the stacked blocks */
   .pipeline-section .gap-20 {
@@ -488,64 +488,64 @@ br.br-desktop {
   }
   /* inner beige dashboard — tighter padding on mobile */
   .pipeline-dashboard {
-    padding: 10px !important;
-    border-radius: 12px !important;
+    padding: 9px !important;
+    border-radius: 11px !important;
     margin-bottom: 0 !important;
-    max-width: 83% !important;
+    max-width: 75% !important;
   }
   .pipeline-dashboard > div:first-child {
-    padding: 5px 3px 8px !important;
+    padding: 4px 3px 7px !important;
   }
   .pipeline-dashboard .flex-col {
-    gap: 8px !important;
+    gap: 7px !important;
   }
   /* mini cards "Обнаружены причины потерь" — compact for mobile */
   .cause-flip,
   .cause-flip-inner {
-    min-height: 37px !important;
+    min-height: 34px !important;
   }
   .cause-flip-face {
-    gap: 7px !important;
-    padding: 6px 7px !important;
-    border-radius: 8px !important;
+    gap: 6px !important;
+    padding: 5px 6px !important;
+    border-radius: 7px !important;
   }
   .cause-flip-icon {
-    width: 22px !important;
-    height: 22px !important;
-    border-radius: 6px !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 5px !important;
   }
   .cause-flip-icon svg {
-    width: 11px !important;
-    height: 11px !important;
+    width: 10px !important;
+    height: 10px !important;
   }
   .cause-flip-icon-back {
-    width: 18px !important;
-    height: 18px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
   .cause-flip-title {
-    font-size: 8.5px !important;
+    font-size: 7px !important;
     line-height: 1.2 !important;
   }
   .cause-flip-detail {
-    font-size: 7.5px !important;
+    font-size: 6.3px !important;
     line-height: 1.35 !important;
   }
   .cause-flip-more {
-    font-size: 7.5px !important;
+    font-size: 6.3px !important;
     gap: 3px !important;
   }
   .cause-flip-more svg {
-    width: 9px !important;
-    height: 9px !important;
+    width: 8px !important;
+    height: 8px !important;
   }
   .cause-flip-close {
-    width: 17px !important;
-    height: 17px !important;
+    width: 16px !important;
+    height: 16px !important;
     border-radius: 5px !important;
   }
   .cause-flip-close svg {
-    width: 9px !important;
-    height: 9px !important;
+    width: 8px !important;
+    height: 8px !important;
   }
   /* "AI видит то / Что получает бизнес" headings */
   .pipeline-section h2,
