@@ -761,7 +761,7 @@ br.br-desktop {
   .aiv-stage {
     width: 960px !important;
     flex: 0 0 960px;
-    transform: translateX(270px) scale(0.36);
+    transform: translateX(290px) scale(0.36);
     transform-origin: top center;
   }
   /* spline behind cards, contained in the stage */
@@ -1364,7 +1364,7 @@ br.br-desktop {
     height: 270px;
   }
   .aiv-stage {
-    transform: translateX(240px) scale(0.32);
+    transform: translateX(258px) scale(0.32);
     transform-origin: top center;
   }
 }
