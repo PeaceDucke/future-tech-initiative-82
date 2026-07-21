@@ -734,8 +734,9 @@ br.br-desktop {
     width: calc(100% + 40px);
     /* tall enough so the bottom "Recommendation" card is NOT clipped */
     height: 340px;
-    display: flex;
-    justify-content: center;
+    /* position (not flex) so the scaled canvas is centered by its OWN
+       center — flex can't center a child that's far wider than the box */
+    position: relative;
   }
   /* tighten vertical layout so the bottom card sits closer and fits fully */
   .aiv-grid {
@@ -748,16 +749,19 @@ br.br-desktop {
     align-self: start !important;
   }
   .aiv-stage {
-    /* wider canvas so the side cards push out to the screen edges */
     width: 1280px !important;
-    flex: 0 0 1280px;
-    transform: scale(0.3);
+    /* absolutely center the wide canvas by its own middle, then scale;
+       this keeps the spline exactly in the screen center and both card
+       columns symmetric inside the phone width */
+    position: absolute !important;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.27);
     transform-origin: top center;
   }
-  /* spread the columns wider so cards touch the left/right edges,
-     spline stays exactly in the middle */
+  /* columns narrow enough that both side cards stay fully on-screen */
   .aiv-grid {
-    grid-template-columns: 470px 1fr 470px !important;
+    grid-template-columns: 430px 1fr 430px !important;
     gap: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
