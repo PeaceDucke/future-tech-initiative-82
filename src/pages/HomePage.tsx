@@ -1823,16 +1823,18 @@ function AudienceSection() {
           <div className="gold-bar" />
         </motion.div>
 
-        <div ref={blockOneRef} className="aud-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px" }}>
-          {blockOne.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={blockOneInView} W={W} G={G} B={B} GREEN={GREEN} />
-          ))}
-        </div>
+        <div className="aud-grid-wrap">
+          <div ref={blockOneRef} className="aud-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px" }}>
+            {blockOne.map((it, i) => (
+              <AudienceCard key={i} it={it} i={i} inView={blockOneInView} W={W} G={G} B={B} GREEN={GREEN} />
+            ))}
+          </div>
 
-        <div ref={blockTwoRef} className="aud-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px", marginTop: "32px" }}>
-          {blockTwo.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={blockTwoInView} W={W} G={G} B={B} GREEN={GREEN} />
-          ))}
+          <div ref={blockTwoRef} className="aud-grid-5 aud-grid-two" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px", marginTop: "32px" }}>
+            {blockTwo.map((it, i) => (
+              <AudienceCard key={i} it={it} i={i} inView={blockTwoInView} W={W} G={G} B={B} GREEN={GREEN} />
+            ))}
+          </div>
         </div>
 
         <motion.div
@@ -1927,10 +1929,13 @@ function AudienceSection() {
         }
         @media (max-width: 767px) {
           .aud-title, .aud-title span { font-size: 19px !important; }
-          .aud-grid-5 {
+          .aud-grid-wrap {
+            display: grid !important;
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 7px !important;
           }
+          .aud-grid-5 { display: contents !important; }
+          .aud-grid-two { margin-top: 0 !important; }
           .aud-card-hide-mob { display: none !important; }
           .aud-card {
             border-radius: 10px !important;
