@@ -3227,9 +3227,9 @@ function BeforeAfterSection() {
           .cb-col-title { font-size: 17px !important; }
           .cb-row { grid-template-columns: 1fr 24px 1fr !important; gap: 5px !important; }
           .sfs-before-row, .sfs-after-row {
-            padding: 6px 7px !important;
-            border-radius: 9px !important;
-            gap: 5px !important;
+            padding: 5px 6px !important;
+            border-radius: 8px !important;
+            gap: 4px !important;
           }
           .cb-icon { width: 10px !important; height: 10px !important; }
           .cb-check { width: 15px !important; height: 15px !important; }
@@ -3238,6 +3238,23 @@ function BeforeAfterSection() {
           .cb-label { font-size: 7px !important; margin-top: 2px !important; line-height: 1.28 !important; }
           .cb-arrow > div { width: 18px !important; height: 18px !important; }
           .cb-arrow svg { width: 9px !important; height: 9px !important; }
+          .cb-result {
+            margin-top: 26px !important;
+            padding: 16px 16px !important;
+            border-radius: 16px !important;
+            flex-wrap: nowrap !important;
+            gap: 10px !important;
+          }
+          .cb-result-label { margin-bottom: 6px !important; }
+          .cb-result-text { font-size: 14px !important; line-height: 1.15 !important; }
+          .cb-result-btn {
+            padding: 8px 12px !important;
+            font-size: 9px !important;
+            border-radius: 8px !important;
+            gap: 6px !important;
+            flex-shrink: 0 !important;
+          }
+          .cb-result-btn svg { width: 11px !important; height: 11px !important; }
         }
       `}</style>
     </section>
