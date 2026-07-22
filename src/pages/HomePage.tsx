@@ -3239,22 +3239,22 @@ function BeforeAfterSection() {
           .cb-arrow > div { width: 18px !important; height: 18px !important; }
           .cb-arrow svg { width: 9px !important; height: 9px !important; }
           .cb-result {
-            margin-top: 26px !important;
-            padding: 16px 16px !important;
-            border-radius: 16px !important;
+            margin-top: 22px !important;
+            padding: 12px 12px !important;
+            border-radius: 13px !important;
             flex-wrap: nowrap !important;
-            gap: 10px !important;
+            gap: 8px !important;
           }
-          .cb-result-label { margin-bottom: 6px !important; }
-          .cb-result-text { font-size: 14px !important; line-height: 1.15 !important; }
+          .cb-result-label { margin-bottom: 4px !important; font-size: 8px !important; }
+          .cb-result-text { font-size: 11px !important; line-height: 1.15 !important; }
           .cb-result-btn {
-            padding: 8px 12px !important;
-            font-size: 9px !important;
-            border-radius: 8px !important;
-            gap: 6px !important;
+            padding: 6px 9px !important;
+            font-size: 7.5px !important;
+            border-radius: 7px !important;
+            gap: 4px !important;
             flex-shrink: 0 !important;
           }
-          .cb-result-btn svg { width: 11px !important; height: 11px !important; }
+          .cb-result-btn svg { width: 9px !important; height: 9px !important; }
         }
       `}</style>
     </section>
