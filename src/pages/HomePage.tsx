@@ -3225,19 +3225,19 @@ function BeforeAfterSection() {
           .cb-head { margin-bottom: 28px !important; }
           .cb-headers { grid-template-columns: 1fr 30px 1fr !important; margin-bottom: 12px !important; }
           .cb-col-title { font-size: 17px !important; }
-          .cb-row { grid-template-columns: 1fr 30px 1fr !important; gap: 6px !important; }
+          .cb-row { grid-template-columns: 1fr 24px 1fr !important; gap: 5px !important; }
           .sfs-before-row, .sfs-after-row {
-            padding: 8px 9px !important;
-            border-radius: 11px !important;
-            gap: 7px !important;
+            padding: 6px 7px !important;
+            border-radius: 9px !important;
+            gap: 5px !important;
           }
-          .cb-icon { width: 13px !important; height: 13px !important; }
-          .cb-check { width: 19px !important; height: 19px !important; }
-          .cb-check svg { width: 11px !important; height: 11px !important; }
-          .cb-value { font-size: 13px !important; line-height: 1.1 !important; }
-          .cb-label { font-size: 9px !important; margin-top: 3px !important; line-height: 1.28 !important; }
-          .cb-arrow > div { width: 24px !important; height: 24px !important; }
-          .cb-arrow svg { width: 12px !important; height: 12px !important; }
+          .cb-icon { width: 10px !important; height: 10px !important; }
+          .cb-check { width: 15px !important; height: 15px !important; }
+          .cb-check svg { width: 9px !important; height: 9px !important; }
+          .cb-value { font-size: 10px !important; line-height: 1.1 !important; }
+          .cb-label { font-size: 7px !important; margin-top: 2px !important; line-height: 1.28 !important; }
+          .cb-arrow > div { width: 18px !important; height: 18px !important; }
+          .cb-arrow svg { width: 9px !important; height: 9px !important; }
         }
       `}</style>
     </section>
