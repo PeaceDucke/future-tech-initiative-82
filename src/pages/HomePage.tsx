@@ -2199,18 +2199,18 @@ function RopSection() {
         }
         @media (max-width: 767px) {
           .rop-section { padding: 48px 0 52px !important; }
-          .rop-cols { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+          .rop-cols { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 16px !important; }
           .rop-left { display: contents !important; }
-          .rop-title { order: 0 !important; font-size: 26px !important; margin-bottom: 8px !important; text-align: center !important; }
-          .rop-sub { order: 1 !important; font-size: 12px !important; line-height: 1.55 !important; margin: 0 auto !important; text-align: center !important; }
-          .rop-right { order: 2 !important; margin-top: 0 !important; }
-          .rop-benefits { order: 3 !important; margin-top: 4px !important; align-items: center !important; }
+          .rop-title { width: 100% !important; order: 0 !important; font-size: 26px !important; margin-bottom: 8px !important; text-align: center !important; }
+          .rop-sub { width: 100% !important; order: 1 !important; font-size: 12px !important; line-height: 1.55 !important; margin: 0 auto !important; text-align: center !important; }
+          .rop-right { width: 100% !important; order: 2 !important; margin-top: 0 !important; display: flex !important; justify-content: center !important; }
+          .rop-benefits { width: 100% !important; order: 3 !important; margin-top: 4px !important; align-items: center !important; }
           .rop-benefit { width: 100% !important; max-width: 340px !important; padding: 11px 16px !important; border-radius: 12px !important; gap: 12px !important; }
           .rop-benefit-ic { width: 30px !important; height: 30px !important; }
           .rop-benefit-ic svg { width: 17px !important; height: 17px !important; }
           .rop-benefit-title { font-size: 11px !important; }
-          .rop-panel { border-radius: 18px !important; padding: 22px !important; }
-          .rop-photo-wrap { max-width: 300px !important; }
+          .rop-panel { width: 100% !important; margin: 0 auto !important; border-radius: 22px !important; padding: 26px !important; }
+          .rop-photo-wrap { max-width: 450px !important; }
           .rop-badge { padding: 5px 8px !important; border-radius: 8px !important; gap: 5px !important; }
           .rop-badge-ic { width: 11px !important; height: 11px !important; }
           .rop-badge-title { font-size: 8px !important; }
