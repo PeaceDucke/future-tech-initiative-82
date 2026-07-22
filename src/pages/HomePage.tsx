@@ -2201,20 +2201,20 @@ function RopSection() {
           .rop-section { padding: 48px 0 52px !important; }
           .rop-cols { display: flex !important; flex-direction: column !important; gap: 16px !important; }
           .rop-left { display: contents !important; }
-          .rop-title { order: 0 !important; font-size: 26px !important; margin-bottom: 8px !important; }
-          .rop-sub { order: 1 !important; font-size: 12px !important; line-height: 1.55 !important; margin-bottom: 0 !important; }
+          .rop-title { order: 0 !important; font-size: 26px !important; margin-bottom: 8px !important; text-align: center !important; }
+          .rop-sub { order: 1 !important; font-size: 12px !important; line-height: 1.55 !important; margin: 0 auto !important; text-align: center !important; }
           .rop-right { order: 2 !important; margin-top: 0 !important; }
-          .rop-benefits { order: 3 !important; margin-top: 4px !important; }
-          .rop-benefit { padding: 8px 10px !important; border-radius: 10px !important; gap: 8px !important; }
-          .rop-benefit-ic { width: 24px !important; height: 24px !important; }
-          .rop-benefit-ic svg { width: 14px !important; height: 14px !important; }
-          .rop-benefit-title { font-size: 9px !important; }
-          .rop-panel { border-radius: 16px !important; padding: 16px !important; }
-          .rop-photo-wrap { max-width: 220px !important; }
-          .rop-badge { padding: 6px 9px !important; border-radius: 9px !important; gap: 5px !important; }
-          .rop-badge-ic { width: 12px !important; height: 12px !important; }
-          .rop-badge-title { font-size: 9px !important; }
-          .rop-badge-sub { font-size: 7.5px !important; }
+          .rop-benefits { order: 3 !important; margin-top: 4px !important; align-items: center !important; }
+          .rop-benefit { width: 100% !important; max-width: 340px !important; padding: 11px 16px !important; border-radius: 12px !important; gap: 12px !important; }
+          .rop-benefit-ic { width: 30px !important; height: 30px !important; }
+          .rop-benefit-ic svg { width: 17px !important; height: 17px !important; }
+          .rop-benefit-title { font-size: 11px !important; }
+          .rop-panel { border-radius: 18px !important; padding: 22px !important; }
+          .rop-photo-wrap { max-width: 300px !important; }
+          .rop-badge { padding: 5px 8px !important; border-radius: 8px !important; gap: 5px !important; }
+          .rop-badge-ic { width: 11px !important; height: 11px !important; }
+          .rop-badge-title { font-size: 8px !important; }
+          .rop-badge-sub { font-size: 6.5px !important; }
           .rop-conv-cap { font-size: 10px !important; margin-bottom: 2px !important; margin-top: 2px !important; }
           .rop-conv-num { font-size: 48px !important; }
           .rop-conv-tr { width: 30px !important; height: 30px !important; }
