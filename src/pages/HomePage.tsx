@@ -2281,13 +2281,14 @@ function ImplementationSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
+            className="impl-badge-wrap"
             style={{
               display: "inline-flex", alignItems: "center", gap: "10px",
               padding: "8px 18px", borderRadius: "999px", marginBottom: "26px",
               background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
             }}
           >
-            <Icon name="Rocket" size={16} style={{ color: G }} />
+            <Icon name="Rocket" size={16} className="impl-badge-ic" style={{ color: G }} />
             <span className="impl-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
               Как внедряем
             </span>
@@ -2463,7 +2464,9 @@ function ImplementationSection() {
         }
         @media (max-width: 767px) {
           .impl-section { padding: 48px 0 !important; }
-          .impl-badge { font-size: 10px !important; }
+          .impl-badge-wrap { gap: 5px !important; padding: 4px 9px !important; margin-bottom: 18px !important; }
+          .impl-badge-ic { width: 8px !important; height: 8px !important; }
+          .impl-badge { font-size: 6.5px !important; }
           .impl-title { font-size: 21px !important; line-height: 1.2 !important; }
           .impl-sub { font-size: 10px !important; margin-top: 14px !important; line-height: 1.5 !important; }
           .impl-line { left: 22px !important; top: 12px !important; bottom: 12px !important; }
