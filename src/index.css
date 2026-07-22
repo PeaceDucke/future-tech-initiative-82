@@ -364,9 +364,9 @@ br.br-desktop {
     line-height: 1.55 !important;
     color: #ffffff !important;
     font-weight: 500 !important;
-    margin-left: 130px !important;
+    margin-left: 120px !important;
     width: auto !important;
-    max-width: calc(100% - 130px) !important;
+    max-width: calc(100% - 120px) !important;
     white-space: normal !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
