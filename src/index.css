@@ -979,6 +979,11 @@ br.br-desktop {
     padding: 9px 15px !important;
     border-radius: 8px !important;
   }
+  .cta-btn-icon {
+    width: 29px !important;
+    height: 29px !important;
+    margin: -6px 0 !important;
+  }
   .cta-social-label {
     font-size: 8px !important;
     margin-bottom: 10px !important;

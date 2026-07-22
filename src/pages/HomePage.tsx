@@ -4007,7 +4007,7 @@ function FinalCtaSection() {
                   el.style.transform = "translateY(0)";
                 }}
               >
-                <img src={socials[0].img} alt="Telegram" style={{ width: "44px", height: "44px", objectFit: "contain", margin: "-11px 0" }} />
+                <img className="cta-btn-icon" src={socials[0].img} alt="Telegram" style={{ width: "44px", height: "44px", objectFit: "contain", margin: "-11px 0" }} />
                 Связаться с нами
               </a>
             </div>
