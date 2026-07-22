@@ -1545,7 +1545,7 @@ function SplineFeatureSection() {
           }
           .aiv-params-center p:first-of-type {
             font-size: 9px !important;
-            margin-top: 20px !important;
+            margin-top: 12px !important;
             max-width: 90px !important;
             line-height: 1.3 !important;
           }
@@ -1557,7 +1557,7 @@ function SplineFeatureSection() {
           }
           .aiv-params-center p:last-of-type {
             font-size: 6px !important;
-            margin-top: 64px !important;
+            margin-top: 54px !important;
             letter-spacing: 0 !important;
           }
           /* left list hugs left edge, right list hugs right edge */
