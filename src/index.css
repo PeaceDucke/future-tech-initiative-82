@@ -1012,6 +1012,12 @@ br.br-desktop {
   .faq-badge {
     font-size: 9px !important;
   }
+  #faq {
+    padding-bottom: 28px !important;
+  }
+  .faq-header {
+    margin-bottom: 22px !important;
+  }
   .faq-title {
     font-size: 21px !important;
   }

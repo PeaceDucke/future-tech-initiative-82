@@ -4122,7 +4122,7 @@ function FaqSection() {
         }}
       >
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: "72px" }}>
+        <div className="text-center faq-header" style={{ marginBottom: "72px" }}>
           <div className="flex items-center justify-center gap-3 mb-7">
             <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
             <span className="faq-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>FAQ</span>
