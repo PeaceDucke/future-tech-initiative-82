@@ -2532,7 +2532,7 @@ function GuaranteeSection() {
             background: "rgba(212,176,116,0.08)", border: "1px solid rgba(212,176,116,0.22)",
           }}
         >
-          <Icon name="BadgeCheck" size={16} style={{ color: G }} />
+          <Icon name="BadgeCheck" size={16} className="grt-badge-ic" style={{ color: G }} />
           <span className="grt-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: G, letterSpacing: "0.08em", fontWeight: 600, textTransform: "uppercase" }}>
             Гарантия результата
           </span>

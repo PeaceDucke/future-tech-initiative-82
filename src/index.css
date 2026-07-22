@@ -1158,14 +1158,18 @@ br.br-desktop {
     padding-bottom: 32px !important;
   }
   .grt-title {
-    font-size: 25px !important;
+    font-size: 21px !important;
   }
   .grt-text {
-    font-size: 14px !important;
+    font-size: 12px !important;
     line-height: 1.6 !important;
   }
   .grt-badge {
-    font-size: 10px !important;
+    font-size: 9px !important;
+  }
+  .grt-badge-ic {
+    width: 11px !important;
+    height: 11px !important;
   }
   /* smaller shield, nudged slightly left & with more space below */
   .grt-shield {
