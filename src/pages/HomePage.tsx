@@ -4314,11 +4314,6 @@ function PricingSection() {
       >
         {/* Header */}
         <div className="text-center" style={{ marginBottom: "72px" }}>
-          <div className="flex items-center justify-center gap-3 mb-7">
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-            <span className="pr-badge" style={{ fontFamily: "Inter, sans-serif", fontSize: "11px", letterSpacing: "0.25em", textTransform: "uppercase" as const, color: G, fontWeight: 600 }}>Тарифы</span>
-            <div style={{ width: "40px", height: "1px", background: G, opacity: 0.5 }} />
-          </div>
           <h2 className="pr-title" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif',
             fontSize: "50px",
@@ -4353,6 +4348,7 @@ function PricingSection() {
               onClick={() => { if (!plan.contact) setSelected(i); }}
               style={{
                 position: "relative",
+                order: [4, 1, 2, 3, 5][i] ?? i,
                 cursor: plan.contact ? "default" : "pointer",
                 background: isSelected
                   ? "linear-gradient(160deg, rgba(233,210,154,0.22) 0%, rgba(200,169,106,0.14) 55%, rgba(184,147,74,0.12) 100%)"

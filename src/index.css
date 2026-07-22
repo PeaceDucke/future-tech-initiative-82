@@ -1031,18 +1031,22 @@ br.br-desktop {
     font-size: 8px !important;
   }
   .pr-title {
-    font-size: 31px !important;
+    font-size: 21px !important;
   }
   .pr-sub {
     font-size: 14px !important;
   }
   .pr-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
   }
   .pr-card {
-    padding: 28px 18px 24px !important;
-    border-radius: 14px !important;
+    flex: 0 0 auto !important;
+    width: calc(33.333% - 6px) !important;
+    padding: 16px 8px 18px !important;
+    border-radius: 12px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -1056,42 +1060,45 @@ br.br-desktop {
   }
   .pr-name {
     font-size: 11px !important;
-    letter-spacing: 0.12em !important;
-    margin-bottom: 14px !important;
+    letter-spacing: 0.08em !important;
+    margin-bottom: 8px !important;
     text-align: center !important;
   }
+  .pr-name {
+    font-size: 8px !important;
+  }
   .pr-price {
-    font-size: 30px !important;
+    font-size: 17px !important;
     text-align: center !important;
     white-space: nowrap !important;
   }
   .pr-price-free {
-    font-size: 28px !important;
+    font-size: 15px !important;
   }
   .pr-period {
-    font-size: 11px !important;
-    margin-top: 5px !important;
+    font-size: 7px !important;
+    margin-top: 3px !important;
     text-align: center !important;
   }
   /* features block centered, full width */
   .pr-feats {
     width: 100% !important;
     align-items: stretch !important;
-    gap: 11px !important;
+    gap: 6px !important;
   }
   .pr-feat-row {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 8px !important;
+    gap: 4px !important;
   }
   .pr-feat {
-    font-size: 12px !important;
-    gap: 6px !important;
+    font-size: 8px !important;
+    gap: 3px !important;
   }
   .pr-btn {
-    font-size: 10px !important;
-    padding: 13px 32px !important;
+    font-size: 7px !important;
+    padding: 8px 6px !important;
   }
 
   /* ---------- "Интеграция за 5 минут" (Integration) ---------- */
