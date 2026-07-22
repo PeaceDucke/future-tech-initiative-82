@@ -4152,6 +4152,7 @@ function FaqSection() {
               }}
             >
               <button
+                className="faq-btn"
                 onClick={() => setOpen(open === i ? null : i)}
                 style={{
                   width: "100%",
