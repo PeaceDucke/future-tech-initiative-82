@@ -3020,7 +3020,7 @@ function BeforeAfterSection() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="flex items-center justify-center"
             >
-              <div style={{
+              <div className="cb-col-title" style={{
                 fontFamily: "Jost, sans-serif",
                 fontSize: "32px",
                 fontWeight: 600,
@@ -3040,7 +3040,7 @@ function BeforeAfterSection() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="flex items-center justify-center"
             >
-              <div style={{
+              <div className="cb-col-title" style={{
                 fontFamily: "Jost, sans-serif",
                 fontSize: "32px",
                 fontWeight: 600,
@@ -3217,6 +3217,27 @@ function BeforeAfterSection() {
           transform: translateX(-4px);
           border-color: rgba(255,107,107,0.5) !important;
           box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.5), 0 8px 40px rgba(0,0,0,0.5);
+        }
+        @media (max-width: 767px) {
+          .cb-section { padding: 60px 0 64px !important; }
+          .cb-section .px-6 { padding-left: 10px !important; padding-right: 10px !important; }
+          .cb-title { font-size: 20px !important; line-height: 1.15 !important; }
+          .cb-head { margin-bottom: 28px !important; }
+          .cb-headers { grid-template-columns: 1fr 30px 1fr !important; margin-bottom: 12px !important; }
+          .cb-col-title { font-size: 17px !important; }
+          .cb-row { grid-template-columns: 1fr 30px 1fr !important; gap: 6px !important; }
+          .sfs-before-row, .sfs-after-row {
+            padding: 8px 9px !important;
+            border-radius: 11px !important;
+            gap: 7px !important;
+          }
+          .cb-icon { width: 13px !important; height: 13px !important; }
+          .cb-check { width: 19px !important; height: 19px !important; }
+          .cb-check svg { width: 11px !important; height: 11px !important; }
+          .cb-value { font-size: 13px !important; line-height: 1.1 !important; }
+          .cb-label { font-size: 9px !important; margin-top: 3px !important; line-height: 1.28 !important; }
+          .cb-arrow > div { width: 24px !important; height: 24px !important; }
+          .cb-arrow svg { width: 12px !important; height: 12px !important; }
         }
       `}</style>
     </section>
