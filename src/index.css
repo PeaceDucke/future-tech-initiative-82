@@ -629,7 +629,7 @@ br.br-desktop {
   }
   /* "под контролем" — lower and to the right */
   .hero-title-2 {
-    padding-left: 30% !important;
+    padding-left: 14% !important;
     white-space: nowrap !important;
     margin-top: -0.2rem !important;
   }
@@ -637,7 +637,7 @@ br.br-desktop {
   .hero-lead {
     margin-left: 22% !important;
     width: 78% !important;
-    font-size: 12px !important;
+    font-size: 8.5px !important;
     line-height: 1.5 !important;
     text-align: left !important;
   }
