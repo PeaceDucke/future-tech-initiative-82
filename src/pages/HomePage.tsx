@@ -1550,7 +1550,7 @@ function SplineFeatureSection() {
             line-height: 1.3 !important;
           }
           .aiv-title, .aiv-title span {
-            font-size: 21px !important;
+            font-size: 19px !important;
           }
           .aiv-bottom {
             margin-top: 20px !important;
