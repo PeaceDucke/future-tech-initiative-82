@@ -2328,7 +2328,7 @@ function ImplementationSection() {
         </div>
 
         {/* Шаги - вертикальный таймлайн */}
-        <div ref={stepsRef} style={{ position: "relative", marginTop: "70px", maxWidth: "880px", marginLeft: "auto", marginRight: "auto" }}>
+        <div ref={stepsRef} className="impl-timeline" style={{ position: "relative", marginTop: "70px", maxWidth: "880px", marginLeft: "auto", marginRight: "auto" }}>
           {/* вертикальная линия */}
           <div className="impl-line" style={{
             position: "absolute", top: "20px", bottom: "20px", left: "39px", width: "2px",
@@ -2426,14 +2426,14 @@ function ImplementationSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={stepsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-center"
+          className="impl-fear-wrap text-center"
           style={{
             marginTop: "72px",
             maxWidth: "1100px", marginLeft: "auto", marginRight: "auto",
             display: "flex", alignItems: "center", justifyContent: "center", gap: "16px",
           }}
         >
-          <Icon name="CircleCheckBig" size={34} style={{ color: G, flexShrink: 0 }} />
+          <Icon name="CircleCheckBig" size={34} className="impl-fear-ic" style={{ color: G, flexShrink: 0 }} />
           <p className="impl-fear" style={{
             fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(20px, 2.4vw, 30px)",
             color: W, lineHeight: 1.35, fontWeight: 500, textAlign: "left",
@@ -2460,6 +2460,24 @@ function ImplementationSection() {
         .impl-step:hover .impl-num {
           transform: scale(1.08);
           background: linear-gradient(135deg, rgba(212,176,116,0.34) 0%, rgba(212,176,116,0.1) 100%) !important;
+        }
+        @media (max-width: 767px) {
+          .impl-section { padding: 48px 0 !important; }
+          .impl-badge { font-size: 10px !important; }
+          .impl-title { font-size: 24px !important; line-height: 1.2 !important; }
+          .impl-sub { font-size: 12px !important; margin-top: 14px !important; line-height: 1.5 !important; }
+          .impl-line { left: 22px !important; top: 12px !important; bottom: 12px !important; }
+          .impl-step { gap: 13px !important; padding: 13px 14px !important; border-radius: 14px !important; margin-bottom: 11px !important; }
+          .impl-num { width: 32px !important; height: 32px !important; }
+          .impl-num span { font-size: 15px !important; }
+          .impl-step-ic { width: 15px !important; height: 15px !important; }
+          .impl-step-title { font-size: 14px !important; line-height: 1.2 !important; }
+          .impl-integrations { gap: 5px !important; margin-top: 8px !important; }
+          .impl-integrations span { font-size: 9px !important; padding: 3px 8px !important; }
+          .impl-timeline { margin-top: 34px !important; }
+          .impl-fear-wrap { margin-top: 36px !important; gap: 9px !important; }
+          .impl-fear-ic { width: 20px !important; height: 20px !important; }
+          .impl-fear { font-size: 14px !important; line-height: 1.3 !important; }
         }
       `}</style>
     </section>
