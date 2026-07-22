@@ -2200,11 +2200,11 @@ function RopSection() {
         @media (max-width: 767px) {
           .rop-section { padding: 48px 0 52px !important; }
           .rop-cols { display: flex !important; flex-direction: column !important; gap: 16px !important; }
-          .rop-right { order: 0 !important; margin-top: 0 !important; }
-          .rop-left { order: 1 !important; display: flex !important; flex-direction: column !important; }
+          .rop-left { display: contents !important; }
+          .rop-title { order: 0 !important; font-size: 26px !important; margin-bottom: 8px !important; }
+          .rop-sub { order: 1 !important; font-size: 12px !important; line-height: 1.55 !important; margin-bottom: 0 !important; }
+          .rop-right { order: 2 !important; margin-top: 0 !important; }
           .rop-benefits { order: 3 !important; margin-top: 4px !important; }
-          .rop-title { font-size: 26px !important; margin-bottom: 12px !important; }
-          .rop-sub { font-size: 12px !important; line-height: 1.55 !important; margin-bottom: 14px !important; }
           .rop-benefit { padding: 8px 10px !important; border-radius: 10px !important; gap: 8px !important; }
           .rop-benefit-ic { width: 24px !important; height: 24px !important; }
           .rop-benefit-ic svg { width: 14px !important; height: 14px !important; }
