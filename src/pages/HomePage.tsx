@@ -2204,11 +2204,11 @@ function RopSection() {
           .rop-title { width: 100% !important; order: 0 !important; font-size: 26px !important; margin-bottom: 8px !important; text-align: center !important; }
           .rop-sub { width: 100% !important; order: 1 !important; font-size: 12px !important; line-height: 1.55 !important; margin: 0 auto !important; text-align: center !important; }
           .rop-right { width: 100% !important; order: 2 !important; margin-top: 0 !important; display: flex !important; justify-content: center !important; }
-          .rop-benefits { width: 100% !important; order: 3 !important; margin-top: 4px !important; align-items: center !important; }
-          .rop-benefit { width: 100% !important; max-width: 340px !important; padding: 11px 16px !important; border-radius: 12px !important; gap: 12px !important; }
-          .rop-benefit-ic { width: 30px !important; height: 30px !important; }
-          .rop-benefit-ic svg { width: 17px !important; height: 17px !important; }
-          .rop-benefit-title { font-size: 11px !important; }
+          .rop-benefits { width: 100% !important; max-width: 380px !important; order: 3 !important; margin-top: 4px !important; display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+          .rop-benefit { width: 100% !important; max-width: none !important; padding: 12px 10px !important; border-radius: 12px !important; gap: 8px !important; }
+          .rop-benefit-ic { width: 26px !important; height: 26px !important; }
+          .rop-benefit-ic svg { width: 15px !important; height: 15px !important; }
+          .rop-benefit-title { font-size: 10px !important; }
           .rop-panel { width: 100% !important; margin: 0 auto !important; border-radius: 22px !important; padding: 26px !important; }
           .rop-photo-wrap { max-width: 450px !important; }
           .rop-badge { padding: 5px 8px !important; border-radius: 8px !important; gap: 5px !important; }
