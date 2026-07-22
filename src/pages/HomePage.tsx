@@ -2062,7 +2062,7 @@ function RopSection() {
                     initial={{ opacity: 0, x: -24 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="flex items-center gap-4"
+                    className="rop-benefit flex items-center gap-4"
                     style={{
                       padding: "20px 22px", borderRadius: "16px",
                       background: "rgba(255,255,255,0.025)",
@@ -2070,7 +2070,7 @@ function RopSection() {
                     }}
                   >
                     <div
-                      className="flex items-center justify-center flex-shrink-0"
+                      className="rop-benefit-ic flex items-center justify-center flex-shrink-0"
                       style={{
                         width: "72px", height: "72px",
                       }}
@@ -2078,7 +2078,7 @@ function RopSection() {
                       <Icon name={b.icon} size={33} style={{ color: G }} />
                     </div>
                     <div>
-                      <h3 style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", fontWeight: 600, color: W }}>
+                      <h3 className="rop-benefit-title" style={{ fontFamily: "Inter, sans-serif", fontSize: "18px", fontWeight: 600, color: W }}>
                         {b.title}
                       </h3>
                     </div>
@@ -2090,6 +2090,7 @@ function RopSection() {
             {/* ── RIGHT ── */}
             <div className="rop-right">
               <div
+                className="rop-panel"
                 style={{
                   position: "relative", borderRadius: "26px",
                   border: "1px solid rgba(212,176,116,0.14)",
@@ -2140,10 +2141,10 @@ function RopSection() {
                         whiteSpace: "nowrap", zIndex: 3,
                       }}
                     >
-                      <Icon name={bd.icon} size={20} style={{ color: G, flexShrink: 0 }} />
+                      <Icon name={bd.icon} size={20} className="rop-badge-ic" style={{ color: G, flexShrink: 0 }} />
                       <div>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600, color: W, lineHeight: 1.25 }}>{bd.title}</div>
-                        <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.25 }}>{bd.sub}</div>
+                        <div className="rop-badge-title" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600, color: W, lineHeight: 1.25 }}>{bd.title}</div>
+                        <div className="rop-badge-sub" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, lineHeight: 1.25 }}>{bd.sub}</div>
                       </div>
                     </motion.div>
                   ))}
@@ -2157,11 +2158,12 @@ function RopSection() {
                   transition={{ duration: 0.6, delay: 0.9 }}
                   style={{ marginTop: "34px" }}
                 >
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, fontWeight: 300, marginBottom: "6px" }}>
+                  <div className="rop-conv-cap" style={{ fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, fontWeight: 300, marginBottom: "6px" }}>
                     Увеличь конверсию до
                   </div>
                   <div className="inline-flex items-center gap-3">
                     <span
+                      className="rop-conv-num"
                       style={{
                         fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 600,
                         fontSize: "clamp(56px, 9vw, 92px)", lineHeight: 1,
@@ -2171,9 +2173,9 @@ function RopSection() {
                     >
                       +25%
                     </span>
-                    <Icon name="TrendingUp" size={54} style={{ color: G }} />
+                    <Icon name="TrendingUp" size={54} className="rop-conv-tr" style={{ color: G }} />
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, fontWeight: 300, marginTop: "4px" }}>
+                  <div className="rop-conv-cap" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: B, fontWeight: 300, marginTop: "4px" }}>
                     совместно с Voice-Tec AI
                   </div>
                 </motion.div>
@@ -2194,6 +2196,25 @@ function RopSection() {
         @media (max-width: 1023px) {
           .rop-cols { grid-template-columns: 1fr; }
           .rop-right { margin-top: 8px; }
+        }
+        @media (max-width: 767px) {
+          .rop-section { padding: 48px 0 52px !important; }
+          .rop-cols { gap: 20px !important; }
+          .rop-title { font-size: 26px !important; margin-bottom: 12px !important; }
+          .rop-sub { font-size: 12px !important; line-height: 1.55 !important; margin-bottom: 18px !important; }
+          .rop-benefit { padding: 9px 11px !important; border-radius: 11px !important; gap: 9px !important; }
+          .rop-benefit-ic { width: 34px !important; height: 34px !important; }
+          .rop-benefit-ic svg { width: 18px !important; height: 18px !important; }
+          .rop-benefit-title { font-size: 12px !important; }
+          .rop-panel { border-radius: 16px !important; padding: 16px !important; }
+          .rop-photo-wrap { max-width: 220px !important; }
+          .rop-badge { padding: 6px 9px !important; border-radius: 9px !important; gap: 5px !important; }
+          .rop-badge-ic { width: 12px !important; height: 12px !important; }
+          .rop-badge-title { font-size: 9px !important; }
+          .rop-badge-sub { font-size: 7.5px !important; }
+          .rop-conv-cap { font-size: 10px !important; margin-bottom: 2px !important; margin-top: 2px !important; }
+          .rop-conv-num { font-size: 48px !important; }
+          .rop-conv-tr { width: 30px !important; height: 30px !important; }
         }
       `}</style>
     </section>
