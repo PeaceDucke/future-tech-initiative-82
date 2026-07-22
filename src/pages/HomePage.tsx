@@ -2464,8 +2464,8 @@ function ImplementationSection() {
         @media (max-width: 767px) {
           .impl-section { padding: 48px 0 !important; }
           .impl-badge { font-size: 10px !important; }
-          .impl-title { font-size: 24px !important; line-height: 1.2 !important; }
-          .impl-sub { font-size: 12px !important; margin-top: 14px !important; line-height: 1.5 !important; }
+          .impl-title { font-size: 21px !important; line-height: 1.2 !important; }
+          .impl-sub { font-size: 10px !important; margin-top: 14px !important; line-height: 1.5 !important; }
           .impl-line { left: 22px !important; top: 12px !important; bottom: 12px !important; }
           .impl-step { gap: 13px !important; padding: 13px 14px !important; border-radius: 14px !important; margin-bottom: 11px !important; }
           .impl-num { width: 32px !important; height: 32px !important; }
