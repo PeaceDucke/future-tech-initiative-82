@@ -4381,7 +4381,7 @@ function PricingSection() {
             >
               {/* Popular label */}
               {plan.popular && (
-                <div style={{
+                <div className="pr-badge-pop" style={{
                   position: "absolute",
                   top: "-13px",
                   left: "50%",
@@ -4412,7 +4412,7 @@ function PricingSection() {
               }}>{plan.name}</p>
 
               {/* Price */}
-              <div style={{ marginBottom: "32px", minHeight: "78px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", textAlign: "center" }}>
+              <div className="pr-price-box" style={{ marginBottom: "32px", minHeight: "78px", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", textAlign: "center" }}>
                 {plan.price ? (
                   <>
                     <div className="pr-price" style={{
@@ -4429,6 +4429,7 @@ function PricingSection() {
                   </>
                 ) : plan.contact ? (
                   <button
+                    className="pr-contact-btn"
                     onClick={(e) => { e.stopPropagation(); window.dispatchEvent(new Event("open-demo-modal")); }}
                     style={{
                       width: "100%",
@@ -4458,7 +4459,7 @@ function PricingSection() {
               </div>
 
               {/* Divider */}
-              <div style={{ width: "100%", height: "1px", background: isSelected ? "rgba(200,169,106,0.3)" : "rgba(240,230,210,0.08)", marginBottom: "24px" }} />
+              <div className="pr-divider" style={{ width: "100%", height: "1px", background: isSelected ? "rgba(200,169,106,0.3)" : "rgba(240,230,210,0.08)", marginBottom: "24px" }} />
 
               {/* Features */}
               <div className="pr-feats" style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
