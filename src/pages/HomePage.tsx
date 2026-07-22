@@ -1714,9 +1714,6 @@ function AudienceSection() {
     },
   ];
 
-  const blockTwoRef = useRef(null);
-  const blockTwoInView = useInView(blockTwoRef, { once: true, margin: "-15% 0px -20% 0px" });
-
   const blockTwo = [
     {
       icon: "Landmark",
@@ -1824,14 +1821,8 @@ function AudienceSection() {
         </motion.div>
 
         <div ref={blockOneRef} className="aud-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px" }}>
-          {blockOne.map((it, i) => (
+          {[...blockOne, ...blockTwo].map((it, i) => (
             <AudienceCard key={i} it={it} i={i} inView={blockOneInView} W={W} G={G} B={B} GREEN={GREEN} />
-          ))}
-        </div>
-
-        <div ref={blockTwoRef} className="aud-grid-5 aud-grid-two" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "32px", marginTop: "32px" }}>
-          {blockTwo.map((it, i) => (
-            <AudienceCard key={i} it={it} i={i} inView={blockTwoInView} W={W} G={G} B={B} GREEN={GREEN} />
           ))}
         </div>
 
@@ -1931,7 +1922,6 @@ function AudienceSection() {
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 7px !important;
           }
-          .aud-grid-two { margin-top: 7px !important; }
           .aud-card-hide-mob { display: none !important; }
           .aud-card {
             border-radius: 10px !important;
