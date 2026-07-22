@@ -3008,13 +3008,13 @@ function CasesSection() {
           .cc-tag { font-size: 6px !important; padding: 2px 6px !important; }
           .cc-company { font-size: 13px !important; margin-top: 4px !important; }
           .cc-subtitle { font-size: 8px !important; line-height: 1.3 !important; }
-          .cc-result { margin-top: 12px !important; border-radius: 10px !important; padding: 10px 11px !important; }
-          .cc-period { gap: 5px !important; margin-bottom: 8px !important; }
-          .cc-period-ic { width: 12px !important; height: 12px !important; }
-          .cc-period-txt { font-size: 9px !important; }
-          .cc-stats { gap: 12px !important; }
-          .cc-stat-val { font-size: 19px !important; }
-          .cc-stat-lbl { font-size: 8px !important; margin-top: 3px !important; }
+          .cc-result { margin-top: 10px !important; border-radius: 9px !important; padding: 7px 8px !important; }
+          .cc-period { gap: 4px !important; margin-bottom: 6px !important; }
+          .cc-period-ic { width: 11px !important; height: 11px !important; }
+          .cc-period-txt { font-size: 8px !important; }
+          .cc-stats { gap: 10px !important; }
+          .cc-stat-val { font-size: 15px !important; }
+          .cc-stat-lbl { font-size: 7px !important; margin-top: 2px !important; }
         }
       `}</style>
     </section>
