@@ -4471,7 +4471,7 @@ function PricingSection() {
                     <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.55)", display: "flex", alignItems: "center", flexShrink: 1, minWidth: 0 }}>
                       {row.label}
                     </span>
-                    <span className="pr-feat" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: isSelected ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px", display: "flex", alignItems: "center" }}>
+                    <span className="pr-feat pr-feat-val" style={{ fontFamily: "Jost, sans-serif", fontSize: "14px", fontWeight: 600, color: isSelected ? G : "#FBF6EC", whiteSpace: "nowrap", flexShrink: 0, paddingLeft: "10px", marginRight: "-8px", display: "flex", alignItems: "center" }}>
                       {row.value === "∞" ? <Icon name="Infinity" size={20} /> : row.value}
                     </span>
                   </div>

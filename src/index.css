@@ -1110,6 +1110,10 @@ br.br-desktop {
     line-height: 1.15 !important;
     gap: 2px !important;
   }
+  .pr-feat-val {
+    margin-right: 3px !important;
+    padding-left: 4px !important;
+  }
   .pr-feat svg {
     width: 12px !important;
     height: 12px !important;
