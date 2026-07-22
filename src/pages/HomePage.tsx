@@ -1925,6 +1925,9 @@ function AudienceSection() {
           50%  { left: 100%; opacity: 0; }
           100% { left: 100%; opacity: 0; }
         }
+        @media (max-width: 767px) {
+          .aud-title, .aud-title span { font-size: 19px !important; }
+        }
       `}</style>
     </section>
   );
@@ -3596,6 +3599,11 @@ function PipelineSection() {
 
         </div>
       </div>
+      <style>{`
+        @media (max-width: 767px) {
+          .bw-heading, .bw-heading span { font-size: 21px !important; margin-bottom: 28px !important; }
+        }
+      `}</style>
     </section>
   );
 }
@@ -4832,7 +4840,7 @@ export function HomePage() {
           <div className="max-w-7xl mx-auto">
             <Section>
               <motion.div variants={fadeUp} className="text-center mb-10">
-                <h2 className="text-3xl lg:text-5xl mb-4" style={h2Style}>
+                <h2 className="aio-title text-3xl lg:text-5xl mb-4" style={h2Style}>
                   <span style={{
                     backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                     WebkitBackgroundClip: "text",
@@ -4845,6 +4853,11 @@ export function HomePage() {
                 <p style={{ ...bodyText, fontSize: "14px", margin: "0 auto", whiteSpace: "nowrap" }}>
                   Аналитика звонков, воронки, менеджеры, статистика и AI-инсайты - единый дашборд без лишних вкладок
                 </p>
+                <style>{`
+                  @media (max-width: 767px) {
+                    .aio-title, .aio-title span { font-size: 21px !important; }
+                  }
+                `}</style>
               </motion.div>
 
               {/* ── Color Customizer (collapsible panel, открывается кнопкой в дашборде) ── */}
