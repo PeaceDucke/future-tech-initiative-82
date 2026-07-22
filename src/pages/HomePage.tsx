@@ -1933,6 +1933,15 @@ function AudienceSection() {
             font-size: 10px !important;
             line-height: 1.15 !important;
           }
+          .aud-subhead { font-size: 13px !important; }
+          .aud-note {
+            padding: 8px 10px !important;
+            border-radius: 9px !important;
+            gap: 6px !important;
+            margin-top: 16px !important;
+          }
+          .aud-note-ic { width: 11px !important; height: 11px !important; }
+          .aud-note-text { font-size: 6px !important; line-height: 1.5 !important; }
         }
       `}</style>
     </section>
