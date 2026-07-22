@@ -1173,14 +1173,14 @@ br.br-desktop {
   }
   /* smaller shield, nudged slightly left & with more space below */
   .grt-shield {
-    width: 60px !important;
-    height: 60px !important;
+    width: 40px !important;
+    height: 40px !important;
     margin-bottom: 24px !important;
     transform: translateX(-10px) !important;
   }
   .grt-shield-ic {
-    width: 28px !important;
-    height: 28px !important;
+    width: 19px !important;
+    height: 19px !important;
   }
 
   /* ---------- "Кейсы клиентов" (Cases) — 4 in one row like desktop ---------- */
