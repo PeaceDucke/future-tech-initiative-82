@@ -1596,7 +1596,7 @@ function AudienceCard({ it, i, inView, W, G, B, GREEN }: {
       initial={{ opacity: 0, y: 90 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
-      className="aud-card"
+      className={`aud-card${it.tag.trim() === "Банки" ? " aud-card-hide-mob" : ""}`}
       style={{
         position: "relative", display: "flex", flexDirection: "column",
         containerType: "inline-size",
@@ -1927,6 +1927,21 @@ function AudienceSection() {
         }
         @media (max-width: 767px) {
           .aud-title, .aud-title span { font-size: 19px !important; }
+          .aud-grid-5 {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 7px !important;
+          }
+          .aud-card-hide-mob { display: none !important; }
+          .aud-card {
+            border-radius: 10px !important;
+            padding: 40px 5px 7px !important;
+          }
+          .aud-card-img { height: 92px !important; }
+          .aud-card-spacer { margin-top: 58px !important; }
+          .aud-card-tag {
+            font-size: 10px !important;
+            line-height: 1.15 !important;
+          }
         }
       `}</style>
     </section>
