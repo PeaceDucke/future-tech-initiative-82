@@ -2821,15 +2821,15 @@ function CaseCard({ it, i, inView }: {
       }} />
 
       {/* header: logo + tag + company */}
-      <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px", marginLeft: "-14px" }}>
-        <div style={{
+      <div className="cc-head" style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px", marginLeft: "-14px" }}>
+        <div className="cc-logo" style={{
           width: "clamp(76px, 22%, 114px)", aspectRatio: "1 / 1", flexShrink: 0, borderRadius: "20px",
           display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
         }}>
           <img src={it.logo} alt={it.company} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "21px", transform: "scale(1.35)", objectPosition: it.logoExtraLeft ? "left center" : "center" }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: 0, flex: 1 }}>
-          <span style={{
+          <span className="cc-tag" style={{
             fontFamily: "Jost, sans-serif", fontSize: "clamp(2.5px, 0.6vw, 13px)", fontWeight: 500,
             letterSpacing: "0.03em", textTransform: "uppercase", color: A, textAlign: "center",
             background: "transparent", border: `1px solid ${hexToRgba(A, 0.5)}`,
@@ -2838,33 +2838,33 @@ function CaseCard({ it, i, inView }: {
           }}>
             {it.tag}
           </span>
-          <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(17px, 4vw, 22px)", color: W, fontWeight: 600, lineHeight: 1.15, marginTop: "8px" }}>
+          <div className="cc-company" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "clamp(17px, 4vw, 22px)", color: W, fontWeight: 600, lineHeight: 1.15, marginTop: "8px" }}>
             {it.company}
           </div>
-          <div style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(11px, 2.6vw, 13px)", color: B, lineHeight: 1.4 }}>
+          <div className="cc-subtitle" style={{ fontFamily: "Inter, sans-serif", fontSize: "clamp(11px, 2.6vw, 13px)", color: B, lineHeight: 1.4 }}>
             {it.subtitle}
           </div>
         </div>
       </div>
 
       {/* result box */}
-      <div style={{
+      <div className="cc-result" style={{
         marginTop: "24px",
         background: hexToRgba(A, 0.03),
         border: `1px solid ${hexToRgba(A, 0.12)}`,
         borderRadius: "14px", padding: "18px 20px",
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
-          <Icon name="TrendingUp" size={17} style={{ color: A }} />
-          <span style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600, color: A }}>{it.period}</span>
+        <div className="cc-period" style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+          <Icon name="TrendingUp" size={17} className="cc-period-ic" style={{ color: A }} />
+          <span className="cc-period-txt" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", fontWeight: 600, color: A }}>{it.period}</span>
         </div>
-        <div style={{ display: "flex", gap: "24px" }}>
+        <div className="cc-stats" style={{ display: "flex", gap: "24px" }}>
           {it.stats.map((s, k) => (
             <div key={k}>
-              <div style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600, color: A, lineHeight: 1 }}>
+              <div className="cc-stat-val" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "34px", fontWeight: 600, color: A, lineHeight: 1 }}>
                 {s.value}
               </div>
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, marginTop: "6px", lineHeight: 1.3 }}>
+              <div className="cc-stat-lbl" style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: B, marginTop: "6px", lineHeight: 1.3 }}>
                 {s.label}
               </div>
             </div>
@@ -3001,7 +3001,20 @@ function CasesSection() {
           .cases-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 767px) {
-          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+          .cases-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+          .case-card { padding: 12px 11px !important; border-radius: 14px !important; }
+          .cc-head { gap: 6px !important; margin-bottom: 10px !important; margin-left: -6px !important; }
+          .cc-logo { width: 42px !important; border-radius: 12px !important; }
+          .cc-tag { font-size: 6px !important; padding: 2px 6px !important; }
+          .cc-company { font-size: 13px !important; margin-top: 4px !important; }
+          .cc-subtitle { font-size: 8px !important; line-height: 1.3 !important; }
+          .cc-result { margin-top: 12px !important; border-radius: 10px !important; padding: 10px 11px !important; }
+          .cc-period { gap: 5px !important; margin-bottom: 8px !important; }
+          .cc-period-ic { width: 12px !important; height: 12px !important; }
+          .cc-period-txt { font-size: 9px !important; }
+          .cc-stats { gap: 12px !important; }
+          .cc-stat-val { font-size: 19px !important; }
+          .cc-stat-lbl { font-size: 8px !important; margin-top: 3px !important; }
         }
       `}</style>
     </section>
