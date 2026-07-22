@@ -4808,14 +4808,14 @@ export function HomePage() {
               style={{ objectPosition: "center center", transform: "scale(1)", transformOrigin: "center center" }}
             />
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 hero-overlay"
               style={{
                 background:
                   "linear-gradient(to bottom, rgba(21,21,19,0.1) 0%, rgba(21,21,19,0.35) 40%, rgba(21,21,19,0.72) 60%, rgba(21,21,19,0.92) 80%, rgba(21,21,19,1) 100%)",
               }}
             />
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 hero-overlay"
               style={{ background: "rgba(21,21,19,0.15)" }}
             />
           </div>

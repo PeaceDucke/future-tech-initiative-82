@@ -333,6 +333,9 @@ br.br-desktop {
     object-position: center 25% !important;
     height: calc(100% - 40px) !important;
   }
+  .hero-overlay {
+    display: none !important;
+  }
   /* text flows right after the photo — pulled up tight against it.
      zero top padding + small negative margin => identical & high
      on every phone */
