@@ -2055,7 +2055,7 @@ function RopSection() {
               </p>
 
               {/* benefit rows */}
-              <div className="flex flex-col" style={{ gap: "14px" }}>
+              <div className="rop-benefits flex flex-col" style={{ gap: "14px" }}>
                 {benefits.map((b, i) => (
                   <motion.div
                     key={i}
@@ -2199,13 +2199,16 @@ function RopSection() {
         }
         @media (max-width: 767px) {
           .rop-section { padding: 48px 0 52px !important; }
-          .rop-cols { gap: 20px !important; }
+          .rop-cols { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+          .rop-right { order: 0 !important; margin-top: 0 !important; }
+          .rop-left { order: 1 !important; display: flex !important; flex-direction: column !important; }
+          .rop-benefits { order: 3 !important; margin-top: 4px !important; }
           .rop-title { font-size: 26px !important; margin-bottom: 12px !important; }
-          .rop-sub { font-size: 12px !important; line-height: 1.55 !important; margin-bottom: 18px !important; }
-          .rop-benefit { padding: 9px 11px !important; border-radius: 11px !important; gap: 9px !important; }
-          .rop-benefit-ic { width: 34px !important; height: 34px !important; }
-          .rop-benefit-ic svg { width: 18px !important; height: 18px !important; }
-          .rop-benefit-title { font-size: 12px !important; }
+          .rop-sub { font-size: 12px !important; line-height: 1.55 !important; margin-bottom: 14px !important; }
+          .rop-benefit { padding: 8px 10px !important; border-radius: 10px !important; gap: 8px !important; }
+          .rop-benefit-ic { width: 24px !important; height: 24px !important; }
+          .rop-benefit-ic svg { width: 14px !important; height: 14px !important; }
+          .rop-benefit-title { font-size: 9px !important; }
           .rop-panel { border-radius: 16px !important; padding: 16px !important; }
           .rop-photo-wrap { max-width: 220px !important; }
           .rop-badge { padding: 6px 9px !important; border-radius: 9px !important; gap: 5px !important; }
