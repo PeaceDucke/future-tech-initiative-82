@@ -371,12 +371,9 @@ br.br-desktop {
     word-break: normal !important;
     overflow-wrap: break-word !important;
   }
-  /* let the text wrap freely under "под контролем" — br becomes a space */
-  .hero-inner p.hero-lead br {
-    display: inline !important;
-  }
-  .hero-inner p.hero-lead br::after {
-    content: " " !important;
+  /* neutralize hard <br/> line breaks, keep a space between words */
+  .hero-inner p.hero-lead br.hero-lead-br {
+    display: none !important;
   }
   /* hero "Запросить демо" button — keep it compact on mobile,
      don't let it stretch to full width */
