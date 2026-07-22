@@ -365,15 +365,18 @@ br.br-desktop {
     color: #ffffff !important;
     font-weight: 500 !important;
     margin-left: auto !important;
-    width: max-content !important;
-    max-width: 100% !important;
-    white-space: nowrap !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
+    width: 62% !important;
+    max-width: 62% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
   }
-  /* keep the 3-line structure from desktop (<br/> stays a line break) */
+  /* let the text wrap freely under "под контролем" — br becomes a space */
   .hero-inner p.hero-lead br {
-    display: block !important;
+    display: inline !important;
+  }
+  .hero-inner p.hero-lead br::after {
+    content: " " !important;
   }
   /* hero "Запросить демо" button — keep it compact on mobile,
      don't let it stretch to full width */
