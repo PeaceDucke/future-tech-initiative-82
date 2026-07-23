@@ -4848,7 +4848,7 @@ export function HomePage() {
                 className="hero-title mb-6 leading-[1.02] hero-title-shift"
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif',
-                  fontWeight: 400,
+                  fontWeight: 700,
                   color: "#FBF6EC",
                   letterSpacing: "-0.01em",
                   fontSize: "55px",
