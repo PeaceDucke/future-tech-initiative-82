@@ -4860,6 +4860,8 @@ export function HomePage() {
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
+                  paintOrder: "stroke fill",
+                  WebkitTextStroke: "0.9px #D4A24E",
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
                 }}>Voice-Tec AI</span>
                 <span className="hero-title-2" style={{ display: "block", color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>контролирует</span>
@@ -4870,6 +4872,8 @@ export function HomePage() {
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
+                  paintOrder: "stroke fill",
+                  WebkitTextStroke: "0.9px #D4A24E",
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
                 }}>каждый звонок.</span>
               </motion.h1>
