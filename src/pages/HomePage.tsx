@@ -4728,7 +4728,7 @@ export function HomePage() {
                 onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.45), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
               >
-                Запросить демо
+                Отправить заявку
               </button>
               <div
                 className="lg:hidden flex items-center gap-1.5"
@@ -4906,7 +4906,7 @@ export function HomePage() {
                   onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 24px rgba(180,130,50,0.5), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
                 >
-                  Запросить демо
+                  Отправить заявку
                 </button>
               </motion.div>
               <motion.p variants={fadeUp} className="hero-partners mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
@@ -5729,7 +5729,7 @@ export function HomePage() {
         whileTap={{ scale: 0.95 }}
       >
         <Icon name="MessageCircle" size={15} />
-        Запросить демо
+        Отправить заявку
       </motion.button>
 
       <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />

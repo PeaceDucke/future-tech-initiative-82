@@ -185,7 +185,7 @@ export default function AboutPage() {
                 borderRadius: "2px",
                 boxShadow: "0 2px 10px rgba(180,130,50,0.25), inset 0 1px 0 rgba(255,240,190,0.4)",
               }}>
-              Запросить демо
+              Отправить заявку
               <Icon name="ArrowRight" size={13} />
             </Link>
           </div>
@@ -403,7 +403,7 @@ export default function AboutPage() {
                   borderRadius: "2px",
                   boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                 }}>
-                Запросить демо
+                Отправить заявку
                 <Icon name="ArrowRight" size={15} />
               </Link>
             </motion.div>
@@ -426,7 +426,7 @@ export default function AboutPage() {
           boxShadow: "0 4px 18px rgba(180,130,50,0.35), inset 0 1px 0 rgba(255,240,190,0.4)",
         }}>
         <Icon name="MessageCircle" size={15} />
-        Запросить демо
+        Отправить заявку
       </Link>
 
     </div>
