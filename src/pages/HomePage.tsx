@@ -4847,7 +4847,7 @@ export function HomePage() {
                 variants={fadeUp}
                 className="hero-title mb-6 leading-[1.02] hero-title-shift"
                 style={{
-                  fontFamily: '"Prata", Georgia, serif',
+                  fontFamily: '"Bodoni Moda", Georgia, serif',
                   fontWeight: 400,
                   color: "#FBF6EC",
                   letterSpacing: "-0.01em",
