@@ -283,7 +283,7 @@ body::after {
   /* описания убраны — раздвигаем расстояние между текстом и пунктами,
      чтобы заголовок опустился ниже и не оставалось пустоты */
   .hero-features {
-    margin-top: 90px !important;
+    margin-top: 40px !important;
   }
 }
 
@@ -301,7 +301,7 @@ body::after {
 }
 .hero-feature {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
 }
 .hero-feature-ic {
