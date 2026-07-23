@@ -429,12 +429,12 @@ br.br-desktop {
   }
   /* mirror the desktop staircase: card 1 left, card 2 right */
   .pipeline-card-left {
-    width: 99% !important;
+    width: 76% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
   .pipeline-card-right {
-    width: 99% !important;
+    width: 76% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
