@@ -4925,7 +4925,7 @@ export function HomePage() {
         <section className="dash-section pt-8 pb-20 px-5 overflow-hidden" style={{ background: "#151513" }}>
           <div className="max-w-7xl mx-auto">
             <Section>
-              <motion.div variants={fadeUp} className="text-center mb-10">
+              <motion.div variants={fadeUp} className="aio-head text-center mb-10">
                 <h2 className="aio-title text-3xl lg:text-5xl mb-4" style={h2Style}>
                   <span style={{
                     backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
@@ -4942,7 +4942,8 @@ export function HomePage() {
                 <style>{`
                   @media (max-width: 767px) {
                     .aio-title, .aio-title span { font-size: 30px !important; }
-                    .aio-desc { font-size: 12px !important; color: #FFFFFF !important; font-weight: 500 !important; white-space: normal !important; max-width: 320px !important; }
+                    .aio-desc { font-size: 11px !important; color: #FFFFFF !important; font-weight: 500 !important; white-space: normal !important; max-width: 320px !important; }
+                    .aio-head { margin-bottom: 18px !important; }
                   }
                 `}</style>
               </motion.div>
