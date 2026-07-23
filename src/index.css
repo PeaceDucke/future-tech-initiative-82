@@ -990,6 +990,15 @@ br.br-desktop {
     height: 29px !important;
     margin: -6px 0 !important;
   }
+  /* "Связаться с нами" — сдвигаем иконку и текст левее */
+  a.cta-btn {
+    justify-content: flex-start !important;
+    padding-left: 8px !important;
+  }
+  a.cta-btn .cta-btn-icon {
+    margin-left: -4px !important;
+    margin-right: 2px !important;
+  }
   .cta-social-label {
     font-size: 8px !important;
     margin-bottom: 10px !important;
