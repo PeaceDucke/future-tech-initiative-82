@@ -1187,7 +1187,7 @@ function SplineFeatureSection() {
             {c.footer && (
               <>
                 <div style={{ height: "1px", background: `linear-gradient(to right, ${accentColor}40, transparent)`, marginBottom: "14px" }} />
-                <p style={{
+                <p className="aiv-card-footer" style={{
                   fontFamily: "Inter, sans-serif",
                   fontSize: "11.5px",
                   color: "#9a9690",

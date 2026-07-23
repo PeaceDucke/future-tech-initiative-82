@@ -841,6 +841,10 @@ br.br-desktop {
     font-size: 9.5px !important;
     line-height: 1.4 !important;
   }
+  .aiv-card-footer {
+    font-size: 6.5px !important;
+    line-height: 1.4 !important;
+  }
 
   /* ---------- "Как меняется бизнес с нами" ---------- */
   /* Keep the desktop side-by-side layout on mobile: ДО left, После right.
