@@ -3868,6 +3868,7 @@ function FinalCtaSection() {
   return (
     <section
       ref={ref}
+      className="cta-section"
       style={{
         background: "#151513",
         padding: "0 24px 160px",
@@ -3990,6 +3991,7 @@ function FinalCtaSection() {
                   border: "1px solid rgba(200,169,106,0.45)",
                   borderRadius: "10px",
                   padding: "5px 36px",
+                  whiteSpace: "nowrap" as const,
                   cursor: "pointer",
                   transition: "all 0.25s ease",
                   opacity: inView ? 1 : 0,
