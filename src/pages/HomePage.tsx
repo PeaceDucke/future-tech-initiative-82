@@ -4814,7 +4814,7 @@ export function HomePage() {
 
       <main className="relative z-10">
         {/* ═══ HERO ═══ */}
-        <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ minHeight: "56.25vw" }}>
+        <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ minHeight: "56.25vw", maxHeight: "820px" }}>
           <div className="hero-bg absolute inset-0">
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/60b5195a-5ba8-49e8-9179-e91757b17ac3.jpg"
@@ -4835,7 +4835,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="hero-inner absolute left-0 right-0 bottom-0 z-10 w-full max-w-7xl mx-auto px-5" style={{ paddingBottom: "calc(6vh - 10px)" }}>
+          <div className="hero-inner absolute left-0 right-0 bottom-0 z-10 w-full max-w-7xl mx-auto px-5" style={{ paddingBottom: "38px" }}>
             <motion.div
               initial="hidden"
               animate="visible"
