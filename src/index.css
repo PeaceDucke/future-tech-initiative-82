@@ -747,8 +747,7 @@ br.br-desktop {
     flex: 0 0 auto !important;
   }
   .hero-secure {
-    font-size: 12.5px !important;
-    align-items: center !important;
+    display: none !important;
   }
   .hero-secure-ic {
     display: none !important;
