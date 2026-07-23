@@ -737,14 +737,21 @@ br.br-desktop {
   }
   .hero-cta {
     justify-content: flex-start !important;
-    gap: 16px !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
   }
   .hero-cta button {
     font-size: 13px !important;
-    padding: 12px 24px !important;
+    padding: 9px 18px !important;
+    flex: 0 0 auto !important;
   }
   .hero-secure {
     font-size: 12.5px !important;
+    align-items: center !important;
+  }
+  .hero-secure-ic {
+    display: none !important;
   }
   .hero-secure-text {
     font-size: 12px !important;
