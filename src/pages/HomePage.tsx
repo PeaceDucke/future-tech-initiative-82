@@ -4881,7 +4881,7 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="hero-lead text-[19px] mb-6"
+                className="hero-lead text-[18px] mb-6"
                 style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, maxWidth: "620px", textAlign: "left" }}
               >
                 Анализируем 100% разговоров, находим ошибки менеджеров
