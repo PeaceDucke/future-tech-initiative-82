@@ -4865,9 +4865,10 @@ export function HomePage() {
                   WebkitTextStroke: "0.5px #D4A24E",
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
                 }}>Voice-Tec AI</span>
-                <span className="hero-title-2" style={{ display: "block", color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>контролирует</span>
+                <span className="hero-title-2" style={{ display: "block", fontWeight: 500, color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>контролирует</span>
                 <span className="hero-title-3" style={{
                   display: "block",
+                  fontWeight: 500,
                   backgroundImage: "linear-gradient(180deg, #FFFFFF 0%, #FFF7E2 22%, #F0D48F 42%, #C99A44 64%, #8A5F26 86%, #4A2F12 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
