@@ -561,6 +561,10 @@ br.br-desktop {
   .bw-heading span {
     font-size: 24px !important;
   }
+  .bw-heading-95,
+  .bw-heading-95 span {
+    font-size: 25px !important;
+  }
   .bw-grid {
     width: 100% !important;
     margin-left: 0 !important;

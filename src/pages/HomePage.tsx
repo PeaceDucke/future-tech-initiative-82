@@ -3438,7 +3438,7 @@ function PipelineSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-24">
-          <h2 style={{ ...h2Style, fontSize: "clamp(22px, 5vw, 50px)", lineHeight: 1.1, marginBottom: "22px" }}>
+          <h2 className="bw-heading-95" style={{ ...h2Style, fontSize: "clamp(22px, 5vw, 50px)", lineHeight: 1.1, marginBottom: "22px" }}>
 <span style={{
               backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
               WebkitBackgroundClip: "text",
