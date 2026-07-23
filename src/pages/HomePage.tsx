@@ -4845,12 +4845,13 @@ export function HomePage() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="hero-title text-[46px] lg:text-[64px] xl:text-[72px] mb-6 leading-[1.02]"
+                className="hero-title mb-6 leading-[1.02]"
                 style={{
                   fontFamily: '"Prata", Georgia, serif',
                   fontWeight: 400,
                   color: "#FBF6EC",
                   letterSpacing: "-0.01em",
+                  fontSize: "55px",
                 }}
               >
                 <span className="hero-title-1" style={{
