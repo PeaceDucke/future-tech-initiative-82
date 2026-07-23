@@ -2561,7 +2561,7 @@ function GuaranteeSection() {
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto 22px",
           }}
         >
-          За первый месяц работы мы покажем, где именно ваша команда теряет заявки и деньги, и дадим конкретные шаги для роста продаж. Если вы <span style={{ color: W, fontWeight: 500 }}>не увидите понятной пользы</span> - мы вернём оплату полностью, без условий и долгих разбирательств.
+          За первый месяц работы мы покажем, где именно ваша команда теряет заявки и деньги, и дадим конкретные шаги для роста продаж. Если вы <span style={{ backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", fontWeight: 600 }}>не увидите понятной пользы</span> - мы вернём оплату полностью, без условий и долгих разбирательств.
         </motion.p>
 
         <motion.p
@@ -2574,7 +2574,7 @@ function GuaranteeSection() {
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto",
           }}
         >
-          Нам важно, чтобы Voice-Tec AI приносил вам прибыль, а не строчку в расходах. Поэтому вы ничем не рискуете - <span style={{ color: G, fontStyle: "italic" }}>рискуем мы</span>.
+          Нам важно, чтобы Voice-Tec AI приносил вам прибыль, а не строчку в расходах. Поэтому вы ничем не рискуете - <span style={{ backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", fontWeight: 600, fontStyle: "italic" }}>рискуем мы</span>.
         </motion.p>
       </div>
     </section>
