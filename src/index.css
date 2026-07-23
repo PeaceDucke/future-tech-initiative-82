@@ -359,7 +359,7 @@ br.br-desktop {
     max-width: 100% !important;
   }
   .hero-inner p.hero-lead {
-    text-align: left !important;
+    text-align: center !important;
     font-size: 15px !important;
     line-height: 1.55 !important;
     color: #ffffff !important;
@@ -639,7 +639,7 @@ br.br-desktop {
     width: 100% !important;
     font-size: 15px !important;
     line-height: 1.5 !important;
-    text-align: left !important;
+    text-align: center !important;
   }
   .hero-underline {
     margin-left: 22% !important;
