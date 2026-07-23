@@ -4865,7 +4865,7 @@ export function HomePage() {
               </defs>
               <text fill="url(#awardGold)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase" }}>
                 <textPath href="#awardCircle" startOffset="0%">
-                  · лучший стартап 2026 года
+                  лучший стартап 2026 года
                 </textPath>
               </text>
             </svg>
@@ -4879,7 +4879,7 @@ export function HomePage() {
                 width: "88px",
                 height: "88px",
                 objectFit: "contain",
-                transform: "translate(-50%, -50%) rotate(45deg)",
+                transform: "translate(-50%, -50%) rotate(-45deg)",
                 filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))",
               }}
             />
