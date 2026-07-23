@@ -271,6 +271,19 @@ body::after {
   width: 100%;
   max-width: 100%;
 }
+
+/* Больше экраны (>1600px): приподнимаем текстовый блок,
+   чтобы он не сползал вниз. На 14" (<=1600px) НЕ трогаем. */
+@media (min-width: 1600px) {
+  .hero-inner {
+    padding-bottom: 70px !important;
+  }
+}
+@media (min-width: 2000px) {
+  .hero-inner {
+    padding-bottom: 120px !important;
+  }
+}
 .hero-feature {
   display: flex;
   align-items: flex-start;
