@@ -4870,11 +4870,11 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="hero-lead text-[24px] mb-5"
-                style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "49%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
+                className="hero-lead text-[20px] mb-5"
+                style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "28%", width: "70vw", maxWidth: "1000px", textAlign: "left" }}
               >
-                Voice-Tec AI анализирует 100% звонков и показывает, где ваш бизнес теряет клиентов.
-                <br />
+                <span style={{ whiteSpace: "nowrap" }}>Voice-Tec AI анализирует 100% звонков и показывает, где ваш бизнес теряет клиентов.</span>
+                <br className="hero-lead-br" />
                 Находит ошибки менеджеров, контролирует качество продаж, помогает повышать конверсию и не упускать сделки.
               </motion.p>
 
