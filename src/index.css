@@ -607,13 +607,14 @@ br.br-desktop {
   .hero-inner {
     position: relative !important;
     inset: auto !important;
-    margin-top: 2rem !important;
+    /* negative margin-top physically pulls the block up AND collapses
+       the flow height, so the next section follows without a big gap */
+    margin-top: calc(-3.75rem + 4px) !important;
     padding-top: 1.5rem !important;
-    padding-bottom: 2rem !important;
+    padding-bottom: 0.5rem !important;
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
-    /* physically move the whole text block higher up */
-    transform: translateY(calc(-5.75rem + 4px)) !important;
+    transform: none !important;
   }
   /* ---- STAIRCASE TEXT (same composition as desktop, scaled down) ---- */
   /* title: -3px from the previous ~40px */
@@ -621,6 +622,7 @@ br.br-desktop {
     text-align: left !important;
     font-size: 37px !important;
     line-height: 1.04 !important;
+    margin-top: -3px !important;
     margin-bottom: 0.9rem !important;
   }
   /* "Ваши продажи" — slightly to the left */
