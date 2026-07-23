@@ -4909,8 +4909,8 @@ export function HomePage() {
                       <Icon name={f.icon} size={22} style={{ color: "#D4B074" }} />
                     </div>
                     <div>
-                      <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "16px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
-                      <div className="hero-feature-desc" style={{ fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "14px", lineHeight: 1.5, color: "rgba(251,246,236,0.55)" }}>{f.desc}</div>
+                      <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
+                      <div className="hero-feature-desc" style={{ fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "13px", lineHeight: 1.5, color: "rgba(251,246,236,0.55)" }}>{f.desc}</div>
                     </div>
                   </div>
                 ))}
