@@ -729,8 +729,9 @@ br.br-desktop {
     font-size: 23px !important;
   }
   .aiv-sub {
-    font-size: 11px !important;
+    font-size: 12px !important;
     line-height: 1.6 !important;
+    color: #FFFFFF !important;
   }
   /* Show the SAME desktop composition (spline in the middle, cards around)
      on mobile by scaling the whole 900px stage down to fit the phone.
