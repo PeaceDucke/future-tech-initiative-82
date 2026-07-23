@@ -741,68 +741,71 @@ br.br-desktop {
   /* Show the SAME desktop composition (spline in the middle, cards around)
      on mobile by scaling the whole 900px stage down to fit the phone.
      .aiv-stage is a plain div (no framer transform) so scale() is reliable. */
+  /* MOBILE: no Spline robot. Cards stack in a single centered column,
+     ~1.5x bigger, filling the space the robot used to occupy. */
   .aiv-stage-wrap {
-    /* let the params block below be fully visible (not clipped) */
     overflow: visible;
     margin-top: 8px !important;
-    /* FIXED height = the visible composition (robot + all cards). Since the
-       stage inside is position:absolute, this height is what reserves the
-       vertical space; the params block (in normal flow) starts right AFTER
-       it, i.e. BELOW the white card. */
     min-height: 0 !important;
-    height: 470px !important;
-    /* widen window to the site edges (cancel section px-5 = 20px) */
-    margin-left: -20px;
-    margin-right: -20px;
-    width: calc(100% + 40px);
-    /* relative wrapper: the stage is absolutely centered inside it, so its
-       geometric center always sits at the screen center (no flex quirks
-       that push the wide canvas to the left on iOS Safari) */
-    position: relative;
-  }
-  /* wider center column pushes the side cards out to the screen edges */
-  .aiv-grid {
-    min-height: 0 !important;
-    grid-template-columns: 330px 380px 330px !important;
-    gap: 0 !important;
+    height: auto !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    align-items: start !important;
+    width: 100% !important;
+    position: relative;
   }
+  /* single column, no empty middle track */
+  .aiv-grid {
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+  /* hide the empty center column (was the robot spot) */
   .aiv-grid > div:nth-child(2) {
-    height: 380px !important;
+    display: none !important;
   }
-  .aiv-grid > div {
-    align-self: start !important;
+  /* left & right columns become full-width stacks, centered */
+  .aiv-grid > div:nth-child(1),
+  .aiv-grid > div:nth-child(3) {
+    width: 100% !important;
+    max-width: 460px !important;
+    gap: 16px !important;
+    align-self: center !important;
   }
-  /* fixed-width canvas; flex parent centers it, scale shrinks it to phone.
-     flex: 0 0 auto keeps its intrinsic width so it can be centered even
-     though it's wider than the box (margins go negative symmetrically). */
+  /* the stage is now a normal block (no absolute scale trick) */
   .aiv-stage {
-    width: 1040px !important;
-    position: absolute !important;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) scale(0.40);
-    transform-origin: top center;
+    width: 100% !important;
+    position: static !important;
+    transform: none !important;
   }
-  /* spline behind cards, contained in the stage */
+  /* remove the Spline background entirely on mobile */
   .aiv-spline-bg {
-    display: block !important;
-    top: 0 !important;
-    bottom: auto !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 600px !important;
+    display: none !important;
   }
-  /* make the Spline robot 2x bigger on mobile (0.476 → 0.95) */
-  .aiv-spline-el > * {
-    transform: scale(0.95) !important;
-    transform-origin: center center !important;
-  }
-  /* pull the bottom center card up so it overlaps into the visible window */
+  /* bottom center card sits in flow, same max width */
   .aiv-bottom {
-    margin-top: -110px !important;
+    margin-top: 16px !important;
+  }
+  .aiv-bottom > div {
+    width: 100% !important;
+    max-width: 460px !important;
+  }
+  /* bump card inner sizing ~1.5x for readability on phone */
+  .aiv-card {
+    padding: 22px 26px !important;
+    border-radius: 20px !important;
+  }
+  .aiv-card-title {
+    font-size: 18px !important;
+  }
+  .aiv-card-lead,
+  .aiv-card-list,
+  .aiv-card-body {
+    font-size: 14px !important;
   }
 
   /* ---------- "Как меняется бизнес с нами" ---------- */
@@ -1443,14 +1446,5 @@ br.br-desktop {
   .dash-scene {
     /* enlarged 1.2x (0.262 * 1.2 ≈ 0.314) */
     transform: scale(0.314);
-  }
-  /* AI-vision stage a touch smaller so the canvas fits narrow phones.
-     Keep the SAME flex-centering mechanism — only tweak the scale. */
-  .aiv-stage-wrap {
-    height: 340px;
-  }
-  .aiv-stage {
-    transform: translateX(-50%) scale(0.35);
-    transform-origin: top center;
   }
 }
