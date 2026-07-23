@@ -732,6 +732,7 @@ br.br-desktop {
     font-size: 12px !important;
     line-height: 1.6 !important;
     color: #FFFFFF !important;
+    font-weight: 500 !important;
   }
   /* Show the SAME desktop composition (spline in the middle, cards around)
      on mobile by scaling the whole 900px stage down to fit the phone.

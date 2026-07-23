@@ -2202,7 +2202,7 @@ function RopSection() {
           .rop-cols { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 16px !important; }
           .rop-left { display: contents !important; }
           .rop-title { width: 100% !important; order: 0 !important; font-size: 21px !important; line-height: 1.25 !important; margin-bottom: 8px !important; text-align: center !important; text-indent: 0 !important; }
-          .rop-sub { width: 100% !important; order: 1 !important; font-size: 12.5px !important; color: #FFFFFF !important; line-height: 1.55 !important; margin: 0 auto !important; text-align: center !important; }
+          .rop-sub { width: 100% !important; order: 1 !important; font-size: 12.5px !important; color: #FFFFFF !important; font-weight: 400 !important; line-height: 1.55 !important; margin: 0 auto !important; text-align: center !important; }
           .rop-right { width: 100% !important; order: 2 !important; margin-top: 0 !important; display: flex !important; justify-content: center !important; }
           .rop-benefits { width: 100% !important; max-width: 380px !important; order: 3 !important; margin-top: 4px !important; display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
           .rop-benefit { width: 100% !important; max-width: none !important; padding: 12px 10px !important; border-radius: 12px !important; gap: 8px !important; }
@@ -4941,7 +4941,7 @@ export function HomePage() {
                 <style>{`
                   @media (max-width: 767px) {
                     .aio-title, .aio-title span { font-size: 30px !important; }
-                    .aio-desc { font-size: 12px !important; color: #FFFFFF !important; white-space: normal !important; max-width: 320px !important; }
+                    .aio-desc { font-size: 12px !important; color: #FFFFFF !important; font-weight: 500 !important; white-space: normal !important; max-width: 320px !important; }
                   }
                 `}</style>
               </motion.div>
