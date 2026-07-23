@@ -1544,9 +1544,9 @@ function SplineFeatureSection() {
             padding: 0 22px !important;
           }
           .aiv-params-center p:first-of-type {
-            font-size: 12px !important;
+            font-size: 10.5px !important;
             margin-top: 12px !important;
-            max-width: 110px !important;
+            max-width: 100px !important;
             line-height: 1.3 !important;
           }
           .aiv-title, .aiv-title span {
@@ -1556,7 +1556,7 @@ function SplineFeatureSection() {
             margin-top: 20px !important;
           }
           .aiv-params-center p:last-of-type {
-            font-size: 9px !important;
+            font-size: 7.5px !important;
             margin-top: 58px !important;
             letter-spacing: 0 !important;
           }
@@ -1577,7 +1577,7 @@ function SplineFeatureSection() {
             text-align: left !important;
           }
           .aiv-params-col > div { gap: 5px !important; }
-          .aiv-params-col span { font-size: 11px !important; white-space: nowrap !important; }
+          .aiv-params-col span { font-size: 9.5px !important; white-space: nowrap !important; }
           .aiv-params-col svg { width: 8px !important; height: 8px !important; }
         }
       `}</style>
