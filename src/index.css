@@ -360,13 +360,13 @@ br.br-desktop {
   }
   .hero-inner p.hero-lead {
     text-align: left !important;
-    font-size: 13px !important;
+    font-size: 15px !important;
     line-height: 1.55 !important;
     color: #ffffff !important;
     font-weight: 500 !important;
-    margin-left: 110px !important;
-    width: auto !important;
-    max-width: calc(100% - 110px) !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     white-space: normal !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
@@ -635,9 +635,9 @@ br.br-desktop {
   }
   /* lead paragraph — lower & further right, smaller font */
   .hero-lead {
-    margin-left: 22% !important;
-    width: 78% !important;
-    font-size: 12px !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    font-size: 15px !important;
     line-height: 1.5 !important;
     text-align: left !important;
   }
@@ -1397,7 +1397,7 @@ br.br-desktop {
     font-size: 33px !important;
   }
   .hero-lead {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
   .hero-partners {
     font-size: 6px !important;
