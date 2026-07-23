@@ -613,7 +613,7 @@ br.br-desktop {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
     /* physically move the whole text block higher up */
-    transform: translateY(-5.75rem) !important;
+    transform: translateY(calc(-5.75rem + 4px)) !important;
   }
   /* ---- STAIRCASE TEXT (same composition as desktop, scaled down) ---- */
   /* title: -3px from the previous ~40px */
