@@ -4873,9 +4873,11 @@ export function HomePage() {
                 className="hero-lead text-[24px] mb-5"
                 style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "49%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
               >
-                Voice-Tec AI прослушивает и оценивает 100% звонков:{" "}<br className="hero-lead-br" />
-                кто сливает заявки, где менеджеры не дожимают клиента,{" "}<br className="hero-lead-br" />
-                какие скрипты не работают, а какие реально приносят деньги
+                Voice-Tec AI анализирует 100% звонков и показывает, где ваш бизнес теряет клиентов.
+                <br /><br />
+                Находит ошибки менеджеров, контролирует качество продаж, помогает повышать конверсию и не упускать сделки.
+                <br /><br />
+                Интеграция за 1 день.
               </motion.p>
 
               <motion.div
