@@ -4890,14 +4890,6 @@ export function HomePage() {
                 и помогаем увеличивать конверсию
               </motion.p>
 
-              <motion.div
-                variants={fadeUp}
-                className="hero-underline"
-                style={{ width: "72px", marginBottom: "2rem" }}
-              >
-                <div className="gold-underline" />
-              </motion.div>
-
               <motion.div variants={fadeUp} className="hero-features" style={{ marginBottom: "2.5rem" }}>
                 {[
                   { icon: "Target", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
