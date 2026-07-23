@@ -4876,7 +4876,7 @@ export function HomePage() {
                   paintOrder: "stroke fill",
                   WebkitTextStroke: "0.5px #D4A24E",
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
-                }}>каждый звонок.</span>
+                }}>каждый звонок</span>
               </motion.h1>
 
               <motion.p
@@ -4886,7 +4886,7 @@ export function HomePage() {
               >
                 Анализируем 100% разговоров, находим ошибки менеджеров
                 <br className="hero-lead-br" />
-                и помогаем увеличивать конверсию.
+                и помогаем увеличивать конверсию
               </motion.p>
 
               <motion.div
