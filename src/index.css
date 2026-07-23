@@ -365,9 +365,18 @@ br.br-desktop {
 }
 
 @media (max-width: 767px) {
-  /* бейдж «Лучший стартап» скрываем на мобильной — он перекрывает текст */
+  /* бейдж «Лучший стартап» на мобильной — уменьшенный, у правого края заголовка */
   .hero-award {
-    display: none !important;
+    width: 96px !important;
+    height: 96px !important;
+    left: auto !important;
+    right: 12px !important;
+    top: 296px !important;
+    transform: none !important;
+  }
+  .hero-award img {
+    width: 48px !important;
+    height: 48px !important;
   }
   /* адаптивные переносы строк: на мобильной инвертируем */
   br.br-mobile {
