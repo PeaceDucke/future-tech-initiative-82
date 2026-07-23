@@ -4663,9 +4663,10 @@ export function HomePage() {
                     verticalAlign: "-0.02em",
                   }}
                 >
-                  –
+                –
                 </span>
                 TEC
+                <span style={{ marginLeft: "0.28em", fontWeight: 900 }}>AI</span>
               </span>
             </a>
 
