@@ -690,8 +690,8 @@ br.br-desktop {
     width: calc(100% + 40px);
     margin-left: -20px;
     margin-right: -20px;
-    /* visible height = 1360 * 0.223 ≈ 304px (whole dashboard, no clipping) */
-    height: 304px;
+    /* visible height = 1360 * 0.268 ≈ 365px (whole dashboard, no clipping) */
+    height: 365px;
     display: flex;
     justify-content: center;
   }
@@ -699,8 +699,8 @@ br.br-desktop {
     width: 1320px !important;
     max-width: none !important;
     flex: 0 0 1320px;
-    /* shrink the dashboard a bit more (0.268 / 1.2 ≈ 0.223) */
-    transform: scale(0.223);
+    /* enlarged 1.2x (0.223 * 1.2 ≈ 0.268) */
+    transform: scale(0.268);
     transform-origin: top center;
     height: 1360px !important;
     margin: 0 !important;
@@ -1404,15 +1404,15 @@ br.br-desktop {
   }
   /* dashboard a touch smaller so 1320px canvas fits narrow phones */
   .dash-wrap {
-    height: 356px;
+    height: 427px;
     /* widen the window to the site edges (cancel section px-5 = 20px) */
     margin-left: -20px;
     margin-right: -20px;
     width: calc(100% + 40px);
   }
   .dash-scene {
-    /* shrink the dashboard itself by 1.1x (0.288 / 1.1 ≈ 0.262) */
-    transform: scale(0.262);
+    /* enlarged 1.2x (0.262 * 1.2 ≈ 0.314) */
+    transform: scale(0.314);
   }
   /* AI-vision stage a touch smaller so the canvas fits narrow phones.
      Keep the SAME flex-centering mechanism — only tweak the scale. */
