@@ -422,34 +422,34 @@ br.br-desktop {
   .pipeline-section h2.pipeline-ai-vision-title span {
     font-size: 21px !important;
   }
-  /* cards — less inner padding & smaller radius */
+  /* cards — less inner padding & smaller radius (×1.2) */
   .pipeline-section .pc {
-    padding: 10px 14px !important;
+    padding: 12px 17px !important;
     border-radius: 16px !important;
   }
-  /* mirror the desktop staircase: card 1 left, card 2 right */
+  /* mirror the desktop staircase: card 1 left, card 2 right (×1.2) */
   .pipeline-card-left {
-    width: 76% !important;
+    width: 91% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
   .pipeline-card-right {
-    width: 76% !important;
+    width: 91% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
-  /* the 3-icon problem rows — compact */
+  /* the 3-icon problem rows — compact (×1.2) */
   .pipeline-row {
-    gap: 14px !important;
-    padding: 14px 0 !important;
+    gap: 17px !important;
+    padding: 17px 0 !important;
   }
   .pipeline-row-img {
-    width: 56px !important;
-    height: 56px !important;
-    margin-left: -16px !important;
+    width: 67px !important;
+    height: 67px !important;
+    margin-left: -19px !important;
   }
   .pipeline-section p.pipeline-row-text {
-    font-size: 10.5px !important;
+    font-size: 12.6px !important;
     line-height: 1.4 !important;
     margin-right: 0 !important;
     padding-right: 4px !important;
@@ -457,10 +457,10 @@ br.br-desktop {
     word-break: break-word !important;
     overflow-wrap: break-word !important;
   }
-  /* "Обнаружены причины потерь" — allow wrap & shrink so it fits */
+  /* "Обнаружены причины потерь" — allow wrap & shrink so it fits (×1.2) */
   .pipeline-causes-title {
     white-space: normal !important;
-    font-size: 6.3px !important;
+    font-size: 7.6px !important;
   }
   /* trim the big gaps between the stacked blocks */
   .pipeline-section .gap-20 {
@@ -468,9 +468,9 @@ br.br-desktop {
   }
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
-    font-size: 14px !important;
+    font-size: 17px !important;
     margin-top: 4px !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 14px !important;
     text-wrap: balance !important;
   }
   /* on mobile ignore the desktop hard line breaks so lines balance
@@ -483,72 +483,72 @@ br.br-desktop {
     font-size: 14px !important;
   }
   .pipeline-section p.pipeline-card2-text {
-    font-size: 14px !important;
+    font-size: 17px !important;
     line-height: 1.2 !important;
     margin-top: 8px !important;
     margin-bottom: 16px !important;
     text-wrap: balance !important;
   }
-  /* inner beige dashboard — tighter padding on mobile */
+  /* inner beige dashboard — tighter padding on mobile (×1.2) */
   .pipeline-dashboard {
-    padding: 9px !important;
-    border-radius: 11px !important;
+    padding: 11px !important;
+    border-radius: 13px !important;
     margin-bottom: 0 !important;
-    max-width: 75% !important;
+    max-width: 90% !important;
   }
   .pipeline-dashboard > div:first-child {
-    padding: 4px 3px 7px !important;
+    padding: 5px 4px 8px !important;
   }
   .pipeline-dashboard .flex-col {
-    gap: 7px !important;
+    gap: 8px !important;
   }
-  /* mini cards "Обнаружены причины потерь" — compact for mobile */
+  /* mini cards "Обнаружены причины потерь" — compact for mobile (×1.2) */
   .cause-flip,
   .cause-flip-inner {
-    min-height: 34px !important;
+    min-height: 41px !important;
   }
   .cause-flip-face {
-    gap: 6px !important;
-    padding: 5px 6px !important;
-    border-radius: 7px !important;
+    gap: 7px !important;
+    padding: 6px 7px !important;
+    border-radius: 8px !important;
   }
   .cause-flip-icon {
-    width: 20px !important;
-    height: 20px !important;
-    border-radius: 5px !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
   }
   .cause-flip-icon svg {
-    width: 10px !important;
-    height: 10px !important;
+    width: 12px !important;
+    height: 12px !important;
   }
   .cause-flip-icon-back {
-    width: 16px !important;
-    height: 16px !important;
+    width: 19px !important;
+    height: 19px !important;
   }
   .cause-flip-title {
-    font-size: 7px !important;
+    font-size: 8.4px !important;
     line-height: 1.2 !important;
   }
   .cause-flip-detail {
-    font-size: 6.3px !important;
+    font-size: 7.6px !important;
     line-height: 1.35 !important;
   }
   .cause-flip-more {
-    font-size: 6.3px !important;
+    font-size: 7.6px !important;
     gap: 3px !important;
   }
   .cause-flip-more svg {
-    width: 8px !important;
-    height: 8px !important;
+    width: 10px !important;
+    height: 10px !important;
   }
   .cause-flip-close {
-    width: 16px !important;
-    height: 16px !important;
-    border-radius: 5px !important;
+    width: 19px !important;
+    height: 19px !important;
+    border-radius: 6px !important;
   }
   .cause-flip-close svg {
-    width: 8px !important;
-    height: 8px !important;
+    width: 10px !important;
+    height: 10px !important;
   }
   /* "AI видит то / Что получает бизнес" headings */
   .pipeline-section h2,
