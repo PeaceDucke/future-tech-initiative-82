@@ -4915,7 +4915,30 @@ export function HomePage() {
                   WebkitTextStroke: "0.5px #D4A24E",
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
                 }}>Voice-Tec AI</span>
-                <span className="hero-title-2" style={{ display: "block", fontWeight: 500, color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>контролирует</span>
+                <span className="hero-title-2" style={{ display: "block", position: "relative", fontWeight: 500, color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>
+                  контролирует
+                  <span className="hero-award-mobile" style={{ position: "absolute", right: "6px", top: "50%", transform: "translateY(-50%)", width: "96px", height: "96px", pointerEvents: "none" }}>
+                    <svg viewBox="0 0 200 200" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", animation: "awardSpin 18s linear infinite" }}>
+                      <defs>
+                        <linearGradient id="awardGoldM" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#FFFFFF" />
+                          <stop offset="45%" stopColor="#FBE7C0" />
+                          <stop offset="70%" stopColor="#E8C786" />
+                          <stop offset="100%" stopColor="#C99A44" />
+                        </linearGradient>
+                        <path id="awardCircleM" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" fill="none" />
+                      </defs>
+                      <text fill="url(#awardGoldM)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", WebkitTextStroke: "0" }}>
+                        <textPath href="#awardCircleM" startOffset="0%">лучший стартап 2026 года</textPath>
+                      </text>
+                    </svg>
+                    <img
+                      src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6bfcac18-1ac5-44d9-80db-4d7f1f5441b9.png"
+                      alt="Лучший стартап 2026 года"
+                      style={{ position: "absolute", left: "50%", top: "50%", width: "50px", height: "50px", objectFit: "contain", transform: "translate(-50%, -50%) rotate(-30deg)", filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))" }}
+                    />
+                  </span>
+                </span>
                 <span className="hero-title-3" style={{
                   display: "block",
                   fontWeight: 500,

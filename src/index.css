@@ -277,6 +277,11 @@ body::after {
   max-width: 100%;
 }
 
+/* мобильный бейдж скрыт по умолчанию (десктоп) */
+.hero-award-mobile {
+  display: none;
+}
+
 /* Desktop: показываем только заголовки пунктов, описания скрыты */
 @media (min-width: 768px) {
   .hero-feature-desc {
@@ -365,18 +370,14 @@ br.br-desktop {
 }
 
 @media (max-width: 767px) {
-  /* бейдж «Лучший стартап» на мобильной — уменьшенный, у правого края заголовка */
+  /* большой бейдж (десктопный) прячем — на мобильной показываем бейдж,
+     привязанный к строке «контролирует», чтобы он был на одном уровне
+     на любом телефоне и не задевал нижний текст */
   .hero-award {
-    width: 96px !important;
-    height: 96px !important;
-    left: auto !important;
-    right: 12px !important;
-    top: 296px !important;
-    transform: none !important;
+    display: none !important;
   }
-  .hero-award img {
-    width: 48px !important;
-    height: 48px !important;
+  .hero-award-mobile {
+    display: block !important;
   }
   /* адаптивные переносы строк: на мобильной инвертируем */
   br.br-mobile {
