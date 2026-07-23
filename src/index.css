@@ -759,7 +759,8 @@ br.br-desktop {
     min-height: 0 !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    align-items: start !important;
+    align-items: stretch !important;
+    grid-auto-rows: 1fr !important;
     gap: 10px !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -792,19 +793,53 @@ br.br-desktop {
     width: 100% !important;
     max-width: 460px !important;
   }
-  /* compact cards to fit two per row on a phone */
+  /* compact cards, equal height, to fit two per row on a phone */
   .aiv-card {
-    padding: 13px 13px !important;
-    border-radius: 16px !important;
+    height: 100% !important;
+    padding: 12px 12px !important;
+    border-radius: 15px !important;
+  }
+  /* badge row — smaller label & dot */
+  .aiv-card-badge {
+    gap: 6px !important;
+    margin-bottom: 9px !important;
+  }
+  .aiv-card-badge-text {
+    font-size: 7.5px !important;
+    letter-spacing: 0.14em !important;
   }
   .aiv-card-title {
-    font-size: 13px !important;
-    line-height: 1.2 !important;
+    font-size: 12.5px !important;
+    line-height: 1.18 !important;
+    margin-bottom: 7px !important;
+    gap: 6px !important;
   }
-  .aiv-card-lead,
-  .aiv-card-list,
+  .aiv-card-title span:last-child {
+    font-size: 12.5px !important;
+  }
+  .aiv-card-lead {
+    font-size: 9px !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.02em !important;
+  }
+  /* checklist rows — smaller ticks, text & gaps */
+  .aiv-card-list {
+    gap: 4px !important;
+  }
+  .aiv-card-list > div {
+    gap: 6px !important;
+  }
+  .aiv-card-list > div > span:first-child {
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+  }
+  .aiv-card-list > div > span:last-child {
+    font-size: 9.5px !important;
+    line-height: 1.35 !important;
+  }
   .aiv-card-body {
-    font-size: 11px !important;
+    font-size: 9.5px !important;
+    line-height: 1.4 !important;
   }
 
   /* ---------- "Как меняется бизнес с нами" ---------- */
