@@ -785,13 +785,36 @@ br.br-desktop {
   .aiv-spline-bg {
     display: none !important;
   }
-  /* bottom center card sits in flow, same max width */
+  /* bottom center white "Оценка AI" card — 1.3x smaller box + text */
   .aiv-bottom {
     margin-top: 16px !important;
   }
   .aiv-bottom > div {
     width: 100% !important;
-    max-width: 460px !important;
+    max-width: 354px !important;
+  }
+  .aiv-bottom .aiv-card {
+    padding: 13px 15px !important;
+    border-radius: 14px !important;
+  }
+  .aiv-bottom .aiv-card-badge {
+    margin-bottom: 9px !important;
+  }
+  .aiv-bottom .aiv-card-badge-text {
+    font-size: 8px !important;
+  }
+  /* body & reco paragraphs shrink; title stays larger (higher specificity) */
+  .aiv-bottom .aiv-card p {
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+  }
+  .aiv-bottom p.aiv-card-title,
+  .aiv-bottom p.aiv-card-title span:last-child {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+  }
+  .aiv-bottom .aiv-card-metric span {
+    font-size: 9px !important;
   }
   /* compact cards, equal height, to fit two per row on a phone */
   .aiv-card {
