@@ -4855,7 +4855,7 @@ export function HomePage() {
               >
                 <span className="hero-title-1" style={{
                   display: "block",
-                  backgroundImage: "linear-gradient(135deg, #FBE7C0 0%, #E8C786 28%, #D4B074 55%, #A47B3C 80%, #6E4F22 100%)",
+                  backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -4863,7 +4863,15 @@ export function HomePage() {
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.25))",
                 }}>Voice-Tec AI</span>
                 <span className="hero-title-2" style={{ display: "block", color: "#FBF6EC" }}>контролирует</span>
-                <span className="hero-title-3" style={{ display: "block", color: "#FBF6EC" }}>каждый звонок.</span>
+                <span className="hero-title-3" style={{
+                  display: "block",
+                  backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.25))",
+                }}>каждый звонок.</span>
               </motion.h1>
 
               <motion.p
