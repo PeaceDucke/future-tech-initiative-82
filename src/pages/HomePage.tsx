@@ -4921,8 +4921,8 @@ export function HomePage() {
                     letterSpacing: "0.08em",
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
-                    fontSize: "16.5px",
-                    padding: "16px 34px",
+                    fontSize: "14.5px",
+                    padding: "12px 26px",
                     boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
@@ -4930,17 +4930,8 @@ export function HomePage() {
                   onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
                 >
                   Отправить заявку
-                  <Icon name="ArrowRight" size={18} style={{ color: "#1E1500" }} />
+                  <Icon name="ArrowRight" size={16} style={{ color: "#1E1500" }} />
                 </button>
-                <div className="hero-secure flex items-start gap-3">
-                  <div className="hero-secure-ic">
-                    <Icon name="ShieldCheck" size={18} style={{ color: "#D4B074" }} />
-                  </div>
-                  <div className="hero-secure-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", lineHeight: 1.45 }}>
-                    <div className="hero-secure-line1" style={{ color: "#D4B074", fontWeight: 500 }}>Ваши данные под защитой.</div>
-                    <div style={{ color: "rgba(251,246,236,0.55)" }}>Никаких прослушиваний в реальном времени.</div>
-                  </div>
-                </div>
               </motion.div>
 
               <motion.p variants={fadeUp} className="hero-partners mt-8" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", letterSpacing: "0.08em", color: "rgba(251,246,236,0.4)", fontWeight: 500, textTransform: "uppercase" }}>
