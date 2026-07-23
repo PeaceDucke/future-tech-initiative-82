@@ -4845,8 +4845,9 @@ export function HomePage() {
             >
               <motion.h1
                 variants={fadeUp}
-                className="hero-title mb-6 leading-[1.02]"
+                className="hero-title mb-6 leading-[1.02] hero-title-shift"
                 style={{
+                  marginTop: "3rem",
                   fontFamily: '"Prata", Georgia, serif',
                   fontWeight: 400,
                   color: "#FBF6EC",
