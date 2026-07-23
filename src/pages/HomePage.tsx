@@ -4874,10 +4874,8 @@ export function HomePage() {
                 style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "49%", width: "60vw", maxWidth: "900px", textAlign: "left" }}
               >
                 Voice-Tec AI анализирует 100% звонков и показывает, где ваш бизнес теряет клиентов.
-                <br /><br />
+                <br />
                 Находит ошибки менеджеров, контролирует качество продаж, помогает повышать конверсию и не упускать сделки.
-                <br /><br />
-                Интеграция за 1 день.
               </motion.p>
 
               <motion.div
