@@ -4855,24 +4855,22 @@ export function HomePage() {
               >
                 <span className="hero-title-1" style={{
                   display: "block",
-                  backgroundImage: "linear-gradient(120deg, #FBE7C0 0%, #E8C786 22%, #D4B074 45%, #C09A55 68%, #A47B3C 100%)",
+                  backgroundImage: "linear-gradient(180deg, #FCEFCB 0%, #E9C879 24%, #C99A44 52%, #8A5F26 82%, #4A2F12 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
-                  WebkitTextStroke: "0.5px #D4B074",
-                  filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.25))",
+                  filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
                 }}>Voice-Tec AI</span>
                 <span className="hero-title-2" style={{ display: "block", color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>контролирует</span>
                 <span className="hero-title-3" style={{
                   display: "block",
-                  backgroundImage: "linear-gradient(120deg, #FBE7C0 0%, #E8C786 22%, #D4B074 45%, #C09A55 68%, #A47B3C 100%)",
+                  backgroundImage: "linear-gradient(180deg, #FCEFCB 0%, #E9C879 24%, #C99A44 52%, #8A5F26 82%, #4A2F12 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
-                  WebkitTextStroke: "0.5px #D4B074",
-                  filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.25))",
+                  filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.2))",
                 }}>каждый звонок.</span>
               </motion.h1>
 
