@@ -3674,7 +3674,7 @@ function PipelineSection() {
       </div>
       <style>{`
         @media (max-width: 767px) {
-          .bw-heading, .bw-heading span { font-size: 21px !important; margin-bottom: 28px !important; }
+          .bw-heading, .bw-heading span { font-size: 26px !important; margin-bottom: 28px !important; }
           .bw-desc { display: none !important; }
         }
       `}</style>
@@ -4931,12 +4931,13 @@ export function HomePage() {
                     filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
                   }}>Всё</span> в одном окне
                 </h2>
-                <p style={{ ...bodyText, fontSize: "14px", margin: "0 auto", whiteSpace: "nowrap" }}>
+                <p className="aio-desc" style={{ ...bodyText, fontSize: "14px", margin: "0 auto", whiteSpace: "nowrap" }}>
                   Аналитика звонков, воронки, менеджеры, статистика и AI-инсайты - единый дашборд без лишних вкладок
                 </p>
                 <style>{`
                   @media (max-width: 767px) {
-                    .aio-title, .aio-title span { font-size: 21px !important; }
+                    .aio-title, .aio-title span { font-size: 26px !important; }
+                    .aio-desc { font-size: 10px !important; }
                   }
                 `}</style>
               </motion.div>
