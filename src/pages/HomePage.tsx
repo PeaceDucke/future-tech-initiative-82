@@ -4937,7 +4937,7 @@ export function HomePage() {
                 <style>{`
                   @media (max-width: 767px) {
                     .aio-title, .aio-title span { font-size: 26px !important; }
-                    .aio-desc { font-size: 10px !important; }
+                    .aio-desc { font-size: 10px !important; white-space: normal !important; max-width: 320px !important; }
                   }
                 `}</style>
               </motion.div>
