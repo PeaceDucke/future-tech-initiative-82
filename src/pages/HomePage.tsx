@@ -4724,6 +4724,12 @@ export function HomePage() {
               >
                 Запросить демо
               </button>
+              <div
+                className="lg:hidden"
+                style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.2, textAlign: "right" as const }}
+              >
+                Остались вопросы?<br />Напишите нам!
+              </div>
               <a
                 href="https://t.me/voicetec"
                 target="_blank"
