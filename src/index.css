@@ -272,6 +272,21 @@ body::after {
   max-width: 100%;
 }
 
+/* Desktop: показываем только заголовки пунктов, описания скрыты */
+@media (min-width: 768px) {
+  .hero-feature-desc {
+    display: none !important;
+  }
+  .hero-feature-title {
+    margin-bottom: 0 !important;
+  }
+  /* описания убраны — раздвигаем расстояние между текстом и пунктами,
+     чтобы заголовок опустился ниже и не оставалось пустоты */
+  .hero-features {
+    margin-top: 90px !important;
+  }
+}
+
 /* Больше экраны (>1600px): приподнимаем текстовый блок,
    чтобы он не сползал вниз. На 14" (<=1600px) НЕ трогаем. */
 @media (min-width: 1600px) {
