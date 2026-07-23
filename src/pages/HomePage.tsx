@@ -4835,7 +4835,7 @@ export function HomePage() {
             />
           </div>
 
-          <div className="hero-inner absolute left-0 right-0 bottom-0 z-10 w-full max-w-7xl mx-auto px-5" style={{ paddingBottom: "6vh" }}>
+          <div className="hero-inner absolute left-0 right-0 bottom-0 z-10 w-full max-w-7xl mx-auto px-5" style={{ paddingBottom: "calc(6vh - 10px)" }}>
             <motion.div
               initial="hidden"
               animate="visible"
