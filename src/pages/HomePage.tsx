@@ -4952,7 +4952,7 @@ export function HomePage() {
               </motion.div>
 
               <motion.p variants={fadeUp} className="hero-partners mt-8" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", letterSpacing: "0.08em", color: "rgba(251,246,236,0.4)", fontWeight: 500, textTransform: "uppercase" }}>
-                нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс24&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
+                нам&nbsp;доверяют&nbsp;лидеры&nbsp;рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс24&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
           </div>
