@@ -263,6 +263,42 @@ body::after {
   }
 }
 
+/* ---------- HERO feature grid (desktop base) ---------- */
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  max-width: 1180px;
+}
+.hero-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.hero-feature-ic {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(212, 176, 116, 0.45);
+  background: radial-gradient(circle at 30% 25%, rgba(212, 176, 116, 0.16), rgba(212, 176, 116, 0.04));
+  box-shadow: inset 0 1px 0 rgba(255, 240, 190, 0.12), 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+.hero-secure-ic {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(212, 176, 116, 0.4);
+  background: rgba(212, 176, 116, 0.06);
+}
+
 /* ============================================================
    DESKTOP: lift the hero team photo up so its TOP edge goes
    off-screen and gets cropped (heads sit higher). We move the
@@ -626,50 +662,63 @@ br.br-desktop {
     padding-right: 1.25rem !important;
     transform: none !important;
   }
-  /* ---- STAIRCASE TEXT (same composition as desktop, scaled down) ---- */
-  /* title: -3px from the previous ~40px */
+  /* ---- HERO TEXT (left-aligned block, scaled down) ---- */
   .hero-title {
     text-align: left !important;
-    font-size: 37px !important;
-    line-height: 1.04 !important;
+    font-size: 34px !important;
+    line-height: 1.05 !important;
     margin-top: -3px !important;
     margin-bottom: 0.9rem !important;
   }
-  /* "Ваши продажи" — slightly to the left */
-  .hero-title-1 {
+  .hero-title-1,
+  .hero-title-2,
+  .hero-title-3 {
     margin-left: 0 !important;
+    padding-left: 0 !important;
+    white-space: normal !important;
   }
-  /* "под контролем" — lower and to the right */
-  .hero-title-2 {
-    padding-left: 30% !important;
-    white-space: nowrap !important;
-    margin-top: -0.2rem !important;
-  }
-  /* lead paragraph — lower & further right, smaller font */
   .hero-lead {
     margin-left: 0 !important;
     width: 100% !important;
-    font-size: 15px !important;
+    max-width: 100% !important;
+    font-size: 14px !important;
     line-height: 1.5 !important;
-    text-align: center !important;
+    text-align: left !important;
+  }
+  .hero-lead br.hero-lead-br {
+    display: none !important;
   }
   .hero-underline {
-    margin-left: 22% !important;
-    width: 78% !important;
+    margin-left: 0 !important;
+    width: 56px !important;
+    margin-bottom: 1.5rem !important;
+  }
+  /* feature grid: single column on mobile */
+  .hero-features {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    margin-bottom: 1.75rem !important;
+  }
+  .hero-feature-desc {
+    font-size: 13px !important;
   }
   .hero-cta {
     justify-content: flex-start !important;
+    gap: 16px !important;
   }
-  /* hero "Запросить демо" button — 1.5x smaller again */
-  .hero-cta a {
-    font-size: 11px !important;
-    padding: 7px 16px !important;
+  .hero-cta button {
+    font-size: 13px !important;
+    padding: 12px 24px !important;
+  }
+  .hero-secure {
+    font-size: 12.5px !important;
   }
   /* partners line — smaller */
   .hero-partners {
     text-align: left !important;
-    font-size: 6.5px !important;
+    font-size: 8px !important;
     line-height: 1.8;
+    margin-top: 1.25rem !important;
   }
 
   /* floating "Запросить демо" (bottom-right) — half the size */

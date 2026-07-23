@@ -4840,12 +4840,12 @@ export function HomePage() {
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="hero-copy max-w-5xl"
-              style={{ marginLeft: "8%" }}
+              className="hero-copy max-w-6xl"
+              style={{ marginLeft: "0%" }}
             >
               <motion.h1
                 variants={fadeUp}
-                className="hero-title text-[50px] lg:text-[66px] xl:text-[74px] mb-6 leading-none"
+                className="hero-title text-[46px] lg:text-[64px] xl:text-[72px] mb-6 leading-[1.02]"
                 style={{
                   fontFamily: '"Prata", Georgia, serif',
                   fontWeight: 400,
@@ -4853,44 +4853,61 @@ export function HomePage() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                <span className="hero-title-1" style={{ display: "block", marginLeft: "-5rem" }}>Ваши продажи</span>
-                <span className="hero-title-2" style={{
+                <span className="hero-title-1" style={{
                   display: "block",
-                  whiteSpace: "nowrap",
-                  paddingLeft: "25%",
-                  marginTop: "-0.5rem",
                   backgroundImage: "linear-gradient(135deg, #FBE7C0 0%, #E8C786 28%, #D4B074 55%, #A47B3C 80%, #6E4F22 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                   filter: "drop-shadow(0 2px 14px rgba(212,176,116,0.25))",
-                }}>под контролем</span>
+                }}>Voice-Tec AI</span>
+                <span className="hero-title-2" style={{ display: "block", color: "#FBF6EC" }}>контролирует</span>
+                <span className="hero-title-3" style={{ display: "block", color: "#FBF6EC" }}>каждый звонок.</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
-                className="hero-lead text-[20px] mb-5"
-                style={{ color: "#FFFFFF", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, marginLeft: "28%", width: "70vw", maxWidth: "1000px", textAlign: "left" }}
+                className="hero-lead text-[19px] mb-6"
+                style={{ color: "rgba(251,246,236,0.82)", fontFamily: '"Jost", sans-serif', fontWeight: 400, lineHeight: 1.6, maxWidth: "620px", textAlign: "left" }}
               >
-                <span style={{ whiteSpace: "nowrap" }}>Voice-Tec AI анализирует 100% звонков и показывает, где ваш бизнес теряет клиентов.</span>
+                Анализируем 100% разговоров, находим ошибки менеджеров
                 <br className="hero-lead-br" />
-                Находит ошибки менеджеров, контролирует качество продаж, помогает повышать конверсию и не упускать сделки.
+                и помогаем увеличивать конверсию без потери клиентов.
               </motion.p>
 
               <motion.div
                 variants={fadeUp}
                 className="hero-underline"
-                style={{ marginLeft: "45%", width: "60vw", maxWidth: "900px", marginTop: "-0.5rem", marginBottom: "1.5rem" }}
+                style={{ width: "72px", marginBottom: "2rem" }}
               >
                 <div className="gold-underline" />
               </motion.div>
 
-              <motion.div variants={fadeUp} className="hero-cta flex flex-wrap gap-3" style={{ marginTop: "1.5rem" }}>
+              <motion.div variants={fadeUp} className="hero-features" style={{ marginBottom: "2.5rem" }}>
+                {[
+                  { icon: "Target", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
+                  { icon: "BarChart3", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
+                  { icon: "TrendingUp", title: "Повышаем конверсию", desc: "Подсказываем, что улучшить, чтобы превращать больше разговоров в продажи." },
+                  { icon: "UserRound", title: "Не теряем клиентов", desc: "Выявляем риски ухода и помогаем удерживать лояльность на каждом этапе." },
+                ].map((f) => (
+                  <div key={f.title} className="hero-feature">
+                    <div className="hero-feature-ic">
+                      <Icon name={f.icon} size={22} style={{ color: "#D4B074" }} />
+                    </div>
+                    <div>
+                      <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "16px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
+                      <div className="hero-feature-desc" style={{ fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "14px", lineHeight: 1.5, color: "rgba(251,246,236,0.55)" }}>{f.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="hero-cta flex flex-wrap items-center gap-6" style={{ marginTop: "0.5rem" }}>
                 <button
                   type="button"
                   onClick={() => setDemoOpen(true)}
-                  className="inline-flex items-center gap-2"
+                  className="inline-flex items-center gap-3"
                   style={{
                     background: "linear-gradient(160deg, #E8CC9A 0%, #D3B076 30%, #B8904A 55%, #D3B076 75%, #E8CC9A 100%)",
                     color: "#1E1500",
@@ -4899,7 +4916,7 @@ export function HomePage() {
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 600,
                     fontSize: "16.5px",
-                    padding: "15px 40px",
+                    padding: "16px 34px",
                     boxShadow: "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)",
                     transition: "box-shadow 0.25s ease, transform 0.25s ease",
                   }}
@@ -4907,10 +4924,21 @@ export function HomePage() {
                   onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
                 >
                   Отправить заявку
+                  <Icon name="ArrowRight" size={18} style={{ color: "#1E1500" }} />
                 </button>
+                <div className="hero-secure flex items-start gap-3">
+                  <div className="hero-secure-ic">
+                    <Icon name="ShieldCheck" size={18} style={{ color: "#D4B074" }} />
+                  </div>
+                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", lineHeight: 1.45 }}>
+                    <div style={{ color: "#D4B074", fontWeight: 500 }}>Ваши данные под защитой.</div>
+                    <div style={{ color: "rgba(251,246,236,0.55)" }}>Никаких прослушиваний в реальном времени.</div>
+                  </div>
+                </div>
               </motion.div>
-              <motion.p variants={fadeUp} className="hero-partners mt-7" style={{ fontFamily: "Inter, sans-serif", fontSize: "15.5px", letterSpacing: "0.06em", color: "rgba(251,246,236,0.4)", fontWeight: 400 }}>
-                нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
+
+              <motion.p variants={fadeUp} className="hero-partners mt-8" style={{ fontFamily: "Inter, sans-serif", fontSize: "13.5px", letterSpacing: "0.08em", color: "rgba(251,246,236,0.4)", fontWeight: 500, textTransform: "uppercase" }}>
+                нам доверяют лидеры рынка&nbsp;&nbsp;·&nbsp;&nbsp;amoCRM&nbsp;&nbsp;·&nbsp;&nbsp;Битрикс24&nbsp;&nbsp;·&nbsp;&nbsp;Retell&nbsp;&nbsp;·&nbsp;&nbsp;Ringostat&nbsp;&nbsp;·&nbsp;&nbsp;Aircall&nbsp;&nbsp;·&nbsp;&nbsp;и многие другие
               </motion.p>
             </motion.div>
           </div>
