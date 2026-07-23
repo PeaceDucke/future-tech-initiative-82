@@ -4879,7 +4879,7 @@ export function HomePage() {
                 width: "88px",
                 height: "88px",
                 objectFit: "contain",
-                transform: "translate(-50%, -50%) rotate(-45deg)",
+                transform: "translate(-50%, -50%) rotate(-30deg)",
                 filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))",
               }}
             />
