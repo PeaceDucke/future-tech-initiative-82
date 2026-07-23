@@ -4684,7 +4684,7 @@ export function HomePage() {
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-3">
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
-                  Остались вопросы?<br />Напишите нам!
+                  Остались вопрос<span style={{ position: "relative" as const }}>ы<span style={{ position: "absolute" as const, left: "100%" }}>?</span></span><br />Напишите на<span style={{ position: "relative" as const }}>м<span style={{ position: "absolute" as const, left: "100%" }}>!</span></span>
                 </div>
                 <Icon name="ArrowRight" size={20} style={{ color: "#D4B074" }} />
                 {[
@@ -4725,10 +4725,13 @@ export function HomePage() {
                 Запросить демо
               </button>
               <div
-                className="lg:hidden"
+                className="lg:hidden flex items-center gap-1.5"
                 style={{ fontFamily: "Inter, sans-serif", fontSize: "8px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.2, textAlign: "right" as const }}
               >
-                Остались вопросы?<br />Напишите нам!
+                <span>
+                  Остались вопрос<span style={{ position: "relative" as const }}>ы<span style={{ position: "absolute" as const, left: "100%" }}>?</span></span><br />Напишите на<span style={{ position: "relative" as const }}>м<span style={{ position: "absolute" as const, left: "100%" }}>!</span></span>
+                </span>
+                <Icon name="ArrowRight" size={12} style={{ color: "#D4B074", flexShrink: 0 }} />
               </div>
               <a
                 href="https://t.me/voicetec"
