@@ -2557,7 +2557,7 @@ function GuaranteeSection() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="grt-text"
           style={{
-            fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: B,
+            fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: W, fontWeight: 500,
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto 22px",
           }}
         >
@@ -2570,7 +2570,7 @@ function GuaranteeSection() {
           transition={{ duration: 0.7, delay: 0.35 }}
           className="grt-text"
           style={{
-            fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: B,
+            fontFamily: "Inter, sans-serif", fontSize: "clamp(17px, 1.5vw, 21px)", color: W, fontWeight: 500,
             lineHeight: 1.75, maxWidth: "760px", margin: "0 auto",
           }}
         >
