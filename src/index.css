@@ -285,8 +285,7 @@ body::after {
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(212, 176, 116, 0.45);
-  background: radial-gradient(circle at 30% 25%, rgba(212, 176, 116, 0.16), rgba(212, 176, 116, 0.04));
-  box-shadow: inset 0 1px 0 rgba(255, 240, 190, 0.12), 0 4px 14px rgba(0, 0, 0, 0.3);
+  background: transparent;
 }
 .hero-secure-ic {
   flex: 0 0 auto;
