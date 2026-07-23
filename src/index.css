@@ -753,13 +753,14 @@ br.br-desktop {
     width: 100% !important;
     position: relative;
   }
-  /* single column, no empty middle track */
+  /* 2 cards per row: all 4 cards become direct grid items via
+     display:contents on the two column wrappers → row1 [0,1], row2 [2,3] */
   .aiv-grid {
     min-height: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 16px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    align-items: start !important;
+    gap: 10px !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     transform: none !important;
@@ -768,13 +769,10 @@ br.br-desktop {
   .aiv-grid > div:nth-child(2) {
     display: none !important;
   }
-  /* left & right columns become full-width stacks, centered */
+  /* dissolve the two column wrappers so their cards flow into the grid */
   .aiv-grid > div:nth-child(1),
   .aiv-grid > div:nth-child(3) {
-    width: 100% !important;
-    max-width: 460px !important;
-    gap: 16px !important;
-    align-self: center !important;
+    display: contents !important;
   }
   /* the stage is now a normal block (no absolute scale trick) */
   .aiv-stage {
@@ -794,18 +792,19 @@ br.br-desktop {
     width: 100% !important;
     max-width: 460px !important;
   }
-  /* bump card inner sizing ~1.5x for readability on phone */
+  /* compact cards to fit two per row on a phone */
   .aiv-card {
-    padding: 22px 26px !important;
-    border-radius: 20px !important;
+    padding: 13px 13px !important;
+    border-radius: 16px !important;
   }
   .aiv-card-title {
-    font-size: 18px !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
   }
   .aiv-card-lead,
   .aiv-card-list,
   .aiv-card-body {
-    font-size: 14px !important;
+    font-size: 11px !important;
   }
 
   /* ---------- "Как меняется бизнес с нами" ---------- */
