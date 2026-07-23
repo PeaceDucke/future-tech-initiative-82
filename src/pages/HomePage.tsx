@@ -3931,7 +3931,7 @@ function FinalCtaSection() {
             <p className="cta-sub" style={{
               fontFamily: "Inter, sans-serif",
               fontSize: "clamp(16px, 1.8vw, 19px)",
-              color: "rgba(251,246,236,0.62)",
+              color: "#FFFFFF",
               lineHeight: 1.65,
               fontWeight: 300,
               maxWidth: "520px",
