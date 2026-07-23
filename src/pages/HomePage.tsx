@@ -3676,8 +3676,9 @@ function PipelineSection() {
         @media (max-width: 767px) {
           .bw-heading, .bw-heading span { font-size: 30px !important; margin-bottom: 28px !important; }
           .bw-desc { display: none !important; }
-          .bw-title { font-size: 16.5px !important; color: #FFFFFF !important; }
-          .bw-img { width: 86% !important; margin-left: auto !important; margin-right: auto !important; }
+          .bw-title { font-size: min(16.5px, 4.4vw) !important; color: #FFFFFF !important; overflow-wrap: break-word !important; hyphens: auto !important; }
+          .bw-card { min-width: 0 !important; overflow: hidden !important; }
+          .bw-img { width: 82% !important; margin-left: auto !important; margin-right: auto !important; }
         }
       `}</style>
     </section>
