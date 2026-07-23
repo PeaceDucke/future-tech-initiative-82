@@ -746,6 +746,9 @@ br.br-desktop {
   .hero-secure {
     font-size: 12.5px !important;
   }
+  .hero-secure-text {
+    font-size: 12px !important;
+  }
   /* partners line — smaller */
   .hero-partners {
     text-align: left !important;

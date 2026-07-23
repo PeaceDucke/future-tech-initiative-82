@@ -4943,7 +4943,7 @@ export function HomePage() {
                   <div className="hero-secure-ic">
                     <Icon name="ShieldCheck" size={18} style={{ color: "#D4B074" }} />
                   </div>
-                  <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", lineHeight: 1.45 }}>
+                  <div className="hero-secure-text" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", lineHeight: 1.45 }}>
                     <div style={{ color: "#D4B074", fontWeight: 500 }}>Ваши данные под защитой.</div>
                     <div style={{ color: "rgba(251,246,236,0.55)" }}>Никаких прослушиваний в реальном времени.</div>
                   </div>
