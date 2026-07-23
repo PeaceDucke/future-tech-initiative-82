@@ -3674,7 +3674,7 @@ function PipelineSection() {
       </div>
       <style>{`
         @media (max-width: 767px) {
-          .bw-heading, .bw-heading span { font-size: 26px !important; margin-bottom: 28px !important; }
+          .bw-heading, .bw-heading span { font-size: 30px !important; margin-bottom: 28px !important; }
           .bw-desc { display: none !important; }
         }
       `}</style>
@@ -4936,7 +4936,7 @@ export function HomePage() {
                 </p>
                 <style>{`
                   @media (max-width: 767px) {
-                    .aio-title, .aio-title span { font-size: 26px !important; }
+                    .aio-title, .aio-title span { font-size: 30px !important; }
                     .aio-desc { font-size: 10px !important; white-space: normal !important; max-width: 320px !important; }
                   }
                 `}</style>
