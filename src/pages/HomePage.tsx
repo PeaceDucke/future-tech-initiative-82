@@ -4626,7 +4626,7 @@ export function HomePage() {
             borderColor: "rgba(212,176,116,0.12)",
           }}
         >
-          <div className="w-full pl-3 pr-4 md:px-8 py-2 flex items-center">
+          <div className="w-full pl-3 pr-1 md:px-8 py-2 flex items-center">
             <a href="#" className="flex items-center gap-2.5">
               <img
                 src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/62948951-d238-4d48-9ff6-c147d4136a6c.png"
@@ -4680,7 +4680,7 @@ export function HomePage() {
               ))}
             </nav>
 
-            <div className="flex items-center gap-4 ml-auto">
+            <div className="flex items-center gap-2 ml-auto">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-3">
                 <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
