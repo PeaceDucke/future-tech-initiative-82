@@ -3676,6 +3676,8 @@ function PipelineSection() {
         @media (max-width: 767px) {
           .bw-heading, .bw-heading span { font-size: 30px !important; margin-bottom: 28px !important; }
           .bw-desc { display: none !important; }
+          .bw-title { font-size: 17px !important; color: #FFFFFF !important; }
+          .bw-img { width: 86% !important; margin-left: auto !important; margin-right: auto !important; }
         }
       `}</style>
     </section>
