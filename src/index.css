@@ -403,7 +403,7 @@ br.br-desktop {
   .hero-inner {
     position: relative !important;
     inset: auto !important;
-    margin-top: calc(-3rem + 40px) !important;
+    margin-top: -3rem !important;
     padding: 0 16px 2rem !important;
     z-index: 5;
   }
@@ -680,7 +680,7 @@ br.br-desktop {
     inset: auto !important;
     /* negative margin-top physically pulls the block up AND collapses
        the flow height, so the next section follows without a big gap */
-    margin-top: calc(-3.75rem + 4px - 80px) !important;
+    margin-top: calc(-3.75rem + 4px - 80px + 100px) !important;
     padding-top: 1.5rem !important;
     padding-bottom: 0.5rem !important;
     padding-left: 1.25rem !important;
