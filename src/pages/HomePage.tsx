@@ -3297,7 +3297,7 @@ function BeforeAfterSection() {
         @media (max-width: 767px) {
           .cb-section { padding: 60px 0 64px !important; }
           .cb-section .px-6 { padding-left: 10px !important; padding-right: 10px !important; }
-          .cb-title { font-size: 20px !important; line-height: 1.15 !important; }
+          .cb-title { font-size: 25px !important; line-height: 1.15 !important; }
           .cb-head { margin-bottom: 28px !important; }
           .cb-headers { grid-template-columns: 1fr 30px 1fr !important; margin-bottom: 12px !important; }
           .cb-col-title { font-size: 17px !important; }
@@ -3310,8 +3310,8 @@ function BeforeAfterSection() {
           .cb-icon { width: 10px !important; height: 10px !important; }
           .cb-check { width: 15px !important; height: 15px !important; }
           .cb-check svg { width: 9px !important; height: 9px !important; }
-          .cb-value { font-size: 10px !important; line-height: 1.1 !important; }
-          .cb-label { font-size: 7px !important; margin-top: 2px !important; line-height: 1.28 !important; }
+          .cb-value { font-size: 12px !important; line-height: 1.1 !important; }
+          .cb-label { font-size: 9px !important; margin-top: 2px !important; line-height: 1.28 !important; }
           .cb-arrow > div { width: 18px !important; height: 18px !important; }
           .cb-arrow svg { width: 9px !important; height: 9px !important; }
           .cb-result {
