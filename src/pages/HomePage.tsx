@@ -4835,6 +4835,56 @@ export function HomePage() {
             />
           </div>
 
+          {/* ═══ Бейдж «Лучший стартап 2026» ═══ */}
+          <div
+            className="hero-award"
+            style={{
+              position: "absolute",
+              left: "61%",
+              top: "68%",
+              transform: "translate(-50%, -50%)",
+              width: "170px",
+              height: "170px",
+              zIndex: 6,
+              pointerEvents: "none",
+            }}
+          >
+            <svg
+              viewBox="0 0 200 200"
+              className="hero-award-ring"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", animation: "awardSpin 18s linear infinite" }}
+            >
+              <defs>
+                <linearGradient id="awardGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="45%" stopColor="#FBE7C0" />
+                  <stop offset="70%" stopColor="#E8C786" />
+                  <stop offset="100%" stopColor="#C99A44" />
+                </linearGradient>
+                <path id="awardCircle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" fill="none" />
+              </defs>
+              <text fill="url(#awardGold)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase" }}>
+                <textPath href="#awardCircle" startOffset="0%">
+                  · лучший стартап 2026 года
+                </textPath>
+              </text>
+            </svg>
+            <img
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6bfcac18-1ac5-44d9-80db-4d7f1f5441b9.png"
+              alt="Лучший стартап 2026 года"
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "88px",
+                height: "88px",
+                objectFit: "contain",
+                transform: "translate(-50%, -50%) rotate(45deg)",
+                filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))",
+              }}
+            />
+          </div>
+
           <div className="hero-inner absolute left-0 right-0 bottom-0 z-10 w-full max-w-7xl mx-auto px-5" style={{ paddingBottom: "13px" }}>
             <motion.div
               initial="hidden"

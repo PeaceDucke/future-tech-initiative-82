@@ -5,6 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes awardSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* slightly bolder dashes across all text */
 .bold-dash {
   font-weight: 800;
@@ -360,6 +365,10 @@ br.br-desktop {
 }
 
 @media (max-width: 767px) {
+  /* бейдж «Лучший стартап» скрываем на мобильной — он перекрывает текст */
+  .hero-award {
+    display: none !important;
+  }
   /* адаптивные переносы строк: на мобильной инвертируем */
   br.br-mobile {
     display: inline !important;
