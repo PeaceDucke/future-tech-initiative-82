@@ -668,7 +668,7 @@ br.br-desktop {
     inset: auto !important;
     /* negative margin-top physically pulls the block up AND collapses
        the flow height, so the next section follows without a big gap */
-    margin-top: calc(-3.75rem + 4px) !important;
+    margin-top: calc(-3.75rem + 4px - 40px) !important;
     padding-top: 1.5rem !important;
     padding-bottom: 0.5rem !important;
     padding-left: 1.25rem !important;
@@ -678,7 +678,7 @@ br.br-desktop {
   /* ---- HERO TEXT (left-aligned block, scaled down) ---- */
   .hero-title {
     text-align: left !important;
-    font-size: 34px !important;
+    font-size: 32px !important;
     line-height: 1.05 !important;
     margin-top: -3px !important;
     margin-bottom: 0.9rem !important;
@@ -706,14 +706,34 @@ br.br-desktop {
     width: 56px !important;
     margin-bottom: 1.5rem !important;
   }
-  /* feature grid: single column on mobile */
+  /* feature grid: 4 compact columns in one row on mobile,
+     titles only, no descriptions */
   .hero-features {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
     margin-bottom: 1.75rem !important;
   }
+  .hero-feature {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+  }
+  .hero-feature-ic {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .hero-feature-ic svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .hero-feature-title {
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0 !important;
+  }
   .hero-feature-desc {
-    font-size: 12px !important;
+    display: none !important;
   }
   .hero-cta {
     justify-content: flex-start !important;
