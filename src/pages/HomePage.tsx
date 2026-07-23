@@ -4855,7 +4855,7 @@ export function HomePage() {
               >
                 <span className="hero-title-1" style={{
                   display: "block",
-                  backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                  backgroundImage: "linear-gradient(120deg, #FBE7C0 0%, #E8C786 22%, #D4B074 45%, #C09A55 68%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -4865,7 +4865,7 @@ export function HomePage() {
                 <span className="hero-title-2" style={{ display: "block", color: "#FBF6EC" }}>контролирует</span>
                 <span className="hero-title-3" style={{
                   display: "block",
-                  backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
+                  backgroundImage: "linear-gradient(120deg, #FBE7C0 0%, #E8C786 22%, #D4B074 45%, #C09A55 68%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
