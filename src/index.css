@@ -267,8 +267,9 @@ body::after {
 .hero-features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  max-width: 1180px;
+  gap: 40px;
+  width: 100%;
+  max-width: 100%;
 }
 .hero-feature {
   display: flex;

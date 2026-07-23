@@ -4840,7 +4840,7 @@ export function HomePage() {
               initial="hidden"
               animate="visible"
               variants={stagger}
-              className="hero-copy max-w-6xl"
+              className="hero-copy w-full"
               style={{ marginLeft: "0%" }}
             >
               <motion.h1
