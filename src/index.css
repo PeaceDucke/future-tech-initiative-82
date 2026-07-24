@@ -316,8 +316,8 @@ body::after {
 }
 .hero-feature-ic {
   flex: 0 0 auto;
-  width: 68px;
-  height: 68px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -766,8 +766,8 @@ br.br-desktop {
     gap: 8px !important;
   }
   .hero-feature-ic {
-    width: 50px !important;
-    height: 50px !important;
+    width: 58px !important;
+    height: 58px !important;
     border-width: 1.6px !important;
   }
   .hero-feature-ic svg {
@@ -775,8 +775,8 @@ br.br-desktop {
     height: 16px !important;
   }
   .hero-feature-ic img {
-    width: 40px !important;
-    height: 40px !important;
+    width: 48px !important;
+    height: 48px !important;
   }
   .hero-feature-title {
     font-size: 11px !important;
