@@ -4982,13 +4982,10 @@ export function HomePage() {
                           <path d="M15 3.4 L21 2 L19.6 8" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="1.6" strokeLinejoin="round" />
                         </svg>
                       ) : f.icon === "steps-3d" ? (
-                        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.3" strokeLinejoin="round">
-                          <path d="M2.5 21 L2.5 15 L8.5 12 L8.5 18 Z" fill="rgba(255,255,255,0.92)" />
-                          <path d="M8.5 18 L8.5 12 L11 13.3 L11 19.3 Z" fill="rgba(255,255,255,0.4)" />
-                          <path d="M9 15 L9 9 L15 6 L15 12 Z" fill="rgba(255,255,255,0.92)" />
-                          <path d="M15 12 L15 6 L17.5 7.3 L17.5 13.3 Z" fill="rgba(255,255,255,0.4)" />
-                          <path d="M15.5 9 L15.5 3 L21.5 0 L21.5 6 Z" fill="rgba(255,255,255,0.92)" />
-                          <path d="M21.5 6 L21.5 0 L24 1.3 L24 7.3 Z" fill="rgba(255,255,255,0.4)" />
+                        <svg width="23" height="23" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
+                          <rect x="3" y="14" width="4.5" height="7" rx="0.6" />
+                          <rect x="9.75" y="9" width="4.5" height="12" rx="0.6" />
+                          <rect x="16.5" y="4" width="4.5" height="17" rx="0.6" />
                         </svg>
                       ) : f.icon === "trend-axes" ? (
                         <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round">
