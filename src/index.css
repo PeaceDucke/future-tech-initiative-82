@@ -460,7 +460,7 @@ br.br-desktop {
     color: #ffffff !important;
     font-weight: 500 !important;
     margin-left: 0 !important;
-    margin-top: 70px !important;
+    margin-top: 60px !important;
     width: 100% !important;
     max-width: 100% !important;
     white-space: normal !important;
@@ -793,6 +793,7 @@ br.br-desktop {
     align-items: center !important;
     flex-wrap: nowrap !important;
     gap: 12px !important;
+    margin-top: -5px !important;
   }
   .hero-cta button {
     font-size: 13px !important;
