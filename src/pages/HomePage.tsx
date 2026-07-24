@@ -1329,7 +1329,7 @@ function SplineFeatureSection() {
               WebkitTextFillColor: "transparent",
               color: "transparent",
               filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
-            }}>и показывает, как вернуть продажи.</span>
+            }}>и показывает, как вернуть продажи</span>
           </h2>
           <p className="aiv-sub" style={{
             fontFamily: "Jost, sans-serif",
@@ -2039,7 +2039,7 @@ function RopSection() {
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                   filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
-                }}>результатом.</span>
+                }}>результатом</span>
               </h2>
 
               <p
@@ -3550,7 +3550,7 @@ function PipelineSection() {
                   fontWeight: 600,
                   fontFamily: "Jost, sans-serif",
                   fontSize: "49px",
-                }}>Voice-Tec AI</span> видит то,<br className="br-mobile" /> что невозможно<br className="br-desktop" /> контролировать<br className="br-mobile" /> вручную.
+                }}>Voice-Tec AI</span> видит то,<br className="br-mobile" /> что невозможно<br className="br-desktop" /> контролировать<br className="br-mobile" /> вручную
               </motion.h2>
             </Section>
             </div>
