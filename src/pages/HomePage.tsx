@@ -3607,7 +3607,7 @@ function PipelineSection() {
                     WebkitTextFillColor: "transparent",
                     color: "transparent",
                     WebkitTextStroke: "0.4px #E8C77C",
-                  }}>Voice-Tec AI</span> укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
+                  }}>Voice-Tec AI</span>&nbsp;укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }} />
