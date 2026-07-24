@@ -766,8 +766,8 @@ br.br-desktop {
     gap: 8px !important;
   }
   .hero-feature-ic {
-    width: 58px !important;
-    height: 58px !important;
+    width: 45px !important;
+    height: 45px !important;
     border-width: 1.6px !important;
   }
   .hero-feature-ic svg {
@@ -775,8 +775,8 @@ br.br-desktop {
     height: 16px !important;
   }
   .hero-feature-ic img {
-    width: 48px !important;
-    height: 48px !important;
+    width: 37px !important;
+    height: 37px !important;
   }
   .hero-feature-title {
     font-size: 11px !important;
