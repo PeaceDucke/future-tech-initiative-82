@@ -226,7 +226,7 @@ export default function AboutPage() {
             >
               VOICE
               <span style={{ fontWeight: 400, fontSize: "1.25em", margin: "0 0.02em", verticalAlign: "-0.04em" }}>–</span>
-              TEC
+              TEC AI
             </motion.div>
             <motion.h1 variants={fadeUp}
               style={{ ...h2Style, fontSize: "clamp(36px, 6vw, 72px)", lineHeight: 1.1, marginBottom: "28px" }}>
