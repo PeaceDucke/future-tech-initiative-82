@@ -3498,7 +3498,7 @@ function PipelineSection() {
                         className="pipeline-row-img"
                         style={{ width: "128px", height: "128px", objectFit: "contain", flexShrink: 0, marginLeft: "-48px", marginRight: "-28px", filter: "drop-shadow(0 6px 16px rgba(212,176,116,0.25))" }}
                       />
-                      <p className="pipeline-row-text" style={{ flex: 1, minWidth: 0, marginRight: "-24px", fontFamily: "Inter, sans-serif", fontSize: "16px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
+                      <p className="pipeline-row-text" style={{ flex: 1, minWidth: 0, marginRight: "-24px", fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "16px", color: B, lineHeight: 1.6, fontWeight: 500 }}>
                         {item.text}
                       </p>
                     </motion.div>
@@ -3565,7 +3565,7 @@ function PipelineSection() {
               <div className="pc pipeline-card-right w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
-                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, marginTop: "24px", marginBottom: "32px", textAlign: "center" }}>
+                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, marginTop: "24px", marginBottom: "32px", textAlign: "center" }}>
                   Искусственный интеллект анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.
                 </h3>
 
@@ -3599,7 +3599,7 @@ function PipelineSection() {
                   </div>
 
                 </div>
-                <p className="pipeline-card2-text" style={{ fontFamily: '"Jost", sans-serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, textAlign: "center", marginTop: "-24px" }}>
+                <p className="pipeline-card2-text" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "24px", color: W, fontWeight: 400, lineHeight: 1.2, textAlign: "center", marginTop: "-24px" }}>
                   Voice-Tec AI укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
