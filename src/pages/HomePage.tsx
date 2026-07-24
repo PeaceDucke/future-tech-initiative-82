@@ -4843,7 +4843,7 @@ export function HomePage() {
               position: "absolute",
               left: "61%",
               top: "68%",
-              transform: "translate(calc(-50% + 390px), calc(-50% - 100px))",
+              transform: "translate(calc(-50% + 400px), calc(-50% - 100px))",
               width: "170px",
               height: "170px",
               zIndex: 6,
