@@ -5822,7 +5822,7 @@ export function HomePage() {
               </p>
             </div>
             <p style={{ marginTop: "18px", fontSize: "11px", lineHeight: 1.6, color: "rgba(251,246,236,0.3)", fontFamily: "Inter, sans-serif", fontWeight: 300 }}>
-              Наш сайт защищен с помощью reCAPTCHA и соответствует Политике конфиденциальности и Условиям использования Google.<br />
+              Сайт защищен с помощью reCAPTCHA и соответствует Политике конфиденциальности и Условиям использования Google.<br />
               Вся представленная информация на сайте не является публичной офертой.
             </p>
           </div>
