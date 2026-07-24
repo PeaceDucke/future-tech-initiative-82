@@ -1219,7 +1219,7 @@ br.br-desktop {
   }
   a.cta-btn .cta-btn-icon {
     margin-left: -2px !important;
-    margin-right: 2px !important;
+    margin-right: -2px !important;
   }
   .cta-social-label {
     font-size: 8px !important;
