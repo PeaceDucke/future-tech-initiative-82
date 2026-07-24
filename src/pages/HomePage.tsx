@@ -4976,8 +4976,8 @@ export function HomePage() {
                       <img src={f.img} alt={f.title} style={{ width: "67px", height: "67px", objectFit: "contain" }} />
                     </div>
                     <div>
-                      <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
-                      <div className="hero-feature-desc" style={{ fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "13px", lineHeight: 1.5, color: "rgba(251,246,236,0.55)" }}>{f.desc}</div>
+                      <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "16.5px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
+                      <div className="hero-feature-desc" style={{ fontFamily: "Inter, sans-serif", fontWeight: 400, fontSize: "14.5px", lineHeight: 1.5, color: "rgba(251,246,236,0.55)" }}>{f.desc}</div>
                     </div>
                   </div>
                 ))}
