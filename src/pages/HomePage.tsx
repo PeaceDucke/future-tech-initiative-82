@@ -3565,7 +3565,7 @@ function PipelineSection() {
               <div className="pc pipeline-card-right w-full lg:w-[48%]" style={pCard}>
                 <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "350px", height: "350px", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", pointerEvents: "none" }} />
                 {num("02")}
-                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 400, lineHeight: 1.2, marginTop: "24px", marginBottom: "32px", textAlign: "center" }}>
+                <h3 className="pipeline-card2-title" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 400, lineHeight: 1.2, marginTop: "0px", marginBottom: "32px", textAlign: "center" }}>
                   Искусственный интеллект анализирует 100% звонков и делает оценку опираясь на скрипты и нормы менеджмента вашей компании.
                 </h3>
 
