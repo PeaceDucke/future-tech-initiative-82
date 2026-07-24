@@ -565,7 +565,7 @@ br.br-desktop {
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
     font-size: 17px !important;
-    margin-top: 4px !important;
+    margin-top: -8px !important;
     margin-bottom: 14px !important;
     text-wrap: balance !important;
   }
