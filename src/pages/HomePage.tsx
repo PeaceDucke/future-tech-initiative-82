@@ -5026,7 +5026,6 @@ export function HomePage() {
                   onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 18px rgba(180,130,50,0.3), inset 0 1px 0 rgba(255,240,190,0.4)"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
                 >
                   Отправить заявку
-                  <Icon name="ArrowRight" size={16} style={{ color: "#1E1500" }} />
                 </button>
               </motion.div>
 
