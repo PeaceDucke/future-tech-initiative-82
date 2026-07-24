@@ -316,13 +316,13 @@ body::after {
 }
 .hero-feature-ic {
   flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1.1px solid rgba(212, 176, 116, 0.85);
+  border: 2px solid rgba(212, 176, 116, 1);
   background: transparent;
 }
 .hero-secure-ic {
@@ -766,12 +766,17 @@ br.br-desktop {
     gap: 8px !important;
   }
   .hero-feature-ic {
-    width: 36px !important;
-    height: 36px !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-width: 1.6px !important;
   }
   .hero-feature-ic svg {
     width: 16px !important;
     height: 16px !important;
+  }
+  .hero-feature-ic img {
+    width: 40px !important;
+    height: 40px !important;
   }
   .hero-feature-title {
     font-size: 11px !important;

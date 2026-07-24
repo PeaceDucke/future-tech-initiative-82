@@ -4973,7 +4973,7 @@ export function HomePage() {
                 ].map((f) => (
                   <div key={f.title} className="hero-feature">
                     <div className="hero-feature-ic">
-                      <img src={f.img} alt={f.title} style={{ width: "43px", height: "43px", objectFit: "contain" }} />
+                      <img src={f.img} alt={f.title} style={{ width: "56px", height: "56px", objectFit: "contain" }} />
                     </div>
                     <div>
                       <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
