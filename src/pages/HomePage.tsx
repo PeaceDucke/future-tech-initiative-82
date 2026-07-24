@@ -4864,15 +4864,15 @@ export function HomePage() {
                 </linearGradient>
                 <path id="awardCircle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" fill="none" />
               </defs>
-              <text fill="url(#awardGold)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase" }}>
+              <text fill="url(#awardGold)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "19px", fontWeight: 600, letterSpacing: "1.6px", textTransform: "uppercase" }}>
                 <textPath href="#awardCircle" startOffset="0%">
-                  лучший стартап 2026 года
+                  Оптимизировано более 30 компаний
                 </textPath>
               </text>
             </svg>
             <img
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6bfcac18-1ac5-44d9-80db-4d7f1f5441b9.png"
-              alt="Лучший стартап 2026 года"
+              alt="Оптимизировано более 30 компаний"
               style={{
                 position: "absolute",
                 left: "50%",
@@ -4929,13 +4929,13 @@ export function HomePage() {
                         </linearGradient>
                         <path id="awardCircleM" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" fill="none" />
                       </defs>
-                      <text fill="url(#awardGoldM)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", fontWeight: 600, letterSpacing: "3px", textTransform: "uppercase", WebkitTextStroke: "0" }}>
-                        <textPath href="#awardCircleM" startOffset="0%">лучший стартап 2026 года</textPath>
+                      <text fill="url(#awardGoldM)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "19px", fontWeight: 600, letterSpacing: "1.6px", textTransform: "uppercase", WebkitTextStroke: "0" }}>
+                        <textPath href="#awardCircleM" startOffset="0%">Оптимизировано более 30 компаний</textPath>
                       </text>
                     </svg>
                     <img
                       src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6bfcac18-1ac5-44d9-80db-4d7f1f5441b9.png"
-                      alt="Лучший стартап 2026 года"
+                      alt="Оптимизировано более 30 компаний"
                       style={{ position: "absolute", left: "50%", top: "50%", width: "50px", height: "50px", objectFit: "contain", transform: "translate(-50%, -50%) rotate(-30deg)", filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))" }}
                     />
                   </span>
