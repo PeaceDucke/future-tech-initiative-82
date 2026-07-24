@@ -1189,16 +1189,22 @@ br.br-desktop {
     font-size: 9px !important;
     padding: 9px 15px !important;
     border-radius: 8px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
   .cta-btn-icon {
     width: 29px !important;
     height: 29px !important;
     margin: -6px 0 !important;
   }
-  /* "Связаться с нами" — сдвигаем иконку и текст левее */
+  /* "Связаться с нами" — сдвигаем иконку и текст левее и чуть ниже */
   a.cta-btn {
     justify-content: flex-start !important;
     padding-left: 8px !important;
+    margin-top: 6px !important;
   }
   a.cta-btn .cta-btn-icon {
     margin-left: -4px !important;
