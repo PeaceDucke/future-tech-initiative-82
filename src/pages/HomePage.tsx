@@ -4966,14 +4966,39 @@ export function HomePage() {
 
               <motion.div variants={fadeUp} className="hero-features" style={{ marginBottom: "2.5rem" }}>
                 {[
-                  { icon: "Target", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
-                  { icon: "ChartNoAxesColumnIncreasing", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
-                  { icon: "TrendingUp", title: "Повышаем конверсию", desc: "Подсказываем, что улучшить, чтобы превращать больше разговоров в продажи." },
+                  { icon: "target-dart", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
+                  { icon: "steps-3d", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
+                  { icon: "trend-axes", title: "Повышаем конверсию", desc: "Подсказываем, что улучшить, чтобы превращать больше разговоров в продажи." },
                   { icon: "CircleAlert", title: "Оповещаем о критичных звонках", desc: "Выявляем риски ухода и помогаем удерживать лояльность на каждом этапе." },
                 ].map((f) => (
                   <div key={f.title} className="hero-feature">
                     <div className="hero-feature-ic">
-                      <Icon name={f.icon} size={22} style={{ color: "#FFFFFF" }} />
+                      {f.icon === "target-dart" ? (
+                        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="10" cy="13" r="8.5" />
+                          <circle cx="10" cy="13" r="4.6" />
+                          <circle cx="10" cy="13" r="1" fill="#FFFFFF" stroke="none" />
+                          <line x1="10" y1="13" x2="21" y2="2" strokeWidth="2.2" />
+                          <path d="M15 3.4 L21 2 L19.6 8" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="1.6" strokeLinejoin="round" />
+                        </svg>
+                      ) : f.icon === "steps-3d" ? (
+                        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.3" strokeLinejoin="round">
+                          <path d="M2.5 21 L2.5 15 L8.5 12 L8.5 18 Z" fill="rgba(255,255,255,0.92)" />
+                          <path d="M8.5 18 L8.5 12 L11 13.3 L11 19.3 Z" fill="rgba(255,255,255,0.4)" />
+                          <path d="M9 15 L9 9 L15 6 L15 12 Z" fill="rgba(255,255,255,0.92)" />
+                          <path d="M15 12 L15 6 L17.5 7.3 L17.5 13.3 Z" fill="rgba(255,255,255,0.4)" />
+                          <path d="M15.5 9 L15.5 3 L21.5 0 L21.5 6 Z" fill="rgba(255,255,255,0.92)" />
+                          <path d="M21.5 6 L21.5 0 L24 1.3 L24 7.3 Z" fill="rgba(255,255,255,0.4)" />
+                        </svg>
+                      ) : f.icon === "trend-axes" ? (
+                        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M4 3 L4 20 L21 20" strokeWidth="1.8" />
+                          <polyline points="7 16 12 11 15 14 20 8" strokeWidth="2" />
+                          <polyline points="16 8 20 8 20 12" strokeWidth="2" />
+                        </svg>
+                      ) : (
+                        <Icon name={f.icon} size={23} style={{ color: "#FFFFFF" }} />
+                      )}
                     </div>
                     <div>
                       <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
