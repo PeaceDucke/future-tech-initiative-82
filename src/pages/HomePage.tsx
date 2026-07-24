@@ -4959,9 +4959,9 @@ export function HomePage() {
                 className="hero-lead text-[21px] mb-6"
                 style={{ color: "#FFFFFF", fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 400, lineHeight: 1.6, maxWidth: "620px", textAlign: "left" }}
               >
-                Анализируем 100% разговоров, находим ошибки менеджеров{" "}
+                Анализируем 100% разговоров:{" "}
                 <br className="hero-lead-br" />
-                и помогаем увеличивать конверсию
+                находим ошибки менеджеров и помогаем увеличивать конверсию
               </motion.p>
 
               <motion.div variants={fadeUp} className="hero-features" style={{ marginBottom: "2.5rem" }}>
