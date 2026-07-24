@@ -4673,7 +4673,6 @@ export function HomePage() {
                 –
                 </span>
                 TEC
-                <span style={{ marginLeft: "0.28em", fontWeight: 900 }}>AI</span>
               </span>
             </a>
 
