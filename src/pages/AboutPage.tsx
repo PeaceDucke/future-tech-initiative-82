@@ -202,8 +202,8 @@ export default function AboutPage() {
             </motion.div>
             <motion.img
               variants={fadeUp}
-              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/55554d4d-b45c-4cbf-b30c-26720d97d9ce.png"
-              alt="VICE-TEC AI"
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/62948951-d238-4d48-9ff6-c147d4136a6c.png"
+              alt="VOICE-TEC"
               style={{ width: "min(33vw, 410px)", height: "auto", margin: "12px auto 32px", display: "block" }}
             />
             <motion.h1 variants={fadeUp}
