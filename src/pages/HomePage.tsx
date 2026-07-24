@@ -4973,7 +4973,7 @@ export function HomePage() {
                 ].map((f) => (
                   <div key={f.title} className="hero-feature">
                     <div className="hero-feature-ic">
-                      <Icon name={f.icon} size={22} style={{ color: "#D4B074" }} />
+                      <Icon name={f.icon} size={22} style={{ color: "#FFFFFF" }} />
                     </div>
                     <div>
                       <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
