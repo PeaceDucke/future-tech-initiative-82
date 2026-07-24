@@ -4866,7 +4866,7 @@ export function HomePage() {
               </defs>
               <text fill="url(#awardGold)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "19px", fontWeight: 600, letterSpacing: "1.6px", textTransform: "uppercase" }}>
                 <textPath href="#awardCircle" startOffset="0%">
-                  Оптимизировано 30<tspan dy="4" style={{ fontWeight: 900, fontSize: "30px", stroke: "#E8C786", strokeWidth: "1.4px", paintOrder: "stroke" }}>+</tspan><tspan dy="-4"> компаний</tspan>
+                  Оптимизировано&#160;30<tspan dy="4" style={{ fontWeight: 900, fontSize: "30px", stroke: "#E8C786", strokeWidth: "1.4px", paintOrder: "stroke" }}>+</tspan><tspan dy="-4">&#160;компаний</tspan>
                 </textPath>
               </text>
             </svg>
@@ -4930,7 +4930,7 @@ export function HomePage() {
                         <path id="awardCircleM" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" fill="none" />
                       </defs>
                       <text fill="url(#awardGoldM)" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "19px", fontWeight: 600, letterSpacing: "1.6px", textTransform: "uppercase", WebkitTextStroke: "0" }}>
-                        <textPath href="#awardCircleM" startOffset="0%">Оптимизировано 30<tspan dy="4" style={{ fontWeight: 900, fontSize: "30px", stroke: "#E8C786", strokeWidth: "1.4px", paintOrder: "stroke" }}>+</tspan><tspan dy="-4"> компаний</tspan></textPath>
+                        <textPath href="#awardCircleM" startOffset="0%">Оптимизировано&#160;30<tspan dy="4" style={{ fontWeight: 900, fontSize: "30px", stroke: "#E8C786", strokeWidth: "1.4px", paintOrder: "stroke" }}>+</tspan><tspan dy="-4">&#160;компаний</tspan></textPath>
                       </text>
                     </svg>
                     <img
