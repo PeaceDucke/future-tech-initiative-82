@@ -4966,36 +4966,14 @@ export function HomePage() {
 
               <motion.div variants={fadeUp} className="hero-features" style={{ marginBottom: "2.5rem" }}>
                 {[
-                  { icon: "target-dart", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
-                  { icon: "steps-3d", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
-                  { icon: "trend-axes", title: "Повышаем конверсию", desc: "Подсказываем, что улучшить, чтобы превращать больше разговоров в продажи." },
-                  { icon: "CircleAlert", title: "Оповещаем о критичных звонках", desc: "Выявляем риски ухода и помогаем удерживать лояльность на каждом этапе." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/a7527cc5-68ff-42e2-9bc8-c9a2613a06e6.png", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c59d19ce-c8ef-455b-8ac6-d7333a8ad8d1.png", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/0e92bfa9-77e0-47bd-9560-26cc879eaf61.png", title: "Повышаем конверсию", desc: "Подсказываем, что улучшить, чтобы превращать больше разговоров в продажи." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/c479efbb-0b68-4634-9c2d-936a185ae6b4.png", title: "Оповещаем о критичных звонках", desc: "Выявляем риски ухода и помогаем удерживать лояльность на каждом этапе." },
                 ].map((f) => (
                   <div key={f.title} className="hero-feature">
                     <div className="hero-feature-ic">
-                      {f.icon === "target-dart" ? (
-                        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="10" cy="13" r="8.5" />
-                          <circle cx="10" cy="13" r="4.6" />
-                          <circle cx="10" cy="13" r="1" fill="#FFFFFF" stroke="none" />
-                          <line x1="10" y1="13" x2="21" y2="2" strokeWidth="2.2" />
-                          <path d="M15 3.4 L21 2 L19.6 8" fill="#FFFFFF" stroke="#FFFFFF" strokeWidth="1.6" strokeLinejoin="round" />
-                        </svg>
-                      ) : f.icon === "steps-3d" ? (
-                        <svg width="23" height="23" viewBox="0 0 24 24" fill="#FFFFFF" stroke="none">
-                          <rect x="3" y="14" width="4.5" height="7" rx="0.6" />
-                          <rect x="9.75" y="9" width="4.5" height="12" rx="0.6" />
-                          <rect x="16.5" y="4" width="4.5" height="17" rx="0.6" />
-                        </svg>
-                      ) : f.icon === "trend-axes" ? (
-                        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M4 3 L4 20 L21 20" strokeWidth="1.8" />
-                          <polyline points="7 16 12 11 15 14 20 8" strokeWidth="2" />
-                          <polyline points="16 8 20 8 20 12" strokeWidth="2" />
-                        </svg>
-                      ) : (
-                        <Icon name={f.icon} size={23} style={{ color: "#FFFFFF" }} />
-                      )}
+                      <img src={f.img} alt={f.title} style={{ width: "30px", height: "30px", objectFit: "contain" }} />
                     </div>
                     <div>
                       <div className="hero-feature-title" style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, fontSize: "15px", color: "#FBF6EC", marginBottom: "6px" }}>{f.title}</div>
