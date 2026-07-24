@@ -204,8 +204,30 @@ export default function AboutPage() {
               variants={fadeUp}
               src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/62948951-d238-4d48-9ff6-c147d4136a6c.png"
               alt="VOICE-TEC"
-              style={{ width: "min(33vw, 410px)", height: "auto", margin: "12px auto 32px", display: "block" }}
+              style={{ width: "min(30vw, 373px)", height: "auto", margin: "12px auto 14px", display: "block" }}
             />
+            <motion.div
+              variants={fadeUp}
+              style={{
+                fontFamily: '"Bodoni Moda", Georgia, serif',
+                fontWeight: 900,
+                fontSize: "clamp(30px, 5vw, 52px)",
+                letterSpacing: "0.08em",
+                textAlign: "center",
+                margin: "0 auto 32px",
+                backgroundImage:
+                  "linear-gradient(105deg, #FFFFFF 0%, #FBF3DF 22%, #E8C77C 50%, #C79A4B 78%, #9E7326 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+                textShadow: "0 1px 6px rgba(199,154,75,0.18)",
+              }}
+            >
+              VOICE
+              <span style={{ fontWeight: 400, fontSize: "1.25em", margin: "0 0.02em", verticalAlign: "-0.04em" }}>–</span>
+              TEC
+            </motion.div>
             <motion.h1 variants={fadeUp}
               style={{ ...h2Style, fontSize: "clamp(36px, 6vw, 72px)", lineHeight: 1.1, marginBottom: "28px" }}>
               Мы строим будущее<br />отделов продаж
