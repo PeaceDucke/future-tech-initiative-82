@@ -820,6 +820,7 @@ br.br-desktop {
     font-size: 8px !important;
     line-height: 1.8;
     margin-top: 13px !important;
+    transform: translateY(-7px) !important;
     white-space: normal !important;
     overflow-wrap: break-word !important;
     word-break: break-word !important;
