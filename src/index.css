@@ -1204,19 +1204,22 @@ br.br-desktop {
     box-sizing: border-box !important;
   }
   .cta-btn-icon {
-    width: 22px !important;
-    height: 22px !important;
+    width: 20px !important;
+    height: 20px !important;
     margin: 0 !important;
+    flex: 0 0 auto !important;
   }
-  /* "Связаться с нами" — сдвигаем иконку и текст левее и опускаем ниже */
+  /* "Связаться с нами" — центрируем, чуть ниже, текст не вылазит */
   a.cta-btn {
-    justify-content: flex-start !important;
+    justify-content: center !important;
     padding-left: 10px !important;
+    padding-right: 10px !important;
     margin-top: 18px !important;
+    white-space: nowrap !important;
   }
   a.cta-btn .cta-btn-icon {
-    margin-left: -2px !important;
-    margin-right: 4px !important;
+    margin-left: 0 !important;
+    margin-right: 6px !important;
   }
   .cta-social-label {
     font-size: 8px !important;
