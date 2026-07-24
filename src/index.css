@@ -520,7 +520,7 @@ br.br-desktop {
   }
   /* cards — less inner padding & smaller radius (×1.2) */
   .pipeline-section .pc {
-    padding: 12px 17px !important;
+    padding: 6px 17px 12px !important;
     border-radius: 16px !important;
   }
   /* mirror the desktop staircase: card 1 left, card 2 right (×1.2) */
@@ -565,7 +565,7 @@ br.br-desktop {
   /* card 2 ("AI анализирует каждый разговор") — smaller text */
   .pipeline-card2-title {
     font-size: 17px !important;
-    margin-top: -8px !important;
+    margin-top: -14px !important;
     margin-bottom: 14px !important;
     text-wrap: balance !important;
   }
