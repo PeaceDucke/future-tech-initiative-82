@@ -1191,7 +1191,7 @@ br.br-desktop {
     font-size: 9px !important;
     padding: 0 15px !important;
     border-radius: 8px !important;
-    height: 32px !important;
+    height: 26px !important;
     width: 100% !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1207,7 +1207,7 @@ br.br-desktop {
   a.cta-btn {
     justify-content: flex-start !important;
     padding-left: 10px !important;
-    margin-top: 10px !important;
+    margin-top: 18px !important;
   }
   a.cta-btn .cta-btn-icon {
     margin-left: -2px !important;
