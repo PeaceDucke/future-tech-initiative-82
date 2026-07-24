@@ -4956,8 +4956,8 @@ export function HomePage() {
 
               <motion.p
                 variants={fadeUp}
-                className="hero-lead text-[21px] mb-6"
-                style={{ color: "#FFFFFF", fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 400, lineHeight: 1.6, maxWidth: "620px", textAlign: "left" }}
+                className="hero-lead text-[23px] mb-6"
+                style={{ color: "#FFFFFF", fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 400, lineHeight: 1.6, maxWidth: "720px", textAlign: "left", whiteSpace: "nowrap" }}
               >
                 Анализируем 100% разговоров:{" "}
                 <br className="hero-lead-br" />
