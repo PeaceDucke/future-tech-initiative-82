@@ -3612,7 +3612,7 @@ function PipelineSection() {
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }} />
               {/* Scanner */}
-              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible", marginLeft: "-120px" }}>
+              <div className="hidden lg:block w-[48%]" style={{ height: "780px", position: "relative", overflow: "visible", marginLeft: "-120px", transform: "translateY(-90px)" }}>
                 <RadarScanner />
               </div>
             </div>
