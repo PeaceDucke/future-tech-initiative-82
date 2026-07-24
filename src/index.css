@@ -1212,14 +1212,14 @@ br.br-desktop {
   /* "Связаться с нами" — текст левее, чуть выше, не вылазит */
   a.cta-btn {
     justify-content: flex-start !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 4px !important;
+    padding-right: 6px !important;
     margin-top: 10px !important;
     white-space: nowrap !important;
   }
   a.cta-btn .cta-btn-icon {
-    margin-left: 0 !important;
-    margin-right: 6px !important;
+    margin-left: -2px !important;
+    margin-right: 2px !important;
   }
   .cta-social-label {
     font-size: 8px !important;
