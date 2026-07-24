@@ -4844,8 +4844,8 @@ export function HomePage() {
               left: "61%",
               top: "68%",
               transform: "translate(calc(-50% + 400px), calc(-50% - 100px))",
-              width: "170px",
-              height: "170px",
+              width: "155px",
+              height: "155px",
               zIndex: 6,
               pointerEvents: "none",
             }}
@@ -4918,7 +4918,7 @@ export function HomePage() {
                 }}>Voice-Tec AI</span>
                 <span className="hero-title-2" style={{ display: "block", position: "relative", fontWeight: 500, color: "#FBF6EC", WebkitTextStroke: "0.5px #FBF6EC" }}>
                   контролирует
-                  <span className="hero-award-mobile" style={{ position: "absolute", right: "6px", top: "50%", transform: "translateY(-50%)", width: "96px", height: "96px", pointerEvents: "none" }}>
+                  <span className="hero-award-mobile" style={{ position: "absolute", right: "6px", top: "50%", transform: "translateY(-50%)", width: "91px", height: "91px", pointerEvents: "none" }}>
                     <svg viewBox="0 0 200 200" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", animation: "awardSpin 18s linear infinite" }}>
                       <defs>
                         <linearGradient id="awardGoldM" x1="0%" y1="0%" x2="100%" y2="100%">
