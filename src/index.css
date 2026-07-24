@@ -1182,33 +1182,35 @@ br.br-desktop {
     margin-bottom: 18px !important;
   }
   .cta-btns {
-    gap: 7px !important;
+    gap: 8px !important;
     margin-bottom: 16px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
   .cta-btn {
     font-size: 9px !important;
-    padding: 9px 15px !important;
+    padding: 0 15px !important;
     border-radius: 8px !important;
-    min-height: 44px !important;
+    height: 40px !important;
+    width: 100% !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
   }
   .cta-btn-icon {
-    width: 29px !important;
-    height: 29px !important;
-    margin: -6px 0 !important;
+    width: 26px !important;
+    height: 26px !important;
+    margin: 0 !important;
   }
-  /* "Связаться с нами" — сдвигаем иконку и текст левее и чуть ниже */
+  /* "Связаться с нами" — сдвигаем иконку и текст левее */
   a.cta-btn {
     justify-content: flex-start !important;
-    padding-left: 8px !important;
-    margin-top: 6px !important;
+    padding-left: 10px !important;
   }
   a.cta-btn .cta-btn-icon {
-    margin-left: -4px !important;
-    margin-right: 2px !important;
+    margin-left: -2px !important;
+    margin-right: 4px !important;
   }
   .cta-social-label {
     font-size: 8px !important;
