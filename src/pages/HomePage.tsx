@@ -5034,7 +5034,7 @@ export function HomePage() {
                     filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
                   }}>Всё</span> в одном окне
                 </h2>
-                <p className="aio-desc" style={{ ...bodyText, fontSize: "14px", margin: "0 auto", whiteSpace: "nowrap" }}>
+                <p className="aio-desc" style={{ ...bodyText, fontSize: "15.5px", color: "#FFFFFF", margin: "0 auto", whiteSpace: "nowrap" }}>
                   Аналитика звонков, воронки, менеджеры, статистика и AI-инсайты - единый дашборд без лишних вкладок
                 </p>
                 <style>{`
