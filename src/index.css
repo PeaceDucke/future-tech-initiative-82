@@ -322,7 +322,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(212, 176, 116, 0.45);
+  border: 1.1px solid rgba(212, 176, 116, 0.85);
   background: transparent;
 }
 .hero-secure-ic {

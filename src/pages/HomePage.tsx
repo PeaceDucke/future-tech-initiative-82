@@ -4967,7 +4967,7 @@ export function HomePage() {
               <motion.div variants={fadeUp} className="hero-features" style={{ marginBottom: "2.5rem" }}>
                 {[
                   { icon: "Target", title: "Находим ошибки", desc: "Выявляем упущения и слабые места в каждом разговоре." },
-                  { icon: "BarChart3", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
+                  { icon: "ChartNoAxesColumnIncreasing", title: "Контролируем качество", desc: "Оцениваем работу менеджеров по вашим скриптам и стандартам." },
                   { icon: "TrendingUp", title: "Повышаем конверсию", desc: "Подсказываем, что улучшить, чтобы превращать больше разговоров в продажи." },
                   { icon: "CircleAlert", title: "Оповещаем о критичных звонках", desc: "Выявляем риски ухода и помогаем удерживать лояльность на каждом этапе." },
                 ].map((f) => (
