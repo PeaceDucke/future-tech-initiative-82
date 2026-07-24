@@ -556,7 +556,7 @@ br.br-desktop {
   /* "Обнаружены причины потерь" — allow wrap & shrink so it fits (×1.2) */
   .pipeline-causes-title {
     white-space: normal !important;
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
   /* trim the big gaps between the stacked blocks */
   .pipeline-section .gap-20 {
@@ -590,7 +590,7 @@ br.br-desktop {
     padding: 11px !important;
     border-radius: 13px !important;
     margin-bottom: 0 !important;
-    max-width: 90% !important;
+    max-width: 84% !important;
   }
   .pipeline-dashboard > div:first-child {
     padding: 5px 4px 8px !important;
@@ -622,15 +622,15 @@ br.br-desktop {
     height: 19px !important;
   }
   .cause-flip-title {
-    font-size: 11px !important;
+    font-size: 10px !important;
     line-height: 1.2 !important;
   }
   .cause-flip-detail {
-    font-size: 11px !important;
+    font-size: 10px !important;
     line-height: 1.35 !important;
   }
   .cause-flip-more {
-    font-size: 11px !important;
+    font-size: 10px !important;
     gap: 3px !important;
   }
   .cause-flip-more svg {

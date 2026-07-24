@@ -3600,7 +3600,14 @@ function PipelineSection() {
 
                 </div>
                 <p className="pipeline-card2-text" style={{ fontFamily: '"Bodoni Moda", Georgia, serif', fontSize: "22px", color: W, fontWeight: 400, lineHeight: 1.2, textAlign: "center", marginTop: "-24px" }}>
-                  Voice-Tec AI укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
+                  <span style={{
+                    backgroundImage: "linear-gradient(105deg, #FFFFFF 0%, #FBF3DF 22%, #E8C77C 50%, #C79A4B 78%, #9E7326 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
+                    WebkitTextStroke: "0.2px #E8C77C",
+                  }}>Voice-Tec AI</span> укажет вам на слабые места в продажах, ошибки менеджеров и поможет руководителю видеть реальную картину без ручной проверки звонков.
                 </p>
               </div>
               <div className="hidden lg:flex w-[4%] justify-center" style={{ paddingTop: "120px" }} />
