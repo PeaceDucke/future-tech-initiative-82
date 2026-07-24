@@ -49,13 +49,28 @@ export default function CookieConsent() {
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         @media (max-width: 640px) {
-          .vt-cookie-bar { flex-direction: column; align-items: stretch; gap: 14px; }
+          .vt-cookie-bar {
+            bottom: 84px !important;
+            width: calc(100vw - 20px) !important;
+            gap: 10px !important;
+            padding: 12px 14px !important;
+            border-radius: 14px !important;
+            align-items: center;
+          }
+          .vt-cookie-icon { display: none !important; }
+          .vt-cookie-text { font-size: 11.5px !important; line-height: 1.4 !important; }
+          .vt-cookie-actions { flex-shrink: 0; gap: 8px !important; }
+          .vt-cookie-actions button { font-size: 12px !important; padding: 8px 14px !important; }
+        }
+        @media (max-width: 380px) {
+          .vt-cookie-bar { flex-direction: column; align-items: stretch; gap: 8px !important; }
           .vt-cookie-actions { width: 100%; }
+          .vt-cookie-actions button { flex: 1; }
         }
       `}</style>
 
       <div
-        className="flex items-center justify-center"
+        className="vt-cookie-icon flex items-center justify-center"
         style={{
           width: "40px",
           height: "40px",
@@ -68,6 +83,7 @@ export default function CookieConsent() {
       </div>
 
       <p
+        className="vt-cookie-text"
         style={{
           flex: 1,
           fontFamily: "Inter, sans-serif",
@@ -77,14 +93,14 @@ export default function CookieConsent() {
           margin: 0,
         }}
       >
-        Чтобы улучшить работу сайта, мы используем{" "}
+        Мы используем{" "}
         <Link
           to="/privacy"
           style={{ color: "#D4B074", textDecoration: "underline", textUnderlineOffset: "2px" }}
         >
           файлы cookie
-        </Link>
-        . Продолжая, вы соглашаетесь с их использованием.
+        </Link>{" "}
+        для улучшения работы сайта.
       </p>
 
       <div className="vt-cookie-actions flex items-center gap-2.5" style={{ flexShrink: 0 }}>
