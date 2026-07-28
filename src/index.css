@@ -1657,3 +1657,13 @@ br.br-desktop {
     transform: scale(0.314);
   }
 }
+
+/* Порядок карточек тарифов: мобильный по умолчанию, десктоп — свой */
+.pr-card {
+  order: var(--m-order);
+}
+@media (min-width: 1024px) {
+  .pr-card {
+    order: var(--d-order);
+  }
+}

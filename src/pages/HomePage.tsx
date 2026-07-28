@@ -4362,7 +4362,8 @@ function PricingSection() {
               onClick={() => { if (!plan.contact) setSelected(i); }}
               style={{
                 position: "relative",
-                order: [4, 1, 2, 3, 5][i] ?? i,
+                ["--m-order" as string]: [4, 1, 2, 3, 5][i] ?? i,
+                ["--d-order" as string]: [1, 2, 3, 4, 5][i] ?? i,
                 cursor: plan.contact ? "default" : "pointer",
                 background: isSelected
                   ? "linear-gradient(160deg, rgba(233,210,154,0.22) 0%, rgba(200,169,106,0.14) 55%, rgba(184,147,74,0.12) 100%)"
