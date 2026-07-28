@@ -2048,7 +2048,7 @@ function RopSection() {
                 style={{
                   fontFamily: "Inter, sans-serif", fontSize: "clamp(15px, 1.6vw, 18px)",
                   color: B, lineHeight: 1.65, fontWeight: 300, maxWidth: "560px", marginBottom: "40px",
-                  textAlign: "center", marginLeft: "auto", marginRight: "auto",
+                  textAlign: "left", marginLeft: "auto", marginRight: "auto",
                 }}
               >
                 Все звонки, ошибки и точки роста - в одном отчёте. Voice-Tec
