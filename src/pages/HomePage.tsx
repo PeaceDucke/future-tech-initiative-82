@@ -2028,17 +2028,19 @@ function RopSection() {
                 style={{
                   fontFamily: '"Bodoni Moda", Georgia, serif', fontWeight: 600,
                   fontSize: "clamp(32px, 4vw, 54px)", lineHeight: 1.1, color: W,
-                  marginBottom: "24px", letterSpacing: "0.005em",
+                  marginBottom: "24px", letterSpacing: "0.005em", textAlign: "center",
                 }}
               >
-                Вы получите полный контроль над <span style={{
+                Вы получите<br />
+                <span style={{
                   backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                   filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
-                }}>отделом продаж</span>
+                }}>полный контроль</span><br />
+                над отделом продаж
               </h2>
 
               <p
@@ -2046,6 +2048,7 @@ function RopSection() {
                 style={{
                   fontFamily: "Inter, sans-serif", fontSize: "clamp(15px, 1.6vw, 18px)",
                   color: B, lineHeight: 1.65, fontWeight: 300, maxWidth: "560px", marginBottom: "40px",
+                  textAlign: "center", marginLeft: "auto", marginRight: "auto",
                 }}
               >
                 Все звонки, ошибки и точки роста - в одном отчёте. Voice-Tec
