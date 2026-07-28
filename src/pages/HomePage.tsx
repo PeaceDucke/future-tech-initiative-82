@@ -2031,15 +2031,14 @@ function RopSection() {
                   marginBottom: "24px", letterSpacing: "0.005em",
                 }}
               >
-                Ты <span data-no-dash="true" style={{ fontWeight: 900, WebkitTextStroke: "1px currentColor" }}>-</span> РОП.<br />
-                Ты управляешь <span style={{
+                Вы получите полный контроль над <span style={{
                   backgroundImage: "linear-gradient(120deg, #FFFDF7 0%, #FBE7C0 30%, #E8C786 55%, #D4B074 78%, #A47B3C 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   color: "transparent",
                   filter: "drop-shadow(0 1px 10px rgba(212,176,116,0.28))",
-                }}>результатом</span>
+                }}>отделом продаж</span>
               </h2>
 
               <p
@@ -2049,9 +2048,9 @@ function RopSection() {
                   color: B, lineHeight: 1.65, fontWeight: 300, maxWidth: "560px", marginBottom: "40px",
                 }}
               >
-                Voice-Tec AI станет твоим инструментом контроля, анализа и роста
-                продаж. Освободи время от рутины и сфокусируйся на развитии команды
-                и увеличении выручки.
+                Все звонки, ошибки и точки роста - в одном отчёте. Voice-Tec
+                берёт рутинный контроль на себя, освобождая ваше время для
+                развития бизнеса.
               </p>
 
               {/* benefit rows */}
