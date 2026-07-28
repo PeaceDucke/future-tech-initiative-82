@@ -1964,8 +1964,8 @@ function RopSection() {
       desc: "Видишь реальную картину: что работает, а что тормозит продажи.",
     },
     {
-      icon: "Clock",
-      title: "Освободи своё время",
+      icon: "ClipboardList",
+      title: "Понятные ежедневные отчёты",
       desc: "AI берёт рутину на себя: отчёты, анализ, контроль, напоминания.",
     },
     {
@@ -2046,8 +2046,8 @@ function RopSection() {
               <p
                 className="rop-sub"
                 style={{
-                  fontFamily: "Inter, sans-serif", fontSize: "clamp(15px, 1.6vw, 18px)",
-                  color: B, lineHeight: 1.65, fontWeight: 300, maxWidth: "560px", marginBottom: "40px",
+                  fontFamily: "Inter, sans-serif", fontSize: "clamp(16px, 1.6vw, 19px)",
+                  color: "#FFFFFF", lineHeight: 1.65, fontWeight: 300, maxWidth: "560px", marginBottom: "40px",
                   textAlign: "left", marginLeft: "auto", marginRight: "auto",
                 }}
               >
