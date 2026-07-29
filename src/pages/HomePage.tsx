@@ -3644,9 +3644,9 @@ function PipelineSection() {
                 style={{ width: "92vw", maxWidth: "1720px", position: "relative", left: "50%", transform: "translateX(-50%)" }}
               >
                 {[
-                  { img: "/bw/waveform.png", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
-                  { img: "/bw/growth.png", title: "Больше успешных сделок без увеличения рекламного бюджета", desc: "Рост продаж без лишних затрат на маркетинг." },
-                  { img: "/bw/managers.png", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/31993420-8f5c-433c-bd90-0b3e00d128b7.webp", title: "100% звонков под контролем", desc: "Ни один разговор не пройдёт мимо." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/386ab4b4-66fb-4715-bba7-225042a5a98c.webp", title: "Больше успешных сделок без увеличения рекламного бюджета", desc: "Рост продаж без лишних затрат на маркетинг." },
+                  { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/bfd8cf72-4cda-4d40-b7a7-b2824197990a.webp", title: "Честный рейтинг менеджеров", desc: "ИИ выявляет слабые места каждого менеджера." },
                   { img: "/bw/shield.png", title: "Сокращение расходов на\u00A0контроль качества", desc: "Voice-Tec AI берет на себя контроль качества вместо ручной проверки." },
                   { img: "/bw/magnifier.png", title: "Мгновенное выявление ошибок в\u00A0разговорах", desc: "Реагируйте до того, как клиент уйдет." },
                   { img: "/bw/monitor.png", title: "Ясные отчёты для РОПа", desc: "Вся картина бизнеса на одном экране." },
