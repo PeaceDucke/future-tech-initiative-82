@@ -4699,9 +4699,11 @@ export function HomePage() {
             <div className="flex items-center gap-2 ml-auto">
               {/* Social icons in nav */}
               <div className="hidden lg:flex items-center gap-3">
-                <div style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const }}>
+                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Inter, sans-serif", fontSize: "15px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" as const, transition: "color 0.2s ease" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4B074"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(251,246,236,0.8)"; }}>
                   Остались вопрос<span style={{ position: "relative" as const }}>ы<span style={{ position: "absolute" as const, left: "100%" }}>?</span></span><br />Напишите на<span style={{ position: "relative" as const }}>м<span style={{ position: "absolute" as const, left: "100%" }}>!</span></span>
-                </div>
+                </a>
                 <Icon name="ArrowRight" size={20} style={{ color: "#D4B074" }} />
                 {[
                   { img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ec6abbd1-8802-405a-bc41-b51fb1533a67.png", name: "Telegram", href: "https://t.me/" },

@@ -158,9 +158,11 @@ export default function AboutPage() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-3 mr-5">
-              <div style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right" }}>
+              <a href="https://t.me/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "Inter, sans-serif", fontSize: "14px", color: "rgba(251,246,236,0.8)", fontWeight: 400, whiteSpace: "nowrap", lineHeight: 1.25, textAlign: "right", transition: "color 0.2s ease" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4B074"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(251,246,236,0.8)"; }}>
                 Остались вопросы?<br />Напишите нам!
-              </div>
+              </a>
               <Icon name="ArrowRight" size={18} style={{ color: "#D4B074" }} />
               <a href="https://t.me/" target="_blank" rel="noopener noreferrer" title="Telegram"
                 style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "48px", height: "48px", marginTop: "-8px", marginBottom: "-8px", borderRadius: "8px", transition: "transform 0.2s ease" }}
