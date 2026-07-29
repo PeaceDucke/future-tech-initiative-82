@@ -3468,15 +3468,15 @@ function PipelineSection() {
                 <div className="flex flex-col" style={{ gap: "0px" }}>
                   {[
                     {
-                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/737be0e7-316d-4380-b844-3f873c734d46.png",
+                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/4dc1cd6d-701e-4471-9618-08f2504fe0ce.webp",
                       text: "РОП тратит часы на прослушивание звонков вместо управления продажами и развития команды.",
                     },
                     {
-                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/330efac3-b85d-4a12-b30b-c3e388e726cf.png",
+                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/a59eac66-70c2-41bc-8d71-1a218c336e6d.webp",
                       text: "Отдел контроля качества физически не способен проверить все разговоры и обеспечить полный контроль над качеством работы сотрудников.",
                     },
                     {
-                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6be343a7-15dc-4739-891e-9c6c1623233c.png",
+                      img: "https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/5ec151cb-3049-4ccc-a52e-1ca420e89105.webp",
                       text: "Ошибки менеджеров обнаруживаются только после того, как бизнес уже потерял деньги или не обнаруживаются вовсе.",
                     },
                   ].map((item, i, arr) => (
