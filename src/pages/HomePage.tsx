@@ -4880,7 +4880,7 @@ export function HomePage() {
               </text>
             </svg>
             <img
-              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6bfcac18-1ac5-44d9-80db-4d7f1f5441b9.png"
+              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/dc2b2774-8b9e-4bbf-af60-b34ee177e254.webp"
               alt="Оптимизировано 30+ компаний"
               style={{
                 position: "absolute",
@@ -4943,7 +4943,7 @@ export function HomePage() {
                       </text>
                     </svg>
                     <img
-                      src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/6bfcac18-1ac5-44d9-80db-4d7f1f5441b9.png"
+                      src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/dc2b2774-8b9e-4bbf-af60-b34ee177e254.webp"
                       alt="Оптимизировано 30+ компаний"
                       style={{ position: "absolute", left: "50%", top: "50%", width: "50px", height: "50px", objectFit: "contain", transform: "translate(-50%, -50%) rotate(-30deg)", filter: "drop-shadow(0 4px 14px rgba(0,0,0,0.45))" }}
                     />
