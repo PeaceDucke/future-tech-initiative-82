@@ -3520,7 +3520,7 @@ function PipelineSection() {
                     filter: "blur(20px)",
                   }} />
                   <img
-                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/84a4f48c-9d18-4d1b-a5a6-8a06276f6730.png"
+                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/46bc026b-abb2-4a7e-993a-5ebd3129925e.webp"
                     alt="Нейросеть"
                     style={{ position: "relative", zIndex: 1, width: "100%", height: "auto", objectFit: "contain", display: "block" }}
                   />
