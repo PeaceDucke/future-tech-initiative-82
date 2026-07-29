@@ -5611,7 +5611,7 @@ export function HomePage() {
                   }}
                 >
                   <img
-                    src="/analysis-emotion.png"
+                    src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/ebb24219-e9d8-4e71-8bdc-56ac2a8527c9.webp"
                     alt="Эмоциональная тональность и ключевые темы"
                     loading="lazy"
                     style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 -24px 40px rgba(0,0,0,0.55))" }}
