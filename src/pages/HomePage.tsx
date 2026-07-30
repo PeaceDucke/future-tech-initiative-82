@@ -4827,12 +4827,22 @@ export function HomePage() {
       <main className="relative z-10">
         {/* ═══ HERO ═══ */}
         <section className="hero-section relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ minHeight: "56.25vw", maxHeight: "820px" }}>
-          <div className="hero-bg absolute inset-0">
+          <div
+            className="hero-bg absolute inset-0"
+            style={{
+              backgroundImage: "url(\"data:image/webp;base64,UklGRggBAABXRUJQVlA4WAoAAAAIAAAAFwAADAAAVlA4IIgAAADQAwCdASoYAA0APu1kqk4ppaQiMAgBMB2JZQAAYZasJNKynOIOR/QA/uwiK/fFkaI3MH9m2FaVI+tOYR6jTleDi0NoubywFJ9ZnjPM5E3M2d/eEd37JcFrfzsSRzKVxnJQCmk/xf+5Yc/2p7221w5SgNwq06XdCjbXYQ1ln9lPQQj2PNiGzgAARVhJRloAAABNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAQAAAhMAAwAAAAEAAQAAAAAAAAAAAAEAAAABAAAAAQAAAAE=\")",
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+            }}
+          >
             <img
-              src="https://cdn.poehali.dev/projects/37dcdff6-620e-46de-9c90-6860a1bec235/bucket/fc8fbf8c-2227-426e-8233-fb560ae1459c.jpg"
+              src="/hero/team.webp"
               alt="Команда Voice-Tec"
               className="hero-photo w-full h-full object-cover"
-              style={{ objectPosition: "center center", transform: "scale(1)", transformOrigin: "center center" }}
+              fetchPriority="high"
+              decoding="async"
+              onLoad={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = "1"; }}
+              style={{ objectPosition: "center center", transform: "scale(1)", transformOrigin: "center center", opacity: 0, transition: "opacity 0.5s ease" }}
             />
             <div
               className="absolute inset-0 hero-overlay"
